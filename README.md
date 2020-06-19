@@ -1,5 +1,6 @@
 &copy; 2019 The Johns Hopkins University Applied Physics Laboratory LLC.
 
+## About PINE
 PINE is a web-based tool for text annotation.  It enables annotation at the document level as well as over text spans (words).  The annotation facilitates generation of natural language processing (NLP) models to classify documents and perform named entity recognition.  Some of the features include:
  
 * Generate models in Spacy, OpenNLP, or CoreNLP on the fly and rank documents using Active Learning to reduce annotation time. 
@@ -19,9 +20,9 @@ PINE was developed under internal research and development (IRAD) funding at the
 
 ## Required Resources
 Note - download required resources and place in pipelines/pine/pipelines/resources
-apache-opennlp-1.9.0
-stanford-corenlp-full-2018-02-27
-stanford-ner-2018-02-27
+* apache-opennlp-1.9.0
+* stanford-corenlp-full-2018-02-27
+* stanford-ner-2018-02-27
 
 These are required to build docker images for active learning
 
