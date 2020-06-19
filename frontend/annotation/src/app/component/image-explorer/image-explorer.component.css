@@ -1,0 +1,57 @@
+.image-error {
+    position: absolute;
+    display: flex;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    left: 0px;
+}
+
+.image-error > mat-error {
+    margin: auto;
+    color: #393939;
+}
+
+.image-btn-bar {
+    z-index: 100;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+}
+
+.zoom-wrapper {
+    display: inline-block;
+    margin: 0px 5px 0px 0px;
+}
+
+.zoom-btn-in {
+    border-top-left-radius: 0px;
+    border-bottom-left-radius: 0px;
+}
+
+.zoom-btn-out {
+    border-top-right-radius: 0px;
+    border-bottom-right-radius: 0px;
+}
+
+.image-btn {
+    min-width: 30px;
+    line-height: 30px;
+    padding: 0px;
+}
+
+.image-btn-space {
+    margin: 0px 5px 0px 0px;
+}
+
+.image-btn mat-icon {
+    margin-bottom: 3px;
+    font-size: 20px;
+    width: 20px;
+    height: 20px;
+}
+
+.image-invert {
+    -webkit-filter: invert(1);
+    filter: invert(1);
+}

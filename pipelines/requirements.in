@@ -1,0 +1,10 @@
+backoff
+cython
+munch
+pebble
+pydash
+pyjnius
+redis
+spacy
+sklearn
+scikit-multilearn

@@ -1,0 +1,23 @@
+<!-- (C) 2019 The Johns Hopkins University Applied Physics Laboratory LLC.-->
+<button mat-menu-item [matMenuTriggerFor]="documentMenu">
+    {{ collection_title }}
+</button>
+<mat-menu #documentMenu="matMenu">
+    <ng-template matMenuContent>
+        <button mat-menu-item [routerLink]="['/' + PATHS.collection.details, collection_id]">
+            Collection Details
+        </button>
+        <button mat-menu-item [routerLink]="['/' + PATHS.document.add, collection_id]">
+            Add Document
+        </button>
+        <mat-divider *ngIf="documents && documents.length > 0"></mat-divider>
+        <button mat-menu-item *ngFor="let doc of documents" [routerLink]="['/' + PATHS.document.annotate, doc.id]" style="align-items: center; justify-content: space-between">
+            <!--<div [ngStyle]="{'color':doc.has_annotations ? 'green' : 'red'}" >{{ doc.text_start }}</div>-->
+            <div>
+                <span *ngIf="doc.has_annotations" class="material-icons annotated-icon" style="color: green">done</span>
+                <span *ngIf="!doc.has_annotations" class="material-icons annotated-icon" style="color: red">clear</span>
+                <span>{{ doc.text_start }}</span>
+            </div>
+        </button>
+    </ng-template>
+</mat-menu>

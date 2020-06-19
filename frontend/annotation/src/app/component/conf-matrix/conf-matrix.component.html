@@ -1,0 +1,53 @@
+<!-- (C) 2019 The Johns Hopkins University Applied Physics Laboratory LLC.-->
+<mat-grid-list cols="4" rowHeight="4:1" style="margin: 15px 2px">
+  <mat-grid-tile colspan="2" style="border: none">
+
+  </mat-grid-tile>
+  <mat-grid-tile colspan="2">
+    <h3>Actual Values</h3>
+  </mat-grid-tile>
+  <mat-grid-tile colspan="2" style="border: none">
+
+  </mat-grid-tile>
+  <mat-grid-tile colspan="1">
+    <h4>
+      Positive
+    </h4>
+  </mat-grid-tile>
+  <mat-grid-tile colspan="1">
+    <h4>
+      Negative
+    </h4>
+
+  </mat-grid-tile>
+  <mat-grid-tile rowspan="2">
+    <h3>
+      Predicted Values
+    </h3>
+  </mat-grid-tile>
+  <mat-grid-tile>
+    <h4>
+      Positive
+    </h4>
+
+  </mat-grid-tile>
+  <mat-grid-tile style="color: green">
+    {{data?.TP}}
+  </mat-grid-tile>
+  <mat-grid-tile style="color: red">
+    {{data?.FP}}
+
+  </mat-grid-tile>
+  <mat-grid-tile>
+    <h4>
+      Negative
+    </h4>
+  </mat-grid-tile>
+  <mat-grid-tile style="color: red">
+    {{data?.FN}}
+
+  </mat-grid-tile>
+  <mat-grid-tile style="color: green">
+    {{data?.TN}}
+  </mat-grid-tile>
+</mat-grid-list>

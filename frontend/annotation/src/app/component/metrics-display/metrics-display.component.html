@@ -1,0 +1,156 @@
+<!-- (C) 2019 The Johns Hopkins University Applied Physics Laboratory LLC.-->
+<!--<mat-card>-->
+
+  <!--<mat-card-header>-->
+    <!--<mat-card-title>-->
+      <!--<h1><span *ngIf="collection?.archived" class="material-icons">archive</span><span *ngIf="collection?.archived">Archived </span>Collection Details</h1>-->
+    <!--</mat-card-title>-->
+  <!--</mat-card-header>-->
+
+  <!--<mat-divider></mat-divider>-->
+
+  <!--<div *ngIf="loading">Loading...</div>-->
+  <!--<mat-card-content style="padding-top: 15px;">-->
+    <!--<table id="metadata-table" *ngIf="!loading">-->
+      <!--<tr class="space-under">-->
+        <!--<td><b>Collection title:</b></td>-->
+        <!--<td>{{ collection?.getTitle() }}</td>-->
+        <!--<td class="space-left"><b>Collection ID:</b></td>-->
+        <!--<td>{{collection?._id}}</td>-->
+      <!--</tr>-->
+      <!--<tr class="space-under">-->
+        <!--<td><b>Creation Date:</b></td>-->
+        <!--<td>{{collection?._created}}</td>-->
+        <!--<td class="space-left"><b>Last Updated:</b></td>-->
+        <!--<td>{{collection?._updated}}</td>-->
+      <!--</tr>-->
+      <!--<tr class="space-under">-->
+        <!--<td><b>Creator:</b></td>-->
+        <!--<td colspan="3">{{users.getUserDisplayName(collection?.creator_id)}}</td>-->
+      <!--</tr>-->
+      <!--<tr class="space-under">-->
+        <!--<td><b>Viewers:</b></td>-->
+        <!--<td colspan="3">-->
+          <!--<mat-chip-list>-->
+            <!--<mat-chip *ngFor="let viewer of collection?.viewers">{{users?.getUserDisplayName(viewer)}}</mat-chip>-->
+          <!--</mat-chip-list>-->
+        <!--</td>-->
+      <!--</tr>-->
+      <!--<tr class="space-under">-->
+        <!--<td><b>Annotators:</b></td>-->
+        <!--<td colspan="3">-->
+          <!--<mat-chip-list>-->
+            <!--<mat-chip *ngFor="let annotator of collection?.annotators">{{users?.getUserDisplayName(annotator)}}</mat-chip>-->
+          <!--</mat-chip-list>-->
+        <!--</td>-->
+      <!--</tr>-->
+      <!--<tr class="space-under">-->
+        <!--<td><b>Labels:</b></td>-->
+        <!--<td colspan="3">-->
+          <!--<mat-chip-list>-->
+            <!--<mat-chip *ngFor="let label of collection?.labels">{{label}}</mat-chip>-->
+          <!--</mat-chip-list>-->
+        <!--</td>-->
+      <!--</tr>-->
+      <!--<tr class="space-under">-->
+        <!--<td><b>Additional:</b></td>-->
+        <!--<td colspan="3">-->
+          <!--<table>-->
+            <!--<tr *ngFor="let item of getAdditionalMetadata() | keyvalue">-->
+              <!--<td><b>{{item.key}}</b></td>-->
+              <!--<td>{{item.value}}</td>-->
+            <!--</tr>-->
+          <!--</table>-->
+        <!--</td>-->
+      <!--</tr>-->
+      <!--<tr class="space-under">-->
+        <!--<td><b>Configuration:</b></td>-->
+        <!--<td colspan="3">-->
+          <!--<table>-->
+            <!--<tr *ngFor="let item of collection.configuration | keyvalue">-->
+              <!--<td><b>{{item.key}}</b></td>-->
+              <!--<td>{{item.value}}</td>-->
+            <!--</tr>-->
+          <!--</table>-->
+        <!--</td>-->
+      <!--</tr>-->
+      <!--<tr>-->
+        <!--<td><b>Classifier:</b></td>-->
+        <!--<td colspan="3">-->
+          <!--<table *ngIf="classifier">-->
+            <!--<tr>-->
+              <!--<td *ngIf="pipeline" width="50%">-->
+                <!--<b>{{ pipeline.title }}</b><br />{{ pipeline.description }}-->
+              <!--</td>-->
+              <!--<td>-->
+                <!--<table>-->
+                  <!--<tr *ngFor="let item of classifier.parameters | keyvalue">-->
+                    <!--<td><b>{{item.key}}</b></td>-->
+                    <!--<td>{{item.value}}</td>-->
+                  <!--</tr>-->
+                <!--</table>-->
+              <!--</td>-->
+            <!--</tr>-->
+          <!--</table>-->
+          <!--<ng-container *ngIf="!classifier">-->
+            <!--<b>ERROR: No classifier configured for collection.</b>-->
+          <!--</ng-container>-->
+        <!--</td>-->
+      <!--</tr>-->
+    <!--</table>-->
+  <!--</mat-card-content>-->
+    <!--<mat-card-actions>-->
+      <!--<span [matTooltipDisabled]="canArchive" matTooltip="Only the collection's creator can unarchive it."><button *ngIf="collection?.archived" class="add-doc-btn" mat-raised-button (click)="unarchiveCollection()" [disabled]="!canArchive"><span class="material-icons">unarchive</span>Unarchive Collection</button></span>-->
+      <!--<button class="add-doc-btn" mat-raised-button [routerLink]="['/' + PATHS.document.add, collection?._id]"><span class="material-icons">add</span>Add Document</button>-->
+      <!--<button class="add-doc-btn" mat-raised-button [routerLink]="['/' + PATHS.document.annotate, nextDocId]" [disabled]="nextDocId == null"><span class="material-icons">navigate_next</span>Next Document to Annotate</button>-->
+      <!--<span [matTooltipDisabled]="canArchive" matTooltip="Only the collection's creator can archive it."><button *ngIf="!collection?.archived" class="add-doc-btn" mat-raised-button (click)="archiveCollection()" [disabled]="!canArchive"><span class="material-icons">archive</span>Archive Collection</button></span>-->
+    <!--</mat-card-actions>-->
+<!--</mat-card>-->
+
+<!--<mat-card class="login-card">-->
+  <!--<mat-card-header>-->
+    <!--<mat-card-title >-->
+      <!--<h1>Documents in Collection</h1>-->
+
+    <!--</mat-card-title>-->
+  <!--</mat-card-header>-->
+
+  <!--<mat-divider></mat-divider>-->
+
+  <!--<mat-card-content style="padding-top: 2%; width: 100%">-->
+    <!--<mat-form-field>-->
+      <!--<input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">-->
+    <!--</mat-form-field>-->
+    <!--<table mat-table [dataSource]="dataSource" style="width: 100%;border-spacing: 0 5px;" *ngIf="!loading">-->
+
+      <!--<ng-container matColumnDef="id">-->
+        <!--<th mat-header-cell *matHeaderCellDef> ID </th>-->
+        <!--<td mat-cell *matCellDef="let document"> {{ document.id }} </td>-->
+      <!--</ng-container>-->
+
+      <!--<ng-container matColumnDef="creator">-->
+        <!--<th mat-header-cell *matHeaderCellDef> Creator </th>-->
+        <!--<td mat-cell *matCellDef="let document"> {{ document.creator }} </td>-->
+      <!--</ng-container>-->
+
+      <!--<ng-container matColumnDef="last_updated">-->
+        <!--<th mat-header-cell *matHeaderCellDef> Last Updated </th>-->
+        <!--<td mat-cell *matCellDef="let document"> {{ document.last_updated }} </td>-->
+      <!--</ng-container>-->
+
+      <!--<ng-container matColumnDef="text_start">-->
+        <!--<th mat-header-cell *matHeaderCellDef> Text </th>-->
+        <!--<td mat-cell *matCellDef="let document"> {{ document.text_start }} </td>-->
+      <!--</ng-container>-->
+
+      <!--<tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>-->
+      <!--<tr mat-row class="trow" *matRowDef="let row; columns: displayedColumns;" [routerLink]="['/' + PATHS.document.annotate, row.id ]" ></tr>-->
+    <!--</table>-->
+    <!--<mat-paginator [pageSize]="20" [pageSizeOptions]="[5, 10, 20, 50, 100]" showFirstLastButtons></mat-paginator>-->
+  <!--</mat-card-content>-->
+  <!--<mat-card-actions>-->
+    <!--<button mat-raised-button [routerLink]="['/' + PATHS.collection.view]">Go back</button>-->
+
+  <!--</mat-card-actions>-->
+
+<!--</mat-card>-->

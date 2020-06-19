@@ -1,0 +1,190 @@
+# (C) 2019 The Johns Hopkins University Applied Physics Laboratory LLC.
+version: "3"
+
+networks:
+  service:
+    external: true
+  private:
+    internal: true
+
+services:
+  redis:
+    container_name: redis
+    image: nlpwebapp_redis:latest
+    networks:
+      - service
+    volumes:
+      - ./redis_data:/nlp-web-app/redis/data
+      - ./redis_logs:/nlp-web-app/redis/log
+
+  eve:
+    container_name: eve
+    image: nlpwebapp_eve:latest
+    networks:
+      - service
+    volumes:
+      - ./eve_db:/nlp-web-app/eve/db
+      - ./eve_logs:/nlp-web-app/eve/logs
+
+  dashboard:
+    container_name: nlp_dashboard
+    image: johnshopkins-precision-medicine-docker-local.jfrog.io/nlp-dashboard:1.0.1
+    volumes:
+      - ./config.yaml:/opt/config.yaml
+    ports:
+      - 0.0.0.0:4003:4003
+    networks:
+      - service
+    environment:
+      SERVER_PORT: 4003
+      PMAP_MODE: 'yes'
+      EXTERNAL_URL: https://dev-nlpdashboard.pm.jh.edu 
+
+  explorer:
+    container_name: nlp_explorer
+    image: johnshopkins-precision-medicine-docker-local.jfrog.io/explorer:1.1.0
+    depends_on:
+      - redis
+      - eve 
+    ports:
+    - 0.0.0.0:4001:4001
+    networks:
+      - service
+    environment:
+      SERVER_PORT: 4001
+      REDIS_HOST: redis
+      REDIS_PORT: 6379
+      EVE_HOST: eve
+      EVE_PORT: 7510
+      PMAP_MODE: 'yes'
+      EXTERNAL_URL: https://dev-nlpexplorer.pm.jh.edu
+
+  matcherui:
+    container_name: nlp_matcherui
+    image: johnshopkins-precision-medicine-docker-local.jfrog.io/matcher-ui:1.0.0
+    depends_on:
+      - redis
+      - eve
+      - matcherservice
+    ports:
+    - 0.0.0.0:4000:4000
+    networks:
+      - service
+    environment:
+      SERVER_PORT: 4000
+      REDIS_HOST: redis
+      REDIS_PORT: 6379
+      EVE_HOST: eve
+      EVE_PORT: 7510
+      MATCHER_SERVICE_HOST: matcherservice
+      MATCHER_SERVICE_PORT: 4002
+      PMAP_MODE: 'yes'
+      EXTERNAL_URL: https://dev-nlpmatcher.pm.jh.edu
+
+
+  matcherservice:
+    container_name: matcherservice
+    image: johnshopkins-precision-medicine-docker-local.jfrog.io/matcher-service:1.0.0
+    expose:
+    - "4002"
+    depends_on:
+      - redis
+    networks:
+    - service
+    environment:
+      REDIS_HOST: redis
+      REDIS_PORT: 6379
+      EVE_HOST: eve
+      EVE_PORT: 7510
+      MATCHER_SERVICE_PORT: 4002
+
+  backend:
+    container_name: backend
+    image: nlpwebapp_backend:latest
+    networks:
+      - service
+    depends_on:
+      - redis
+      - eve
+    environment:
+      AL_REDIS_HOST: redis
+      AL_REDIS_PORT: ${REDIS_PORT}
+
+  frontend_annotation:
+    container_name: nlpannotator
+    image: nlpwebapp_frontend_annotation:latest
+    networks:
+      - service
+    depends_on:
+      - backend
+    
+  open_nlp:
+    container_name: open_nlp
+    image: nlpwebapp_open_nlp:latest
+    networks:
+      - service
+    depends_on:
+      - redis
+      - eve
+      - backend
+    environment:
+      AL_PIPELINE: opennlp
+      AL_REDIS_HOST: redis
+      AL_REDIS_PORT: ${REDIS_PORT}
+      AL_EVE_HOST: eve
+      AL_EVE_PORT: ${EVE_PORT}
+    volumes:
+      - "~/models:/pipelines/models/"
+    links:
+      - redis
+      - eve
+
+  core_nlp:
+    container_name: core_nlp
+    image: nlpwebapp_core_nlp:latest
+    networks:
+      - service
+    depends_on:
+      - redis
+      - eve
+      - backend
+    environment:
+      AL_PIPELINE: corenlp
+      AL_REDIS_HOST: redis
+      AL_REDIS_PORT: ${REDIS_PORT}
+      AL_EVE_HOST: eve
+      AL_EVE_PORT: ${EVE_PORT}
+    volumes:
+      - "~/models:/pipelines/models/"
+    links:
+      - redis
+      - eve
+    
+  spacy:
+    container_name: spacy
+    image: nlpwebapp_spacy:latest
+    networks:
+      - service
+    depends_on:
+      - redis
+      - eve
+      - backend
+    environment:
+      AL_PIPELINE: spacy
+      AL_REDIS_HOST: redis
+      AL_REDIS_PORT: ${REDIS_PORT}
+      AL_EVE_HOST: eve
+      AL_EVE_PORT: ${EVE_PORT}
+    volumes:
+      - "~/models:/pipelines/models/"
+    links:
+      - redis
+      - eve
+
+
+volumes:
+  models:
+  eve_db:
+  eve_logs:
+  redis_data:
+  redis_logs:

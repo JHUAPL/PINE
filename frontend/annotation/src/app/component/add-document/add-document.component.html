@@ -1,0 +1,62 @@
+<!-- (C) 2019 The Johns Hopkins University Applied Physics Laboratory LLC.-->
+<mat-card class="form-card">
+    <mat-card-header>
+        <mat-card-title>
+            <h1>Add Document to Collection</h1>
+        </mat-card-title>
+    </mat-card-header>
+    <mat-divider></mat-divider>
+
+    <form [formGroup]="createForm" (ngSubmit)="create()">
+        <mat-card-content class="content">
+
+            <mat-form-field class="form-field" appearance="standard">
+                <mat-label>Creator</mat-label>
+                <input matInput required formControlName="creator_name" type="text"
+                       class="form-control" />
+            </mat-form-field>
+            <input matInput hidden required type="text"
+                   formControlName="creator_id"
+                   class="form-control"/>
+
+            <mat-form-field class="form-field" appearance="standard">
+                <mat-label>Collection ID</mat-label>
+                <input matInput required type="text"
+                       formControlName="collection_id"
+                       class="form-control">
+            </mat-form-field>
+
+            <app-image-chooser [collectionId]="collection_id"></app-image-chooser>
+
+            <mat-form-field class="form-field" appearance="standard">
+                <mat-label>Document text</mat-label>
+                <textarea matInput required readonly type="text"
+                          formControlName="text"
+                          cdkTextareaAutosize
+                          #autosize="cdkTextareaAutosize"
+                          cdkAutosizeMinRows="5"
+                          cdkAutosizeMaxRows="30"></textarea>
+                
+                <input hidden type="file" accept=".txt,text/plain" #textFile
+                       [id]="uuidv4 + '-file_upload'" name="file_upload" 
+                       (change)="handleFileInput($event.target.files)" />
+                <label [for]="textFile.id" class="mat-raised-button">
+                    Click to choose text file for document
+                </label>
+                       
+                <mat-error *ngIf="(f.text.dirty || f.text.touched || submitted) && f.text.errors">
+                    <div *ngIf="f.text.errors['required']">Document text is required.</div>
+                </mat-error>
+            </mat-form-field>
+        </mat-card-content>
+
+        <mat-error *ngIf="hadError">
+            {{ errorMessage }}
+        </mat-error>
+
+        <mat-card-actions>
+            <button mat-raised-button [disabled]="loading"><span class="material-icons">save</span>Save</button>
+            <button mat-raised-button [routerLink]="['/' + PATHS.collection.details, collection_id]"><span class="material-icons">cancel</span>Cancel</button>
+        </mat-card-actions>
+    </form>
+</mat-card>

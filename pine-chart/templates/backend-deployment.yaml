@@ -1,0 +1,66 @@
+# (C) 2019 The Johns Hopkins University Applied Physics Laboratory LLC.
+
+{{- $component := .Values.backend }}
+apiVersion: apps/v1beta2
+kind: Deployment
+metadata:
+  name: {{ template "pine-chart.fullname" . }}-{{ $component.name }}
+  labels:
+    app: {{ template "pine-chart.name" . }}
+    component: {{ $component.name }}
+    chart: {{ template "pine-chart.chart" . }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+spec:
+  replicas: {{ $component.replicaCount }}
+  selector:
+    matchLabels:
+      app: {{ template "pine-chart.name" . }}
+      component: {{ $component.name }}
+      release: {{ .Release.Name }}
+  template:
+    metadata:
+      labels:
+        app: {{ template "pine-chart.name" . }}
+        component: {{ $component.name }}
+        release: {{ .Release.Name }}
+    spec:
+      containers:
+        - name: {{ template "pine-chart.fullname" . }}
+          image: "{{ $component.image.repository }}:{{ $component.image.tag }}"
+          imagePullPolicy: {{ $component.image.pullPolicy }}
+          env:
+            - name: EVE_SERVER
+              value: "http://{{ template "pine-chart.fullname" . }}-{{ .Values.eve.name }}.{{ .Values.namespace }}.svc.cluster.local:{{ .Values.eve.service.port }}"
+            - name: REDIS_SERVER
+              value: "{{ template "pine-chart.fullname" . }}-{{ .Values.redis.name }}.{{ .Values.namespace }}.svc.cluster.local"
+            - name: REDIS_PORT
+              value: {{ .Values.redis.service.port | quote }}
+            - name: AL_REDIS_HOST
+              value: "{{ template "pine-chart.fullname" . }}-{{ .Values.redis.name }}.{{ .Values.namespace }}.svc.cluster.local"
+            - name: AL_REDIS_POST
+              value: {{ .Values.redis.service.port | quote }}
+            {{- range $name, $value := $component.extraEnv }}
+            {{- if not (empty $value) }}
+            - name: {{ $name }}
+              value: {{ $value | quote }}
+            {{- end }}
+            {{- end }}
+            {{- $root := . }}
+            {{- range $ref, $values := .Values.secrets }}
+            {{- if (eq $component.name $ref) }}
+            {{- range $key, $value := $values }}
+            - name: {{ $key | upper }}
+              valueFrom:
+                secretKeyRef:
+                  name: {{ template "pine-chart.fullname" $root }}-{{ $ref }}
+                  key: {{ $key }}
+            {{- end }}
+            {{- end }}
+            {{- end }}
+    {{- if .Values.imagePullSecrets }}
+      imagePullSecrets:
+      {{- range .Values.imagePullSecrets }}
+        - name: {{.}}
+      {{- end}}
+    {{- end }}

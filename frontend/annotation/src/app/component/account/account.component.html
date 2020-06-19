@@ -1,0 +1,113 @@
+<!-- (C) 2019 The Johns Hopkins University Applied Physics Laboratory LLC.-->
+
+<mat-card>
+    <mat-card-header>
+        <mat-card-title>
+            <h1>Manage Account</h1>
+        </mat-card-title>
+    </mat-card-header>
+    <mat-divider></mat-divider>
+<div *ngIf="loading">Loading...</div>
+<mat-accordion *ngIf="!loading" id="accordian" multi="true">
+
+    <mat-expansion-panel expanded="true">
+        <mat-expansion-panel-header>
+            <mat-panel-title>Change Account Details</mat-panel-title>
+        </mat-expansion-panel-header>
+        <form [formGroup]="detailsForm" (ngSubmit)="changeDetails()">
+        
+            <mat-form-field class="form-field" appearance="standard">
+                <mat-label>Email / Username</mat-label>
+                <input matInput formControlName="email" type="text"
+                       class="form-control"  />
+            </mat-form-field>
+            
+            <mat-form-field class="form-field" appearance="standard">
+                <mat-label>First Name</mat-label>
+                <input matInput required formControlName="first_name" type="text"
+                       class="form-control"
+                       [ngClass]="{ 'is-invalid': (d.first_name.dirty || d.first_name.touched || submittedDetails) && d.first_name.errors }" />
+                <mat-error *ngIf="(d.first_name.dirty || d.first_name.touched || submittedDetails) && d.first_name.errors">
+                    <div *ngIf="d.first_name.errors.required">First name is required.</div>
+                </mat-error>
+            </mat-form-field>
+            
+            <mat-form-field class="form-field" appearance="standard">
+                <mat-label>Last Name</mat-label>
+                <input matInput required formControlName="last_name" type="text"
+                       class="form-control"
+                       [ngClass]="{ 'is-invalid': (d.last_name.dirty || d.last_name.touched || submittedDetails) && d.last_name.errors }" />
+                <mat-error *ngIf="(d.last_name.dirty || d.last_name.touched || submittedDetails) && d.last_name.errors">
+                    <div *ngIf="d.last_name.errors.required">Last name is required.</div>
+                </mat-error>
+            </mat-form-field>
+            
+            <mat-form-field class="form-field" appearance="standard">
+                <mat-label>Description</mat-label>
+                <textarea matInput formControlName="description" cdkTextareaAutosize
+                          class="form-control"
+                          [ngClass]="{ 'is-dirty': (d.description.dirty), 'is-invalid': (d.description.dirty || d.description.touched || submittedDetails) && d.description.errors }">
+                </textarea>
+            </mat-form-field>
+
+            <mat-error *ngIf="detailsHadError">
+                {{ detailsError }}
+            </mat-error>
+
+            <mat-action-row>
+                <button mat-raised-button [disabled]="!detailsForm.dirty">Save</button>
+            </mat-action-row>
+        </form>
+    </mat-expansion-panel>
+
+    <br />
+
+    <mat-expansion-panel expanded="true">
+        <mat-expansion-panel-header>
+            <mat-panel-title>Change Password</mat-panel-title>
+        </mat-expansion-panel-header>
+        <form [formGroup]="passwordForm" (ngSubmit)="changePassword()">
+        
+            <mat-form-field class="form-field" appearance="standard">
+                <mat-label>Current Password</mat-label>
+                <input matInput required formControlName="current_password" type="password"
+                       class="form-control"
+                       [ngClass]="{ 'is-invalid': (p.current_password.dirty || p.current_password.touched || submittedPassword) && p.current_password.errors }" />
+                <mat-error *ngIf="(p.current_password.dirty || p.current_password.touched || submittedPassword) && p.current_password.errors">
+                    <div *ngIf="p.current_password.errors.required">Current password is required.</div>
+                </mat-error>
+            </mat-form-field>
+            
+            <mat-form-field class="form-field" appearance="standard">
+                <mat-label>New Password</mat-label>
+                <input matInput required formControlName="new_password" type="password"
+                       class="form-control"
+                       [ngClass]="{ 'is-invalid': (p.new_password.dirty || p.new_password.touched || submittedPassword) && p.new_password.errors }" />
+                <mat-error *ngIf="(p.new_password.dirty || p.new_password.touched || submittedPassword) && p.new_password.errors">
+                    <div *ngIf="p.new_password.errors.required">New password is required.</div>
+                </mat-error>
+            </mat-form-field>
+        
+            <mat-form-field class="form-field" appearance="standard">
+                <mat-label>Confirm New Password</mat-label>
+                <input matInput required formControlName="new_password_confirm" type="password"
+                       class="form-control"
+                       [ngClass]="{ 'is-invalid': (p.new_password_confirm.dirty || p.new_password_confirm.touched || submittedPassword) && p.new_password_confirm.errors }" />
+                <mat-error *ngIf="(p.new_password_confirm.dirty || p.new_password_confirm.touched || submittedPassword) && p.new_password_confirm.errors">
+                    <div *ngIf="p.new_password_confirm.errors.required">New password is required.</div>
+                    <div *ngIf="p.new_password_confirm.errors.nonmatching">Passwords do not match.</div>
+                </mat-error>
+            </mat-form-field>
+
+            <mat-error *ngIf="passwordHadError">
+                {{ passwordError }}
+            </mat-error>
+
+            <mat-action-row>
+                <button mat-raised-button [disabled]="!passwordForm.dirty">Save</button>
+            </mat-action-row>
+        </form>
+    </mat-expansion-panel>
+
+</mat-accordion>
+</mat-card>

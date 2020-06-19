@@ -1,0 +1,21 @@
+# (C) 2019 The Johns Hopkins University Applied Physics Laboratory LLC.
+
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+scikit-learn = "*"
+pymongo = "*"
+requests = "*"
+numpy = "*"
+scipy = "*"
+Eve = "*"
+Flask-Cors = "*"
+python-json-logger = "*"
+
+[dev-packages]
+
+[requires]
+python_version = "3.6"

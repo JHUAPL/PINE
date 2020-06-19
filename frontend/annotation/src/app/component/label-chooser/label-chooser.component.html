@@ -1,0 +1,24 @@
+<!-- (C) 2019 The Johns Hopkins University Applied Physics Laboratory LLC.-->
+<div *ngIf="loading">Loading labels...</div>
+<mat-form-field *ngIf="!loading" [class]="formFieldClass" [appearance]="formFieldAppearance">
+    <mat-label [ngClass]="{ 'mat-error': hasError }">{{ label }}</mat-label>
+    <mat-chip-list #chipList>
+        <mat-chip *ngFor="let label of labels"
+                  [selectable]="selectable"
+                  [removable]="true"
+                  (removed)="remove(label)">
+            {{ label }}
+            <mat-icon matChipRemove>cancel</mat-icon>
+        </mat-chip>
+        <input placeholder="Add label..."
+               #labelInput
+               [matChipInputFor]="chipList"
+               [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+               [matChipInputAddOnBlur]="addOnBlur"
+               (matChipInputTokenEnd)="add($event)"
+               [ngClass]="{ 'is-invalid': hasError }">
+        <mat-error *ngIf="hasError">
+            <div>{{ errorMessage }}</div>
+        </mat-error>
+    </mat-chip-list>
+</mat-form-field>

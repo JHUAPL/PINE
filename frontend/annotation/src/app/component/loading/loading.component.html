@@ -1,0 +1,18 @@
+<!-- (C) 2019 The Johns Hopkins University Applied Physics Laboratory LLC.-->
+<div id="container" class="full-content" *ngIf="loading || error">
+
+  <div *ngIf="loading" id="loading">
+    <h1>L O A D I N G . . .</h1>
+    <div>
+      <mat-progress-spinner [color]="spinnerColor" [mode]="spinnerMode"></mat-progress-spinner>
+    </div>
+  </div>
+
+  <div *ngIf="error" id="error">
+    <h1>LOADING ERROR</h1>
+    <div>
+      <mat-error>{{ errorMessage }}</mat-error>
+    </div>
+  </div>
+
+</div>

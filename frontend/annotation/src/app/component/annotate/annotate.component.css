@@ -1,0 +1,133 @@
+/*(C) 2019 The Johns Hopkins University Applied Physics Laboratory LLC. */
+
+#container {
+
+}
+
+.image-container {
+    position: relative;
+    width: 100%;
+    height: 400px;
+    background-color: lightgray;
+}
+
+.full-screen-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    z-index: 1000;
+    min-height: 0px;
+    height: 30px;
+    line-height: 30px;
+}
+
+#cantAnnotate h3 {
+	margin-top: 0px;
+}
+
+#myDocAnnotations mat-chip {
+	margin-left: -6px;
+	margin-right: 14px;
+}
+
+#settingsButton {
+    float: right;
+}
+
+#doc {
+	line-height: 1.5;
+	-webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.monospace {
+    font-family: monospace;
+    font-size: 16pt;
+}
+
+.nonmonospace {
+    font-size: 18pt;
+}
+
+.word:focus {
+	outline: none;
+}
+
+:host::ng-deep.shadowed, .shadowed {
+	border: 1px solid black;
+    -moz-box-shadow: 2px 2px 2px grey;
+    -webkit-box-shadow: 2px 2px 2px grey;
+    box-shadow: 2px 2px 2px grey;
+}
+
+.annotation, .select {
+	-moz-box-shadow: 2px 2px 2px grey;
+    -webkit-box-shadow: 2px 2px 2px grey;
+    box-shadow: 2px 2px 2px grey;
+    
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+}
+
+.select {
+	background: white !important;
+}
+
+.annotationLeft, .selectLeft {
+	padding-left: 10px;
+
+    border-left: 1px solid black;
+    
+    -moz-border-top-left-radius: 20px;
+    border-top-left-radius: 20px;
+    -moz-border-bottom-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+}
+
+.annotationRight, .selectRight {
+	padding-right: 10px;
+	margin-right: 2px;
+    
+    border-right: 1px solid black;
+    
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+}
+
+.select {
+	
+}
+
+.selectLeft {
+
+}
+
+.selectRight {
+
+}
+
+#container mat-card-actions {
+	padding-left: 9px;
+	padding-top: 15px;
+}
+
+mat-panel-description h3 {
+	margin-top: 30px;
+}
+
+#others {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+}
+
+#showOthersAnnotations {
+	display: flex;
+}
+
+.popover {
+
+}
+

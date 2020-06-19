@@ -1,0 +1,136 @@
+# (C) 2019 The Johns Hopkins University Applied Physics Laboratory LLC.
+version: "3"
+
+services:
+
+  redis:
+    build:
+      context: ./redis/
+      args:
+        - PORT=${REDIS_PORT}
+        - DATA_DIR=/nlp-web-app/redis/data
+        - LOG_DIR=/nlp-web-app/logs/redis
+    volumes:
+      - redis_data:/nlp-web-app/redis/data
+      - ${LOGS_VOLUME}:/nlp-web-app/logs
+      - ${SHARED_VOLUME}/:/nlp-web-app/shared
+    environment:
+      - LOG_FORMAT_SNIPPET=/nlp-web-app/shared/logging.redis.conf
+# Expose the following to test:
+#    ports:
+#      - ${REDIS_PORT}:${REDIS_PORT}
+
+  eve:
+    build:
+      context: ./eve/
+      args:
+        - PORT=${EVE_PORT}
+        - LOG_DIR=/nlp-web-app/logs/eve
+    volumes:
+      - ${SHARED_VOLUME}/:/nlp-web-app/shared
+      - ${LOGS_VOLUME}:/nlp-web-app/logs
+    environment:
+      - PINE_LOGGING_CONFIG_FILE=/nlp-web-app/shared/logging.python.json
+# Expose the following to test:
+#    ports:
+#      - "7510:7510"
+
+  backend:
+    depends_on:
+      - redis
+      - eve
+    build:
+      context: ./backend/
+      args:
+        - PORT=${BACKEND_PORT}
+        - REDIS_PORT=${REDIS_PORT}
+    #  Load environment variables in service.py using Samuel's ConfigBuilder
+    volumes:
+      - ${SHARED_VOLUME}:/nlp-web-app/shared
+      - ${LOGS_VOLUME}:/nlp-web-app/logs
+      - ${DOCUMENT_IMAGE_VOLUME}:/nlp-web-app/document_images
+    environment:
+      AL_REDIS_HOST: redis
+      AL_REDIS_PORT: ${REDIS_PORT}
+      AUTH_MODULE: ${AUTH_MODULE}
+      PINE_LOGGING_CONFIG_FILE: /nlp-web-app/shared/logging.python.json
+      DOCUMENT_IMAGE_DIR: /nlp-web-app/document_images
+    # Expose the following to test:
+#    ports:
+#      - ${BACKEND_PORT}:${BACKEND_PORT}
+
+  frontend_annotation:
+    depends_on:
+      - backend
+    build:
+      context: ./frontend/annotation/
+    volumes:
+      - ${SHARED_VOLUME}/:/nlp-web-app/shared
+      - ${LOGS_VOLUME}:/nlp-web-app/logs
+    environment:
+      - LOG_FORMAT_SNIPPET=/nlp-web-app/shared/logging.nginx.conf
+
+  open_nlp:
+    depends_on:
+      - redis
+      - eve
+      - backend
+    image: al_pipeline
+    build:
+      context:  ./pipelines/
+      dockerfile: docker/Dockerfile
+    environment:
+      AL_PIPELINE: opennlp
+      AL_REDIS_HOST: redis
+      AL_REDIS_PORT: ${REDIS_PORT}
+      AL_EVE_HOST: eve
+      AL_EVE_PORT: ${EVE_PORT}
+    volumes:
+      - "${MODELS_VOLUME}:/nlp-web-app/pipelines/models/"
+      - ${LOGS_VOLUME}:/nlp-web-app/logs
+    links:
+      - redis
+      - eve
+
+  core_nlp:
+    depends_on:
+    - redis
+    - eve
+    - backend
+    image: al_pipeline
+    environment:
+      AL_PIPELINE: corenlp
+      AL_REDIS_HOST: redis
+      AL_REDIS_PORT: ${REDIS_PORT}
+      AL_EVE_HOST: eve
+      AL_EVE_PORT: ${EVE_PORT}
+    volumes:
+    - "${MODELS_VOLUME}:/nlp-web-app/pipelines/models/"
+    - ${LOGS_VOLUME}:/nlp-web-app/logs
+    links:
+    - redis
+    - eve
+
+  spacy:
+    depends_on:
+    - redis
+    - eve
+    - backend
+    image: al_pipeline
+    environment:
+      AL_PIPELINE: spacy
+      AL_REDIS_HOST: redis
+      AL_REDIS_PORT: ${REDIS_PORT}
+      AL_EVE_HOST: eve
+      AL_EVE_PORT: ${EVE_PORT}
+    volumes:
+    - "${MODELS_VOLUME}:/nlp-web-app/pipelines/models/"
+    - ${LOGS_VOLUME}:/nlp-web-app/logs
+    links:
+    - redis
+    - eve
+
+
+volumes:
+  redis_data:
+

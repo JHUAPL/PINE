@@ -1,0 +1,8 @@
+{
+    "env": {
+        "name": "prod"
+    },
+    "backend": {
+        "host": "api"
+    }
+}

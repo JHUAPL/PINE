@@ -1,0 +1,39 @@
+<!-- (C) 2019 The Johns Hopkins University Applied Physics Laboratory LLC.-->
+<mat-nav-list id="nav-list">
+    <mat-list-item (click)="isExpanded = !isExpanded">
+        <button mat-icon-button>
+            <span class="material-icons">{{ isExpanded ? "chevron_left" : "menu" }}</span>
+        </button>
+    </mat-list-item>
+    <mat-list-item [routerLink]="[appConfig.landingPage]">
+        <span class="material-icons" mat-list-icon>home</span>
+        <p matLine *ngIf="isExpanded">Home</p>
+    </mat-list-item>
+    <mat-list-item [matMenuTriggerFor]="myCollections" dir="right">
+        <span class="material-icons" mat-list-icon>library_books</span>
+        <p matLine *ngIf="isExpanded">My Collections</p>
+        <p><span class="material-icons" style="margin-top: 6px">chevron_right</span></p>
+    </mat-list-item>
+    <!-- https://github.com/angular/components/issues/14621 -->
+    <mat-menu id="myCollectionsMenu" #myCollections="matMenu" xPosition="after" overlapTrigger="false" direction="right">
+        <button mat-menu-item [routerLink]="['/' + PATHS.collection.view]">View All Collections</button>
+        <mat-divider></mat-divider>
+        <app-nav-my-collections></app-nav-my-collections>
+    </mat-menu>
+    <mat-list-item [routerLink]="['/' + PATHS.collection.add]">
+        <span class="material-icons" mat-list-icon>library_add</span>
+        <p matLine *ngIf="isExpanded">Add Collection</p>
+    </mat-list-item>
+    <mat-list-item *ngIf="userIsAdmin()" [routerLink]="['/' + PATHS.admin.dashboard]">
+        <span class="material-icons" mat-list-icon>whatshot</span>
+        <p matLine *ngIf="isExpanded">Admin Dashboard</p>
+    </mat-list-item>
+    <mat-list-item *ngIf="authService.canManageUsers" [routerLink]="['/' + PATHS.user.account]">
+        <span class="material-icons" mat-list-icon>account_circle</span>
+        <p matLine *ngIf="isExpanded">Manage Account</p>
+    </mat-list-item>
+    <mat-list-item (click)="doLogout()">
+        <span class="material-icons" mat-list-icon>exit_to_app</span>
+        <p matLine *ngIf="isExpanded">Logout</p>
+    </mat-list-item>
+</mat-nav-list>

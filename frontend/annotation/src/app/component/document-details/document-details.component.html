@@ -1,0 +1,58 @@
+<!-- (C) 2019 The Johns Hopkins University Applied Physics Laboratory LLC.-->
+<mat-expansion-panel>
+  <mat-expansion-panel-header>
+    <mat-panel-title>
+      <h2>Document Details</h2>
+    </mat-panel-title>
+    <mat-panel-description>
+      <h3>Show document details and metadata</h3>
+    </mat-panel-description>
+  </mat-expansion-panel-header>
+  <table class="metadata-table">
+    <tr class="space-under">
+      <td><b>Document ID:</b></td>
+      <td>{{document?._id}}</td>
+    </tr>
+    <tr class="space-under">
+      <td><b>Creation Date:</b></td>
+      <td>{{document?._created}}</td>
+    </tr>
+    <tr class="space-under">
+      <td><b>Last Updated:</b></td>
+      <td>{{document?._updated}}</td>
+    </tr>
+    <tr class="space-under">
+      <td><b>Creator:</b></td>
+      <td>{{auth.getUserDisplayName(document?.creator_id)}}</td>
+    </tr>
+    <tr class="space-under">
+      <td><b>Metadata:</b></td>
+      <td>
+        <table>
+          <ng-container *ngIf="document && document?.metadata">
+          <tr *ngFor="let item of document?.metadata | keyvalue">
+            <td><b>{{item.key}}</b></td>
+            <td *ngIf="item.key !== 'imageUrl'">{{item.value}}</td>
+            <td *ngIf="item.key === 'imageUrl'">
+                <a [href]="collections.collectionImageUrl(collection._id, item.value)" target="_blank">
+                    {{item.value}}
+                    <span *ngIf="item.value !== collections.collectionImageUrl(collection._id, item.value)">({{collections.collectionImageUrl(collection._id, item.value)}})</span>
+                 </a>
+                 <div><button *ngIf="canUpdateMetadata" mat-button mat-raised-button (click)="updateImage()">Update document image</button></div>
+             </td>
+          </tr>
+          </ng-container>
+          <tr *ngIf="canUpdateMetadata && (!document || !document.metadata || !document.metadata.hasOwnProperty('imageUrl'))">
+            <td><b>imageUrl</b></td>
+            <td><button mat-button mat-raised-button (click)="updateImage()">Update document image</button></td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+    <tr>
+      <td><b>Collection:</b></td>
+      <td *ngIf="!collection">Loading...</td>
+      <td *ngIf="collection">{{ collection.hasTitle() ? collection.getTitle() + " (" : "" }}<a href="#" [routerLink]="['/' + PATHS.collection.details, document?.collection_id]">{{document?.collection_id}}</a>{{ collection.hasTitle() ? ")" : "" }}</td>
+    </tr>
+  </table>
+</mat-expansion-panel>

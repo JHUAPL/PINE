@@ -1,0 +1,59 @@
+# (C) 2019 The Johns Hopkins University Applied Physics Laboratory LLC.
+{{- $component := .Values.frontend }}
+apiVersion: apps/v1beta2
+kind: Deployment
+metadata:
+  name: {{ template "pine-chart.fullname" . }}-{{ $component.name }}
+  labels:
+    app: {{ template "pine-chart.name" . }}
+    component: {{ $component.name }}
+    chart: {{ template "pine-chart.chart" . }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+spec:
+  replicas: {{ $component.replicaCount }}
+  selector:
+    matchLabels:
+      app: {{ template "pine-chart.name" . }}
+      component: {{ $component.name }}
+      release: {{ .Release.Name }}
+  template:
+    metadata:
+      labels:
+        app: {{ template "pine-chart.name" . }}
+        component: {{ $component.name }}
+        release: {{ .Release.Name }}
+    spec:
+      containers:
+        - name: {{ template "pine-chart.fullname" . }}
+          image: "{{ $component.image.repository }}:{{ $component.image.tag }}"
+          imagePullPolicy: {{ $component.image.pullPolicy }}
+          env:
+            - name: BACKEND_SERVER
+              value: "http://{{ template "pine-chart.fullname" . }}-{{ .Values.backend.name }}.{{ .Values.namespace }}.svc.cluster.local:{{ .Values.backend.service.port }}"
+            - name: SERVER_NAME
+              value: {{ .Values.frontend.serverName | quote }}
+            {{- range $name, $value := $component.extraEnv }}
+            {{- if not (empty $value) }}
+            - name: {{ $name }}
+              value: {{ $value | quote }}
+            {{- end }}
+            {{- end }}
+            {{- $root := . }}
+            {{- range $ref, $values := .Values.secrets }}
+            {{- if (eq $component.name $ref) }}
+            {{- range $key, $value := $values }}
+            - name: {{ $key | upper }}
+              valueFrom:
+                secretKeyRef:
+                  name: {{ template "pine-chart.fullname" $root }}-{{ $ref }}
+                  key: {{ $key }}
+            {{- end }}
+            {{- end }}
+            {{- end }}
+    {{- if .Values.imagePullSecrets }}
+      imagePullSecrets:
+      {{- range .Values.imagePullSecrets }}
+        - name: {{.}}
+      {{- end}}
+    {{- end }}

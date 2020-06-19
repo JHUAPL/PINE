@@ -1,0 +1,29 @@
+<!-- (C) 2019 The Johns Hopkins University Applied Physics Laboratory LLC.-->
+
+<h2 mat-dialog-title id="title">{{collection.getTitle()}} ({{collection._id}})</h2>
+
+<mat-dialog-content id="content">
+    <span class="mat-h3"><b>Download collection data:</b></span>
+    <form [formGroup]="form">
+        <mat-checkbox formControlName="include_collection_metadata">Include collection metadata</mat-checkbox><br />
+        <mat-checkbox formControlName="include_document_metadata">Include document metadata</mat-checkbox><br />
+        <mat-checkbox formControlName="include_document_text">Include document text</mat-checkbox><br />
+        <mat-checkbox formControlName="include_annotations">Include annotations</mat-checkbox><br />
+        <div *ngIf="form.controls.include_annotations.value" id="annotations">
+            <mat-radio-group formControlName="include_annotation_latest_version_only">
+                <mat-radio-button value="true">Latest version only</mat-radio-button><br />
+                <mat-radio-button value="false">All versions</mat-radio-button><br />
+            </mat-radio-group>
+        </div>
+        &nbsp;
+    </form>
+</mat-dialog-content>
+
+<mat-dialog-actions id="actions">
+    <button mat-raised-button class="mat-primary" (click)="download()">
+        Download
+    </button>
+    <button mat-raised-button (click)="cancel()">
+        Cancel
+    </button>
+</mat-dialog-actions>

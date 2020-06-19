@@ -1,0 +1,147 @@
+# (C) 2019 The Johns Hopkins University Applied Physics Laboratory LLC.
+# Docker
+# Build and push an image to Azure Container Registry
+# https://docs.microsoft.com/azure/devops/pipelines/languages/docker
+
+trigger:
+  batch: true
+  branches:
+    include:
+      - master
+      #- release/*
+      - develop
+
+## Reference to repository containing common templates and variables
+resources:
+  repositories:
+    - repository: templates
+      type: git
+      name: APPLICATIONS/tdo-azure-devops-templates
+
+variables:
+  ## Import of common variables
+  - template: variables/pmap-common.yml@templates # Template reference
+  - group: "nlp_annotator"
+  # appReleaseName is the name of helm release
+  - name: appReleaseName
+    value: "pine"
+  - name: helmChart
+    value: "pine-chart"
+  - name: redisImageName
+    value: "pine/redis"
+  - name: eveImageName
+    value: "pine/eve"
+  - name: backendImageName
+    value: "pine/backend"
+  - name: frontendImageName
+    value: "pine/frontend"
+  - name: pipelineImageName
+    value: "pine/al_pipeline"
+
+stages:
+  - stage: build_test
+    displayName: Build and Test
+    jobs:
+      - job: build_test
+        displayName: Build
+        pool:
+          vmImage: $(vmImageName)
+        steps:
+        - task: Docker@2
+          displayName: Build and push Pine Redis image to container registry
+          inputs:
+            command: buildAndPush
+            repository: $(redisImageName)
+            dockerfile: redis/Dockerfile
+            containerRegistry: $(containerRegistry)
+            tags: |
+              $(Build.BuildId)
+        - task: Docker@2
+          displayName: Build and push Pine Eve image to container registry
+          inputs:
+            command: buildAndPush
+            repository: $(eveImageName)
+            dockerfile: eve/Dockerfile
+            containerRegistry: $(containerRegistry)
+            tags: |
+              $(Build.BuildId)
+        - task: Docker@2
+          displayName: Build and push Pine Backend image to container registry
+          inputs:
+            command: buildAndPush
+            repository: $(backendImageName)
+            dockerfile: backend/Dockerfile
+            containerRegistry: $(containerRegistry)
+            tags: |
+              $(Build.BuildId)
+        - task: Docker@2
+          displayName: Build and push Pine Frontend image to container registry
+          inputs:
+            command: buildAndPush
+            repository: $(frontendImageName)
+            dockerfile: frontend/annotation/Dockerfile
+            containerRegistry: $(containerRegistry)
+            tags: |
+              $(Build.BuildId)
+        - task: Docker@2
+          displayName: Build and push Pine al_pipeline image to container registry
+          inputs:
+            command: buildAndPush
+            repository: $(pipelineImageName)
+            dockerfile: pipelines/docker/Dockerfile
+            buildContext: pipelines/
+            containerRegistry: $(containerRegistry)
+            tags: |
+              $(Build.BuildId)
+        - task: PublishPipelineArtifact@1
+          inputs:
+            targetPath: 'pine-chart'
+            artifact: 'pine-chart'
+            publishLocation: 'pipeline'
+
+  - stage: deploy_to_dev
+    displayName: Deploy to dev
+    condition: and(succeeded(), eq(variables['build.sourceBranch'], 'refs/heads/develop'))
+    dependsOn: build_test
+    jobs:
+      - template: azure-pipeline-templates/deploy.yml  # Template reference
+        parameters:
+          appReleaseName: $(appReleaseName)
+          appUrl: "dev-nlpannotator.pm.jh.edu"
+          deployEnvironment: $(devEnvironment)
+          kubeServiceConnection: $(devEnvironment)
+          namespace: $(devNamespace)
+          imageTag: $(Build.BuildId)
+          redisImageName: $(redisImageName)
+          eveImageName: $(eveImageName)
+          backendImageName: $(backendImageName)
+          frontendImageName: $(frontendImageName)
+          pipelineImageName: $(pipelineImageName)
+          secrets:
+            backend:
+              VEGAS_CLIENT_SECRET: $(vegas-client-secret-dev)
+            eve:
+              MONGO_URI: $(mongo-uri-dev)
+  - stage: deploy_to_prod
+    displayName: Deploy to prod
+    condition: and(succeeded(), eq(variables['build.sourceBranch'], 'refs/heads/master'))
+    dependsOn: build_test
+    jobs:
+      - template: azure-pipeline-templates/deploy.yml  # Template reference
+        parameters:
+          appReleaseName: $(appReleaseName)
+          appUrl: "nlpannotator.pm.jh.edu"
+          deployEnvironment: $(prodEnvironment)
+          kubeServiceConnection: $(prodEnvironment)
+          namespace: $(prodNamespace)
+          imageTag: $(Build.BuildId)
+          redisImageName: $(redisImageName)
+          eveImageName: $(eveImageName)
+          backendImageName: $(backendImageName)
+          frontendImageName: $(frontendImageName)
+          pipelineImageName: $(pipelineImageName)
+          secrets:
+            backend:
+              VEGAS_CLIENT_SECRET: $(vegas-client-secret-prod)
+            eve:
+              MONGO_URI: $(mongo-uri-prod)

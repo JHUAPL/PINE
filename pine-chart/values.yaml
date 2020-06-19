@@ -1,0 +1,154 @@
+# (C) 2019 The Johns Hopkins University Applied Physics Laboratory LLC.
+
+# Default values for tic-base-chart.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+fullnameOverride: pine
+modelsDir: /pipelines/models
+eve:
+  name: eve
+  replicaCount: 1
+  extraEnv: {}
+  # SPRING_PROFILES_ACTIVE: stage
+  service:
+    type: ClusterIP
+    port: 80
+    targetPort: 7510
+    annotations:
+      service.beta.kubernetes.io/azure-load-balancer-internal: "true"
+  image:
+    repository: VALUE_TO_BE_OVERRIDDEN
+    tag: latest
+    pullPolicy: IfNotPresent
+
+redis:
+  name: redis
+  replicaCount: 1
+  extraEnv: {}
+  service:
+    type: ClusterIP
+    port: 6379
+    annotations:
+      service.beta.kubernetes.io/azure-load-balancer-internal: "true"
+  image:
+    repository: VALUE_TO_BE_OVERRIDDEN
+    tag: latest
+    pullPolicy: IfNotPresent
+  persistence:
+    enabled: false
+    existingClaim: pine-redis-disk-pvc
+
+backend:
+  name: backend
+  replicaCount: 1
+  extraEnv: {}
+  secrets:
+    backend:
+      VEGAS_CLIENT_SECRET
+    # SPRING_PROFILES_ACTIVE: stage
+  service:
+    type: ClusterIP
+    port: 80
+    targetPort: 7520
+    annotations:
+      service.beta.kubernetes.io/azure-load-balancer-internal: "true"
+  image:
+    repository: VALUE_TO_BE_OVERRIDDEN
+    tag: latest
+    pullPolicy: IfNotPresent
+
+nlpAnnotation:
+  image:
+    repository: VALUE_TO_BE_OVERRIDDEN
+    tag: latest
+    pullPolicy: IfNotPresent
+  modelPersistence:
+    claimName: pine-models-pvc
+    enabled: true
+    annotations: {} ## Set annotations on pvc
+    ## If defined, storageClassName: <storageClass>
+    ## If set to "-", storageClassName: "", which disables dynamic provisioning
+    ## If undefined (the default) or set to null, no storageClassName spec is
+    ##   set, choosing the default provisioner.  (gp2 on AWS, standard on
+    ##   GKE, AWS & OpenStack)
+    ##
+    storageClass: "azurefile"
+    accessMode: ReadWriteMany # ReadWriteOnce
+    size: 10Gi
+  annotators:
+    core-nlp:
+      replicaCount: 1
+      extraEnv: {}
+      persistence:
+        enabled: true
+        modelsDir: /pipelines/models
+    open-nlp:
+      replicaCount: 1
+      extraEnv: {}
+      persistence:
+        enabled: true
+        modelsDir: /pipelines/models
+    spacy:
+      replicaCount: 1
+      extraEnv: {}
+      persistence:
+        enabled: true
+        modelsDir: /pipelines/models
+frontend:
+  name: frontend
+  serverName: VALUE_TO_BE_OVERRIDDEN
+  extraEnv: {}
+  service:
+    type: ClusterIP
+    port: 80
+    annotations:
+      service.beta.kubernetes.io/azure-load-balancer-internal: "true"
+  image:
+    repository: VALUE_TO_BE_OVERRIDDEN
+    tag: latest
+    pullPolicy: IfNotPresent
+ingress:
+  enabled: true
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    nginx.ingress.kubernetes.io/proxy-body-size: "100m"
+  frontend:
+    path: /
+    name: "pine-frontend"
+    port: 80
+  backend:
+    name: "pine-backend"
+    path: /api
+    port: 80
+  hosts: []
+  tls: []
+
+imagePullSecrets: []
+namespace: pine
+secrets:
+# Optionally specify a set of secret objects whose values
+# will be injected as environment variables by default.
+# You should add this section to a file like secrets.yaml
+# that is explicitly NOT committed to source code control
+# and then include it as part of your helm install step.
+# ref: https://kubernetes.io/docs/concepts/configuration/secret/
+#
+# This creates a secret "backend" and injects "VEGAS_CLIENT_SECRET"
+# as the environment variable VEGAS_CLIENT_SECRET=123 for the service backend
+  backend:
+    VEGAS_CLIENT_SECRET: VALUE_TO_BE_OVERRIDDEN
+
+# We usually recommend not to specify default resources and to leave this as a conscious
+# choice for the user. This also increases chances charts run on environments with little
+# resources, such as Minikube. If you do want to specify resources, uncomment the following
+# lines, adjust them as necessary, and remove the curly braces after 'resources:'.
+# limits:
+#  cpu: 100m
+#  memory: 128Mi
+# requests:
+#  cpu: 100m
+#  memory: 128Mi
+
+
+
+

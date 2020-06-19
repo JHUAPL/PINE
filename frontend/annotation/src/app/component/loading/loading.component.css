@@ -1,0 +1,28 @@
+/*(C) 2019 The Johns Hopkins University Applied Physics Laboratory LLC. */
+
+#container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+h1 {
+	margin-top: 0px;
+}
+
+#loading {
+	
+}
+
+#loading h1 {
+    text-shadow: 2px 2px 10px rgba(0,0,0,0.2);
+}
+
+#loading mat-progress-spinner {
+	margin: 0 auto;
+}
+
+#error {
+    text-align: center;
+}

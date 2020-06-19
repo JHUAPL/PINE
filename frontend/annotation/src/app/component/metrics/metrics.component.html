@@ -1,0 +1,195 @@
+<!-- (C) 2019 The Johns Hopkins University Applied Physics Laboratory LLC.-->
+<mat-accordion>
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        <h3>Classifier Performance Metrics</h3>
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+    <div *ngIf="!latest_avg_metrics">
+      Classifier doesn't have enough data for training. Please proceed to annotate more documents.
+    </div>
+    <table *ngIf="latest_avg_metrics">
+
+      <tr>
+
+      <tr>
+        <td>
+          <i class="material-icons info" matTooltip="Latest average performance metrics">info</i><b>Classifier
+            Performance Summary:</b>
+        </td>
+      </tr>
+      <tr>
+        <td>
+
+      <tr>
+        <td>
+          <i class="material-icons info"
+            matTooltip="The number of tokens (words) the model predicted correctly to have a certain label. The higher the better.">info</i>True
+          Positives:
+        </td>
+        <td>
+          {{latest_avg_metrics?.Totals.TP}}
+
+        </td>
+      </tr>
+
+      <tr>
+        <td>
+          <i class="material-icons info"
+            matTooltip="The number of tokens (words) the model predicted correctly not to have a certain label. The higher the better.">info</i>True
+          Negatives:
+        </td>
+        <td>
+          {{latest_avg_metrics?.Totals.TN}}
+
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <i class="material-icons info"
+            matTooltip="The number of tokens (words) the model predcited to not have a certain label when it should've had it. The lower the better.">info</i>False
+          Negatives:
+        </td>
+        <td>
+          {{latest_avg_metrics?.Totals.FN}}
+
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <i class="material-icons info"
+            matTooltip="The number of tokens (words) the model predicted to have a certain label when it should not have had it. The lower the better">info</i>False
+          Positives:
+        </td>
+        <td>
+          {{latest_avg_metrics?.Totals.FP}}
+
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <i class="material-icons info"
+            matTooltip="The harmonic mean of precision and recall. Number between 0 and 1, 1 being the best value.">info</i>F1:
+        </td>
+        <td>
+          {{latest_avg_metrics?.Totals.f1}}
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <i class="material-icons info"
+            matTooltip="The fraction of label predictions our model got correct out of all the predicitons. The higher the better">info</i>Accuracy:
+        </td>
+        <td>
+          {{latest_avg_metrics?.Totals.acc | percent:'1.2-2'}}
+        </td>
+      </tr>
+
+      <tr>
+        <td>
+          <i class="material-icons info"
+            matTooltip="The fraction of tokens (words) our model labeled correctly out of all the cases that were labeled by the model">info</i>Precision:
+        </td>
+        <td>
+          {{latest_avg_metrics?.Totals.precision | percent:'1.2-2'}}
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <i class="material-icons info"
+            matTooltip="The fraction of cases our model labeled correctly out of all the cases that were correct labels">info</i>Recall:
+        </td>
+        <td>
+          {{latest_avg_metrics?.Totals.recall | percent:'1.2-2'}}
+        </td>
+      </tr>
+      </td>
+
+      </tr>
+
+      <tr>
+        <td>
+          <i class="material-icons info"
+            matTooltip="Average metrics up to the evaluation made at this time">info</i><b>Viewing Data for Epoch: </b>
+
+          <button mat-button class="drop-down" [matMenuTriggerFor]="epochMenu"
+            [disabled]="dateDisabled">{{sortedMetrics?.length - epoch}} -
+            {{sortedMetrics && sortedMetrics[epoch]._updated}} <span
+              class="material-icons">arrow_drop_down</span></button>
+          <mat-menu #epochMenu="matMenu">
+            <button *ngFor="let epoch of sortedMetrics; let i = index" mat-menu-item
+              (click)="selectEpoch(i)">{{sortedMetrics?.length-i}} -
+              {{epoch._updated | date}}</button>
+          </mat-menu>
+        </td>
+      </tr>
+
+      <tr>
+        <td>
+          <i class="material-icons info"
+            matTooltip="Data for which the evaluation metrics will be displayed. Select Overall for average of the whole model or select a specific label for averages metrics over that label.">info</i><b>Viewing
+            Data for label: </b>
+          <button mat-button class="drop-down" [matMenuTriggerFor]="labelMenu">{{label}}<span
+              class="material-icons">arrow_drop_down</span></button>
+          <mat-menu #labelMenu="matMenu">
+            <button *ngFor="let label of sortedMetrics[epoch].metric_averages | keyvalue" mat-menu-item
+              (click)="selectLabel(label.key)">{{label.key === 'Totals' ? 'Overall' : label.key }} </button>
+          </mat-menu>
+        </td>
+      </tr>
+
+
+
+
+      <tr>
+        <td>
+          <mat-tab-group (selectedTabChange)="changedTabs($event)" style="min-width:800px">
+            <mat-tab style="min-width:800px">
+              <ng-template mat-tab-label>
+                <i class="material-icons info"
+                  matTooltip="The matrix showcases the amount of tokens the model predicted as positive and negative versus the actual values">info</i>Confusion
+                Matrix
+              </ng-template>
+              <app-conf-matrix [data]="confMatrixData">
+              </app-conf-matrix>
+            </mat-tab>
+            <mat-tab style="position:relative; height: 100%; min-width: 800px;">
+              <ng-template mat-tab-label>
+                <i class="material-icons info"
+                  matTooltip="The venn diagram represents the amount of presition and recall. The blue circle is the amount of False Negatives and the orange circle is the amount of False Positives while the intersection is the amount of True Positives. The larger the intersection the higher precision and recall; a larger amount of False Negatives relative to False Positives represents high precision and low recall, while a larger amount of False Positives relative to False Negatives represent a high recall and low precision. The larger the intersection the better.">info</i>Recall
+                and Precision
+              </ng-template>
+              <mat-grid-list cols="4" rowHeight="1:3">
+                <mat-grid-tile colspan="3">
+                  <div style="max-height: 100%; max-width: 100%; overflow: auto">
+                    <app-venn-diag [data]="vennDiagramData"></app-venn-diag>
+                  </div>
+                </mat-grid-tile>
+                <mat-grid-tile>
+
+                  <h3>
+                    Recall:
+                    {{sortedMetrics[epoch].metric_averages && sortedMetrics[epoch].metric_averages[getCorrectLabel(label)].recall | percent:'1.2-2'}}
+                    <br>
+                    Precision:
+                    {{sortedMetrics[epoch].metric_averages && sortedMetrics[epoch].metric_averages[getCorrectLabel(label)].precision | percent:'1.2-2'}}
+                  </h3>
+                </mat-grid-tile>
+              </mat-grid-list>
+
+            </mat-tab>
+            <mat-tab style="min-width:800px">
+              <ng-template mat-tab-label>
+                <i class="material-icons info"
+                  matTooltip="Averages, Precision and Recall measured at each epoch.">info</i>Historic
+                Data
+              </ng-template>
+              <app-metrics-history [label]="getCorrectLabel(label)" [data]="sortedMetrics"></app-metrics-history>
+            </mat-tab>
+          </mat-tab-group>
+        </td>
+      </tr>
+    </table>
+  </mat-expansion-panel>
+</mat-accordion>

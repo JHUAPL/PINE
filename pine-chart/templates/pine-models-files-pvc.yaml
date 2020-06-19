@@ -1,0 +1,34 @@
+# (C) 2019 The Johns Hopkins University Applied Physics Laboratory LLC.
+
+{{- if .Values.nlpAnnotation.modelPersistence.enabled }}
+{{- $persistence := .Values.nlpAnnotation.modelPersistence }}
+# https://docs.microsoft.com/en-us/azure/aks/azure-files-dynamic-pv
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: {{ $persistence.claimName }}
+  labels:
+    app: {{ template "pine-chart.name" . }}
+    chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
+    release: "{{ .Release.Name }}"
+    heritage: "{{ .Release.Service }}"
+{{ if $persistence.annotations}}
+  annotations:
+    {{- range $key, $value := $persistence.annotations }}
+    {{ $key }}: {{ $value | quote }}
+    {{- end }}
+{{- end }}
+spec:
+  accessModes:
+  - ReadWriteMany
+  resources:
+    requests:
+      storage: {{ $persistence.size | quote }}
+{{- if $persistence.storageClass }}
+{{- if (eq "-" $persistence.storageClass) }}
+  storageClassName: ""
+{{- else }}
+  storageClassName: "{{ $persistence.storageClass }}"
+{{- end }}
+{{- end }}
+{{- end }}

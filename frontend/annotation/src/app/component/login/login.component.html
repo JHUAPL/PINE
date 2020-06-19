@@ -1,0 +1,22 @@
+<!-- (C) 2019 The Johns Hopkins University Applied Physics Laboratory LLC.-->
+<mat-card *ngIf="!loading.loading && !loading.error" id="login-card">
+  <img id="logo" mat-card-image src="../../assets/{{appConfig.appLogoAsset}}" alt="LOGO">
+  <h1 id="name">{{appConfig.appName}}</h1>
+  <div id="long-name">{{appConfig.appLongName}}</div>
+  <form [formGroup]="loginForm" (ngSubmit)="login()" id="form">
+    <div *ngFor="let field of form.fields" class="form-group">
+      <mat-form-field class="login-field" appearance="standard">
+        <mat-label>{{ field.display }}</mat-label>
+        <input matInput [placeholder]="field.name" [name]="field.name" [type]="field.type"
+               [formControlName]="field.name" class="form-control"
+               [ngClass]="{ 'is-invalid': submitted && f[field.name].errors }">
+        <mat-error *ngIf="submitted && f[field.name].errors && f[field.name].errors.required">{{ field.display }} is required.</mat-error>
+      </mat-form-field>
+    </div>
+    <mat-card-actions id="buttons">
+      <button mat-raised-button color="primary" (click)="login">{{ form.button_text }}</button>
+    </mat-card-actions>
+    <mat-error *ngIf="loginError != null">{{loginError}}</mat-error>
+  </form>
+</mat-card>
+<app-loading #loading></app-loading>

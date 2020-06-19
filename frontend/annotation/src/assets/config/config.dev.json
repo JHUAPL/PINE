@@ -1,0 +1,8 @@
+{
+    "env": {
+        "name": "dev"
+    },
+    "backend": {
+        "host": "http://localhost:5000"
+    }
+}

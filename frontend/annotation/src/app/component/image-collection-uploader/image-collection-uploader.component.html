@@ -1,0 +1,8 @@
+<!-- (C) 2019 The Johns Hopkins University Applied Physics Laboratory LLC.-->
+
+<input type="file" multiple (change)="handleFileInput($event.target.files)" />
+<p>
+    Optionally, select one or more images to upload for use by documents in this collection.
+    They can then be accessed by setting <code>"imageUrl"</code> in the document metadata to be
+    <code>"/&lt;image filename&gt;"</code>.
+</p>

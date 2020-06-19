@@ -1,0 +1,52 @@
+<!-- (C) 2019 The Johns Hopkins University Applied Physics Laboratory LLC.-->
+<app-loading></app-loading>
+
+<mat-card *ngIf="!loading.loading && !loading.error">
+  <mat-card-header id="header">
+    <mat-card-title id="title">
+      <h1>My Collections</h1>
+      <span class="spacer"></span>
+      <mat-radio-group [value]="active ? 'active' : 'archived'" (change)="archiveChanged($event)">
+        <mat-radio-button value="active">Active</mat-radio-button>
+        &nbsp;&nbsp;&nbsp;&nbsp;
+        <mat-radio-button value="archived">Archived</mat-radio-button>
+      </mat-radio-group>
+    </mat-card-title>
+  </mat-card-header>
+
+  <mat-divider></mat-divider>
+
+  <mat-card-content style="padding-top: 2%; width: 100%">
+    <mat-form-field>
+      <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+    </mat-form-field>
+    <table mat-table [dataSource]="dataSource" style="width: 100%; border-spacing: 0 5px;">
+
+      <ng-container matColumnDef="title">
+        <th mat-header-cell *matHeaderCellDef>Title</th>
+        <td mat-cell *matCellDef="let collection">{{ collection.title }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="creator">
+        <th mat-header-cell *matHeaderCellDef>Creator</th>
+        <td mat-cell *matCellDef="let collection">{{ collection.creator }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="last_updated">
+        <th mat-header-cell *matHeaderCellDef>Last Updated</th>
+        <td mat-cell *matCellDef="let collection">{{ collection.last_updated }}</td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row class="trow spacing" *matRowDef="let row; columns: displayedColumns;" [routerLink]="['/' + PATHS.collection.details, row.id]" ></tr>
+    </table>
+    <mat-paginator [pageSize]="20" [pageSizeOptions]="[5, 10, 20, 150, 00]" showFirstLastButtons></mat-paginator>
+
+
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-raised-button [routerLink]="[appConfig.landingPage]"><span class="material-icons">home</span>Home</button>
+
+  </mat-card-actions>
+
+</mat-card>

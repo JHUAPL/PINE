@@ -1,0 +1,12 @@
+<!-- (C) 2019 The Johns Hopkins University Applied Physics Laboratory LLC.-->
+
+<h2 mat-dialog-title>Upload Images</h2>
+
+<mat-dialog-content class="content mat-typography">
+    <app-image-collection-uploader></app-image-collection-uploader>
+</mat-dialog-content>
+
+<mat-dialog-actions class="buttons" align="end">
+    <button mat-button mat-raised-button (click)="closeDialog(true)" cdkFocusInitial>Save</button>
+    <button mat-button mat-raised-button (click)="closeDialog(false)">Cancel</button>
+</mat-dialog-actions>

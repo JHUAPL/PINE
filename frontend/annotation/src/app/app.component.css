@@ -1,0 +1,38 @@
+
+.mat-toolbar .mat-primary {
+  position: sticky;
+  top: 0;
+  height: 64px;
+}
+
+#app-container {
+
+}
+
+#toolbar {
+	border-top-left-radius: 15px;
+	border-top-right-radius: 15px;
+}
+
+#sidenav::after {
+	content: "";
+	opacity: 0.3;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	right: 0;
+	position: absolute;
+	z-index: -1;
+	background-image: url("/assets/pine_small.png");
+	background-repeat: no-repeat;
+	background-position: center bottom;
+}
+
+#content {
+    padding: 5px;
+}
+
+:host::ng-deep.full-content {
+	width: 100%;
+    min-height: calc(100vh - 78px);
+}

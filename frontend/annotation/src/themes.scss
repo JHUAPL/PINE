@@ -1,0 +1,19 @@
+@import '~@angular/material/theming';
+
+@include mat-core();
+
+$custom-theme-primary: mat-palette($mat-blue-grey);
+$custom-theme-accent: mat-palette($mat-cyan);
+$custom-theme-warn: mat-palette($mat-red);
+
+$custom-theme: mat-light-theme($custom-theme-primary, $custom-theme-accent, $custom-theme-warn);
+
+.background-primary-color-lighter {
+  background-color: mat-color($custom-theme-primary, lighter) !important;
+}
+
+.background-accent-color-lighter {
+  background-color: mat-color($custom-theme-accent, lighter) !important;
+}
+
+@include angular-material-theme($custom-theme);

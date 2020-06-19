@@ -1,0 +1,39 @@
+/*(C) 2019 The Johns Hopkins University Applied Physics Laboratory LLC. */
+
+:host {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 1%;
+    padding-bottom: 1%
+}
+
+#login-card {
+	width: 350px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+
+#logo, #name, #long-name, #buttons {
+	align-self: center;
+	text-align: center;
+}
+
+#logo {
+	width: 175px;
+}
+
+#name {
+	margin-top: 0px;
+	margin-bottom: 0px;
+}
+
+.login-field {
+    width: 100%;
+}
+
+#buttons {
+	padding-bottom: 0px;
+	margin-bottom: 0px;
+}

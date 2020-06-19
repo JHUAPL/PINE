@@ -1,0 +1,32 @@
+@import '~@angular/material/prebuilt-themes/indigo-pink.css';
+@import '~material-icons/iconfont/material-icons.css';
+@import '~roboto-fontface/css/roboto/roboto-fontface.css';
+@import '~tippy.js/dist/themes/light-border.css';
+
+#loading {
+    font-weight: bold;
+}
+
+.bordered {
+	border: 1px solid rgba(0, 0, 0, 0.5);
+}
+
+.cursor-pointer {
+    cursor: pointer !important;
+}
+
+tr.space-under > td {
+    padding-bottom: 1em;
+}
+
+td.space-left {
+    padding-left: 1em;
+}
+
+.form-field {
+    width: 100%;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}

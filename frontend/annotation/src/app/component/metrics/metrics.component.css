@@ -1,0 +1,14 @@
+/*(C) 2019 The Johns Hopkins University Applied Physics Laboratory LLC. */
+
+.drop-down{
+    margin-left:5px;
+    border: 0.5px solid grey;
+    padding-right: 5px;
+    padding-left: 10px
+}
+.material-icon{
+    margin-left: 5px
+}
+.info{
+    font-size: 1.25em;
+}

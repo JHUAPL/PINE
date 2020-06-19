@@ -1,0 +1,78 @@
+# (C) 2019 The Johns Hopkins University Applied Physics Laboratory LLC.
+{{- $root := . }}
+{{- range $annotatorName, $annotatorValues := .Values.nlpAnnotation.annotators }}
+apiVersion: apps/v1beta2
+kind: Deployment
+metadata:
+  name: {{ template "pine-chart.fullname" $root }}-{{ $annotatorName }}
+  labels:
+    app: {{ template "pine-chart.name" $root }}
+    component: {{ $annotatorName }}
+    chart: {{ template "pine-chart.chart" $root }}
+    release: {{ $root.Release.Name }}
+    heritage: {{ $root.Release.Service }}
+spec:
+  replicas: {{ $annotatorValues.replicaCount }}
+  selector:
+    matchLabels:
+      app: {{ template "pine-chart.name" $root }}
+      component: {{ $annotatorName }}
+      release: {{ $root.Release.Name }}
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: {{ template "pine-chart.name" $root }}
+        component: {{ $annotatorName }}
+        release: {{ $root.Release.Name }}
+    spec:
+      containers:
+        - name: {{ template "pine-chart.fullname" $root }}
+          image: "{{ $root.Values.nlpAnnotation.image.repository }}:{{ $root.Values.nlpAnnotation.image.tag }}"
+          imagePullPolicy: {{ $root.Values.nlpAnnotation.image.pullPolicy }}
+          {{- if $annotatorValues.persistence.enabled }}
+          volumeMounts:
+          - mountPath: {{ $annotatorValues.persistence.modelsDir }}
+            name: {{ template "pine-chart.fullname" $root }}-models-volume
+          {{- end }}
+          env:
+            - name: AL_EVE_HOST
+              value: "{{ template "pine-chart.fullname" $root }}-{{ $root.Values.eve.name }}.{{ $root.Values.namespace }}.svc.cluster.local"
+            - name: AL_EVE_PORT
+              value: {{ $root.Values.eve.service.port | quote }}
+            - name: AL_PIPELINE
+              value: {{ $annotatorName | quote }}
+            - name: AL_REDIS_HOST
+              value: "{{ template "pine-chart.fullname" $root }}-{{ $root.Values.redis.name }}.{{ $root.Values.namespace }}.svc.cluster.local"
+            - name: AL_REDIS_PORT
+              value: {{ $root.Values.redis.service.port | quote }}
+            {{- range $name, $value := $annotatorValues.extraEnv }}
+            {{- if not (empty $value) }}
+            - name: {{ $name }}
+              value: {{ $value | quote }}
+            {{- end }}
+            {{- end }}
+            {{- range $ref, $values := $annotatorValues.secrets }}
+            {{- range $key, $value := $values }}
+            - name: {{ $key | upper }}
+              valueFrom:
+                secretKeyRef:
+                  name: {{ template "pine-chart.fullname" $root }}-{{ $ref }}
+                  key: {{ $key }}
+            {{- end }}
+            {{- end }}
+    {{- if $root.Values.imagePullSecrets }}
+      imagePullSecrets:
+      {{- range $root.Values.imagePullSecrets }}
+        - name: {{.}}
+      {{- end}}
+    {{- end }}
+    {{- if $annotatorValues.persistence.enabled }}
+      volumes:
+      - name: {{ template "pine-chart.fullname" $root }}-models-volume
+        persistentVolumeClaim:
+          claimName: {{ $root.Values.nlpAnnotation.modelPersistence.claimName }}
+    {{- end  }}
+---
+{{- end }}

@@ -1,0 +1,51 @@
+{
+    "version": 1,
+    "formatters": {
+        "default": {
+            "format": "%(asctime)s [%(levelname)s] %(name)s: %(message)s",
+            "datefmt": "%Y-%m-%d %H:%M:%S"
+        },
+        "json": {
+            "class": "pythonjsonlogger.jsonlogger.JsonFormatter",
+            "format": "(asctime)",
+            "datefmt": "%Y-%m-%d %H:%M:%S"
+        }
+    },
+    "handlers": {
+        "console": {
+            "class": "logging.StreamHandler",
+            "formatter": "default",
+            "stream": "ext://sys.stdout"
+        },
+        "console_json": {
+            "class": "logging.StreamHandler",
+            "formatter": "json",
+            "stream": "ext://sys.stdout"
+        },
+        "access_file_json": {
+            "class": "logging.FileHandler",
+            "formatter": "json",
+            "filename": "/nlp-web-app/logs/access.log"
+        }
+    },
+    "root": {
+        "level": "ERROR",
+        "handlers": [
+            "console"
+        ]
+    },
+    "loggers": {
+        "pine.access": {
+            "propagate": false,
+            "level": "INFO",
+            "handlers": [
+                "console_json", "access_file_json"
+            ]
+        },
+        "gunicorn": {
+            "handlers": [
+                "console"
+            ]
+        }
+    }
+}

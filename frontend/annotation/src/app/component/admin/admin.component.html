@@ -1,0 +1,24 @@
+<!-- (C) 2019 The Johns Hopkins University Applied Physics Laboratory LLC.-->
+<mat-card>
+  <mat-grid-list cols="5" rowHeight="100px">
+
+    <mat-grid-tile></mat-grid-tile>
+
+    <mat-grid-tile *ngIf="auth.canManageUsers">
+      <button mat-raised-button class="btn background-accent-color-lighter" [routerLink]="['/' + PATHS.admin.users]">
+        Manage Users
+      </button>
+    </mat-grid-tile>
+
+    <mat-grid-tile *ngIf="auth.canManageUsers"></mat-grid-tile>
+
+    <mat-grid-tile>
+      <button mat-raised-button class="btn background-accent-color-lighter" [routerLink]="['/' + PATHS.admin.data]">
+        Manage System Data
+      </button>
+    </mat-grid-tile>
+
+    <mat-grid-tile></mat-grid-tile>
+
+  </mat-grid-list>
+</mat-card>

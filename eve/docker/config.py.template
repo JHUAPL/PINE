@@ -1,0 +1,13 @@
+import logging.config
+import os
+import json
+
+bind = "0.0.0.0:${PORT}"
+workers = ${WORKERS}
+accesslog = "-"
+
+if "PINE_LOGGING_CONFIG_FILE" in os.environ and os.path.isfile(os.environ["PINE_LOGGING_CONFIG_FILE"]):
+    with open(os.environ["PINE_LOGGING_CONFIG_FILE"], "r") as f:
+        c = json.load(f)
+    c["disable_existing_loggers"] = True
+    logconfig_dict = c

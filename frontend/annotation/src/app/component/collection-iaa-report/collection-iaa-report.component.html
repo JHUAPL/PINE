@@ -1,0 +1,76 @@
+<!-- (C) 2019 The Johns Hopkins University Applied Physics Laboratory LLC.-->
+<mat-accordion>
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        <h3>
+          Collection Inter-annotator agreement report
+        </h3>
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+
+
+    <table>
+      <tr>
+        <td><b>
+            Number of Documents in collection:
+          </b></td>
+        <td>{{iaa_report.num_of_agreement_docs}}</td>
+      </tr>
+      <tr>
+        <td><b>
+            Number of Annotators reported:
+          </b></td>
+        <td>{{iaa_report.num_of_annotators}}</td>
+      </tr>
+      <tr>
+        <td><b>
+            Number of labels used in report:
+          </b></td>
+        <td>{{iaa_report.num_of_labels}}</td>
+      </tr>
+      <tr>
+        <td><b>
+            Overall agreement:
+          </b></td>
+        <td>{{iaa_report.overall_agreement.mean | percent:'1.2-2'}}</td>
+      </tr>
+      <tr>
+        <td><b>
+            Agreement per label:
+          </b></td>
+        <td>
+      <tr *ngFor="let label of iaa_report.per_label_agreement">
+        <td>
+          {{label.label}}
+        </td>
+        <td *ngIf="label.avg != 'null'">
+          {{label.avg | percent:'1.2-2'}}
+        </td>
+        <td *ngIf="label.avg == 'null'">
+          Not enough data for label
+        </td>
+      </tr>
+
+      </td>
+      </tr>
+      <tr>
+        <td>
+            <h3>
+              Annotation Agreement Heatmap
+            </h3>
+            <div style="max-height: 800px; max-width: 800px; overflow:auto">
+                <app-iaa-heatmap [heatmap_data]="iaa_report.overall_agreement.heatmap_data">
+
+                  </app-iaa-heatmap>
+              </div>
+
+            
+        </td>
+
+      </tr>
+
+    </table>
+
+  </mat-expansion-panel>
+</mat-accordion>

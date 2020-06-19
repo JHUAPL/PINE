@@ -1,0 +1,74 @@
+<!-- (C) 2019 The Johns Hopkins University Applied Physics Laboratory LLC.-->
+
+<form [formGroup]="form">
+    <mat-radio-group class="image-col" formControlName="type">
+
+        <mat-radio-button value="none">No Image</mat-radio-button>
+
+        <mat-radio-button value="url">Image URL</mat-radio-button>
+        <div [hidden]="f.type.value != 'url'">
+            <mat-card class="image-field image-col">
+                <div class="image-row">
+                    <mat-form-field class="form-field" appearance="standard" floatLabel="always">
+                        <mat-label>Image Link</mat-label>
+                        <input matInput required type="text"
+                               formControlName="url"
+                               class="form-control"
+                               placeholder="No Image" />
+                        <mat-error *ngIf="f.url.errors && (f.url.dirty || f.url.touched)">
+                            <div *ngIf="f.url.errors['required']">URL is required.</div>
+                            <div *ngIf="f.url.errors['invalidValue']">Value is invalid.</div>
+                        </mat-error>
+                    </mat-form-field>
+                    <div class="image-field">
+                        Using a URL starting with / will use locally uploaded images.
+                    </div>
+                </div>
+                <div *ngIf="f.type.value == 'url' && f.url.valid && f.url.value && f.url.value.startsWith('/') && f.url.value.length > 1" [ngClass]="{'mat-error': !existingCollectionImageUrl}">
+                    <ng-container *ngIf="existingCollectionImageUrl">
+                        Current image can be viewed here: <a [href]="existingCollectionImageUrl" target="_blank">{{ existingCollectionImageUrl }}</a>
+                    </ng-container>
+                    <ng-container *ngIf="!existingCollectionImageUrl">
+                        Warning: local image not found.
+                    </ng-container>
+                </div>
+            </mat-card>
+        </div>
+
+        <mat-radio-button value="file" *ngIf="canUploadFile">Image File</mat-radio-button>
+        <div *ngIf="canUploadFile" [hidden]="f.type.value != 'file'">
+            <mat-card class="image-field image-row">
+                <div class="form-field">
+                    <input hidden type="file" [id]="uuidv4 + '-file-upload'" #fileUpload
+                           (change)="fileAdded($event.target.files)"/>
+                    <mat-form-field class="form-field" appearance="standard">
+                        <mat-label>Image File to Upload</mat-label>
+                        <input matInput type="text" readonly
+                               formControlName="file_display"
+                               class="form-control" />
+                        <mat-error *ngIf="f.file_display.errors && (f.file_display.dirty || f.file_display.touched)">
+                            <div *ngIf="f.file_display.errors['required']">File is required.</div>
+                        </mat-error>
+                    </mat-form-field>
+                    <mat-form-field *ngIf="f.file_display.value" class="form-field" appearance="standard">
+                        <mat-label>Optionally rename file path on server</mat-label>
+                        <input matInput type="text"
+                               formControlName="file_path"
+                               class="form-control" />
+                        <mat-error *ngIf="f.file_path.errors && (f.file_path.dirty || f.file_path.touched)">
+                            <div *ngIf="f.file_path.errors['required']">Path is required.</div>
+                            <div *ngIf="f.file_path.errors['invalidValue']">Value is invalid.</div>
+                        </mat-error>
+                    </mat-form-field>
+                    <mat-error *ngIf="f.type.value == 'file' && existingCollectionImageUrl">
+                        Warning: an image named "{{ f.file_path.value }}" already exists for this collection.  Uploading this image will overwrite the existing file.<br />
+                        Current image can be viewed here: <a [href]="existingCollectionImageUrl" target="_blank">{{ existingCollectionImageUrl }}</a>
+                    </mat-error>
+                </div>
+                <label [for]="fileUpload.id" class="mat-button mat-raised-button image-top">
+                    Choose File
+                </label>
+            </mat-card>
+        </div>
+    </mat-radio-group>
+</form>

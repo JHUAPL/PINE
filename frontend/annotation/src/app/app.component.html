@@ -1,0 +1,26 @@
+<!-- (C) 2019 The Johns Hopkins University Applied Physics Laboratory LLC.-->
+<mat-sidenav-container id="app-container" autosize fullscreen>
+  <mat-sidenav *ngIf="ready && !backendError && getLoggedIn()"
+               id="sidenav" class="bordered background-primary-color-lighter"
+               fixedInViewport="false" [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+               opened="true" mode="side">
+    <app-navigation></app-navigation>
+  </mat-sidenav>
+  <mat-sidenav-content id="content">
+    <mat-toolbar color="primary" class="bordered" id="toolbar">
+        <mat-toolbar-row>
+            <span>{{appConfig.appName}}</span>
+            <span class="spacer"></span>
+            <p class="login-text" *ngIf="getLoggedIn()">{{ getLoggedInUserString() }}</p>
+        </mat-toolbar-row>
+    </mat-toolbar>
+    <div id="outlet" class="bordered">
+        <div *ngIf="!ready">Connecting to backend...</div>
+        <div *ngIf="backendError">
+            <h1>Backend Error</h1>
+            <p>{{backendErrorMessage}}</p>
+        </div>
+        <router-outlet *ngIf="!backendError && ready"></router-outlet>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>

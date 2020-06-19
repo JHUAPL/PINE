@@ -1,0 +1,7 @@
+# (C) 2019 The Johns Hopkins University Applied Physics Laboratory LLC.
+
+apiVersion: v1
+appVersion: "1.0"
+description: A Helm chart to deploy pine to Kubernetes
+name: pine-chart
+version: 0.1.0

@@ -1,0 +1,23 @@
+<mat-card>
+  <mat-grid-list cols="5" rowHeight="100px">
+
+    <mat-grid-tile></mat-grid-tile>
+
+    <mat-grid-tile>
+      <button mat-raised-button class="btn background-accent-color-lighter" [routerLink]="['/' + PATHS.collection.view]">
+        View My Collections
+      </button>
+    </mat-grid-tile>
+
+    <mat-grid-tile></mat-grid-tile>
+
+    <mat-grid-tile>
+      <button mat-raised-button class="btn background-accent-color-lighter" [routerLink]="['/' + PATHS.collection.add]">
+        Add Collection
+      </button>
+    </mat-grid-tile>
+
+    <mat-grid-tile></mat-grid-tile>
+
+  </mat-grid-list>
+</mat-card>

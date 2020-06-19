@@ -1,0 +1,9 @@
+<!-- (C) 2019 The Johns Hopkins University Applied Physics Laboratory LLC.-->
+<h2 mat-dialog-title>{{data.title}}</h2>
+<mat-dialog-content>{{data.message}}</mat-dialog-content>
+<mat-dialog-actions>
+    <button mat-raised-button *ngFor="let action of data.actions"
+            [mat-dialog-close]="action.value">
+        {{action.display}}
+    </button>
+</mat-dialog-actions>

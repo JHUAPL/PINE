@@ -1,0 +1,27 @@
+# (C) 2019 The Johns Hopkins University Applied Physics Laboratory LLC.
+version: "3"
+
+services:
+
+  eve:
+    build:
+      args:
+        - MONGO_URI=${MONGO_URI}
+        - DB_DIR=
+
+  frontend_annotation:
+    container_name: ${EXPOSED_SERVER_NAME_PROD}
+    build:
+      args:
+        - SERVER_TYPE=${EXPOSED_SERVER_TYPE_PROD}
+    environment:
+        - SERVER_NAME=${EXPOSED_SERVER_NAME_PROD}
+    # do not add a ports section; exposed ports are managed by the external Nginx instance
+    networks:
+      - default
+      - service # Allow the server to communicate with the Nginx instance
+
+networks:
+
+  service:
+    external: true

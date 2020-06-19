@@ -1,0 +1,44 @@
+<!-- (C) 2019 The Johns Hopkins University Applied Physics Laboratory LLC.-->
+<div *ngIf="loading">Loading users...</div>
+<mat-form-field *ngIf="!loading" [class]="formFieldClass" [appearance]="formFieldAppearance">
+    <mat-label>{{ label }}</mat-label>
+    <mat-chip-list #chipList>
+        <mat-chip *ngFor="let userId of chosenUserIds"
+                  [selectable]="false"
+                  [removable]="userIdCanBeRemoved(userId)"
+                  [disabled]="!userIdCanBeRemoved(userId)"
+                  (removed)="removeUserId(userId)"
+                  [ngClass]="{ 'background-accent-color-lighter' : userIdCanBeRemoved(userId) }">
+                  <!-- https://github.com/angular/material2/issues/9851 -->
+            {{ getUserDisplayName(userId) }}
+            <mat-icon matChipRemove *ngIf="userIdCanBeRemoved(userId)">cancel</mat-icon>
+        </mat-chip>
+        <input *ngIf="!auth.canManageUsers" #userInput placeholder="Add user..."
+               [formControl]="userCtrl"
+               [matChipInputFor]="chipList"
+               [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+               [matChipInputAddOnBlur]="false"
+               (matChipInputTokenEnd)="addUser($event)"
+               [ngClass]="{ 'is-invalid': hasError }" />
+        <input *ngIf="auth.canManageUsers" #userInput placeholder="Add user..."
+               [formControl]="userCtrl"
+               [matAutocomplete]="auto"
+               [matChipInputFor]="chipList"
+               [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+               [matChipInputAddOnBlur]="false"
+               (matChipInputTokenEnd)="addUser($event)"
+               [ngClass]="{ 'is-invalid': hasError }" />
+        <mat-error *ngIf="hasError">
+            <div>{{ errorMessage }}</div>
+        </mat-error>
+    </mat-chip-list>
+    <mat-error *ngIf="hasError">
+        <div>{{ errorMessage }}</div>
+    </mat-error>
+    <mat-autocomplete *ngIf="auth.canManageUsers" #auto="matAutocomplete"
+                      (optionSelected)="selectedUser($event)">
+        <mat-option *ngFor="let userId of filteredUserIds | async" [value]="userId">
+            {{ getUserDisplayName(users[userId]) }}
+        </mat-option>
+    </mat-autocomplete>
+</mat-form-field>

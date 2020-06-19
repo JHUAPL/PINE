@@ -1,0 +1,18 @@
+# (C) 2019 The Johns Hopkins University Applied Physics Laboratory LLC.
+# https://docs.microsoft.com/en-us/azure/aks/azure-disks-dynamic-pv
+
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: pine-redis-disk-pvc
+  labels:
+    app: {{ template "pine-chart.name" . }}
+    chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
+    release: "{{ .Release.Name }}"
+    heritage: "{{ .Release.Service }}"
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 32Gi # 32Gi is smallest billable size

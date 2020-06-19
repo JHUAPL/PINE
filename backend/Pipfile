@@ -1,0 +1,30 @@
+# (C) 2019 The Johns Hopkins University Applied Physics Laboratory LLC.
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+flask = "*"
+overrides = "*"
+flask-cors = "*"
+requests = "*"
+bcrypt = "*"
+redis = "*"
+aioredis = "*"
+six = "*"
+munch = "*"
+pebble = "*"
+pydash = "*"
+pyjwt = "*"
+authlib = "*"
+matplotlib = "*"
+scipy = "*"
+tabulate = "*"
+multiprocessing-logging = "*"
+python-json-logger = "*"
+
+[dev-packages]
+
+[requires]
+python_version = "3.6"
