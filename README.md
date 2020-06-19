@@ -1,5 +1,20 @@
 &copy; 2019 The Johns Hopkins University Applied Physics Laboratory LLC.
 
+PINE is a web-based tool for text annotation.  It enables annotation at the document level as well as over text spans (words).  The annotation facilitates generation of natural language processing (NLP) models to classify documents and perform named entity recognition.  Some of the features include:
+ 
+* Generate models in Spacy, OpenNLP, or CoreNLP on the fly and rank documents using Active Learning to reduce annotation time. 
+ 
+* Extensible framework - add NLP pipelines of your choice. 
+ 
+* Active Learning support - Out of the box active learning support (https://en.wikipedia.org/wiki/Active_learning_(machine_learning)) with pluggable active learning methods ranking functions.
+ 
+* Facilitates group annotation projects - view other people’s annotations, calculates inter-annotator agreement, displays annotation performance.
+ 
+* Enterprise authentication - integrate with your existing OAuth/Active Directory Servers.
+ 
+* Scalability - deploy in docker compose or a kubernetes cluster; ability to use database as a service such as CosmosDB.
+ 
+PINE was developed under internal research and development (IRAD) funding at the [Johns Hopkins University Applied Physics Laboratory](https://www.jhuapl.edu/).  It was created to support the annotation needs of NLP tasks on the [precision medicine analytics platform (PMAP)](https://pm.jh.edu/) at Johns Hopkins.  
 
 
 ## Required Resources
