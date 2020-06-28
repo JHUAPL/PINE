@@ -1,4 +1,5 @@
-# (C) 2019 The Johns Hopkins University Applied Physics Laboratory LLC.
+# Copyright (c) 2019 Tobias Kolditz
+# Modifications (C) 2019 The Johns Hopkins University Applied Physics Laboratory LLC.
 
 """
 Functions for computing the difference between two sets of annotations.
