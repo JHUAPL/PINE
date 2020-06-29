@@ -1,3 +1,4 @@
+---
 title: 'PINE: An open source collaborative text annotation tool'
 tags:
   - Python
@@ -6,9 +7,8 @@ tags:
   - Named Enitity Recognition
   - Document Classification
   - Active Learning
-  
 authors:
-  - name: Brant W Chee [^1]
+  - name: Brant W Chee^[Corresponding author]
     orcid: 0000-0002-6174-4201
     affiliation: "1, 2" 
   - name: Douglas M Zabransky
@@ -23,8 +23,6 @@ authors:
     affiliation: 1
   - name: Laura J Glendenning
     affiliation: 1
-
-
 affiliations:
  - name: Johns Hopkins University Applied Physics Laboratory
    index: 1
@@ -32,12 +30,12 @@ affiliations:
    index: 2
 date: 25 June 2020
 bibliography: paper.bib
-
+---
 # Summary
 
 We introduce the PMAP Interface for NLP Experimentation (PINE) a scaleable web-based tool for collaborative text annotation and natural language processing (NLP) experimentation.  Manually annotated data is a necessity for training many machine learning based NLP tasks.  We have developed an extensible framework to support annotation of text while also enabling experimentation in machine learning methods.  
 
-`PINE` is an enterprise annotation framework supporting many users.  It supports both Docker Compose and Kubernetes deployment with an internal MongoDB or cloud backed NoSQL databases such as CosmosDB.  Docker Compose and Kubernetes allow for horizontal scaling of either various components if necessary. It is currently deployed as the named entity recognition (NER) annotation tool on the Johns Hopkins University Precision Medicine Analytics Platform (PMAP)[^2].
+`PINE` is an enterprise annotation framework supporting many users.  It supports both Docker Compose and Kubernetes deployment with an internal MongoDB or cloud backed NoSQL databases such as CosmosDB.  Docker Compose and Kubernetes allow for horizontal scaling of either various components if necessary. It is currently deployed as the named entity recognition (NER) annotation tool on the Johns Hopkins University Precision Medicine Analytics Platform (PMAP)[^1].
 
 Collections of documents are uploaded through a web based interface.  Each collection represents an independent project with documents, annotators, labels and associated machine learning pipelines.   When a user adds a collection, they can add relevant metadata such as Dublin Core Metadata Elements Set [@ISO1536-1:2017]; images to view alongside text; users allowed to view or annotate the collection; labels for documents or NER; document classification or NER pipelines; and percent of documents that are overlapping between annotators.  
 
@@ -45,8 +43,8 @@ Collections of documents are uploaded through a web based interface.  Each colle
 
 Annotation is a time consuming and potentially costly task. If enabled, `PINE` supports active learning to help reduce the time and effort in generating gold standard data.  Our implementation of active learning generates a new classifier after x number of documents where x is defined at collection generation time.  After a classifier is generated it ranks previously unlabelled documents and presents them to the users in rank order.  One example of a ranking function could rank documents higher based on increasing amounts of uncertainty from the classifier.  We provide several ranking function, however it is modular and extensible in order to facilitate this area of research.
 
-[^1]: Corresponding author
-[^2]: https://pm.jh.edu/
+
+[^1]: https://pm.jh.edu/
 
 # Related Work
 A popular open source tool annotation only tool, BRAT [@stenetorp:2012] is widely used.  It supports advanced annotation of relationships and linkages between entities.  However, it does not support document level labeling, image display, enterprise authentication and tracking of annotation changes. 
@@ -91,5 +89,4 @@ There are several active learning ranking algorithms implemented: least confiden
 PINE was developed by staff at the Johns Hopkins University Applied Physics Laboratory (JHUAPL).  Funding was provided as an internal research and development project by JHUAPL.  The authors would like to thank all the staff at JHUAPL and the Johns Hopkins University School of Medicine who have provided feedback, bug-finding and deployment help.  
 
 # References
-
 
