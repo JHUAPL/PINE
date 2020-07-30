@@ -1,0 +1,18 @@
+# (C) 2019 The Johns Hopkins University Applied Physics Laboratory LLC.
+
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+
+[dev-packages]
+sphinx = "*"
+sphinx-autoapi = "*"
+
+[scripts]
+doc = "make singlehtml html latexpdf LATEXMKOPTS='-silent'"
+
+[requires]
+python_version = "3.6"

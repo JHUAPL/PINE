@@ -1,0 +1,19 @@
+{
+  "baseUrl": "http://localhost:4200",
+  "fixturesFolder": "../data/",
+  "video": true,
+  "videosFolder": "../../results/videos",
+  "screenshotsFolder": "../../results/screenshots",
+  "reporter": "mochawesome",
+  "reporterOptions": {
+    "reportDir": "../../results/reports",
+    "overwrite": false,
+    "html": false,
+    "json": true
+  },
+  "env": {
+    "API_URL": "http://localhost:5000",
+    "AUTH_MODULE": "eve",
+    "LOGIN_USER": "ada"
+  }
+}

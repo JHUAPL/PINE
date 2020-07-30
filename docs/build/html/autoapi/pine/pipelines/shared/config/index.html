@@ -1,0 +1,623 @@
+
+
+<!doctype html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>pine.pipelines.shared.config &#8212; pine  documentation</title>
+    <link rel="stylesheet" href="../../../../../_static/bizstyle.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../../../../_static/graphviz.css" />
+    
+    <script id="documentation_options" data-url_root="../../../../../" src="../../../../../_static/documentation_options.js"></script>
+    <script src="../../../../../_static/jquery.js"></script>
+    <script src="../../../../../_static/underscore.js"></script>
+    <script src="../../../../../_static/doctools.js"></script>
+    <script src="../../../../../_static/language_data.js"></script>
+    <script src="../../../../../_static/bizstyle.js"></script>
+    <link rel="index" title="Index" href="../../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../../search.html" />
+    <link rel="next" title="pine.pipelines.shared.transform" href="../transform/index.html" />
+    <link rel="prev" title="pine.pipelines.shared" href="../index.html" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <!--[if lt IE 9]>
+    <script src="_static/css3-mediaqueries.js"></script>
+    <![endif]-->
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="../transform/index.html" title="pine.pipelines.shared.transform"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="../index.html" title="pine.pipelines.shared"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../../../index.html">pine  documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../../../index.html" >API Reference</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../../../index.html" ><code class="xref py py-mod docutils literal notranslate"><span class="pre">pine</span></code></a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="../../index.html" ><code class="xref py py-mod docutils literal notranslate"><span class="pre">pine.pipelines</span></code></a> &#187;</li>
+          <li class="nav-item nav-item-4"><a href="../index.html" accesskey="U"><code class="xref py py-mod docutils literal notranslate"><span class="pre">pine.pipelines.shared</span></code></a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href=""><code class="xref py py-mod docutils literal notranslate"><span class="pre">pine.pipelines.shared.config</span></code></a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="module-pine.pipelines.shared.config">
+<span id="pine-pipelines-shared-config"></span><h1><a class="reference internal" href="#module-pine.pipelines.shared.config" title="pine.pipelines.shared.config"><code class="xref py py-mod docutils literal notranslate"><span class="pre">pine.pipelines.shared.config</span></code></a><a class="headerlink" href="#module-pine.pipelines.shared.config" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="module-contents">
+<h2>Module Contents<a class="headerlink" href="#module-contents" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="classes">
+<h3>Classes<a class="headerlink" href="#classes" title="Permalink to this headline">¶</a></h3>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pine.pipelines.shared.config.BaseConfig" title="pine.pipelines.shared.config.BaseConfig"><code class="xref py py-obj docutils literal notranslate"><span class="pre">BaseConfig</span></code></a>(root_dir=None)</p></td>
+<td><p>Initialize self.  See help(type(self)) for accurate signature.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#pine.pipelines.shared.config.TestConfig" title="pine.pipelines.shared.config.TestConfig"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TestConfig</span></code></a>(root_dir=None)</p></td>
+<td><p>Initialize self.  See help(type(self)) for accurate signature.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pine.pipelines.shared.config.ConfigBuilder" title="pine.pipelines.shared.config.ConfigBuilder"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ConfigBuilder</span></code></a>()</p></td>
+<td><p>Initialize self.  See help(type(self)) for accurate signature.</p></td>
+</tr>
+</tbody>
+</table>
+<dl class="py data">
+<dt id="pine.pipelines.shared.config.LOGGER">
+<code class="sig-prename descclassname">pine.pipelines.shared.config.</code><code class="sig-name descname">LOGGER</code><a class="headerlink" href="#pine.pipelines.shared.config.LOGGER" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py class">
+<dt id="pine.pipelines.shared.config.BaseConfig">
+<em class="property">class </em><code class="sig-prename descclassname">pine.pipelines.shared.config.</code><code class="sig-name descname">BaseConfig</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">root_dir</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.pipelines.shared.config.BaseConfig" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>Initialize self.  See help(type(self)) for accurate signature.</p>
+<dl class="py attribute">
+<dt id="pine.pipelines.shared.config.BaseConfig.ROOT_DIR">
+<code class="sig-name descname">ROOT_DIR</code><a class="headerlink" href="#pine.pipelines.shared.config.BaseConfig.ROOT_DIR" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="pine.pipelines.shared.config.BaseConfig.BASE_DIR">
+<code class="sig-name descname">BASE_DIR</code><a class="headerlink" href="#pine.pipelines.shared.config.BaseConfig.BASE_DIR" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="pine.pipelines.shared.config.BaseConfig.BASE_CFG_FILE">
+<code class="sig-name descname">BASE_CFG_FILE</code><em class="property"> = config.yaml</em><a class="headerlink" href="#pine.pipelines.shared.config.BaseConfig.BASE_CFG_FILE" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="pine.pipelines.shared.config.BaseConfig.BASE_ENV_PREFIX">
+<code class="sig-name descname">BASE_ENV_PREFIX</code><em class="property"> = AL_</em><a class="headerlink" href="#pine.pipelines.shared.config.BaseConfig.BASE_ENV_PREFIX" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="pine.pipelines.shared.config.BaseConfig.DEBUG">
+<code class="sig-name descname">DEBUG</code><em class="property"> = True</em><a class="headerlink" href="#pine.pipelines.shared.config.BaseConfig.DEBUG" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="pine.pipelines.shared.config.BaseConfig.TESTING">
+<code class="sig-name descname">TESTING</code><em class="property"> = False</em><a class="headerlink" href="#pine.pipelines.shared.config.BaseConfig.TESTING" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="pine.pipelines.shared.config.BaseConfig.LOGGER_NAME">
+<code class="sig-name descname">LOGGER_NAME</code><a class="headerlink" href="#pine.pipelines.shared.config.BaseConfig.LOGGER_NAME" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="pine.pipelines.shared.config.BaseConfig.LOGGER_DIR">
+<code class="sig-name descname">LOGGER_DIR</code><em class="property"> = logs</em><a class="headerlink" href="#pine.pipelines.shared.config.BaseConfig.LOGGER_DIR" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="pine.pipelines.shared.config.BaseConfig.LOGGER_FILE">
+<code class="sig-name descname">LOGGER_FILE</code><em class="property"> = debug.log</em><a class="headerlink" href="#pine.pipelines.shared.config.BaseConfig.LOGGER_FILE" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="pine.pipelines.shared.config.BaseConfig.LOGGER_LEVEL">
+<code class="sig-name descname">LOGGER_LEVEL</code><a class="headerlink" href="#pine.pipelines.shared.config.BaseConfig.LOGGER_LEVEL" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="pine.pipelines.shared.config.BaseConfig.PIPELINE">
+<code class="sig-name descname">PIPELINE</code><em class="property"> = opennlp</em><a class="headerlink" href="#pine.pipelines.shared.config.BaseConfig.PIPELINE" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="pine.pipelines.shared.config.BaseConfig.EVE_HOST">
+<code class="sig-name descname">EVE_HOST</code><em class="property"> = localhost</em><a class="headerlink" href="#pine.pipelines.shared.config.BaseConfig.EVE_HOST" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="pine.pipelines.shared.config.BaseConfig.EVE_PORT">
+<code class="sig-name descname">EVE_PORT</code><em class="property"> = 5001</em><a class="headerlink" href="#pine.pipelines.shared.config.BaseConfig.EVE_PORT" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="pine.pipelines.shared.config.BaseConfig.REDIS_HOST">
+<code class="sig-name descname">REDIS_HOST</code><em class="property"> = localhost</em><a class="headerlink" href="#pine.pipelines.shared.config.BaseConfig.REDIS_HOST" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="pine.pipelines.shared.config.BaseConfig.REDIS_PORT">
+<code class="sig-name descname">REDIS_PORT</code><em class="property"> = 6379</em><a class="headerlink" href="#pine.pipelines.shared.config.BaseConfig.REDIS_PORT" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="pine.pipelines.shared.config.BaseConfig.REDIS_USR">
+<code class="sig-name descname">REDIS_USR</code><a class="headerlink" href="#pine.pipelines.shared.config.BaseConfig.REDIS_USR" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="pine.pipelines.shared.config.BaseConfig.REDIS_PWD">
+<code class="sig-name descname">REDIS_PWD</code><a class="headerlink" href="#pine.pipelines.shared.config.BaseConfig.REDIS_PWD" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="pine.pipelines.shared.config.BaseConfig.REDIS_DBNUM">
+<code class="sig-name descname">REDIS_DBNUM</code><em class="property"> = 0</em><a class="headerlink" href="#pine.pipelines.shared.config.BaseConfig.REDIS_DBNUM" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="pine.pipelines.shared.config.BaseConfig.REDIS_PREFIX">
+<code class="sig-name descname">REDIS_PREFIX</code><em class="property"> = AL:</em><a class="headerlink" href="#pine.pipelines.shared.config.BaseConfig.REDIS_PREFIX" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="pine.pipelines.shared.config.BaseConfig.REDIS_EXPIRE">
+<code class="sig-name descname">REDIS_EXPIRE</code><em class="property"> = 3600</em><a class="headerlink" href="#pine.pipelines.shared.config.BaseConfig.REDIS_EXPIRE" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="pine.pipelines.shared.config.BaseConfig.SCHEDULER_REGISTRATION_TIMEOUT">
+<code class="sig-name descname">SCHEDULER_REGISTRATION_TIMEOUT</code><a class="headerlink" href="#pine.pipelines.shared.config.BaseConfig.SCHEDULER_REGISTRATION_TIMEOUT" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="pine.pipelines.shared.config.BaseConfig.SCHEDULER_HANDLER_TIMEOUT">
+<code class="sig-name descname">SCHEDULER_HANDLER_TIMEOUT</code><a class="headerlink" href="#pine.pipelines.shared.config.BaseConfig.SCHEDULER_HANDLER_TIMEOUT" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="pine.pipelines.shared.config.BaseConfig.SCHEDULER_QUEUE_TIMEOUT">
+<code class="sig-name descname">SCHEDULER_QUEUE_TIMEOUT</code><a class="headerlink" href="#pine.pipelines.shared.config.BaseConfig.SCHEDULER_QUEUE_TIMEOUT" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="pine.pipelines.shared.config.BaseConfig.SERVICE_REGISTRATION_CHANNEL">
+<code class="sig-name descname">SERVICE_REGISTRATION_CHANNEL</code><em class="property"> = registration</em><a class="headerlink" href="#pine.pipelines.shared.config.BaseConfig.SERVICE_REGISTRATION_CHANNEL" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="pine.pipelines.shared.config.BaseConfig.SERVICE_REGISTRATION_FREQUENCY">
+<code class="sig-name descname">SERVICE_REGISTRATION_FREQUENCY</code><em class="property"> = 60</em><a class="headerlink" href="#pine.pipelines.shared.config.BaseConfig.SERVICE_REGISTRATION_FREQUENCY" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="pine.pipelines.shared.config.BaseConfig.SERVICE_LISTENING_FREQUENCY">
+<code class="sig-name descname">SERVICE_LISTENING_FREQUENCY</code><em class="property"> = 1</em><a class="headerlink" href="#pine.pipelines.shared.config.BaseConfig.SERVICE_LISTENING_FREQUENCY" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="pine.pipelines.shared.config.BaseConfig.SERVICE_HANDLER_TIMEOUT">
+<code class="sig-name descname">SERVICE_HANDLER_TIMEOUT</code><em class="property"> = 60</em><a class="headerlink" href="#pine.pipelines.shared.config.BaseConfig.SERVICE_HANDLER_TIMEOUT" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="pine.pipelines.shared.config.BaseConfig.SERVICE_LIST">
+<code class="sig-name descname">SERVICE_LIST</code><a class="headerlink" href="#pine.pipelines.shared.config.BaseConfig.SERVICE_LIST" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="pine.pipelines.shared.config.BaseConfig.MODELS_DIR">
+<code class="sig-name descname">MODELS_DIR</code><a class="headerlink" href="#pine.pipelines.shared.config.BaseConfig.MODELS_DIR" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="pine.pipelines.shared.config.BaseConfig._get_config_var_paths">
+<em class="property">classmethod </em><code class="sig-name descname">_get_config_var_paths</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">cls</span></em>, <em class="sig-param"><span class="n">root_dict</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.pipelines.shared.config.BaseConfig._get_config_var_paths" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="pine.pipelines.shared.config.BaseConfig._process_paths">
+<em class="property">classmethod </em><code class="sig-name descname">_process_paths</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">cls</span></em>, <em class="sig-param"><span class="n">alt_path</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.pipelines.shared.config.BaseConfig._process_paths" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="pine.pipelines.shared.config.BaseConfig._process_file_cfg">
+<em class="property">classmethod </em><code class="sig-name descname">_process_file_cfg</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">cls</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.pipelines.shared.config.BaseConfig._process_file_cfg" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="pine.pipelines.shared.config.BaseConfig._process_env_vars">
+<em class="property">classmethod </em><code class="sig-name descname">_process_env_vars</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">cls</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.pipelines.shared.config.BaseConfig._process_env_vars" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="pine.pipelines.shared.config.BaseConfig.as_dict">
+<em class="property">classmethod </em><code class="sig-name descname">as_dict</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">cls</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.pipelines.shared.config.BaseConfig.as_dict" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.8)">dict</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pine.pipelines.shared.config.BaseConfig.as_attr_dict">
+<em class="property">classmethod </em><code class="sig-name descname">as_attr_dict</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">cls</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.pipelines.shared.config.BaseConfig.as_attr_dict" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>munch.Munch | dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pine.pipelines.shared.config.BaseConfig._try_cast">
+<em class="property">static </em><code class="sig-name descname">_try_cast</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">value</span></em>, <em class="sig-param"><span class="n">_type</span></em>, <em class="sig-param"><span class="n">_default</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.pipelines.shared.config.BaseConfig._try_cast" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="pine.pipelines.shared.config.BaseConfig._str2bool">
+<em class="property">static </em><code class="sig-name descname">_str2bool</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">_str</span></em>, <em class="sig-param"><span class="n">_default</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.pipelines.shared.config.BaseConfig._str2bool" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="pine.pipelines.shared.config.TestConfig">
+<em class="property">class </em><code class="sig-prename descclassname">pine.pipelines.shared.config.</code><code class="sig-name descname">TestConfig</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">root_dir</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.pipelines.shared.config.TestConfig" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#pine.pipelines.shared.config.BaseConfig" title="pine.pipelines.shared.config.BaseConfig"><code class="xref py py-class docutils literal notranslate"><span class="pre">pine.pipelines.shared.config.BaseConfig</span></code></a></p>
+<p>Initialize self.  See help(type(self)) for accurate signature.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt id="pine.pipelines.shared.config.ConfigBuilder">
+<em class="property">class </em><code class="sig-prename descclassname">pine.pipelines.shared.config.</code><code class="sig-name descname">ConfigBuilder</code><a class="headerlink" href="#pine.pipelines.shared.config.ConfigBuilder" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>Initialize self.  See help(type(self)) for accurate signature.</p>
+<dl class="py attribute">
+<dt id="pine.pipelines.shared.config.ConfigBuilder.__env_cfg_variable">
+<code class="sig-name descname">__env_cfg_variable</code><em class="property"> = BUILDER_CFG_PROFILE</em><a class="headerlink" href="#pine.pipelines.shared.config.ConfigBuilder.__env_cfg_variable" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="pine.pipelines.shared.config.ConfigBuilder.__current_config_instance">
+<code class="sig-name descname">__current_config_instance</code><a class="headerlink" href="#pine.pipelines.shared.config.ConfigBuilder.__current_config_instance" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="pine.pipelines.shared.config.ConfigBuilder.__current_config_instance_name">
+<code class="sig-name descname">__current_config_instance_name</code><a class="headerlink" href="#pine.pipelines.shared.config.ConfigBuilder.__current_config_instance_name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="pine.pipelines.shared.config.ConfigBuilder.__current_config_instance_print">
+<code class="sig-name descname">__current_config_instance_print</code><em class="property"> = False</em><a class="headerlink" href="#pine.pipelines.shared.config.ConfigBuilder.__current_config_instance_print" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="pine.pipelines.shared.config.ConfigBuilder.__arg_parser">
+<code class="sig-name descname">__arg_parser</code><a class="headerlink" href="#pine.pipelines.shared.config.ConfigBuilder.__arg_parser" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="pine.pipelines.shared.config.ConfigBuilder.__get_configs">
+<em class="property">static </em><code class="sig-name descname">__get_configs</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pine.pipelines.shared.config.ConfigBuilder.__get_configs" title="Permalink to this definition">¶</a></dt>
+<dd><p>:rtype list[Callable[…, BaseConfig]]</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pine.pipelines.shared.config.ConfigBuilder.get_config_names">
+<em class="property">static </em><code class="sig-name descname">get_config_names</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pine.pipelines.shared.config.ConfigBuilder.get_config_names" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.8)">list</a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)">str</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pine.pipelines.shared.config.ConfigBuilder.get_arg_parser">
+<em class="property">classmethod </em><code class="sig-name descname">get_arg_parser</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">cls</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.pipelines.shared.config.ConfigBuilder.get_arg_parser" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>ArgumentParser</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pine.pipelines.shared.config.ConfigBuilder.init_config">
+<em class="property">classmethod </em><code class="sig-name descname">init_config</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">cls</span></em>, <em class="sig-param"><span class="n">config_name</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">config_base</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">enable_terminal</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">as_attr_dict</span><span class="o">=</span><span class="default_value">True</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.pipelines.shared.config.ConfigBuilder.init_config" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pine.pipelines.shared.config.ConfigBuilder.get_config">
+<em class="property">classmethod </em><code class="sig-name descname">get_config</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">cls</span></em>, <em class="sig-param"><span class="n">config_name</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">config_base</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">enable_terminal</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">as_attr_dict</span><span class="o">=</span><span class="default_value">True</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.pipelines.shared.config.ConfigBuilder.get_config" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="../../../backend/shared/config/index.html#pine.backend.shared.config.BaseConfig" title="pine.backend.shared.config.BaseConfig">BaseConfig</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pine.pipelines.shared.config.ConfigBuilder.set_config">
+<em class="property">classmethod </em><code class="sig-name descname">set_config</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">cls</span></em>, <em class="sig-param"><span class="n">config_name</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">config_base</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">enable_terminal</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">as_attr_dict</span><span class="o">=</span><span class="default_value">True</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.pipelines.shared.config.ConfigBuilder.set_config" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pine.pipelines.shared.config.ConfigBuilder.__parse_terminal_config">
+<em class="property">classmethod </em><code class="sig-name descname">__parse_terminal_config</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">cls</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.pipelines.shared.config.ConfigBuilder.__parse_terminal_config" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/argparse.html#argparse.Namespace" title="(in Python v3.8)">argparse.Namespace</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+</div>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../../../../../index.html">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">pine.pipelines.shared.config</span></code></a><ul>
+<li><a class="reference internal" href="#module-contents">Module Contents</a><ul>
+<li><a class="reference internal" href="#classes">Classes</a><ul>
+<li><a class="reference internal" href="#pine.pipelines.shared.config.LOGGER">LOGGER</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#pine.pipelines.shared.config.BaseConfig">BaseConfig</a><ul>
+<li><a class="reference internal" href="#pine.pipelines.shared.config.BaseConfig.ROOT_DIR">ROOT_DIR</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#pine.pipelines.shared.config.BaseConfig.BASE_DIR">BASE_DIR</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#pine.pipelines.shared.config.BaseConfig.BASE_CFG_FILE">BASE_CFG_FILE</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#pine.pipelines.shared.config.BaseConfig.BASE_ENV_PREFIX">BASE_ENV_PREFIX</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#pine.pipelines.shared.config.BaseConfig.DEBUG">DEBUG</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#pine.pipelines.shared.config.BaseConfig.TESTING">TESTING</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#pine.pipelines.shared.config.BaseConfig.LOGGER_NAME">LOGGER_NAME</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#pine.pipelines.shared.config.BaseConfig.LOGGER_DIR">LOGGER_DIR</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#pine.pipelines.shared.config.BaseConfig.LOGGER_FILE">LOGGER_FILE</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#pine.pipelines.shared.config.BaseConfig.LOGGER_LEVEL">LOGGER_LEVEL</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#pine.pipelines.shared.config.BaseConfig.PIPELINE">PIPELINE</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#pine.pipelines.shared.config.BaseConfig.EVE_HOST">EVE_HOST</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#pine.pipelines.shared.config.BaseConfig.EVE_PORT">EVE_PORT</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#pine.pipelines.shared.config.BaseConfig.REDIS_HOST">REDIS_HOST</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#pine.pipelines.shared.config.BaseConfig.REDIS_PORT">REDIS_PORT</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#pine.pipelines.shared.config.BaseConfig.REDIS_USR">REDIS_USR</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#pine.pipelines.shared.config.BaseConfig.REDIS_PWD">REDIS_PWD</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#pine.pipelines.shared.config.BaseConfig.REDIS_DBNUM">REDIS_DBNUM</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#pine.pipelines.shared.config.BaseConfig.REDIS_PREFIX">REDIS_PREFIX</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#pine.pipelines.shared.config.BaseConfig.REDIS_EXPIRE">REDIS_EXPIRE</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#pine.pipelines.shared.config.BaseConfig.SCHEDULER_REGISTRATION_TIMEOUT">SCHEDULER_REGISTRATION_TIMEOUT</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#pine.pipelines.shared.config.BaseConfig.SCHEDULER_HANDLER_TIMEOUT">SCHEDULER_HANDLER_TIMEOUT</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#pine.pipelines.shared.config.BaseConfig.SCHEDULER_QUEUE_TIMEOUT">SCHEDULER_QUEUE_TIMEOUT</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#pine.pipelines.shared.config.BaseConfig.SERVICE_REGISTRATION_CHANNEL">SERVICE_REGISTRATION_CHANNEL</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#pine.pipelines.shared.config.BaseConfig.SERVICE_REGISTRATION_FREQUENCY">SERVICE_REGISTRATION_FREQUENCY</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#pine.pipelines.shared.config.BaseConfig.SERVICE_LISTENING_FREQUENCY">SERVICE_LISTENING_FREQUENCY</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#pine.pipelines.shared.config.BaseConfig.SERVICE_HANDLER_TIMEOUT">SERVICE_HANDLER_TIMEOUT</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#pine.pipelines.shared.config.BaseConfig.SERVICE_LIST">SERVICE_LIST</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#pine.pipelines.shared.config.BaseConfig.MODELS_DIR">MODELS_DIR</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#pine.pipelines.shared.config.BaseConfig._get_config_var_paths">_get_config_var_paths</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#pine.pipelines.shared.config.BaseConfig._process_paths">_process_paths</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#pine.pipelines.shared.config.BaseConfig._process_file_cfg">_process_file_cfg</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#pine.pipelines.shared.config.BaseConfig._process_env_vars">_process_env_vars</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#pine.pipelines.shared.config.BaseConfig.as_dict">as_dict</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#pine.pipelines.shared.config.BaseConfig.as_attr_dict">as_attr_dict</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#pine.pipelines.shared.config.BaseConfig._try_cast">_try_cast</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#pine.pipelines.shared.config.BaseConfig._str2bool">_str2bool</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#pine.pipelines.shared.config.TestConfig">TestConfig</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#pine.pipelines.shared.config.ConfigBuilder">ConfigBuilder</a><ul>
+<li><a class="reference internal" href="#pine.pipelines.shared.config.ConfigBuilder.__env_cfg_variable">__env_cfg_variable</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#pine.pipelines.shared.config.ConfigBuilder.__current_config_instance">__current_config_instance</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#pine.pipelines.shared.config.ConfigBuilder.__current_config_instance_name">__current_config_instance_name</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#pine.pipelines.shared.config.ConfigBuilder.__current_config_instance_print">__current_config_instance_print</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#pine.pipelines.shared.config.ConfigBuilder.__arg_parser">__arg_parser</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#pine.pipelines.shared.config.ConfigBuilder.__get_configs">__get_configs</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#pine.pipelines.shared.config.ConfigBuilder.get_config_names">get_config_names</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#pine.pipelines.shared.config.ConfigBuilder.get_arg_parser">get_arg_parser</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#pine.pipelines.shared.config.ConfigBuilder.init_config">init_config</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#pine.pipelines.shared.config.ConfigBuilder.get_config">get_config</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#pine.pipelines.shared.config.ConfigBuilder.set_config">set_config</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#pine.pipelines.shared.config.ConfigBuilder.__parse_terminal_config">__parse_terminal_config</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="../index.html"
+                        title="previous chapter"><code class="xref py py-mod docutils literal notranslate"><span class="pre">pine.pipelines.shared</span></code></a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="../transform/index.html"
+                        title="next chapter"><code class="xref py py-mod docutils literal notranslate"><span class="pre">pine.pipelines.shared.transform</span></code></a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../../../../_sources/autoapi/pine/pipelines/shared/config/index.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../../../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="../transform/index.html" title="pine.pipelines.shared.transform"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="../index.html" title="pine.pipelines.shared"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../../../index.html">pine  documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../../../index.html" >API Reference</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../../../index.html" ><code class="xref py py-mod docutils literal notranslate"><span class="pre">pine</span></code></a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="../../index.html" ><code class="xref py py-mod docutils literal notranslate"><span class="pre">pine.pipelines</span></code></a> &#187;</li>
+          <li class="nav-item nav-item-4"><a href="../index.html" ><code class="xref py py-mod docutils literal notranslate"><span class="pre">pine.pipelines.shared</span></code></a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href=""><code class="xref py py-mod docutils literal notranslate"><span class="pre">pine.pipelines.shared.config</span></code></a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright (C) 2019 The Johns Hopkins University Applied Physics Laboratory LLC..
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.1.2.
+    </div>
+  </body>
+</html>

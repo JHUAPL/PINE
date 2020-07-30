@@ -5,6 +5,8 @@ import json
 bind = "0.0.0.0:${PORT}"
 workers = ${WORKERS}
 accesslog = "-"
+timeout = 60
+limit_request_line = 0
 
 if "PINE_LOGGING_CONFIG_FILE" in os.environ and os.path.isfile(os.environ["PINE_LOGGING_CONFIG_FILE"]):
     with open(os.environ["PINE_LOGGING_CONFIG_FILE"], "r") as f:

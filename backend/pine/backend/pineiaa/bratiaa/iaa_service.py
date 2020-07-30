@@ -67,7 +67,7 @@ def fix_num_for_json(number):
 
 def getIAAReportForCollection(collection_id):
 
-    combined = get_doc_annotations(collection_id) ## exclude=set(['bchee1'])
+    combined = get_doc_annotations(collection_id)
 
     labels = set()
     for v in combined.values():

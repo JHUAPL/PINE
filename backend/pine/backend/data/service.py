@@ -3,7 +3,7 @@
 import json
 import logging
 import math
-from pprint import pprint
+from pprint import pformat, pprint
 import threading
 
 from flask import abort, current_app, Response
@@ -22,6 +22,9 @@ class PerformanceHistory(object):
             "patch": {}
         }
         self.lock = threading.Lock()
+
+    def pformat(self, **kwargs):
+        return pformat(self.data, **kwargs)
 
     def pprint(self):
         self.lock.acquire()
@@ -53,6 +56,7 @@ class PerformanceHistory(object):
 PERFORMANCE_HISTORY = PerformanceHistory()
 
 def _standardize_path(path, *additional_paths):
+    # if you change this, also update client code in pine.client.client module
     if type(path) not in [list, tuple, set]:
         path = [path]
     if additional_paths:

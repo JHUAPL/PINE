@@ -54,12 +54,14 @@ spec:
             {{- end }}
             {{- end }}
             {{- range $ref, $values := $annotatorValues.secrets }}
+            {{- if or (eq $annotatorName $ref) (eq "annotators" $ref) }}
             {{- range $key, $value := $values }}
             - name: {{ $key | upper }}
               valueFrom:
                 secretKeyRef:
                   name: {{ template "pine-chart.fullname" $root }}-{{ $ref }}
                   key: {{ $key }}
+            {{- end }}
             {{- end }}
             {{- end }}
     {{- if $root.Values.imagePullSecrets }}

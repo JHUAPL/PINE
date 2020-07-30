@@ -1,0 +1,1530 @@
+\begin{sphinxtheindex}
+\let\bigletter\sphinxstyleindexlettergroup
+\let\spxpagem \sphinxstyleindexpagemain
+\let\spxentry \sphinxstyleindexentry
+\let\spxextra \sphinxstyleindexextra
+
+  \bigletter {\sphinxsymbolsname}
+  \item \spxentry{\_\_SUPPORTED\_PIPELINES}\spxextra{pine.pipelines.pmap\_ner.NER attribute}, 
+		\hyperpage{73}
+  \item \spxentry{\_\_arg\_parser}\spxextra{pine.backend.shared.config.ConfigBuilder attribute}, 
+		\hyperpage{27}
+  \item \spxentry{\_\_arg\_parser}\spxextra{pine.pipelines.shared.config.ConfigBuilder attribute}, 
+		\hyperpage{67}
+  \item \spxentry{\_\_crf}\spxextra{pine.pipelines.corenlp\_NER\_pipeline.corenlp\_NER attribute}, 
+		\hyperpage{71}
+  \item \spxentry{\_\_current\_config\_instance}\spxextra{pine.backend.shared.config.ConfigBuilder attribute}, 
+		\hyperpage{26}
+  \item \spxentry{\_\_current\_config\_instance}\spxextra{pine.pipelines.shared.config.ConfigBuilder attribute}, 
+		\hyperpage{67}
+  \item \spxentry{\_\_current\_config\_instance\_name}\spxextra{pine.backend.shared.config.ConfigBuilder attribute}, 
+		\hyperpage{26}
+  \item \spxentry{\_\_current\_config\_instance\_name}\spxextra{pine.pipelines.shared.config.ConfigBuilder attribute}, 
+		\hyperpage{67}
+  \item \spxentry{\_\_current\_config\_instance\_print}\spxextra{pine.backend.shared.config.ConfigBuilder attribute}, 
+		\hyperpage{27}
+  \item \spxentry{\_\_current\_config\_instance\_print}\spxextra{pine.pipelines.shared.config.ConfigBuilder attribute}, 
+		\hyperpage{67}
+  \item \spxentry{\_\_env\_cfg\_variable}\spxextra{pine.backend.shared.config.ConfigBuilder attribute}, 
+		\hyperpage{26}
+  \item \spxentry{\_\_env\_cfg\_variable}\spxextra{pine.pipelines.shared.config.ConfigBuilder attribute}, 
+		\hyperpage{67}
+  \item \spxentry{\_\_get\_configs()}\spxextra{pine.backend.shared.config.ConfigBuilder static method}, 
+		\hyperpage{27}
+  \item \spxentry{\_\_get\_configs()}\spxextra{pine.pipelines.shared.config.ConfigBuilder static method}, 
+		\hyperpage{67}
+  \item \spxentry{\_\_id}\spxextra{pine.pipelines.corenlp\_NER\_pipeline.corenlp\_NER attribute}, 
+		\hyperpage{71}
+  \item \spxentry{\_\_id}\spxextra{pine.pipelines.opennlp\_NER\_pipeline.opennlp\_NER attribute}, 
+		\hyperpage{72}
+  \item \spxentry{\_\_jar}\spxextra{pine.pipelines.corenlp\_NER\_pipeline.corenlp\_NER attribute}, 
+		\hyperpage{71}
+  \item \spxentry{\_\_jar}\spxextra{pine.pipelines.opennlp\_NER\_pipeline.opennlp\_NER attribute}, 
+		\hyperpage{72}
+  \item \spxentry{\_\_jdk\_dir}\spxextra{pine.pipelines.corenlp\_NER\_pipeline.corenlp\_NER attribute}, 
+		\hyperpage{71}
+  \item \spxentry{\_\_jdk\_dir}\spxextra{pine.pipelines.opennlp\_NER\_pipeline.opennlp\_NER attribute}, 
+		\hyperpage{72}
+  \item \spxentry{\_\_lib}\spxextra{pine.pipelines.pmap\_ner.NER attribute}, \hyperpage{73}
+  \item \spxentry{\_\_metaclass\_\_}\spxextra{pine.backend.auth.bp.AuthModule attribute}, 
+		\hyperpage{5}
+  \item \spxentry{\_\_metaclass\_\_}\spxextra{pine.client.client.BaseClient attribute}, 
+		\hyperpage{32}
+  \item \spxentry{\_\_model}\spxextra{pine.pipelines.corenlp\_NER\_pipeline.corenlp\_NER attribute}, 
+		\hyperpage{71}
+  \item \spxentry{\_\_model}\spxextra{pine.pipelines.opennlp\_NER\_pipeline.opennlp\_NER attribute}, 
+		\hyperpage{72}
+  \item \spxentry{\_\_nameFinder}\spxextra{pine.pipelines.opennlp\_NER\_pipeline.opennlp\_NER attribute}, 
+		\hyperpage{72}
+  \item \spxentry{\_\_ner}\spxextra{pine.pipelines.spacy\_NER\_pipeline.spacy\_NER attribute}, 
+		\hyperpage{74}
+  \item \spxentry{\_\_nlp}\spxextra{pine.pipelines.spacy\_NER\_pipeline.spacy\_NER attribute}, 
+		\hyperpage{74}
+  \item \spxentry{\_\_optimizer}\spxextra{pine.pipelines.spacy\_NER\_pipeline.spacy\_NER attribute}, 
+		\hyperpage{74}
+  \item \spxentry{\_\_parse\_terminal\_config()}\spxextra{pine.backend.shared.config.ConfigBuilder class method}, 
+		\hyperpage{27}
+  \item \spxentry{\_\_parse\_terminal\_config()}\spxextra{pine.pipelines.shared.config.ConfigBuilder class method}, 
+		\hyperpage{68}
+  \item \spxentry{\_\_props}\spxextra{pine.pipelines.corenlp\_NER\_pipeline.corenlp\_NER attribute}, 
+		\hyperpage{71}
+  \item \spxentry{\_\_slots\_\_}\spxextra{pine.backend.pineiaa.bratiaa.Document attribute}, 
+		\hyperpage{23}
+  \item \spxentry{\_\_slots\_\_}\spxextra{pine.backend.pineiaa.bratiaa.agree.Document attribute}, 
+		\hyperpage{19}
+  \item \spxentry{\_\_temp\_dir}\spxextra{pine.pipelines.corenlp\_NER\_pipeline.corenlp\_NER attribute}, 
+		\hyperpage{71}
+  \item \spxentry{\_\_temp\_dir}\spxextra{pine.pipelines.opennlp\_NER\_pipeline.opennlp\_NER attribute}, 
+		\hyperpage{72}
+  \item \spxentry{\_\_test\_file}\spxextra{pine.pipelines.corenlp\_NER\_pipeline.corenlp\_NER attribute}, 
+		\hyperpage{71}
+  \item \spxentry{\_\_test\_file}\spxextra{pine.pipelines.opennlp\_NER\_pipeline.opennlp\_NER attribute}, 
+		\hyperpage{72}
+  \item \spxentry{\_\_train\_file}\spxextra{pine.pipelines.corenlp\_NER\_pipeline.corenlp\_NER attribute}, 
+		\hyperpage{71}
+  \item \spxentry{\_\_train\_file}\spxextra{pine.pipelines.opennlp\_NER\_pipeline.opennlp\_NER attribute}, 
+		\hyperpage{72}
+  \item \spxentry{\_\_version\_\_}\spxextra{in module pine.backend}, \hyperpage{31}
+  \item \spxentry{\_add\_or\_replace\_resource()}\spxextra{pine.client.client.EveClient method}, 
+		\hyperpage{35}
+  \item \spxentry{\_add\_or\_update\_annotation()}\spxextra{in module pine.backend.annotations.bp}, 
+		\hyperpage{4}
+  \item \spxentry{\_add\_resources()}\spxextra{pine.client.client.EveClient method}, \hyperpage{36}
+  \item \spxentry{\_channel\_watchdog()}\spxextra{pine.backend.job\_manager.service.ServiceManager method}, 
+		\hyperpage{18}
+  \item \spxentry{\_check\_collection\_and\_get\_image\_dir()}\spxextra{in module pine.backend.collections.bp}, 
+		\hyperpage{10}
+  \item \spxentry{\_check\_documents()}\spxextra{in module pine.backend.documents.bp}, 
+		\hyperpage{16}
+  \item \spxentry{\_check\_field\_bool()}\spxextra{in module pine.client.models}, \hyperpage{47}
+  \item \spxentry{\_check\_field\_dict()}\spxextra{in module pine.client.models}, \hyperpage{46}
+  \item \spxentry{\_check\_field\_float()}\spxextra{in module pine.client.models}, \hyperpage{45}
+  \item \spxentry{\_check\_field\_int()}\spxextra{in module pine.client.models}, \hyperpage{45}
+  \item \spxentry{\_check\_field\_required\_bool()}\spxextra{in module pine.client.models}, 
+		\hyperpage{44}
+  \item \spxentry{\_check\_field\_required\_dict()}\spxextra{in module pine.client.models}, 
+		\hyperpage{46}
+  \item \spxentry{\_check\_field\_required\_float()}\spxextra{in module pine.client.models}, 
+		\hyperpage{45}
+  \item \spxentry{\_check\_field\_required\_int()}\spxextra{in module pine.client.models}, 
+		\hyperpage{45}
+  \item \spxentry{\_check\_field\_required\_string()}\spxextra{in module pine.client.models}, 
+		\hyperpage{46}
+  \item \spxentry{\_check\_field\_required\_string\_list()}\spxextra{in module pine.client.models}, 
+		\hyperpage{46}
+  \item \spxentry{\_check\_field\_string()}\spxextra{in module pine.client.models}, \hyperpage{45}
+  \item \spxentry{\_check\_field\_string\_list()}\spxextra{in module pine.client.models}, 
+		\hyperpage{46}
+  \item \spxentry{\_check\_login()}\spxextra{pine.client.PineClient method}, \hyperpage{56}
+  \item \spxentry{\_check\_login()}\spxextra{pine.client.client.PineClient method}, \hyperpage{38}
+  \item \spxentry{\_collection\_user\_can()}\spxextra{in module pine.backend.collections.bp}, 
+		\hyperpage{9}
+  \item \spxentry{\_collection\_user\_can\_projection()}\spxextra{in module pine.backend.collections.bp}, 
+		\hyperpage{9}
+  \item \spxentry{\_compute\_tp\_fp\_fn()}\spxextra{pine.backend.pineiaa.bratiaa.F1Agreement method}, 
+		\hyperpage{22}
+  \item \spxentry{\_compute\_tp\_fp\_fn()}\spxextra{pine.backend.pineiaa.bratiaa.agree.F1Agreement method}, 
+		\hyperpage{19}
+  \item \spxentry{\_document\_user\_can\_projection()}\spxextra{in module pine.backend.documents.bp}, 
+		\hyperpage{15}
+  \item \spxentry{\_get\_classifier()}\spxextra{in module pine.backend.pipelines.bp}, 
+		\hyperpage{25}
+  \item \spxentry{\_get\_classifier\_metrics()}\spxextra{in module pine.backend.pipelines.bp}, 
+		\hyperpage{24}
+  \item \spxentry{\_get\_collection\_classifier()}\spxextra{in module pine.backend.pipelines.bp}, 
+		\hyperpage{24}
+  \item \spxentry{\_get\_config\_var\_paths()}\spxextra{pine.backend.shared.config.BaseConfig class method}, 
+		\hyperpage{26}
+  \item \spxentry{\_get\_config\_var\_paths()}\spxextra{pine.pipelines.shared.config.BaseConfig class method}, 
+		\hyperpage{67}
+  \item \spxentry{\_get\_next\_instance()}\spxextra{in module pine.backend.pipelines.bp}, 
+		\hyperpage{25}
+  \item \spxentry{\_increment\_counts()}\spxextra{pine.backend.pineiaa.bratiaa.F1Agreement method}, 
+		\hyperpage{22}
+  \item \spxentry{\_increment\_counts()}\spxextra{pine.backend.pineiaa.bratiaa.agree.F1Agreement method}, 
+		\hyperpage{19}
+  \item \spxentry{\_make\_annotations()}\spxextra{in module pine.backend.annotations.bp}, 
+		\hyperpage{3}
+  \item \spxentry{\_mean\_sd()}\spxextra{pine.backend.pineiaa.bratiaa.F1Agreement static method}, 
+		\hyperpage{23}
+  \item \spxentry{\_mean\_sd()}\spxextra{pine.backend.pineiaa.bratiaa.agree.F1Agreement static method}, 
+		\hyperpage{19}
+  \item \spxentry{\_pairs\_involving()}\spxextra{pine.backend.pineiaa.bratiaa.F1Agreement method}, 
+		\hyperpage{23}
+  \item \spxentry{\_pairs\_involving()}\spxextra{pine.backend.pineiaa.bratiaa.agree.F1Agreement method}, 
+		\hyperpage{19}
+  \item \spxentry{\_path\_split()}\spxextra{in module pine.backend.collections.bp}, \hyperpage{11}
+  \item \spxentry{\_process\_env\_vars()}\spxextra{pine.backend.shared.config.BaseConfig class method}, 
+		\hyperpage{26}
+  \item \spxentry{\_process\_env\_vars()}\spxextra{pine.pipelines.shared.config.BaseConfig class method}, 
+		\hyperpage{67}
+  \item \spxentry{\_process\_file\_cfg()}\spxextra{pine.backend.shared.config.BaseConfig class method}, 
+		\hyperpage{26}
+  \item \spxentry{\_process\_file\_cfg()}\spxextra{pine.pipelines.shared.config.BaseConfig class method}, 
+		\hyperpage{67}
+  \item \spxentry{\_process\_paths()}\spxextra{pine.backend.shared.config.BaseConfig class method}, 
+		\hyperpage{26}
+  \item \spxentry{\_process\_paths()}\spxextra{pine.pipelines.shared.config.BaseConfig class method}, 
+		\hyperpage{67}
+  \item \spxentry{\_processing\_listener()}\spxextra{pine.backend.job\_manager.service.ServiceManager method}, 
+		\hyperpage{18}
+  \item \spxentry{\_processing\_listener\_handler\_wrapper()}\spxextra{pine.backend.job\_manager.service.ServiceManager method}, 
+		\hyperpage{18}
+  \item \spxentry{\_read\_token\_annotations()}\spxextra{in module pine.backend.pineiaa.bratiaa.evaluation}, 
+		\hyperpage{20}
+  \item \spxentry{\_registration\_listener()}\spxextra{pine.backend.job\_manager.service.ServiceManager method}, 
+		\hyperpage{17}
+  \item \spxentry{\_req()}\spxextra{pine.client.client.BaseClient method}, \hyperpage{33}
+  \item \spxentry{\_safe\_path()}\spxextra{in module pine.backend.collections.bp}, \hyperpage{11}
+  \item \spxentry{\_standardize\_path()}\spxextra{in module pine.backend.data.service}, 
+		\hyperpage{13}
+  \item \spxentry{\_standardize\_path()}\spxextra{in module pine.client.client}, \hyperpage{32}
+  \item \spxentry{\_start\_channel\_task()}\spxextra{pine.pipelines.app.listener.service\_listener.ServiceListener method}, 
+		\hyperpage{65}
+  \item \spxentry{\_start\_channel\_watchdog()}\spxextra{pine.backend.job\_manager.service.ServiceManager method}, 
+		\hyperpage{17}
+  \item \spxentry{\_start\_listener\_task()}\spxextra{pine.pipelines.app.listener.service\_listener.ServiceListener method}, 
+		\hyperpage{66}
+  \item \spxentry{\_start\_processing\_listeners()}\spxextra{pine.backend.job\_manager.service.ServiceManager method}, 
+		\hyperpage{17}
+  \item \spxentry{\_start\_queue\_processor\_task()}\spxextra{pine.pipelines.app.listener.service\_listener.ServiceListener method}, 
+		\hyperpage{66}
+  \item \spxentry{\_start\_registration\_listener()}\spxextra{pine.backend.job\_manager.service.ServiceManager method}, 
+		\hyperpage{17}
+  \item \spxentry{\_start\_registration\_task()}\spxextra{pine.pipelines.app.listener.service\_listener.ServiceListener method}, 
+		\hyperpage{65}
+  \item \spxentry{\_stop\_channel\_watchdog()}\spxextra{pine.backend.job\_manager.service.ServiceManager method}, 
+		\hyperpage{17}
+  \item \spxentry{\_str2bool()}\spxextra{pine.backend.shared.config.BaseConfig static method}, 
+		\hyperpage{26}
+  \item \spxentry{\_str2bool()}\spxextra{pine.pipelines.shared.config.BaseConfig static method}, 
+		\hyperpage{67}
+  \item \spxentry{\_thread\_killer()}\spxextra{pine.backend.job\_manager.service.ServiceManager static method}, 
+		\hyperpage{18}
+  \item \spxentry{\_try\_cast()}\spxextra{pine.backend.shared.config.BaseConfig static method}, 
+		\hyperpage{26}
+  \item \spxentry{\_try\_cast()}\spxextra{pine.pipelines.shared.config.BaseConfig static method}, 
+		\hyperpage{67}
+  \item \spxentry{\_upload\_collection\_image\_file()}\spxextra{in module pine.backend.collections.bp}, 
+		\hyperpage{11}
+  \item \spxentry{\_upload\_documents()}\spxextra{in module pine.backend.collections.bp}, 
+		\hyperpage{10}
+
+  \indexspace
+  \bigletter A
+  \item \spxentry{about()}\spxextra{pine.client.client.EveClient method}, \hyperpage{35}
+  \item \spxentry{about()}\spxextra{pine.client.client.PineClient method}, \hyperpage{37}
+  \item \spxentry{about()}\spxextra{pine.client.PineClient method}, \hyperpage{55}
+  \item \spxentry{access()}\spxextra{in module pine.backend.log}, \hyperpage{30}
+  \item \spxentry{access\_flask\_add\_collection()}\spxextra{in module pine.backend.log}, 
+		\hyperpage{30}
+  \item \spxentry{access\_flask\_add\_document()}\spxextra{in module pine.backend.log}, 
+		\hyperpage{30}
+  \item \spxentry{access\_flask\_add\_documents()}\spxextra{in module pine.backend.log}, 
+		\hyperpage{30}
+  \item \spxentry{access\_flask\_annotate\_document()}\spxextra{in module pine.backend.log}, 
+		\hyperpage{30}
+  \item \spxentry{access\_flask\_annotate\_documents()}\spxextra{in module pine.backend.log}, 
+		\hyperpage{30}
+  \item \spxentry{access\_flask\_login()}\spxextra{in module pine.backend.log}, \hyperpage{30}
+  \item \spxentry{access\_flask\_logout()}\spxextra{in module pine.backend.log}, \hyperpage{30}
+  \item \spxentry{access\_flask\_view\_document()}\spxextra{in module pine.backend.log}, 
+		\hyperpage{30}
+  \item \spxentry{ACCESS\_LOGGER}\spxextra{in module pine.backend.log}, \hyperpage{29}
+  \item \spxentry{ACCESS\_LOGGER\_NAME}\spxextra{in module pine.backend.log}, \hyperpage{29}
+  \item \spxentry{Action}\spxextra{class in pine.backend.log}, \hyperpage{29}
+  \item \spxentry{add()}\spxextra{pine.backend.data.service.PerformanceHistory method}, 
+		\hyperpage{13}
+  \item \spxentry{add()}\spxextra{pine.pipelines.EveClient.EveClient method}, \hyperpage{69}
+  \item \spxentry{add\_admin\_command()}\spxextra{in module pine.backend.data.users}, 
+		\hyperpage{15}
+  \item \spxentry{add\_annotator\_to\_collection()}\spxextra{in module pine.backend.collections.bp}, 
+		\hyperpage{10}
+  \item \spxentry{ADD\_DOCUMENT}\spxextra{pine.backend.log.Action attribute}, \hyperpage{29}
+  \item \spxentry{add\_document()}\spxextra{in module pine.backend.documents.bp}, \hyperpage{16}
+  \item \spxentry{add\_document()}\spxextra{pine.client.client.PineClient method}, \hyperpage{39}
+  \item \spxentry{add\_document()}\spxextra{pine.client.PineClient method}, \hyperpage{57}
+  \item \spxentry{ADD\_DOCUMENTS}\spxextra{pine.backend.log.Action attribute}, \hyperpage{29}
+  \item \spxentry{add\_documents()}\spxextra{pine.client.client.PineClient method}, \hyperpage{40}
+  \item \spxentry{add\_documents()}\spxextra{pine.client.PineClient method}, \hyperpage{58}
+  \item \spxentry{add\_label()}\spxextra{pine.pipelines.spacy\_NER\_pipeline.spacy\_NER method}, 
+		\hyperpage{74}
+  \item \spxentry{add\_label\_to\_collection()}\spxextra{in module pine.backend.collections.bp}, 
+		\hyperpage{10}
+  \item \spxentry{add\_pipelines()}\spxextra{pine.client.client.EveClient method}, \hyperpage{36}
+  \item \spxentry{add\_user()}\spxextra{in module pine.backend.admin.bp}, \hyperpage{2}
+  \item \spxentry{add\_users()}\spxextra{pine.client.client.EveClient method}, \hyperpage{36}
+  \item \spxentry{add\_viewer\_to\_collection()}\spxextra{in module pine.backend.collections.bp}, 
+		\hyperpage{10}
+  \item \spxentry{admin\_required()}\spxextra{in module pine.backend.auth}, \hyperpage{7}
+  \item \spxentry{admin\_required()}\spxextra{in module pine.backend.auth.bp}, \hyperpage{4}
+  \item \spxentry{advance\_to\_next\_document\_by\_classifier()}\spxextra{in module pine.backend.pipelines.bp}, 
+		\hyperpage{25}
+  \item \spxentry{allow\_overlapping\_ner\_annotations()}\spxextra{pine.client.CollectionBuilder method}, 
+		\hyperpage{62}
+  \item \spxentry{allow\_overlapping\_ner\_annotations()}\spxextra{pine.client.models.CollectionBuilder method}, 
+		\hyperpage{52}
+  \item \spxentry{AnnFile}\spxextra{in module pine.backend.pineiaa.bratiaa}, \hyperpage{22}
+  \item \spxentry{AnnFile}\spxextra{in module pine.backend.pineiaa.bratiaa.agree}, \hyperpage{18}
+  \item \spxentry{annotate\_collection\_documents()}\spxextra{pine.client.client.PineClient method}, 
+		\hyperpage{41}
+  \item \spxentry{annotate\_collection\_documents()}\spxextra{pine.client.PineClient method}, 
+		\hyperpage{59}
+  \item \spxentry{ANNOTATE\_DOCUMENT}\spxextra{pine.backend.log.Action attribute}, \hyperpage{30}
+  \item \spxentry{annotate\_document()}\spxextra{pine.client.client.PineClient method}, 
+		\hyperpage{40}
+  \item \spxentry{annotate\_document()}\spxextra{pine.client.PineClient method}, \hyperpage{58}
+  \item \spxentry{ANNOTATE\_DOCUMENTS}\spxextra{pine.backend.log.Action attribute}, \hyperpage{30}
+  \item \spxentry{Annotation}\spxextra{in module pine.backend.pineiaa.bratiaa}, \hyperpage{23}
+  \item \spxentry{Annotation}\spxextra{in module pine.backend.pineiaa.bratiaa.agree}, 
+		\hyperpage{18}
+  \item \spxentry{Annotation}\spxextra{in module pine.backend.pineiaa.bratiaa.evaluation}, 
+		\hyperpage{20}
+  \item \spxentry{annotator()}\spxextra{pine.client.CollectionBuilder method}, \hyperpage{61}
+  \item \spxentry{annotator()}\spxextra{pine.client.models.CollectionBuilder method}, 
+		\hyperpage{51}
+  \item \spxentry{annotators()}\spxextra{pine.backend.pineiaa.bratiaa.agree.F1Agreement property}, 
+		\hyperpage{19}
+  \item \spxentry{annotators()}\spxextra{pine.backend.pineiaa.bratiaa.F1Agreement property}, 
+		\hyperpage{22}
+  \item \spxentry{archive\_collection()}\spxextra{in module pine.backend.collections.bp}, 
+		\hyperpage{10}
+  \item \spxentry{archive\_or\_unarchive\_collection()}\spxextra{in module pine.backend.collections.bp}, 
+		\hyperpage{10}
+  \item \spxentry{as\_attr\_dict()}\spxextra{pine.backend.shared.config.BaseConfig class method}, 
+		\hyperpage{26}
+  \item \spxentry{as\_attr\_dict()}\spxextra{pine.pipelines.shared.config.BaseConfig class method}, 
+		\hyperpage{67}
+  \item \spxentry{as\_dict()}\spxextra{pine.backend.shared.config.BaseConfig class method}, 
+		\hyperpage{26}
+  \item \spxentry{as\_dict()}\spxextra{pine.pipelines.shared.config.BaseConfig class method}, 
+		\hyperpage{67}
+  \item \spxentry{AUTH\_MODULE}\spxextra{in module pine.backend.config}, \hyperpage{28}
+  \item \spxentry{AuthModule}\spxextra{class in pine.backend.auth.bp}, \hyperpage{5}
+  \item \spxentry{authorize()}\spxextra{pine.backend.auth.oauth.OAuthModule method}, \hyperpage{6}
+  \item \spxentry{AuthUser}\spxextra{class in pine.backend.models}, \hyperpage{31}
+
+  \indexspace
+  \bigletter B
+  \item \spxentry{backoff\_hdlr()}\spxextra{in module pine.pipelines.app.listener.main}, 
+		\hyperpage{64}
+  \item \spxentry{BASE\_CFG\_FILE}\spxextra{pine.backend.shared.config.BaseConfig attribute}, 
+		\hyperpage{25}
+  \item \spxentry{BASE\_CFG\_FILE}\spxextra{pine.pipelines.shared.config.BaseConfig attribute}, 
+		\hyperpage{66}
+  \item \spxentry{BASE\_DIR}\spxextra{pine.backend.shared.config.BaseConfig attribute}, 
+		\hyperpage{25}
+  \item \spxentry{BASE\_DIR}\spxextra{pine.pipelines.shared.config.BaseConfig attribute}, 
+		\hyperpage{66}
+  \item \spxentry{BASE\_ENV\_PREFIX}\spxextra{pine.backend.shared.config.BaseConfig attribute}, 
+		\hyperpage{25}
+  \item \spxentry{BASE\_ENV\_PREFIX}\spxextra{pine.pipelines.shared.config.BaseConfig attribute}, 
+		\hyperpage{66}
+  \item \spxentry{base\_uri}\spxextra{pine.client.client.BaseClient attribute}, \hyperpage{32}
+  \item \spxentry{BaseClient}\spxextra{class in pine.client.client}, \hyperpage{32}
+  \item \spxentry{BaseConfig}\spxextra{class in pine.backend.shared.config}, \hyperpage{25}
+  \item \spxentry{BaseConfig}\spxextra{class in pine.pipelines.shared.config}, \hyperpage{66}
+  \item \spxentry{bp}\spxextra{in module pine.backend.admin.bp}, \hyperpage{2}
+  \item \spxentry{bp}\spxextra{in module pine.backend.annotations.bp}, \hyperpage{3}
+  \item \spxentry{bp}\spxextra{in module pine.backend.auth.bp}, \hyperpage{4}
+  \item \spxentry{bp}\spxextra{in module pine.backend.collections.bp}, \hyperpage{9}
+  \item \spxentry{bp}\spxextra{in module pine.backend.documents.bp}, \hyperpage{15}
+  \item \spxentry{bp}\spxextra{in module pine.backend.pineiaa.bp}, \hyperpage{24}
+  \item \spxentry{bp}\spxextra{in module pine.backend.pipelines.bp}, \hyperpage{24}
+
+  \indexspace
+  \bigletter C
+  \item \spxentry{can\_annotate\_document()}\spxextra{in module pine.backend.documents.bp}, 
+		\hyperpage{16}
+  \item \spxentry{can\_manage\_users()}\spxextra{pine.backend.auth.bp.AuthModule method}, 
+		\hyperpage{5}
+  \item \spxentry{can\_manage\_users()}\spxextra{pine.backend.auth.eve.EveModule method}, 
+		\hyperpage{5}
+  \item \spxentry{can\_manage\_users()}\spxextra{pine.backend.auth.oauth.OAuthModule method}, 
+		\hyperpage{6}
+  \item \spxentry{can\_modify\_metadata()}\spxextra{in module pine.backend.documents.bp}, 
+		\hyperpage{16}
+  \item \spxentry{channel\_worker\_name}\spxextra{pine.backend.job\_manager.service.ServiceManager attribute}, 
+		\hyperpage{17}
+  \item \spxentry{check\_document()}\spxextra{in module pine.backend.annotations.bp}, \hyperpage{3}
+  \item \spxentry{check\_document\_by\_id()}\spxextra{in module pine.backend.annotations.bp}, 
+		\hyperpage{3}
+  \item \spxentry{check\_overlapping\_annotations()}\spxextra{in module pine.backend.annotations.bp}, 
+		\hyperpage{3}
+  \item \spxentry{check\_password()}\spxextra{in module pine.backend.auth.password}, \hyperpage{7}
+  \item \spxentry{check\_password()}\spxextra{in module pine.client.password}, \hyperpage{54}
+  \item \spxentry{classifier()}\spxextra{pine.client.CollectionBuilder method}, \hyperpage{62}
+  \item \spxentry{classifier()}\spxextra{pine.client.models.CollectionBuilder method}, 
+		\hyperpage{52}
+  \item \spxentry{classifier\_dict}\spxextra{in module pine.backend.pipelines.bp}, \hyperpage{24}
+  \item \spxentry{classifier\_pipelines}\spxextra{in module pine.backend.pipelines.bp}, 
+		\hyperpage{24}
+  \item \spxentry{collection()}\spxextra{pine.client.CollectionBuilder property}, \hyperpage{61}
+  \item \spxentry{collection()}\spxextra{pine.client.models.CollectionBuilder property}, 
+		\hyperpage{51}
+  \item \spxentry{collection\_builder()}\spxextra{pine.client.client.PineClient method}, 
+		\hyperpage{39}
+  \item \spxentry{collection\_builder()}\spxextra{pine.client.PineClient method}, \hyperpage{57}
+  \item \spxentry{CollectionBuilder}\spxextra{class in pine.client}, \hyperpage{60}
+  \item \spxentry{CollectionBuilder}\spxextra{class in pine.client.models}, \hyperpage{50}
+  \item \spxentry{compute\_f1()}\spxextra{in module pine.backend.pineiaa.bratiaa.agree}, 
+		\hyperpage{19}
+  \item \spxentry{compute\_f1\_agreement()}\spxextra{in module pine.backend.pineiaa.bratiaa}, 
+		\hyperpage{22}
+  \item \spxentry{compute\_f1\_agreement()}\spxextra{in module pine.backend.pineiaa.bratiaa.agree}, 
+		\hyperpage{19}
+  \item \spxentry{compute\_mapping()}\spxextra{pine.backend.pineiaa.bratiaa.utils.TokenOverlap static method}, 
+		\hyperpage{22}
+  \item \spxentry{compute\_total\_f1\_matrix()}\spxextra{pine.backend.pineiaa.bratiaa.agree.F1Agreement method}, 
+		\hyperpage{19}
+  \item \spxentry{compute\_total\_f1\_matrix()}\spxextra{pine.backend.pineiaa.bratiaa.F1Agreement method}, 
+		\hyperpage{23}
+  \item \spxentry{config}\spxextra{in module pine.backend.job\_manager.service}, \hyperpage{16}
+  \item \spxentry{config}\spxextra{in module pine.pipelines.app.listener.service\_listener}, 
+		\hyperpage{64}
+  \item \spxentry{config}\spxextra{in module pine.pipelines.corenlp\_NER\_pipeline}, \hyperpage{71}
+  \item \spxentry{config}\spxextra{in module pine.pipelines.EveClient}, \hyperpage{68}
+  \item \spxentry{config}\spxextra{in module pine.pipelines.NER\_API}, \hyperpage{70}
+  \item \spxentry{config}\spxextra{in module pine.pipelines.opennlp\_NER\_pipeline}, \hyperpage{72}
+  \item \spxentry{CONFIG\_ALLOW\_OVERLAPPING\_NER\_ANNOTATIONS}\spxextra{in module pine.backend.annotations.bp}, 
+		\hyperpage{3}
+  \item \spxentry{CONFIG\_AUTH\_MODULE\_KEY}\spxextra{in module pine.backend.auth.bp}, 
+		\hyperpage{4}
+  \item \spxentry{CONFIG\_FILE\_ENV}\spxextra{in module pine.backend.log}, \hyperpage{29}
+  \item \spxentry{CONFIG\_FILE\_ENV}\spxextra{in module pine.client.log}, \hyperpage{43}
+  \item \spxentry{ConfigBuilder}\spxextra{class in pine.backend.shared.config}, \hyperpage{26}
+  \item \spxentry{ConfigBuilder}\spxextra{class in pine.pipelines.shared.config}, \hyperpage{67}
+  \item \spxentry{configuration()}\spxextra{pine.client.CollectionBuilder method}, \hyperpage{62}
+  \item \spxentry{configuration()}\spxextra{pine.client.models.CollectionBuilder method}, 
+		\hyperpage{52}
+  \item \spxentry{convert\_ann\_collection\_to\_per\_token()}\spxextra{pine.pipelines.opennlp\_NER\_pipeline.opennlp\_NER method}, 
+		\hyperpage{72}
+  \item \spxentry{convert\_response()}\spxextra{in module pine.backend.data.service}, 
+		\hyperpage{14}
+  \item \spxentry{corenlp\_NER}\spxextra{class in pine.pipelines.corenlp\_NER\_pipeline}, 
+		\hyperpage{71}
+  \item \spxentry{counter2list()}\spxextra{in module pine.backend.pineiaa.bratiaa.evaluation}, 
+		\hyperpage{20}
+  \item \spxentry{create\_app()}\spxextra{in module pine.backend}, \hyperpage{31}
+  \item \spxentry{create\_app()}\spxextra{in module pine.backend.app}, \hyperpage{28}
+  \item \spxentry{CREATE\_COLLECTION}\spxextra{pine.backend.log.Action attribute}, \hyperpage{29}
+  \item \spxentry{create\_collection()}\spxextra{in module pine.backend.collections.bp}, 
+		\hyperpage{10}
+  \item \spxentry{create\_collection()}\spxextra{pine.client.client.PineClient method}, 
+		\hyperpage{39}
+  \item \spxentry{create\_collection()}\spxextra{pine.client.PineClient method}, \hyperpage{57}
+  \item \spxentry{create\_iaa\_report\_by\_collection\_id()}\spxextra{in module pine.backend.pineiaa.bp}, 
+		\hyperpage{24}
+  \item \spxentry{creator\_id()}\spxextra{pine.client.CollectionBuilder method}, \hyperpage{61}
+  \item \spxentry{creator\_id()}\spxextra{pine.client.models.CollectionBuilder method}, 
+		\hyperpage{51}
+
+  \indexspace
+  \bigletter D
+  \item \spxentry{DATASETS\_LOCAL\_DIR}\spxextra{pine.backend.shared.config.BaseConfig attribute}, 
+		\hyperpage{26}
+  \item \spxentry{DEBUG}\spxextra{in module pine.backend.config}, \hyperpage{28}
+  \item \spxentry{DEBUG}\spxextra{pine.backend.shared.config.BaseConfig attribute}, \hyperpage{25}
+  \item \spxentry{DEBUG}\spxextra{pine.pipelines.shared.config.BaseConfig attribute}, 
+		\hyperpage{66}
+  \item \spxentry{DEFAULT\_DBNAME}\spxextra{pine.client.client.EveClient attribute}, \hyperpage{35}
+  \item \spxentry{delete()}\spxextra{in module pine.backend.data.service}, \hyperpage{14}
+  \item \spxentry{delete\_user()}\spxextra{in module pine.backend.admin.bp}, \hyperpage{2}
+  \item \spxentry{description()}\spxextra{pine.client.CollectionBuilder method}, \hyperpage{62}
+  \item \spxentry{description()}\spxextra{pine.client.models.CollectionBuilder method}, 
+		\hyperpage{52}
+  \item \spxentry{display\_name()}\spxextra{pine.backend.auth.eve.EveUser property}, \hyperpage{5}
+  \item \spxentry{display\_name()}\spxextra{pine.backend.auth.oauth.OAuthUser property}, 
+		\hyperpage{6}
+  \item \spxentry{display\_name()}\spxextra{pine.backend.models.AuthUser property}, \hyperpage{31}
+  \item \spxentry{Document}\spxextra{class in pine.backend.pineiaa.bratiaa}, \hyperpage{23}
+  \item \spxentry{Document}\spxextra{class in pine.backend.pineiaa.bratiaa.agree}, \hyperpage{18}
+  \item \spxentry{document\_csv\_file()}\spxextra{pine.client.CollectionBuilder method}, 
+		\hyperpage{63}
+  \item \spxentry{document\_csv\_file()}\spxextra{pine.client.models.CollectionBuilder method}, 
+		\hyperpage{53}
+  \item \spxentry{DOCUMENT\_IMAGE\_DIR}\spxextra{in module pine.backend.config}, \hyperpage{28}
+  \item \spxentry{documents()}\spxextra{pine.backend.pineiaa.bratiaa.agree.F1Agreement property}, 
+		\hyperpage{19}
+  \item \spxentry{documents()}\spxextra{pine.backend.pineiaa.bratiaa.F1Agreement property}, 
+		\hyperpage{22}
+  \item \spxentry{DOCUMENTS\_PER\_TRANSACTION}\spxextra{in module pine.backend.collections.bp}, 
+		\hyperpage{9}
+  \item \spxentry{download\_collection()}\spxextra{in module pine.backend.collections.bp}, 
+		\hyperpage{10}
+  \item \spxentry{draw\_heatmap()}\spxextra{pine.backend.pineiaa.bratiaa.agree.F1Agreement method}, 
+		\hyperpage{19}
+  \item \spxentry{draw\_heatmap()}\spxextra{pine.backend.pineiaa.bratiaa.F1Agreement method}, 
+		\hyperpage{23}
+
+  \indexspace
+  \bigletter E
+  \item \spxentry{ENCODING}\spxextra{in module pine.backend.pineiaa.bratiaa.utils}, \hyperpage{21}
+  \item \spxentry{entropy\_rank()}\spxextra{in module pine.pipelines.RankingFunctions}, 
+		\hyperpage{71}
+  \item \spxentry{evaluate()}\spxextra{pine.pipelines.corenlp\_NER\_pipeline.corenlp\_NER method}, 
+		\hyperpage{72}
+  \item \spxentry{evaluate()}\spxextra{pine.pipelines.opennlp\_NER\_pipeline.opennlp\_NER method}, 
+		\hyperpage{73}
+  \item \spxentry{evaluate()}\spxextra{pine.pipelines.pmap\_ner.NER method}, \hyperpage{74}
+  \item \spxentry{evaluate()}\spxextra{pine.pipelines.spacy\_NER\_pipeline.spacy\_NER method}, 
+		\hyperpage{74}
+  \item \spxentry{evaluate\_orig()}\spxextra{pine.pipelines.corenlp\_NER\_pipeline.corenlp\_NER method}, 
+		\hyperpage{72}
+  \item \spxentry{evaluate\_orig()}\spxextra{pine.pipelines.opennlp\_NER\_pipeline.opennlp\_NER method}, 
+		\hyperpage{73}
+  \item \spxentry{eve}\spxextra{pine.client.client.LocalPineClient attribute}, \hyperpage{41}
+  \item \spxentry{eve}\spxextra{pine.client.LocalPineClient attribute}, \hyperpage{59}
+  \item \spxentry{EVE\_HEADERS}\spxextra{in module pine.backend.pineiaa.bratiaa.iaa\_service}, 
+		\hyperpage{21}
+  \item \spxentry{eve\_headers}\spxextra{pine.pipelines.EveClient.EveClient attribute}, 
+		\hyperpage{69}
+  \item \spxentry{eve\_headers}\spxextra{pine.pipelines.NERWrapper.NERWrapper attribute}, 
+		\hyperpage{69}
+  \item \spxentry{EVE\_HOST}\spxextra{pine.backend.shared.config.BaseConfig attribute}, 
+		\hyperpage{25}
+  \item \spxentry{EVE\_HOST}\spxextra{pine.pipelines.shared.config.BaseConfig attribute}, 
+		\hyperpage{66}
+  \item \spxentry{EVE\_PORT}\spxextra{pine.backend.shared.config.BaseConfig attribute}, 
+		\hyperpage{26}
+  \item \spxentry{EVE\_PORT}\spxextra{pine.pipelines.shared.config.BaseConfig attribute}, 
+		\hyperpage{66}
+  \item \spxentry{EVE\_SERVER}\spxextra{in module pine.backend.config}, \hyperpage{28}
+  \item \spxentry{EveClient}\spxextra{class in pine.client.client}, \hyperpage{34}
+  \item \spxentry{EveClient}\spxextra{class in pine.pipelines.EveClient}, \hyperpage{68}
+  \item \spxentry{EveModule}\spxextra{class in pine.backend.auth.eve}, \hyperpage{5}
+  \item \spxentry{EveUser}\spxextra{class in pine.backend.auth.eve}, \hyperpage{5}
+  \item \spxentry{exact\_match\_instance\_evaluation()}\spxextra{in module pine.backend.pineiaa.bratiaa}, 
+		\hyperpage{23}
+  \item \spxentry{exact\_match\_instance\_evaluation()}\spxextra{in module pine.backend.pineiaa.bratiaa.evaluation}, 
+		\hyperpage{20}
+  \item \spxentry{exact\_match\_token\_evaluation()}\spxextra{in module pine.backend.pineiaa.bratiaa}, 
+		\hyperpage{23}
+  \item \spxentry{exact\_match\_token\_evaluation()}\spxextra{in module pine.backend.pineiaa.bratiaa.evaluation}, 
+		\hyperpage{20}
+
+  \indexspace
+  \bigletter F
+  \item \spxentry{F1Agreement}\spxextra{class in pine.backend.pineiaa.bratiaa}, \hyperpage{22}
+  \item \spxentry{F1Agreement}\spxextra{class in pine.backend.pineiaa.bratiaa.agree}, 
+		\hyperpage{19}
+  \item \spxentry{files}\spxextra{pine.client.CollectionBuilder attribute}, \hyperpage{61}
+  \item \spxentry{files}\spxextra{pine.client.models.CollectionBuilder attribute}, \hyperpage{51}
+  \item \spxentry{find\_all()}\spxextra{pine.pipelines.opennlp\_NER\_pipeline.opennlp\_NER method}, 
+		\hyperpage{72}
+  \item \spxentry{find\_all\_init()}\spxextra{pine.pipelines.opennlp\_NER\_pipeline.opennlp\_NER method}, 
+		\hyperpage{72}
+  \item \spxentry{fit()}\spxextra{pine.pipelines.corenlp\_NER\_pipeline.corenlp\_NER method}, 
+		\hyperpage{71}
+  \item \spxentry{fit()}\spxextra{pine.pipelines.opennlp\_NER\_pipeline.opennlp\_NER method}, 
+		\hyperpage{72}
+  \item \spxentry{fit()}\spxextra{pine.pipelines.pipeline.Pipeline method}, \hyperpage{73}
+  \item \spxentry{fit()}\spxextra{pine.pipelines.pmap\_ner.NER method}, \hyperpage{73}
+  \item \spxentry{fit()}\spxextra{pine.pipelines.spacy\_NER\_pipeline.spacy\_NER method}, 
+		\hyperpage{74}
+  \item \spxentry{fix\_num\_for\_json()}\spxextra{in module pine.backend.pineiaa.bratiaa.iaa\_service}, 
+		\hyperpage{21}
+  \item \spxentry{flask\_get\_can\_manage\_users()}\spxextra{in module pine.backend.auth.bp}, 
+		\hyperpage{5}
+  \item \spxentry{flask\_get\_flat()}\spxextra{in module pine.backend.auth.bp}, \hyperpage{5}
+  \item \spxentry{flask\_get\_logged\_in\_user()}\spxextra{in module pine.backend.auth.bp}, 
+		\hyperpage{5}
+  \item \spxentry{flask\_get\_logged\_in\_user\_details()}\spxextra{in module pine.backend.auth.bp}, 
+		\hyperpage{5}
+  \item \spxentry{flask\_get\_login\_form()}\spxextra{in module pine.backend.auth.bp}, 
+		\hyperpage{5}
+  \item \spxentry{flask\_get\_module()}\spxextra{in module pine.backend.auth.bp}, \hyperpage{4}
+  \item \spxentry{flask\_post\_logout()}\spxextra{in module pine.backend.auth.bp}, \hyperpage{5}
+  \item \spxentry{form}\spxextra{pine.client.CollectionBuilder attribute}, \hyperpage{61}
+  \item \spxentry{form}\spxextra{pine.client.models.CollectionBuilder attribute}, \hyperpage{51}
+  \item \spxentry{form\_json()}\spxextra{pine.client.CollectionBuilder property}, \hyperpage{61}
+  \item \spxentry{form\_json()}\spxextra{pine.client.models.CollectionBuilder property}, 
+		\hyperpage{51}
+  \item \spxentry{format\_data()}\spxextra{pine.pipelines.corenlp\_NER\_pipeline.corenlp\_NER method}, 
+		\hyperpage{71}
+  \item \spxentry{format\_data()}\spxextra{pine.pipelines.opennlp\_NER\_pipeline.opennlp\_NER method}, 
+		\hyperpage{72}
+  \item \spxentry{format\_data()}\spxextra{pine.pipelines.spacy\_NER\_pipeline.spacy\_NER method}, 
+		\hyperpage{74}
+  \item \spxentry{from\_registration\_format()}\spxextra{pine.pipelines.app.listener.service\_listener.ServiceRegistration class method}, 
+		\hyperpage{65}
+
+  \indexspace
+  \bigletter G
+  \item \spxentry{get()}\spxextra{in module pine.backend.data.service}, \hyperpage{13}
+  \item \spxentry{get()}\spxextra{pine.client.client.BaseClient method}, \hyperpage{33}
+  \item \spxentry{get\_all\_ids()}\spxextra{pine.pipelines.EveClient.EveClient method}, 
+		\hyperpage{69}
+  \item \spxentry{get\_all\_ids()}\spxextra{pine.pipelines.NERWrapper.NERWrapper method}, 
+		\hyperpage{69}
+  \item \spxentry{get\_all\_items()}\spxextra{in module pine.backend.pineiaa.bratiaa.iaa\_service}, 
+		\hyperpage{21}
+  \item \spxentry{get\_all\_items()}\spxextra{pine.pipelines.EveClient.EveClient method}, 
+		\hyperpage{69}
+  \item \spxentry{get\_all\_items()}\spxextra{pine.pipelines.NERWrapper.NERWrapper method}, 
+		\hyperpage{69}
+  \item \spxentry{get\_all\_users()}\spxextra{in module pine.backend.data.users}, \hyperpage{15}
+  \item \spxentry{get\_all\_users()}\spxextra{pine.backend.auth.eve.EveModule method}, 
+		\hyperpage{6}
+  \item \spxentry{get\_all\_using\_pagination()}\spxextra{in module pine.backend.data.service}, 
+		\hyperpage{14}
+  \item \spxentry{get\_all\_versions\_of\_item\_by\_id()}\spxextra{in module pine.backend.data.service}, 
+		\hyperpage{14}
+  \item \spxentry{get\_annotations\_for\_document()}\spxextra{in module pine.backend.annotations.bp}, 
+		\hyperpage{3}
+  \item \spxentry{get\_archived\_user\_collections()}\spxextra{in module pine.backend.collections.bp}, 
+		\hyperpage{9}
+  \item \spxentry{get\_arg\_parser()}\spxextra{pine.backend.shared.config.ConfigBuilder class method}, 
+		\hyperpage{27}
+  \item \spxentry{get\_arg\_parser()}\spxextra{pine.pipelines.shared.config.ConfigBuilder class method}, 
+		\hyperpage{67}
+  \item \spxentry{get\_auth\_module()}\spxextra{pine.client.client.PineClient method}, 
+		\hyperpage{38}
+  \item \spxentry{get\_auth\_module()}\spxextra{pine.client.PineClient method}, \hyperpage{56}
+  \item \spxentry{get\_classifier\_metrics()}\spxextra{in module pine.backend.pipelines.bp}, 
+		\hyperpage{25}
+  \item \spxentry{get\_classifier\_pipeline\_metrics\_objs()}\spxextra{pine.pipelines.NER\_API.ner\_api method}, 
+		\hyperpage{70}
+  \item \spxentry{get\_collection()}\spxextra{in module pine.backend.collections.bp}, 
+		\hyperpage{10}
+  \item \spxentry{get\_collection\_classifier()}\spxextra{in module pine.backend.pipelines.bp}, 
+		\hyperpage{24}
+  \item \spxentry{get\_collection\_documents()}\spxextra{pine.client.client.PineClient method}, 
+		\hyperpage{39}
+  \item \spxentry{get\_collection\_documents()}\spxextra{pine.client.PineClient method}, 
+		\hyperpage{57}
+  \item \spxentry{get\_collection\_ids\_for()}\spxextra{in module pine.backend.documents.bp}, 
+		\hyperpage{15}
+  \item \spxentry{get\_collection\_image()}\spxextra{in module pine.backend.collections.bp}, 
+		\hyperpage{10}
+  \item \spxentry{get\_collection\_image\_exists()}\spxextra{in module pine.backend.collections.bp}, 
+		\hyperpage{11}
+  \item \spxentry{get\_collection\_images()}\spxextra{in module pine.backend.collections.bp}, 
+		\hyperpage{10}
+  \item \spxentry{get\_config()}\spxextra{pine.backend.shared.config.ConfigBuilder class method}, 
+		\hyperpage{27}
+  \item \spxentry{get\_config()}\spxextra{pine.pipelines.shared.config.ConfigBuilder class method}, 
+		\hyperpage{68}
+  \item \spxentry{get\_config\_names()}\spxextra{pine.backend.shared.config.ConfigBuilder static method}, 
+		\hyperpage{27}
+  \item \spxentry{get\_config\_names()}\spxextra{pine.pipelines.shared.config.ConfigBuilder static method}, 
+		\hyperpage{67}
+  \item \spxentry{get\_current\_annotation()}\spxextra{in module pine.backend.annotations.bp}, 
+		\hyperpage{3}
+  \item \spxentry{get\_current\_report()}\spxextra{in module pine.backend.pineiaa.bp}, 
+		\hyperpage{24}
+  \item \spxentry{get\_details()}\spxextra{pine.backend.auth.eve.EveUser method}, \hyperpage{5}
+  \item \spxentry{get\_doc\_and\_overlap\_ids()}\spxextra{in module pine.backend.collections.bp}, 
+		\hyperpage{10}
+  \item \spxentry{get\_doc\_annotations()}\spxextra{in module pine.backend.pineiaa.bratiaa.iaa\_service}, 
+		\hyperpage{21}
+  \item \spxentry{get\_docs\_with\_annotations()}\spxextra{pine.pipelines.EveClient.EveClient method}, 
+		\hyperpage{69}
+  \item \spxentry{get\_document()}\spxextra{in module pine.backend.documents.bp}, \hyperpage{16}
+  \item \spxentry{get\_document\_ranking()}\spxextra{pine.pipelines.NER\_API.ner\_api method}, 
+		\hyperpage{70}
+  \item \spxentry{get\_documents()}\spxextra{pine.pipelines.EveClient.EveClient method}, 
+		\hyperpage{69}
+  \item \spxentry{get\_documents\_in\_collection()}\spxextra{in module pine.backend.documents.bp}, 
+		\hyperpage{16}
+  \item \spxentry{get\_flask\_logged\_in\_user()}\spxextra{in module pine.backend.log}, 
+		\hyperpage{30}
+  \item \spxentry{get\_flask\_request\_info()}\spxextra{in module pine.backend.log}, \hyperpage{30}
+  \item \spxentry{get\_id()}\spxextra{pine.pipelines.corenlp\_NER\_pipeline.corenlp\_NER method}, 
+		\hyperpage{71}
+  \item \spxentry{get\_id()}\spxextra{pine.pipelines.opennlp\_NER\_pipeline.opennlp\_NER method}, 
+		\hyperpage{72}
+  \item \spxentry{get\_iia\_report\_by\_collection\_id()}\spxextra{in module pine.backend.pineiaa.bp}, 
+		\hyperpage{24}
+  \item \spxentry{get\_item\_by\_id()}\spxextra{in module pine.backend.data.service}, 
+		\hyperpage{14}
+  \item \spxentry{get\_items()}\spxextra{in module pine.backend.data.service}, \hyperpage{14}
+  \item \spxentry{get\_items()}\spxextra{in module pine.backend.pineiaa.bratiaa.iaa\_service}, 
+		\hyperpage{21}
+  \item \spxentry{get\_items()}\spxextra{pine.pipelines.EveClient.EveClient method}, \hyperpage{69}
+  \item \spxentry{get\_items()}\spxextra{pine.pipelines.NERWrapper.NERWrapper method}, 
+		\hyperpage{69}
+  \item \spxentry{get\_logged\_in\_user()}\spxextra{in module pine.backend.auth}, \hyperpage{7}
+  \item \spxentry{get\_logged\_in\_user()}\spxextra{in module pine.backend.auth.bp}, \hyperpage{4}
+  \item \spxentry{get\_logged\_in\_user()}\spxextra{pine.backend.auth.bp.AuthModule method}, 
+		\hyperpage{5}
+  \item \spxentry{get\_logged\_in\_user()}\spxextra{pine.client.client.PineClient method}, 
+		\hyperpage{37}
+  \item \spxentry{get\_logged\_in\_user()}\spxextra{pine.client.PineClient method}, \hyperpage{55}
+  \item \spxentry{get\_logged\_in\_user\_details()}\spxextra{pine.backend.auth.bp.AuthModule method}, 
+		\hyperpage{5}
+  \item \spxentry{get\_logged\_in\_user\_details()}\spxextra{pine.backend.auth.eve.EveModule method}, 
+		\hyperpage{6}
+  \item \spxentry{get\_login\_form()}\spxextra{pine.backend.auth.bp.AuthModule method}, 
+		\hyperpage{5}
+  \item \spxentry{get\_login\_form()}\spxextra{pine.backend.auth.eve.EveModule method}, 
+		\hyperpage{6}
+  \item \spxentry{get\_login\_form()}\spxextra{pine.backend.auth.oauth.OAuthModule method}, 
+		\hyperpage{6}
+  \item \spxentry{get\_login\_form\_button\_text()}\spxextra{pine.backend.auth.oauth.OAuthModule method}, 
+		\hyperpage{6}
+  \item \spxentry{get\_login\_form\_button\_text()}\spxextra{pine.backend.auth.vegas.VegasAuthModule method}, 
+		\hyperpage{7}
+  \item \spxentry{get\_metrics()}\spxextra{in module pine.backend.pipelines.bp}, \hyperpage{24}
+  \item \spxentry{get\_my\_annotations\_for\_document()}\spxextra{in module pine.backend.annotations.bp}, 
+		\hyperpage{3}
+  \item \spxentry{get\_my\_user\_id()}\spxextra{pine.client.client.PineClient method}, 
+		\hyperpage{37}
+  \item \spxentry{get\_my\_user\_id()}\spxextra{pine.client.PineClient method}, \hyperpage{56}
+  \item \spxentry{get\_next\_by\_classifier()}\spxextra{in module pine.backend.pipelines.bp}, 
+		\hyperpage{25}
+  \item \spxentry{get\_obj()}\spxextra{pine.pipelines.EveClient.EveClient method}, \hyperpage{69}
+  \item \spxentry{get\_obj()}\spxextra{pine.pipelines.NERWrapper.NERWrapper method}, \hyperpage{69}
+  \item \spxentry{get\_others\_annotations\_for\_document()}\spxextra{in module pine.backend.annotations.bp}, 
+		\hyperpage{3}
+  \item \spxentry{get\_overlap\_ids()}\spxextra{in module pine.backend.collections.bp}, 
+		\hyperpage{10}
+  \item \spxentry{get\_pipeline\_by\_id()}\spxextra{in module pine.backend.pipelines.bp}, 
+		\hyperpage{24}
+  \item \spxentry{get\_pipelines()}\spxextra{in module pine.backend.pipelines.bp}, \hyperpage{24}
+  \item \spxentry{get\_pipelines()}\spxextra{pine.client.client.PineClient method}, \hyperpage{38}
+  \item \spxentry{get\_pipelines()}\spxextra{pine.client.PineClient method}, \hyperpage{56}
+  \item \spxentry{get\_registered\_channels()}\spxextra{pine.backend.job\_manager.service.ServiceManager class method}, 
+		\hyperpage{17}
+  \item \spxentry{get\_registered\_service\_details()}\spxextra{pine.backend.job\_manager.service.ServiceManager class method}, 
+		\hyperpage{17}
+  \item \spxentry{get\_registered\_services()}\spxextra{pine.backend.job\_manager.service.ServiceManager class method}, 
+		\hyperpage{17}
+  \item \spxentry{get\_resource()}\spxextra{pine.client.client.EveClient method}, \hyperpage{35}
+  \item \spxentry{get\_static\_collection\_images()}\spxextra{in module pine.backend.collections.bp}, 
+		\hyperpage{10}
+  \item \spxentry{get\_unarchived\_user\_collections()}\spxextra{in module pine.backend.collections.bp}, 
+		\hyperpage{9}
+  \item \spxentry{get\_user()}\spxextra{in module pine.backend.admin.bp}, \hyperpage{2}
+  \item \spxentry{get\_user()}\spxextra{in module pine.backend.data.users}, \hyperpage{15}
+  \item \spxentry{get\_user\_by\_email()}\spxextra{in module pine.backend.data.users}, 
+		\hyperpage{15}
+  \item \spxentry{get\_user\_can\_add\_documents\_or\_images()}\spxextra{in module pine.backend.collections.bp}, 
+		\hyperpage{11}
+  \item \spxentry{get\_user\_collections()}\spxextra{in module pine.backend.collections.bp}, 
+		\hyperpage{9}
+  \item \spxentry{get\_user\_details()}\spxextra{in module pine.backend.data.users}, \hyperpage{15}
+  \item \spxentry{get\_users()}\spxextra{in module pine.backend.admin.bp}, \hyperpage{2}
+  \item \spxentry{get\_users()}\spxextra{pine.client.client.EveClient method}, \hyperpage{36}
+  \item \spxentry{getIAAReportForCollection()}\spxextra{in module pine.backend.pineiaa.bratiaa.iaa\_service}, 
+		\hyperpage{21}
+
+  \indexspace
+  \bigletter H
+  \item \spxentry{handle\_error()}\spxextra{in module pine.backend.app}, \hyperpage{28}
+  \item \spxentry{handle\_uncaught\_exception()}\spxextra{in module pine.backend.app}, 
+		\hyperpage{28}
+  \item \spxentry{handler\_timeout}\spxextra{pine.backend.job\_manager.service.ServiceManager attribute}, 
+		\hyperpage{17}
+  \item \spxentry{hash\_password()}\spxextra{in module pine.backend.auth.password}, \hyperpage{7}
+  \item \spxentry{hash\_password()}\spxextra{in module pine.client.password}, \hyperpage{54}
+
+  \indexspace
+  \bigletter I
+  \item \spxentry{iaa\_report()}\spxextra{in module pine.backend.pineiaa.bratiaa}, \hyperpage{22}
+  \item \spxentry{iaa\_report()}\spxextra{in module pine.backend.pineiaa.bratiaa.agree}, 
+		\hyperpage{19}
+  \item \spxentry{id()}\spxextra{pine.backend.auth.eve.EveUser property}, \hyperpage{5}
+  \item \spxentry{id()}\spxextra{pine.backend.auth.oauth.OAuthUser property}, \hyperpage{6}
+  \item \spxentry{id()}\spxextra{pine.backend.models.AuthUser property}, \hyperpage{31}
+  \item \spxentry{ID\_FIELD}\spxextra{in module pine.client.models}, \hyperpage{44}
+  \item \spxentry{image\_file()}\spxextra{pine.client.CollectionBuilder method}, \hyperpage{63}
+  \item \spxentry{image\_file()}\spxextra{pine.client.models.CollectionBuilder method}, 
+		\hyperpage{53}
+  \item \spxentry{init\_app()}\spxextra{in module pine.backend.admin.bp}, \hyperpage{2}
+  \item \spxentry{init\_app()}\spxextra{in module pine.backend.annotations.bp}, \hyperpage{4}
+  \item \spxentry{init\_app()}\spxextra{in module pine.backend.auth.bp}, \hyperpage{5}
+  \item \spxentry{init\_app()}\spxextra{in module pine.backend.collections.bp}, \hyperpage{11}
+  \item \spxentry{init\_app()}\spxextra{in module pine.backend.cors}, \hyperpage{29}
+  \item \spxentry{init\_app()}\spxextra{in module pine.backend.data.bp}, \hyperpage{12}
+  \item \spxentry{init\_app()}\spxextra{in module pine.backend.documents.bp}, \hyperpage{16}
+  \item \spxentry{init\_app()}\spxextra{in module pine.backend.pineiaa.bp}, \hyperpage{24}
+  \item \spxentry{init\_app()}\spxextra{in module pine.backend.pipelines.bp}, \hyperpage{25}
+  \item \spxentry{init\_config()}\spxextra{pine.backend.shared.config.ConfigBuilder class method}, 
+		\hyperpage{27}
+  \item \spxentry{init\_config()}\spxextra{pine.pipelines.shared.config.ConfigBuilder class method}, 
+		\hyperpage{68}
+  \item \spxentry{input\_generator()}\spxextra{in module pine.backend.pineiaa.bratiaa}, 
+		\hyperpage{23}
+  \item \spxentry{input\_generator()}\spxextra{in module pine.backend.pineiaa.bratiaa.agree}, 
+		\hyperpage{19}
+  \item \spxentry{is\_admin()}\spxextra{pine.backend.auth.eve.EveUser property}, \hyperpage{5}
+  \item \spxentry{is\_admin()}\spxextra{pine.backend.auth.oauth.OAuthUser property}, \hyperpage{6}
+  \item \spxentry{is\_admin()}\spxextra{pine.backend.models.AuthUser property}, \hyperpage{31}
+  \item \spxentry{is\_cached\_last\_collection()}\spxextra{in module pine.backend.collections.bp}, 
+		\hyperpage{9}
+  \item \spxentry{is\_flat()}\spxextra{in module pine.backend.auth}, \hyperpage{7}
+  \item \spxentry{is\_flat()}\spxextra{in module pine.backend.auth.bp}, \hyperpage{4}
+  \item \spxentry{is\_flat()}\spxextra{pine.backend.auth.bp.AuthModule method}, \hyperpage{5}
+  \item \spxentry{is\_flat()}\spxextra{pine.backend.auth.eve.EveModule method}, \hyperpage{5}
+  \item \spxentry{is\_flat()}\spxextra{pine.backend.auth.oauth.OAuthModule method}, \hyperpage{6}
+  \item \spxentry{is\_logged\_in()}\spxextra{pine.client.client.PineClient method}, \hyperpage{38}
+  \item \spxentry{is\_logged\_in()}\spxextra{pine.client.PineClient method}, \hyperpage{56}
+  \item \spxentry{is\_valid()}\spxextra{pine.client.client.BaseClient method}, \hyperpage{32}
+  \item \spxentry{is\_valid()}\spxextra{pine.client.client.EveClient method}, \hyperpage{35}
+  \item \spxentry{is\_valid()}\spxextra{pine.client.client.LocalPineClient method}, \hyperpage{41}
+  \item \spxentry{is\_valid()}\spxextra{pine.client.client.PineClient method}, \hyperpage{37}
+  \item \spxentry{is\_valid()}\spxextra{pine.client.CollectionBuilder method}, \hyperpage{63}
+  \item \spxentry{is\_valid()}\spxextra{pine.client.LocalPineClient method}, \hyperpage{59}
+  \item \spxentry{is\_valid()}\spxextra{pine.client.models.CollectionBuilder method}, 
+		\hyperpage{53}
+  \item \spxentry{is\_valid()}\spxextra{pine.client.PineClient method}, \hyperpage{55}
+  \item \spxentry{is\_valid\_annotation()}\spxextra{in module pine.client.models}, \hyperpage{49}
+  \item \spxentry{is\_valid\_collection()}\spxextra{in module pine.client.models}, \hyperpage{48}
+  \item \spxentry{is\_valid\_doc\_annotation()}\spxextra{in module pine.client.models}, 
+		\hyperpage{48}
+  \item \spxentry{is\_valid\_doc\_annotations()}\spxextra{in module pine.client.models}, 
+		\hyperpage{49}
+  \item \spxentry{is\_valid\_eve\_collection()}\spxextra{in module pine.client.models}, 
+		\hyperpage{47}
+  \item \spxentry{is\_valid\_eve\_document()}\spxextra{in module pine.client.models}, 
+		\hyperpage{48}
+  \item \spxentry{is\_valid\_eve\_pipeline()}\spxextra{in module pine.client.models}, 
+		\hyperpage{47}
+  \item \spxentry{is\_valid\_eve\_user()}\spxextra{in module pine.client.models}, \hyperpage{47}
+  \item \spxentry{is\_valid\_ner\_annotation()}\spxextra{in module pine.client.models}, 
+		\hyperpage{49}
+  \item \spxentry{ITEMS\_FIELD}\spxextra{in module pine.client.models}, \hyperpage{44}
+
+  \indexspace
+  \bigletter L
+  \item \spxentry{label()}\spxextra{pine.client.CollectionBuilder method}, \hyperpage{61}
+  \item \spxentry{label()}\spxextra{pine.client.models.CollectionBuilder method}, \hyperpage{52}
+  \item \spxentry{labels()}\spxextra{pine.backend.pineiaa.bratiaa.agree.F1Agreement property}, 
+		\hyperpage{19}
+  \item \spxentry{labels()}\spxextra{pine.backend.pineiaa.bratiaa.F1Agreement property}, 
+		\hyperpage{22}
+  \item \spxentry{largest\_margin()}\spxextra{in module pine.pipelines.RankingFunctions}, 
+		\hyperpage{71}
+  \item \spxentry{LAST\_COLLECTION\_FOR\_IMAGE}\spxextra{in module pine.backend.collections.bp}, 
+		\hyperpage{9}
+  \item \spxentry{least\_confidence()}\spxextra{in module pine.pipelines.RankingFunctions}, 
+		\hyperpage{70}
+  \item \spxentry{least\_confidence\_squared()}\spxextra{in module pine.pipelines.RankingFunctions}, 
+		\hyperpage{70}
+  \item \spxentry{least\_confidence\_squared\_by\_entity()}\spxextra{in module pine.pipelines.RankingFunctions}, 
+		\hyperpage{70}
+  \item \spxentry{listener\_poll}\spxextra{pine.pipelines.app.listener.service\_listener.ServiceListener attribute}, 
+		\hyperpage{65}
+  \item \spxentry{load\_classifier()}\spxextra{pine.pipelines.NERWrapper.NERWrapper method}, 
+		\hyperpage{69}
+  \item \spxentry{load\_model()}\spxextra{pine.pipelines.corenlp\_NER\_pipeline.corenlp\_NER method}, 
+		\hyperpage{71}
+  \item \spxentry{load\_model()}\spxextra{pine.pipelines.opennlp\_NER\_pipeline.opennlp\_NER method}, 
+		\hyperpage{72}
+  \item \spxentry{load\_model()}\spxextra{pine.pipelines.pipeline.Pipeline method}, \hyperpage{73}
+  \item \spxentry{load\_model()}\spxextra{pine.pipelines.pmap\_ner.NER method}, \hyperpage{74}
+  \item \spxentry{load\_model()}\spxextra{pine.pipelines.spacy\_NER\_pipeline.spacy\_NER method}, 
+		\hyperpage{74}
+  \item \spxentry{LocalPineClient}\spxextra{class in pine.client}, \hyperpage{59}
+  \item \spxentry{LocalPineClient}\spxextra{class in pine.client.client}, \hyperpage{41}
+  \item \spxentry{logger}\spxextra{in module pine.backend.annotations.bp}, \hyperpage{3}
+  \item \spxentry{LOGGER}\spxextra{in module pine.backend.app}, \hyperpage{28}
+  \item \spxentry{LOGGER}\spxextra{in module pine.backend.collections.bp}, \hyperpage{9}
+  \item \spxentry{logger}\spxextra{in module pine.backend.data.service}, \hyperpage{12}
+  \item \spxentry{logger}\spxextra{in module pine.backend.job\_manager.service}, \hyperpage{16}
+  \item \spxentry{logger}\spxextra{in module pine.backend.pineiaa.bp}, \hyperpage{23}
+  \item \spxentry{LOGGER}\spxextra{in module pine.backend.pineiaa.bratiaa.agree}, \hyperpage{18}
+  \item \spxentry{logger}\spxextra{in module pine.backend.pipelines.bp}, \hyperpage{24}
+  \item \spxentry{LOGGER}\spxextra{in module pine.backend.shared.config}, \hyperpage{25}
+  \item \spxentry{logger}\spxextra{in module pine.pipelines.app.listener.service\_listener}, 
+		\hyperpage{64}
+  \item \spxentry{logger}\spxextra{in module pine.pipelines.corenlp\_NER\_pipeline}, \hyperpage{71}
+  \item \spxentry{logger}\spxextra{in module pine.pipelines.EveClient}, \hyperpage{68}
+  \item \spxentry{logger}\spxextra{in module pine.pipelines.NER\_API}, \hyperpage{70}
+  \item \spxentry{logger}\spxextra{in module pine.pipelines.opennlp\_NER\_pipeline}, \hyperpage{72}
+  \item \spxentry{logger}\spxextra{in module pine.pipelines.pmap\_ner}, \hyperpage{73}
+  \item \spxentry{LOGGER}\spxextra{in module pine.pipelines.shared.config}, \hyperpage{66}
+  \item \spxentry{LOGGER\_DIR}\spxextra{pine.backend.shared.config.BaseConfig attribute}, 
+		\hyperpage{25}
+  \item \spxentry{LOGGER\_DIR}\spxextra{pine.pipelines.shared.config.BaseConfig attribute}, 
+		\hyperpage{66}
+  \item \spxentry{LOGGER\_FILE}\spxextra{pine.backend.shared.config.BaseConfig attribute}, 
+		\hyperpage{25}
+  \item \spxentry{LOGGER\_FILE}\spxextra{pine.pipelines.shared.config.BaseConfig attribute}, 
+		\hyperpage{66}
+  \item \spxentry{LOGGER\_LEVEL}\spxextra{pine.backend.shared.config.BaseConfig attribute}, 
+		\hyperpage{25}
+  \item \spxentry{LOGGER\_LEVEL}\spxextra{pine.pipelines.shared.config.BaseConfig attribute}, 
+		\hyperpage{66}
+  \item \spxentry{LOGGER\_NAME}\spxextra{pine.backend.shared.config.BaseConfig attribute}, 
+		\hyperpage{25}
+  \item \spxentry{LOGGER\_NAME}\spxextra{pine.pipelines.shared.config.BaseConfig attribute}, 
+		\hyperpage{66}
+  \item \spxentry{LOGIN}\spxextra{pine.backend.log.Action attribute}, \hyperpage{29}
+  \item \spxentry{login()}\spxextra{pine.backend.auth.eve.EveModule method}, \hyperpage{6}
+  \item \spxentry{login()}\spxextra{pine.backend.auth.oauth.OAuthModule method}, \hyperpage{6}
+  \item \spxentry{login\_eve()}\spxextra{pine.client.client.PineClient method}, \hyperpage{38}
+  \item \spxentry{login\_eve()}\spxextra{pine.client.PineClient method}, \hyperpage{56}
+  \item \spxentry{login\_required()}\spxextra{in module pine.backend.auth}, \hyperpage{7}
+  \item \spxentry{login\_required()}\spxextra{in module pine.backend.auth.bp}, \hyperpage{4}
+  \item \spxentry{LoginForm}\spxextra{class in pine.backend.models}, \hyperpage{31}
+  \item \spxentry{LoginFormField}\spxextra{class in pine.backend.models}, \hyperpage{30}
+  \item \spxentry{LoginFormFieldType}\spxextra{class in pine.backend.models}, \hyperpage{30}
+  \item \spxentry{LOGOUT}\spxextra{pine.backend.log.Action attribute}, \hyperpage{29}
+  \item \spxentry{logout()}\spxextra{pine.backend.auth.bp.AuthModule method}, \hyperpage{5}
+  \item \spxentry{logout()}\spxextra{pine.client.client.PineClient method}, \hyperpage{38}
+  \item \spxentry{logout()}\spxextra{pine.client.PineClient method}, \hyperpage{56}
+
+  \indexspace
+  \bigletter M
+  \item \spxentry{main()}\spxextra{in module pine.backend.pineiaa.bratiaa.agree\_cli}, 
+		\hyperpage{20}
+  \item \spxentry{mean\_sd\_per\_document()}\spxextra{pine.backend.pineiaa.bratiaa.agree.F1Agreement method}, 
+		\hyperpage{19}
+  \item \spxentry{mean\_sd\_per\_document()}\spxextra{pine.backend.pineiaa.bratiaa.F1Agreement method}, 
+		\hyperpage{22}
+  \item \spxentry{mean\_sd\_per\_label()}\spxextra{pine.backend.pineiaa.bratiaa.agree.F1Agreement method}, 
+		\hyperpage{19}
+  \item \spxentry{mean\_sd\_per\_label()}\spxextra{pine.backend.pineiaa.bratiaa.F1Agreement method}, 
+		\hyperpage{22}
+  \item \spxentry{mean\_sd\_per\_label\_one\_vs\_rest()}\spxextra{pine.backend.pineiaa.bratiaa.agree.F1Agreement method}, 
+		\hyperpage{19}
+  \item \spxentry{mean\_sd\_per\_label\_one\_vs\_rest()}\spxextra{pine.backend.pineiaa.bratiaa.F1Agreement method}, 
+		\hyperpage{23}
+  \item \spxentry{mean\_sd\_total()}\spxextra{pine.backend.pineiaa.bratiaa.agree.F1Agreement method}, 
+		\hyperpage{19}
+  \item \spxentry{mean\_sd\_total()}\spxextra{pine.backend.pineiaa.bratiaa.F1Agreement method}, 
+		\hyperpage{22}
+  \item \spxentry{mean\_sd\_total\_one\_vs\_rest()}\spxextra{pine.backend.pineiaa.bratiaa.agree.F1Agreement method}, 
+		\hyperpage{19}
+  \item \spxentry{mean\_sd\_total\_one\_vs\_rest()}\spxextra{pine.backend.pineiaa.bratiaa.F1Agreement method}, 
+		\hyperpage{23}
+  \item \spxentry{message}\spxextra{pine.client.exceptions.PineClientException attribute}, 
+		\hyperpage{42}
+  \item \spxentry{metadata()}\spxextra{pine.client.CollectionBuilder method}, \hyperpage{62}
+  \item \spxentry{metadata()}\spxextra{pine.client.models.CollectionBuilder method}, \hyperpage{52}
+  \item \spxentry{MODELS\_DIR}\spxextra{pine.pipelines.shared.config.BaseConfig attribute}, 
+		\hyperpage{67}
+  \item \spxentry{MODELS\_LOCAL\_DIR}\spxextra{pine.backend.shared.config.BaseConfig attribute}, 
+		\hyperpage{26}
+  \item \spxentry{module}
+    \subitem \spxentry{pine}, \hyperpage{1}
+    \subitem \spxentry{pine.backend}, \hyperpage{1}
+    \subitem \spxentry{pine.backend.admin}, \hyperpage{1}
+    \subitem \spxentry{pine.backend.admin.bp}, \hyperpage{1}
+    \subitem \spxentry{pine.backend.annotations}, \hyperpage{2}
+    \subitem \spxentry{pine.backend.annotations.bp}, \hyperpage{2}
+    \subitem \spxentry{pine.backend.app}, \hyperpage{28}
+    \subitem \spxentry{pine.backend.auth}, \hyperpage{4}
+    \subitem \spxentry{pine.backend.auth.bp}, \hyperpage{4}
+    \subitem \spxentry{pine.backend.auth.eve}, \hyperpage{5}
+    \subitem \spxentry{pine.backend.auth.oauth}, \hyperpage{6}
+    \subitem \spxentry{pine.backend.auth.password}, \hyperpage{7}
+    \subitem \spxentry{pine.backend.auth.vegas}, \hyperpage{7}
+    \subitem \spxentry{pine.backend.collections}, \hyperpage{8}
+    \subitem \spxentry{pine.backend.collections.bp}, \hyperpage{8}
+    \subitem \spxentry{pine.backend.config}, \hyperpage{28}
+    \subitem \spxentry{pine.backend.cors}, \hyperpage{28}
+    \subitem \spxentry{pine.backend.data}, \hyperpage{12}
+    \subitem \spxentry{pine.backend.data.bp}, \hyperpage{12}
+    \subitem \spxentry{pine.backend.data.service}, \hyperpage{12}
+    \subitem \spxentry{pine.backend.data.users}, \hyperpage{14}
+    \subitem \spxentry{pine.backend.documents}, \hyperpage{15}
+    \subitem \spxentry{pine.backend.documents.bp}, \hyperpage{15}
+    \subitem \spxentry{pine.backend.job\_manager}, \hyperpage{16}
+    \subitem \spxentry{pine.backend.job\_manager.service}, \hyperpage{16}
+    \subitem \spxentry{pine.backend.log}, \hyperpage{29}
+    \subitem \spxentry{pine.backend.models}, \hyperpage{30}
+    \subitem \spxentry{pine.backend.pineiaa}, \hyperpage{18}
+    \subitem \spxentry{pine.backend.pineiaa.bp}, \hyperpage{23}
+    \subitem \spxentry{pine.backend.pineiaa.bratiaa}, \hyperpage{18}
+    \subitem \spxentry{pine.backend.pineiaa.bratiaa.agree}, \hyperpage{18}
+    \subitem \spxentry{pine.backend.pineiaa.bratiaa.agree\_cli}, \hyperpage{20}
+    \subitem \spxentry{pine.backend.pineiaa.bratiaa.evaluation}, \hyperpage{20}
+    \subitem \spxentry{pine.backend.pineiaa.bratiaa.iaa\_service}, \hyperpage{21}
+    \subitem \spxentry{pine.backend.pineiaa.bratiaa.utils}, \hyperpage{21}
+    \subitem \spxentry{pine.backend.pipelines}, \hyperpage{24}
+    \subitem \spxentry{pine.backend.pipelines.bp}, \hyperpage{24}
+    \subitem \spxentry{pine.backend.shared}, \hyperpage{25}
+    \subitem \spxentry{pine.backend.shared.config}, \hyperpage{25}
+    \subitem \spxentry{pine.backend.shared.transform}, \hyperpage{27}
+    \subitem \spxentry{pine.client}, \hyperpage{31}
+    \subitem \spxentry{pine.client.client}, \hyperpage{31}
+    \subitem \spxentry{pine.client.exceptions}, \hyperpage{42}
+    \subitem \spxentry{pine.client.log}, \hyperpage{43}
+    \subitem \spxentry{pine.client.models}, \hyperpage{43}
+    \subitem \spxentry{pine.client.password}, \hyperpage{54}
+    \subitem \spxentry{pine.pipelines}, \hyperpage{64}
+    \subitem \spxentry{pine.pipelines.app}, \hyperpage{64}
+    \subitem \spxentry{pine.pipelines.app.listener}, \hyperpage{64}
+    \subitem \spxentry{pine.pipelines.app.listener.main}, \hyperpage{64}
+    \subitem \spxentry{pine.pipelines.app.listener.service\_listener}, \hyperpage{64}
+    \subitem \spxentry{pine.pipelines.corenlp\_NER\_pipeline}, \hyperpage{71}
+    \subitem \spxentry{pine.pipelines.EveClient}, \hyperpage{68}
+    \subitem \spxentry{pine.pipelines.NER\_API}, \hyperpage{70}
+    \subitem \spxentry{pine.pipelines.NERWrapper}, \hyperpage{69}
+    \subitem \spxentry{pine.pipelines.opennlp\_NER\_pipeline}, \hyperpage{72}
+    \subitem \spxentry{pine.pipelines.pipeline}, \hyperpage{73}
+    \subitem \spxentry{pine.pipelines.pmap\_ner}, \hyperpage{73}
+    \subitem \spxentry{pine.pipelines.RankingFunctions}, \hyperpage{70}
+    \subitem \spxentry{pine.pipelines.run\_service}, \hyperpage{74}
+    \subitem \spxentry{pine.pipelines.shared}, \hyperpage{66}
+    \subitem \spxentry{pine.pipelines.shared.config}, \hyperpage{66}
+    \subitem \spxentry{pine.pipelines.shared.transform}, \hyperpage{68}
+    \subitem \spxentry{pine.pipelines.spacy\_NER\_pipeline}, \hyperpage{74}
+  \item \spxentry{module}\spxextra{in module pine.backend.auth}, \hyperpage{7}
+  \item \spxentry{module}\spxextra{in module pine.backend.auth.bp}, \hyperpage{4}
+  \item \spxentry{mongo}\spxextra{pine.client.client.EveClient attribute}, \hyperpage{35}
+  \item \spxentry{mongo\_base\_uri}\spxextra{pine.client.client.EveClient attribute}, 
+		\hyperpage{35}
+  \item \spxentry{mongo\_db}\spxextra{pine.client.client.EveClient attribute}, \hyperpage{35}
+  \item \spxentry{most\_of\_least\_popular()}\spxextra{in module pine.pipelines.RankingFunctions}, 
+		\hyperpage{71}
+
+  \indexspace
+  \bigletter N
+  \item \spxentry{NER}\spxextra{class in pine.pipelines.pmap\_ner}, \hyperpage{73}
+  \item \spxentry{ner\_api}\spxextra{class in pine.pipelines.NER\_API}, \hyperpage{70}
+  \item \spxentry{NERWrapper}\spxextra{class in pine.pipelines.NERWrapper}, \hyperpage{69}
+  \item \spxentry{next\_example()}\spxextra{pine.pipelines.corenlp\_NER\_pipeline.corenlp\_NER method}, 
+		\hyperpage{71}
+  \item \spxentry{next\_example()}\spxextra{pine.pipelines.opennlp\_NER\_pipeline.opennlp\_NER method}, 
+		\hyperpage{72}
+  \item \spxentry{next\_example()}\spxextra{pine.pipelines.pipeline.Pipeline method}, 
+		\hyperpage{73}
+  \item \spxentry{next\_example()}\spxextra{pine.pipelines.pmap\_ner.NER method}, \hyperpage{74}
+  \item \spxentry{next\_example()}\spxextra{pine.pipelines.spacy\_NER\_pipeline.spacy\_NER method}, 
+		\hyperpage{74}
+  \item \spxentry{not\_found()}\spxextra{in module pine.backend.cors}, \hyperpage{28}
+
+  \indexspace
+  \bigletter O
+  \item \spxentry{OAuthModule}\spxextra{class in pine.backend.auth.oauth}, \hyperpage{6}
+  \item \spxentry{OAuthUser}\spxextra{class in pine.backend.auth.oauth}, \hyperpage{6}
+  \item \spxentry{opennlp\_NER}\spxextra{class in pine.pipelines.opennlp\_NER\_pipeline}, 
+		\hyperpage{72}
+  \item \spxentry{overlapping\_tokens()}\spxextra{pine.backend.pineiaa.bratiaa.utils.TokenOverlap method}, 
+		\hyperpage{22}
+
+  \indexspace
+  \bigletter P
+  \item \spxentry{params()}\spxextra{in module pine.backend.data.service}, \hyperpage{13}
+  \item \spxentry{parse\_args()}\spxextra{in module pine.backend.pineiaa.bratiaa.agree\_cli}, 
+		\hyperpage{20}
+  \item \spxentry{parser}\spxextra{in module pine.pipelines.NERWrapper}, \hyperpage{69}
+  \item \spxentry{PASSWORD}\spxextra{pine.backend.models.LoginFormFieldType attribute}, 
+		\hyperpage{30}
+  \item \spxentry{patch()}\spxextra{in module pine.backend.data.service}, \hyperpage{14}
+  \item \spxentry{patch()}\spxextra{pine.client.client.BaseClient method}, \hyperpage{34}
+  \item \spxentry{perform\_five\_fold()}\spxextra{pine.pipelines.NER\_API.ner\_api method}, 
+		\hyperpage{70}
+  \item \spxentry{perform\_fold()}\spxextra{pine.pipelines.NER\_API.ner\_api method}, 
+		\hyperpage{70}
+  \item \spxentry{PERFORMANCE\_HISTORY}\spxextra{in module pine.backend.data.service}, 
+		\hyperpage{13}
+  \item \spxentry{PerformanceHistory}\spxextra{class in pine.backend.data.service}, \hyperpage{12}
+  \item \spxentry{pformat()}\spxextra{pine.backend.data.service.PerformanceHistory method}, 
+		\hyperpage{13}
+  \item \spxentry{pine}
+    \subitem \spxentry{module}, \hyperpage{1}
+  \item \spxentry{pine.backend}
+    \subitem \spxentry{module}, \hyperpage{1}
+  \item \spxentry{pine.backend.admin}
+    \subitem \spxentry{module}, \hyperpage{1}
+  \item \spxentry{pine.backend.admin.bp}
+    \subitem \spxentry{module}, \hyperpage{1}
+  \item \spxentry{pine.backend.annotations}
+    \subitem \spxentry{module}, \hyperpage{2}
+  \item \spxentry{pine.backend.annotations.bp}
+    \subitem \spxentry{module}, \hyperpage{2}
+  \item \spxentry{pine.backend.app}
+    \subitem \spxentry{module}, \hyperpage{28}
+  \item \spxentry{pine.backend.auth}
+    \subitem \spxentry{module}, \hyperpage{4}
+  \item \spxentry{pine.backend.auth.bp}
+    \subitem \spxentry{module}, \hyperpage{4}
+  \item \spxentry{pine.backend.auth.eve}
+    \subitem \spxentry{module}, \hyperpage{5}
+  \item \spxentry{pine.backend.auth.oauth}
+    \subitem \spxentry{module}, \hyperpage{6}
+  \item \spxentry{pine.backend.auth.password}
+    \subitem \spxentry{module}, \hyperpage{7}
+  \item \spxentry{pine.backend.auth.vegas}
+    \subitem \spxentry{module}, \hyperpage{7}
+  \item \spxentry{pine.backend.collections}
+    \subitem \spxentry{module}, \hyperpage{8}
+  \item \spxentry{pine.backend.collections.bp}
+    \subitem \spxentry{module}, \hyperpage{8}
+  \item \spxentry{pine.backend.config}
+    \subitem \spxentry{module}, \hyperpage{28}
+  \item \spxentry{pine.backend.cors}
+    \subitem \spxentry{module}, \hyperpage{28}
+  \item \spxentry{pine.backend.data}
+    \subitem \spxentry{module}, \hyperpage{12}
+  \item \spxentry{pine.backend.data.bp}
+    \subitem \spxentry{module}, \hyperpage{12}
+  \item \spxentry{pine.backend.data.service}
+    \subitem \spxentry{module}, \hyperpage{12}
+  \item \spxentry{pine.backend.data.users}
+    \subitem \spxentry{module}, \hyperpage{14}
+  \item \spxentry{pine.backend.documents}
+    \subitem \spxentry{module}, \hyperpage{15}
+  \item \spxentry{pine.backend.documents.bp}
+    \subitem \spxentry{module}, \hyperpage{15}
+  \item \spxentry{pine.backend.job\_manager}
+    \subitem \spxentry{module}, \hyperpage{16}
+  \item \spxentry{pine.backend.job\_manager.service}
+    \subitem \spxentry{module}, \hyperpage{16}
+  \item \spxentry{pine.backend.log}
+    \subitem \spxentry{module}, \hyperpage{29}
+  \item \spxentry{pine.backend.models}
+    \subitem \spxentry{module}, \hyperpage{30}
+  \item \spxentry{pine.backend.pineiaa}
+    \subitem \spxentry{module}, \hyperpage{18}
+  \item \spxentry{pine.backend.pineiaa.bp}
+    \subitem \spxentry{module}, \hyperpage{23}
+  \item \spxentry{pine.backend.pineiaa.bratiaa}
+    \subitem \spxentry{module}, \hyperpage{18}
+  \item \spxentry{pine.backend.pineiaa.bratiaa.agree}
+    \subitem \spxentry{module}, \hyperpage{18}
+  \item \spxentry{pine.backend.pineiaa.bratiaa.agree\_cli}
+    \subitem \spxentry{module}, \hyperpage{20}
+  \item \spxentry{pine.backend.pineiaa.bratiaa.evaluation}
+    \subitem \spxentry{module}, \hyperpage{20}
+  \item \spxentry{pine.backend.pineiaa.bratiaa.iaa\_service}
+    \subitem \spxentry{module}, \hyperpage{21}
+  \item \spxentry{pine.backend.pineiaa.bratiaa.utils}
+    \subitem \spxentry{module}, \hyperpage{21}
+  \item \spxentry{pine.backend.pipelines}
+    \subitem \spxentry{module}, \hyperpage{24}
+  \item \spxentry{pine.backend.pipelines.bp}
+    \subitem \spxentry{module}, \hyperpage{24}
+  \item \spxentry{pine.backend.shared}
+    \subitem \spxentry{module}, \hyperpage{25}
+  \item \spxentry{pine.backend.shared.config}
+    \subitem \spxentry{module}, \hyperpage{25}
+  \item \spxentry{pine.backend.shared.transform}
+    \subitem \spxentry{module}, \hyperpage{27}
+  \item \spxentry{pine.client}
+    \subitem \spxentry{module}, \hyperpage{31}
+  \item \spxentry{pine.client.client}
+    \subitem \spxentry{module}, \hyperpage{31}
+  \item \spxentry{pine.client.exceptions}
+    \subitem \spxentry{module}, \hyperpage{42}
+  \item \spxentry{pine.client.log}
+    \subitem \spxentry{module}, \hyperpage{43}
+  \item \spxentry{pine.client.models}
+    \subitem \spxentry{module}, \hyperpage{43}
+  \item \spxentry{pine.client.password}
+    \subitem \spxentry{module}, \hyperpage{54}
+  \item \spxentry{pine.pipelines}
+    \subitem \spxentry{module}, \hyperpage{64}
+  \item \spxentry{pine.pipelines.app}
+    \subitem \spxentry{module}, \hyperpage{64}
+  \item \spxentry{pine.pipelines.app.listener}
+    \subitem \spxentry{module}, \hyperpage{64}
+  \item \spxentry{pine.pipelines.app.listener.main}
+    \subitem \spxentry{module}, \hyperpage{64}
+  \item \spxentry{pine.pipelines.app.listener.service\_listener}
+    \subitem \spxentry{module}, \hyperpage{64}
+  \item \spxentry{pine.pipelines.corenlp\_NER\_pipeline}
+    \subitem \spxentry{module}, \hyperpage{71}
+  \item \spxentry{pine.pipelines.EveClient}
+    \subitem \spxentry{module}, \hyperpage{68}
+  \item \spxentry{pine.pipelines.NER\_API}
+    \subitem \spxentry{module}, \hyperpage{70}
+  \item \spxentry{pine.pipelines.NERWrapper}
+    \subitem \spxentry{module}, \hyperpage{69}
+  \item \spxentry{pine.pipelines.opennlp\_NER\_pipeline}
+    \subitem \spxentry{module}, \hyperpage{72}
+  \item \spxentry{pine.pipelines.pipeline}
+    \subitem \spxentry{module}, \hyperpage{73}
+  \item \spxentry{pine.pipelines.pmap\_ner}
+    \subitem \spxentry{module}, \hyperpage{73}
+  \item \spxentry{pine.pipelines.RankingFunctions}
+    \subitem \spxentry{module}, \hyperpage{70}
+  \item \spxentry{pine.pipelines.run\_service}
+    \subitem \spxentry{module}, \hyperpage{74}
+  \item \spxentry{pine.pipelines.shared}
+    \subitem \spxentry{module}, \hyperpage{66}
+  \item \spxentry{pine.pipelines.shared.config}
+    \subitem \spxentry{module}, \hyperpage{66}
+  \item \spxentry{pine.pipelines.shared.transform}
+    \subitem \spxentry{module}, \hyperpage{68}
+  \item \spxentry{pine.pipelines.spacy\_NER\_pipeline}
+    \subitem \spxentry{module}, \hyperpage{74}
+  \item \spxentry{PineClient}\spxextra{class in pine.client}, \hyperpage{55}
+  \item \spxentry{PineClient}\spxextra{class in pine.client.client}, \hyperpage{37}
+  \item \spxentry{PineClientAuthException}, \hyperpage{43}
+  \item \spxentry{PineClientException}, \hyperpage{42}
+  \item \spxentry{PineClientHttpException}, \hyperpage{42}
+  \item \spxentry{PineClientValueException}, \hyperpage{42}
+  \item \spxentry{ping()}\spxextra{pine.client.client.EveClient method}, \hyperpage{35}
+  \item \spxentry{ping()}\spxextra{pine.client.client.PineClient method}, \hyperpage{37}
+  \item \spxentry{ping()}\spxextra{pine.client.PineClient method}, \hyperpage{55}
+  \item \spxentry{pipe\_init()}\spxextra{pine.pipelines.pmap\_ner.NER method}, \hyperpage{73}
+  \item \spxentry{Pipeline}\spxextra{class in pine.pipelines.pipeline}, \hyperpage{73}
+  \item \spxentry{pipeline}\spxextra{pine.pipelines.pmap\_ner.NER attribute}, \hyperpage{73}
+  \item \spxentry{PIPELINE}\spxextra{pine.pipelines.shared.config.BaseConfig attribute}, 
+		\hyperpage{66}
+  \item \spxentry{post()}\spxextra{in module pine.backend.data.service}, \hyperpage{13}
+  \item \spxentry{post()}\spxextra{pine.client.client.BaseClient method}, \hyperpage{34}
+  \item \spxentry{post\_collection\_image()}\spxextra{in module pine.backend.collections.bp}, 
+		\hyperpage{11}
+  \item \spxentry{pprint()}\spxextra{pine.backend.data.service.PerformanceHistory method}, 
+		\hyperpage{13}
+  \item \spxentry{pre\_process\_message()}\spxextra{pine.pipelines.app.listener.service\_listener.ServiceListener method}, 
+		\hyperpage{65}
+  \item \spxentry{predict()}\spxextra{in module pine.backend.pipelines.bp}, \hyperpage{25}
+  \item \spxentry{predict()}\spxextra{pine.pipelines.corenlp\_NER\_pipeline.corenlp\_NER method}, 
+		\hyperpage{71}
+  \item \spxentry{predict()}\spxextra{pine.pipelines.NER\_API.ner\_api method}, \hyperpage{70}
+  \item \spxentry{predict()}\spxextra{pine.pipelines.NERWrapper.NERWrapper method}, \hyperpage{69}
+  \item \spxentry{predict()}\spxextra{pine.pipelines.opennlp\_NER\_pipeline.opennlp\_NER method}, 
+		\hyperpage{72}
+  \item \spxentry{predict()}\spxextra{pine.pipelines.pipeline.Pipeline method}, \hyperpage{73}
+  \item \spxentry{predict()}\spxextra{pine.pipelines.pmap\_ner.NER method}, \hyperpage{73}
+  \item \spxentry{predict()}\spxextra{pine.pipelines.spacy\_NER\_pipeline.spacy\_NER method}, 
+		\hyperpage{74}
+  \item \spxentry{predict\_proba()}\spxextra{pine.pipelines.corenlp\_NER\_pipeline.corenlp\_NER method}, 
+		\hyperpage{71}
+  \item \spxentry{predict\_proba()}\spxextra{pine.pipelines.opennlp\_NER\_pipeline.opennlp\_NER method}, 
+		\hyperpage{72}
+  \item \spxentry{predict\_proba()}\spxextra{pine.pipelines.pipeline.Pipeline method}, 
+		\hyperpage{73}
+  \item \spxentry{predict\_proba()}\spxextra{pine.pipelines.pmap\_ner.NER method}, \hyperpage{73}
+  \item \spxentry{predict\_proba()}\spxextra{pine.pipelines.spacy\_NER\_pipeline.spacy\_NER method}, 
+		\hyperpage{74}
+  \item \spxentry{preprocessing\_lock\_key}\spxextra{pine.pipelines.app.listener.service\_listener.ServiceListener attribute}, 
+		\hyperpage{65}
+  \item \spxentry{preprocessing\_lock\_key\_timeout}\spxextra{pine.pipelines.app.listener.service\_listener.ServiceListener attribute}, 
+		\hyperpage{65}
+  \item \spxentry{preprocessing\_worker\_lock\_key}\spxextra{pine.pipelines.app.listener.service\_listener.ServiceListener attribute}, 
+		\hyperpage{65}
+  \item \spxentry{preprocessing\_worker\_lock\_key\_timeout}\spxextra{pine.pipelines.app.listener.service\_listener.ServiceListener attribute}, 
+		\hyperpage{65}
+  \item \spxentry{print\_table()}\spxextra{pine.backend.pineiaa.bratiaa.agree.F1Agreement static method}, 
+		\hyperpage{19}
+  \item \spxentry{print\_table()}\spxextra{pine.backend.pineiaa.bratiaa.F1Agreement static method}, 
+		\hyperpage{23}
+  \item \spxentry{print\_users\_command()}\spxextra{in module pine.backend.data.users}, 
+		\hyperpage{15}
+  \item \spxentry{process\_message()}\spxextra{pine.pipelines.app.listener.service\_listener.ServiceListener static method}, 
+		\hyperpage{65}
+  \item \spxentry{processing\_limit}\spxextra{pine.pipelines.app.listener.service\_listener.ServiceListener attribute}, 
+		\hyperpage{65}
+  \item \spxentry{processing\_lock\_key}\spxextra{pine.pipelines.app.listener.service\_listener.ServiceListener attribute}, 
+		\hyperpage{65}
+  \item \spxentry{processing\_lock\_key\_timeout}\spxextra{pine.pipelines.app.listener.service\_listener.ServiceListener attribute}, 
+		\hyperpage{65}
+  \item \spxentry{processing\_queue\_key}\spxextra{pine.pipelines.app.listener.service\_listener.ServiceListener attribute}, 
+		\hyperpage{65}
+  \item \spxentry{processing\_queue\_key\_timeout}\spxextra{pine.pipelines.app.listener.service\_listener.ServiceListener attribute}, 
+		\hyperpage{65}
+  \item \spxentry{processing\_worker\_name}\spxextra{pine.backend.job\_manager.service.ServiceManager attribute}, 
+		\hyperpage{17}
+  \item \spxentry{processor\_poll}\spxextra{pine.pipelines.app.listener.service\_listener.ServiceListener attribute}, 
+		\hyperpage{65}
+  \item \spxentry{publish\_response()}\spxextra{pine.pipelines.app.listener.service\_listener.ServiceListener class method}, 
+		\hyperpage{65}
+  \item \spxentry{put()}\spxextra{in module pine.backend.data.service}, \hyperpage{13}
+  \item \spxentry{put()}\spxextra{pine.client.client.BaseClient method}, \hyperpage{33}
+
+  \indexspace
+  \bigletter R
+  \item \spxentry{r\_conn}\spxextra{pine.backend.job\_manager.service.ServiceManager attribute}, 
+		\hyperpage{16}
+  \item \spxentry{r\_conn}\spxextra{pine.pipelines.app.listener.service\_listener.ServiceListener attribute}, 
+		\hyperpage{65}
+  \item \spxentry{r\_pool}\spxextra{pine.backend.job\_manager.service.ServiceManager attribute}, 
+		\hyperpage{16}
+  \item \spxentry{r\_pool}\spxextra{pine.pipelines.app.listener.service\_listener.ServiceListener attribute}, 
+		\hyperpage{65}
+  \item \spxentry{random\_rank()}\spxextra{in module pine.pipelines.RankingFunctions}, 
+		\hyperpage{71}
+  \item \spxentry{rank()}\spxextra{in module pine.pipelines.RankingFunctions}, \hyperpage{70}
+  \item \spxentry{read()}\spxextra{in module pine.backend.pineiaa.bratiaa.utils}, \hyperpage{21}
+  \item \spxentry{redis\_channel\_ttl\_key\_prefix}\spxextra{pine.backend.job\_manager.service.ServiceManager attribute}, 
+		\hyperpage{17}
+  \item \spxentry{redis\_channels\_key}\spxextra{pine.backend.job\_manager.service.ServiceManager attribute}, 
+		\hyperpage{16}
+  \item \spxentry{redis\_channels\_key\_ttl}\spxextra{pine.backend.job\_manager.service.ServiceManager attribute}, 
+		\hyperpage{17}
+  \item \spxentry{REDIS\_DBNUM}\spxextra{pine.backend.shared.config.BaseConfig attribute}, 
+		\hyperpage{26}
+  \item \spxentry{REDIS\_DBNUM}\spxextra{pine.pipelines.shared.config.BaseConfig attribute}, 
+		\hyperpage{66}
+  \item \spxentry{REDIS\_EXPIRE}\spxextra{pine.backend.shared.config.BaseConfig attribute}, 
+		\hyperpage{26}
+  \item \spxentry{REDIS\_EXPIRE}\spxextra{pine.pipelines.shared.config.BaseConfig attribute}, 
+		\hyperpage{67}
+  \item \spxentry{redis\_handler\_mutex\_key\_prefix}\spxextra{pine.backend.job\_manager.service.ServiceManager attribute}, 
+		\hyperpage{17}
+  \item \spxentry{redis\_handler\_mutex\_key\_ttl}\spxextra{pine.backend.job\_manager.service.ServiceManager attribute}, 
+		\hyperpage{17}
+  \item \spxentry{REDIS\_HOST}\spxextra{pine.backend.shared.config.BaseConfig attribute}, 
+		\hyperpage{26}
+  \item \spxentry{REDIS\_HOST}\spxextra{pine.pipelines.shared.config.BaseConfig attribute}, 
+		\hyperpage{66}
+  \item \spxentry{redis\_key\_prefix}\spxextra{pine.backend.job\_manager.service.ServiceManager attribute}, 
+		\hyperpage{16}
+  \item \spxentry{REDIS\_PORT}\spxextra{in module pine.backend.config}, \hyperpage{28}
+  \item \spxentry{REDIS\_PORT}\spxextra{pine.backend.shared.config.BaseConfig attribute}, 
+		\hyperpage{26}
+  \item \spxentry{REDIS\_PORT}\spxextra{pine.pipelines.shared.config.BaseConfig attribute}, 
+		\hyperpage{66}
+  \item \spxentry{REDIS\_PREFIX}\spxextra{pine.backend.shared.config.BaseConfig attribute}, 
+		\hyperpage{26}
+  \item \spxentry{REDIS\_PREFIX}\spxextra{pine.pipelines.shared.config.BaseConfig attribute}, 
+		\hyperpage{66}
+  \item \spxentry{REDIS\_PWD}\spxextra{pine.backend.shared.config.BaseConfig attribute}, 
+		\hyperpage{26}
+  \item \spxentry{REDIS\_PWD}\spxextra{pine.pipelines.shared.config.BaseConfig attribute}, 
+		\hyperpage{66}
+  \item \spxentry{redis\_reg\_key\_prefix}\spxextra{pine.backend.job\_manager.service.ServiceManager attribute}, 
+		\hyperpage{16}
+  \item \spxentry{redis\_reg\_key\_ttl}\spxextra{pine.backend.job\_manager.service.ServiceManager attribute}, 
+		\hyperpage{17}
+  \item \spxentry{REDIS\_SERVER}\spxextra{in module pine.backend.config}, \hyperpage{28}
+  \item \spxentry{REDIS\_USR}\spxextra{pine.backend.shared.config.BaseConfig attribute}, 
+		\hyperpage{26}
+  \item \spxentry{REDIS\_USR}\spxextra{pine.pipelines.shared.config.BaseConfig attribute}, 
+		\hyperpage{66}
+  \item \spxentry{redis\_work\_mutex\_key\_prefix}\spxextra{pine.backend.job\_manager.service.ServiceManager attribute}, 
+		\hyperpage{17}
+  \item \spxentry{redis\_work\_mutex\_key\_ttl}\spxextra{pine.backend.job\_manager.service.ServiceManager attribute}, 
+		\hyperpage{17}
+  \item \spxentry{redis\_work\_queue\_key\_prefix}\spxextra{pine.backend.job\_manager.service.ServiceManager attribute}, 
+		\hyperpage{17}
+  \item \spxentry{redis\_work\_queue\_key\_ttl}\spxextra{pine.backend.job\_manager.service.ServiceManager attribute}, 
+		\hyperpage{17}
+  \item \spxentry{register\_oauth()}\spxextra{pine.backend.auth.oauth.OAuthModule method}, 
+		\hyperpage{6}
+  \item \spxentry{register\_oauth()}\spxextra{pine.backend.auth.vegas.VegasAuthModule method}, 
+		\hyperpage{7}
+  \item \spxentry{registration\_channel}\spxextra{pine.backend.job\_manager.service.ServiceManager attribute}, 
+		\hyperpage{17}
+  \item \spxentry{registration\_channel}\spxextra{pine.pipelines.app.listener.service\_listener.ServiceListener attribute}, 
+		\hyperpage{65}
+  \item \spxentry{registration\_poll}\spxextra{pine.pipelines.app.listener.service\_listener.ServiceListener attribute}, 
+		\hyperpage{65}
+  \item \spxentry{registration\_worker\_name}\spxextra{pine.backend.job\_manager.service.ServiceManager attribute}, 
+		\hyperpage{17}
+  \item \spxentry{remove\_eve\_fields()}\spxextra{in module pine.backend.data.service}, 
+		\hyperpage{14}
+  \item \spxentry{remove\_eve\_fields()}\spxextra{in module pine.client.models}, \hyperpage{53}
+  \item \spxentry{remove\_nonupdatable\_fields()}\spxextra{in module pine.backend.data.service}, 
+		\hyperpage{14}
+  \item \spxentry{remove\_nonupdatable\_fields()}\spxextra{in module pine.client.models}, 
+		\hyperpage{54}
+  \item \spxentry{reserved\_channels}\spxextra{pine.backend.job\_manager.service.ServiceManager attribute}, 
+		\hyperpage{17}
+  \item \spxentry{reset\_user\_passwords()}\spxextra{in module pine.backend.data.users}, 
+		\hyperpage{15}
+  \item \spxentry{resp}\spxextra{pine.client.exceptions.PineClientHttpException attribute}, 
+		\hyperpage{42}
+  \item \spxentry{ROOT\_DIR}\spxextra{pine.backend.shared.config.BaseConfig attribute}, 
+		\hyperpage{25}
+  \item \spxentry{ROOT\_DIR}\spxextra{pine.pipelines.shared.config.BaseConfig attribute}, 
+		\hyperpage{66}
+  \item \spxentry{run()}\spxextra{in module pine.pipelines.app.listener.main}, \hyperpage{64}
+
+  \indexspace
+  \bigletter S
+  \item \spxentry{save\_annotations()}\spxextra{in module pine.backend.annotations.bp}, 
+		\hyperpage{4}
+  \item \spxentry{save\_collection\_annotations()}\spxextra{in module pine.backend.annotations.bp}, 
+		\hyperpage{4}
+  \item \spxentry{save\_model()}\spxextra{pine.pipelines.corenlp\_NER\_pipeline.corenlp\_NER method}, 
+		\hyperpage{71}
+  \item \spxentry{save\_model()}\spxextra{pine.pipelines.opennlp\_NER\_pipeline.opennlp\_NER method}, 
+		\hyperpage{72}
+  \item \spxentry{save\_model()}\spxextra{pine.pipelines.pipeline.Pipeline method}, \hyperpage{73}
+  \item \spxentry{save\_model()}\spxextra{pine.pipelines.pmap\_ner.NER method}, \hyperpage{74}
+  \item \spxentry{save\_model()}\spxextra{pine.pipelines.spacy\_NER\_pipeline.spacy\_NER method}, 
+		\hyperpage{74}
+  \item \spxentry{SCHEDULER\_HANDLER\_TIMEOUT}\spxextra{pine.backend.shared.config.BaseConfig attribute}, 
+		\hyperpage{26}
+  \item \spxentry{SCHEDULER\_HANDLER\_TIMEOUT}\spxextra{pine.pipelines.shared.config.BaseConfig attribute}, 
+		\hyperpage{67}
+  \item \spxentry{SCHEDULER\_QUEUE\_TIMEOUT}\spxextra{pine.backend.shared.config.BaseConfig attribute}, 
+		\hyperpage{26}
+  \item \spxentry{SCHEDULER\_QUEUE\_TIMEOUT}\spxextra{pine.pipelines.shared.config.BaseConfig attribute}, 
+		\hyperpage{67}
+  \item \spxentry{SCHEDULER\_REGISTRATION\_TIMEOUT}\spxextra{pine.backend.shared.config.BaseConfig attribute}, 
+		\hyperpage{26}
+  \item \spxentry{SCHEDULER\_REGISTRATION\_TIMEOUT}\spxextra{pine.pipelines.shared.config.BaseConfig attribute}, 
+		\hyperpage{67}
+  \item \spxentry{SECRET\_KEY}\spxextra{in module pine.backend.config}, \hyperpage{28}
+  \item \spxentry{send\_service\_request()}\spxextra{pine.backend.job\_manager.service.ServiceManager class method}, 
+		\hyperpage{17}
+  \item \spxentry{SERVICE\_HANDLER\_TIMEOUT}\spxextra{pine.backend.shared.config.BaseConfig attribute}, 
+		\hyperpage{26}
+  \item \spxentry{SERVICE\_HANDLER\_TIMEOUT}\spxextra{pine.pipelines.shared.config.BaseConfig attribute}, 
+		\hyperpage{67}
+  \item \spxentry{SERVICE\_LIST}\spxextra{pine.backend.shared.config.BaseConfig attribute}, 
+		\hyperpage{26}
+  \item \spxentry{SERVICE\_LIST}\spxextra{pine.pipelines.shared.config.BaseConfig attribute}, 
+		\hyperpage{67}
+  \item \spxentry{SERVICE\_LISTENING\_FREQUENCY}\spxextra{pine.backend.shared.config.BaseConfig attribute}, 
+		\hyperpage{26}
+  \item \spxentry{SERVICE\_LISTENING\_FREQUENCY}\spxextra{pine.pipelines.shared.config.BaseConfig attribute}, 
+		\hyperpage{67}
+  \item \spxentry{service\_manager}\spxextra{in module pine.backend.pipelines.bp}, \hyperpage{24}
+  \item \spxentry{SERVICE\_REGISTRATION\_CHANNEL}\spxextra{pine.backend.shared.config.BaseConfig attribute}, 
+		\hyperpage{26}
+  \item \spxentry{SERVICE\_REGISTRATION\_CHANNEL}\spxextra{pine.pipelines.shared.config.BaseConfig attribute}, 
+		\hyperpage{67}
+  \item \spxentry{SERVICE\_REGISTRATION\_FREQUENCY}\spxextra{pine.backend.shared.config.BaseConfig attribute}, 
+		\hyperpage{26}
+  \item \spxentry{SERVICE\_REGISTRATION\_FREQUENCY}\spxextra{pine.pipelines.shared.config.BaseConfig attribute}, 
+		\hyperpage{67}
+  \item \spxentry{ServiceListener}\spxextra{class in pine.pipelines.app.listener.service\_listener}, 
+		\hyperpage{65}
+  \item \spxentry{ServiceManager}\spxextra{class in pine.backend.job\_manager.service}, 
+		\hyperpage{16}
+  \item \spxentry{ServiceRegistration}\spxextra{class in pine.pipelines.app.listener.service\_listener}, 
+		\hyperpage{64}
+  \item \spxentry{session}\spxextra{pine.client.client.BaseClient attribute}, \hyperpage{32}
+  \item \spxentry{set\_config()}\spxextra{pine.backend.shared.config.ConfigBuilder class method}, 
+		\hyperpage{27}
+  \item \spxentry{set\_config()}\spxextra{pine.pipelines.shared.config.ConfigBuilder class method}, 
+		\hyperpage{68}
+  \item \spxentry{set\_document\_to\_annotated\_by\_user()}\spxextra{in module pine.backend.annotations.bp}, 
+		\hyperpage{3}
+  \item \spxentry{set\_user\_password()}\spxextra{in module pine.backend.data.users}, 
+		\hyperpage{15}
+  \item \spxentry{set\_user\_password\_by\_id()}\spxextra{in module pine.backend.data.users}, 
+		\hyperpage{15}
+  \item \spxentry{setup\_logging()}\spxextra{in module pine.backend.log}, \hyperpage{30}
+  \item \spxentry{setup\_logging()}\spxextra{in module pine.client}, \hyperpage{60}
+  \item \spxentry{setup\_logging()}\spxextra{in module pine.client.log}, \hyperpage{43}
+  \item \spxentry{setup\_logging()}\spxextra{in module pine.pipelines.app.listener.main}, 
+		\hyperpage{64}
+  \item \spxentry{shutdown\_channel}\spxextra{pine.backend.job\_manager.service.ServiceManager attribute}, 
+		\hyperpage{17}
+  \item \spxentry{sm}\spxextra{in module pine.backend.job\_manager.service}, \hyperpage{18}
+  \item \spxentry{spacy\_NER}\spxextra{class in pine.pipelines.spacy\_NER\_pipeline}, 
+		\hyperpage{74}
+  \item \spxentry{start\_listeners()}\spxextra{pine.backend.job\_manager.service.ServiceManager method}, 
+		\hyperpage{17}
+  \item \spxentry{start\_workers()}\spxextra{pine.pipelines.app.listener.service\_listener.ServiceListener method}, 
+		\hyperpage{65}
+  \item \spxentry{stop\_listeners()}\spxextra{pine.backend.job\_manager.service.ServiceManager method}, 
+		\hyperpage{17}
+  \item \spxentry{stop\_workers()}\spxextra{pine.pipelines.app.listener.service\_listener.ServiceListener method}, 
+		\hyperpage{65}
+  \item \spxentry{system\_export()}\spxextra{in module pine.backend.admin.bp}, \hyperpage{2}
+  \item \spxentry{system\_import()}\spxextra{in module pine.backend.admin.bp}, \hyperpage{2}
+
+  \indexspace
+  \bigletter T
+  \item \spxentry{test\_redis()}\spxextra{in module pine.backend.pipelines.bp}, \hyperpage{25}
+  \item \spxentry{TestConfig}\spxextra{class in pine.backend.shared.config}, \hyperpage{26}
+  \item \spxentry{TestConfig}\spxextra{class in pine.pipelines.shared.config}, \hyperpage{67}
+  \item \spxentry{TESTING}\spxextra{pine.backend.shared.config.BaseConfig attribute}, 
+		\hyperpage{25}
+  \item \spxentry{TESTING}\spxextra{pine.pipelines.shared.config.BaseConfig attribute}, 
+		\hyperpage{66}
+  \item \spxentry{TEXT}\spxextra{pine.backend.models.LoginFormFieldType attribute}, \hyperpage{30}
+  \item \spxentry{title()}\spxextra{pine.client.CollectionBuilder method}, \hyperpage{62}
+  \item \spxentry{title()}\spxextra{pine.client.models.CollectionBuilder method}, \hyperpage{52}
+  \item \spxentry{to\_dict()}\spxextra{pine.backend.models.AuthUser method}, \hyperpage{31}
+  \item \spxentry{to\_dict()}\spxextra{pine.backend.models.LoginForm method}, \hyperpage{31}
+  \item \spxentry{to\_dict()}\spxextra{pine.backend.models.LoginFormField method}, \hyperpage{30}
+  \item \spxentry{to\_dict()}\spxextra{pine.backend.models.UserDetails method}, \hyperpage{31}
+  \item \spxentry{to\_registration\_format()}\spxextra{pine.pipelines.app.listener.service\_listener.ServiceRegistration method}, 
+		\hyperpage{65}
+  \item \spxentry{TOKEN}\spxextra{in module pine.backend.pineiaa.bratiaa.utils}, \hyperpage{21}
+  \item \spxentry{tokenize()}\spxextra{in module pine.backend.pineiaa.bratiaa}, \hyperpage{23}
+  \item \spxentry{tokenize()}\spxextra{in module pine.backend.pineiaa.bratiaa.utils}, 
+		\hyperpage{21}
+  \item \spxentry{tokenize()}\spxextra{pine.pipelines.corenlp\_NER\_pipeline.corenlp\_NER method}, 
+		\hyperpage{72}
+  \item \spxentry{TokenOverlap}\spxextra{class in pine.backend.pineiaa.bratiaa.utils}, 
+		\hyperpage{21}
+  \item \spxentry{train\_model()}\spxextra{pine.pipelines.NER\_API.ner\_api method}, \hyperpage{70}
+  \item \spxentry{transform\_module\_by\_config()}\spxextra{in module pine.backend.shared.transform}, 
+		\hyperpage{27}
+  \item \spxentry{transform\_module\_by\_config()}\spxextra{in module pine.pipelines.shared.transform}, 
+		\hyperpage{68}
+
+  \indexspace
+  \bigletter U
+  \item \spxentry{unarchive\_collection()}\spxextra{in module pine.backend.collections.bp}, 
+		\hyperpage{10}
+  \item \spxentry{update()}\spxextra{pine.pipelines.EveClient.EveClient method}, \hyperpage{69}
+  \item \spxentry{update()}\spxextra{pine.pipelines.NERWrapper.NERWrapper method}, \hyperpage{69}
+  \item \spxentry{update\_cached\_last\_collection()}\spxextra{in module pine.backend.collections.bp}, 
+		\hyperpage{9}
+  \item \spxentry{update\_metadata()}\spxextra{in module pine.backend.documents.bp}, \hyperpage{16}
+  \item \spxentry{update\_model()}\spxextra{pine.pipelines.NERWrapper.NERWrapper method}, 
+		\hyperpage{69}
+  \item \spxentry{update\_user()}\spxextra{in module pine.backend.admin.bp}, \hyperpage{2}
+  \item \spxentry{update\_user()}\spxextra{in module pine.backend.data.users}, \hyperpage{15}
+  \item \spxentry{update\_user\_details()}\spxextra{pine.backend.auth.eve.EveModule method}, 
+		\hyperpage{6}
+  \item \spxentry{update\_user\_password()}\spxextra{in module pine.backend.admin.bp}, 
+		\hyperpage{2}
+  \item \spxentry{update\_user\_password()}\spxextra{pine.backend.auth.eve.EveModule method}, 
+		\hyperpage{6}
+  \item \spxentry{uri()}\spxextra{pine.client.client.BaseClient method}, \hyperpage{33}
+  \item \spxentry{url()}\spxextra{in module pine.backend.data.service}, \hyperpage{13}
+  \item \spxentry{user\_can\_add\_documents\_or\_images()}\spxextra{in module pine.backend.collections}, 
+		\hyperpage{11}
+  \item \spxentry{user\_can\_add\_documents\_or\_images()}\spxextra{in module pine.backend.collections.bp}, 
+		\hyperpage{9}
+  \item \spxentry{user\_can\_add\_documents\_or\_images\_by\_id()}\spxextra{in module pine.backend.collections}, 
+		\hyperpage{11}
+  \item \spxentry{user\_can\_add\_documents\_or\_images\_by\_id()}\spxextra{in module pine.backend.collections.bp}, 
+		\hyperpage{9}
+  \item \spxentry{user\_can\_annotate()}\spxextra{in module pine.backend.collections}, 
+		\hyperpage{11}
+  \item \spxentry{user\_can\_annotate()}\spxextra{in module pine.backend.collections.bp}, 
+		\hyperpage{9}
+  \item \spxentry{user\_can\_annotate()}\spxextra{in module pine.backend.documents.bp}, 
+		\hyperpage{16}
+  \item \spxentry{user\_can\_annotate\_by\_id()}\spxextra{in module pine.backend.collections}, 
+		\hyperpage{11}
+  \item \spxentry{user\_can\_annotate\_by\_id()}\spxextra{in module pine.backend.collections.bp}, 
+		\hyperpage{9}
+  \item \spxentry{user\_can\_annotate\_by\_id()}\spxextra{in module pine.backend.documents.bp}, 
+		\hyperpage{16}
+  \item \spxentry{user\_can\_annotate\_by\_ids()}\spxextra{in module pine.backend.collections}, 
+		\hyperpage{11}
+  \item \spxentry{user\_can\_annotate\_by\_ids()}\spxextra{in module pine.backend.collections.bp}, 
+		\hyperpage{9}
+  \item \spxentry{user\_can\_annotate\_by\_ids()}\spxextra{in module pine.backend.documents.bp}, 
+		\hyperpage{16}
+  \item \spxentry{user\_can\_modify\_document\_metadata()}\spxextra{in module pine.backend.collections}, 
+		\hyperpage{11}
+  \item \spxentry{user\_can\_modify\_document\_metadata()}\spxextra{in module pine.backend.collections.bp}, 
+		\hyperpage{9}
+  \item \spxentry{user\_can\_modify\_document\_metadata\_by\_id()}\spxextra{in module pine.backend.collections}, 
+		\hyperpage{11}
+  \item \spxentry{user\_can\_modify\_document\_metadata\_by\_id()}\spxextra{in module pine.backend.collections.bp}, 
+		\hyperpage{9}
+  \item \spxentry{user\_can\_modify\_metadata()}\spxextra{in module pine.backend.documents.bp}, 
+		\hyperpage{16}
+  \item \spxentry{user\_can\_modify\_metadata\_by\_id()}\spxextra{in module pine.backend.documents.bp}, 
+		\hyperpage{16}
+  \item \spxentry{user\_can\_view()}\spxextra{in module pine.backend.collections}, \hyperpage{11}
+  \item \spxentry{user\_can\_view()}\spxextra{in module pine.backend.collections.bp}, \hyperpage{9}
+  \item \spxentry{user\_can\_view()}\spxextra{in module pine.backend.documents.bp}, \hyperpage{16}
+  \item \spxentry{user\_can\_view\_by\_id()}\spxextra{in module pine.backend.collections}, 
+		\hyperpage{11}
+  \item \spxentry{user\_can\_view\_by\_id()}\spxextra{in module pine.backend.collections.bp}, 
+		\hyperpage{9}
+  \item \spxentry{user\_can\_view\_by\_id()}\spxextra{in module pine.backend.documents.bp}, 
+		\hyperpage{16}
+  \item \spxentry{UserDetails}\spxextra{class in pine.backend.models}, \hyperpage{31}
+  \item \spxentry{username()}\spxextra{pine.backend.auth.eve.EveUser property}, \hyperpage{5}
+  \item \spxentry{username()}\spxextra{pine.backend.auth.oauth.OAuthUser property}, \hyperpage{6}
+  \item \spxentry{username()}\spxextra{pine.backend.models.AuthUser property}, \hyperpage{31}
+
+  \indexspace
+  \bigletter V
+  \item \spxentry{VEGAS\_CLIENT\_SECRET}\spxextra{in module pine.backend.config}, \hyperpage{28}
+  \item \spxentry{VegasAuthModule}\spxextra{class in pine.backend.auth.vegas}, \hyperpage{7}
+  \item \spxentry{VERSION}\spxextra{in module pine.backend}, \hyperpage{31}
+  \item \spxentry{VERSION}\spxextra{in module pine.backend.app}, \hyperpage{28}
+  \item \spxentry{VIEW\_DOCUMENT}\spxextra{pine.backend.log.Action attribute}, \hyperpage{29}
+  \item \spxentry{viewer()}\spxextra{pine.client.CollectionBuilder method}, \hyperpage{61}
+  \item \spxentry{viewer()}\spxextra{pine.client.models.CollectionBuilder method}, \hyperpage{51}
+
+  \indexspace
+  \bigletter W
+  \item \spxentry{where\_params()}\spxextra{in module pine.backend.data.service}, \hyperpage{13}
+
+\end{sphinxtheindex}

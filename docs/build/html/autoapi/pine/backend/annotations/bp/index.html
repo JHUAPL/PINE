@@ -1,0 +1,347 @@
+
+
+<!doctype html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>pine.backend.annotations.bp &#8212; pine  documentation</title>
+    <link rel="stylesheet" href="../../../../../_static/bizstyle.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../../../../_static/graphviz.css" />
+    
+    <script id="documentation_options" data-url_root="../../../../../" src="../../../../../_static/documentation_options.js"></script>
+    <script src="../../../../../_static/jquery.js"></script>
+    <script src="../../../../../_static/underscore.js"></script>
+    <script src="../../../../../_static/doctools.js"></script>
+    <script src="../../../../../_static/language_data.js"></script>
+    <script src="../../../../../_static/bizstyle.js"></script>
+    <link rel="index" title="Index" href="../../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../../search.html" />
+    <link rel="next" title="pine.backend.auth" href="../../auth/index.html" />
+    <link rel="prev" title="pine.backend.annotations" href="../index.html" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <!--[if lt IE 9]>
+    <script src="_static/css3-mediaqueries.js"></script>
+    <![endif]-->
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="../../auth/index.html" title="pine.backend.auth"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="../index.html" title="pine.backend.annotations"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../../../index.html">pine  documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../../../index.html" >API Reference</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../../../index.html" ><code class="xref py py-mod docutils literal notranslate"><span class="pre">pine</span></code></a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="../../index.html" ><code class="xref py py-mod docutils literal notranslate"><span class="pre">pine.backend</span></code></a> &#187;</li>
+          <li class="nav-item nav-item-4"><a href="../index.html" accesskey="U"><code class="xref py py-mod docutils literal notranslate"><span class="pre">pine.backend.annotations</span></code></a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href=""><code class="xref py py-mod docutils literal notranslate"><span class="pre">pine.backend.annotations.bp</span></code></a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="module-pine.backend.annotations.bp">
+<span id="pine-backend-annotations-bp"></span><h1><a class="reference internal" href="#module-pine.backend.annotations.bp" title="pine.backend.annotations.bp"><code class="xref py py-mod docutils literal notranslate"><span class="pre">pine.backend.annotations.bp</span></code></a><a class="headerlink" href="#module-pine.backend.annotations.bp" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="module-contents">
+<h2>Module Contents<a class="headerlink" href="#module-contents" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="functions">
+<h3>Functions<a class="headerlink" href="#functions" title="Permalink to this headline">¶</a></h3>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pine.backend.annotations.bp.check_document_by_id" title="pine.backend.annotations.bp.check_document_by_id"><code class="xref py py-obj docutils literal notranslate"><span class="pre">check_document_by_id</span></code></a>(doc_id: str)</p></td>
+<td><p>Verify that a document with the given doc_id exists and that the logged in user has permissions to access the</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#pine.backend.annotations.bp.check_document" title="pine.backend.annotations.bp.check_document"><code class="xref py py-obj docutils literal notranslate"><span class="pre">check_document</span></code></a>(doc: dict)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pine.backend.annotations.bp.get_my_annotations_for_document" title="pine.backend.annotations.bp.get_my_annotations_for_document"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_my_annotations_for_document</span></code></a>(doc_id)</p></td>
+<td><p>Get the list of annotations (key, start_index, end_index) produced by the logged in user for the document matching</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#pine.backend.annotations.bp.get_others_annotations_for_document" title="pine.backend.annotations.bp.get_others_annotations_for_document"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_others_annotations_for_document</span></code></a>(doc_id)</p></td>
+<td><p>Get the list of annotations (key, start_index, end_index) produced by all other users, not including the logged in</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pine.backend.annotations.bp.get_annotations_for_document" title="pine.backend.annotations.bp.get_annotations_for_document"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_annotations_for_document</span></code></a>(doc_id)</p></td>
+<td><p>Get the list of annotations (key, start_index, end_index) produced by all users for the document matching the</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#pine.backend.annotations.bp.get_current_annotation" title="pine.backend.annotations.bp.get_current_annotation"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_current_annotation</span></code></a>(doc_id, user_id)</p></td>
+<td><p>Get all annotations of the provided document created by the given user.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pine.backend.annotations.bp.check_overlapping_annotations" title="pine.backend.annotations.bp.check_overlapping_annotations"><code class="xref py py-obj docutils literal notranslate"><span class="pre">check_overlapping_annotations</span></code></a>(collection, ner_annotations)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#pine.backend.annotations.bp.set_document_to_annotated_by_user" title="pine.backend.annotations.bp.set_document_to_annotated_by_user"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_document_to_annotated_by_user</span></code></a>(doc_id, user_id)</p></td>
+<td><p>Modify the parameter in the database for the document signifying that the given user has annotated the given</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pine.backend.annotations.bp._make_annotations" title="pine.backend.annotations.bp._make_annotations"><code class="xref py py-obj docutils literal notranslate"><span class="pre">_make_annotations</span></code></a>(body)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#pine.backend.annotations.bp._add_or_update_annotation" title="pine.backend.annotations.bp._add_or_update_annotation"><code class="xref py py-obj docutils literal notranslate"><span class="pre">_add_or_update_annotation</span></code></a>(new_annotation)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pine.backend.annotations.bp.save_annotations" title="pine.backend.annotations.bp.save_annotations"><code class="xref py py-obj docutils literal notranslate"><span class="pre">save_annotations</span></code></a>(doc_id)</p></td>
+<td><p>Save new NER annotations and labels to the database as an entry for the logged in user, for the document. If there</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#pine.backend.annotations.bp.save_collection_annotations" title="pine.backend.annotations.bp.save_collection_annotations"><code class="xref py py-obj docutils literal notranslate"><span class="pre">save_collection_annotations</span></code></a>(collection_id: str)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pine.backend.annotations.bp.init_app" title="pine.backend.annotations.bp.init_app"><code class="xref py py-obj docutils literal notranslate"><span class="pre">init_app</span></code></a>(app)</p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
+<dl class="py data">
+<dt id="pine.backend.annotations.bp.logger">
+<code class="sig-prename descclassname">pine.backend.annotations.bp.</code><code class="sig-name descname">logger</code><a class="headerlink" href="#pine.backend.annotations.bp.logger" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py data">
+<dt id="pine.backend.annotations.bp.CONFIG_ALLOW_OVERLAPPING_NER_ANNOTATIONS">
+<code class="sig-prename descclassname">pine.backend.annotations.bp.</code><code class="sig-name descname">CONFIG_ALLOW_OVERLAPPING_NER_ANNOTATIONS</code><em class="property"> = allow_overlapping_ner_annotations</em><a class="headerlink" href="#pine.backend.annotations.bp.CONFIG_ALLOW_OVERLAPPING_NER_ANNOTATIONS" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py data">
+<dt id="pine.backend.annotations.bp.bp">
+<code class="sig-prename descclassname">pine.backend.annotations.bp.</code><code class="sig-name descname">bp</code><a class="headerlink" href="#pine.backend.annotations.bp.bp" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt id="pine.backend.annotations.bp.check_document_by_id">
+<code class="sig-prename descclassname">pine.backend.annotations.bp.</code><code class="sig-name descname">check_document_by_id</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">doc_id</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)">str</a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.annotations.bp.check_document_by_id" title="Permalink to this definition">¶</a></dt>
+<dd><p>Verify that a document with the given doc_id exists and that the logged in user has permissions to access the
+document
+:param doc_id: str
+:return: dict</p>
+</dd></dl>
+
+<dl class="py function">
+<dt id="pine.backend.annotations.bp.check_document">
+<code class="sig-prename descclassname">pine.backend.annotations.bp.</code><code class="sig-name descname">check_document</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">doc</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.8)">dict</a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.annotations.bp.check_document" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt id="pine.backend.annotations.bp.get_my_annotations_for_document">
+<code class="sig-prename descclassname">pine.backend.annotations.bp.</code><code class="sig-name descname">get_my_annotations_for_document</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">doc_id</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.annotations.bp.get_my_annotations_for_document" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the list of annotations (key, start_index, end_index) produced by the logged in user for the document matching
+the provided doc_id.
+:param doc_id: str
+:return: Response</p>
+</dd></dl>
+
+<dl class="py function">
+<dt id="pine.backend.annotations.bp.get_others_annotations_for_document">
+<code class="sig-prename descclassname">pine.backend.annotations.bp.</code><code class="sig-name descname">get_others_annotations_for_document</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">doc_id</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.annotations.bp.get_others_annotations_for_document" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the list of annotations (key, start_index, end_index) produced by all other users, not including the logged in
+user for the document matching the provided doc_id.
+:param doc_id: str
+:return: str</p>
+</dd></dl>
+
+<dl class="py function">
+<dt id="pine.backend.annotations.bp.get_annotations_for_document">
+<code class="sig-prename descclassname">pine.backend.annotations.bp.</code><code class="sig-name descname">get_annotations_for_document</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">doc_id</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.annotations.bp.get_annotations_for_document" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the list of annotations (key, start_index, end_index) produced by all users for the document matching the
+provided doc_id.
+:param doc_id: str
+:return: str</p>
+</dd></dl>
+
+<dl class="py function">
+<dt id="pine.backend.annotations.bp.get_current_annotation">
+<code class="sig-prename descclassname">pine.backend.annotations.bp.</code><code class="sig-name descname">get_current_annotation</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">doc_id</span></em>, <em class="sig-param"><span class="n">user_id</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.annotations.bp.get_current_annotation" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get all annotations of the provided document created by the given user.
+:param doc_id: str
+:param user_id: str
+:return: List</p>
+</dd></dl>
+
+<dl class="py function">
+<dt id="pine.backend.annotations.bp.check_overlapping_annotations">
+<code class="sig-prename descclassname">pine.backend.annotations.bp.</code><code class="sig-name descname">check_overlapping_annotations</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">collection</span></em>, <em class="sig-param"><span class="n">ner_annotations</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.annotations.bp.check_overlapping_annotations" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt id="pine.backend.annotations.bp.set_document_to_annotated_by_user">
+<code class="sig-prename descclassname">pine.backend.annotations.bp.</code><code class="sig-name descname">set_document_to_annotated_by_user</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">doc_id</span></em>, <em class="sig-param"><span class="n">user_id</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.annotations.bp.set_document_to_annotated_by_user" title="Permalink to this definition">¶</a></dt>
+<dd><p>Modify the parameter in the database for the document signifying that the given user has annotated the given
+document
+:param doc_id: str
+:param user_id: str
+:return: whether the update succeeded
+:rtype: bool</p>
+</dd></dl>
+
+<dl class="py function">
+<dt id="pine.backend.annotations.bp._make_annotations">
+<code class="sig-prename descclassname">pine.backend.annotations.bp.</code><code class="sig-name descname">_make_annotations</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">body</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.annotations.bp._make_annotations" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt id="pine.backend.annotations.bp._add_or_update_annotation">
+<code class="sig-prename descclassname">pine.backend.annotations.bp.</code><code class="sig-name descname">_add_or_update_annotation</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">new_annotation</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.annotations.bp._add_or_update_annotation" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt id="pine.backend.annotations.bp.save_annotations">
+<code class="sig-prename descclassname">pine.backend.annotations.bp.</code><code class="sig-name descname">save_annotations</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">doc_id</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.annotations.bp.save_annotations" title="Permalink to this definition">¶</a></dt>
+<dd><p>Save new NER annotations and labels to the database as an entry for the logged in user, for the document. If there
+are already annotations, use a patch request to update with the new annotations. If there are not, use a post
+request to create a new entry.
+:param doc_id: str
+:return: bool</p>
+</dd></dl>
+
+<dl class="py function">
+<dt id="pine.backend.annotations.bp.save_collection_annotations">
+<code class="sig-prename descclassname">pine.backend.annotations.bp.</code><code class="sig-name descname">save_collection_annotations</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">collection_id</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)">str</a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.annotations.bp.save_collection_annotations" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt id="pine.backend.annotations.bp.init_app">
+<code class="sig-prename descclassname">pine.backend.annotations.bp.</code><code class="sig-name descname">init_app</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">app</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.annotations.bp.init_app" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+</div>
+</div>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../../../../../index.html">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">pine.backend.annotations.bp</span></code></a><ul>
+<li><a class="reference internal" href="#module-contents">Module Contents</a><ul>
+<li><a class="reference internal" href="#functions">Functions</a><ul>
+<li><a class="reference internal" href="#pine.backend.annotations.bp.logger">logger</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#pine.backend.annotations.bp.CONFIG_ALLOW_OVERLAPPING_NER_ANNOTATIONS">CONFIG_ALLOW_OVERLAPPING_NER_ANNOTATIONS</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#pine.backend.annotations.bp.bp">bp</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#pine.backend.annotations.bp.check_document_by_id">check_document_by_id</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#pine.backend.annotations.bp.check_document">check_document</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#pine.backend.annotations.bp.get_my_annotations_for_document">get_my_annotations_for_document</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#pine.backend.annotations.bp.get_others_annotations_for_document">get_others_annotations_for_document</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#pine.backend.annotations.bp.get_annotations_for_document">get_annotations_for_document</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#pine.backend.annotations.bp.get_current_annotation">get_current_annotation</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#pine.backend.annotations.bp.check_overlapping_annotations">check_overlapping_annotations</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#pine.backend.annotations.bp.set_document_to_annotated_by_user">set_document_to_annotated_by_user</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#pine.backend.annotations.bp._make_annotations">_make_annotations</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#pine.backend.annotations.bp._add_or_update_annotation">_add_or_update_annotation</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#pine.backend.annotations.bp.save_annotations">save_annotations</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#pine.backend.annotations.bp.save_collection_annotations">save_collection_annotations</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#pine.backend.annotations.bp.init_app">init_app</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="../index.html"
+                        title="previous chapter"><code class="xref py py-mod docutils literal notranslate"><span class="pre">pine.backend.annotations</span></code></a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="../../auth/index.html"
+                        title="next chapter"><code class="xref py py-mod docutils literal notranslate"><span class="pre">pine.backend.auth</span></code></a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../../../../_sources/autoapi/pine/backend/annotations/bp/index.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../../../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="../../auth/index.html" title="pine.backend.auth"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="../index.html" title="pine.backend.annotations"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../../../index.html">pine  documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../../../index.html" >API Reference</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../../../index.html" ><code class="xref py py-mod docutils literal notranslate"><span class="pre">pine</span></code></a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="../../index.html" ><code class="xref py py-mod docutils literal notranslate"><span class="pre">pine.backend</span></code></a> &#187;</li>
+          <li class="nav-item nav-item-4"><a href="../index.html" ><code class="xref py py-mod docutils literal notranslate"><span class="pre">pine.backend.annotations</span></code></a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href=""><code class="xref py py-mod docutils literal notranslate"><span class="pre">pine.backend.annotations.bp</span></code></a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright (C) 2019 The Johns Hopkins University Applied Physics Laboratory LLC..
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.1.2.
+    </div>
+  </body>
+</html>

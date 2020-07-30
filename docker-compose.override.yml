@@ -5,20 +5,22 @@ services:
 
   backend:
     environment:
+      - AUTH_MODULE=${AUTH_MODULE}
       - VEGAS_CLIENT_SECRET
-      - EVE_SERVER=http://eve:7510
+      - EVE_SERVER=http://eve:${EVE_PORT}
       - REDIS_SERVER=redis
-      - PINE_LOGGING_CONFIG_FILE=/nlp-web-app/shared/logging.python.dev.json
+      - PINE_LOGGING_CONFIG_FILE=${PINE_LOGGING_CONFIG_FILE:-/nlp-web-app/shared/logging.python.dev.json}
 
   eve:
     build:
       args:
         - DB_DIR=/nlp-web-app/eve/db
+        - MONGO_PORT=${MONGO_PORT}
     volumes:
-      - eve_db:/nlp-web-app/eve/db
+      - ${EVE_DB_VOLUME}:/nlp-web-app/eve/db
     environment:
       - MONGO_URI=
-      - PINE_LOGGING_CONFIG_FILE=/nlp-web-app/shared/logging.python.dev.json
+      - PINE_LOGGING_CONFIG_FILE=${PINE_LOGGING_CONFIG_FILE:-/nlp-web-app/shared/logging.python.dev.json}
 
   frontend_annotation:
     build:

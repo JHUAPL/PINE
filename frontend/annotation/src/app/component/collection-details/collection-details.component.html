@@ -1,5 +1,5 @@
 <!-- (C) 2019 The Johns Hopkins University Applied Physics Laboratory LLC.-->
-<mat-card>
+<mat-card class="card">
 
   <mat-card-header>
     <mat-card-title>
@@ -11,8 +11,7 @@
   <mat-divider></mat-divider>
 
   <div *ngIf="loading">Loading...</div>
-  <mat-card-content style="padding-top: 15px;">
-
+  <mat-card-content>
 
     <table id="metadata-table" *ngIf="!loading">
       <tr style="vertical-align: top;">
@@ -149,7 +148,7 @@
   </mat-card-actions>
 </mat-card>
 
-<mat-card class="login-card">
+<mat-card class="card">
   <mat-card-header>
     <mat-card-title>
       <h1>Documents in Collection</h1>
@@ -159,7 +158,7 @@
 
   <mat-divider></mat-divider>
 
-  <mat-card-content style="padding-top: 2%; width: 100%">
+  <mat-card-content>
     <mat-form-field>
       <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
     </mat-form-field>
@@ -183,8 +182,8 @@
       <ng-container matColumnDef="annotated">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Annotated </th>
         <td mat-cell *matCellDef="let document">
-          <span *ngIf="document.annotated" class="material-icons" style="color: green">done</span>
-          <span *ngIf="!document.annotated" class="material-icons" style="color: red">clear</span>
+          <mat-icon *ngIf="document.annotated" style="color: green">done</mat-icon>
+          <mat-icon *ngIf="!document.annotated" style="color: red">clear</mat-icon>
         </td>
       </ng-container>
 

@@ -4,10 +4,11 @@ import { Component, OnInit, ViewChild, Inject } from "@angular/core";
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from "@angular/material/dialog";
 
 import { Observable, forkJoin } from "rxjs";
-import { take } from "rxjs/operators";
+import { take, tap } from "rxjs/operators";
 
 import { CollectionRepositoryService } from "../../service/collection-repository/collection-repository.service";
 import { EventService } from "../../service/event/event.service";
+import { StatusBarService } from "../../service/status-bar/status-bar.service";
 
 @Component({
     selector: "app-image-collection-uploader",
@@ -19,7 +20,8 @@ export class ImageCollectionUploaderComponent implements OnInit {
     public files: FileList;
 
     constructor(private collections: CollectionRepositoryService,
-                private events: EventService) { }
+                private events: EventService,
+                private statusBar: StatusBarService) { }
 
     ngOnInit() {
     }
@@ -34,7 +36,19 @@ export class ImageCollectionUploaderComponent implements OnInit {
                 observer.next(0);
                 observer.complete();
             } else {
-                forkJoin(Array.from(this.files).map(file => this.collections.uploadCollectionImage(collectionId, file.name, file)))
+                const len = this.files.length;
+                let count = 0;
+                this.statusBar.showMessage(`Uploading images... [${count}/${len}]`);
+                this.statusBar.showProgress(0);
+                forkJoin(
+                    Array.from(this.files).map(file =>
+                        this.collections.uploadCollectionImage(collectionId, file.name, file)
+                            .pipe(tap(_ => {
+                                count++;
+                                this.statusBar.showMessage(`Uploading images... [${count}/${len}]`);
+                                this.statusBar.showProgress((count * 100) / len);
+                            }))
+                ))
                     .pipe(take(1))
                     .subscribe((results: string[]) => {
                         if(showMessage) {
@@ -45,6 +59,8 @@ export class ImageCollectionUploaderComponent implements OnInit {
                     }, (error) => {
                         observer.error(error);
                         observer.complete();
+                    }, () => {
+                        this.statusBar.hide();
                     });
             }
         });

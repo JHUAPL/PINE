@@ -4,7 +4,7 @@
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 CONFIG_FILE="${DIR}/pine/backend/config.py"
 
-if [[ -z ${VEGAS_CLIENT_SECRET} ]]; then
+if ([[ -z ${AUTH_MODULE} ]] || [[ ${AUTH_MODULE} == "vegas" ]]) && [[ -z ${VEGAS_CLIENT_SECRET} ]]; then
     echo ""
     echo ""
     echo ""
@@ -19,4 +19,4 @@ fi
 
 export FLASK_APP="pine.backend"
 export FLASK_ENV="development"
-pipenv run flask run
+pipenv run flask run $@

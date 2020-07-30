@@ -2,7 +2,7 @@
 import { Component, OnInit, ElementRef, ViewChild } from "@angular/core";
 import { FormBuilder, FormGroup, Validators, AbstractControl, ValidatorFn } from "@angular/forms";
 import { Router } from "@angular/router";
-import { HttpErrorResponse } from "@angular/common/http";
+import { HttpEvent, HttpEventType, HttpErrorResponse } from "@angular/common/http";
 
 import { take } from "rxjs/operators";
 
@@ -22,6 +22,7 @@ import { PATHS } from "../../app.paths";
 
 import { Collection, CONFIG_ALLOW_OVERLAPPING_NER_ANNOTATIONS } from "../../model/collection";
 import { Pipeline } from "../../model/pipeline";
+import { CreatedObject } from "../../model/created";
 
 @Component({
     selector: "app-add-collection",
@@ -36,11 +37,13 @@ export class AddCollectionComponent implements OnInit {
     private csvFile: File;
     private pipelines: Pipeline[];
     public loading = false;
+    public submitting = false;
+    public submittingPercent: number = 0;
     public submitted = false;
     public hadError = false;
     public errorMessage: string;
     private manualFormError = false;
-    private hasCsvFile = false;
+    public hasCsvFile = false;
     private csvHeader = null;
     public configAllowOverlappingNerAnnotations = true;
 
@@ -224,6 +227,7 @@ export class AddCollectionComponent implements OnInit {
 
         this.hadError = false;
         this.errorMessage = null;
+        /*
         this.collectionRepository.postCollection(collection, this.csvFile, csvTextCol, csvHasHeader, this.images.files,
                 this.f.overlap.value, this.f.train_every.value, this.f.pipeline_id.value,
                 JSON.parse(this.f.classifier_parameters.value)).subscribe(
@@ -237,6 +241,41 @@ export class AddCollectionComponent implements OnInit {
                 this.hadError = true;
             }
         );
+        */
+        this.createForm.disable();
+        this.submittingPercent = 0;
+        this.submitting = true;
+        let subs = this.collectionRepository.postCollectionWithProgress(collection, this.csvFile, csvTextCol, csvHasHeader, this.images.files,
+                this.f.overlap.value, this.f.train_every.value, this.f.pipeline_id.value, JSON.parse(this.f.classifier_parameters.value))
+                    .subscribe((event: HttpEvent<CreatedObject>) => {
+                        switch(event.type) {
+                            case HttpEventType.UploadProgress:
+                                if(event.total) {
+                                    this.submittingPercent = (100 * event.loaded) / event.total;
+                                }
+                                break;
+                            case HttpEventType.Response:
+                                const collectionId = event.body._id;
+                                this.collectionRepository.getCollectionDetails(collectionId).pipe(take(1)).subscribe((collection: Collection) => {
+                                    this.event.showUserMessage.emit("Successfully added collection with ID " + collectionId);
+                                    this.event.collectionAddedOrArchived.emit(collection);
+                                    this.router.navigate([PATHS.collection.details, collectionId]);
+                                }, (error: HttpErrorResponse) => {
+                                    this.errorMessage = "Error: " + error.error;
+                                    this.hadError = true;
+                                });
+                                break;
+                            default:
+                                break;
+                        }
+                    }, (error: HttpErrorResponse) => {
+                        this.errorMessage = "Error: " + error.error;
+                        this.hadError = true;
+                    }, () => {
+                        subs.unsubscribe();
+                        this.submitting = false;
+                        this.createForm.enable();
+                    });
     }
 
 }

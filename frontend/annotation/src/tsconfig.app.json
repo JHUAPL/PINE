@@ -3,7 +3,8 @@
   "compilerOptions": {
     "outDir": "../out-tsc/app",
     "module": "es2015",
-    "types": []
+    "types": [],
+    "resolveJsonModule": true
   },
   "exclude": [
     "src/test.ts",

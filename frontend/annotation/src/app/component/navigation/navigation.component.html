@@ -9,14 +9,14 @@
         <span class="material-icons" mat-list-icon>home</span>
         <p matLine *ngIf="isExpanded">Home</p>
     </mat-list-item>
-    <mat-list-item [matMenuTriggerFor]="myCollections" dir="right">
+    <mat-list-item [matMenuTriggerFor]="myCollections" dir="right" id="pineNavMyCollections">
         <span class="material-icons" mat-list-icon>library_books</span>
         <p matLine *ngIf="isExpanded">My Collections</p>
         <p><span class="material-icons" style="margin-top: 6px">chevron_right</span></p>
     </mat-list-item>
     <!-- https://github.com/angular/components/issues/14621 -->
     <mat-menu id="myCollectionsMenu" #myCollections="matMenu" xPosition="after" overlapTrigger="false" direction="right">
-        <button mat-menu-item [routerLink]="['/' + PATHS.collection.view]">View All Collections</button>
+        <button id="pineNavViewAllCollections" mat-menu-item [routerLink]="['/' + PATHS.collection.view]">View All Collections</button>
         <mat-divider></mat-divider>
         <app-nav-my-collections></app-nav-my-collections>
     </mat-menu>
@@ -32,7 +32,11 @@
         <span class="material-icons" mat-list-icon>account_circle</span>
         <p matLine *ngIf="isExpanded">Manage Account</p>
     </mat-list-item>
-    <mat-list-item (click)="doLogout()">
+    <mat-list-item (click)="doAbout()">
+        <span class="material-icons" mat-list-icon>help</span>
+            <p matLine *ngIf="isExpanded">About</p>
+    </mat-list-item>
+    <mat-list-item (click)="doLogout()" id="pineNavLogout">
         <span class="material-icons" mat-list-icon>exit_to_app</span>
         <p matLine *ngIf="isExpanded">Logout</p>
     </mat-list-item>

@@ -7,8 +7,10 @@ ARG DB_DIR=/nlp-web-app/eve/db
 ARG LOG_DIR=/nlp-web-app/logs/eve
 ARG PORT=7510
 ARG WORKERS=5
+ARG MONGO_PORT=27018
 
 EXPOSE $PORT
+EXPOSE $MONGO_PORT
 # If you want volumes, specify it in docker-compose
 
 ENV DEBIAN_FRONTEND noninteractive
@@ -46,12 +48,11 @@ RUN pipenv install --system --deploy
 # Add eve and code
 ADD docker/wsgi.py $ROOT_DIR
 ADD docker_run.sh $ROOT_DIR
-ADD test/ $ROOT_DIR/test
 
 ADD python/ $ROOT_DIR/python
 
 COPY docker/config.py.template ./
-RUN PORT=$PORT WORKERS=$WORKERS envsubst '${PORT} ${WORKERS}' < ./config.py.template > ./config.py
+RUN PORT=$PORT WORKERS=$WORKERS MONGO_PORT=${MONGO_PORT} envsubst '${PORT} ${WORKERS} ${MONGODB_PORT}' < ./config.py.template > ./config.py
 
 # Start MongoDB and the Eve Service
 CMD ["./docker_run.sh"]

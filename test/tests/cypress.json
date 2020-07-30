@@ -1,0 +1,19 @@
+{
+  "baseUrl": "https://172.17.0.1:8888",
+  "fixturesFolder": "/nlp_webapp/data/",
+  "video": true,
+  "videosFolder": "/nlp_webapp/results/videos",
+  "screenshotsFolder": "/nlp_webapp/results/screenshots",
+  "reporter": "mochawesome",
+  "reporterOptions": {
+    "reportDir": "/nlp_webapp/results/reports",
+    "overwrite": false,
+    "html": false,
+    "json": true
+  },
+  "env": {
+    "API_URL": "https://172.17.0.1:8888/api",
+    "AUTH_MODULE": "eve",
+    "LOGIN_USER": "ada"
+  }
+}

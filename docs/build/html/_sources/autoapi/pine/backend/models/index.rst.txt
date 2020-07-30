@@ -1,0 +1,108 @@
+:mod:`pine.backend.models`
+==========================
+
+.. py:module:: pine.backend.models
+
+
+Module Contents
+---------------
+
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   pine.backend.models.LoginFormFieldType
+   pine.backend.models.LoginFormField
+   pine.backend.models.LoginForm
+   pine.backend.models.AuthUser
+   pine.backend.models.UserDetails
+
+
+
+.. py:class:: LoginFormFieldType
+
+   Bases: :class:`enum.Enum`
+
+   Generic enumeration.
+
+   Derive from this class to define new enumerations.
+
+
+   Create and return a new object.  See help(type) for accurate signature.
+
+   .. attribute:: TEXT
+      :annotation: = text
+
+      
+
+   .. attribute:: PASSWORD
+      :annotation: = password
+
+      
+
+
+.. py:class:: LoginFormField(name: str, display: str, field_type: LoginFormFieldType)
+
+   Bases: :class:`object`
+
+   Initialize self.  See help(type(self)) for accurate signature.
+
+   .. method:: to_dict(self)
+
+
+
+
+.. py:class:: LoginForm(fields: list, button_text: str)
+
+   Bases: :class:`object`
+
+   Initialize self.  See help(type(self)) for accurate signature.
+
+   .. method:: to_dict(self)
+
+
+
+
+.. py:class:: AuthUser
+
+   Bases: :class:`object`
+
+   Initialize self.  See help(type(self)) for accurate signature.
+
+   .. method:: id(self)
+      :property:
+
+
+
+   .. method:: username(self)
+      :property:
+
+
+
+   .. method:: display_name(self)
+      :property:
+
+
+
+   .. method:: is_admin(self)
+      :property:
+
+
+
+   .. method:: to_dict(self)
+
+
+
+
+.. py:class:: UserDetails(first_name, last_name, description)
+
+   Bases: :class:`object`
+
+   Initialize self.  See help(type(self)) for accurate signature.
+
+   .. method:: to_dict(self)
+
+
+
+

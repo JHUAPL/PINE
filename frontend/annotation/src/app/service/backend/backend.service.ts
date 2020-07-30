@@ -1,11 +1,12 @@
 import { Injectable } from "@angular/core";
-import { HttpClient, HttpHeaders, HttpResponse } from "@angular/common/http";
+import { HttpClient, HttpHeaders, HttpResponse, HttpEvent } from "@angular/common/http";
 
 import { Observable, defer, from, EMPTY, concat } from "rxjs";
 import { mergeMap } from "rxjs/operators";
 
 import { AppConfig } from "../../app.config";
 
+import { About } from "../../model/backend";
 import { DBObject, DBObjects } from "../../model/db";
 
 @Injectable({
@@ -76,6 +77,17 @@ export class BackendService {
                 {...options, ...{withCredentials: true, headers: this.IEheaders }});
     }
 
+    public postFormWithProgress<T>(path: string, form: FormData, options = {}): Observable<HttpEvent<T>> {
+        // setting a header to "Content-Type": "multipart/form-data" makes this not work...
+        return this.http.post<T>(AppConfig.settings.backend.host + path, form,
+                {...options, ...{
+                    withCredentials: true,
+                    headers: this.IEheaders,
+                    reportProgress: true,
+                    observe: 'events'
+                }});
+    }
+
     public put<T>(path: string, data: object, options = {}): Observable<T> {
         return this.http.put<T>(AppConfig.settings.backend.host + path, data,
                 {...options, ...{withCredentials: true, headers: this.IEheaders }});
@@ -88,6 +100,10 @@ export class BackendService {
 
     public ping(): Observable<string> {
         return this.get<string>("/ping");
+    }
+
+    public about(): Observable<About> {
+        return this.get<About>("/about");
     }
 
     getItemsPaginated(fetchItems: (number) => Observable<DBObjects>, page: number = 1): Observable<DBObject> {

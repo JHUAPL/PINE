@@ -1,0 +1,51 @@
+:mod:`pine.backend.auth`
+========================
+
+.. py:module:: pine.backend.auth
+
+
+Submodules
+----------
+.. toctree::
+   :titlesonly:
+   :maxdepth: 1
+
+   bp/index.rst
+   eve/index.rst
+   oauth/index.rst
+   password/index.rst
+   vegas/index.rst
+
+
+Package Contents
+----------------
+
+
+Functions
+~~~~~~~~~
+
+.. autoapisummary::
+
+   pine.backend.auth.login_required
+   pine.backend.auth.admin_required
+   pine.backend.auth.get_logged_in_user
+   pine.backend.auth.is_flat
+
+
+.. function:: login_required(view)
+
+
+.. function:: admin_required(view)
+
+
+.. data:: module
+   
+
+   
+
+.. function:: get_logged_in_user()
+
+
+.. function:: is_flat()
+
+

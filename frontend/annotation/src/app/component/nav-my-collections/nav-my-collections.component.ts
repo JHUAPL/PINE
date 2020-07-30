@@ -2,14 +2,15 @@
 
 import { Component, OnInit, ViewChildren, QueryList } from "@angular/core";
 
+import { Observable } from "rxjs";
+import { map, toArray, tap, take } from "rxjs/operators";
+
 import { NavCollectionMenuComponent } from "../nav-collection-menu/nav-collection-menu.component";
 
 import { CollectionRepositoryService } from "../../service/collection-repository/collection-repository.service";
-import { DocumentRepositoryService } from "../../service/document-repository/document-repository.service";
 import { EventService, AddedDocumentIds } from "../../service/event/event.service";
 
 import { Collection } from "../../model/collection";
-import { Document } from "../../model/document";
 
 export interface CollectionData {
     id: string;
@@ -23,42 +24,51 @@ export interface CollectionData {
 })
 export class NavMyCollectionsComponent implements OnInit {
 
+    public loading = true;
+
     public collections: CollectionData[];
 
     @ViewChildren(NavCollectionMenuComponent)
     public menus: QueryList<NavCollectionMenuComponent>;
 
     constructor(private collectionsService: CollectionRepositoryService,
-                private documentsService: DocumentRepositoryService,
                 private event: EventService) { }
 
     ngOnInit() {
-        this.refreshCollections();
-        this.event.collectionAddedOrArchived.subscribe((collection: Collection) => {
-            this.refreshCollections();
+        this.refreshCollectionsAsync();
+        this.event.collectionAddedOrArchived.subscribe((_: Collection) => {
+            this.refreshCollectionsAsync();
         });
         this.event.systemDataImported.subscribe(() => {
-            this.refreshCollections();
+            this.refreshCollectionsAsync();
         });
         this.event.documentAddedById.subscribe((ids: AddedDocumentIds) => {
-            this.refreshCollection(ids.collectionId);
+            this.refreshCollectionAsync(ids.collectionId);
         });
     }
+    
+    private refreshCollectionsAsync() {
+        this.loading = true;
+        this.refreshCollections$().pipe(take(1)).subscribe(() => this.loading = false);
+    }
 
-    private refreshCollections() {
-        const temp = [];
-        this.collectionsService.getMyUnarchivedCollectionsPaginated().subscribe((collection: Collection) => {
-            temp.push(<CollectionData>{
+    private refreshCollections$(): Observable<CollectionData[]> {
+        return this.collectionsService.getMyUnarchivedCollectionsPaginated().pipe(
+            map((collection: Collection) => <CollectionData>{
                 id: collection._id,
                 title: collection.getTitleOrId()
-            });
-        }, (error) => {}, () => {
-            temp.sort((a: CollectionData, b: CollectionData) => a.title.localeCompare(b.title));
-            this.collections = temp;
-        });
+            }),
+            toArray(),
+            tap((collections: CollectionData[]) => this.collections = collections)
+        );
+    }
+    
+    private refreshCollectionAsync(collectionId: string) {
+        this.refreshCollection$(collectionId).pipe(take(1)).subscribe();
     }
 
-    private refreshCollection(collectionId: string) {
-        this.menus.find((_, index) => this.collections[index].id === collectionId).refresh();
+    private refreshCollection$(collectionId: string): Observable<void> {
+        return this.menus.find((_, index) => this.collections[index].id === collectionId)
+            .reload().pipe(map(() => undefined));
     }
 }

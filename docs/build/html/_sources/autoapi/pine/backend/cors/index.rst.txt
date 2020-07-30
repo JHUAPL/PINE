@@ -1,0 +1,25 @@
+:mod:`pine.backend.cors`
+========================
+
+.. py:module:: pine.backend.cors
+
+
+Module Contents
+---------------
+
+
+Functions
+~~~~~~~~~
+
+.. autoapisummary::
+
+   pine.backend.cors.not_found
+   pine.backend.cors.init_app
+
+
+.. function:: not_found(e)
+
+
+.. function:: init_app(app)
+
+

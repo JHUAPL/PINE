@@ -5,8 +5,16 @@ import os
 
 LOGGER = logging.getLogger("pine.eve." + __name__)
 
+################
+# IMPORTANT: if you make any schema changes, you must update this version
+
+PINE_EVE_VERSION = (1, 0, 0)
+PINE_EVE_VERSION_STR = ".".join([str(x) for x in PINE_EVE_VERSION])
+
 collections = {
+    # IMPORTANT: if you make any schema changes, you must update VERSION
     'schema': {
+        # if you change this, also update client module pine.client.models
         'creator_id': {'type': 'jhed', 'required': True},
         'annotators': {'type': 'list', 'schema':{'type':'string'}},
         'viewers': {'type': 'list', 'schema':{'type':'string'}},
@@ -19,12 +27,13 @@ collections = {
 }
 
 documents = {
+    # IMPORTANT: if you make any schema changes, you must update VERSION
     'schema': {
+        # if you change this, also update client module pine.client.models
         'creator_id': {'type': 'jhed', 'required': True},
         'collection_id': {'type': 'objectid', 'required': True},
         'overlap': {'type': 'integer'},
         'text': {'type': 'string'},
-        'uri': {'type':'string'},
         'metadata': {'type': 'dict'},
         "has_annotated" : {'type' : 'dict'}
     },
@@ -33,6 +42,7 @@ documents = {
 }
 
 iaa_reports = {
+    # IMPORTANT: if you make any schema changes, you must update VERSION
     'schema' :{
         'collection_id' : { 'type' : 'objectid' },
         'num_of_annotators' : {'type' : 'integer'},
@@ -48,8 +58,8 @@ iaa_reports = {
 
 }
 
-
 annotations = {
+    # IMPORTANT: if you make any schema changes, you must update VERSION
     'schema': {
         'creator_id': {'type': 'jhed', 'required': True},
         'collection_id': {'type': 'objectid', 'required': True},
@@ -62,7 +72,9 @@ annotations = {
 }
 
 pipelines = {
+    # IMPORTANT: if you make any schema changes, you must update VERSION
     'schema': {
+        # if you change this, also update client module pine.client.models
         '_id':{'type':'objectid', 'required':True},
         'title': {'type': 'string', 'required': True},
         'name': {'type': 'string', 'required': True},
@@ -72,7 +84,9 @@ pipelines = {
 }
 
 users = {
+    # IMPORTANT: if you make any schema changes, you must update VERSION
     'schema': {
+        # if you change this, also update client module pine.client.models
         '_id':{'type': 'jhed', 'required': True},
         'firstname': {'type': 'string', 'required': True},
         'lastname': {'type': 'string', 'required': True},
@@ -91,6 +105,7 @@ users = {
 }
 
 classifiers = {
+    # IMPORTANT: if you make any schema changes, you must update VERSION
     'schema': {
         'collection_id': {'type': 'objectid', 'required': True},
         'overlap':{'type':'float', 'required':True},
@@ -107,6 +122,7 @@ classifiers = {
 }
 
 metrics = {
+    # IMPORTANT: if you make any schema changes, you must update VERSION
     'schema': {
         'collection_id': {'type': 'objectid', 'required': True},
         'classifier_id': {'type': 'objectid', 'required': True},
@@ -125,6 +141,7 @@ metrics = {
 }
 
 next_instances = {
+    # IMPORTANT: if you make any schema changes, you must update VERSION
     'schema':{
         'classifier_id':{'type':'objectid', 'required':True},
         'document_ids':{'type':'list', 'required':True},
@@ -135,6 +152,7 @@ next_instances = {
 }
 
 parsed = {
+    # IMPORTANT: if you make any schema changes, you must update VERSION
     'schema': {
         'collection_id': {'type': 'objectid', 'required': True},
         '_id':{'type':'objectid', 'required':True},
@@ -182,5 +200,3 @@ RESOURCE_METHODS = ['GET', 'POST']
 ITEM_METHODS = ['GET', 'PUT']
 
 PAGINATION = False
-
-

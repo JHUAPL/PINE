@@ -1,7 +1,9 @@
-import { Injectable } from "@angular/core";
-import { HttpResponse } from "@angular/common/http";
+/*(C) 2019 The Johns Hopkins University Applied Physics Laboratory LLC. */
 
-import { Observable } from "rxjs";
+import { Injectable } from "@angular/core";
+import { HttpResponse, HttpEvent, HttpEventType } from "@angular/common/http";
+
+import { Observable, forkJoin } from "rxjs";
 import { map, flatMap } from "rxjs/operators";
 
 import { AppConfig } from "../../app.config";
@@ -45,8 +47,8 @@ export class CollectionRepositoryService {
         return this.backend.get<DBCollection>("/collections/by_id/" + colID).pipe(map(Collection.fromDB));
     }
 
-    public postCollection(collection: Collection, csvFile: File, csvTextCol: number, csvHasHeader: boolean, imageFiles: FileList,
-            overlap: number, train_every: number, pipelineId: string, classifierParameters: object = {}): Observable<Collection> {
+    private makePostCollectionData(collection: Collection, csvFile: File, csvTextCol: number, csvHasHeader: boolean, imageFiles: FileList,
+            overlap: number, train_every: number, pipelineId: string, classifierParameters: object = {}): FormData {
         const input = new FormData();
         if(csvFile != null) {
             input.append("file", csvFile, csvFile.name);
@@ -63,8 +65,22 @@ export class CollectionRepositoryService {
         input.append("overlap", JSON.stringify(overlap));
         input.append("pipelineId", JSON.stringify(pipelineId));
         input.append("classifierParameters", JSON.stringify(classifierParameters));
+        return input;
+    }
+
+    public postCollection(collection: Collection, csvFile: File, csvTextCol: number, csvHasHeader: boolean, imageFiles: FileList,
+            overlap: number, train_every: number, pipelineId: string, classifierParameters: object = {}): Observable<Collection> {
+        const input = this.makePostCollectionData(collection, csvFile, csvTextCol, csvHasHeader, imageFiles,
+            overlap, train_every, pipelineId, classifierParameters);
         return this.backend.postForm<CreatedObject>("/collections", input).pipe(flatMap(
                 (createdCollection: CreatedObject) => this.getCollectionDetails(createdCollection._id)));
+    }
+
+    public postCollectionWithProgress(collection: Collection, csvFile: File, csvTextCol: number, csvHasHeader: boolean, imageFiles: FileList,
+            overlap: number, train_every: number, pipelineId: string, classifierParameters: object = {}): Observable<HttpEvent<CreatedObject>> {
+        const input = this.makePostCollectionData(collection, csvFile, csvTextCol, csvHasHeader, imageFiles,
+            overlap, train_every, pipelineId, classifierParameters);
+        return this.backend.postFormWithProgress<CreatedObject>("/collections", input);
     }
 
     public addAnnotatorToCollection(colId: string, new_annotator: string): Observable<Collection> {
@@ -112,5 +128,16 @@ export class CollectionRepositoryService {
 
     public collectionImageUrl(collectionId: string, url: string): string {
         return this.backend.collectionImageUrl(collectionId, url);
+    }
+
+    public getCollectionImages(collectionId: string, includeStatic: boolean = false): Observable<string[]> {
+        if(!includeStatic) {
+            return this.backend.get<string[]>(`/collections/images/${collectionId}`);
+        } else {
+            forkJoin(
+                this.backend.get<string[]>(`/collections/images/${collectionId}`),
+                this.backend.get<string[]>(`/collections/static_images/${collectionId}`)
+            ).pipe(map(([res1, res2]: [string[], string[]]) => res1.concat(res2)));
+        }
     }
 }

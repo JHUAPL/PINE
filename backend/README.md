@@ -21,9 +21,6 @@ First-time setup:
 Running the server:
 * `./dev_run.sh`
 
-Once test data has been set up in the eve layer, the script `setup_dev_data.sh`
-can be used to set up data from the backend's perspective.
-
 ## Setup
 
 Before running, you must edit ../.env and set `VEGAS_CLIENT_SECRET` appropriately

@@ -1,0 +1,487 @@
+
+
+<!doctype html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>pine.backend.data.service &#8212; pine  documentation</title>
+    <link rel="stylesheet" href="../../../../../_static/bizstyle.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../../../../_static/graphviz.css" />
+    
+    <script id="documentation_options" data-url_root="../../../../../" src="../../../../../_static/documentation_options.js"></script>
+    <script src="../../../../../_static/jquery.js"></script>
+    <script src="../../../../../_static/underscore.js"></script>
+    <script src="../../../../../_static/doctools.js"></script>
+    <script src="../../../../../_static/language_data.js"></script>
+    <script src="../../../../../_static/bizstyle.js"></script>
+    <link rel="index" title="Index" href="../../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../../search.html" />
+    <link rel="next" title="pine.backend.data.users" href="../users/index.html" />
+    <link rel="prev" title="pine.backend.data.bp" href="../bp/index.html" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <!--[if lt IE 9]>
+    <script src="_static/css3-mediaqueries.js"></script>
+    <![endif]-->
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="../users/index.html" title="pine.backend.data.users"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="../bp/index.html" title="pine.backend.data.bp"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../../../index.html">pine  documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../../../index.html" >API Reference</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../../../index.html" ><code class="xref py py-mod docutils literal notranslate"><span class="pre">pine</span></code></a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="../../index.html" ><code class="xref py py-mod docutils literal notranslate"><span class="pre">pine.backend</span></code></a> &#187;</li>
+          <li class="nav-item nav-item-4"><a href="../index.html" accesskey="U"><code class="xref py py-mod docutils literal notranslate"><span class="pre">pine.backend.data</span></code></a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href=""><code class="xref py py-mod docutils literal notranslate"><span class="pre">pine.backend.data.service</span></code></a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="module-pine.backend.data.service">
+<span id="pine-backend-data-service"></span><h1><a class="reference internal" href="#module-pine.backend.data.service" title="pine.backend.data.service"><code class="xref py py-mod docutils literal notranslate"><span class="pre">pine.backend.data.service</span></code></a><a class="headerlink" href="#module-pine.backend.data.service" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="module-contents">
+<h2>Module Contents<a class="headerlink" href="#module-contents" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="classes">
+<h3>Classes<a class="headerlink" href="#classes" title="Permalink to this headline">¶</a></h3>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pine.backend.data.service.PerformanceHistory" title="pine.backend.data.service.PerformanceHistory"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PerformanceHistory</span></code></a>()</p></td>
+<td><p>Initialize self.  See help(type(self)) for accurate signature.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="functions">
+<h3>Functions<a class="headerlink" href="#functions" title="Permalink to this headline">¶</a></h3>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pine.backend.data.service._standardize_path" title="pine.backend.data.service._standardize_path"><code class="xref py py-obj docutils literal notranslate"><span class="pre">_standardize_path</span></code></a>(path, *additional_paths)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#pine.backend.data.service.url" title="pine.backend.data.service.url"><code class="xref py py-obj docutils literal notranslate"><span class="pre">url</span></code></a>(path, *additional_paths)</p></td>
+<td><p>Returns a complete URL for the given eve-relative path(s).</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pine.backend.data.service.where_params" title="pine.backend.data.service.where_params"><code class="xref py py-obj docutils literal notranslate"><span class="pre">where_params</span></code></a>(where)</p></td>
+<td><p>Returns a “where” parameters object that can be passed to eve.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#pine.backend.data.service.params" title="pine.backend.data.service.params"><code class="xref py py-obj docutils literal notranslate"><span class="pre">params</span></code></a>(params)</p></td>
+<td><p>Returns a parameters object that can be passed to eve.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pine.backend.data.service.get" title="pine.backend.data.service.get"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get</span></code></a>(path, **kwargs)</p></td>
+<td><p>Wraps requests.get for the given eve-relative path.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#pine.backend.data.service.post" title="pine.backend.data.service.post"><code class="xref py py-obj docutils literal notranslate"><span class="pre">post</span></code></a>(path, **kwargs)</p></td>
+<td><p>Wraps requests.post for the given eve-relative path.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pine.backend.data.service.put" title="pine.backend.data.service.put"><code class="xref py py-obj docutils literal notranslate"><span class="pre">put</span></code></a>(path, **kwargs)</p></td>
+<td><p>Wraps requests.put for the given eve-relative path.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#pine.backend.data.service.delete" title="pine.backend.data.service.delete"><code class="xref py py-obj docutils literal notranslate"><span class="pre">delete</span></code></a>(path, **kwargs)</p></td>
+<td><p>Wraps requests.delete for the given eve-relative path.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pine.backend.data.service.patch" title="pine.backend.data.service.patch"><code class="xref py py-obj docutils literal notranslate"><span class="pre">patch</span></code></a>(path, **kwargs)</p></td>
+<td><p>Wraps requests.patch for the given eve-relative path.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#pine.backend.data.service.get_items" title="pine.backend.data.service.get_items"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_items</span></code></a>(path, params={})</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pine.backend.data.service.get_item_by_id" title="pine.backend.data.service.get_item_by_id"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_item_by_id</span></code></a>(path, item_id, params={})</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#pine.backend.data.service.get_all_versions_of_item_by_id" title="pine.backend.data.service.get_all_versions_of_item_by_id"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_all_versions_of_item_by_id</span></code></a>(path, item_id, params={})</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pine.backend.data.service.get_all_using_pagination" title="pine.backend.data.service.get_all_using_pagination"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_all_using_pagination</span></code></a>(path, params)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#pine.backend.data.service.convert_response" title="pine.backend.data.service.convert_response"><code class="xref py py-obj docutils literal notranslate"><span class="pre">convert_response</span></code></a>(requests_response)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pine.backend.data.service.remove_eve_fields" title="pine.backend.data.service.remove_eve_fields"><code class="xref py py-obj docutils literal notranslate"><span class="pre">remove_eve_fields</span></code></a>(obj, remove_timestamps=True, remove_versions=True)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#pine.backend.data.service.remove_nonupdatable_fields" title="pine.backend.data.service.remove_nonupdatable_fields"><code class="xref py py-obj docutils literal notranslate"><span class="pre">remove_nonupdatable_fields</span></code></a>(obj)</p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
+<dl class="py data">
+<dt id="pine.backend.data.service.logger">
+<code class="sig-prename descclassname">pine.backend.data.service.</code><code class="sig-name descname">logger</code><a class="headerlink" href="#pine.backend.data.service.logger" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py class">
+<dt id="pine.backend.data.service.PerformanceHistory">
+<em class="property">class </em><code class="sig-prename descclassname">pine.backend.data.service.</code><code class="sig-name descname">PerformanceHistory</code><a class="headerlink" href="#pine.backend.data.service.PerformanceHistory" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>Initialize self.  See help(type(self)) for accurate signature.</p>
+<dl class="py method">
+<dt id="pine.backend.data.service.PerformanceHistory.pformat">
+<code class="sig-name descname">pformat</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.data.service.PerformanceHistory.pformat" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="pine.backend.data.service.PerformanceHistory.pprint">
+<code class="sig-name descname">pprint</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.data.service.PerformanceHistory.pprint" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="pine.backend.data.service.PerformanceHistory.add">
+<code class="sig-name descname">add</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="n">rest_type</span></em>, <em class="sig-param"><span class="n">path</span></em>, <em class="sig-param"><span class="n">response</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.data.service.PerformanceHistory.add" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py data">
+<dt id="pine.backend.data.service.PERFORMANCE_HISTORY">
+<code class="sig-prename descclassname">pine.backend.data.service.</code><code class="sig-name descname">PERFORMANCE_HISTORY</code><a class="headerlink" href="#pine.backend.data.service.PERFORMANCE_HISTORY" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt id="pine.backend.data.service._standardize_path">
+<code class="sig-prename descclassname">pine.backend.data.service.</code><code class="sig-name descname">_standardize_path</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">path</span></em>, <em class="sig-param"><span class="o">*</span><span class="n">additional_paths</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.data.service._standardize_path" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt id="pine.backend.data.service.url">
+<code class="sig-prename descclassname">pine.backend.data.service.</code><code class="sig-name descname">url</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">path</span></em>, <em class="sig-param"><span class="o">*</span><span class="n">additional_paths</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.data.service.url" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a complete URL for the given eve-relative path(s).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>path</strong> – str: eve-relative path (e.g. “collections” or [“collections”, id])</p></li>
+<li><p><strong>additional_paths</strong> – str[]: any additional paths to append</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>str url</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="pine.backend.data.service.where_params">
+<code class="sig-prename descclassname">pine.backend.data.service.</code><code class="sig-name descname">where_params</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">where</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.data.service.where_params" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a “where” parameters object that can be passed to eve.</p>
+<p>Eve requires that dict parameters be serialized as JSON.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>where</strong> – dict: dictionary of “where” params to pass to eve</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>dict “where” params</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="pine.backend.data.service.params">
+<code class="sig-prename descclassname">pine.backend.data.service.</code><code class="sig-name descname">params</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">params</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.data.service.params" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a parameters object that can be passed to eve.</p>
+<p>Eve requires that dict parameters be serialized as JSON.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>where</strong> – dict: dictionary of “where” params to pass to eve</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>dict “where” params</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="pine.backend.data.service.get">
+<code class="sig-prename descclassname">pine.backend.data.service.</code><code class="sig-name descname">get</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">path</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.data.service.get" title="Permalink to this definition">¶</a></dt>
+<dd><p>Wraps requests.get for the given eve-relative path.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>path</strong> – str: eve-relative path (e.g. “collections” or [“collections”, id])</p></li>
+<li><p><strong>**kwargs</strong> – <p>dict: any additional arguments to pass to requests.get</p>
+</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>requests.Response</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="pine.backend.data.service.post">
+<code class="sig-prename descclassname">pine.backend.data.service.</code><code class="sig-name descname">post</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">path</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.data.service.post" title="Permalink to this definition">¶</a></dt>
+<dd><p>Wraps requests.post for the given eve-relative path.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>path</strong> – str: eve-relative path (e.g. “collections” or [“collections”, id])</p></li>
+<li><p><strong>**kwargs</strong> – <p>dict: any additional arguments to pass to requests.post</p>
+</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>requests.Response</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="pine.backend.data.service.put">
+<code class="sig-prename descclassname">pine.backend.data.service.</code><code class="sig-name descname">put</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">path</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.data.service.put" title="Permalink to this definition">¶</a></dt>
+<dd><p>Wraps requests.put for the given eve-relative path.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>path</strong> – str: eve-relative path (e.g. “collections” or [“collections”, id])</p></li>
+<li><p><strong>**kwargs</strong> – <p>dict: any additional arguments to pass to requests.put</p>
+</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>requests.Response</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="pine.backend.data.service.delete">
+<code class="sig-prename descclassname">pine.backend.data.service.</code><code class="sig-name descname">delete</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">path</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.data.service.delete" title="Permalink to this definition">¶</a></dt>
+<dd><p>Wraps requests.delete for the given eve-relative path.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>path</strong> – str: eve-relative path (e.g. “collections” or [“collections”, id])</p></li>
+<li><p><strong>**kwargs</strong> – <p>dict: any additional arguments to pass to requests.delete</p>
+</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>requests.Response</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="pine.backend.data.service.patch">
+<code class="sig-prename descclassname">pine.backend.data.service.</code><code class="sig-name descname">patch</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">path</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.data.service.patch" title="Permalink to this definition">¶</a></dt>
+<dd><p>Wraps requests.patch for the given eve-relative path.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>path</strong> – str: eve-relative path (e.g. “collections” or [“collections”, id])</p></li>
+<li><p><strong>**kwargs</strong> – <p>dict: any additional arguments to pass to requests.patch</p>
+</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>requests.Response</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="pine.backend.data.service.get_items">
+<code class="sig-prename descclassname">pine.backend.data.service.</code><code class="sig-name descname">get_items</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">path</span></em>, <em class="sig-param"><span class="n">params</span><span class="o">=</span><span class="default_value">{}</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.data.service.get_items" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt id="pine.backend.data.service.get_item_by_id">
+<code class="sig-prename descclassname">pine.backend.data.service.</code><code class="sig-name descname">get_item_by_id</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">path</span></em>, <em class="sig-param"><span class="n">item_id</span></em>, <em class="sig-param"><span class="n">params</span><span class="o">=</span><span class="default_value">{}</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.data.service.get_item_by_id" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt id="pine.backend.data.service.get_all_versions_of_item_by_id">
+<code class="sig-prename descclassname">pine.backend.data.service.</code><code class="sig-name descname">get_all_versions_of_item_by_id</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">path</span></em>, <em class="sig-param"><span class="n">item_id</span></em>, <em class="sig-param"><span class="n">params</span><span class="o">=</span><span class="default_value">{}</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.data.service.get_all_versions_of_item_by_id" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt id="pine.backend.data.service.get_all_using_pagination">
+<code class="sig-prename descclassname">pine.backend.data.service.</code><code class="sig-name descname">get_all_using_pagination</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">path</span></em>, <em class="sig-param"><span class="n">params</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.data.service.get_all_using_pagination" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt id="pine.backend.data.service.convert_response">
+<code class="sig-prename descclassname">pine.backend.data.service.</code><code class="sig-name descname">convert_response</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">requests_response</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.data.service.convert_response" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt id="pine.backend.data.service.remove_eve_fields">
+<code class="sig-prename descclassname">pine.backend.data.service.</code><code class="sig-name descname">remove_eve_fields</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">obj</span></em>, <em class="sig-param"><span class="n">remove_timestamps</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">remove_versions</span><span class="o">=</span><span class="default_value">True</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.data.service.remove_eve_fields" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt id="pine.backend.data.service.remove_nonupdatable_fields">
+<code class="sig-prename descclassname">pine.backend.data.service.</code><code class="sig-name descname">remove_nonupdatable_fields</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">obj</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.data.service.remove_nonupdatable_fields" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+</div>
+</div>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../../../../../index.html">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">pine.backend.data.service</span></code></a><ul>
+<li><a class="reference internal" href="#module-contents">Module Contents</a><ul>
+<li><a class="reference internal" href="#classes">Classes</a></li>
+<li><a class="reference internal" href="#functions">Functions</a><ul>
+<li><a class="reference internal" href="#pine.backend.data.service.logger">logger</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#pine.backend.data.service.PerformanceHistory">PerformanceHistory</a><ul>
+<li><a class="reference internal" href="#pine.backend.data.service.PerformanceHistory.pformat">pformat</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#pine.backend.data.service.PerformanceHistory.pprint">pprint</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#pine.backend.data.service.PerformanceHistory.add">add</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#pine.backend.data.service.PERFORMANCE_HISTORY">PERFORMANCE_HISTORY</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#pine.backend.data.service._standardize_path">_standardize_path</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#pine.backend.data.service.url">url</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#pine.backend.data.service.where_params">where_params</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#pine.backend.data.service.params">params</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#pine.backend.data.service.get">get</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#pine.backend.data.service.post">post</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#pine.backend.data.service.put">put</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#pine.backend.data.service.delete">delete</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#pine.backend.data.service.patch">patch</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#pine.backend.data.service.get_items">get_items</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#pine.backend.data.service.get_item_by_id">get_item_by_id</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#pine.backend.data.service.get_all_versions_of_item_by_id">get_all_versions_of_item_by_id</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#pine.backend.data.service.get_all_using_pagination">get_all_using_pagination</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#pine.backend.data.service.convert_response">convert_response</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#pine.backend.data.service.remove_eve_fields">remove_eve_fields</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#pine.backend.data.service.remove_nonupdatable_fields">remove_nonupdatable_fields</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="../bp/index.html"
+                        title="previous chapter"><code class="xref py py-mod docutils literal notranslate"><span class="pre">pine.backend.data.bp</span></code></a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="../users/index.html"
+                        title="next chapter"><code class="xref py py-mod docutils literal notranslate"><span class="pre">pine.backend.data.users</span></code></a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../../../../_sources/autoapi/pine/backend/data/service/index.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../../../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="../users/index.html" title="pine.backend.data.users"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="../bp/index.html" title="pine.backend.data.bp"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../../../index.html">pine  documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../../../index.html" >API Reference</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../../../index.html" ><code class="xref py py-mod docutils literal notranslate"><span class="pre">pine</span></code></a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="../../index.html" ><code class="xref py py-mod docutils literal notranslate"><span class="pre">pine.backend</span></code></a> &#187;</li>
+          <li class="nav-item nav-item-4"><a href="../index.html" ><code class="xref py py-mod docutils literal notranslate"><span class="pre">pine.backend.data</span></code></a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href=""><code class="xref py py-mod docutils literal notranslate"><span class="pre">pine.backend.data.service</span></code></a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright (C) 2019 The Johns Hopkins University Applied Physics Laboratory LLC..
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.1.2.
+    </div>
+  </body>
+</html>

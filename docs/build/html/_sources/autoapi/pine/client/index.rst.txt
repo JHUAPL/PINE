@@ -1,0 +1,626 @@
+:mod:`pine.client`
+==================
+
+.. py:module:: pine.client
+
+.. autoapi-nested-parse::
+
+   PINE client module.
+
+
+
+Submodules
+----------
+.. toctree::
+   :titlesonly:
+   :maxdepth: 1
+
+   client/index.rst
+   exceptions/index.rst
+   log/index.rst
+   models/index.rst
+   password/index.rst
+
+
+Package Contents
+----------------
+
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   pine.client.PineClient
+   pine.client.LocalPineClient
+   pine.client.CollectionBuilder
+
+
+
+Functions
+~~~~~~~~~
+
+.. autoapisummary::
+
+   pine.client.setup_logging
+
+
+.. py:class:: PineClient(backend_base_uri: str)
+
+   Bases: :class:`pine.client.client.BaseClient`
+
+   A client to access PINE (more specifically: the backend).
+       
+
+   Constructor.
+
+   :param backend_base_uri: the base URI for the backend server, e.g. ``"http://localhost:5000"``
+   :type backend_base_uri: str
+
+   .. method:: is_valid(self)
+
+
+      Returns whether this client and its connection(s) are valid.
+
+      :return: whether this client and its connection(s) are valid
+      :rtype: bool
+
+
+   .. method:: ping(self)
+
+
+      Pings the backend server and returns the result.
+
+      :raises exceptions.PineClientHttpException: if the HTTP request returns an error
+
+      :returns: the JSON response from the server (probably ``"pong"``)
+
+
+   .. method:: about(self)
+
+
+      Returns the 'about' dict from the server.
+
+      :raises exceptions.PineClientHttpException: if the HTTP request returns an error
+
+      :returns: the JSON response from the server
+      :rtype: dict
+
+
+   .. method:: get_logged_in_user(self)
+
+
+      Returns the currently logged in user, or None if not logged in.
+
+      :raises exceptions.PineClientHttpException: if the HTTP request returns an error
+
+      :returns: currently logged in user, or None if not logged in
+      :rtype: dict
+
+
+   .. method:: get_my_user_id(self)
+
+
+      Returns the ID of the logged in user, or None if not logged in.
+
+      :raises exceptions.PineClientHttpException: if the HTTP request returns an error
+
+      :returns: the ID of the logged in user, or None if not logged in
+      :rtype: str
+
+
+   .. method:: is_logged_in(self)
+
+
+      Returns whether the user is currently logged in or not.
+
+      :raises exceptions.PineClientHttpException: if the HTTP request returns an error
+
+      :returns: whether the user is currently logged in or not
+      :rtype: bool
+
+
+   .. method:: _check_login(self)
+
+
+      Checks whether user is logged in and raises an :py:class:`.exceptions.PineClientAuthException` if not.
+
+      :raises exceptions.PineClientAuthException: if not logged in
+      :raises exceptions.PineClientHttpException: if the HTTP request returns an error
+
+
+   .. method:: get_auth_module(self)
+
+
+      Returns the PINE authentication module, e.g. ``"eve"``.
+
+      :raises exceptions.PineClientHttpException: if the HTTP request returns an error
+
+      :returns: the PINE authentication module, e.g. ``"eve"``
+      :rtype: str
+
+
+   .. method:: login_eve(self, username: str, password: str)
+
+
+      Logs in using eve credentials, and returns whether it was successful.
+
+      :param username: username
+      :type username: str
+      :param password: password
+      :type password: str
+
+      :raises exceptions.PineClientAuthException: if auth module is not eve or login was not successful
+      :raises exceptions.PineClientHttpException: if the HTTP request returns an error
+
+      :returns: whether the login was successful
+      :rtype: bool
+
+
+   .. method:: logout(self)
+
+
+      Logs out the current user.
+
+      :raises exceptions.PineClientHttpException: if the HTTP request returns an error
+
+
+   .. method:: get_pipelines(self)
+
+
+      Returns all pipelines accessible to logged in user.
+
+      :raises exceptions.PineClientAuthException: if not logged in
+      :raises exceptions.PineClientHttpException: if the HTTP request returns an error
+
+      :returns: all pipelines accessible to logged in user
+      :rtype: list(dict)
+
+
+   .. method:: collection_builder(self, **kwargs: dict)
+
+
+      Makes and returns a new :py:class:`.models.CollectionBuilder` with the logged in user.
+
+      :param \**kwargs: any additional args to pass in to the constructor
+      :type \**kwargs: dict
+
+      :returns: a new :py:class:`.models.CollectionBuilder` with the logged in user
+      :rtype: models.CollectionBuilder
+
+
+   .. method:: create_collection(self, builder: models.CollectionBuilder)
+
+
+      Creates a collection using the current value of the given builder and returns its ID.
+
+      :param builder: collection builder
+      :type builder: models.CollectionBuilder
+
+      :raises exceptions.PineClientValueException: if the given collection is not valid, see :py:func:`.models.is_valid_collection`
+      :raises exceptions.PineClientAuthException: if not logged in
+      :raises exceptions.PineClientHttpException: if the HTTP request returns an error
+
+      :returns: the created collection's ID
+      :rtype: str
+
+
+   .. method:: get_collection_documents(self, collection_id: str, truncate: bool, truncate_length: int = 30)
+
+
+      Returns the documents in the given collection.
+
+      :param collection_id: the ID of the collection
+      :type collection_id: str
+      :param truncate: whether to truncate the document text (a good idea unless you need it)
+      :type truncate: bool
+      :param truncate_length: how many characters of the text you want if truncated, defaults to ``30``
+      :type truncate_length: int, optional
+
+      :returns: the documents in the given collection
+      :rtype: list(dict)
+
+
+   .. method:: add_document(self, document: dict = {}, creator_id: str = None, collection_id: str = None, overlap: int = None, text: str = None, metadata: dict = None)
+
+
+      Adds a new document to a collection and returns its ID.
+
+      Will use the logged in user ID for the creator_id if none is given.  Although all the
+      parameters are optional, you must provide values either in the document or through the
+      kwargs in order to make a valid document.
+
+      :param document: optional document dict, will be overridden with any kwargs, defaults to ``{}``
+      :type document: dict, optional
+      :param creator_id: optional creator_id for the document, defaults to ``None`` (not set)
+      :type creator_id: str, optional
+      :param collection_id: optional collection_id for the document, defaults to ``None`` (not set)
+      :type collection_id: str, optional
+      :param overlap: optional overlap for the document, defaults to ``None`` (not set)
+      :type overlap: int, optional
+      :param text: optional text for the document, defaults to ``None`` (not set)
+      :type text: str, optional
+      :param metadata: optional metadata for the document, defaults to ``None`` (not set)
+      :type metadata: dict, optional
+
+      :raises exceptions.PineClientValueException: if the given document parameters are not valid, see :py:func:`.models.is_valid_eve_document`
+      :raises exceptions.PineClientAuthException: if not logged in
+      :raises exceptions.PineClientHttpException: if the HTTP request returns an error
+
+      :returns: the created document's ID
+      :rtype: str
+
+
+   .. method:: add_documents(self, documents: typing.List[dict], creator_id: str = None, collection_id: str = None)
+
+
+      Adds multiple documents at once and returns their IDs.
+
+      Will use the logged in user ID for the creator_id if none is given.
+
+      :param documents: the documents to add
+      :type documents: list(dict)
+      :param creator_id: optional creator_id to set in the documents, defaults to ``None`` (not set)
+      :type creator_id: str, optional
+      :param collection_id: optional collection_id to set in the documents, defaults to ``None`` (not set)
+      :type collection_id: str, optional
+
+      :raises exceptions.PineClientValueException: if any of the given documents are not valid, see :py:func:`.models.is_valid_eve_document`
+      :raises exceptions.PineClientAuthException: if not logged in
+      :raises exceptions.PineClientHttpException: if the HTTP request returns an error
+
+      :returns: the created documents' IDs
+      :rtype: list(str)
+
+
+   .. method:: annotate_document(self, document_id: str, doc_annotations: typing.List[str], ner_annotations: typing.List[typing.Union[dict, list, tuple]])
+
+
+      Annotates the given document with the given values.
+
+      :param document_id: the document ID to annotate
+      :type document_id: str
+      :param doc_annotations: document annotations/labels
+      :type doc_annotations: list(str)
+      :param ner_annotations: NER annotations, where each annotation is either a list or a dict
+      :type ner_annotations: list
+
+      :raises exceptions.PineClientValueException: if any of the given annotations are not valid, see :py:func:`.models.is_valid_annotation`
+      :raises exceptions.PineClientAuthException: if not logged in
+      :raises exceptions.PineClientHttpException: if the HTTP request returns an error
+
+      :returns: the annotation ID
+      :rtype: str
+
+
+   .. method:: annotate_collection_documents(self, collection_id: str, document_annotations: dict, skip_document_updates=False)
+
+
+      Annotates documents in a collection.
+
+      :param collection_id: the ID of the collection containing the documents to annotate
+      :type collection_id: str
+      :param document_annotations: a dict containing "ner" list and "doc" list
+      :type document_annotations: dict
+      :param skip_document_updates: whether to skip updating the document "has_annotated" map, defaults to ``False``.
+                                    This should only be ``True`` if you properly set the
+                                    "has_annotated" map when you created the document.
+      :type skip_document_updates: bool
+
+      :raises exceptions.PineClientValueException: if any of the given annotations are not valid, see :py:func:`.models.is_valid_doc_annotations`
+      :raises exceptions.PineClientAuthException: if not logged in
+      :raises exceptions.PineClientHttpException: if the HTTP request returns an error
+
+      :returns: the annotation IDs
+      :rtype: list(str)
+
+
+
+.. py:class:: LocalPineClient(backend_base_uri: str, eve_base_uri: str, mongo_base_uri: str = None, mongo_dbname: str = EveClient.DEFAULT_DBNAME)
+
+   Bases: :class:`pine.client.client.PineClient`
+
+   A client for a local PINE instance, including an :py:class<.EveClient>.
+       
+
+   Constructor.
+
+   :param backend_base_uri: the base URI for the backend server, e.g. ``"http://localhost:5000"``
+   :type backend_base_uri: str
+   :param eve_base_uri: the base URI for the eve server, e.g. ``"http://localhost:5001"``
+   :type eve_base_uri: str
+   :param mongo_base_uri: the base URI for the mongodb server, e.g. ``"mongodb://localhost:27018"``, defaults to ``None``
+   :type mongo_base_uri: str, optional
+   :param mongo_dbname: the DB name that PINE uses, defaults to ``"pmap_nlp"``
+   :type mongo_dbname: str, optional
+
+   .. attribute:: eve
+      :annotation: :EveClient
+
+      The local :py:class:`EveClient` instance.
+
+      :type: EveClient
+
+
+   .. method:: is_valid(self)
+
+
+      Returns whether this client and its connection(s) are valid.
+
+      :return: whether this client and its connection(s) are valid
+      :rtype: bool
+
+
+
+.. function:: setup_logging()
+
+   Sets up logging, if configured to do so.
+
+   The environment variable named by :py:data:`CONFIG_FILE_ENV` is checked and, if present, is
+   passed to :py:func:`logging.config.dictConfig`.
+
+
+.. py:class:: CollectionBuilder(collection: dict = None, creator_id: str = None, viewers: typing.List[str] = None, annotators: typing.List[str] = None, labels: typing.List[str] = None, title: str = None, description: str = None, allow_overlapping_ner_annotations: bool = None, pipelineId: str = None, overlap: float = None, train_every: int = None, classifierParameters: dict = None, document_csv_file: str = None, document_csv_file_has_header: bool = None, document_csv_file_text_column: int = None, image_files: typing.List[str] = None)
+
+   Bases: :class:`object`
+
+   A class that can build the form and files fields that are necessary to create a collection.
+       
+
+   Constructor.
+
+   :param collection: starting parameters for the collection, defaults to ``None`` (not set)
+   :type collection: dict, optional
+   :param creator_id: user ID for the creator, see :py:meth:`.creator_id`, defaults to ``None`` (not set)
+   :type creator_id: str, optional
+   :param viewers: viewer IDs for the collection, see :py:meth:`.viewer`, defaults to ``None`` (not set)
+   :type viewers: list(str), optional
+   :param annotators: annotator IDs for the collection, see :py:meth:`.annotator`, defaults to ``None`` (not set)
+   :type annotators: list(str), optional
+   :param labels: labels for the collection, see :py:meth:`.label`, defaults to ``None`` (not set)
+   :type labels: list(str), optional
+   :param title: metadata title, see :py:meth:`.title`, defaults to ``None`` (not set)
+   :type title: str, optional
+   :param description: metadata description, see :py:meth:`.description`, defaults to ``None`` (not set)
+   :type description: str, optional
+   :param allow_overlapping_ner_annotations: optional configuration for allowing overlapping NER
+                                             annotations, see :py:meth:`.allow_overlapping_ner_annotations`,
+                                             defaults to ``None`` (not set)
+   :type allow_overlapping_ner_annotations: bool
+   :param pipelineId: the ID of the pipeline from which to create the classifier,
+                      see :py:meth:`.classifier`, defaults to ``None`` (not set)
+   :type pipelineId: str, optional
+   :param overlap: the classifier overlap, see :py:meth:`.classifier`, defaults to ``None`` (not set)
+   :type overlap: float, optional
+   :param train_every: train the model after this many documents are annotated,
+                       see :py:meth:`.classifier`, defaults to ``None`` (not set)
+   :type train_every: int, optional
+   :param classifierParameters: any parameters to pass to the classifier,
+                                see :py:meth:`.classifier`, defaults to ``None`` (not set)
+   :type classifierParameters: dict, optional
+   :param document_csv_file: the filename of the local document CSV file,
+                             see :py:meth:`.document_csv_File`, defaults to ``None`` (not set)
+   :type document_csv_file: str, optional
+   :param document_csv_file_has_header: whether the document CSV file has a header,
+                                        see :py:meth:`.document_csv_File`, defaults to ``None`` (not set)
+   :type document_csv_file_has_header: bool, optional
+   :param document_csv_file_text_column: if the document CSV file has headers, the document text
+                                         can be found in this column index (the others are used for
+                                         document metadata), see :py:meth:`.document_csv_File`,
+                                         defaults to ``None`` (not set)
+   :type document_csv_file_text_column: int, optional
+   :param image_files: any image files to add to the collection, see :py:meth:`.image_file`,
+                       defaults to ``None`` (not set)
+   :type image_files: list(str)
+
+   .. attribute:: form
+      
+
+      The form data.
+
+      :type: dict
+
+
+   .. attribute:: files
+      
+
+      The files data.
+
+      :type: dict
+
+
+   .. method:: collection(self)
+      :property:
+
+
+      Returns the collection information from the form.
+
+      :returns: collection information from the form
+      :rtype: dict
+
+
+   .. method:: form_json(self)
+      :property:
+
+
+      Returns the form where the values have been JSON-encoded.
+
+      :returns: the form where the values have been JSON-encoded
+      :rtype: dict
+
+
+   .. method:: creator_id(self, user_id: str)
+
+
+      Sets the creator_id to the given, and adds to viewers and annotators.
+
+      :param user_id: the user ID to use for the creator_id
+      :type user_id: str
+
+      :returns: self
+      :rtype: models.CollectionBuilder
+
+
+   .. method:: viewer(self, user_id: str)
+
+
+      Adds the given user to the list of viewers.
+
+      :param user_id: the user ID to add as a viewer
+      :type user_id: str
+
+      :returns: self
+      :rtype: models.CollectionBuilder
+
+
+   .. method:: annotator(self, user_id: str)
+
+
+      Adds the given user to the list of annotators.
+
+      :param user_id: the user ID to add as an annotator
+      :type user_id: str
+
+      :returns: self
+      :rtype: models.CollectionBuilder
+
+
+   .. method:: label(self, label: str)
+
+
+      Adds the given label to the collection.
+
+      :param label: label to add
+      :type label: str
+
+      :returns: self
+      :rtype: models.CollectionBuilder
+
+
+   .. method:: metadata(self, key: str, value: typing.Any)
+
+
+      Adds the given metadata key/value to the collection.
+
+      :param key: metadata key
+      :type key: str
+      :param value: metadata value
+
+      :returns: self
+      :rtype: models.CollectionBuilder
+
+
+   .. method:: title(self, title: str)
+
+
+      Sets the metadata title to the given.
+
+      :param title: collection title
+      :type title: str
+
+      :returns: self
+      :rtype: models.CollectionBuilder
+
+
+   .. method:: description(self, description: str)
+
+
+      Sets the metadata description to the given.
+
+      :param description: collection description
+      :type description: str
+
+      :returns: self
+      :rtype: models.CollectionBuilder
+
+
+   .. method:: configuration(self, key: str, value: typing.Any)
+
+
+      Adds the given configuration key/value to the collection.
+
+      :param key: configuration key
+      :type key: str
+      :param value: configuration value
+
+      :returns: self
+      :rtype: models.CollectionBuilder
+
+
+   .. method:: allow_overlapping_ner_annotations(self, allow_overlapping_ner_annotations: bool)
+
+
+      Sets the configuration value for allow_overlapping_ner_annotations to the given.
+
+      :param allow_overlapping_ner_annotations: whether to allow overlapping NER annotations
+      :type allow_overlapping_ner_annotations: bool
+
+      :returns: self
+      :rtype: models.CollectionBuilder
+
+
+   .. method:: classifier(self, pipelineId: str, overlap: float = 0, train_every: int = 100, classifierParameters: dict = {})
+
+
+      Sets classifier information for the created collection.
+
+      :param pipelineId: the ID of the pipeline from which to create the classifier
+      :type pipelineId: str
+      :param overlap: the classifier overlap, defaults to `0`
+      :type overlap: float, optional
+      :param train_every: train the model after this many documents are annotated, defaults to `100`
+      :type train_every: int, optional
+      :param classifierParameters: any parameters to pass to the classifier, defaults to ``{}``
+      :type classifierParameters: dict, optional
+
+      :returns: self
+      :rtype: models.CollectionBuilder
+
+
+   .. method:: document_csv_file(self, csv_filename: str, has_header: bool, text_column: int)
+
+
+      Sets the CSV file used to create documents to the given.
+
+      May raise an Exception if there is a problem opening the indicated file.
+
+      :param csv_filename: the filename of the local CSV file
+      :type csv_filename: str
+      :param has_header: whether the CSV file has a header
+      :type has_header: bool
+      :param text_column: if the CSV file has headers, the document text can be found in this column index
+                          (the others are used for document metadata)
+      :type text_column: int
+
+      :returns: self
+      :rtype: models.CollectionBuilder
+
+
+   .. method:: image_file(self, image_filename: str)
+
+
+      Adds the given image file to the collection.
+
+      May raise an Exception if there is a problem opening the indicated file.
+
+      :param image_filename: the filename of the local image file
+      :type image_filename: str
+
+      :returns: self
+      :rtype: models.CollectionBuilder
+
+
+   .. method:: is_valid(self, error_callback: typing.Callable[[str], None] = None)
+
+
+      Checks whether the currently set values are valid or not.
+
+      See :py:func:`.is_valid_collection`.
+
+      :param error_callback: optional callback that is called with any error messages, defaults to ``None``
+      :type error_callback: function, optional
+
+      :returns: whether the currently set values are valid or not
+      :rtype: bool
+
+
+

@@ -39,23 +39,36 @@ export class LoginComponent implements OnInit {
 
     ngOnInit() {
         this.returnUrl = this.route.snapshot.queryParams["returnUrl"] || this.appConfig.landingPage;
+        const checkBackend = "checkBackend" in this.route.snapshot.queryParams;
         if(this.isAuthenticated()) {
             this.router.navigate([this.returnUrl]);
-        } else {
-            this.authService.getLoginForm().subscribe((form: LoginForm) => {
-                this.form = form;
-                let fields = {};
-                for(let field of form.fields) {
-                    fields[field.name] = ["", Validators.required];
+        } else if(checkBackend) {
+            this.authService.checkBackend(this.returnUrl).subscribe((loggedIn: boolean) => {
+                if(loggedIn) {
+                    this.router.navigate([this.returnUrl]);
+                } else {
+                    this.setupForm();
                 }
-                this.loginForm = this.formBuilder.group(fields);
-                this.loading.loading = false;
-            }, (error) => {
-                this.loading.error = true;
-                this.loading.errorMessage = `Error loading login form: ${error}.`;
-                this.loading.loading = false;
             });
+        } else {
+            this.setupForm();
         }
+    }
+
+    private setupForm() {
+        this.authService.getLoginForm().subscribe((form: LoginForm) => {
+            this.form = form;
+            let fields = {};
+            for(let field of form.fields) {
+                fields[field.name] = ["", Validators.required];
+            }
+            this.loginForm = this.formBuilder.group(fields);
+            this.loading.loading = false;
+        }, (error) => {
+            this.loading.error = true;
+            this.loading.errorMessage = `Error loading login form: ${error}.`;
+            this.loading.loading = false;
+        });
     }
 
     isAuthenticated(): boolean {

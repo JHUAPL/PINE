@@ -1,0 +1,16 @@
+# (C) 2019 The Johns Hopkins University Applied Physics Laboratory LLC.
+version: "3"
+
+services:
+
+  backend:
+    ports:
+      - "${BACKEND_PORT}:${BACKEND_PORT}"
+
+  eve:
+    ports:
+      - "${EVE_PORT}:${EVE_PORT}"
+      - "${MONGO_PORT}:${MONGO_PORT}"
+
+volumes:
+  eve_test_db:

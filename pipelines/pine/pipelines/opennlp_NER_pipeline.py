@@ -75,7 +75,11 @@ class opennlp_NER(Pipeline):
         if exists(self.__ner_path):
             os.environ['CLASSPATH'] = os.path.join(self.__ner_path, 'lib', '*')
         else:
-            raise ImportError("ERROR: OpenNLP Library not found")
+            self.__ner_path = 'pine/pipelines/resources/apache-opennlp-1.9.0'
+            if exists(self.__ner_path):
+                os.environ['CLASSPATH'] = os.path.join(self.__ner_path, 'lib', '*')
+            else:
+                raise ImportError("ERROR: OpenNLP Library not found")
 
 
         #if you get to this point, java and opennlp library should be located

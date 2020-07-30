@@ -7,6 +7,7 @@ export interface DBClassifier extends DBObject {
     labels: string[];
     overlap: number;
     pipeline_id: string;
+    parameters: {[key: string]: string};
 }
 
 export interface DBClassifiers extends DBObjects {
@@ -19,6 +20,7 @@ export class Classifier extends ModelObject implements DBClassifier {
     public labels: string[];
     public overlap: number;
     public pipeline_id: string;
+    public parameters: {[key: string]: string};
 
     public static fromDB(dbObj: DBClassifier): Classifier {
         return <Classifier>Object.setPrototypeOf(dbObj, new Classifier());

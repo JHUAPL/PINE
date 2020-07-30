@@ -1,0 +1,60 @@
+:mod:`pine.backend.pineiaa.bratiaa.utils`
+=========================================
+
+.. py:module:: pine.backend.pineiaa.bratiaa.utils
+
+
+Module Contents
+---------------
+
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   pine.backend.pineiaa.bratiaa.utils.TokenOverlap
+
+
+
+Functions
+~~~~~~~~~
+
+.. autoapisummary::
+
+   pine.backend.pineiaa.bratiaa.utils.tokenize
+   pine.backend.pineiaa.bratiaa.utils.read
+
+
+.. data:: ENCODING
+   :annotation: = utf-8
+
+   
+
+.. data:: TOKEN
+   
+
+   
+
+.. function:: tokenize(text)
+
+
+.. function:: read(path, encoding=ENCODING, newline='\r\n', mode='r')
+
+
+.. py:class:: TokenOverlap(text, tokens)
+
+   Data structure for quick lookup of tokens overlapping with given span.
+   Assumes that the provided list of tokens is sorted by indices!
+
+   Initialize self.  See help(type(self)) for accurate signature.
+
+   .. method:: compute_mapping(text_length, tokens)
+      :staticmethod:
+
+
+
+   .. method:: overlapping_tokens(self, start, end)
+
+
+
+

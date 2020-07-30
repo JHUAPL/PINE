@@ -1,0 +1,21 @@
+:mod:`pine.backend.annotations`
+===============================
+
+.. py:module:: pine.backend.annotations
+
+.. autoapi-nested-parse::
+
+   This module contains the api methods required to perform and display annotations in the front-end and store the
+   annotations in the backend
+
+
+
+Submodules
+----------
+.. toctree::
+   :titlesonly:
+   :maxdepth: 1
+
+   bp/index.rst
+
+

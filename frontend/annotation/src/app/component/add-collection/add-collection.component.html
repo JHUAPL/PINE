@@ -307,11 +307,22 @@
                 </mat-expansion-panel>
             </mat-accordion>
 
-        </mat-card-content>
+            <mat-error *ngIf="hadError">
+                {{ errorMessage }}
+            </mat-error>
 
-        <mat-error *ngIf="hadError">
-            {{ errorMessage }}
-        </mat-error>
+            <mat-card *ngIf="submitting" class="submitting">
+                <mat-card-title>
+                    <h2 *ngIf="submittingPercent < 100">Uploading Files...</h2>
+                    <h2 *ngIf="submittingPercent >= 100">Processing...</h2>
+                </mat-card-title>
+                <mat-card-content>
+                    <mat-progress-spinner [mode]="submittingPercent < 100 ? 'determinate' : 'indeterminate'"
+                                          [value]="submittingPercent"></mat-progress-spinner>
+                </mat-card-content>
+            </mat-card>
+
+        </mat-card-content>
 
         <mat-card-actions>
             <button mat-raised-button [disabled]="loading"><span class="material-icons">save</span>Save</button>

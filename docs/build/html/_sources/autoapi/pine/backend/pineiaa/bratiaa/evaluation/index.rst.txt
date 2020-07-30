@@ -1,0 +1,51 @@
+:mod:`pine.backend.pineiaa.bratiaa.evaluation`
+==============================================
+
+.. py:module:: pine.backend.pineiaa.bratiaa.evaluation
+
+.. autoapi-nested-parse::
+
+   Functions for computing the difference between two sets of annotations.
+
+
+
+Module Contents
+---------------
+
+
+Functions
+~~~~~~~~~
+
+.. autoapisummary::
+
+   pine.backend.pineiaa.bratiaa.evaluation.exact_match_instance_evaluation
+   pine.backend.pineiaa.bratiaa.evaluation.exact_match_token_evaluation
+   pine.backend.pineiaa.bratiaa.evaluation.counter2list
+   pine.backend.pineiaa.bratiaa.evaluation._read_token_annotations
+
+
+.. data:: Annotation
+   
+
+   
+
+.. function:: exact_match_instance_evaluation(ann_list_1, ann_list2, tokens=None)
+
+
+.. function:: exact_match_token_evaluation(ann_list_1, ann_list_2, tokens=None)
+
+   Annotations are split into token-sized bits before true positives, false positives and false negatives are computed.
+
+   Sub-token annotations are expanded to full tokens. Long annotations will influence the results more than short
+   annotations. Boundary errors for adjacent annotations with the same label are ignored!
+
+
+.. function:: counter2list(c)
+
+
+.. function:: _read_token_annotations(ann_list, tokens)
+
+   Yields a new annotation for each token overlapping with an annotation. If annotations are overlapping each other,
+   there will be multiple annotations for a single token.
+
+

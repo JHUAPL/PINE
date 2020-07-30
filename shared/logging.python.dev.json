@@ -37,6 +37,7 @@
                 "console_json"
             ]
         },
+        "pine": {},
         "gunicorn": {
             "handlers": [
                 "console"

@@ -1,0 +1,127 @@
+:mod:`pine.pipelines.opennlp_NER_pipeline`
+==========================================
+
+.. py:module:: pine.pipelines.opennlp_NER_pipeline
+
+
+Module Contents
+---------------
+
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   pine.pipelines.opennlp_NER_pipeline.opennlp_NER
+
+
+
+.. data:: config
+   
+
+   
+
+.. data:: logger
+   
+
+   
+
+.. py:class:: opennlp_NER(java_dir=None, ner_path=None, tmp_dir=None)
+
+   Bases: :class:`pine.pipelines.pipeline.Pipeline`
+
+   Initialize self.  See help(type(self)) for accurate signature.
+
+   .. attribute:: __jar
+      :annotation: = 
+
+      
+
+   .. attribute:: __jdk_dir
+      :annotation: = 
+
+      
+
+   .. attribute:: __temp_dir
+      
+
+      
+
+   .. attribute:: __train_file
+      :annotation: = 
+
+      
+
+   .. attribute:: __test_file
+      :annotation: = 
+
+      
+
+   .. attribute:: __model
+      
+
+      
+
+   .. attribute:: __nameFinder
+      
+
+      
+
+   .. attribute:: __id
+      
+
+      
+
+   .. method:: fit(self, X, y, params)
+
+
+
+   .. method:: predict(self, X, Xid)
+
+
+
+   .. method:: predict_proba(self, X, Xid, get_all_labels=False, include_other=False)
+
+
+
+   .. method:: next_example(self, X, Xid)
+
+
+
+   .. method:: save_model(self, model_name)
+
+
+
+   .. method:: load_model(self, model_name)
+
+
+
+   .. method:: find_all_init(self)
+
+
+
+   .. method:: find_all(self, tokens)
+
+
+
+   .. method:: get_id(self)
+
+
+
+   .. method:: format_data(self, X, y)
+
+
+
+   .. method:: convert_ann_collection_to_per_token(self, annotations, tokens)
+
+
+
+   .. method:: evaluate(self, X, y, Xid)
+
+
+
+   .. method:: evaluate_orig(self, X, y, Xid)
+
+
+
+

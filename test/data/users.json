@@ -1,0 +1,38 @@
+[
+    {
+        "_id": "admin",
+        "firstname": "PINE",
+        "lastname": "Administrator",
+        "email": "admin@pine.jhuapl.edu",
+        "description": "Administrator account for PINE.",
+        "role": ["user", "administrator"],
+        "password": "admin@pine.jhuapl.edu"
+    },
+    {
+        "_id": "ada",
+        "firstname": "Ada",
+        "lastname": "Lovelace",
+        "email": "ada@pine.jhuapl.edu",
+        "description": "The first computer programmer.",
+        "role": ["user"],
+        "password": "ada@pine.jhuapl.edu"
+    },
+    {
+        "_id": "margaret",
+        "firstname": "Margaret",
+        "lastname": "Hamilton",
+        "email": "margaret@pine.jhuapl.edu",
+        "description": "Software engineer who took humans to the moon.",
+        "role": ["user"],
+        "password": "margaret@pine.jhuapl.edu"
+    },
+    {
+        "_id": "katherine",
+        "firstname": "Katherine",
+        "lastname": "Johnson",
+        "email": "katherine@pine.jhuapl.edu",
+        "description": "Hidden figure responsible for critical space calculations.",
+        "role": ["user"],
+        "password": "katherine@pine.jhuapl.edu"
+    }
+]

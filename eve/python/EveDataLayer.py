@@ -8,11 +8,13 @@ import os
 import subprocess
 import tempfile
 
-from eve import Eve
+import eve
 from flask import jsonify, request, send_file
+from flask import __version__ as flask_version
 from flask_cors import CORS
 from werkzeug import exceptions
 
+from settings import PINE_EVE_VERSION_STR, LOGGER
 from Jhed import JHED, JHEDEncoder, JHEDValidator
 
 def post_documents_get_callback(request, payload):
@@ -48,9 +50,23 @@ def setup_logging():
 def create_app():
     setup_logging()
     
-    #app = Eve()
-    app = Eve(json_encoder=JHEDEncoder, validator=JHEDValidator)
+    #app = eve.Eve()
+    app = eve.Eve(json_encoder=JHEDEncoder, validator=JHEDValidator)
     app.on_post_GET_documents += post_documents_get_callback
+
+    @app.route("/about", methods = ["GET"])
+    def about():
+        about = {
+            "version": PINE_EVE_VERSION_STR,
+            "eve_version": eve.__version__,
+            "flask_version": flask_version
+        }
+        LOGGER.info(about)
+        return jsonify(about)
+
+    @app.route("/system/ping", methods=["GET"])
+    def ping():
+        return jsonify("pong")
 
     @app.route("/system/export", methods = ["GET"])
     def system_export():

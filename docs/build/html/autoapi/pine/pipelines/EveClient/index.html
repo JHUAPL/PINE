@@ -1,0 +1,248 @@
+
+
+<!doctype html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>pine.pipelines.EveClient &#8212; pine  documentation</title>
+    <link rel="stylesheet" href="../../../../_static/bizstyle.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/graphviz.css" />
+    
+    <script id="documentation_options" data-url_root="../../../../" src="../../../../_static/documentation_options.js"></script>
+    <script src="../../../../_static/jquery.js"></script>
+    <script src="../../../../_static/underscore.js"></script>
+    <script src="../../../../_static/doctools.js"></script>
+    <script src="../../../../_static/language_data.js"></script>
+    <script src="../../../../_static/bizstyle.js"></script>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" />
+    <link rel="next" title="pine.pipelines.NERWrapper" href="../NERWrapper/index.html" />
+    <link rel="prev" title="pine.pipelines.shared.transform" href="../shared/transform/index.html" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <!--[if lt IE 9]>
+    <script src="_static/css3-mediaqueries.js"></script>
+    <![endif]-->
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="../NERWrapper/index.html" title="pine.pipelines.NERWrapper"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="../shared/transform/index.html" title="pine.pipelines.shared.transform"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../../index.html">pine  documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../../index.html" >API Reference</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../../index.html" ><code class="xref py py-mod docutils literal notranslate"><span class="pre">pine</span></code></a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="../index.html" accesskey="U"><code class="xref py py-mod docutils literal notranslate"><span class="pre">pine.pipelines</span></code></a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href=""><code class="xref py py-mod docutils literal notranslate"><span class="pre">pine.pipelines.EveClient</span></code></a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="module-pine.pipelines.EveClient">
+<span id="pine-pipelines-eveclient"></span><h1><a class="reference internal" href="#module-pine.pipelines.EveClient" title="pine.pipelines.EveClient"><code class="xref py py-mod docutils literal notranslate"><span class="pre">pine.pipelines.EveClient</span></code></a><a class="headerlink" href="#module-pine.pipelines.EveClient" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="module-contents">
+<h2>Module Contents<a class="headerlink" href="#module-contents" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="classes">
+<h3>Classes<a class="headerlink" href="#classes" title="Permalink to this headline">¶</a></h3>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pine.pipelines.EveClient.EveClient" title="pine.pipelines.EveClient.EveClient"><code class="xref py py-obj docutils literal notranslate"><span class="pre">EveClient</span></code></a>(entry_point='{}:{}'.format(config.EVE_HOST, config.EVE_PORT))</p></td>
+<td><p>Initialize self.  See help(type(self)) for accurate signature.</p></td>
+</tr>
+</tbody>
+</table>
+<dl class="py data">
+<dt id="pine.pipelines.EveClient.logger">
+<code class="sig-prename descclassname">pine.pipelines.EveClient.</code><code class="sig-name descname">logger</code><a class="headerlink" href="#pine.pipelines.EveClient.logger" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py data">
+<dt id="pine.pipelines.EveClient.config">
+<code class="sig-prename descclassname">pine.pipelines.EveClient.</code><code class="sig-name descname">config</code><a class="headerlink" href="#pine.pipelines.EveClient.config" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py class">
+<dt id="pine.pipelines.EveClient.EveClient">
+<em class="property">class </em><code class="sig-prename descclassname">pine.pipelines.EveClient.</code><code class="sig-name descname">EveClient</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">entry_point</span><span class="o">=</span><span class="default_value">'{}:{}'.format(config.EVE_HOST, config.EVE_PORT)</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.pipelines.EveClient.EveClient" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>Initialize self.  See help(type(self)) for accurate signature.</p>
+<dl class="py attribute">
+<dt id="pine.pipelines.EveClient.EveClient.eve_headers">
+<code class="sig-name descname">eve_headers</code><a class="headerlink" href="#pine.pipelines.EveClient.EveClient.eve_headers" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="pine.pipelines.EveClient.EveClient.add">
+<code class="sig-name descname">add</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="n">resource</span></em>, <em class="sig-param"><span class="n">add_object</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.pipelines.EveClient.EveClient.add" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="pine.pipelines.EveClient.EveClient.get_obj">
+<code class="sig-name descname">get_obj</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="n">resource</span></em>, <em class="sig-param"><span class="n">id</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.pipelines.EveClient.EveClient.get_obj" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="pine.pipelines.EveClient.EveClient.get_all_items">
+<code class="sig-name descname">get_all_items</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="n">resource</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.pipelines.EveClient.EveClient.get_all_items" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="pine.pipelines.EveClient.EveClient.get_all_ids">
+<code class="sig-name descname">get_all_ids</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="n">resource</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.pipelines.EveClient.EveClient.get_all_ids" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="pine.pipelines.EveClient.EveClient.get_items">
+<code class="sig-name descname">get_items</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="n">resource</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.pipelines.EveClient.EveClient.get_items" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="pine.pipelines.EveClient.EveClient.get_documents">
+<code class="sig-name descname">get_documents</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="n">collection_id</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.pipelines.EveClient.EveClient.get_documents" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="pine.pipelines.EveClient.EveClient.get_docs_with_annotations">
+<code class="sig-name descname">get_docs_with_annotations</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="n">collection_id</span></em>, <em class="sig-param"><span class="n">doc_map</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.pipelines.EveClient.EveClient.get_docs_with_annotations" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="pine.pipelines.EveClient.EveClient.update">
+<code class="sig-name descname">update</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="n">resource</span></em>, <em class="sig-param"><span class="n">id</span></em>, <em class="sig-param"><span class="n">etag</span></em>, <em class="sig-param"><span class="n">update_obj</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.pipelines.EveClient.EveClient.update" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+</div>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../../../../index.html">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">pine.pipelines.EveClient</span></code></a><ul>
+<li><a class="reference internal" href="#module-contents">Module Contents</a><ul>
+<li><a class="reference internal" href="#classes">Classes</a><ul>
+<li><a class="reference internal" href="#pine.pipelines.EveClient.logger">logger</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#pine.pipelines.EveClient.config">config</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#pine.pipelines.EveClient.EveClient">EveClient</a><ul>
+<li><a class="reference internal" href="#pine.pipelines.EveClient.EveClient.eve_headers">eve_headers</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#pine.pipelines.EveClient.EveClient.add">add</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#pine.pipelines.EveClient.EveClient.get_obj">get_obj</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#pine.pipelines.EveClient.EveClient.get_all_items">get_all_items</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#pine.pipelines.EveClient.EveClient.get_all_ids">get_all_ids</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#pine.pipelines.EveClient.EveClient.get_items">get_items</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#pine.pipelines.EveClient.EveClient.get_documents">get_documents</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#pine.pipelines.EveClient.EveClient.get_docs_with_annotations">get_docs_with_annotations</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#pine.pipelines.EveClient.EveClient.update">update</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="../shared/transform/index.html"
+                        title="previous chapter"><code class="xref py py-mod docutils literal notranslate"><span class="pre">pine.pipelines.shared.transform</span></code></a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="../NERWrapper/index.html"
+                        title="next chapter"><code class="xref py py-mod docutils literal notranslate"><span class="pre">pine.pipelines.NERWrapper</span></code></a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../../../_sources/autoapi/pine/pipelines/EveClient/index.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="../NERWrapper/index.html" title="pine.pipelines.NERWrapper"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="../shared/transform/index.html" title="pine.pipelines.shared.transform"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../../index.html">pine  documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../../index.html" >API Reference</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../../index.html" ><code class="xref py py-mod docutils literal notranslate"><span class="pre">pine</span></code></a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="../index.html" ><code class="xref py py-mod docutils literal notranslate"><span class="pre">pine.pipelines</span></code></a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href=""><code class="xref py py-mod docutils literal notranslate"><span class="pre">pine.pipelines.EveClient</span></code></a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright (C) 2019 The Johns Hopkins University Applied Physics Laboratory LLC..
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.1.2.
+    </div>
+  </body>
+</html>

@@ -1,0 +1,31 @@
+:mod:`pine.backend.auth.vegas`
+==============================
+
+.. py:module:: pine.backend.auth.vegas
+
+
+Module Contents
+---------------
+
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   pine.backend.auth.vegas.VegasAuthModule
+
+
+
+.. py:class:: VegasAuthModule(app, bp)
+
+   Bases: :class:`pine.backend.auth.oauth.OAuthModule`
+
+   .. method:: register_oauth(self, oauth, app)
+
+
+
+   .. method:: get_login_form_button_text(self)
+
+
+
+

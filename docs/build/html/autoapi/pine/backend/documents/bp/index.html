@@ -1,0 +1,344 @@
+
+
+<!doctype html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>pine.backend.documents.bp &#8212; pine  documentation</title>
+    <link rel="stylesheet" href="../../../../../_static/bizstyle.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../../../../_static/graphviz.css" />
+    
+    <script id="documentation_options" data-url_root="../../../../../" src="../../../../../_static/documentation_options.js"></script>
+    <script src="../../../../../_static/jquery.js"></script>
+    <script src="../../../../../_static/underscore.js"></script>
+    <script src="../../../../../_static/doctools.js"></script>
+    <script src="../../../../../_static/language_data.js"></script>
+    <script src="../../../../../_static/bizstyle.js"></script>
+    <link rel="index" title="Index" href="../../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../../search.html" />
+    <link rel="next" title="pine.backend.job_manager" href="../../job_manager/index.html" />
+    <link rel="prev" title="pine.backend.documents" href="../index.html" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <!--[if lt IE 9]>
+    <script src="_static/css3-mediaqueries.js"></script>
+    <![endif]-->
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="../../job_manager/index.html" title="pine.backend.job_manager"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="../index.html" title="pine.backend.documents"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../../../index.html">pine  documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../../../index.html" >API Reference</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../../../index.html" ><code class="xref py py-mod docutils literal notranslate"><span class="pre">pine</span></code></a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="../../index.html" ><code class="xref py py-mod docutils literal notranslate"><span class="pre">pine.backend</span></code></a> &#187;</li>
+          <li class="nav-item nav-item-4"><a href="../index.html" accesskey="U"><code class="xref py py-mod docutils literal notranslate"><span class="pre">pine.backend.documents</span></code></a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href=""><code class="xref py py-mod docutils literal notranslate"><span class="pre">pine.backend.documents.bp</span></code></a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="module-pine.backend.documents.bp">
+<span id="pine-backend-documents-bp"></span><h1><a class="reference internal" href="#module-pine.backend.documents.bp" title="pine.backend.documents.bp"><code class="xref py py-mod docutils literal notranslate"><span class="pre">pine.backend.documents.bp</span></code></a><a class="headerlink" href="#module-pine.backend.documents.bp" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="module-contents">
+<h2>Module Contents<a class="headerlink" href="#module-contents" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="functions">
+<h3>Functions<a class="headerlink" href="#functions" title="Permalink to this headline">¶</a></h3>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pine.backend.documents.bp._document_user_can_projection" title="pine.backend.documents.bp._document_user_can_projection"><code class="xref py py-obj docutils literal notranslate"><span class="pre">_document_user_can_projection</span></code></a>()</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#pine.backend.documents.bp.get_collection_ids_for" title="pine.backend.documents.bp.get_collection_ids_for"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_collection_ids_for</span></code></a>(document_ids)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pine.backend.documents.bp.user_can_annotate" title="pine.backend.documents.bp.user_can_annotate"><code class="xref py py-obj docutils literal notranslate"><span class="pre">user_can_annotate</span></code></a>(document)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#pine.backend.documents.bp.user_can_view" title="pine.backend.documents.bp.user_can_view"><code class="xref py py-obj docutils literal notranslate"><span class="pre">user_can_view</span></code></a>(document)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pine.backend.documents.bp.user_can_modify_metadata" title="pine.backend.documents.bp.user_can_modify_metadata"><code class="xref py py-obj docutils literal notranslate"><span class="pre">user_can_modify_metadata</span></code></a>(document)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#pine.backend.documents.bp.user_can_annotate_by_id" title="pine.backend.documents.bp.user_can_annotate_by_id"><code class="xref py py-obj docutils literal notranslate"><span class="pre">user_can_annotate_by_id</span></code></a>(document_id)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pine.backend.documents.bp.user_can_annotate_by_ids" title="pine.backend.documents.bp.user_can_annotate_by_ids"><code class="xref py py-obj docutils literal notranslate"><span class="pre">user_can_annotate_by_ids</span></code></a>(document_ids)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#pine.backend.documents.bp.user_can_view_by_id" title="pine.backend.documents.bp.user_can_view_by_id"><code class="xref py py-obj docutils literal notranslate"><span class="pre">user_can_view_by_id</span></code></a>(document_id)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pine.backend.documents.bp.user_can_modify_metadata_by_id" title="pine.backend.documents.bp.user_can_modify_metadata_by_id"><code class="xref py py-obj docutils literal notranslate"><span class="pre">user_can_modify_metadata_by_id</span></code></a>(document_id)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#pine.backend.documents.bp.get_document" title="pine.backend.documents.bp.get_document"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_document</span></code></a>(doc_id)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pine.backend.documents.bp.get_documents_in_collection" title="pine.backend.documents.bp.get_documents_in_collection"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_documents_in_collection</span></code></a>(col_id, page)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#pine.backend.documents.bp._check_documents" title="pine.backend.documents.bp._check_documents"><code class="xref py py-obj docutils literal notranslate"><span class="pre">_check_documents</span></code></a>(documents)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pine.backend.documents.bp.add_document" title="pine.backend.documents.bp.add_document"><code class="xref py py-obj docutils literal notranslate"><span class="pre">add_document</span></code></a>()</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#pine.backend.documents.bp.can_annotate_document" title="pine.backend.documents.bp.can_annotate_document"><code class="xref py py-obj docutils literal notranslate"><span class="pre">can_annotate_document</span></code></a>(doc_id)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pine.backend.documents.bp.can_modify_metadata" title="pine.backend.documents.bp.can_modify_metadata"><code class="xref py py-obj docutils literal notranslate"><span class="pre">can_modify_metadata</span></code></a>(doc_id)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#pine.backend.documents.bp.update_metadata" title="pine.backend.documents.bp.update_metadata"><code class="xref py py-obj docutils literal notranslate"><span class="pre">update_metadata</span></code></a>(doc_id)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pine.backend.documents.bp.init_app" title="pine.backend.documents.bp.init_app"><code class="xref py py-obj docutils literal notranslate"><span class="pre">init_app</span></code></a>(app)</p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
+<dl class="py data">
+<dt id="pine.backend.documents.bp.bp">
+<code class="sig-prename descclassname">pine.backend.documents.bp.</code><code class="sig-name descname">bp</code><a class="headerlink" href="#pine.backend.documents.bp.bp" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt id="pine.backend.documents.bp._document_user_can_projection">
+<code class="sig-prename descclassname">pine.backend.documents.bp.</code><code class="sig-name descname">_document_user_can_projection</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.documents.bp._document_user_can_projection" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt id="pine.backend.documents.bp.get_collection_ids_for">
+<code class="sig-prename descclassname">pine.backend.documents.bp.</code><code class="sig-name descname">get_collection_ids_for</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">document_ids</span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#set" title="(in Python v3.8)">set</a><a class="headerlink" href="#pine.backend.documents.bp.get_collection_ids_for" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt id="pine.backend.documents.bp.user_can_annotate">
+<code class="sig-prename descclassname">pine.backend.documents.bp.</code><code class="sig-name descname">user_can_annotate</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">document</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.documents.bp.user_can_annotate" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt id="pine.backend.documents.bp.user_can_view">
+<code class="sig-prename descclassname">pine.backend.documents.bp.</code><code class="sig-name descname">user_can_view</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">document</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.documents.bp.user_can_view" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt id="pine.backend.documents.bp.user_can_modify_metadata">
+<code class="sig-prename descclassname">pine.backend.documents.bp.</code><code class="sig-name descname">user_can_modify_metadata</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">document</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.documents.bp.user_can_modify_metadata" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt id="pine.backend.documents.bp.user_can_annotate_by_id">
+<code class="sig-prename descclassname">pine.backend.documents.bp.</code><code class="sig-name descname">user_can_annotate_by_id</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">document_id</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.documents.bp.user_can_annotate_by_id" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt id="pine.backend.documents.bp.user_can_annotate_by_ids">
+<code class="sig-prename descclassname">pine.backend.documents.bp.</code><code class="sig-name descname">user_can_annotate_by_ids</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">document_ids</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.documents.bp.user_can_annotate_by_ids" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt id="pine.backend.documents.bp.user_can_view_by_id">
+<code class="sig-prename descclassname">pine.backend.documents.bp.</code><code class="sig-name descname">user_can_view_by_id</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">document_id</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.documents.bp.user_can_view_by_id" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt id="pine.backend.documents.bp.user_can_modify_metadata_by_id">
+<code class="sig-prename descclassname">pine.backend.documents.bp.</code><code class="sig-name descname">user_can_modify_metadata_by_id</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">document_id</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.documents.bp.user_can_modify_metadata_by_id" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt id="pine.backend.documents.bp.get_document">
+<code class="sig-prename descclassname">pine.backend.documents.bp.</code><code class="sig-name descname">get_document</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">doc_id</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.documents.bp.get_document" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt id="pine.backend.documents.bp.get_documents_in_collection">
+<code class="sig-prename descclassname">pine.backend.documents.bp.</code><code class="sig-name descname">get_documents_in_collection</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">col_id</span></em>, <em class="sig-param"><span class="n">page</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.documents.bp.get_documents_in_collection" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt id="pine.backend.documents.bp._check_documents">
+<code class="sig-prename descclassname">pine.backend.documents.bp.</code><code class="sig-name descname">_check_documents</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">documents</span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.8)">dict</a><a class="headerlink" href="#pine.backend.documents.bp._check_documents" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt id="pine.backend.documents.bp.add_document">
+<code class="sig-prename descclassname">pine.backend.documents.bp.</code><code class="sig-name descname">add_document</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.documents.bp.add_document" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt id="pine.backend.documents.bp.can_annotate_document">
+<code class="sig-prename descclassname">pine.backend.documents.bp.</code><code class="sig-name descname">can_annotate_document</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">doc_id</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.documents.bp.can_annotate_document" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt id="pine.backend.documents.bp.can_modify_metadata">
+<code class="sig-prename descclassname">pine.backend.documents.bp.</code><code class="sig-name descname">can_modify_metadata</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">doc_id</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.documents.bp.can_modify_metadata" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt id="pine.backend.documents.bp.update_metadata">
+<code class="sig-prename descclassname">pine.backend.documents.bp.</code><code class="sig-name descname">update_metadata</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">doc_id</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.documents.bp.update_metadata" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt id="pine.backend.documents.bp.init_app">
+<code class="sig-prename descclassname">pine.backend.documents.bp.</code><code class="sig-name descname">init_app</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">app</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.documents.bp.init_app" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+</div>
+</div>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../../../../../index.html">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">pine.backend.documents.bp</span></code></a><ul>
+<li><a class="reference internal" href="#module-contents">Module Contents</a><ul>
+<li><a class="reference internal" href="#functions">Functions</a><ul>
+<li><a class="reference internal" href="#pine.backend.documents.bp.bp">bp</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#pine.backend.documents.bp._document_user_can_projection">_document_user_can_projection</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#pine.backend.documents.bp.get_collection_ids_for">get_collection_ids_for</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#pine.backend.documents.bp.user_can_annotate">user_can_annotate</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#pine.backend.documents.bp.user_can_view">user_can_view</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#pine.backend.documents.bp.user_can_modify_metadata">user_can_modify_metadata</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#pine.backend.documents.bp.user_can_annotate_by_id">user_can_annotate_by_id</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#pine.backend.documents.bp.user_can_annotate_by_ids">user_can_annotate_by_ids</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#pine.backend.documents.bp.user_can_view_by_id">user_can_view_by_id</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#pine.backend.documents.bp.user_can_modify_metadata_by_id">user_can_modify_metadata_by_id</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#pine.backend.documents.bp.get_document">get_document</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#pine.backend.documents.bp.get_documents_in_collection">get_documents_in_collection</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#pine.backend.documents.bp._check_documents">_check_documents</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#pine.backend.documents.bp.add_document">add_document</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#pine.backend.documents.bp.can_annotate_document">can_annotate_document</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#pine.backend.documents.bp.can_modify_metadata">can_modify_metadata</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#pine.backend.documents.bp.update_metadata">update_metadata</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#pine.backend.documents.bp.init_app">init_app</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="../index.html"
+                        title="previous chapter"><code class="xref py py-mod docutils literal notranslate"><span class="pre">pine.backend.documents</span></code></a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="../../job_manager/index.html"
+                        title="next chapter"><code class="xref py py-mod docutils literal notranslate"><span class="pre">pine.backend.job_manager</span></code></a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../../../../_sources/autoapi/pine/backend/documents/bp/index.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../../../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="../../job_manager/index.html" title="pine.backend.job_manager"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="../index.html" title="pine.backend.documents"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../../../index.html">pine  documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../../../index.html" >API Reference</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../../../index.html" ><code class="xref py py-mod docutils literal notranslate"><span class="pre">pine</span></code></a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="../../index.html" ><code class="xref py py-mod docutils literal notranslate"><span class="pre">pine.backend</span></code></a> &#187;</li>
+          <li class="nav-item nav-item-4"><a href="../index.html" ><code class="xref py py-mod docutils literal notranslate"><span class="pre">pine.backend.documents</span></code></a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href=""><code class="xref py py-mod docutils literal notranslate"><span class="pre">pine.backend.documents.bp</span></code></a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright (C) 2019 The Johns Hopkins University Applied Physics Laboratory LLC..
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.1.2.
+    </div>
+  </body>
+</html>

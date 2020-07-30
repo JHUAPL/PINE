@@ -1,49 +1,65 @@
+# PINE (Pmap Interface for Nlp Experimentation)
+
+                ██████╗ ██╗███╗   ██╗███████╗
+                ██╔══██╗██║████╗  ██║██╔════╝
+                ██████╔╝██║██╔██╗ ██║█████╗  
+                ██╔═══╝ ██║██║╚██╗██║██╔══╝  
+                ██║     ██║██║ ╚████║███████╗
+                ╚═╝     ╚═╝╚═╝  ╚═══╝╚══════╝
+            Pmap Interface for Nlp Experimentation
+
 &copy; 2019 The Johns Hopkins University Applied Physics Laboratory LLC.
 
 ## About PINE
-PINE is a web-based tool for text annotation.  It enables annotation at the document level as well as over text spans (words).  The annotation facilitates generation of natural language processing (NLP) models to classify documents and perform named entity recognition.  Some of the features include:
+
+PINE is a web-based tool for text annotation.  It enables annotation at the document level as well
+as over text spans (words).  The annotation facilitates generation of natural language processing
+(NLP) models to classify documents and perform named entity recognition.  Some of the features
+include:
  
-* Generate models in Spacy, OpenNLP, or CoreNLP on the fly and rank documents using Active Learning to reduce annotation time. 
+* Generate models in Spacy, OpenNLP, or CoreNLP on the fly and rank documents using Active Learning
+  to reduce annotation time. 
  
 * Extensible framework - add NLP pipelines of your choice. 
  
-* Active Learning support - Out of the box active learning support (https://en.wikipedia.org/wiki/Active_learning_(machine_learning)) with pluggable active learning methods ranking functions.
+* Active Learning support - Out of the box active learning support
+  (https://en.wikipedia.org/wiki/Active_learning_(machine_learning)) with pluggable active learning
+  methods ranking functions.
  
-* Facilitates group annotation projects - view other people’s annotations, calculates inter-annotator agreement, displays annotation performance.
+* Facilitates group annotation projects - view other people’s annotations, calculates
+  inter-annotator agreement, displays annotation performance.
  
 * Enterprise authentication - integrate with your existing OAuth/Active Directory Servers.
  
-* Scalability - deploy in docker compose or a kubernetes cluster; ability to use database as a service such as CosmosDB.
+* Scalability - deploy in docker compose or a kubernetes cluster; ability to use database as a
+  service such as CosmosDB.
  
-PINE was developed under internal research and development (IRAD) funding at the [Johns Hopkins University Applied Physics Laboratory](https://www.jhuapl.edu/).  It was created to support the annotation needs of NLP tasks on the [precision medicine analytics platform (PMAP)](https://pm.jh.edu/) at Johns Hopkins.  
-
+PINE was developed under internal research and development (IRAD) funding at the
+[Johns Hopkins University Applied Physics Laboratory](https://www.jhuapl.edu/).  It was created to
+support the annotation needs of NLP tasks on the
+[precision medicine analytics platform (PMAP)](https://pm.jh.edu/) at Johns Hopkins.  
 
 ## Required Resources
-Note - download required resources and place in pipelines/pine/pipelines/resources
+
+Note - download required resources and place in `pipelines/pine/pipelines/resources`:
 * apache-opennlp-1.9.0
 * stanford-corenlp-full-2018-02-27
 * stanford-ner-2018-02-27
 
-These are required to build docker images for active learning
+Alternatively, you can use the provided convenience script:
+`./pipelines/download_resources.sh`
 
-## Configuring Logging
+These are required to build docker images for active learning.
 
-See logging configuration files in `./shared/`.  `logging.python.dev.json` is used with the
-dev stack; the other files are used in the docker containers.
-
-The docker-compose stack is currently set to bind the `./shared/` directory into the containers
-at run-time.  This allows for configuration changes of the logging without needing to rebuild
-containers, and also allows the python logging config to live in one place instead of spread out
-into each container.  This is controlled with the `${SHARED_VOLUME}` variable from `.env`.
-
-Log files will be stored in the `${LOGS_VOLUME}` variable from `.env`.  Pipeline models files will
-be stored in the `${MODELS_VOLUME}` variable from `./env`.
+----------------------------------------------------------------------------------------------------
 
 ## Development Environment
 
 First, refer to the various README files in the subproject directories for dependencies.
-
-Install the pipenv in pipelines.
+Alternatively, a convenience script is provided:
+```bash
+./setup_dev_stack.sh
+```
 
 Then a dev stack can be run with:
 ```bash
@@ -55,13 +71,60 @@ planning to use that auth module.
 
 The dev stack can be stopped with Ctrl-C.
 
-Sometimes (for me) mongod doesn't start in time or something.  If you see a connection
+Sometimes mongod doesn't seem to start in time.  If you see a connection
 error for mongod, just close it and try it again.
 
 Once the dev stack is up and running, the following ports are accessible:
 * `localhost:4200` is the main entrypoint and hosts the web app
 * `localhost:5000` hosts the backend
 * `localhost:5001` hosts the eve layer
+
+### Generating documentation
+
+1. See `docs/README.md` for information on required environment.
+2. `./generate_documentation.sh`
+3. Generated documentation can then be found in `./docs/build`.
+
+### Testing Data
+
+To import testing data, run the dev stack and then run:
+```bash
+./setup_dev_test_data.sh
+```
+
+*WARNING*: This script will remove any pre-existing data.  If you need to clear your database
+for other reasons, stop your dev stack and then `rm -rf local_data/dev/eve/db`.
+
+### Testing
+
+There are test cases written using Cypress; for more information, see `test/README.md`.
+
+The short version, to run the tests using the docker-compose stack:
+1. `test/build.sh`
+2. `test/run_docker_compose.sh --report`
+3. Check `./results/<timestamp>` (the script in the previous step will print out the exact path) for:
+   * `reports/report.html`: an HTML report of tests run and their status
+   * `screenshots/`: for any screenshots from failed tests
+   * `videos/`: for videos of all the tests that were run
+
+To use the interactive dashboard:
+1. `test/build.sh`
+2. `test/run_docker_compose.sh --dashboard`
+
+It is also possible to run the cypress container directly, or locally with the dev stack.  For more
+information, see `test/README.md`.
+
+### Versioning
+
+There are three versions being tracked:
+* overall version: environment variable PINE_VERSION based on the git tag/revision information (see `./version.sh`)
+* eve/database version: controlled in `eve/python/settings.py`
+* frontend version: controlled in `frontend/annotation/package.json`
+
+The eve/database version should be bumped up when the schema changes.  This will (eventually) be
+used to implement data migration.
+
+The frontend version is the least important.
 
 ### Using the copyright checking pre-commit hook
 
@@ -74,26 +137,22 @@ installed manually:
 This hook greps for the copyright text in new files and gives you the option to abort if it is
 not found.
 
-### Clearing the database
-
-First, stop your dev stack.  Then `rm -rf eve/db` and start the stack again.
-
-### Importing test data
-
-Once running, test data can be imported with:
-```bash
-./setup_dev_data.sh
-```
-
-### Updating existing data
-
-If there is existing data in the database, it is possible that it needs to be
-migrated.  To do this, run the following once the system is up and running:
-```bash
-cd eve/python && python3 update_documents_annnotation_status.py
-```
+----------------------------------------------------------------------------------------------------
 
 ## Docker Environments
+
+*IMPORTANT*:
+
+For all the docker-compose environments, it is required to set a `PINE_VERSION` environment
+variable.  To do this, either prepend each docker-compose command:
+```bash
+PINE_VERSION=$(./version.sh) docker-compose ...
+```
+Or export it in your shell:
+```bash
+export PINE_VERSION=$(./version.sh)
+docker-compose ...
+```
 
 The docker environment is run using docker-compose.  There are two supported configurations: the
 default and the prod configuration.
@@ -105,25 +164,23 @@ To build the images for DEFAULT configuration:
 ```bash
 docker-compose build
 ```
+Or use the convenience script:
+```bash
+./run_docker_compose.sh --build
+```
 
 To run containers as daemons for DEFAULT configuration (remove -d flag to see logs):
 ```bash
-docker-compose up -d
+docker-compose up
 ```
-
 You may also want the `--abort-on-container-exit` flag which will make errors more apparent.
 
-With default settings, the webapp will now be accessible at https://localhost:8888
-
-To watch logs for DEFAULT configuration:
+Or use the convenience script:
 ```bash
-docker-compose logs -f
+./run_docker_compose.sh --up
 ```
 
-To bring containers down for DEFAULT configuration:
-```bash
-docker-compose down
-```
+With default settings, the webapp will now be accessible at `https://localhost:8888`
 
 ### Production Docker Environment
 
@@ -135,24 +192,31 @@ docker-compose -f docker-compose.yml -f docker-compose.prod.yml build
 
 Note that you probably need to update `.env` and add the `MONGO_URI` property.
 
-### Clearing the database
+### Test data
 
-Bring all the containers down.  Then do a `docker ps --all` and find the numeric ID of the eve
-container and remove it with `docker rm <id>`.  Then, remove the two eve volumes with
-`docker volume rm nlp_webapp_eve_db` and `docker volume rm nlp_webapp_eve_logs`.  Finally, restart
-your containers.
-
-### Importing test data
+To import test data, you need to run the docker-compose stack using the docker-compose.test.yml file:
+```bash
+docker-compose build
+docker-compose -f docker-compose.yml -f docker-compose.override.yml -f docker-compose.test.yml up
+```
+Or use the convenience script:
+```bash
+./run_docker_compose.sh --build
+./run_docker_compose.sh --up-test
+```
 
 Once the system is up and running:
 ```bash
 ./setup_docker_test_data.sh
 ```
 
-### Updating existing data
+Once the test data has been imported, you no longer need to use the docker-compose.test.yml file.
 
-If there is existing data in the database, it is possible that it needs to be
-migrated.  To do this, run the following once the system is up and running:
+If you need to clear the database, bring down the container and remove the `nlp_webapp_eve_db` and
+`nlp_webapp_eve_logs` volumes with `docker volume rm`.
+
+If you are migrating from very old PINE versions, it is possible that you need to migrate your
+data if you are seeing applications errors:
 ```bash
 docker-compose exec eve python3 python/update_documents_annnotation_status.py
 ```
@@ -183,6 +247,23 @@ docker-compose exec backend scripts/data/set_user_password.sh <email username> <
 ```
 
 Alternatively, there is an Admin Dashboard through the web interface.
+
+----------------------------------------------------------------------------------------------------
+
+## Misc Configuration
+
+### Configuring Logging
+
+See logging configuration files in `./shared/`.  `logging.python.dev.json` is used with the
+dev stack; the other files are used in the docker containers.
+
+The docker-compose stack is currently set to bind the `./shared/` directory into the containers
+at run-time.  This allows for configuration changes of the logging without needing to rebuild
+containers, and also allows the python logging config to live in one place instead of spread out
+into each container.  This is controlled with the `${SHARED_VOLUME}` variable from `.env`.
+
+Log files will be stored in the `${LOGS_VOLUME}` variable from `.env`.  Pipeline models files will
+be stored in the `${MODELS_VOLUME}` variable from `./env`.
 
 ### Collection/Document Images
 

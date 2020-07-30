@@ -117,11 +117,15 @@ stages:
           backendImageName: $(backendImageName)
           frontendImageName: $(frontendImageName)
           pipelineImageName: $(pipelineImageName)
+          backendStorageShareName: "pine-files-dev"
           secrets:
             backend:
               VEGAS_CLIENT_SECRET: $(vegas-client-secret-dev)
             eve:
               MONGO_URI: $(mongo-uri-dev)
+            azure-secret:
+              azurestorageaccountname: $(azure-storage-account-name-dev)
+              azurestorageaccountkey: $(azure-storage-account-key-dev)
   - stage: deploy_to_prod
     displayName: Deploy to prod
     condition: and(succeeded(), eq(variables['build.sourceBranch'], 'refs/heads/master'))
@@ -140,8 +144,12 @@ stages:
           backendImageName: $(backendImageName)
           frontendImageName: $(frontendImageName)
           pipelineImageName: $(pipelineImageName)
+          backendStorageShareName: "pine-files-prod"
           secrets:
             backend:
               VEGAS_CLIENT_SECRET: $(vegas-client-secret-prod)
             eve:
               MONGO_URI: $(mongo-uri-prod)
+            azure-secret:
+              azurestorageaccountname: $(azure-storage-account-name-prod)
+              azurestorageaccountkey: $(azure-storage-account-key-prod)

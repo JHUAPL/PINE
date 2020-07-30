@@ -1,0 +1,254 @@
+:mod:`pine.backend.collections.bp`
+==================================
+
+.. py:module:: pine.backend.collections.bp
+
+
+Module Contents
+---------------
+
+
+Functions
+~~~~~~~~~
+
+.. autoapisummary::
+
+   pine.backend.collections.bp.is_cached_last_collection
+   pine.backend.collections.bp.update_cached_last_collection
+   pine.backend.collections.bp._collection_user_can_projection
+   pine.backend.collections.bp._collection_user_can
+   pine.backend.collections.bp.user_can_annotate
+   pine.backend.collections.bp.user_can_view
+   pine.backend.collections.bp.user_can_add_documents_or_images
+   pine.backend.collections.bp.user_can_modify_document_metadata
+   pine.backend.collections.bp.user_can_annotate_by_id
+   pine.backend.collections.bp.user_can_annotate_by_ids
+   pine.backend.collections.bp.user_can_view_by_id
+   pine.backend.collections.bp.user_can_add_documents_or_images_by_id
+   pine.backend.collections.bp.user_can_modify_document_metadata_by_id
+   pine.backend.collections.bp.get_user_collections
+   pine.backend.collections.bp.get_unarchived_user_collections
+   pine.backend.collections.bp.get_archived_user_collections
+   pine.backend.collections.bp.archive_or_unarchive_collection
+   pine.backend.collections.bp.archive_collection
+   pine.backend.collections.bp.unarchive_collection
+   pine.backend.collections.bp.get_collection
+   pine.backend.collections.bp.download_collection
+   pine.backend.collections.bp.get_doc_and_overlap_ids
+   pine.backend.collections.bp.add_annotator_to_collection
+   pine.backend.collections.bp.add_viewer_to_collection
+   pine.backend.collections.bp.add_label_to_collection
+   pine.backend.collections.bp.get_overlap_ids
+   pine.backend.collections.bp._upload_documents
+   pine.backend.collections.bp.create_collection
+   pine.backend.collections.bp._check_collection_and_get_image_dir
+   pine.backend.collections.bp.get_static_collection_images
+   pine.backend.collections.bp.get_collection_images
+   pine.backend.collections.bp.get_collection_image
+   pine.backend.collections.bp.get_collection_image_exists
+   pine.backend.collections.bp._path_split
+   pine.backend.collections.bp._safe_path
+   pine.backend.collections.bp.get_user_can_add_documents_or_images
+   pine.backend.collections.bp._upload_collection_image_file
+   pine.backend.collections.bp.post_collection_image
+   pine.backend.collections.bp.init_app
+
+
+.. data:: bp
+   
+
+   
+
+.. data:: LOGGER
+   
+
+   
+
+.. data:: DOCUMENTS_PER_TRANSACTION
+   :annotation: = 500
+
+   
+
+.. data:: LAST_COLLECTION_FOR_IMAGE
+   
+
+   
+
+.. function:: is_cached_last_collection(collection_id)
+
+
+.. function:: update_cached_last_collection(collection_id)
+
+
+.. function:: _collection_user_can_projection()
+
+
+.. function:: _collection_user_can(collection, annotate)
+
+
+.. function:: user_can_annotate(collection)
+
+
+.. function:: user_can_view(collection)
+
+
+.. function:: user_can_add_documents_or_images(collection)
+
+
+.. function:: user_can_modify_document_metadata(collection)
+
+
+.. function:: user_can_annotate_by_id(collection_id)
+
+
+.. function:: user_can_annotate_by_ids(collection_ids)
+
+
+.. function:: user_can_view_by_id(collection_id)
+
+
+.. function:: user_can_add_documents_or_images_by_id(collection_id)
+
+
+.. function:: user_can_modify_document_metadata_by_id(collection_id)
+
+
+.. function:: get_user_collections(archived, page)
+
+   Return collections for the logged in user using pagination. Returns all collections if parameter "page" is "all",
+   or the collections associated with the given page. Can return archived or un-archived collections based upon the
+   "archived" flag.
+   :param archived: Bool
+   :param page: str
+   :return: Response
+
+
+.. function:: get_unarchived_user_collections(page)
+
+   Return unarchived user collections for the corresponding page value. Default value returns collections for all
+   pages.
+   :param page: str
+   :return: Response
+
+
+.. function:: get_archived_user_collections(page)
+
+   Return archived user collections for the corresponding page value. Default value returns collections for all
+   pages.
+   :param page: str
+   :return: Response
+
+
+.. function:: archive_or_unarchive_collection(collection_id, archive)
+
+   Set the "archived" boolean flag for the collection matching the provided collection_id.
+   :param collection_id: str
+   :param archive: Bool
+   :return: Response
+
+
+.. function:: archive_collection(collection_id)
+
+   Archive the collection matching the provided collection id
+   :param collection_id: str
+   :return: Response
+
+
+.. function:: unarchive_collection(collection_id)
+
+   Unarchive the collection matching the provided collection id
+   :param collection_id: str
+   :return: Response
+
+
+.. function:: get_collection(collection_id)
+
+   Return the collection object for the collection matching the provided collection id. This object has the fields:
+   'creator_id', 'annotators', 'viewers', 'labels', 'metadata', 'archived', and 'configuration'.
+   :param collection_id: str
+   :return: Response
+
+
+.. function:: download_collection(collection_id)
+
+
+.. function:: get_doc_and_overlap_ids(collection_id)
+
+   Return lists of ids for overlapping and non-overlapping documents for the collection matching the provided
+   collection id.
+   :param collection_id: str
+   :return: tuple
+
+
+.. function:: add_annotator_to_collection(collection_id)
+
+
+.. function:: add_viewer_to_collection(collection_id)
+
+
+.. function:: add_label_to_collection(collection_id)
+
+
+.. function:: get_overlap_ids(collection_id)
+
+   Return the list of ids for overlapping documents for the collection matching the provided collection id.
+   :param collection_id: str
+   :return: tuple
+
+
+.. function:: _upload_documents(collection, docs)
+
+
+.. function:: create_collection()
+
+   Create a new collection based upon the entries provided in the POST request's associated form fields.
+   These fields include:
+   collection - collection name
+   overlap - ratio of overlapping documents. (0-1) with 0 being no overlap and 1 being every document has overlap, ex:
+       .90 - 90% of documents overlap
+   train_every - automatically train a new classifier after this many documents have been annotated
+   pipelineId - the id value of the classifier pipeline associated with this collection (spacy, opennlp, corenlp)
+   classifierParameters - optional parameters that adjust the configuration of the chosen classifier pipeline.
+   archived - whether or not this collection should be archived.
+   A collection can be created with documents listed in a csv file. Each new line in the csv represents a new document.
+   The data of this csv can be passed to this method through the POST request's FILES field "file".
+   used when creating a collection based on an uploaded csv file:
+       csvTextCol - column of csv containing the text of the documents (default: 0)
+       csvHasHeader - boolean for whether or not the csv file has a header row (default: False)
+   A collection can also be created with a number of images through FILES fields "imageFileN" where N is an (ignored) index
+   :return: information about the created collection
+
+
+.. function:: _check_collection_and_get_image_dir(collection_id, path)
+
+
+.. function:: get_static_collection_images(collection_id)
+
+
+.. function:: get_collection_images(collection_id)
+
+
+.. function:: get_collection_image(collection_id, path)
+
+
+.. function:: get_collection_image_exists(collection_id, path)
+
+
+.. function:: _path_split(path)
+
+
+.. function:: _safe_path(path)
+
+
+.. function:: get_user_can_add_documents_or_images(collection_id)
+
+
+.. function:: _upload_collection_image_file(collection_id, path, image_file)
+
+
+.. function:: post_collection_image(collection_id, path)
+
+
+.. function:: init_app(app)
+
+

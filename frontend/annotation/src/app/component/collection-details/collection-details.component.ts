@@ -77,7 +77,7 @@ export class CollectionDetailsComponent implements OnInit {
     private new_annotator: string = null;
     private new_viewer: string = null;
     private new_label: string = null;
-    private can_add_users: boolean = false;
+    public can_add_users: boolean = false;
     public can_add_documents: boolean = false;
     public can_add_images: boolean = false;
 
@@ -92,7 +92,7 @@ export class CollectionDetailsComponent implements OnInit {
                 private pipelineService: PipelineService,
                 private metricsService: MetricsService,
                 private events: EventService,
-                private auth: AuthService,
+                public auth: AuthService,
                 private iaa_reports : IaaReportingService,
                 private dialog: MatDialog) {
         this.can_add_images = this.can_add_documents = false;
@@ -125,7 +125,7 @@ export class CollectionDetailsComponent implements OnInit {
                         creator: this.auth.getUserDisplayName(document.creator_id),
                         last_updated: document._updated,
                         text_start: document.getTextPreview(),
-                        annotated: document.has_annotated ? document.has_annotated[this.auth.loggedInUser.username] : undefined,
+                        annotated: document.has_annotated ? document.has_annotated[this.auth.loggedInUser.id] : undefined,
                         ann_agreement: this.iaa_report ? this.iaa_report.per_doc_agreement[this.iaa_report.per_doc_agreement.findIndex((doc: any)=> doc.doc_id == document._id)]["avg"] : null
                       });
                 }, (error) => {},

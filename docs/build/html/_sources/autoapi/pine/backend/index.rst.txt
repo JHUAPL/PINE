@@ -1,0 +1,62 @@
+:mod:`pine.backend`
+===================
+
+.. py:module:: pine.backend
+
+
+Subpackages
+-----------
+.. toctree::
+   :titlesonly:
+   :maxdepth: 3
+
+   admin/index.rst
+   annotations/index.rst
+   auth/index.rst
+   collections/index.rst
+   data/index.rst
+   documents/index.rst
+   job_manager/index.rst
+   pineiaa/index.rst
+   pipelines/index.rst
+   shared/index.rst
+
+
+Submodules
+----------
+.. toctree::
+   :titlesonly:
+   :maxdepth: 1
+
+   app/index.rst
+   config/index.rst
+   cors/index.rst
+   log/index.rst
+   models/index.rst
+
+
+Package Contents
+----------------
+
+
+Functions
+~~~~~~~~~
+
+.. autoapisummary::
+
+   pine.backend.create_app
+
+
+.. function:: create_app(test_config=None)
+
+
+.. data:: VERSION
+   
+
+   
+
+.. data:: __version__
+   
+
+   
+

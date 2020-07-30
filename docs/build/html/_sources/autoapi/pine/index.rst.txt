@@ -1,0 +1,17 @@
+:mod:`pine`
+===========
+
+.. py:module:: pine
+
+
+Subpackages
+-----------
+.. toctree::
+   :titlesonly:
+   :maxdepth: 3
+
+   backend/index.rst
+   client/index.rst
+   pipelines/index.rst
+
+

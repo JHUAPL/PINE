@@ -1,0 +1,32 @@
+# Git
+**/.git/
+
+# Docker
+**/docker-compose*
+/setup_docker_test_data.sh
+
+# Node
+**/node_modules/
+/frontend/annotation/dist/
+
+# Eclipse
+**/.project
+**/.pydevproject
+**/.settings/
+
+# Python
+**/__pycache__
+
+# Database
+/eve/db/
+
+# Logs
+backend/pine/backend/logs
+pipelines/JavaNER/pmap_api/logs
+
+# Misc
+/local_data/
+/instance/
+/redis/data
+**/Dockerfile
+/results/

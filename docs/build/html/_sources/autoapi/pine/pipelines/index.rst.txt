@@ -1,0 +1,34 @@
+:mod:`pine.pipelines`
+=====================
+
+.. py:module:: pine.pipelines
+
+
+Subpackages
+-----------
+.. toctree::
+   :titlesonly:
+   :maxdepth: 3
+
+   app/index.rst
+   shared/index.rst
+
+
+Submodules
+----------
+.. toctree::
+   :titlesonly:
+   :maxdepth: 1
+
+   EveClient/index.rst
+   NERWrapper/index.rst
+   NER_API/index.rst
+   RankingFunctions/index.rst
+   corenlp_NER_pipeline/index.rst
+   opennlp_NER_pipeline/index.rst
+   pipeline/index.rst
+   pmap_ner/index.rst
+   run_service/index.rst
+   spacy_NER_pipeline/index.rst
+
+

@@ -7,7 +7,11 @@
 .add-doc-btn {
   padding: 0 50px;
 }
-  
+
+.card mat-card-content {
+  padding-top: 15px;
+}
+ 
 tr.trow {
   background-color: #f7ffff ;
   transition: .2s;

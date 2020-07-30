@@ -1,0 +1,57 @@
+:mod:`pine.backend.data.users`
+==============================
+
+.. py:module:: pine.backend.data.users
+
+
+Module Contents
+---------------
+
+
+Functions
+~~~~~~~~~
+
+.. autoapisummary::
+
+   pine.backend.data.users.get_all_users
+   pine.backend.data.users.get_user
+   pine.backend.data.users.get_user_by_email
+   pine.backend.data.users.get_user_details
+   pine.backend.data.users.update_user
+   pine.backend.data.users.print_users_command
+   pine.backend.data.users.add_admin_command
+   pine.backend.data.users.set_user_password_by_id
+   pine.backend.data.users.set_user_password
+   pine.backend.data.users.reset_user_passwords
+
+
+.. function:: get_all_users()
+
+
+.. function:: get_user(user_id)
+
+
+.. function:: get_user_by_email(email)
+
+
+.. function:: get_user_details(user_id)
+
+
+.. function:: update_user(user_id: str, details: models.UserDetails)
+
+
+.. function:: print_users_command()
+
+
+.. function:: add_admin_command(username, password)
+
+
+.. function:: set_user_password_by_id(user_id, password)
+
+
+.. function:: set_user_password(username, password)
+
+
+.. function:: reset_user_passwords()
+
+

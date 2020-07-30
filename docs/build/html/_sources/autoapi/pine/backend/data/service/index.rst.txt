@@ -1,0 +1,168 @@
+:mod:`pine.backend.data.service`
+================================
+
+.. py:module:: pine.backend.data.service
+
+
+Module Contents
+---------------
+
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   pine.backend.data.service.PerformanceHistory
+
+
+
+Functions
+~~~~~~~~~
+
+.. autoapisummary::
+
+   pine.backend.data.service._standardize_path
+   pine.backend.data.service.url
+   pine.backend.data.service.where_params
+   pine.backend.data.service.params
+   pine.backend.data.service.get
+   pine.backend.data.service.post
+   pine.backend.data.service.put
+   pine.backend.data.service.delete
+   pine.backend.data.service.patch
+   pine.backend.data.service.get_items
+   pine.backend.data.service.get_item_by_id
+   pine.backend.data.service.get_all_versions_of_item_by_id
+   pine.backend.data.service.get_all_using_pagination
+   pine.backend.data.service.convert_response
+   pine.backend.data.service.remove_eve_fields
+   pine.backend.data.service.remove_nonupdatable_fields
+
+
+.. data:: logger
+   
+
+   
+
+.. py:class:: PerformanceHistory
+
+   Bases: :class:`object`
+
+   Initialize self.  See help(type(self)) for accurate signature.
+
+   .. method:: pformat(self, **kwargs)
+
+
+
+   .. method:: pprint(self)
+
+
+
+   .. method:: add(self, rest_type, path, response)
+
+
+
+
+.. data:: PERFORMANCE_HISTORY
+   
+
+   
+
+.. function:: _standardize_path(path, *additional_paths)
+
+
+.. function:: url(path, *additional_paths)
+
+   Returns a complete URL for the given eve-relative path(s).
+
+   :param path: str: eve-relative path (e.g. "collections" or ["collections", id])
+   :param additional_paths: str[]: any additional paths to append
+   :return: str url
+
+
+.. function:: where_params(where)
+
+   Returns a "where" parameters object that can be passed to eve.
+
+   Eve requires that dict parameters be serialized as JSON.
+
+   :param where: dict: dictionary of "where" params to pass to eve
+   :return: dict "where" params
+
+
+.. function:: params(params)
+
+   Returns a parameters object that can be passed to eve.
+
+   Eve requires that dict parameters be serialized as JSON.
+
+   :param where: dict: dictionary of "where" params to pass to eve
+   :return: dict "where" params
+
+
+.. function:: get(path, **kwargs)
+
+   Wraps requests.get for the given eve-relative path.
+
+   :param path: str: eve-relative path (e.g. "collections" or ["collections", id])
+   :param **kwargs: dict: any additional arguments to pass to requests.get
+   :return: requests.Response
+
+
+.. function:: post(path, **kwargs)
+
+   Wraps requests.post for the given eve-relative path.
+
+   :param path: str: eve-relative path (e.g. "collections" or ["collections", id])
+   :param **kwargs: dict: any additional arguments to pass to requests.post
+   :return: requests.Response
+
+
+.. function:: put(path, **kwargs)
+
+   Wraps requests.put for the given eve-relative path.
+
+   :param path: str: eve-relative path (e.g. "collections" or ["collections", id])
+   :param **kwargs: dict: any additional arguments to pass to requests.put
+   :return: requests.Response
+
+
+.. function:: delete(path, **kwargs)
+
+   Wraps requests.delete for the given eve-relative path.
+
+   :param path: str: eve-relative path (e.g. "collections" or ["collections", id])
+   :param **kwargs: dict: any additional arguments to pass to requests.delete
+   :return: requests.Response
+
+
+.. function:: patch(path, **kwargs)
+
+   Wraps requests.patch for the given eve-relative path.
+
+   :param path: str: eve-relative path (e.g. "collections" or ["collections", id])
+   :param **kwargs: dict: any additional arguments to pass to requests.patch
+   :return: requests.Response
+
+
+.. function:: get_items(path, params={})
+
+
+.. function:: get_item_by_id(path, item_id, params={})
+
+
+.. function:: get_all_versions_of_item_by_id(path, item_id, params={})
+
+
+.. function:: get_all_using_pagination(path, params)
+
+
+.. function:: convert_response(requests_response)
+
+
+.. function:: remove_eve_fields(obj, remove_timestamps=True, remove_versions=True)
+
+
+.. function:: remove_nonupdatable_fields(obj)
+
+

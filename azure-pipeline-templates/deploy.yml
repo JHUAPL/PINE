@@ -5,6 +5,8 @@ parameters:
   appUrl: ""
   azureContainerRegistry: $(azureContainerRegistry)
   azureSubscriptionEndpointForSecrets: $(azureSubscriptionEndpointForSecrets)
+  backendStorageMountPath: "/mnt/azure"
+  backendStorageShareName: ""
   deployEnvironment: $(deployEnvironment)
   deploymentName: "CONTAINER_DEPLOY"
   helmChart: "pine-chart"
@@ -94,6 +96,10 @@ jobs:
                   image:
                     repository: ${{ parameters.azureContainerRegistry }}/${{ parameters.backendImageName }}
                     tag: ${{ parameters.imageTag }}
+                  persistence:
+                    enabled: true
+                    shareName: ${{ parameters.backendStorageShareName }}
+                    mountPath: ${{ parameters.backendStorageMountPath }}
                 nlpAnnotation:
                   image:
                     repository: ${{ parameters.azureContainerRegistry }}/${{ parameters.pipelineImageName }}

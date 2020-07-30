@@ -1,0 +1,27 @@
+:mod:`pine.backend.shared.transform`
+====================================
+
+.. py:module:: pine.backend.shared.transform
+
+
+Module Contents
+---------------
+
+
+Functions
+~~~~~~~~~
+
+.. autoapisummary::
+
+   pine.backend.shared.transform.transform_module_by_config
+
+
+.. function:: transform_module_by_config(module_ref, config_ref, config_prefix=None)
+
+   Transforms a given module's properties based on ConfigBuilder Values.
+   The prefix can be used to avoid blindy changing values and target a subset of matching values in config_ref.
+   :type module_ref: ModuleType
+   :type config_ref: dict
+   :type config_prefix: str
+
+

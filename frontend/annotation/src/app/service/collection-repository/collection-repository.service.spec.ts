@@ -1,3 +1,5 @@
+/*(C) 2019 The Johns Hopkins University Applied Physics Laboratory LLC. */
+
 import { TestBed, inject } from '@angular/core/testing';
 
 import { CollectionRepositoryService } from './collection-repository.service';

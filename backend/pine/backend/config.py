@@ -24,7 +24,8 @@ else:
 REDIS_PORT = int(os.environ.get("REDIS_PORT", 6479))
 
 AUTH_MODULE = os.environ.get("AUTH_MODULE", "vegas")
+if not AUTH_MODULE: AUTH_MODULE = "vegas"
 
 VEGAS_CLIENT_SECRET = os.environ.get("VEGAS_CLIENT_SECRET", None)
 
-DOCUMENT_IMAGE_DIR = os.environ.get("DOCUMENT_IMAGE_DIR")
+DOCUMENT_IMAGE_DIR = os.environ.get("DOCUMENT_IMAGE_DIR", "/mnt/azure")

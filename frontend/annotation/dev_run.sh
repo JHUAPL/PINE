@@ -3,4 +3,4 @@
 
 set -x
 
-npm start
+npm start $@
