@@ -31,7 +31,7 @@
     "d3": "^5.12.0",
     "hammerjs": "^2.0.8",
     "jquery": "^3.5.1",
-    "lodash": "^4.17.15",
+    "lodash": "^4.17.19",
     "material-icons": "^0.3.1",
     "ng2-charts": "^2.3.0",
     "ng2-panzoom": "^2.1.0",
