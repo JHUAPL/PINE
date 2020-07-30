@@ -16,14 +16,27 @@ from .. import auth, log
 from ..data import service
 
 bp = Blueprint("collections", __name__, url_prefix = "/collections")
-logger = logging.getLogger(__name__)
+LOGGER = logging.getLogger(__name__)
+
+DOCUMENTS_PER_TRANSACTION = 500
+
+# Cache this info for uploading large numbers of images sequentially
+LAST_COLLECTION_FOR_IMAGE = None
+def is_cached_last_collection(collection_id):
+    global LAST_COLLECTION_FOR_IMAGE
+    return LAST_COLLECTION_FOR_IMAGE and LAST_COLLECTION_FOR_IMAGE[0] == collection_id and LAST_COLLECTION_FOR_IMAGE[1] == auth.get_logged_in_user()["id"]
+def update_cached_last_collection(collection_id):
+    global LAST_COLLECTION_FOR_IMAGE
+    LAST_COLLECTION_FOR_IMAGE = [collection_id, auth.get_logged_in_user()["id"]]
 
 def _collection_user_can_projection():
-    return {"projection": json.dumps({
-        "creator_id": 1,
-        "annotators": 1,
-        "viewers": 1
-    })}
+    return service.params({
+        "projection": {
+            "creator_id": 1,
+            "annotators": 1,
+            "viewers": 1
+        }
+    })
 
 def _collection_user_can(collection, annotate):
     user_id = auth.get_logged_in_user()["id"]
@@ -49,6 +62,21 @@ def user_can_modify_document_metadata(collection):
 def user_can_annotate_by_id(collection_id):
     collection = service.get_item_by_id("/collections", collection_id, _collection_user_can_projection())
     return _collection_user_can(collection, annotate = True)
+
+def user_can_annotate_by_ids(collection_ids):
+    collections = service.get_items("collections", params=service.params({
+        "where": {
+            "_id": {"$in": collection_ids}
+        }, "projection": {
+            "creator_id": 1,
+            "annotators": 1,
+            "viewers": 1
+        }
+    }))
+    for collection in collections:
+        if not user_can_annotate(collection):
+            return False
+    return True
 
 def user_can_view_by_id(collection_id):
     collection = service.get_item_by_id("/collections", collection_id, _collection_user_can_projection())
@@ -163,7 +191,7 @@ def get_collection(collection_id):
     :param collection_id: str
     :return: Response
     """
-    resp = service.get("collections/" + collection_id)
+    resp = service.get(["collections", collection_id])
     if not resp.ok:
         abort(resp.status_code)
     collection = resp.json()
@@ -175,7 +203,7 @@ def get_collection(collection_id):
 @bp.route("/by_id/<collection_id>/download", methods = ["GET"])
 @auth.login_required
 def download_collection(collection_id):
-    resp = service.get("/collections/" + collection_id)
+    resp = service.get(["collections", collection_id])
     if not resp.ok:
         abort(resp.status_code)
     collection = resp.json()
@@ -291,7 +319,7 @@ def add_annotator_to_collection(collection_id):
     if not (collection["creator_id"] == auth_id):
         raise exceptions.Unauthorized()
     if user_id not in collection["annotators"]:
-        logger.info("new annotator: adding to collection")
+        LOGGER.info("new annotator: adding to collection")
         collection["annotators"].append(user_id)
         if user_id not in collection["viewers"]:
             collection["viewers"].append(user_id)
@@ -324,7 +352,7 @@ def add_viewer_to_collection(collection_id):
     if not (collection["creator_id"] == auth_id):
         raise exceptions.Unauthorized()
     if user_id not in collection["viewers"]:
-        logger.info("new viewer: adding to collection")
+        LOGGER.info("new viewer: adding to collection")
         collection["viewers"].append(user_id)
         to_patch = {
             "viewers": collection["viewers"]
@@ -350,7 +378,7 @@ def add_label_to_collection(collection_id):
     if not (collection["creator_id"] == auth_id):
         raise exceptions.Unauthorized()
     if new_label not in collection["labels"]:
-        logger.info("new viewer: adding to collection")
+        LOGGER.info("new label: adding to collection")
         collection["labels"].append(new_label)
         to_patch = {
             "labels": collection["labels"]
@@ -375,6 +403,22 @@ def get_overlap_ids(collection_id):
     return [doc["_id"] for doc in service.get_all_using_pagination("documents", params)['_items']]
 
 
+def _upload_documents(collection, docs):
+    doc_resp = service.post("/documents", json=docs)
+    # TODO if it failed, roll back the created collection and classifier
+    if not doc_resp.ok:
+        abort(doc_resp.status_code, doc_resp.content)
+    r = doc_resp.json()
+    # TODO if it failed, roll back the created collection and classifier
+    if r["_status"] != "OK":
+        abort(400, "Unable to create documents")
+    for obj in r["_items"]:
+        if obj["_status"] != "OK":
+            abort(400, "Unable to create documents")
+    doc_ids = [obj["_id"] for obj in r["_items"]]
+    LOGGER.info("Added {} docs to collection {}".format(len(doc_ids), collection["_id"]))
+    return doc_ids
+
 # Require a multipart form post:
 # CSV is in the form file "file"
 # Optional images are in the form file fields "imageFileN" where N is an (ignored) index
@@ -387,6 +431,7 @@ def get_overlap_ids(collection_id):
 @bp.route("/", strict_slashes = False, methods = ["POST"])
 @auth.login_required
 def create_collection():
+    # If you change the requirements here, also update the client module pine.client.models
     """
     Create a new collection based upon the entries provided in the POST request's associated form fields.
     These fields include:
@@ -394,7 +439,7 @@ def create_collection():
     overlap - ratio of overlapping documents. (0-1) with 0 being no overlap and 1 being every document has overlap, ex:
         .90 - 90% of documents overlap
     train_every - automatically train a new classifier after this many documents have been annotated
-    pipeline_id - the id value of the classifier pipeline associated with this collection (spacy, opennlp, corenlp)
+    pipelineId - the id value of the classifier pipeline associated with this collection (spacy, opennlp, corenlp)
     classifierParameters - optional parameters that adjust the configuration of the chosen classifier pipeline.
     archived - whether or not this collection should be archived.
     A collection can be created with documents listed in a csv file. Each new line in the csv represents a new document.
@@ -451,7 +496,7 @@ def create_collection():
     collection_id = r["_id"]
     collection["_id"] = collection_id
     log.access_flask_add_collection(collection)
-    logger.info("Created collection", collection_id)
+    LOGGER.info("Created collection {}".format(collection_id))
 
     #create classifier
     #   require collection_id, overlap, pipeline_id and labels
@@ -473,7 +518,7 @@ def create_collection():
     if r["_status"] != "OK":
         abort(400, "Unable to create classifier")
     classifier_id = r["_id"]
-    logger.info("Created classifier", classifier_id)
+    LOGGER.info("Created classifier {}".format(classifier_id))
 
     # create metrics for classifier
     # require collection_id, classifier_id, document_ids and annotations ids
@@ -492,7 +537,7 @@ def create_collection():
     if r["_status"] != "OK":
         abort(400, "Unable to create metrics")
     metrics_id = r["_id"]
-    logger.info("Created metrics", metrics_id)
+    LOGGER.info("Created metrics {}".format(metrics_id))
 
     #create documents if CSV file was sent in
     doc_ids = []
@@ -529,20 +574,12 @@ def create_collection():
             else:
                 doc["overlap"] = 0
             docs.append(doc)
-        doc_resp = service.post("/documents", json=docs)
-        # TODO if it failed, roll back the created collection and classifier
-        if not doc_resp.ok:
-            abort(doc_resp.status_code, doc_resp.content)
-        r = doc_resp.json()
-        # TODO if it failed, roll back the created collection and classifier
-        if r["_status"] != "OK":
-            abort(400, "Unable to create documents")
-        logger.info(r["_items"])
-        for obj in r["_items"]:
-            if obj["_status"] != "OK":
-                abort(400, "Unable to create documents")
-        doc_ids = [obj["_id"] for obj in r["_items"]]
-        logger.info("Added docs:", doc_ids)
+            if len(docs) >= DOCUMENTS_PER_TRANSACTION:
+                doc_ids += _upload_documents(collection, docs)
+                docs = []
+        if len(docs) > 0:
+            doc_ids += _upload_documents(collection, docs)
+            docs = []
 
     # create next ids
     (doc_ids, overlap_ids) = get_doc_and_overlap_ids(collection_id)
@@ -568,8 +605,9 @@ def create_collection():
 
 def _check_collection_and_get_image_dir(collection_id, path):
     # make sure user can view collection
-    if not user_can_view_by_id(collection_id):
-        raise exceptions.Unauthorized()
+    if not is_cached_last_collection(collection_id):
+        if not user_can_view_by_id(collection_id):
+            raise exceptions.Unauthorized()
 
     image_dir = current_app.config["DOCUMENT_IMAGE_DIR"]
     if image_dir == None or len(image_dir) == 0:
@@ -581,6 +619,24 @@ def _check_collection_and_get_image_dir(collection_id, path):
         image_dir = os.path.join(image_dir, "by_collection", collection_id)
 
     return os.path.realpath(image_dir)
+
+@bp.route("/static_images/<collection_id>", methods=["GET"])
+@auth.login_required
+def get_static_collection_images(collection_id):
+    static_image_dir = os.path.join(_check_collection_and_get_image_dir(collection_id, "static/"), "static")
+    urls = []
+    for _, _, filenames in os.walk(static_image_dir):
+        urls += ["/static/{}".format(f) for f in filenames]
+    return jsonify(urls)
+
+@bp.route("/images/<collection_id>", methods=["GET"])
+@auth.login_required
+def get_collection_images(collection_id):
+    collection_image_dir = _check_collection_and_get_image_dir(collection_id, "")
+    urls = []
+    for _, _, filenames in os.walk(collection_image_dir):
+        urls += ["/{}".format(f) for f in filenames]
+    return jsonify(urls)
 
 @bp.route("/image/<collection_id>/<path:path>", methods=["GET"])
 @auth.login_required
@@ -639,10 +695,13 @@ def _upload_collection_image_file(collection_id, path, image_file):
 @bp.route("/image/<collection_id>/<path:path>", methods=["POST", "PUT"])
 @auth.login_required
 def post_collection_image(collection_id, path):
-    if not user_can_add_documents_or_images_by_id(collection_id):
-        raise exceptions.Unauthorized()
+    if not is_cached_last_collection(collection_id):
+        if not user_can_add_documents_or_images_by_id(collection_id):
+            raise exceptions.Unauthorized()
     if "file" not in request.files:
         raise exceptions.BadRequest("Missing file form part.")
+
+    update_cached_last_collection(collection_id)
 
     return jsonify(_upload_collection_image_file(collection_id, path, request.files["file"]))
 

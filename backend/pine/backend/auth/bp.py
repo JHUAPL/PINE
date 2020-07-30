@@ -69,6 +69,8 @@ def flask_get_login_form() -> Response:
 @bp.route("/logout", methods = ["POST"])
 def flask_post_logout() -> Response:
     user = module.get_logged_in_user()
+    if user == None:
+        raise exceptions.BadRequest()
     module.logout()
     log.access_flask_logout(user)
     return Response(status = 200)

@@ -1,7 +1,10 @@
+# (C) 2019 The Johns Hopkins University Applied Physics Laboratory LLC.
+
 import enum
 import json
 import logging.config
 import os
+import typing
 
 # make sure this package has been installed
 import pythonjsonlogger
@@ -17,7 +20,9 @@ class Action(enum.Enum):
     CREATE_COLLECTION = enum.auto()
     VIEW_DOCUMENT = enum.auto()
     ADD_DOCUMENT = enum.auto()
+    ADD_DOCUMENTS = enum.auto()
     ANNOTATE_DOCUMENT = enum.auto()
+    ANNOTATE_DOCUMENTS = enum.auto()
 
 def setup_logging():
     if CONFIG_FILE_ENV not in os.environ:
@@ -51,10 +56,10 @@ def get_flask_logged_in_user():
 def access_flask_login():
     access(Action.LOGIN, get_flask_logged_in_user(), get_flask_request_info(), None)
 
-def access_flask_logout(user):
+def access_flask_logout(user: dict):
     access(Action.LOGOUT, {"id": user["id"], "username": user["username"]}, get_flask_request_info(), None)
 
-def access_flask_add_collection(collection):
+def access_flask_add_collection(collection: dict):
     extra_info = {
         "collection_id": collection["_id"]
     }
@@ -65,7 +70,7 @@ def access_flask_add_collection(collection):
                 del extra_info["collection_metadata"][k]
     access(Action.CREATE_COLLECTION, get_flask_logged_in_user(), get_flask_request_info(), None, **extra_info)
 
-def access_flask_view_document(document):
+def access_flask_view_document(document: dict):
     extra_info = {
         "document_id": document["_id"]
     }
@@ -73,7 +78,7 @@ def access_flask_view_document(document):
         extra_info["document_metadata"] = document["metadata"]
     access(Action.VIEW_DOCUMENT, get_flask_logged_in_user(), get_flask_request_info(), None, **extra_info)
 
-def access_flask_add_document(document):
+def access_flask_add_document(document: dict):
     extra_info = {
         "document_id": document["_id"]
     }
@@ -81,14 +86,30 @@ def access_flask_add_document(document):
         extra_info["document_metadata"] = document["metadata"]
     access(Action.ADD_DOCUMENT, get_flask_logged_in_user(), get_flask_request_info(), None, **extra_info)
 
-def access_flask_annotate_document(document, annotation):
+def access_flask_add_documents(documents: typing.List[dict]):
+    doc_info = []
+    for document in documents:
+        i = {"id": document["_id"]}
+        if "metadata" in document: i["metadata"] = document["metadata"]
+        doc_info.append(i)
     extra_info = {
-        "document_id": document["_id"],
+        "documents": doc_info
+    }
+    access(Action.ADD_DOCUMENTS, get_flask_logged_in_user(), get_flask_request_info(), None, **extra_info)
+
+def access_flask_annotate_document(annotation):
+    extra_info = {
+        "document_id": annotation["document_id"],
         "annotation_id": annotation["_id"]
     }
-    if "metadata" in document:
-        extra_info["document_metadata"] = document["metadata"]
     access(Action.ANNOTATE_DOCUMENT, get_flask_logged_in_user(), get_flask_request_info(), None, **extra_info)
+
+def access_flask_annotate_documents(annotations: typing.List[dict]):
+    extra_info = {
+        "document_ids": [annotation["document_id"] for annotation in annotations],
+        "annotation_ids": [annotation["_id"] for annotation in annotations]
+    }
+    access(Action.ANNOTATE_DOCUMENTS, get_flask_logged_in_user(), get_flask_request_info(), None, **extra_info)
 
 ###############
 

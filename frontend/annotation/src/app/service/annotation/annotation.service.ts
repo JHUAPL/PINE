@@ -22,20 +22,12 @@ export class AnnotationService {
         return this.backend.get<DBAnnotations>("/annotations/others/by_document_id/" + docId).pipe(map(Annotation.fromDBItems));
     }
 
-    public saveDocAnnotations(docId: string, labels: string[]): Observable<boolean> {
-        return this.backend.post<boolean>(`/annotations/mine/by_document_id/${docId}/doc`, labels);
-    }
-
-    public saveNerAnnotations(docId: string, annotations: NerAnnotation[]): Observable<boolean> {
-        return this.backend.post<boolean>(`/annotations/mine/by_document_id/${docId}/ner`, annotations);
-    }
-
-    public saveAnnotations(docId: string, labels: string[], annotations: NerAnnotation[]): Observable<boolean> {
+    public saveAnnotations(docId: string, labels: string[], annotations: NerAnnotation[]): Observable<string> {
         const body = {
           "doc": labels,
           "ner": annotations
         };
-        return this.backend.post<boolean>("/annotations/mine/by_document_id/" + docId, body);
+        return this.backend.post<string>("/annotations/mine/by_document_id/" + docId, body);
     }
 
 }

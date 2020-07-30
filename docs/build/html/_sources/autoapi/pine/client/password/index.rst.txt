@@ -1,0 +1,43 @@
+:mod:`pine.client.password`
+===========================
+
+.. py:module:: pine.client.password
+
+
+Module Contents
+---------------
+
+
+Functions
+~~~~~~~~~
+
+.. autoapisummary::
+
+   pine.client.password.hash_password
+   pine.client.password.check_password
+
+
+.. function:: hash_password(password: str) -> str
+
+   Hashes the given password for use in user object.
+
+   :param password: password
+   :type password: str
+
+   :returns: hashed password
+   :rtype: str
+
+
+.. function:: check_password(password: str, hashed_password: str) -> str
+
+   Checks the given password against the given hash.
+
+   :param password: password to check
+   :type password: str
+   :param hashed_password: hashed password to check against
+   :type hashed_password: str
+
+   :returns: whether the password matches the hash
+   :rtype: bool
+
+

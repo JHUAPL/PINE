@@ -1,0 +1,100 @@
+[
+    {
+        "collection": {
+            "creator_id": "ada",
+            "annotators": ["ada"],
+            "viewers": ["ada"],
+            "labels": ["alt.atheism", "soc.religion.christian", "comp.graphics", "sci.med"],
+            "metadata": {
+                "title": "Trial Collection",
+                "description": "This is a sample description of a collection"
+            },
+            "archived": false,
+            "configuration": {
+                "allow_overlapping_ner_annotations": true
+            }
+        }, "classifier": {
+            "pipelineId": "5babb6ee4eb7dd2c39b9671c",
+            "overlap": 0.15,
+            "train_every": 100,
+            "classifierParameters": {
+                "cutoff": 1,
+                "iterations": 100
+            }
+        }, "documents": {
+            "fetch_20newsgroups": {
+                "subset": "test",
+                "categories": ["alt.atheism", "soc.religion.christian", "comp.graphics", "sci.med"],
+                "shuffle": false
+            },
+            "num_docs": 750,
+            "num_annotations": 375
+        }
+    },
+    {
+        "collection": {
+            "creator_id": "margaret",
+            "annotators": ["ada", "margaret", "katherine"],
+            "viewers": ["ada", "margaret", "katherine"],
+            "labels": ["geo", "gpe", "per", "org", "tim", "art", "nat", "eve"],
+            "metadata": {
+                "title": "NER Test Collection",
+                "description": "This is a sample sample collection to test NER tasks"
+            },
+            "archived": false,
+            "configuration": {
+                "allow_overlapping_ner_annotations": true
+            }
+        }, "classifier": {
+            "pipelineId": "5babb6ee4eb7dd2c39b9671d",
+            "overlap": 0,
+            "classifierParameters": {
+                "cutoff": 1,
+                "iterations": 100
+            }
+        }, "documents": {
+            "ner_annotations": {
+                "csv_file": "./ner_dataset.csv",
+                "sentences_per_doc": 10
+            },
+            "num_docs": 150,
+            "random_images": [
+                "https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Unequalized_Hawkes_Bay_NZ.jpg/600px-Unequalized_Hawkes_Bay_NZ.jpg",
+                "https://cdn.indreams.me/cdf00b6d4827cd66511bdc35e1ef2ea3_10",
+                "/static/apl.png",
+                "/static/campus.jpg"
+            ],
+            "random_annotators": true
+        }
+    },
+    {
+        "collection": {
+            "creator_id": "ada",
+            "annotators": ["ada"],
+            "viewers": ["ada"],
+            "labels": ["rec.sport.baseball", "talk.politics.misc", "rec.autos", "sci.electronics", "sci.crypt", "talk.politics.guns", "talk.religion.misc", "comp.sys.mac.hardware", "label", "sci.space", "comp.sys.ibm.pc.hardware", "misc.forsale", "talk.politics.mideast", "rec.sport.hockey", "sci.med", "rec.motorcycles", "soc.religion.christian", "comp.graphics", "alt.atheism", "comp.windows.x", "comp.os.ms-windows.misc"],
+            "metadata": {
+                "title": "Snorkel Test",
+                "description": "Test dataset used for Snorkel."
+            },
+            "archived": false,
+            "configuration": {
+                "allow_overlapping_ner_annotations": true
+            }
+        }, "classifier": {
+            "pipelineId": "5babb6ee4eb7dd2c39b9671c",
+            "overlap": 0.15,
+            "train_every": 5,
+            "classifierParameters": {
+                "cutoff": 1,
+                "iterations": 100
+            }
+        }, "documents": {
+            "csv_file": {
+                 "csv_filename": "./snorkel_test.csv",
+                 "has_header": true,
+                 "text_column": 0
+            }
+        }
+    }
+]

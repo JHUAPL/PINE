@@ -1,0 +1,319 @@
+:mod:`pine.backend.shared.config`
+=================================
+
+.. py:module:: pine.backend.shared.config
+
+
+Module Contents
+---------------
+
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   pine.backend.shared.config.BaseConfig
+   pine.backend.shared.config.TestConfig
+   pine.backend.shared.config.ConfigBuilder
+
+
+
+.. data:: LOGGER
+   
+
+   
+
+.. py:class:: BaseConfig(root_dir=None)
+
+   Bases: :class:`object`
+
+   Initialize self.  See help(type(self)) for accurate signature.
+
+   .. attribute:: ROOT_DIR
+      
+
+      
+
+   .. attribute:: BASE_DIR
+      
+
+      
+
+   .. attribute:: BASE_CFG_FILE
+      :annotation: = config.yaml
+
+      
+
+   .. attribute:: BASE_ENV_PREFIX
+      :annotation: = AL_
+
+      
+
+   .. attribute:: DEBUG
+      :annotation: = True
+
+      
+
+   .. attribute:: TESTING
+      :annotation: = False
+
+      
+
+   .. attribute:: LOGGER_NAME
+      
+
+      
+
+   .. attribute:: LOGGER_DIR
+      :annotation: = logs
+
+      
+
+   .. attribute:: LOGGER_FILE
+      :annotation: = debug.log
+
+      
+
+   .. attribute:: LOGGER_LEVEL
+      
+
+      
+
+   .. attribute:: EVE_HOST
+      :annotation: = localhost
+
+      
+
+   .. attribute:: EVE_PORT
+      :annotation: = 5001
+
+      
+
+   .. attribute:: REDIS_HOST
+      :annotation: = localhost
+
+      
+
+   .. attribute:: REDIS_PORT
+      :annotation: = 6379
+
+      
+
+   .. attribute:: REDIS_USR
+      
+
+      
+
+   .. attribute:: REDIS_PWD
+      
+
+      
+
+   .. attribute:: REDIS_DBNUM
+      :annotation: = 0
+
+      
+
+   .. attribute:: REDIS_PREFIX
+      :annotation: = AL:
+
+      
+
+   .. attribute:: REDIS_EXPIRE
+      :annotation: = 3600
+
+      
+
+   .. attribute:: SCHEDULER_REGISTRATION_TIMEOUT
+      
+
+      
+
+   .. attribute:: SCHEDULER_HANDLER_TIMEOUT
+      
+
+      
+
+   .. attribute:: SCHEDULER_QUEUE_TIMEOUT
+      
+
+      
+
+   .. attribute:: SERVICE_REGISTRATION_CHANNEL
+      :annotation: = registration
+
+      
+
+   .. attribute:: SERVICE_REGISTRATION_FREQUENCY
+      :annotation: = 60
+
+      
+
+   .. attribute:: SERVICE_LISTENING_FREQUENCY
+      :annotation: = 1
+
+      
+
+   .. attribute:: SERVICE_HANDLER_TIMEOUT
+      :annotation: = 3600
+
+      
+
+   .. attribute:: SERVICE_LIST
+      
+
+      
+
+   .. attribute:: DATASETS_LOCAL_DIR
+      :annotation: = D:\Data\DEEPCATT2_DB_DATA\datasets
+
+      
+
+   .. attribute:: MODELS_LOCAL_DIR
+      :annotation: = D:\\Data\\DEEPCATT2_DB_DATA\\Models
+
+      
+
+   .. method:: _get_config_var_paths(cls, root_dict=None)
+      :classmethod:
+
+
+
+   .. method:: _process_paths(cls, alt_path=None)
+      :classmethod:
+
+
+
+   .. method:: _process_file_cfg(cls)
+      :classmethod:
+
+
+
+   .. method:: _process_env_vars(cls)
+      :classmethod:
+
+
+
+   .. method:: as_dict(cls)
+      :classmethod:
+
+
+      :rtype: dict
+
+
+   .. method:: as_attr_dict(cls)
+      :classmethod:
+
+
+      :rtype: munch.Munch | dict
+
+
+   .. method:: _try_cast(value, _type, _default=None)
+      :staticmethod:
+
+
+
+   .. method:: _str2bool(_str, _default=None)
+      :staticmethod:
+
+
+
+
+.. py:class:: TestConfig(root_dir=None)
+
+   Bases: :class:`pine.backend.shared.config.BaseConfig`
+
+   Initialize self.  See help(type(self)) for accurate signature.
+
+
+.. py:class:: ConfigBuilder
+
+   Bases: :class:`object`
+
+   Initialize self.  See help(type(self)) for accurate signature.
+
+   .. attribute:: __env_cfg_variable
+      :annotation: = BUILDER_CFG_PROFILE
+
+      
+
+   .. attribute:: __current_config_instance
+      
+
+      
+
+   .. attribute:: __current_config_instance_name
+      
+
+      
+
+   .. attribute:: __current_config_instance_print
+      :annotation: = False
+
+      
+
+   .. attribute:: __arg_parser
+      
+
+      
+
+   .. method:: __get_configs()
+      :staticmethod:
+
+
+      :rtype list[Callable[..., BaseConfig]]
+
+
+   .. method:: get_config_names()
+      :staticmethod:
+
+
+      :rtype: list[str]
+
+
+   .. method:: get_arg_parser(cls)
+      :classmethod:
+
+
+      :rtype: ArgumentParser
+
+
+   .. method:: init_config(cls, config_name=None, config_base=None, enable_terminal=True, as_attr_dict=True)
+      :classmethod:
+
+
+      :type config_name: str | None
+      :type config_base: str | None
+      :type enable_terminal: bool
+      :type as_attr_dict: bool
+
+
+   .. method:: get_config(cls, config_name=None, config_base=None, enable_terminal=True, as_attr_dict=True)
+      :classmethod:
+
+
+      :type config_name: str | None
+      :type config_base: str | None
+      :type enable_terminal: bool
+      :type as_attr_dict: bool
+      :rtype: BaseConfig
+
+
+   .. method:: set_config(cls, config_name=None, config_base=None, enable_terminal=True, as_attr_dict=True)
+      :classmethod:
+
+
+      :type config_name: str | None
+      :type config_base: str | None
+      :type enable_terminal: bool
+      :type as_attr_dict: bool
+
+
+   .. method:: __parse_terminal_config(cls)
+      :classmethod:
+
+
+      :rtype: argparse.Namespace
+
+
+

@@ -1,0 +1,251 @@
+
+
+<!doctype html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>pine.pipelines.spacy_NER_pipeline &#8212; pine  documentation</title>
+    <link rel="stylesheet" href="../../../../_static/bizstyle.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/graphviz.css" />
+    
+    <script id="documentation_options" data-url_root="../../../../" src="../../../../_static/documentation_options.js"></script>
+    <script src="../../../../_static/jquery.js"></script>
+    <script src="../../../../_static/underscore.js"></script>
+    <script src="../../../../_static/doctools.js"></script>
+    <script src="../../../../_static/language_data.js"></script>
+    <script src="../../../../_static/bizstyle.js"></script>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" />
+    <link rel="prev" title="pine.pipelines.run_service" href="../run_service/index.html" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <!--[if lt IE 9]>
+    <script src="_static/css3-mediaqueries.js"></script>
+    <![endif]-->
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="../run_service/index.html" title="pine.pipelines.run_service"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../../index.html">pine  documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../../index.html" >API Reference</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../../index.html" ><code class="xref py py-mod docutils literal notranslate"><span class="pre">pine</span></code></a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="../index.html" accesskey="U"><code class="xref py py-mod docutils literal notranslate"><span class="pre">pine.pipelines</span></code></a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href=""><code class="xref py py-mod docutils literal notranslate"><span class="pre">pine.pipelines.spacy_NER_pipeline</span></code></a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="module-pine.pipelines.spacy_NER_pipeline">
+<span id="pine-pipelines-spacy-ner-pipeline"></span><h1><a class="reference internal" href="#module-pine.pipelines.spacy_NER_pipeline" title="pine.pipelines.spacy_NER_pipeline"><code class="xref py py-mod docutils literal notranslate"><span class="pre">pine.pipelines.spacy_NER_pipeline</span></code></a><a class="headerlink" href="#module-pine.pipelines.spacy_NER_pipeline" title="Permalink to this headline">¶</a></h1>
+<p><p>For more details, see the documentation:
+* Training: <a class="reference external" href="https://spacy.io/usage/training">https://spacy.io/usage/training</a>
+* NER: <a class="reference external" href="https://spacy.io/usage/linguistic-features#named-entities">https://spacy.io/usage/linguistic-features#named-entities</a></p>
+<p>Compatible with: spaCy v2.0.0+</p>
+</p>
+<div class="section" id="module-contents">
+<h2>Module Contents<a class="headerlink" href="#module-contents" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="classes">
+<h3>Classes<a class="headerlink" href="#classes" title="Permalink to this headline">¶</a></h3>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pine.pipelines.spacy_NER_pipeline.spacy_NER" title="pine.pipelines.spacy_NER_pipeline.spacy_NER"><code class="xref py py-obj docutils literal notranslate"><span class="pre">spacy_NER</span></code></a>(model_path=None)</p></td>
+<td><p>Initialize self.  See help(type(self)) for accurate signature.</p></td>
+</tr>
+</tbody>
+</table>
+<dl class="py class">
+<dt id="pine.pipelines.spacy_NER_pipeline.spacy_NER">
+<em class="property">class </em><code class="sig-prename descclassname">pine.pipelines.spacy_NER_pipeline.</code><code class="sig-name descname">spacy_NER</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">model_path</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.pipelines.spacy_NER_pipeline.spacy_NER" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="../pipeline/index.html#pine.pipelines.pipeline.Pipeline" title="pine.pipelines.pipeline.Pipeline"><code class="xref py py-class docutils literal notranslate"><span class="pre">pine.pipelines.pipeline.Pipeline</span></code></a></p>
+<p>Initialize self.  See help(type(self)) for accurate signature.</p>
+<dl class="py attribute">
+<dt id="pine.pipelines.spacy_NER_pipeline.spacy_NER.__nlp">
+<code class="sig-name descname">__nlp</code><em class="property"> = []</em><a class="headerlink" href="#pine.pipelines.spacy_NER_pipeline.spacy_NER.__nlp" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="pine.pipelines.spacy_NER_pipeline.spacy_NER.__ner">
+<code class="sig-name descname">__ner</code><em class="property"> = []</em><a class="headerlink" href="#pine.pipelines.spacy_NER_pipeline.spacy_NER.__ner" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="pine.pipelines.spacy_NER_pipeline.spacy_NER.__optimizer">
+<code class="sig-name descname">__optimizer</code><em class="property"> = []</em><a class="headerlink" href="#pine.pipelines.spacy_NER_pipeline.spacy_NER.__optimizer" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="pine.pipelines.spacy_NER_pipeline.spacy_NER.fit">
+<code class="sig-name descname">fit</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="n">X</span></em>, <em class="sig-param"><span class="n">y</span></em>, <em class="sig-param"><span class="n">params</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.pipelines.spacy_NER_pipeline.spacy_NER.fit" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="pine.pipelines.spacy_NER_pipeline.spacy_NER.evaluate">
+<code class="sig-name descname">evaluate</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="n">X</span></em>, <em class="sig-param"><span class="n">y</span></em>, <em class="sig-param"><span class="n">Xid</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.pipelines.spacy_NER_pipeline.spacy_NER.evaluate" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="pine.pipelines.spacy_NER_pipeline.spacy_NER.predict">
+<code class="sig-name descname">predict</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="n">X</span></em>, <em class="sig-param"><span class="n">Xid</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.pipelines.spacy_NER_pipeline.spacy_NER.predict" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="pine.pipelines.spacy_NER_pipeline.spacy_NER.predict_proba">
+<code class="sig-name descname">predict_proba</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="n">X</span></em>, <em class="sig-param"><span class="n">Xid</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.pipelines.spacy_NER_pipeline.spacy_NER.predict_proba" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="pine.pipelines.spacy_NER_pipeline.spacy_NER.next_example">
+<code class="sig-name descname">next_example</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="n">X</span></em>, <em class="sig-param"><span class="n">Xid</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.pipelines.spacy_NER_pipeline.spacy_NER.next_example" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="pine.pipelines.spacy_NER_pipeline.spacy_NER.format_data">
+<code class="sig-name descname">format_data</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="n">X</span></em>, <em class="sig-param"><span class="n">y</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.pipelines.spacy_NER_pipeline.spacy_NER.format_data" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="pine.pipelines.spacy_NER_pipeline.spacy_NER.add_label">
+<code class="sig-name descname">add_label</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="n">entity</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.pipelines.spacy_NER_pipeline.spacy_NER.add_label" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="pine.pipelines.spacy_NER_pipeline.spacy_NER.save_model">
+<code class="sig-name descname">save_model</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="n">model_path</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.pipelines.spacy_NER_pipeline.spacy_NER.save_model" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="pine.pipelines.spacy_NER_pipeline.spacy_NER.load_model">
+<code class="sig-name descname">load_model</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="n">model_path</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.pipelines.spacy_NER_pipeline.spacy_NER.load_model" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+</div>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../../../../index.html">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">pine.pipelines.spacy_NER_pipeline</span></code></a><ul>
+<li><a class="reference internal" href="#module-contents">Module Contents</a><ul>
+<li><a class="reference internal" href="#classes">Classes</a><ul>
+<li><a class="reference internal" href="#pine.pipelines.spacy_NER_pipeline.spacy_NER">spacy_NER</a><ul>
+<li><a class="reference internal" href="#pine.pipelines.spacy_NER_pipeline.spacy_NER.__nlp">__nlp</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#pine.pipelines.spacy_NER_pipeline.spacy_NER.__ner">__ner</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#pine.pipelines.spacy_NER_pipeline.spacy_NER.__optimizer">__optimizer</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#pine.pipelines.spacy_NER_pipeline.spacy_NER.fit">fit</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#pine.pipelines.spacy_NER_pipeline.spacy_NER.evaluate">evaluate</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#pine.pipelines.spacy_NER_pipeline.spacy_NER.predict">predict</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#pine.pipelines.spacy_NER_pipeline.spacy_NER.predict_proba">predict_proba</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#pine.pipelines.spacy_NER_pipeline.spacy_NER.next_example">next_example</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#pine.pipelines.spacy_NER_pipeline.spacy_NER.format_data">format_data</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#pine.pipelines.spacy_NER_pipeline.spacy_NER.add_label">add_label</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#pine.pipelines.spacy_NER_pipeline.spacy_NER.save_model">save_model</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#pine.pipelines.spacy_NER_pipeline.spacy_NER.load_model">load_model</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="../run_service/index.html"
+                        title="previous chapter"><code class="xref py py-mod docutils literal notranslate"><span class="pre">pine.pipelines.run_service</span></code></a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../../../_sources/autoapi/pine/pipelines/spacy_NER_pipeline/index.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="../run_service/index.html" title="pine.pipelines.run_service"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../../index.html">pine  documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../../index.html" >API Reference</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../../index.html" ><code class="xref py py-mod docutils literal notranslate"><span class="pre">pine</span></code></a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="../index.html" ><code class="xref py py-mod docutils literal notranslate"><span class="pre">pine.pipelines</span></code></a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href=""><code class="xref py py-mod docutils literal notranslate"><span class="pre">pine.pipelines.spacy_NER_pipeline</span></code></a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright (C) 2019 The Johns Hopkins University Applied Physics Laboratory LLC..
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.1.2.
+    </div>
+  </body>
+</html>

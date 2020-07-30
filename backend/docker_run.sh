@@ -3,7 +3,7 @@
 
 GUNICORN_CONFIG_FILE="config.py"
 
-if [[ -z ${VEGAS_CLIENT_SECRET} ]]; then
+if ([[ -z ${AUTH_MODULE} ]] || [[ ${AUTH_MODULE} == "vegas" ]]) && [[ -z ${VEGAS_CLIENT_SECRET} ]]; then
     echo ""
     echo ""
     echo ""

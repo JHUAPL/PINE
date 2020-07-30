@@ -1,0 +1,25 @@
+:mod:`pine.backend.pineiaa.bratiaa.agree_cli`
+=============================================
+
+.. py:module:: pine.backend.pineiaa.bratiaa.agree_cli
+
+
+Module Contents
+---------------
+
+
+Functions
+~~~~~~~~~
+
+.. autoapisummary::
+
+   pine.backend.pineiaa.bratiaa.agree_cli.parse_args
+   pine.backend.pineiaa.bratiaa.agree_cli.main
+
+
+.. function:: parse_args()
+
+
+.. function:: main()
+
+

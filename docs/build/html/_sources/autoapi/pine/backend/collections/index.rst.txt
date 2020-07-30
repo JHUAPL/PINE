@@ -1,0 +1,68 @@
+:mod:`pine.backend.collections`
+===============================
+
+.. py:module:: pine.backend.collections
+
+.. autoapi-nested-parse::
+
+   This module contains the api methods required to interact with, organize, create, and display collections in the
+   front-end and store the collections in the backend
+
+
+
+Submodules
+----------
+.. toctree::
+   :titlesonly:
+   :maxdepth: 1
+
+   bp/index.rst
+
+
+Package Contents
+----------------
+
+
+Functions
+~~~~~~~~~
+
+.. autoapisummary::
+
+   pine.backend.collections.user_can_annotate
+   pine.backend.collections.user_can_view
+   pine.backend.collections.user_can_add_documents_or_images
+   pine.backend.collections.user_can_modify_document_metadata
+   pine.backend.collections.user_can_annotate_by_id
+   pine.backend.collections.user_can_annotate_by_ids
+   pine.backend.collections.user_can_view_by_id
+   pine.backend.collections.user_can_add_documents_or_images_by_id
+   pine.backend.collections.user_can_modify_document_metadata_by_id
+
+
+.. function:: user_can_annotate(collection)
+
+
+.. function:: user_can_view(collection)
+
+
+.. function:: user_can_add_documents_or_images(collection)
+
+
+.. function:: user_can_modify_document_metadata(collection)
+
+
+.. function:: user_can_annotate_by_id(collection_id)
+
+
+.. function:: user_can_annotate_by_ids(collection_ids)
+
+
+.. function:: user_can_view_by_id(collection_id)
+
+
+.. function:: user_can_add_documents_or_images_by_id(collection_id)
+
+
+.. function:: user_can_modify_document_metadata_by_id(collection_id)
+
+

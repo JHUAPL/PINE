@@ -1,0 +1,683 @@
+:mod:`pine.client.models`
+=========================
+
+.. py:module:: pine.client.models
+
+
+Module Contents
+---------------
+
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   pine.client.models.CollectionBuilder
+
+
+
+Functions
+~~~~~~~~~
+
+.. autoapisummary::
+
+   pine.client.models._check_field_required_bool
+   pine.client.models._check_field_int
+   pine.client.models._check_field_required_int
+   pine.client.models._check_field_float
+   pine.client.models._check_field_required_float
+   pine.client.models._check_field_string
+   pine.client.models._check_field_required_string
+   pine.client.models._check_field_string_list
+   pine.client.models._check_field_required_string_list
+   pine.client.models._check_field_dict
+   pine.client.models._check_field_required_dict
+   pine.client.models._check_field_bool
+   pine.client.models.is_valid_eve_user
+   pine.client.models.is_valid_eve_pipeline
+   pine.client.models.is_valid_eve_collection
+   pine.client.models.is_valid_collection
+   pine.client.models.is_valid_eve_document
+   pine.client.models.is_valid_doc_annotation
+   pine.client.models.is_valid_ner_annotation
+   pine.client.models.is_valid_annotation
+   pine.client.models.is_valid_doc_annotations
+   pine.client.models.remove_eve_fields
+   pine.client.models.remove_nonupdatable_fields
+
+
+.. data:: ID_FIELD
+   :annotation: :str = _id
+
+   The field used to store database ID.
+
+   :type: str
+
+
+.. data:: ITEMS_FIELD
+   :annotation: :str = _items
+
+   The field used to access the items in a multi-item database response.
+
+   :type: str
+
+
+.. function:: _check_field_required_bool(obj: dict, field: str) -> bool
+
+   Checks that the given field is in the object and is a bool.
+
+   :param obj: the object to check
+   :type obj: dict
+   :param field: the field to check
+   :type field: str
+
+   :returns: whether the given field is in the object and is a bool
+   :rtype: bool
+
+
+.. function:: _check_field_int(obj: dict, field: str) -> bool
+
+   Checks that if the given field is in the object, that it is an int.
+
+   :param obj: the object to check
+   :type obj: dict
+   :param field: the field to check
+   :type field: str
+
+   :returns: if the given field is in the object, that it is an int
+   :rtype: bool
+
+
+.. function:: _check_field_required_int(obj: dict, field: str) -> bool
+
+   Checks that the given field is in the object and is an int.
+
+   :param obj: the object to check
+   :type obj: dict
+   :param field: the field to check
+   :type field: str
+
+   :returns: whether the given field is in the object and is an int
+   :rtype: bool
+
+
+.. function:: _check_field_float(obj: dict, field: str) -> bool
+
+   Checks that if the given field is in the object, that it is a float.
+
+   :param obj: the object to check
+   :type obj: dict
+   :param field: the field to check
+   :type field: str
+
+   :returns: if the given field is in the object, that it is a float
+   :rtype: bool
+
+
+.. function:: _check_field_required_float(obj: dict, field: str) -> bool
+
+   Checks that the given field is in the object and is a float.
+
+   :param obj: the object to check
+   :type obj: dict
+   :param field: the field to check
+   :type field: str
+
+   :returns: whether the given field is in the object and is a float
+   :rtype: bool
+
+
+.. function:: _check_field_string(obj: dict, field: str) -> bool
+
+   Checks that if the given field is in the object, that it is a string.
+
+   :param obj: the object to check
+   :type obj: dict
+   :param field: the field to check
+   :type field: str
+
+   :returns: if the given field is in the object, that it is a string
+   :rtype: bool
+
+
+.. function:: _check_field_required_string(obj: dict, field: str) -> bool
+
+   Checks that the given field is in the object and is a string.
+
+   :param obj: the object to check
+   :type obj: dict
+   :param field: the field to check
+   :type field: str
+
+   :returns: whether the given field is in the object and is a string
+   :rtype: bool
+
+
+.. function:: _check_field_string_list(obj: dict, field: str, min_length: int = 0) -> bool
+
+   Checks that if the given field is in the object, that it is a string list.
+
+   :param obj: the object to check
+   :type obj: dict
+   :param field: the field to check
+   :type field: str
+   :param min_length: the minimum length of the list (if > 0), defaults to 0
+   :type min_length: int, optional
+
+   :returns: if the given field is in the object, that it is a string list
+   :rtype: bool
+
+
+.. function:: _check_field_required_string_list(obj: dict, field: str, min_length: int = 0) -> bool
+
+   Checks that the given field is in the object and is a string.
+
+   :param obj: the object to check
+   :type obj: dict
+   :param field: the field to check
+   :type field: str
+   :param min_length: the minimum length of the list (if > 0), defaults to 0
+   :type min_length: int, optional
+
+   :returns: if the given field is in the object, that it is a string list
+   :rtype: bool
+
+
+.. function:: _check_field_dict(obj: dict, field: str) -> bool
+
+   Checks that if the given field is in the object, that it is a dict.
+
+   :param obj: the object to check
+   :type obj: dict
+   :param field: the field to check
+   :type field: str
+
+   :returns: if the given field is in the object, that it is a dict
+   :rtype: bool
+
+
+.. function:: _check_field_required_dict(obj: dict, field: str) -> bool
+
+   Checks that the given field is in the object and is a dict.
+
+   :param obj: the object to check
+   :type obj: dict
+   :param field: the field to check
+   :type field: str
+
+   :returns: whether the given field is in the object and is a dict
+   :rtype: bool
+
+
+.. function:: _check_field_bool(obj: dict, field: str) -> bool
+
+   Checks that if the given field is in the object, that it is a bool.
+
+   :param obj: the object to check
+   :type obj: dict
+   :param field: the field to check
+   :type field: str
+
+   :returns: if the given field is in the object, that it is a bool
+   :rtype: bool
+
+
+.. function:: is_valid_eve_user(user: dict, error_callback: typing.Callable[[str], None] = None) -> bool
+
+   Checks whether the given user object is valid.
+
+   A valid user object has an ``_id``, ``firstname``, and ``lastname`` that are non-empty string
+   fields.  If ``email``, ``description``, or ``passwdhash`` are present, they are string fields.
+   If ``role`` is present, it is a list of strings that are either ``administrator`` or ``user``.
+
+   :param user: user object
+   :type user: dict
+   :param error_callback: optional callback that is called with any error messages, defaults to ``None``
+   :type error_callback: function, optional
+
+   :returns: whether the given user object is valid
+   :rtype: bool
+
+
+.. function:: is_valid_eve_pipeline(pipeline: dict, error_callback: typing.Callable[[str], None] = None) -> bool
+
+   Checks whether the given pipeline object is valid.
+
+   A valid pipeline has an ``_id``, ``title``, and ``name`` that are non-empty string fields.  If
+   ``description`` is provided, it is a string field.  If ``parameters`` are provided, it is a
+   dict field.
+
+   :param pipeline: pipeline object
+   :type pipeline: dict
+   :param error_callback: optional callback that is called with any error messages, defaults to ``None``
+   :type error_callback: function, optional
+
+   :returns: whether the given pipeline object is valid
+   :rtype: bool
+
+
+.. function:: is_valid_eve_collection(collection: dict, error_callback: typing.Callable[[str], None] = None) -> bool
+
+   Checks whether the given collection object is valid.
+
+   A valid collection has a ``creator_id`` that is a non-empty string field.  It has a ``labels``
+   that is a non-empty list of strings.  If ``annotators`` or ``viewers`` are provided, they are
+   lists of strings.  If ``metadata`` or ``configuration`` are provided, they are dicts.  If
+   ``archived`` is provided, it is a bool.
+
+   :param collection: collection object
+   :type collection: dict
+   :param error_callback: optional callback that is called with any error messages, defaults to ``None``
+   :type error_callback: function, optional
+
+   :returns: whether the given collection object is valid
+   :rtype: bool
+
+
+.. function:: is_valid_collection(form: dict, files: dict, error_callback: typing.Callable[[str], None] = None) -> bool
+
+   Checks whether the given form and files parameters are valid for creating a collection.
+
+   A valid form has a ``collection`` that is a dict field and is valid via
+   :py:func:`.is_valid_eve_collection`.  Additionally, the collection has string ``title`` and
+   ``description`` fields in its ``metadata``.  It also has at least one element for ``labels``,
+   ``viewers``, and ``annotators``, and the ``creator_id`` must be in both ``viewers`` and
+   ``annotators``.
+
+   The form also has ``overlap`` as a float field between 0 and 1 (inclusive), ``train_every`` as
+   an int field that is at least 5, and ``pipelineId`` as a string field.
+
+   If files are provided, file ``file`` and any files starting with ``imageFile`` are checked.
+   If a file ``file`` is provided, the form must also have a boolean ``csvHasHeader`` field and an
+   int ``csvTextCol`` field.
+
+   :param form: form data to send to backend
+   :type form: dict
+   :param files: file data to send to backend
+   :type files: dict
+   :param error_callback: optional callback that is called with any error messages, defaults to ``None``
+   :type error_callback: function, optional
+
+   :returns: whether the given form and files parameters are valid for creating a collection
+   :rtype: bool
+
+
+.. function:: is_valid_eve_document(document: dict, error_callback: typing.Callable[[str], None] = None) -> bool
+
+   Checks whether the given document object is valid.
+
+   A valid document has a ``creator_id`` and ``collection_id`` that are non-empty string fields.
+   Optionally, it may have an int ``overlap`` field, string ``text``field, and dict
+   ``metadata`` and ``has_annotated`` fields.
+
+   :param document: document object
+   :type document: dict
+   :param error_callback: optional callback that is called with any error messages, defaults to ``None``
+   :type error_callback: function, optional
+
+   :returns: whether the given document object is valid
+   :rtype: bool
+
+
+.. function:: is_valid_doc_annotation(ann: typing.Any, error_callback: typing.Callable[[str], None] = None) -> bool
+
+   Checks whether the given annotation is a valid document label/annotation.
+
+   This means that it is a non-empty string.
+
+   :param ann: annotation
+   :param error_callback: optional callback that is called with any error messages, defaults to ``None``
+   :type error_callback: function, optional
+
+   :returns: whether the given annotation is a valid document label/annotation
+   :rtype: bool
+
+
+.. function:: is_valid_ner_annotation(ann: typing.Any, error_callback: typing.Callable[[str], None] = None) -> bool
+
+   Checks whether the given annotation is a valid document NER annotation.
+
+   Valid NER annotations take one of two forms: a :py:class:`dict` or a
+   :py:class:`list`/:py:class:`tuple` of size 3.
+
+   A valid NER :py:class:`dict` has the following fields:
+
+   * ``start``: an :py:class:`int` that is >= 0
+   * ``end``: an :py:class:`int` that is >= 0
+   * ``label``: a non-empty :py:class:`str`
+
+   A valid NER :py:class:`list`/:py:class:`tuple` has the following elements:
+
+   * element ``0``: an :py:class:`int` that is >= 0
+   * element ``1``: an :py:class:`int` that is >= 0
+   * element ``2``: a non-empty :py:class:`str`
+
+   :param ann: annotation
+   :param error_callback: optional callback that is called with any error messages, defaults to ``None``
+   :type error_callback: function, optional
+
+   :returns: whether the given annotation is a valid document label/annotation
+   :rtype: bool
+
+
+.. function:: is_valid_annotation(body: dict, error_callback: typing.Callable[[str], None] = None) -> bool
+
+   Checks whether the given body is valid to create an annotation.
+
+   A valid body is a :py:class:`dict` with two fields:
+
+   * ``doc``: a list of valid doc annotations (see :py:func:`.is_valid_doc_annotation`)
+   * ``ner``: a list of valid NER annotations (see :py:func:`.is_valid_ner_annotation`)
+
+   :param body: annotation body
+   :type body: dict
+   :param error_callback: optional callback that is called with any error messages, defaults to ``None``
+   :type error_callback: function, optional
+
+   :returns: whether the given body is valid to create an annotation
+   :rtype: bool
+
+
+.. function:: is_valid_doc_annotations(doc_annotations: dict, error_callback: typing.Callable[[str], None] = None) -> bool
+
+   Checks whether the given document annotations are valid.
+
+   A valid document annotations object is a :py:class:`dict`, where the keys are :py:class:`str`
+   document IDs, and the values are valid annotation bodies (see :py:func:`.is_valid_annotation`).
+
+   :param doc_annotations: document annotations
+   :type body: dict
+   :param error_callback: optional callback that is called with any error messages, defaults to ``None``
+   :type error_callback: function, optional
+
+   :returns: whether the given body is valid to create an annotation
+   :rtype: bool
+
+
+.. py:class:: CollectionBuilder(collection: dict = None, creator_id: str = None, viewers: typing.List[str] = None, annotators: typing.List[str] = None, labels: typing.List[str] = None, title: str = None, description: str = None, allow_overlapping_ner_annotations: bool = None, pipelineId: str = None, overlap: float = None, train_every: int = None, classifierParameters: dict = None, document_csv_file: str = None, document_csv_file_has_header: bool = None, document_csv_file_text_column: int = None, image_files: typing.List[str] = None)
+
+   Bases: :class:`object`
+
+   A class that can build the form and files fields that are necessary to create a collection.
+       
+
+   Constructor.
+
+   :param collection: starting parameters for the collection, defaults to ``None`` (not set)
+   :type collection: dict, optional
+   :param creator_id: user ID for the creator, see :py:meth:`.creator_id`, defaults to ``None`` (not set)
+   :type creator_id: str, optional
+   :param viewers: viewer IDs for the collection, see :py:meth:`.viewer`, defaults to ``None`` (not set)
+   :type viewers: list(str), optional
+   :param annotators: annotator IDs for the collection, see :py:meth:`.annotator`, defaults to ``None`` (not set)
+   :type annotators: list(str), optional
+   :param labels: labels for the collection, see :py:meth:`.label`, defaults to ``None`` (not set)
+   :type labels: list(str), optional
+   :param title: metadata title, see :py:meth:`.title`, defaults to ``None`` (not set)
+   :type title: str, optional
+   :param description: metadata description, see :py:meth:`.description`, defaults to ``None`` (not set)
+   :type description: str, optional
+   :param allow_overlapping_ner_annotations: optional configuration for allowing overlapping NER
+                                             annotations, see :py:meth:`.allow_overlapping_ner_annotations`,
+                                             defaults to ``None`` (not set)
+   :type allow_overlapping_ner_annotations: bool
+   :param pipelineId: the ID of the pipeline from which to create the classifier,
+                      see :py:meth:`.classifier`, defaults to ``None`` (not set)
+   :type pipelineId: str, optional
+   :param overlap: the classifier overlap, see :py:meth:`.classifier`, defaults to ``None`` (not set)
+   :type overlap: float, optional
+   :param train_every: train the model after this many documents are annotated,
+                       see :py:meth:`.classifier`, defaults to ``None`` (not set)
+   :type train_every: int, optional
+   :param classifierParameters: any parameters to pass to the classifier,
+                                see :py:meth:`.classifier`, defaults to ``None`` (not set)
+   :type classifierParameters: dict, optional
+   :param document_csv_file: the filename of the local document CSV file,
+                             see :py:meth:`.document_csv_File`, defaults to ``None`` (not set)
+   :type document_csv_file: str, optional
+   :param document_csv_file_has_header: whether the document CSV file has a header,
+                                        see :py:meth:`.document_csv_File`, defaults to ``None`` (not set)
+   :type document_csv_file_has_header: bool, optional
+   :param document_csv_file_text_column: if the document CSV file has headers, the document text
+                                         can be found in this column index (the others are used for
+                                         document metadata), see :py:meth:`.document_csv_File`,
+                                         defaults to ``None`` (not set)
+   :type document_csv_file_text_column: int, optional
+   :param image_files: any image files to add to the collection, see :py:meth:`.image_file`,
+                       defaults to ``None`` (not set)
+   :type image_files: list(str)
+
+   .. attribute:: form
+      
+
+      The form data.
+
+      :type: dict
+
+
+   .. attribute:: files
+      
+
+      The files data.
+
+      :type: dict
+
+
+   .. method:: collection(self)
+      :property:
+
+
+      Returns the collection information from the form.
+
+      :returns: collection information from the form
+      :rtype: dict
+
+
+   .. method:: form_json(self)
+      :property:
+
+
+      Returns the form where the values have been JSON-encoded.
+
+      :returns: the form where the values have been JSON-encoded
+      :rtype: dict
+
+
+   .. method:: creator_id(self, user_id: str)
+
+
+      Sets the creator_id to the given, and adds to viewers and annotators.
+
+      :param user_id: the user ID to use for the creator_id
+      :type user_id: str
+
+      :returns: self
+      :rtype: models.CollectionBuilder
+
+
+   .. method:: viewer(self, user_id: str)
+
+
+      Adds the given user to the list of viewers.
+
+      :param user_id: the user ID to add as a viewer
+      :type user_id: str
+
+      :returns: self
+      :rtype: models.CollectionBuilder
+
+
+   .. method:: annotator(self, user_id: str)
+
+
+      Adds the given user to the list of annotators.
+
+      :param user_id: the user ID to add as an annotator
+      :type user_id: str
+
+      :returns: self
+      :rtype: models.CollectionBuilder
+
+
+   .. method:: label(self, label: str)
+
+
+      Adds the given label to the collection.
+
+      :param label: label to add
+      :type label: str
+
+      :returns: self
+      :rtype: models.CollectionBuilder
+
+
+   .. method:: metadata(self, key: str, value: typing.Any)
+
+
+      Adds the given metadata key/value to the collection.
+
+      :param key: metadata key
+      :type key: str
+      :param value: metadata value
+
+      :returns: self
+      :rtype: models.CollectionBuilder
+
+
+   .. method:: title(self, title: str)
+
+
+      Sets the metadata title to the given.
+
+      :param title: collection title
+      :type title: str
+
+      :returns: self
+      :rtype: models.CollectionBuilder
+
+
+   .. method:: description(self, description: str)
+
+
+      Sets the metadata description to the given.
+
+      :param description: collection description
+      :type description: str
+
+      :returns: self
+      :rtype: models.CollectionBuilder
+
+
+   .. method:: configuration(self, key: str, value: typing.Any)
+
+
+      Adds the given configuration key/value to the collection.
+
+      :param key: configuration key
+      :type key: str
+      :param value: configuration value
+
+      :returns: self
+      :rtype: models.CollectionBuilder
+
+
+   .. method:: allow_overlapping_ner_annotations(self, allow_overlapping_ner_annotations: bool)
+
+
+      Sets the configuration value for allow_overlapping_ner_annotations to the given.
+
+      :param allow_overlapping_ner_annotations: whether to allow overlapping NER annotations
+      :type allow_overlapping_ner_annotations: bool
+
+      :returns: self
+      :rtype: models.CollectionBuilder
+
+
+   .. method:: classifier(self, pipelineId: str, overlap: float = 0, train_every: int = 100, classifierParameters: dict = {})
+
+
+      Sets classifier information for the created collection.
+
+      :param pipelineId: the ID of the pipeline from which to create the classifier
+      :type pipelineId: str
+      :param overlap: the classifier overlap, defaults to `0`
+      :type overlap: float, optional
+      :param train_every: train the model after this many documents are annotated, defaults to `100`
+      :type train_every: int, optional
+      :param classifierParameters: any parameters to pass to the classifier, defaults to ``{}``
+      :type classifierParameters: dict, optional
+
+      :returns: self
+      :rtype: models.CollectionBuilder
+
+
+   .. method:: document_csv_file(self, csv_filename: str, has_header: bool, text_column: int)
+
+
+      Sets the CSV file used to create documents to the given.
+
+      May raise an Exception if there is a problem opening the indicated file.
+
+      :param csv_filename: the filename of the local CSV file
+      :type csv_filename: str
+      :param has_header: whether the CSV file has a header
+      :type has_header: bool
+      :param text_column: if the CSV file has headers, the document text can be found in this column index
+                          (the others are used for document metadata)
+      :type text_column: int
+
+      :returns: self
+      :rtype: models.CollectionBuilder
+
+
+   .. method:: image_file(self, image_filename: str)
+
+
+      Adds the given image file to the collection.
+
+      May raise an Exception if there is a problem opening the indicated file.
+
+      :param image_filename: the filename of the local image file
+      :type image_filename: str
+
+      :returns: self
+      :rtype: models.CollectionBuilder
+
+
+   .. method:: is_valid(self, error_callback: typing.Callable[[str], None] = None)
+
+
+      Checks whether the currently set values are valid or not.
+
+      See :py:func:`.is_valid_collection`.
+
+      :param error_callback: optional callback that is called with any error messages, defaults to ``None``
+      :type error_callback: function, optional
+
+      :returns: whether the currently set values are valid or not
+      :rtype: bool
+
+
+
+.. function:: remove_eve_fields(obj: dict, remove_timestamps: bool = True, remove_versions: bool = True)
+
+   Removes fields inserted by eve from the given object.
+
+   :param obj: the object
+   :type obj: dict
+   :param remove_timestamps: whether to remove the timestamp fields, defaults to ``True``
+   :type remove_timestamps: bool
+   :param remove_versions: whether to remove the version fields, defaults to ``True``
+   :type remove_versions: bool
+
+
+.. function:: remove_nonupdatable_fields(obj: dict)
+
+   Removes all non-updatable fields from the given object.
+
+   These fields would cause a ``PUT``/``PATCH`` to be rejected because they are not user-modifiable.
+
+   :param obj: the object
+   :type obj: dict
+
+

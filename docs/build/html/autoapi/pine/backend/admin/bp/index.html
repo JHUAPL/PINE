@@ -1,0 +1,278 @@
+
+
+<!doctype html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>pine.backend.admin.bp &#8212; pine  documentation</title>
+    <link rel="stylesheet" href="../../../../../_static/bizstyle.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../../../../_static/graphviz.css" />
+    
+    <script id="documentation_options" data-url_root="../../../../../" src="../../../../../_static/documentation_options.js"></script>
+    <script src="../../../../../_static/jquery.js"></script>
+    <script src="../../../../../_static/underscore.js"></script>
+    <script src="../../../../../_static/doctools.js"></script>
+    <script src="../../../../../_static/language_data.js"></script>
+    <script src="../../../../../_static/bizstyle.js"></script>
+    <link rel="index" title="Index" href="../../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../../search.html" />
+    <link rel="next" title="pine.backend.annotations" href="../../annotations/index.html" />
+    <link rel="prev" title="pine.backend.admin" href="../index.html" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <!--[if lt IE 9]>
+    <script src="_static/css3-mediaqueries.js"></script>
+    <![endif]-->
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="../../annotations/index.html" title="pine.backend.annotations"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="../index.html" title="pine.backend.admin"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../../../index.html">pine  documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../../../index.html" >API Reference</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../../../index.html" ><code class="xref py py-mod docutils literal notranslate"><span class="pre">pine</span></code></a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="../../index.html" ><code class="xref py py-mod docutils literal notranslate"><span class="pre">pine.backend</span></code></a> &#187;</li>
+          <li class="nav-item nav-item-4"><a href="../index.html" accesskey="U"><code class="xref py py-mod docutils literal notranslate"><span class="pre">pine.backend.admin</span></code></a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href=""><code class="xref py py-mod docutils literal notranslate"><span class="pre">pine.backend.admin.bp</span></code></a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="module-pine.backend.admin.bp">
+<span id="pine-backend-admin-bp"></span><h1><a class="reference internal" href="#module-pine.backend.admin.bp" title="pine.backend.admin.bp"><code class="xref py py-mod docutils literal notranslate"><span class="pre">pine.backend.admin.bp</span></code></a><a class="headerlink" href="#module-pine.backend.admin.bp" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="module-contents">
+<h2>Module Contents<a class="headerlink" href="#module-contents" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="functions">
+<h3>Functions<a class="headerlink" href="#functions" title="Permalink to this headline">¶</a></h3>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pine.backend.admin.bp.get_users" title="pine.backend.admin.bp.get_users"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_users</span></code></a>()</p></td>
+<td><p>Get the list of all users’ details (id, email, and password hash)</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#pine.backend.admin.bp.get_user" title="pine.backend.admin.bp.get_user"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_user</span></code></a>(user_id)</p></td>
+<td><p>Given a user_id, return the user’s details (id, email, and password hash)</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pine.backend.admin.bp.update_user_password" title="pine.backend.admin.bp.update_user_password"><code class="xref py py-obj docutils literal notranslate"><span class="pre">update_user_password</span></code></a>(user_id)</p></td>
+<td><p>Change the password hash stored in the database for the given user to a newly calculated password hash derived from</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#pine.backend.admin.bp.update_user" title="pine.backend.admin.bp.update_user"><code class="xref py py-obj docutils literal notranslate"><span class="pre">update_user</span></code></a>(user_id)</p></td>
+<td><p>Change the details stored in the database for the given user to those provided in the json body of this request.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pine.backend.admin.bp.add_user" title="pine.backend.admin.bp.add_user"><code class="xref py py-obj docutils literal notranslate"><span class="pre">add_user</span></code></a>()</p></td>
+<td><p>Add a new user to PINE, with the details provided in the json body of this request (id, email, and password hash).</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#pine.backend.admin.bp.delete_user" title="pine.backend.admin.bp.delete_user"><code class="xref py py-obj docutils literal notranslate"><span class="pre">delete_user</span></code></a>(user_id)</p></td>
+<td><p>Delete the user matching the given user_id</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pine.backend.admin.bp.system_export" title="pine.backend.admin.bp.system_export"><code class="xref py py-obj docutils literal notranslate"><span class="pre">system_export</span></code></a>()</p></td>
+<td><p>Export the contents of the database as a zip file</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#pine.backend.admin.bp.system_import" title="pine.backend.admin.bp.system_import"><code class="xref py py-obj docutils literal notranslate"><span class="pre">system_import</span></code></a>()</p></td>
+<td><p>Import the contents of the data provided in the request body to the database</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pine.backend.admin.bp.init_app" title="pine.backend.admin.bp.init_app"><code class="xref py py-obj docutils literal notranslate"><span class="pre">init_app</span></code></a>(app)</p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
+<dl class="py data">
+<dt id="pine.backend.admin.bp.bp">
+<code class="sig-prename descclassname">pine.backend.admin.bp.</code><code class="sig-name descname">bp</code><a class="headerlink" href="#pine.backend.admin.bp.bp" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt id="pine.backend.admin.bp.get_users">
+<code class="sig-prename descclassname">pine.backend.admin.bp.</code><code class="sig-name descname">get_users</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.admin.bp.get_users" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the list of all users’ details (id, email, and password hash)
+:return: str</p>
+</dd></dl>
+
+<dl class="py function">
+<dt id="pine.backend.admin.bp.get_user">
+<code class="sig-prename descclassname">pine.backend.admin.bp.</code><code class="sig-name descname">get_user</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">user_id</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.admin.bp.get_user" title="Permalink to this definition">¶</a></dt>
+<dd><p>Given a user_id, return the user’s details (id, email, and password hash)
+:param user_id: str
+:return: str</p>
+</dd></dl>
+
+<dl class="py function">
+<dt id="pine.backend.admin.bp.update_user_password">
+<code class="sig-prename descclassname">pine.backend.admin.bp.</code><code class="sig-name descname">update_user_password</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">user_id</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.admin.bp.update_user_password" title="Permalink to this definition">¶</a></dt>
+<dd><p>Change the password hash stored in the database for the given user to a newly calculated password hash derived from
+the password provided in the json body of this request.
+:param user_id:
+:return: Response</p>
+</dd></dl>
+
+<dl class="py function">
+<dt id="pine.backend.admin.bp.update_user">
+<code class="sig-prename descclassname">pine.backend.admin.bp.</code><code class="sig-name descname">update_user</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">user_id</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.admin.bp.update_user" title="Permalink to this definition">¶</a></dt>
+<dd><p>Change the details stored in the database for the given user to those provided in the json body of this request.
+:param user_id: str
+:return: Response</p>
+</dd></dl>
+
+<dl class="py function">
+<dt id="pine.backend.admin.bp.add_user">
+<code class="sig-prename descclassname">pine.backend.admin.bp.</code><code class="sig-name descname">add_user</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.admin.bp.add_user" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add a new user to PINE, with the details provided in the json body of this request (id, email, and password hash).
+This method will calculate and store a password hash based upon the provided password
+:return: Response</p>
+</dd></dl>
+
+<dl class="py function">
+<dt id="pine.backend.admin.bp.delete_user">
+<code class="sig-prename descclassname">pine.backend.admin.bp.</code><code class="sig-name descname">delete_user</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">user_id</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.admin.bp.delete_user" title="Permalink to this definition">¶</a></dt>
+<dd><p>Delete the user matching the given user_id
+:param user_id: str
+:return: Response</p>
+</dd></dl>
+
+<dl class="py function">
+<dt id="pine.backend.admin.bp.system_export">
+<code class="sig-prename descclassname">pine.backend.admin.bp.</code><code class="sig-name descname">system_export</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.admin.bp.system_export" title="Permalink to this definition">¶</a></dt>
+<dd><p>Export the contents of the database as a zip file
+:return: Response</p>
+</dd></dl>
+
+<dl class="py function">
+<dt id="pine.backend.admin.bp.system_import">
+<code class="sig-prename descclassname">pine.backend.admin.bp.</code><code class="sig-name descname">system_import</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.admin.bp.system_import" title="Permalink to this definition">¶</a></dt>
+<dd><p>Import the contents of the data provided in the request body to the database
+:return: Response</p>
+</dd></dl>
+
+<dl class="py function">
+<dt id="pine.backend.admin.bp.init_app">
+<code class="sig-prename descclassname">pine.backend.admin.bp.</code><code class="sig-name descname">init_app</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">app</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.admin.bp.init_app" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+</div>
+</div>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../../../../../index.html">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">pine.backend.admin.bp</span></code></a><ul>
+<li><a class="reference internal" href="#module-contents">Module Contents</a><ul>
+<li><a class="reference internal" href="#functions">Functions</a><ul>
+<li><a class="reference internal" href="#pine.backend.admin.bp.bp">bp</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#pine.backend.admin.bp.get_users">get_users</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#pine.backend.admin.bp.get_user">get_user</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#pine.backend.admin.bp.update_user_password">update_user_password</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#pine.backend.admin.bp.update_user">update_user</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#pine.backend.admin.bp.add_user">add_user</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#pine.backend.admin.bp.delete_user">delete_user</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#pine.backend.admin.bp.system_export">system_export</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#pine.backend.admin.bp.system_import">system_import</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#pine.backend.admin.bp.init_app">init_app</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="../index.html"
+                        title="previous chapter"><code class="xref py py-mod docutils literal notranslate"><span class="pre">pine.backend.admin</span></code></a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="../../annotations/index.html"
+                        title="next chapter"><code class="xref py py-mod docutils literal notranslate"><span class="pre">pine.backend.annotations</span></code></a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../../../../_sources/autoapi/pine/backend/admin/bp/index.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../../../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="../../annotations/index.html" title="pine.backend.annotations"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="../index.html" title="pine.backend.admin"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../../../index.html">pine  documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../../../index.html" >API Reference</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../../../index.html" ><code class="xref py py-mod docutils literal notranslate"><span class="pre">pine</span></code></a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="../../index.html" ><code class="xref py py-mod docutils literal notranslate"><span class="pre">pine.backend</span></code></a> &#187;</li>
+          <li class="nav-item nav-item-4"><a href="../index.html" ><code class="xref py py-mod docutils literal notranslate"><span class="pre">pine.backend.admin</span></code></a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href=""><code class="xref py py-mod docutils literal notranslate"><span class="pre">pine.backend.admin.bp</span></code></a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright (C) 2019 The Johns Hopkins University Applied Physics Laboratory LLC..
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.1.2.
+    </div>
+  </body>
+</html>

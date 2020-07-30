@@ -56,7 +56,10 @@ backend:
     repository: VALUE_TO_BE_OVERRIDDEN
     tag: latest
     pullPolicy: IfNotPresent
-
+  persistence:
+    enabled: false
+    shareName: ""
+    mountPath: "/mnt/azure"
 nlpAnnotation:
   image:
     repository: VALUE_TO_BE_OVERRIDDEN
@@ -135,6 +138,7 @@ secrets:
 #
 # This creates a secret "backend" and injects "VEGAS_CLIENT_SECRET"
 # as the environment variable VEGAS_CLIENT_SECRET=123 for the service backend
+# To add to specific annotator start with the annotator's name.
   backend:
     VEGAS_CLIENT_SECRET: VALUE_TO_BE_OVERRIDDEN
 

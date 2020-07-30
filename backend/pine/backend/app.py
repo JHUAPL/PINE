@@ -6,14 +6,18 @@ import os
 from . import log
 log.setup_logging()
 
-from flask import Flask, jsonify
+from flask import Flask, abort, jsonify
+from flask import __version__ as flask_version
 from werkzeug import exceptions
 
 from . import config
 
+VERSION = os.environ.get("PINE_VERSION", "unknown-no-env")
+LOGGER = logging.getLogger(__name__)
+
 def handle_error(e):
     logging.getLogger(__name__).error(e, exc_info=True)
-    return jsonify(e.description), e.code
+    return jsonify(str(e.description)), e.code
 
 def handle_uncaught_exception(e):
     if isinstance(e, exceptions.InternalServerError):
@@ -53,6 +57,23 @@ def create_app(test_config = None):
     @app.route("/ping")
     def ping():
         return jsonify("pong")
+
+    from .data import service as service
+    @app.route("/about")
+    def about():
+        resp = service.get("about")
+        if not resp.ok:
+            abort(resp.status)
+        about = {
+            "version": VERSION,
+            "flask_version": flask_version,
+            "db": resp.json()
+        }
+        LOGGER.info("Eve service performance history:")
+        LOGGER.info(service.PERFORMANCE_HISTORY.pformat())
+        LOGGER.info("Version information:")
+        LOGGER.info(about)
+        return jsonify(about)
 
     from . import cors
     cors.init_app(app)

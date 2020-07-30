@@ -1,0 +1,22 @@
+{
+  "name": "pine_test",
+  "version": "0.0.0",
+  "scripts": {
+    "cypress:open": "cypress open",
+    "cypress:record": "cypress run --record",
+    "cypress:run": "cypress run",
+    "mochawesome:cleanup": "rm -rf /nlp_webapp/results/reports/*",
+    "mochawesome:merge": "mochawesome-merge /nlp_webapp/results/reports/mochawesome*.json > /nlp_webapp/results/reports/report.json && rm -f /nlp_webapp/results/reports/mochawesome*.json",
+    "mochawesome:generate": "marge /nlp_webapp/results/reports/report.json --reportDir /nlp_webapp/results/reports/",
+    "mochawesome:summarize": "cypress/summarize.sh /nlp_webapp/results/reports/report.json",
+    "cypress:report": "npm run mochawesome:cleanup; npm run cypress:run; npm run mochawesome:merge; npm run mochawesome:generate; npm run mochawesome:summarize"
+  },
+  "private": true,
+  "devDependencies": {
+    "cypress": "^4.0.2",
+    "mocha": "^5.2.0",
+    "mochawesome": "^4.1.0",
+    "mochawesome-merge": "^4.0.1",
+    "mochawesome-report-generator": "^4.1.0"
+  }
+}

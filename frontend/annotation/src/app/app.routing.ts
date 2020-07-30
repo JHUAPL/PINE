@@ -18,7 +18,6 @@ import { AdminUserModifyComponent } from "./component/admin-user-modify/admin-us
 import { AnnotateComponent } from "./component/annotate/annotate.component";
 import { AdminDataComponent } from "./component/admin-data/admin-data.component";
 import { OAuthAuthorizeComponent } from "./service/auth/modules/oauth-authorize.component";
-import { MetricsDisplayComponent } from "./component/metrics-display/metrics-display.component";
 
 const appRoutes: Routes = [
     {path: PATHS.user.login, component: LoginComponent,
@@ -27,8 +26,6 @@ const appRoutes: Routes = [
         data: {}},
     {path: `${PATHS.document.annotate}/:${PARAMS.document.annotate.document_id}`, component: AnnotateComponent, canActivate: [AuthGuard],
         data: { subtitle: AnnotateComponent.SUBTITLE}},
-    {path: `${PATHS.classifier.metrics}/:${PARAMS.classifier.metrics.classifier_id}`, component: MetricsDisplayComponent, canActivate: [AuthGuard],
-        data: { subtitle: MetricsDisplayComponent.SUBTITLE}},
     {path: PATHS.collection.add, component: AddCollectionComponent, canActivate: [AuthGuard],
         data: { subtitle: AddCollectionComponent.SUBTITLE }},
     {path: `${PATHS.collection.details}/:${PARAMS.collection.details.collection_id}`, component: CollectionDetailsComponent, canActivate: [AuthGuard],

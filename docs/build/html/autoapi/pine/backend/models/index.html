@@ -1,0 +1,294 @@
+
+
+<!doctype html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>pine.backend.models &#8212; pine  documentation</title>
+    <link rel="stylesheet" href="../../../../_static/bizstyle.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/graphviz.css" />
+    
+    <script id="documentation_options" data-url_root="../../../../" src="../../../../_static/documentation_options.js"></script>
+    <script src="../../../../_static/jquery.js"></script>
+    <script src="../../../../_static/underscore.js"></script>
+    <script src="../../../../_static/doctools.js"></script>
+    <script src="../../../../_static/language_data.js"></script>
+    <script src="../../../../_static/bizstyle.js"></script>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" />
+    <link rel="next" title="pine.client" href="../../client/index.html" />
+    <link rel="prev" title="pine.backend.log" href="../log/index.html" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <!--[if lt IE 9]>
+    <script src="_static/css3-mediaqueries.js"></script>
+    <![endif]-->
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="../../client/index.html" title="pine.client"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="../log/index.html" title="pine.backend.log"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../../index.html">pine  documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../../index.html" >API Reference</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../../index.html" ><code class="xref py py-mod docutils literal notranslate"><span class="pre">pine</span></code></a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="../index.html" accesskey="U"><code class="xref py py-mod docutils literal notranslate"><span class="pre">pine.backend</span></code></a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href=""><code class="xref py py-mod docutils literal notranslate"><span class="pre">pine.backend.models</span></code></a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="module-pine.backend.models">
+<span id="pine-backend-models"></span><h1><a class="reference internal" href="#module-pine.backend.models" title="pine.backend.models"><code class="xref py py-mod docutils literal notranslate"><span class="pre">pine.backend.models</span></code></a><a class="headerlink" href="#module-pine.backend.models" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="module-contents">
+<h2>Module Contents<a class="headerlink" href="#module-contents" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="classes">
+<h3>Classes<a class="headerlink" href="#classes" title="Permalink to this headline">¶</a></h3>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pine.backend.models.LoginFormFieldType" title="pine.backend.models.LoginFormFieldType"><code class="xref py py-obj docutils literal notranslate"><span class="pre">LoginFormFieldType</span></code></a>()</p></td>
+<td><p>Generic enumeration.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#pine.backend.models.LoginFormField" title="pine.backend.models.LoginFormField"><code class="xref py py-obj docutils literal notranslate"><span class="pre">LoginFormField</span></code></a>(name: str, display: str, field_type: LoginFormFieldType)</p></td>
+<td><p>Initialize self.  See help(type(self)) for accurate signature.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pine.backend.models.LoginForm" title="pine.backend.models.LoginForm"><code class="xref py py-obj docutils literal notranslate"><span class="pre">LoginForm</span></code></a>(fields: list, button_text: str)</p></td>
+<td><p>Initialize self.  See help(type(self)) for accurate signature.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#pine.backend.models.AuthUser" title="pine.backend.models.AuthUser"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AuthUser</span></code></a>()</p></td>
+<td><p>Initialize self.  See help(type(self)) for accurate signature.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pine.backend.models.UserDetails" title="pine.backend.models.UserDetails"><code class="xref py py-obj docutils literal notranslate"><span class="pre">UserDetails</span></code></a>(first_name, last_name, description)</p></td>
+<td><p>Initialize self.  See help(type(self)) for accurate signature.</p></td>
+</tr>
+</tbody>
+</table>
+<dl class="py class">
+<dt id="pine.backend.models.LoginFormFieldType">
+<em class="property">class </em><code class="sig-prename descclassname">pine.backend.models.</code><code class="sig-name descname">LoginFormFieldType</code><a class="headerlink" href="#pine.backend.models.LoginFormFieldType" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/enum.html#enum.Enum" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">enum.Enum</span></code></a></p>
+<p>Generic enumeration.</p>
+<p>Derive from this class to define new enumerations.</p>
+<p>Create and return a new object.  See help(type) for accurate signature.</p>
+<dl class="py attribute">
+<dt id="pine.backend.models.LoginFormFieldType.TEXT">
+<code class="sig-name descname">TEXT</code><em class="property"> = text</em><a class="headerlink" href="#pine.backend.models.LoginFormFieldType.TEXT" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="pine.backend.models.LoginFormFieldType.PASSWORD">
+<code class="sig-name descname">PASSWORD</code><em class="property"> = password</em><a class="headerlink" href="#pine.backend.models.LoginFormFieldType.PASSWORD" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="pine.backend.models.LoginFormField">
+<em class="property">class </em><code class="sig-prename descclassname">pine.backend.models.</code><code class="sig-name descname">LoginFormField</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)">str</a></span></em>, <em class="sig-param"><span class="n">display</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)">str</a></span></em>, <em class="sig-param"><span class="n">field_type</span><span class="p">:</span> <span class="n">LoginFormFieldType</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.models.LoginFormField" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>Initialize self.  See help(type(self)) for accurate signature.</p>
+<dl class="py method">
+<dt id="pine.backend.models.LoginFormField.to_dict">
+<code class="sig-name descname">to_dict</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.models.LoginFormField.to_dict" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="pine.backend.models.LoginForm">
+<em class="property">class </em><code class="sig-prename descclassname">pine.backend.models.</code><code class="sig-name descname">LoginForm</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">fields</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.8)">list</a></span></em>, <em class="sig-param"><span class="n">button_text</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)">str</a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.models.LoginForm" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>Initialize self.  See help(type(self)) for accurate signature.</p>
+<dl class="py method">
+<dt id="pine.backend.models.LoginForm.to_dict">
+<code class="sig-name descname">to_dict</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.models.LoginForm.to_dict" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="pine.backend.models.AuthUser">
+<em class="property">class </em><code class="sig-prename descclassname">pine.backend.models.</code><code class="sig-name descname">AuthUser</code><a class="headerlink" href="#pine.backend.models.AuthUser" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>Initialize self.  See help(type(self)) for accurate signature.</p>
+<dl class="py method">
+<dt id="pine.backend.models.AuthUser.id">
+<em class="property">property </em><code class="sig-name descname">id</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.models.AuthUser.id" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="pine.backend.models.AuthUser.username">
+<em class="property">property </em><code class="sig-name descname">username</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.models.AuthUser.username" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="pine.backend.models.AuthUser.display_name">
+<em class="property">property </em><code class="sig-name descname">display_name</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.models.AuthUser.display_name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="pine.backend.models.AuthUser.is_admin">
+<em class="property">property </em><code class="sig-name descname">is_admin</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.models.AuthUser.is_admin" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="pine.backend.models.AuthUser.to_dict">
+<code class="sig-name descname">to_dict</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.models.AuthUser.to_dict" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="pine.backend.models.UserDetails">
+<em class="property">class </em><code class="sig-prename descclassname">pine.backend.models.</code><code class="sig-name descname">UserDetails</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">first_name</span></em>, <em class="sig-param"><span class="n">last_name</span></em>, <em class="sig-param"><span class="n">description</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.models.UserDetails" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>Initialize self.  See help(type(self)) for accurate signature.</p>
+<dl class="py method">
+<dt id="pine.backend.models.UserDetails.to_dict">
+<code class="sig-name descname">to_dict</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.models.UserDetails.to_dict" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+</div>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../../../../index.html">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">pine.backend.models</span></code></a><ul>
+<li><a class="reference internal" href="#module-contents">Module Contents</a><ul>
+<li><a class="reference internal" href="#classes">Classes</a><ul>
+<li><a class="reference internal" href="#pine.backend.models.LoginFormFieldType">LoginFormFieldType</a><ul>
+<li><a class="reference internal" href="#pine.backend.models.LoginFormFieldType.TEXT">TEXT</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#pine.backend.models.LoginFormFieldType.PASSWORD">PASSWORD</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#pine.backend.models.LoginFormField">LoginFormField</a><ul>
+<li><a class="reference internal" href="#pine.backend.models.LoginFormField.to_dict">to_dict</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#pine.backend.models.LoginForm">LoginForm</a><ul>
+<li><a class="reference internal" href="#pine.backend.models.LoginForm.to_dict">to_dict</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#pine.backend.models.AuthUser">AuthUser</a><ul>
+<li><a class="reference internal" href="#pine.backend.models.AuthUser.id">id</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#pine.backend.models.AuthUser.username">username</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#pine.backend.models.AuthUser.display_name">display_name</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#pine.backend.models.AuthUser.is_admin">is_admin</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#pine.backend.models.AuthUser.to_dict">to_dict</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#pine.backend.models.UserDetails">UserDetails</a><ul>
+<li><a class="reference internal" href="#pine.backend.models.UserDetails.to_dict">to_dict</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="../log/index.html"
+                        title="previous chapter"><code class="xref py py-mod docutils literal notranslate"><span class="pre">pine.backend.log</span></code></a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="../../client/index.html"
+                        title="next chapter"><code class="xref py py-mod docutils literal notranslate"><span class="pre">pine.client</span></code></a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../../../_sources/autoapi/pine/backend/models/index.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="../../client/index.html" title="pine.client"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="../log/index.html" title="pine.backend.log"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../../index.html">pine  documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../../index.html" >API Reference</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../../index.html" ><code class="xref py py-mod docutils literal notranslate"><span class="pre">pine</span></code></a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="../index.html" ><code class="xref py py-mod docutils literal notranslate"><span class="pre">pine.backend</span></code></a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href=""><code class="xref py py-mod docutils literal notranslate"><span class="pre">pine.backend.models</span></code></a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright (C) 2019 The Johns Hopkins University Applied Physics Laboratory LLC..
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.1.2.
+    </div>
+  </body>
+</html>

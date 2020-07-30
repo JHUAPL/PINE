@@ -42,6 +42,7 @@
                 "console_json", "access_file_json"
             ]
         },
+        "pine": {},
         "gunicorn": {
             "handlers": [
                 "console"

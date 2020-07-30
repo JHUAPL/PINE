@@ -1,0 +1,6 @@
+<!-- (C) 2019 The Johns Hopkins University Applied Physics Laboratory LLC.-->
+
+<mat-toolbar *ngIf="visible" color="primary" class="toolbar">
+    <mat-progress-spinner *ngIf="showSpinner" [diameter]="38" [mode]="spinnerMode" [value]="spinnerValue" color="accent"></mat-progress-spinner>
+    <p>{{ message }}</p>
+</mat-toolbar>

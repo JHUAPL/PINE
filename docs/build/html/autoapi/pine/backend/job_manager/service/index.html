@@ -1,0 +1,511 @@
+
+
+<!doctype html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>pine.backend.job_manager.service &#8212; pine  documentation</title>
+    <link rel="stylesheet" href="../../../../../_static/bizstyle.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../../../../_static/graphviz.css" />
+    
+    <script id="documentation_options" data-url_root="../../../../../" src="../../../../../_static/documentation_options.js"></script>
+    <script src="../../../../../_static/jquery.js"></script>
+    <script src="../../../../../_static/underscore.js"></script>
+    <script src="../../../../../_static/doctools.js"></script>
+    <script src="../../../../../_static/language_data.js"></script>
+    <script src="../../../../../_static/bizstyle.js"></script>
+    <link rel="index" title="Index" href="../../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../../search.html" />
+    <link rel="next" title="pine.backend.pineiaa" href="../../pineiaa/index.html" />
+    <link rel="prev" title="pine.backend.job_manager" href="../index.html" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <!--[if lt IE 9]>
+    <script src="_static/css3-mediaqueries.js"></script>
+    <![endif]-->
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="../../pineiaa/index.html" title="pine.backend.pineiaa"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="../index.html" title="pine.backend.job_manager"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../../../index.html">pine  documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../../../index.html" >API Reference</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../../../index.html" ><code class="xref py py-mod docutils literal notranslate"><span class="pre">pine</span></code></a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="../../index.html" ><code class="xref py py-mod docutils literal notranslate"><span class="pre">pine.backend</span></code></a> &#187;</li>
+          <li class="nav-item nav-item-4"><a href="../index.html" accesskey="U"><code class="xref py py-mod docutils literal notranslate"><span class="pre">pine.backend.job_manager</span></code></a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href=""><code class="xref py py-mod docutils literal notranslate"><span class="pre">pine.backend.job_manager.service</span></code></a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="module-pine.backend.job_manager.service">
+<span id="pine-backend-job-manager-service"></span><h1><a class="reference internal" href="#module-pine.backend.job_manager.service" title="pine.backend.job_manager.service"><code class="xref py py-mod docutils literal notranslate"><span class="pre">pine.backend.job_manager.service</span></code></a><a class="headerlink" href="#module-pine.backend.job_manager.service" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="module-contents">
+<h2>Module Contents<a class="headerlink" href="#module-contents" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="classes">
+<h3>Classes<a class="headerlink" href="#classes" title="Permalink to this headline">¶</a></h3>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pine.backend.job_manager.service.ServiceManager" title="pine.backend.job_manager.service.ServiceManager"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ServiceManager</span></code></a>(default_handler=None)</p></td>
+<td><p><dl class="field-list simple">
+<dt class="field-odd">type default_handler</dt>
+<dd class="field-odd"><p>callable</p>
+</dd>
+</dl>
+</p></td>
+</tr>
+</tbody>
+</table>
+<dl class="py data">
+<dt id="pine.backend.job_manager.service.config">
+<code class="sig-prename descclassname">pine.backend.job_manager.service.</code><code class="sig-name descname">config</code><a class="headerlink" href="#pine.backend.job_manager.service.config" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py data">
+<dt id="pine.backend.job_manager.service.logger">
+<code class="sig-prename descclassname">pine.backend.job_manager.service.</code><code class="sig-name descname">logger</code><a class="headerlink" href="#pine.backend.job_manager.service.logger" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py class">
+<dt id="pine.backend.job_manager.service.ServiceManager">
+<em class="property">class </em><code class="sig-prename descclassname">pine.backend.job_manager.service.</code><code class="sig-name descname">ServiceManager</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">default_handler</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.job_manager.service.ServiceManager" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<dl class="field-list simple">
+</dl>
+<dl class="py attribute">
+<dt id="pine.backend.job_manager.service.ServiceManager.r_pool">
+<code class="sig-name descname">r_pool</code><a class="headerlink" href="#pine.backend.job_manager.service.ServiceManager.r_pool" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="pine.backend.job_manager.service.ServiceManager.r_conn">
+<code class="sig-name descname">r_conn</code><a class="headerlink" href="#pine.backend.job_manager.service.ServiceManager.r_conn" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="pine.backend.job_manager.service.ServiceManager.redis_key_prefix">
+<code class="sig-name descname">redis_key_prefix</code><a class="headerlink" href="#pine.backend.job_manager.service.ServiceManager.redis_key_prefix" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="pine.backend.job_manager.service.ServiceManager.redis_reg_key_prefix">
+<code class="sig-name descname">redis_reg_key_prefix</code><a class="headerlink" href="#pine.backend.job_manager.service.ServiceManager.redis_reg_key_prefix" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="pine.backend.job_manager.service.ServiceManager.redis_channels_key">
+<code class="sig-name descname">redis_channels_key</code><a class="headerlink" href="#pine.backend.job_manager.service.ServiceManager.redis_channels_key" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="pine.backend.job_manager.service.ServiceManager.redis_channel_ttl_key_prefix">
+<code class="sig-name descname">redis_channel_ttl_key_prefix</code><a class="headerlink" href="#pine.backend.job_manager.service.ServiceManager.redis_channel_ttl_key_prefix" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="pine.backend.job_manager.service.ServiceManager.redis_work_queue_key_prefix">
+<code class="sig-name descname">redis_work_queue_key_prefix</code><a class="headerlink" href="#pine.backend.job_manager.service.ServiceManager.redis_work_queue_key_prefix" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="pine.backend.job_manager.service.ServiceManager.redis_work_mutex_key_prefix">
+<code class="sig-name descname">redis_work_mutex_key_prefix</code><a class="headerlink" href="#pine.backend.job_manager.service.ServiceManager.redis_work_mutex_key_prefix" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="pine.backend.job_manager.service.ServiceManager.redis_handler_mutex_key_prefix">
+<code class="sig-name descname">redis_handler_mutex_key_prefix</code><a class="headerlink" href="#pine.backend.job_manager.service.ServiceManager.redis_handler_mutex_key_prefix" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="pine.backend.job_manager.service.ServiceManager.redis_reg_key_ttl">
+<code class="sig-name descname">redis_reg_key_ttl</code><a class="headerlink" href="#pine.backend.job_manager.service.ServiceManager.redis_reg_key_ttl" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="pine.backend.job_manager.service.ServiceManager.redis_channels_key_ttl">
+<code class="sig-name descname">redis_channels_key_ttl</code><a class="headerlink" href="#pine.backend.job_manager.service.ServiceManager.redis_channels_key_ttl" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="pine.backend.job_manager.service.ServiceManager.redis_work_queue_key_ttl">
+<code class="sig-name descname">redis_work_queue_key_ttl</code><a class="headerlink" href="#pine.backend.job_manager.service.ServiceManager.redis_work_queue_key_ttl" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="pine.backend.job_manager.service.ServiceManager.redis_work_mutex_key_ttl">
+<code class="sig-name descname">redis_work_mutex_key_ttl</code><a class="headerlink" href="#pine.backend.job_manager.service.ServiceManager.redis_work_mutex_key_ttl" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="pine.backend.job_manager.service.ServiceManager.redis_handler_mutex_key_ttl">
+<code class="sig-name descname">redis_handler_mutex_key_ttl</code><a class="headerlink" href="#pine.backend.job_manager.service.ServiceManager.redis_handler_mutex_key_ttl" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="pine.backend.job_manager.service.ServiceManager.handler_timeout">
+<code class="sig-name descname">handler_timeout</code><a class="headerlink" href="#pine.backend.job_manager.service.ServiceManager.handler_timeout" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="pine.backend.job_manager.service.ServiceManager.registration_worker_name">
+<code class="sig-name descname">registration_worker_name</code><em class="property"> = registration_worker</em><a class="headerlink" href="#pine.backend.job_manager.service.ServiceManager.registration_worker_name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="pine.backend.job_manager.service.ServiceManager.processing_worker_name">
+<code class="sig-name descname">processing_worker_name</code><em class="property"> = processing_worker</em><a class="headerlink" href="#pine.backend.job_manager.service.ServiceManager.processing_worker_name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="pine.backend.job_manager.service.ServiceManager.channel_worker_name">
+<code class="sig-name descname">channel_worker_name</code><em class="property"> = channel_worker</em><a class="headerlink" href="#pine.backend.job_manager.service.ServiceManager.channel_worker_name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="pine.backend.job_manager.service.ServiceManager.shutdown_channel">
+<code class="sig-name descname">shutdown_channel</code><em class="property"> = shutdown</em><a class="headerlink" href="#pine.backend.job_manager.service.ServiceManager.shutdown_channel" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="pine.backend.job_manager.service.ServiceManager.registration_channel">
+<code class="sig-name descname">registration_channel</code><em class="property"> = registration</em><a class="headerlink" href="#pine.backend.job_manager.service.ServiceManager.registration_channel" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="pine.backend.job_manager.service.ServiceManager.reserved_channels">
+<code class="sig-name descname">reserved_channels</code><a class="headerlink" href="#pine.backend.job_manager.service.ServiceManager.reserved_channels" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="pine.backend.job_manager.service.ServiceManager.get_registered_channels">
+<em class="property">classmethod </em><code class="sig-name descname">get_registered_channels</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">cls</span></em>, <em class="sig-param"><span class="n">include_ttl</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.job_manager.service.ServiceManager.get_registered_channels" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get list of registered channels, with registration time if requested.
+:type include_ttl: bool
+:rtype: list[str] | dict[str, datetime]</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pine.backend.job_manager.service.ServiceManager.get_registered_service_details">
+<em class="property">classmethod </em><code class="sig-name descname">get_registered_service_details</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">cls</span></em>, <em class="sig-param"><span class="n">service_name</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.job_manager.service.ServiceManager.get_registered_service_details" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get registration details of a service.
+:type service_name: str
+:rtype: None | dict</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pine.backend.job_manager.service.ServiceManager.get_registered_services">
+<em class="property">classmethod </em><code class="sig-name descname">get_registered_services</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">cls</span></em>, <em class="sig-param"><span class="n">include_details</span><span class="o">=</span><span class="default_value">True</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.job_manager.service.ServiceManager.get_registered_services" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get list of registered services and registration body if requested.
+:type include_details: bool
+:rtype: list[str] | list[dict]</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pine.backend.job_manager.service.ServiceManager.send_service_request">
+<em class="property">classmethod </em><code class="sig-name descname">send_service_request</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">cls</span></em>, <em class="sig-param"><span class="n">service_name</span></em>, <em class="sig-param"><span class="n">data</span></em>, <em class="sig-param"><span class="n">job_id</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">encoder</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.job_manager.service.ServiceManager.send_service_request" title="Permalink to this definition">¶</a></dt>
+<dd><p>Queue’s a job for the requested service.
+:type service_name: str
+:type data: dict
+:type job_id: str
+:type encoder: json.JSONEncoder
+:rtype: None | dict</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pine.backend.job_manager.service.ServiceManager.start_listeners">
+<code class="sig-name descname">start_listeners</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.job_manager.service.ServiceManager.start_listeners" title="Permalink to this definition">¶</a></dt>
+<dd><p>Starts all the workers.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pine.backend.job_manager.service.ServiceManager.stop_listeners">
+<code class="sig-name descname">stop_listeners</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.job_manager.service.ServiceManager.stop_listeners" title="Permalink to this definition">¶</a></dt>
+<dd><p>Stops all the workers.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pine.backend.job_manager.service.ServiceManager._start_registration_listener">
+<code class="sig-name descname">_start_registration_listener</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.job_manager.service.ServiceManager._start_registration_listener" title="Permalink to this definition">¶</a></dt>
+<dd><p>Starts the registration worker.
+:rtype: bool</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pine.backend.job_manager.service.ServiceManager._start_processing_listeners">
+<code class="sig-name descname">_start_processing_listeners</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.job_manager.service.ServiceManager._start_processing_listeners" title="Permalink to this definition">¶</a></dt>
+<dd><p>Starts the processing workers.
+:rtype: bool</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pine.backend.job_manager.service.ServiceManager._start_channel_watchdog">
+<code class="sig-name descname">_start_channel_watchdog</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.job_manager.service.ServiceManager._start_channel_watchdog" title="Permalink to this definition">¶</a></dt>
+<dd><p>Starts the channel watchdog workers in an asyncio-only thread. It monitors the channel TTL’s.
+:rtype: bool</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pine.backend.job_manager.service.ServiceManager._stop_channel_watchdog">
+<code class="sig-name descname">_stop_channel_watchdog</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.job_manager.service.ServiceManager._stop_channel_watchdog" title="Permalink to this definition">¶</a></dt>
+<dd><p>Stops the channel watchdog workers in an asyncio-only thread.
+:rtype: bool</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pine.backend.job_manager.service.ServiceManager._registration_listener">
+<code class="sig-name descname">_registration_listener</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.job_manager.service.ServiceManager._registration_listener" title="Permalink to this definition">¶</a></dt>
+<dd><p>Registration Listener Implementation.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pine.backend.job_manager.service.ServiceManager._channel_watchdog">
+<em class="property">async </em><code class="sig-name descname">_channel_watchdog</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.job_manager.service.ServiceManager._channel_watchdog" title="Permalink to this definition">¶</a></dt>
+<dd><p>Channel Watchdog Implementation.
+In asyncio, it monitors the channel-ttl keys and the channels SET to expire registered services as needed.
+The other functionality is to register new channels as they’re added to the pubsub in the processing listener.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pine.backend.job_manager.service.ServiceManager._thread_killer">
+<em class="property">static </em><code class="sig-name descname">_thread_killer</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">thread_id</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.job_manager.service.ServiceManager._thread_killer" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="pine.backend.job_manager.service.ServiceManager._processing_listener_handler_wrapper">
+<code class="sig-name descname">_processing_listener_handler_wrapper</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="n">job_id</span></em>, <em class="sig-param"><span class="n">job_type</span></em>, <em class="sig-param"><span class="n">job_queue</span></em>, <em class="sig-param"><span class="n">job_data</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.job_manager.service.ServiceManager._processing_listener_handler_wrapper" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="pine.backend.job_manager.service.ServiceManager._processing_listener">
+<code class="sig-name descname">_processing_listener</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.job_manager.service.ServiceManager._processing_listener" title="Permalink to this definition">¶</a></dt>
+<dd><p>Processing Listener Implementation.
+Runs a handler when a processing message gets send over an already registered channel.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py data">
+<dt id="pine.backend.job_manager.service.sm">
+<code class="sig-prename descclassname">pine.backend.job_manager.service.</code><code class="sig-name descname">sm</code><a class="headerlink" href="#pine.backend.job_manager.service.sm" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+</div>
+</div>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../../../../../index.html">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">pine.backend.job_manager.service</span></code></a><ul>
+<li><a class="reference internal" href="#module-contents">Module Contents</a><ul>
+<li><a class="reference internal" href="#classes">Classes</a><ul>
+<li><a class="reference internal" href="#pine.backend.job_manager.service.config">config</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#pine.backend.job_manager.service.logger">logger</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#pine.backend.job_manager.service.ServiceManager">ServiceManager</a><ul>
+<li><a class="reference internal" href="#pine.backend.job_manager.service.ServiceManager.r_pool">r_pool</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#pine.backend.job_manager.service.ServiceManager.r_conn">r_conn</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#pine.backend.job_manager.service.ServiceManager.redis_key_prefix">redis_key_prefix</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#pine.backend.job_manager.service.ServiceManager.redis_reg_key_prefix">redis_reg_key_prefix</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#pine.backend.job_manager.service.ServiceManager.redis_channels_key">redis_channels_key</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#pine.backend.job_manager.service.ServiceManager.redis_channel_ttl_key_prefix">redis_channel_ttl_key_prefix</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#pine.backend.job_manager.service.ServiceManager.redis_work_queue_key_prefix">redis_work_queue_key_prefix</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#pine.backend.job_manager.service.ServiceManager.redis_work_mutex_key_prefix">redis_work_mutex_key_prefix</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#pine.backend.job_manager.service.ServiceManager.redis_handler_mutex_key_prefix">redis_handler_mutex_key_prefix</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#pine.backend.job_manager.service.ServiceManager.redis_reg_key_ttl">redis_reg_key_ttl</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#pine.backend.job_manager.service.ServiceManager.redis_channels_key_ttl">redis_channels_key_ttl</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#pine.backend.job_manager.service.ServiceManager.redis_work_queue_key_ttl">redis_work_queue_key_ttl</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#pine.backend.job_manager.service.ServiceManager.redis_work_mutex_key_ttl">redis_work_mutex_key_ttl</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#pine.backend.job_manager.service.ServiceManager.redis_handler_mutex_key_ttl">redis_handler_mutex_key_ttl</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#pine.backend.job_manager.service.ServiceManager.handler_timeout">handler_timeout</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#pine.backend.job_manager.service.ServiceManager.registration_worker_name">registration_worker_name</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#pine.backend.job_manager.service.ServiceManager.processing_worker_name">processing_worker_name</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#pine.backend.job_manager.service.ServiceManager.channel_worker_name">channel_worker_name</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#pine.backend.job_manager.service.ServiceManager.shutdown_channel">shutdown_channel</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#pine.backend.job_manager.service.ServiceManager.registration_channel">registration_channel</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#pine.backend.job_manager.service.ServiceManager.reserved_channels">reserved_channels</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#pine.backend.job_manager.service.ServiceManager.get_registered_channels">get_registered_channels</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#pine.backend.job_manager.service.ServiceManager.get_registered_service_details">get_registered_service_details</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#pine.backend.job_manager.service.ServiceManager.get_registered_services">get_registered_services</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#pine.backend.job_manager.service.ServiceManager.send_service_request">send_service_request</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#pine.backend.job_manager.service.ServiceManager.start_listeners">start_listeners</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#pine.backend.job_manager.service.ServiceManager.stop_listeners">stop_listeners</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#pine.backend.job_manager.service.ServiceManager._start_registration_listener">_start_registration_listener</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#pine.backend.job_manager.service.ServiceManager._start_processing_listeners">_start_processing_listeners</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#pine.backend.job_manager.service.ServiceManager._start_channel_watchdog">_start_channel_watchdog</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#pine.backend.job_manager.service.ServiceManager._stop_channel_watchdog">_stop_channel_watchdog</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#pine.backend.job_manager.service.ServiceManager._registration_listener">_registration_listener</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#pine.backend.job_manager.service.ServiceManager._channel_watchdog">_channel_watchdog</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#pine.backend.job_manager.service.ServiceManager._thread_killer">_thread_killer</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#pine.backend.job_manager.service.ServiceManager._processing_listener_handler_wrapper">_processing_listener_handler_wrapper</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#pine.backend.job_manager.service.ServiceManager._processing_listener">_processing_listener</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#pine.backend.job_manager.service.sm">sm</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="../index.html"
+                        title="previous chapter"><code class="xref py py-mod docutils literal notranslate"><span class="pre">pine.backend.job_manager</span></code></a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="../../pineiaa/index.html"
+                        title="next chapter"><code class="xref py py-mod docutils literal notranslate"><span class="pre">pine.backend.pineiaa</span></code></a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../../../../_sources/autoapi/pine/backend/job_manager/service/index.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../../../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="../../pineiaa/index.html" title="pine.backend.pineiaa"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="../index.html" title="pine.backend.job_manager"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../../../index.html">pine  documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../../../index.html" >API Reference</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../../../index.html" ><code class="xref py py-mod docutils literal notranslate"><span class="pre">pine</span></code></a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="../../index.html" ><code class="xref py py-mod docutils literal notranslate"><span class="pre">pine.backend</span></code></a> &#187;</li>
+          <li class="nav-item nav-item-4"><a href="../index.html" ><code class="xref py py-mod docutils literal notranslate"><span class="pre">pine.backend.job_manager</span></code></a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href=""><code class="xref py py-mod docutils literal notranslate"><span class="pre">pine.backend.job_manager.service</span></code></a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright (C) 2019 The Johns Hopkins University Applied Physics Laboratory LLC..
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.1.2.
+    </div>
+  </body>
+</html>

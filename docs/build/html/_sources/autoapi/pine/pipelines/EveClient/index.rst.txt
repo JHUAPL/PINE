@@ -1,0 +1,72 @@
+:mod:`pine.pipelines.EveClient`
+===============================
+
+.. py:module:: pine.pipelines.EveClient
+
+
+Module Contents
+---------------
+
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   pine.pipelines.EveClient.EveClient
+
+
+
+.. data:: logger
+   
+
+   
+
+.. data:: config
+   
+
+   
+
+.. py:class:: EveClient(entry_point='{}:{}'.format(config.EVE_HOST, config.EVE_PORT))
+
+   Bases: :class:`object`
+
+   Initialize self.  See help(type(self)) for accurate signature.
+
+   .. attribute:: eve_headers
+      
+
+      
+
+   .. method:: add(self, resource, add_object)
+
+
+
+   .. method:: get_obj(self, resource, id)
+
+
+
+   .. method:: get_all_items(self, resource)
+
+
+
+   .. method:: get_all_ids(self, resource)
+
+
+
+   .. method:: get_items(self, resource)
+
+
+
+   .. method:: get_documents(self, collection_id)
+
+
+
+   .. method:: get_docs_with_annotations(self, collection_id, doc_map)
+
+
+
+   .. method:: update(self, resource, id, etag, update_obj)
+
+
+
+

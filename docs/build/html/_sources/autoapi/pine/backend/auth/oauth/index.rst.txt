@@ -1,0 +1,81 @@
+:mod:`pine.backend.auth.oauth`
+==============================
+
+.. py:module:: pine.backend.auth.oauth
+
+
+Module Contents
+---------------
+
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   pine.backend.auth.oauth.OAuthUser
+   pine.backend.auth.oauth.OAuthModule
+
+
+
+.. py:class:: OAuthUser(data)
+
+   Bases: :class:`pine.backend.models.AuthUser`
+
+   Initialize self.  See help(type(self)) for accurate signature.
+
+   .. method:: id(self)
+      :property:
+
+
+
+   .. method:: username(self)
+      :property:
+
+
+
+   .. method:: display_name(self)
+      :property:
+
+
+
+   .. method:: is_admin(self)
+      :property:
+
+
+
+
+.. py:class:: OAuthModule(app, bp)
+
+   Bases: :class:`pine.backend.auth.bp.AuthModule`
+
+   .. method:: register_oauth(self, oauth, app)
+      :abstractmethod:
+
+
+
+   .. method:: get_login_form_button_text(self)
+      :abstractmethod:
+
+
+
+   .. method:: is_flat(self)
+
+
+
+   .. method:: can_manage_users(self)
+
+
+
+   .. method:: get_login_form(self)
+
+
+
+   .. method:: login(self)
+
+
+
+   .. method:: authorize(self)
+
+
+
+

@@ -1,0 +1,259 @@
+
+
+<!doctype html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>pine.backend.data.users &#8212; pine  documentation</title>
+    <link rel="stylesheet" href="../../../../../_static/bizstyle.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../../../../_static/graphviz.css" />
+    
+    <script id="documentation_options" data-url_root="../../../../../" src="../../../../../_static/documentation_options.js"></script>
+    <script src="../../../../../_static/jquery.js"></script>
+    <script src="../../../../../_static/underscore.js"></script>
+    <script src="../../../../../_static/doctools.js"></script>
+    <script src="../../../../../_static/language_data.js"></script>
+    <script src="../../../../../_static/bizstyle.js"></script>
+    <link rel="index" title="Index" href="../../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../../search.html" />
+    <link rel="next" title="pine.backend.documents" href="../../documents/index.html" />
+    <link rel="prev" title="pine.backend.data.service" href="../service/index.html" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <!--[if lt IE 9]>
+    <script src="_static/css3-mediaqueries.js"></script>
+    <![endif]-->
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="../../documents/index.html" title="pine.backend.documents"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="../service/index.html" title="pine.backend.data.service"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../../../index.html">pine  documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../../../index.html" >API Reference</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../../../index.html" ><code class="xref py py-mod docutils literal notranslate"><span class="pre">pine</span></code></a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="../../index.html" ><code class="xref py py-mod docutils literal notranslate"><span class="pre">pine.backend</span></code></a> &#187;</li>
+          <li class="nav-item nav-item-4"><a href="../index.html" accesskey="U"><code class="xref py py-mod docutils literal notranslate"><span class="pre">pine.backend.data</span></code></a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href=""><code class="xref py py-mod docutils literal notranslate"><span class="pre">pine.backend.data.users</span></code></a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="module-pine.backend.data.users">
+<span id="pine-backend-data-users"></span><h1><a class="reference internal" href="#module-pine.backend.data.users" title="pine.backend.data.users"><code class="xref py py-mod docutils literal notranslate"><span class="pre">pine.backend.data.users</span></code></a><a class="headerlink" href="#module-pine.backend.data.users" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="module-contents">
+<h2>Module Contents<a class="headerlink" href="#module-contents" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="functions">
+<h3>Functions<a class="headerlink" href="#functions" title="Permalink to this headline">¶</a></h3>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pine.backend.data.users.get_all_users" title="pine.backend.data.users.get_all_users"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_all_users</span></code></a>()</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#pine.backend.data.users.get_user" title="pine.backend.data.users.get_user"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_user</span></code></a>(user_id)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pine.backend.data.users.get_user_by_email" title="pine.backend.data.users.get_user_by_email"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_user_by_email</span></code></a>(email)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#pine.backend.data.users.get_user_details" title="pine.backend.data.users.get_user_details"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_user_details</span></code></a>(user_id)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pine.backend.data.users.update_user" title="pine.backend.data.users.update_user"><code class="xref py py-obj docutils literal notranslate"><span class="pre">update_user</span></code></a>(user_id: str, details: models.UserDetails)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#pine.backend.data.users.print_users_command" title="pine.backend.data.users.print_users_command"><code class="xref py py-obj docutils literal notranslate"><span class="pre">print_users_command</span></code></a>()</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pine.backend.data.users.add_admin_command" title="pine.backend.data.users.add_admin_command"><code class="xref py py-obj docutils literal notranslate"><span class="pre">add_admin_command</span></code></a>(username, password)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#pine.backend.data.users.set_user_password_by_id" title="pine.backend.data.users.set_user_password_by_id"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_user_password_by_id</span></code></a>(user_id, password)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pine.backend.data.users.set_user_password" title="pine.backend.data.users.set_user_password"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_user_password</span></code></a>(username, password)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#pine.backend.data.users.reset_user_passwords" title="pine.backend.data.users.reset_user_passwords"><code class="xref py py-obj docutils literal notranslate"><span class="pre">reset_user_passwords</span></code></a>()</p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
+<dl class="py function">
+<dt id="pine.backend.data.users.get_all_users">
+<code class="sig-prename descclassname">pine.backend.data.users.</code><code class="sig-name descname">get_all_users</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.data.users.get_all_users" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt id="pine.backend.data.users.get_user">
+<code class="sig-prename descclassname">pine.backend.data.users.</code><code class="sig-name descname">get_user</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">user_id</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.data.users.get_user" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt id="pine.backend.data.users.get_user_by_email">
+<code class="sig-prename descclassname">pine.backend.data.users.</code><code class="sig-name descname">get_user_by_email</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">email</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.data.users.get_user_by_email" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt id="pine.backend.data.users.get_user_details">
+<code class="sig-prename descclassname">pine.backend.data.users.</code><code class="sig-name descname">get_user_details</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">user_id</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.data.users.get_user_details" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt id="pine.backend.data.users.update_user">
+<code class="sig-prename descclassname">pine.backend.data.users.</code><code class="sig-name descname">update_user</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">user_id</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)">str</a></span></em>, <em class="sig-param"><span class="n">details</span><span class="p">:</span> <span class="n">models.UserDetails</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.data.users.update_user" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt id="pine.backend.data.users.print_users_command">
+<code class="sig-prename descclassname">pine.backend.data.users.</code><code class="sig-name descname">print_users_command</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.data.users.print_users_command" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt id="pine.backend.data.users.add_admin_command">
+<code class="sig-prename descclassname">pine.backend.data.users.</code><code class="sig-name descname">add_admin_command</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">username</span></em>, <em class="sig-param"><span class="n">password</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.data.users.add_admin_command" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt id="pine.backend.data.users.set_user_password_by_id">
+<code class="sig-prename descclassname">pine.backend.data.users.</code><code class="sig-name descname">set_user_password_by_id</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">user_id</span></em>, <em class="sig-param"><span class="n">password</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.data.users.set_user_password_by_id" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt id="pine.backend.data.users.set_user_password">
+<code class="sig-prename descclassname">pine.backend.data.users.</code><code class="sig-name descname">set_user_password</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">username</span></em>, <em class="sig-param"><span class="n">password</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.data.users.set_user_password" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt id="pine.backend.data.users.reset_user_passwords">
+<code class="sig-prename descclassname">pine.backend.data.users.</code><code class="sig-name descname">reset_user_passwords</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.data.users.reset_user_passwords" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+</div>
+</div>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../../../../../index.html">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">pine.backend.data.users</span></code></a><ul>
+<li><a class="reference internal" href="#module-contents">Module Contents</a><ul>
+<li><a class="reference internal" href="#functions">Functions</a><ul>
+<li><a class="reference internal" href="#pine.backend.data.users.get_all_users">get_all_users</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#pine.backend.data.users.get_user">get_user</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#pine.backend.data.users.get_user_by_email">get_user_by_email</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#pine.backend.data.users.get_user_details">get_user_details</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#pine.backend.data.users.update_user">update_user</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#pine.backend.data.users.print_users_command">print_users_command</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#pine.backend.data.users.add_admin_command">add_admin_command</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#pine.backend.data.users.set_user_password_by_id">set_user_password_by_id</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#pine.backend.data.users.set_user_password">set_user_password</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#pine.backend.data.users.reset_user_passwords">reset_user_passwords</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="../service/index.html"
+                        title="previous chapter"><code class="xref py py-mod docutils literal notranslate"><span class="pre">pine.backend.data.service</span></code></a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="../../documents/index.html"
+                        title="next chapter"><code class="xref py py-mod docutils literal notranslate"><span class="pre">pine.backend.documents</span></code></a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../../../../_sources/autoapi/pine/backend/data/users/index.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../../../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="../../documents/index.html" title="pine.backend.documents"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="../service/index.html" title="pine.backend.data.service"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../../../index.html">pine  documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../../../index.html" >API Reference</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../../../index.html" ><code class="xref py py-mod docutils literal notranslate"><span class="pre">pine</span></code></a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="../../index.html" ><code class="xref py py-mod docutils literal notranslate"><span class="pre">pine.backend</span></code></a> &#187;</li>
+          <li class="nav-item nav-item-4"><a href="../index.html" ><code class="xref py py-mod docutils literal notranslate"><span class="pre">pine.backend.data</span></code></a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href=""><code class="xref py py-mod docutils literal notranslate"><span class="pre">pine.backend.data.users</span></code></a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright (C) 2019 The Johns Hopkins University Applied Physics Laboratory LLC..
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.1.2.
+    </div>
+  </body>
+</html>

@@ -1,0 +1,278 @@
+
+
+<!doctype html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>pine.backend.auth.eve &#8212; pine  documentation</title>
+    <link rel="stylesheet" href="../../../../../_static/bizstyle.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../../../../_static/graphviz.css" />
+    
+    <script id="documentation_options" data-url_root="../../../../../" src="../../../../../_static/documentation_options.js"></script>
+    <script src="../../../../../_static/jquery.js"></script>
+    <script src="../../../../../_static/underscore.js"></script>
+    <script src="../../../../../_static/doctools.js"></script>
+    <script src="../../../../../_static/language_data.js"></script>
+    <script src="../../../../../_static/bizstyle.js"></script>
+    <link rel="index" title="Index" href="../../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../../search.html" />
+    <link rel="next" title="pine.backend.auth.oauth" href="../oauth/index.html" />
+    <link rel="prev" title="pine.backend.auth.bp" href="../bp/index.html" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <!--[if lt IE 9]>
+    <script src="_static/css3-mediaqueries.js"></script>
+    <![endif]-->
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="../oauth/index.html" title="pine.backend.auth.oauth"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="../bp/index.html" title="pine.backend.auth.bp"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../../../index.html">pine  documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../../../index.html" >API Reference</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../../../index.html" ><code class="xref py py-mod docutils literal notranslate"><span class="pre">pine</span></code></a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="../../index.html" ><code class="xref py py-mod docutils literal notranslate"><span class="pre">pine.backend</span></code></a> &#187;</li>
+          <li class="nav-item nav-item-4"><a href="../index.html" accesskey="U"><code class="xref py py-mod docutils literal notranslate"><span class="pre">pine.backend.auth</span></code></a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href=""><code class="xref py py-mod docutils literal notranslate"><span class="pre">pine.backend.auth.eve</span></code></a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="module-pine.backend.auth.eve">
+<span id="pine-backend-auth-eve"></span><h1><a class="reference internal" href="#module-pine.backend.auth.eve" title="pine.backend.auth.eve"><code class="xref py py-mod docutils literal notranslate"><span class="pre">pine.backend.auth.eve</span></code></a><a class="headerlink" href="#module-pine.backend.auth.eve" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="module-contents">
+<h2>Module Contents<a class="headerlink" href="#module-contents" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="classes">
+<h3>Classes<a class="headerlink" href="#classes" title="Permalink to this headline">¶</a></h3>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pine.backend.auth.eve.EveUser" title="pine.backend.auth.eve.EveUser"><code class="xref py py-obj docutils literal notranslate"><span class="pre">EveUser</span></code></a>(data)</p></td>
+<td><p>Initialize self.  See help(type(self)) for accurate signature.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#pine.backend.auth.eve.EveModule" title="pine.backend.auth.eve.EveModule"><code class="xref py py-obj docutils literal notranslate"><span class="pre">EveModule</span></code></a>(app, bp)</p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
+<dl class="py class">
+<dt id="pine.backend.auth.eve.EveUser">
+<em class="property">class </em><code class="sig-prename descclassname">pine.backend.auth.eve.</code><code class="sig-name descname">EveUser</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">data</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.auth.eve.EveUser" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="../../models/index.html#pine.backend.models.AuthUser" title="pine.backend.models.AuthUser"><code class="xref py py-class docutils literal notranslate"><span class="pre">pine.backend.models.AuthUser</span></code></a></p>
+<p>Initialize self.  See help(type(self)) for accurate signature.</p>
+<dl class="py method">
+<dt id="pine.backend.auth.eve.EveUser.id">
+<em class="property">property </em><code class="sig-name descname">id</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.auth.eve.EveUser.id" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="pine.backend.auth.eve.EveUser.username">
+<em class="property">property </em><code class="sig-name descname">username</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.auth.eve.EveUser.username" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="pine.backend.auth.eve.EveUser.display_name">
+<em class="property">property </em><code class="sig-name descname">display_name</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.auth.eve.EveUser.display_name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="pine.backend.auth.eve.EveUser.is_admin">
+<em class="property">property </em><code class="sig-name descname">is_admin</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.auth.eve.EveUser.is_admin" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="pine.backend.auth.eve.EveUser.get_details">
+<code class="sig-name descname">get_details</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.auth.eve.EveUser.get_details" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="pine.backend.auth.eve.EveModule">
+<em class="property">class </em><code class="sig-prename descclassname">pine.backend.auth.eve.</code><code class="sig-name descname">EveModule</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">app</span></em>, <em class="sig-param"><span class="n">bp</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.auth.eve.EveModule" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="../bp/index.html#pine.backend.auth.bp.AuthModule" title="pine.backend.auth.bp.AuthModule"><code class="xref py py-class docutils literal notranslate"><span class="pre">pine.backend.auth.bp.AuthModule</span></code></a></p>
+<dl class="py method">
+<dt id="pine.backend.auth.eve.EveModule.is_flat">
+<code class="sig-name descname">is_flat</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.auth.eve.EveModule.is_flat" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="pine.backend.auth.eve.EveModule.can_manage_users">
+<code class="sig-name descname">can_manage_users</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.auth.eve.EveModule.can_manage_users" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="pine.backend.auth.eve.EveModule.get_logged_in_user_details">
+<code class="sig-name descname">get_logged_in_user_details</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.auth.eve.EveModule.get_logged_in_user_details" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="pine.backend.auth.eve.EveModule.update_user_details">
+<code class="sig-name descname">update_user_details</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.auth.eve.EveModule.update_user_details" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="pine.backend.auth.eve.EveModule.update_user_password">
+<code class="sig-name descname">update_user_password</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.auth.eve.EveModule.update_user_password" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="pine.backend.auth.eve.EveModule.get_login_form">
+<code class="sig-name descname">get_login_form</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.auth.eve.EveModule.get_login_form" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="pine.backend.auth.eve.EveModule.login">
+<code class="sig-name descname">login</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.auth.eve.EveModule.login" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="pine.backend.auth.eve.EveModule.get_all_users">
+<code class="sig-name descname">get_all_users</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.auth.eve.EveModule.get_all_users" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+</div>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../../../../../index.html">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">pine.backend.auth.eve</span></code></a><ul>
+<li><a class="reference internal" href="#module-contents">Module Contents</a><ul>
+<li><a class="reference internal" href="#classes">Classes</a><ul>
+<li><a class="reference internal" href="#pine.backend.auth.eve.EveUser">EveUser</a><ul>
+<li><a class="reference internal" href="#pine.backend.auth.eve.EveUser.id">id</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#pine.backend.auth.eve.EveUser.username">username</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#pine.backend.auth.eve.EveUser.display_name">display_name</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#pine.backend.auth.eve.EveUser.is_admin">is_admin</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#pine.backend.auth.eve.EveUser.get_details">get_details</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#pine.backend.auth.eve.EveModule">EveModule</a><ul>
+<li><a class="reference internal" href="#pine.backend.auth.eve.EveModule.is_flat">is_flat</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#pine.backend.auth.eve.EveModule.can_manage_users">can_manage_users</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#pine.backend.auth.eve.EveModule.get_logged_in_user_details">get_logged_in_user_details</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#pine.backend.auth.eve.EveModule.update_user_details">update_user_details</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#pine.backend.auth.eve.EveModule.update_user_password">update_user_password</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#pine.backend.auth.eve.EveModule.get_login_form">get_login_form</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#pine.backend.auth.eve.EveModule.login">login</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#pine.backend.auth.eve.EveModule.get_all_users">get_all_users</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="../bp/index.html"
+                        title="previous chapter"><code class="xref py py-mod docutils literal notranslate"><span class="pre">pine.backend.auth.bp</span></code></a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="../oauth/index.html"
+                        title="next chapter"><code class="xref py py-mod docutils literal notranslate"><span class="pre">pine.backend.auth.oauth</span></code></a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../../../../_sources/autoapi/pine/backend/auth/eve/index.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../../../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="../oauth/index.html" title="pine.backend.auth.oauth"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="../bp/index.html" title="pine.backend.auth.bp"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../../../index.html">pine  documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../../../index.html" >API Reference</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../../../index.html" ><code class="xref py py-mod docutils literal notranslate"><span class="pre">pine</span></code></a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="../../index.html" ><code class="xref py py-mod docutils literal notranslate"><span class="pre">pine.backend</span></code></a> &#187;</li>
+          <li class="nav-item nav-item-4"><a href="../index.html" ><code class="xref py py-mod docutils literal notranslate"><span class="pre">pine.backend.auth</span></code></a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href=""><code class="xref py py-mod docutils literal notranslate"><span class="pre">pine.backend.auth.eve</span></code></a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright (C) 2019 The Johns Hopkins University Applied Physics Laboratory LLC..
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.1.2.
+    </div>
+  </body>
+</html>

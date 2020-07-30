@@ -1,0 +1,417 @@
+
+
+<!doctype html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>pine.pipelines.app.listener.service_listener &#8212; pine  documentation</title>
+    <link rel="stylesheet" href="../../../../../../_static/bizstyle.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../../../../../_static/graphviz.css" />
+    
+    <script id="documentation_options" data-url_root="../../../../../../" src="../../../../../../_static/documentation_options.js"></script>
+    <script src="../../../../../../_static/jquery.js"></script>
+    <script src="../../../../../../_static/underscore.js"></script>
+    <script src="../../../../../../_static/doctools.js"></script>
+    <script src="../../../../../../_static/language_data.js"></script>
+    <script src="../../../../../../_static/bizstyle.js"></script>
+    <link rel="index" title="Index" href="../../../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../../../search.html" />
+    <link rel="next" title="pine.pipelines.shared" href="../../../shared/index.html" />
+    <link rel="prev" title="pine.pipelines.app.listener.main" href="../main/index.html" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <!--[if lt IE 9]>
+    <script src="_static/css3-mediaqueries.js"></script>
+    <![endif]-->
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../../../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="../../../shared/index.html" title="pine.pipelines.shared"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="../main/index.html" title="pine.pipelines.app.listener.main"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../../../../index.html">pine  documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../../../../index.html" >API Reference</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../../../../index.html" ><code class="xref py py-mod docutils literal notranslate"><span class="pre">pine</span></code></a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="../../../index.html" ><code class="xref py py-mod docutils literal notranslate"><span class="pre">pine.pipelines</span></code></a> &#187;</li>
+          <li class="nav-item nav-item-4"><a href="../../index.html" ><code class="xref py py-mod docutils literal notranslate"><span class="pre">pine.pipelines.app</span></code></a> &#187;</li>
+          <li class="nav-item nav-item-5"><a href="../index.html" accesskey="U"><code class="xref py py-mod docutils literal notranslate"><span class="pre">pine.pipelines.app.listener</span></code></a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href=""><code class="xref py py-mod docutils literal notranslate"><span class="pre">pine.pipelines.app.listener.service_listener</span></code></a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="module-pine.pipelines.app.listener.service_listener">
+<span id="pine-pipelines-app-listener-service-listener"></span><h1><a class="reference internal" href="#module-pine.pipelines.app.listener.service_listener" title="pine.pipelines.app.listener.service_listener"><code class="xref py py-mod docutils literal notranslate"><span class="pre">pine.pipelines.app.listener.service_listener</span></code></a><a class="headerlink" href="#module-pine.pipelines.app.listener.service_listener" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="module-contents">
+<h2>Module Contents<a class="headerlink" href="#module-contents" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="classes">
+<h3>Classes<a class="headerlink" href="#classes" title="Permalink to this headline">¶</a></h3>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pine.pipelines.app.listener.service_listener.ServiceRegistration" title="pine.pipelines.app.listener.service_listener.ServiceRegistration"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ServiceRegistration</span></code></a>(name, version, channel, framework, framework_types)</p></td>
+<td><p>Initialize self.  See help(type(self)) for accurate signature.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#pine.pipelines.app.listener.service_listener.ServiceListener" title="pine.pipelines.app.listener.service_listener.ServiceListener"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ServiceListener</span></code></a>(services=None)</p></td>
+<td><p><dl class="field-list simple">
+<dt class="field-odd">type services</dt>
+<dd class="field-odd"><p>list[ServiceRegistration]</p>
+</dd>
+</dl>
+</p></td>
+</tr>
+</tbody>
+</table>
+<dl class="py data">
+<dt id="pine.pipelines.app.listener.service_listener.config">
+<code class="sig-prename descclassname">pine.pipelines.app.listener.service_listener.</code><code class="sig-name descname">config</code><a class="headerlink" href="#pine.pipelines.app.listener.service_listener.config" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py data">
+<dt id="pine.pipelines.app.listener.service_listener.logger">
+<code class="sig-prename descclassname">pine.pipelines.app.listener.service_listener.</code><code class="sig-name descname">logger</code><a class="headerlink" href="#pine.pipelines.app.listener.service_listener.logger" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py class">
+<dt id="pine.pipelines.app.listener.service_listener.ServiceRegistration">
+<em class="property">class </em><code class="sig-prename descclassname">pine.pipelines.app.listener.service_listener.</code><code class="sig-name descname">ServiceRegistration</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span></em>, <em class="sig-param"><span class="n">version</span></em>, <em class="sig-param"><span class="n">channel</span></em>, <em class="sig-param"><span class="n">framework</span></em>, <em class="sig-param"><span class="n">framework_types</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.pipelines.app.listener.service_listener.ServiceRegistration" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>Initialize self.  See help(type(self)) for accurate signature.</p>
+<dl class="py method">
+<dt id="pine.pipelines.app.listener.service_listener.ServiceRegistration.from_registration_format">
+<em class="property">classmethod </em><code class="sig-name descname">from_registration_format</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">cls</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.pipelines.app.listener.service_listener.ServiceRegistration.from_registration_format" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="pine.pipelines.app.listener.service_listener.ServiceRegistration.to_registration_format">
+<code class="sig-name descname">to_registration_format</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.pipelines.app.listener.service_listener.ServiceRegistration.to_registration_format" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="pine.pipelines.app.listener.service_listener.ServiceListener">
+<em class="property">class </em><code class="sig-prename descclassname">pine.pipelines.app.listener.service_listener.</code><code class="sig-name descname">ServiceListener</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">services</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.pipelines.app.listener.service_listener.ServiceListener" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<dl class="field-list simple">
+</dl>
+<dl class="py attribute">
+<dt id="pine.pipelines.app.listener.service_listener.ServiceListener.r_pool">
+<code class="sig-name descname">r_pool</code><a class="headerlink" href="#pine.pipelines.app.listener.service_listener.ServiceListener.r_pool" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="pine.pipelines.app.listener.service_listener.ServiceListener.r_conn">
+<code class="sig-name descname">r_conn</code><a class="headerlink" href="#pine.pipelines.app.listener.service_listener.ServiceListener.r_conn" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="pine.pipelines.app.listener.service_listener.ServiceListener.registration_poll">
+<code class="sig-name descname">registration_poll</code><a class="headerlink" href="#pine.pipelines.app.listener.service_listener.ServiceListener.registration_poll" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="pine.pipelines.app.listener.service_listener.ServiceListener.listener_poll">
+<code class="sig-name descname">listener_poll</code><a class="headerlink" href="#pine.pipelines.app.listener.service_listener.ServiceListener.listener_poll" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="pine.pipelines.app.listener.service_listener.ServiceListener.processor_poll">
+<code class="sig-name descname">processor_poll</code><a class="headerlink" href="#pine.pipelines.app.listener.service_listener.ServiceListener.processor_poll" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="pine.pipelines.app.listener.service_listener.ServiceListener.processing_limit">
+<code class="sig-name descname">processing_limit</code><a class="headerlink" href="#pine.pipelines.app.listener.service_listener.ServiceListener.processing_limit" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="pine.pipelines.app.listener.service_listener.ServiceListener.processing_queue_key">
+<code class="sig-name descname">processing_queue_key</code><a class="headerlink" href="#pine.pipelines.app.listener.service_listener.ServiceListener.processing_queue_key" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="pine.pipelines.app.listener.service_listener.ServiceListener.processing_queue_key_timeout">
+<code class="sig-name descname">processing_queue_key_timeout</code><a class="headerlink" href="#pine.pipelines.app.listener.service_listener.ServiceListener.processing_queue_key_timeout" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="pine.pipelines.app.listener.service_listener.ServiceListener.processing_lock_key">
+<code class="sig-name descname">processing_lock_key</code><a class="headerlink" href="#pine.pipelines.app.listener.service_listener.ServiceListener.processing_lock_key" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="pine.pipelines.app.listener.service_listener.ServiceListener.processing_lock_key_timeout">
+<code class="sig-name descname">processing_lock_key_timeout</code><a class="headerlink" href="#pine.pipelines.app.listener.service_listener.ServiceListener.processing_lock_key_timeout" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="pine.pipelines.app.listener.service_listener.ServiceListener.preprocessing_lock_key">
+<code class="sig-name descname">preprocessing_lock_key</code><a class="headerlink" href="#pine.pipelines.app.listener.service_listener.ServiceListener.preprocessing_lock_key" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="pine.pipelines.app.listener.service_listener.ServiceListener.preprocessing_lock_key_timeout">
+<code class="sig-name descname">preprocessing_lock_key_timeout</code><a class="headerlink" href="#pine.pipelines.app.listener.service_listener.ServiceListener.preprocessing_lock_key_timeout" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="pine.pipelines.app.listener.service_listener.ServiceListener.preprocessing_worker_lock_key">
+<code class="sig-name descname">preprocessing_worker_lock_key</code><a class="headerlink" href="#pine.pipelines.app.listener.service_listener.ServiceListener.preprocessing_worker_lock_key" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="pine.pipelines.app.listener.service_listener.ServiceListener.preprocessing_worker_lock_key_timeout">
+<code class="sig-name descname">preprocessing_worker_lock_key_timeout</code><a class="headerlink" href="#pine.pipelines.app.listener.service_listener.ServiceListener.preprocessing_worker_lock_key_timeout" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="pine.pipelines.app.listener.service_listener.ServiceListener.registration_channel">
+<code class="sig-name descname">registration_channel</code><a class="headerlink" href="#pine.pipelines.app.listener.service_listener.ServiceListener.registration_channel" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="pine.pipelines.app.listener.service_listener.ServiceListener.publish_response">
+<em class="property">classmethod </em><code class="sig-name descname">publish_response</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">cls</span></em>, <em class="sig-param"><span class="n">channel</span></em>, <em class="sig-param"><span class="n">data</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.pipelines.app.listener.service_listener.ServiceListener.publish_response" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)">bool</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pine.pipelines.app.listener.service_listener.ServiceListener.start_workers">
+<code class="sig-name descname">start_workers</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.pipelines.app.listener.service_listener.ServiceListener.start_workers" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="pine.pipelines.app.listener.service_listener.ServiceListener.stop_workers">
+<code class="sig-name descname">stop_workers</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.pipelines.app.listener.service_listener.ServiceListener.stop_workers" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="pine.pipelines.app.listener.service_listener.ServiceListener.pre_process_message">
+<code class="sig-name descname">pre_process_message</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="n">message_channel</span></em>, <em class="sig-param"><span class="n">message_data</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.pipelines.app.listener.service_listener.ServiceListener.pre_process_message" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>bool | dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pine.pipelines.app.listener.service_listener.ServiceListener.process_message">
+<em class="property">static </em><code class="sig-name descname">process_message</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">job_details</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.pipelines.app.listener.service_listener.ServiceListener.process_message" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="pine.pipelines.app.listener.service_listener.ServiceListener._start_registration_task">
+<code class="sig-name descname">_start_registration_task</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.pipelines.app.listener.service_listener.ServiceListener._start_registration_task" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="pine.pipelines.app.listener.service_listener.ServiceListener._start_channel_task">
+<code class="sig-name descname">_start_channel_task</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.pipelines.app.listener.service_listener.ServiceListener._start_channel_task" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="pine.pipelines.app.listener.service_listener.ServiceListener._start_listener_task">
+<code class="sig-name descname">_start_listener_task</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.pipelines.app.listener.service_listener.ServiceListener._start_listener_task" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="pine.pipelines.app.listener.service_listener.ServiceListener._start_queue_processor_task">
+<code class="sig-name descname">_start_queue_processor_task</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.pipelines.app.listener.service_listener.ServiceListener._start_queue_processor_task" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+</div>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../../../../../../index.html">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">pine.pipelines.app.listener.service_listener</span></code></a><ul>
+<li><a class="reference internal" href="#module-contents">Module Contents</a><ul>
+<li><a class="reference internal" href="#classes">Classes</a><ul>
+<li><a class="reference internal" href="#pine.pipelines.app.listener.service_listener.config">config</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#pine.pipelines.app.listener.service_listener.logger">logger</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#pine.pipelines.app.listener.service_listener.ServiceRegistration">ServiceRegistration</a><ul>
+<li><a class="reference internal" href="#pine.pipelines.app.listener.service_listener.ServiceRegistration.from_registration_format">from_registration_format</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#pine.pipelines.app.listener.service_listener.ServiceRegistration.to_registration_format">to_registration_format</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#pine.pipelines.app.listener.service_listener.ServiceListener">ServiceListener</a><ul>
+<li><a class="reference internal" href="#pine.pipelines.app.listener.service_listener.ServiceListener.r_pool">r_pool</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#pine.pipelines.app.listener.service_listener.ServiceListener.r_conn">r_conn</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#pine.pipelines.app.listener.service_listener.ServiceListener.registration_poll">registration_poll</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#pine.pipelines.app.listener.service_listener.ServiceListener.listener_poll">listener_poll</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#pine.pipelines.app.listener.service_listener.ServiceListener.processor_poll">processor_poll</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#pine.pipelines.app.listener.service_listener.ServiceListener.processing_limit">processing_limit</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#pine.pipelines.app.listener.service_listener.ServiceListener.processing_queue_key">processing_queue_key</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#pine.pipelines.app.listener.service_listener.ServiceListener.processing_queue_key_timeout">processing_queue_key_timeout</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#pine.pipelines.app.listener.service_listener.ServiceListener.processing_lock_key">processing_lock_key</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#pine.pipelines.app.listener.service_listener.ServiceListener.processing_lock_key_timeout">processing_lock_key_timeout</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#pine.pipelines.app.listener.service_listener.ServiceListener.preprocessing_lock_key">preprocessing_lock_key</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#pine.pipelines.app.listener.service_listener.ServiceListener.preprocessing_lock_key_timeout">preprocessing_lock_key_timeout</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#pine.pipelines.app.listener.service_listener.ServiceListener.preprocessing_worker_lock_key">preprocessing_worker_lock_key</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#pine.pipelines.app.listener.service_listener.ServiceListener.preprocessing_worker_lock_key_timeout">preprocessing_worker_lock_key_timeout</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#pine.pipelines.app.listener.service_listener.ServiceListener.registration_channel">registration_channel</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#pine.pipelines.app.listener.service_listener.ServiceListener.publish_response">publish_response</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#pine.pipelines.app.listener.service_listener.ServiceListener.start_workers">start_workers</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#pine.pipelines.app.listener.service_listener.ServiceListener.stop_workers">stop_workers</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#pine.pipelines.app.listener.service_listener.ServiceListener.pre_process_message">pre_process_message</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#pine.pipelines.app.listener.service_listener.ServiceListener.process_message">process_message</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#pine.pipelines.app.listener.service_listener.ServiceListener._start_registration_task">_start_registration_task</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#pine.pipelines.app.listener.service_listener.ServiceListener._start_channel_task">_start_channel_task</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#pine.pipelines.app.listener.service_listener.ServiceListener._start_listener_task">_start_listener_task</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#pine.pipelines.app.listener.service_listener.ServiceListener._start_queue_processor_task">_start_queue_processor_task</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="../main/index.html"
+                        title="previous chapter"><code class="xref py py-mod docutils literal notranslate"><span class="pre">pine.pipelines.app.listener.main</span></code></a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="../../../shared/index.html"
+                        title="next chapter"><code class="xref py py-mod docutils literal notranslate"><span class="pre">pine.pipelines.shared</span></code></a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../../../../../_sources/autoapi/pine/pipelines/app/listener/service_listener/index.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../../../../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../../../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="../../../shared/index.html" title="pine.pipelines.shared"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="../main/index.html" title="pine.pipelines.app.listener.main"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../../../../index.html">pine  documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../../../../index.html" >API Reference</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../../../../index.html" ><code class="xref py py-mod docutils literal notranslate"><span class="pre">pine</span></code></a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="../../../index.html" ><code class="xref py py-mod docutils literal notranslate"><span class="pre">pine.pipelines</span></code></a> &#187;</li>
+          <li class="nav-item nav-item-4"><a href="../../index.html" ><code class="xref py py-mod docutils literal notranslate"><span class="pre">pine.pipelines.app</span></code></a> &#187;</li>
+          <li class="nav-item nav-item-5"><a href="../index.html" ><code class="xref py py-mod docutils literal notranslate"><span class="pre">pine.pipelines.app.listener</span></code></a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href=""><code class="xref py py-mod docutils literal notranslate"><span class="pre">pine.pipelines.app.listener.service_listener</span></code></a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright (C) 2019 The Johns Hopkins University Applied Physics Laboratory LLC..
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.1.2.
+    </div>
+  </body>
+</html>

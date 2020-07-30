@@ -1,7 +1,7 @@
 // (C) 2019 The Johns Hopkins University Applied Physics Laboratory LLC.
 
-import { Component, OnInit } from '@angular/core';
-import { BreakpointObserver, Breakpoints, BreakpointState } from '@angular/cdk/layout';
+import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
+import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { AppConfig } from "./app.config";
 import { HttpErrorResponse } from "@angular/common/http";
 import { Router, ActivatedRoute, NavigationEnd } from "@angular/router";
@@ -13,16 +13,16 @@ import { filter, map, switchMap } from 'rxjs/operators';
 
 import { AuthService } from "./service/auth/auth.service";
 import { EventService } from "./service/event/event.service";
+import { StatusBarService } from "./service/status-bar/status-bar.service";
 
-import { User } from "./model/user";
-
+import { StatusBarComponent } from "./component/status-bar/status-bar.component";
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit {
+export class AppComponent implements OnInit, AfterViewInit {
 
     isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
         .pipe(map(result => result.matches));
@@ -33,10 +33,14 @@ export class AppComponent implements OnInit {
 
     public backendErrorMessage = "";
 
+    @ViewChild(StatusBarComponent)
+    public statusBar: StatusBarComponent;
+
     constructor(private titleService: Title, private router: Router, private route: ActivatedRoute,
                 private breakpointObserver: BreakpointObserver,
                 public appConfig: AppConfig, private authService: AuthService,
-                private event: EventService, private snackBar: MatSnackBar) {
+                private event: EventService, private snackBar: MatSnackBar,
+                private statusBarService: StatusBarService) {
     }
 
     public ngOnInit() {
@@ -74,6 +78,10 @@ export class AppComponent implements OnInit {
         this.event.logout.subscribe(() => {
             this.logout();
         });
+    }
+
+    ngAfterViewInit() {
+        this.statusBarService.component = this.statusBar;
     }
 
     public getLoggedIn(): boolean {

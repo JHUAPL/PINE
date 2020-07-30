@@ -1,0 +1,39 @@
+:mod:`pine.backend.app`
+=======================
+
+.. py:module:: pine.backend.app
+
+
+Module Contents
+---------------
+
+
+Functions
+~~~~~~~~~
+
+.. autoapisummary::
+
+   pine.backend.app.handle_error
+   pine.backend.app.handle_uncaught_exception
+   pine.backend.app.create_app
+
+
+.. data:: VERSION
+   
+
+   
+
+.. data:: LOGGER
+   
+
+   
+
+.. function:: handle_error(e)
+
+
+.. function:: handle_uncaught_exception(e)
+
+
+.. function:: create_app(test_config=None)
+
+

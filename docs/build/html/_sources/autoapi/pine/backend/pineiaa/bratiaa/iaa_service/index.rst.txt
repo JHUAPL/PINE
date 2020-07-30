@@ -1,0 +1,42 @@
+:mod:`pine.backend.pineiaa.bratiaa.iaa_service`
+===============================================
+
+.. py:module:: pine.backend.pineiaa.bratiaa.iaa_service
+
+
+Module Contents
+---------------
+
+
+Functions
+~~~~~~~~~
+
+.. autoapisummary::
+
+   pine.backend.pineiaa.bratiaa.iaa_service.get_items
+   pine.backend.pineiaa.bratiaa.iaa_service.get_all_items
+   pine.backend.pineiaa.bratiaa.iaa_service.get_doc_annotations
+   pine.backend.pineiaa.bratiaa.iaa_service.fix_num_for_json
+   pine.backend.pineiaa.bratiaa.iaa_service.getIAAReportForCollection
+
+
+.. data:: EVE_HEADERS
+   
+
+   
+
+.. function:: get_items(resource)
+
+
+.. function:: get_all_items(query)
+
+
+.. function:: get_doc_annotations(collection_id, exclude=None)
+
+
+.. function:: fix_num_for_json(number)
+
+
+.. function:: getIAAReportForCollection(collection_id)
+
+

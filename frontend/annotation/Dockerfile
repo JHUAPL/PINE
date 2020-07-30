@@ -22,7 +22,7 @@ RUN wget https://nginx.org/keys/nginx_signing.key && \
     apt-get -y update && \
     apt-get -y install nginx
 
-ARG NODE_VERSION=10
+ARG NODE_VERSION=12
 
 RUN curl -sL https://deb.nodesource.com/setup_${NODE_VERSION}.x | bash -
 RUN apt-get -y update && \

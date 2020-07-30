@@ -58,9 +58,22 @@ spec:
             {{- end }}
             {{- end }}
             {{- end }}
+          {{- if .Values.backend.persistence.enabled }}
+          volumeMounts:
+            - name: {{ template "pine-chart.fullname" $root }}-backend-volume
+              mountPath: {{ .Values.backend.persistence.mountPath }}
+          {{- end }}
     {{- if .Values.imagePullSecrets }}
       imagePullSecrets:
       {{- range .Values.imagePullSecrets }}
         - name: {{.}}
       {{- end}}
+    {{- end }}
+    {{- if .Values.backend.persistence.enabled }}
+      volumes:
+        - name: {{ template "pine-chart.fullname" $root }}-backend-volume
+          azureFile:
+            secretName: {{ template "pine-chart.fullname" $root }}-azure-secret
+            shareName: {{ .Values.backend.persistence.shareName }}
+            readOnly: false
     {{- end }}

@@ -1,0 +1,224 @@
+
+
+<!doctype html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>pine.pipelines.NER_API &#8212; pine  documentation</title>
+    <link rel="stylesheet" href="../../../../_static/bizstyle.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/graphviz.css" />
+    
+    <script id="documentation_options" data-url_root="../../../../" src="../../../../_static/documentation_options.js"></script>
+    <script src="../../../../_static/jquery.js"></script>
+    <script src="../../../../_static/underscore.js"></script>
+    <script src="../../../../_static/doctools.js"></script>
+    <script src="../../../../_static/language_data.js"></script>
+    <script src="../../../../_static/bizstyle.js"></script>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" />
+    <link rel="next" title="pine.pipelines.RankingFunctions" href="../RankingFunctions/index.html" />
+    <link rel="prev" title="pine.pipelines.NERWrapper" href="../NERWrapper/index.html" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <!--[if lt IE 9]>
+    <script src="_static/css3-mediaqueries.js"></script>
+    <![endif]-->
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="../RankingFunctions/index.html" title="pine.pipelines.RankingFunctions"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="../NERWrapper/index.html" title="pine.pipelines.NERWrapper"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../../index.html">pine  documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../../index.html" >API Reference</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../../index.html" ><code class="xref py py-mod docutils literal notranslate"><span class="pre">pine</span></code></a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="../index.html" accesskey="U"><code class="xref py py-mod docutils literal notranslate"><span class="pre">pine.pipelines</span></code></a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href=""><code class="xref py py-mod docutils literal notranslate"><span class="pre">pine.pipelines.NER_API</span></code></a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="module-pine.pipelines.NER_API">
+<span id="pine-pipelines-ner-api"></span><h1><a class="reference internal" href="#module-pine.pipelines.NER_API" title="pine.pipelines.NER_API"><code class="xref py py-mod docutils literal notranslate"><span class="pre">pine.pipelines.NER_API</span></code></a><a class="headerlink" href="#module-pine.pipelines.NER_API" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="module-contents">
+<h2>Module Contents<a class="headerlink" href="#module-contents" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="classes">
+<h3>Classes<a class="headerlink" href="#classes" title="Permalink to this headline">¶</a></h3>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pine.pipelines.NER_API.ner_api" title="pine.pipelines.NER_API.ner_api"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ner_api</span></code></a>()</p></td>
+<td><p>Initialize self.  See help(type(self)) for accurate signature.</p></td>
+</tr>
+</tbody>
+</table>
+<dl class="py data">
+<dt id="pine.pipelines.NER_API.logger">
+<code class="sig-prename descclassname">pine.pipelines.NER_API.</code><code class="sig-name descname">logger</code><a class="headerlink" href="#pine.pipelines.NER_API.logger" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py data">
+<dt id="pine.pipelines.NER_API.config">
+<code class="sig-prename descclassname">pine.pipelines.NER_API.</code><code class="sig-name descname">config</code><a class="headerlink" href="#pine.pipelines.NER_API.config" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py class">
+<dt id="pine.pipelines.NER_API.ner_api">
+<em class="property">class </em><code class="sig-prename descclassname">pine.pipelines.NER_API.</code><code class="sig-name descname">ner_api</code><a class="headerlink" href="#pine.pipelines.NER_API.ner_api" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>Initialize self.  See help(type(self)) for accurate signature.</p>
+<dl class="py method">
+<dt id="pine.pipelines.NER_API.ner_api.perform_fold">
+<code class="sig-name descname">perform_fold</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="n">model</span></em>, <em class="sig-param"><span class="n">train_data</span></em>, <em class="sig-param"><span class="n">test_data</span></em>, <em class="sig-param"><span class="n">pipeline_parameters</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.pipelines.NER_API.ner_api.perform_fold" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="pine.pipelines.NER_API.ner_api.perform_five_fold">
+<code class="sig-name descname">perform_five_fold</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="n">model</span></em>, <em class="sig-param"><span class="n">documents</span></em>, <em class="sig-param"><span class="n">annotations</span></em>, <em class="sig-param"><span class="n">doc_ids</span></em>, <em class="sig-param"><span class="n">pipeline_parameters</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.pipelines.NER_API.ner_api.perform_five_fold" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="pine.pipelines.NER_API.ner_api.get_document_ranking">
+<code class="sig-name descname">get_document_ranking</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="n">model</span></em>, <em class="sig-param"><span class="n">doc_map</span></em>, <em class="sig-param"><span class="n">doc_ids</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.pipelines.NER_API.ner_api.get_document_ranking" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="pine.pipelines.NER_API.ner_api.get_classifier_pipeline_metrics_objs">
+<code class="sig-name descname">get_classifier_pipeline_metrics_objs</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="n">classifier_id</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.pipelines.NER_API.ner_api.get_classifier_pipeline_metrics_objs" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="pine.pipelines.NER_API.ner_api.train_model">
+<code class="sig-name descname">train_model</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="n">custom_filename</span></em>, <em class="sig-param"><span class="n">classifier_id</span></em>, <em class="sig-param"><span class="n">pipeline_name</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.pipelines.NER_API.ner_api.train_model" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="pine.pipelines.NER_API.ner_api.predict">
+<code class="sig-name descname">predict</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="n">classifier_id</span></em>, <em class="sig-param"><span class="n">pipeline_name</span></em>, <em class="sig-param"><span class="n">documents</span></em>, <em class="sig-param"><span class="n">document_ids</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.pipelines.NER_API.ner_api.predict" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+</div>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../../../../index.html">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">pine.pipelines.NER_API</span></code></a><ul>
+<li><a class="reference internal" href="#module-contents">Module Contents</a><ul>
+<li><a class="reference internal" href="#classes">Classes</a><ul>
+<li><a class="reference internal" href="#pine.pipelines.NER_API.logger">logger</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#pine.pipelines.NER_API.config">config</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#pine.pipelines.NER_API.ner_api">ner_api</a><ul>
+<li><a class="reference internal" href="#pine.pipelines.NER_API.ner_api.perform_fold">perform_fold</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#pine.pipelines.NER_API.ner_api.perform_five_fold">perform_five_fold</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#pine.pipelines.NER_API.ner_api.get_document_ranking">get_document_ranking</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#pine.pipelines.NER_API.ner_api.get_classifier_pipeline_metrics_objs">get_classifier_pipeline_metrics_objs</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#pine.pipelines.NER_API.ner_api.train_model">train_model</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#pine.pipelines.NER_API.ner_api.predict">predict</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="../NERWrapper/index.html"
+                        title="previous chapter"><code class="xref py py-mod docutils literal notranslate"><span class="pre">pine.pipelines.NERWrapper</span></code></a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="../RankingFunctions/index.html"
+                        title="next chapter"><code class="xref py py-mod docutils literal notranslate"><span class="pre">pine.pipelines.RankingFunctions</span></code></a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../../../_sources/autoapi/pine/pipelines/NER_API/index.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="../RankingFunctions/index.html" title="pine.pipelines.RankingFunctions"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="../NERWrapper/index.html" title="pine.pipelines.NERWrapper"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../../index.html">pine  documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../../index.html" >API Reference</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../../index.html" ><code class="xref py py-mod docutils literal notranslate"><span class="pre">pine</span></code></a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="../index.html" ><code class="xref py py-mod docutils literal notranslate"><span class="pre">pine.pipelines</span></code></a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href=""><code class="xref py py-mod docutils literal notranslate"><span class="pre">pine.pipelines.NER_API</span></code></a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright (C) 2019 The Johns Hopkins University Applied Physics Laboratory LLC..
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.1.2.
+    </div>
+  </body>
+</html>

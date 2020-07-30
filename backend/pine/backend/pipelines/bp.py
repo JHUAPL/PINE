@@ -66,16 +66,6 @@ def _get_classifier_metrics(classifier_id):
     logger.info(all_metrics)
     return all_metrics
 
-def _get_collection_classifier(collection_id):
-    where = {
-        "collection_id": collection_id
-    }
-    classifiers = service.get_items("/classifiers", params=service.where_params(where))
-    if len(classifiers) != 1:
-        raise exceptions.BadRequest(description="Expected one classifier but found {}.".format(len(classifiers)))
-    return classifiers[0]
-
-
 @bp.route("/metrics", methods=["GET"])
 @auth.login_required
 def get_metrics():
@@ -140,6 +130,8 @@ def get_next_by_classifier(classifier_id):
         return jsonify(instance["overlap_document_ids"][user_id].pop())
     elif len(instance["document_ids"]) > 0:
         return jsonify(instance["document_ids"].pop())
+    elif len(instance["overlap_document_ids"][user_id]) > 0:
+        return jsonify(instance["overlap_document_ids"][user_id].pop())
     else:
         return jsonify(None)
 

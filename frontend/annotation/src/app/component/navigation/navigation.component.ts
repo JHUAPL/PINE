@@ -1,12 +1,15 @@
 /*(C) 2019 The Johns Hopkins University Applied Physics Laboratory LLC. */
 
-import { Component, OnInit, Output, EventEmitter } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
+import { MatDialog } from "@angular/material";
 
 import { PATHS } from "../../app.paths";
 import { AppConfig } from "../../app.config";
 
 import { AuthService } from "../../service/auth/auth.service";
 import { EventService } from "../../service/event/event.service";
+
+import { show } from "../about/about.component";
 
 @Component({
   selector: "app-navigation",
@@ -19,10 +22,16 @@ export class NavigationComponent implements OnInit {
 
     public isExpanded = true;
 
-    constructor(public appConfig: AppConfig, public authService: AuthService,
-            private events: EventService) { }
+    constructor(public appConfig: AppConfig,
+                public authService: AuthService,
+                private events: EventService,
+                private dialog: MatDialog) { }
 
     ngOnInit() {
+    }
+
+    public doAbout() {
+        show(this.dialog);
     }
 
     public doLogout() {

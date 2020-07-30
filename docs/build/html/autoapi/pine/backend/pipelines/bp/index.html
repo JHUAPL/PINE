@@ -1,0 +1,343 @@
+
+
+<!doctype html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>pine.backend.pipelines.bp &#8212; pine  documentation</title>
+    <link rel="stylesheet" href="../../../../../_static/bizstyle.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../../../../_static/graphviz.css" />
+    
+    <script id="documentation_options" data-url_root="../../../../../" src="../../../../../_static/documentation_options.js"></script>
+    <script src="../../../../../_static/jquery.js"></script>
+    <script src="../../../../../_static/underscore.js"></script>
+    <script src="../../../../../_static/doctools.js"></script>
+    <script src="../../../../../_static/language_data.js"></script>
+    <script src="../../../../../_static/bizstyle.js"></script>
+    <link rel="index" title="Index" href="../../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../../search.html" />
+    <link rel="next" title="pine.backend.shared" href="../../shared/index.html" />
+    <link rel="prev" title="pine.backend.pipelines" href="../index.html" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <!--[if lt IE 9]>
+    <script src="_static/css3-mediaqueries.js"></script>
+    <![endif]-->
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="../../shared/index.html" title="pine.backend.shared"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="../index.html" title="pine.backend.pipelines"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../../../index.html">pine  documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../../../index.html" >API Reference</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../../../index.html" ><code class="xref py py-mod docutils literal notranslate"><span class="pre">pine</span></code></a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="../../index.html" ><code class="xref py py-mod docutils literal notranslate"><span class="pre">pine.backend</span></code></a> &#187;</li>
+          <li class="nav-item nav-item-4"><a href="../index.html" accesskey="U"><code class="xref py py-mod docutils literal notranslate"><span class="pre">pine.backend.pipelines</span></code></a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href=""><code class="xref py py-mod docutils literal notranslate"><span class="pre">pine.backend.pipelines.bp</span></code></a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="module-pine.backend.pipelines.bp">
+<span id="pine-backend-pipelines-bp"></span><h1><a class="reference internal" href="#module-pine.backend.pipelines.bp" title="pine.backend.pipelines.bp"><code class="xref py py-mod docutils literal notranslate"><span class="pre">pine.backend.pipelines.bp</span></code></a><a class="headerlink" href="#module-pine.backend.pipelines.bp" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="module-contents">
+<h2>Module Contents<a class="headerlink" href="#module-contents" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="functions">
+<h3>Functions<a class="headerlink" href="#functions" title="Permalink to this headline">¶</a></h3>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pine.backend.pipelines.bp.get_pipelines" title="pine.backend.pipelines.bp.get_pipelines"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_pipelines</span></code></a>()</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#pine.backend.pipelines.bp.get_pipeline_by_id" title="pine.backend.pipelines.bp.get_pipeline_by_id"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_pipeline_by_id</span></code></a>(pipeline_id)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pine.backend.pipelines.bp._get_collection_classifier" title="pine.backend.pipelines.bp._get_collection_classifier"><code class="xref py py-obj docutils literal notranslate"><span class="pre">_get_collection_classifier</span></code></a>(collection_id)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#pine.backend.pipelines.bp.get_collection_classifier" title="pine.backend.pipelines.bp.get_collection_classifier"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_collection_classifier</span></code></a>(collection_id)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pine.backend.pipelines.bp._get_classifier_metrics" title="pine.backend.pipelines.bp._get_classifier_metrics"><code class="xref py py-obj docutils literal notranslate"><span class="pre">_get_classifier_metrics</span></code></a>(classifier_id)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#pine.backend.pipelines.bp.get_metrics" title="pine.backend.pipelines.bp.get_metrics"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_metrics</span></code></a>()</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pine.backend.pipelines.bp.get_classifier_metrics" title="pine.backend.pipelines.bp.get_classifier_metrics"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_classifier_metrics</span></code></a>(classifier_id)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#pine.backend.pipelines.bp._get_classifier" title="pine.backend.pipelines.bp._get_classifier"><code class="xref py py-obj docutils literal notranslate"><span class="pre">_get_classifier</span></code></a>(classifier_id)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pine.backend.pipelines.bp._get_next_instance" title="pine.backend.pipelines.bp._get_next_instance"><code class="xref py py-obj docutils literal notranslate"><span class="pre">_get_next_instance</span></code></a>(classifier_id)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#pine.backend.pipelines.bp.get_next_by_classifier" title="pine.backend.pipelines.bp.get_next_by_classifier"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_next_by_classifier</span></code></a>(classifier_id)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pine.backend.pipelines.bp.advance_to_next_document_by_classifier" title="pine.backend.pipelines.bp.advance_to_next_document_by_classifier"><code class="xref py py-obj docutils literal notranslate"><span class="pre">advance_to_next_document_by_classifier</span></code></a>(classifier_id, document_id)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#pine.backend.pipelines.bp.predict" title="pine.backend.pipelines.bp.predict"><code class="xref py py-obj docutils literal notranslate"><span class="pre">predict</span></code></a>()</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pine.backend.pipelines.bp.test_redis" title="pine.backend.pipelines.bp.test_redis"><code class="xref py py-obj docutils literal notranslate"><span class="pre">test_redis</span></code></a>()</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#pine.backend.pipelines.bp.init_app" title="pine.backend.pipelines.bp.init_app"><code class="xref py py-obj docutils literal notranslate"><span class="pre">init_app</span></code></a>(app)</p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
+<dl class="py data">
+<dt id="pine.backend.pipelines.bp.logger">
+<code class="sig-prename descclassname">pine.backend.pipelines.bp.</code><code class="sig-name descname">logger</code><a class="headerlink" href="#pine.backend.pipelines.bp.logger" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py data">
+<dt id="pine.backend.pipelines.bp.service_manager">
+<code class="sig-prename descclassname">pine.backend.pipelines.bp.</code><code class="sig-name descname">service_manager</code><a class="headerlink" href="#pine.backend.pipelines.bp.service_manager" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py data">
+<dt id="pine.backend.pipelines.bp.bp">
+<code class="sig-prename descclassname">pine.backend.pipelines.bp.</code><code class="sig-name descname">bp</code><a class="headerlink" href="#pine.backend.pipelines.bp.bp" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py data">
+<dt id="pine.backend.pipelines.bp.classifier_dict">
+<code class="sig-prename descclassname">pine.backend.pipelines.bp.</code><code class="sig-name descname">classifier_dict</code><a class="headerlink" href="#pine.backend.pipelines.bp.classifier_dict" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py data">
+<dt id="pine.backend.pipelines.bp.classifier_pipelines">
+<code class="sig-prename descclassname">pine.backend.pipelines.bp.</code><code class="sig-name descname">classifier_pipelines</code><a class="headerlink" href="#pine.backend.pipelines.bp.classifier_pipelines" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt id="pine.backend.pipelines.bp.get_pipelines">
+<code class="sig-prename descclassname">pine.backend.pipelines.bp.</code><code class="sig-name descname">get_pipelines</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.pipelines.bp.get_pipelines" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt id="pine.backend.pipelines.bp.get_pipeline_by_id">
+<code class="sig-prename descclassname">pine.backend.pipelines.bp.</code><code class="sig-name descname">get_pipeline_by_id</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">pipeline_id</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.pipelines.bp.get_pipeline_by_id" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt id="pine.backend.pipelines.bp._get_collection_classifier">
+<code class="sig-prename descclassname">pine.backend.pipelines.bp.</code><code class="sig-name descname">_get_collection_classifier</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">collection_id</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.pipelines.bp._get_collection_classifier" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt id="pine.backend.pipelines.bp.get_collection_classifier">
+<code class="sig-prename descclassname">pine.backend.pipelines.bp.</code><code class="sig-name descname">get_collection_classifier</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">collection_id</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.pipelines.bp.get_collection_classifier" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt id="pine.backend.pipelines.bp._get_classifier_metrics">
+<code class="sig-prename descclassname">pine.backend.pipelines.bp.</code><code class="sig-name descname">_get_classifier_metrics</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">classifier_id</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.pipelines.bp._get_classifier_metrics" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt id="pine.backend.pipelines.bp.get_metrics">
+<code class="sig-prename descclassname">pine.backend.pipelines.bp.</code><code class="sig-name descname">get_metrics</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.pipelines.bp.get_metrics" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt id="pine.backend.pipelines.bp.get_classifier_metrics">
+<code class="sig-prename descclassname">pine.backend.pipelines.bp.</code><code class="sig-name descname">get_classifier_metrics</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">classifier_id</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.pipelines.bp.get_classifier_metrics" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt id="pine.backend.pipelines.bp._get_classifier">
+<code class="sig-prename descclassname">pine.backend.pipelines.bp.</code><code class="sig-name descname">_get_classifier</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">classifier_id</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.pipelines.bp._get_classifier" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt id="pine.backend.pipelines.bp._get_next_instance">
+<code class="sig-prename descclassname">pine.backend.pipelines.bp.</code><code class="sig-name descname">_get_next_instance</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">classifier_id</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.pipelines.bp._get_next_instance" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt id="pine.backend.pipelines.bp.get_next_by_classifier">
+<code class="sig-prename descclassname">pine.backend.pipelines.bp.</code><code class="sig-name descname">get_next_by_classifier</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">classifier_id</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.pipelines.bp.get_next_by_classifier" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt id="pine.backend.pipelines.bp.advance_to_next_document_by_classifier">
+<code class="sig-prename descclassname">pine.backend.pipelines.bp.</code><code class="sig-name descname">advance_to_next_document_by_classifier</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">classifier_id</span></em>, <em class="sig-param"><span class="n">document_id</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.pipelines.bp.advance_to_next_document_by_classifier" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt id="pine.backend.pipelines.bp.predict">
+<code class="sig-prename descclassname">pine.backend.pipelines.bp.</code><code class="sig-name descname">predict</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.pipelines.bp.predict" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt id="pine.backend.pipelines.bp.test_redis">
+<code class="sig-prename descclassname">pine.backend.pipelines.bp.</code><code class="sig-name descname">test_redis</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.pipelines.bp.test_redis" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt id="pine.backend.pipelines.bp.init_app">
+<code class="sig-prename descclassname">pine.backend.pipelines.bp.</code><code class="sig-name descname">init_app</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">app</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.pipelines.bp.init_app" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+</div>
+</div>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../../../../../index.html">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">pine.backend.pipelines.bp</span></code></a><ul>
+<li><a class="reference internal" href="#module-contents">Module Contents</a><ul>
+<li><a class="reference internal" href="#functions">Functions</a><ul>
+<li><a class="reference internal" href="#pine.backend.pipelines.bp.logger">logger</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#pine.backend.pipelines.bp.service_manager">service_manager</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#pine.backend.pipelines.bp.bp">bp</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#pine.backend.pipelines.bp.classifier_dict">classifier_dict</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#pine.backend.pipelines.bp.classifier_pipelines">classifier_pipelines</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#pine.backend.pipelines.bp.get_pipelines">get_pipelines</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#pine.backend.pipelines.bp.get_pipeline_by_id">get_pipeline_by_id</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#pine.backend.pipelines.bp._get_collection_classifier">_get_collection_classifier</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#pine.backend.pipelines.bp.get_collection_classifier">get_collection_classifier</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#pine.backend.pipelines.bp._get_classifier_metrics">_get_classifier_metrics</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#pine.backend.pipelines.bp.get_metrics">get_metrics</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#pine.backend.pipelines.bp.get_classifier_metrics">get_classifier_metrics</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#pine.backend.pipelines.bp._get_classifier">_get_classifier</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#pine.backend.pipelines.bp._get_next_instance">_get_next_instance</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#pine.backend.pipelines.bp.get_next_by_classifier">get_next_by_classifier</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#pine.backend.pipelines.bp.advance_to_next_document_by_classifier">advance_to_next_document_by_classifier</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#pine.backend.pipelines.bp.predict">predict</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#pine.backend.pipelines.bp.test_redis">test_redis</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#pine.backend.pipelines.bp.init_app">init_app</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="../index.html"
+                        title="previous chapter"><code class="xref py py-mod docutils literal notranslate"><span class="pre">pine.backend.pipelines</span></code></a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="../../shared/index.html"
+                        title="next chapter"><code class="xref py py-mod docutils literal notranslate"><span class="pre">pine.backend.shared</span></code></a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../../../../_sources/autoapi/pine/backend/pipelines/bp/index.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../../../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="../../shared/index.html" title="pine.backend.shared"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="../index.html" title="pine.backend.pipelines"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../../../index.html">pine  documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../../../index.html" >API Reference</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../../../index.html" ><code class="xref py py-mod docutils literal notranslate"><span class="pre">pine</span></code></a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="../../index.html" ><code class="xref py py-mod docutils literal notranslate"><span class="pre">pine.backend</span></code></a> &#187;</li>
+          <li class="nav-item nav-item-4"><a href="../index.html" ><code class="xref py py-mod docutils literal notranslate"><span class="pre">pine.backend.pipelines</span></code></a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href=""><code class="xref py py-mod docutils literal notranslate"><span class="pre">pine.backend.pipelines.bp</span></code></a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright (C) 2019 The Johns Hopkins University Applied Physics Laboratory LLC..
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.1.2.
+    </div>
+  </body>
+</html>

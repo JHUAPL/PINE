@@ -10,31 +10,30 @@
 
         <ng-container matColumnDef="text">
             <th mat-header-cell *matHeaderCellDef mat-sort-header> Text </th>
-            <td mat-cell *matCellDef="let annotation"> {{getAnnotationText(annotation)}}</td>
+            <td mat-cell *matCellDef="let annotation">{{getAnnotationText(annotation)}}</td>
         </ng-container>
 
         <ng-container matColumnDef="label">
             <th mat-header-cell *matHeaderCellDef mat-sort-header> Label </th>
             <td mat-cell *matCellDef="let annotation">
-                <mat-chip [style.background-color]="getLabelColor(annotation.label)" class="shadowed">
-                    {{annotation.label}}</mat-chip>
+                <mat-chip [style.background-color]="getLabelColor(annotation.label)" class="shadowed">{{annotation.label}}</mat-chip>
             </td>
         </ng-container>
 
         <ng-container matColumnDef="start">
             <th mat-header-cell *matHeaderCellDef mat-sort-header> Start </th>
-            <td mat-cell *matCellDef="let annotation"> {{annotation.start}} </td>
+            <td mat-cell *matCellDef="let annotation">{{annotation.start}}</td>
         </ng-container>
 
         <ng-container matColumnDef="end">
             <th mat-header-cell *matHeaderCellDef mat-sort-header> End </th>
-            <td mat-cell *matCellDef="let annotation"> {{annotation.end}} </td>
+            <td mat-cell *matCellDef="let annotation">{{annotation.end}}</td>
         </ng-container>
 
         <ng-container matColumnDef="actions">
             <th mat-header-cell *matHeaderCellDef> Actions </th>
             <td mat-cell *matCellDef="let annotation">
-                <button mat-raised-button (click)="removeAnnotation(annotation)"> Remove</button>
+                <button mat-raised-button (click)="removeAnnotation(annotation)">Remove</button>
             </td>
         </ng-container>
 

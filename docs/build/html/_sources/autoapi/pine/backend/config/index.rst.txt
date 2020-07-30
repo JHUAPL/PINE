@@ -1,0 +1,54 @@
+:mod:`pine.backend.config`
+==========================
+
+.. py:module:: pine.backend.config
+
+
+Module Contents
+---------------
+
+.. data:: SECRET_KEY
+   :annotation: = Cq13XII=%
+
+   
+
+.. data:: DEBUG
+   :annotation: = True
+
+   
+
+.. data:: EVE_SERVER
+   
+
+   
+
+.. data:: REDIS_SERVER
+   
+
+   
+
+.. data:: REDIS_PORT
+   
+
+   
+
+.. data:: AUTH_MODULE
+   
+
+   
+
+.. data:: AUTH_MODULE
+   :annotation: = vegas
+
+   
+
+.. data:: VEGAS_CLIENT_SECRET
+   
+
+   
+
+.. data:: DOCUMENT_IMAGE_DIR
+   
+
+   
+

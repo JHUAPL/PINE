@@ -1,0 +1,98 @@
+:mod:`pine.backend.pipelines.bp`
+================================
+
+.. py:module:: pine.backend.pipelines.bp
+
+
+Module Contents
+---------------
+
+
+Functions
+~~~~~~~~~
+
+.. autoapisummary::
+
+   pine.backend.pipelines.bp.get_pipelines
+   pine.backend.pipelines.bp.get_pipeline_by_id
+   pine.backend.pipelines.bp._get_collection_classifier
+   pine.backend.pipelines.bp.get_collection_classifier
+   pine.backend.pipelines.bp._get_classifier_metrics
+   pine.backend.pipelines.bp.get_metrics
+   pine.backend.pipelines.bp.get_classifier_metrics
+   pine.backend.pipelines.bp._get_classifier
+   pine.backend.pipelines.bp._get_next_instance
+   pine.backend.pipelines.bp.get_next_by_classifier
+   pine.backend.pipelines.bp.advance_to_next_document_by_classifier
+   pine.backend.pipelines.bp.predict
+   pine.backend.pipelines.bp.test_redis
+   pine.backend.pipelines.bp.init_app
+
+
+.. data:: logger
+   
+
+   
+
+.. data:: service_manager
+   
+
+   
+
+.. data:: bp
+   
+
+   
+
+.. data:: classifier_dict
+   
+
+   
+
+.. data:: classifier_pipelines
+   
+
+   
+
+.. function:: get_pipelines()
+
+
+.. function:: get_pipeline_by_id(pipeline_id)
+
+
+.. function:: _get_collection_classifier(collection_id)
+
+
+.. function:: get_collection_classifier(collection_id)
+
+
+.. function:: _get_classifier_metrics(classifier_id)
+
+
+.. function:: get_metrics()
+
+
+.. function:: get_classifier_metrics(classifier_id)
+
+
+.. function:: _get_classifier(classifier_id)
+
+
+.. function:: _get_next_instance(classifier_id)
+
+
+.. function:: get_next_by_classifier(classifier_id)
+
+
+.. function:: advance_to_next_document_by_classifier(classifier_id, document_id)
+
+
+.. function:: predict()
+
+
+.. function:: test_redis()
+
+
+.. function:: init_app(app)
+
+

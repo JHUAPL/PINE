@@ -1,0 +1,85 @@
+:mod:`pine.pipelines.spacy_NER_pipeline`
+========================================
+
+.. py:module:: pine.pipelines.spacy_NER_pipeline
+
+.. autoapi-nested-parse::
+
+   For more details, see the documentation:
+   * Training: https://spacy.io/usage/training
+   * NER: https://spacy.io/usage/linguistic-features#named-entities
+
+   Compatible with: spaCy v2.0.0+
+
+
+
+Module Contents
+---------------
+
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   pine.pipelines.spacy_NER_pipeline.spacy_NER
+
+
+
+.. py:class:: spacy_NER(model_path=None)
+
+   Bases: :class:`pine.pipelines.pipeline.Pipeline`
+
+   Initialize self.  See help(type(self)) for accurate signature.
+
+   .. attribute:: __nlp
+      :annotation: = []
+
+      
+
+   .. attribute:: __ner
+      :annotation: = []
+
+      
+
+   .. attribute:: __optimizer
+      :annotation: = []
+
+      
+
+   .. method:: fit(self, X, y, params=None)
+
+
+
+   .. method:: evaluate(self, X, y, Xid)
+
+
+
+   .. method:: predict(self, X, Xid)
+
+
+
+   .. method:: predict_proba(self, X, Xid)
+
+
+
+   .. method:: next_example(self, X, Xid)
+
+
+
+   .. method:: format_data(self, X, y)
+
+
+
+   .. method:: add_label(self, entity)
+
+
+
+   .. method:: save_model(self, model_path)
+
+
+
+   .. method:: load_model(self, model_path)
+
+
+
+

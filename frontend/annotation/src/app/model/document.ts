@@ -7,7 +7,8 @@ export interface DBDocument extends DBObject {
     collection_id: string;
     overlap: number;
     text: string;
-    metadata: object;
+    metadata: {[key: string]: any};
+    has_annotated: {[user_id: string]: boolean};
 }
 
 export interface DBDocuments extends DBObjects {
@@ -22,8 +23,8 @@ export class Document extends ModelObject implements DBDocument {
     public collection_id: string;
     public overlap: number;
     public text: string;
-    public metadata: object;
-    public has_annotated: object
+    public metadata: {[key: string]: any};
+    public has_annotated: {[user_id: string]: boolean};
     
     public getTextPreview(n: number = Document.DEFAULT_PREVIEW_LENGTH) {
         return `${this.text.slice(0, n)}...`;

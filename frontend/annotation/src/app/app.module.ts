@@ -88,7 +88,6 @@ import { DocumentDetailsComponent } from "./component/document-details/document-
 import { AdminDataComponent } from "./component/admin-data/admin-data.component";
 import { ErrorComponent } from "./component/error/error.component";
 import { OAuthAuthorizeComponent } from "./service/auth/modules/oauth-authorize.component";
-import { MetricsDisplayComponent } from "./component/metrics-display/metrics-display.component";
 import { MetricsComponent } from './component/metrics/metrics.component';
 import { ConfMatrixComponent } from './component/conf-matrix/conf-matrix.component';
 import { VennDiagComponent } from './component/venn-diag/venn-diag.component';
@@ -100,6 +99,9 @@ import { ImageExplorerComponent } from './component/image-explorer/image-explore
 import { ImageFilterService } from './service/image/image-filter.service';
 import { ImageChooserComponent, ImageChooserDialog } from './component/image-chooser/image-chooser.component';
 import { ImageCollectionUploaderComponent, ImageCollectionUploaderDialog } from './component/image-collection-uploader/image-collection-uploader.component';
+import { StatusBarComponent } from './component/status-bar/status-bar.component';
+import { StatusBarService } from "./service/status-bar/status-bar.service";
+import { AboutComponent } from './component/about/about.component';
 
 export function initializeApp(appConfig: AppConfig) {
     return () => appConfig.load();
@@ -131,7 +133,6 @@ export function initializeApp(appConfig: AppConfig) {
         AdminDataComponent,
         ErrorComponent,
         OAuthAuthorizeComponent,
-        MetricsDisplayComponent,
         MetricsComponent,
         ConfMatrixComponent,
         VennDiagComponent,
@@ -146,7 +147,9 @@ export function initializeApp(appConfig: AppConfig) {
         ImageChooserComponent,
         ImageChooserDialog,
         ImageCollectionUploaderComponent,
-        ImageCollectionUploaderDialog
+        ImageCollectionUploaderDialog,
+        StatusBarComponent,
+        AboutComponent
     ],
     imports: [
         BrowserModule,
@@ -213,7 +216,8 @@ export function initializeApp(appConfig: AppConfig) {
         DocumentRepositoryService,
         EventService,
         SettingsService,
-        ImageFilterService
+        ImageFilterService,
+        StatusBarService
     ],
     bootstrap: [AppComponent],
     entryComponents: [
@@ -223,7 +227,8 @@ export function initializeApp(appConfig: AppConfig) {
         AddLabelDialog,
         AddViewerDialog,
         ImageChooserDialog,
-        ImageCollectionUploaderDialog
+        ImageCollectionUploaderDialog,
+        AboutComponent
     ]
 
 })

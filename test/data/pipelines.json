@@ -1,0 +1,44 @@
+[
+    {
+        "_id": "5babb6ee4eb7dd2c39b9671c",
+        "title": "Apache OpenNLP Named Entity Recognition",
+        "description": "Apache's open source natural language processing toolkit for named entity recognition (NER).  See https://opennlp.apache.org/ for more information.  This is the default pipeline used for NER.",
+        "name": "opennlp",
+        "parameters": {
+            "cutoff": "integer",
+            "iterations":" integer"
+        }
+    },
+    {
+        "_id": "5babb6ee4eb7dd2c39b9671d",
+        "title": "SpaCy Named Entity Recognition",
+        "description": "spaCy is a free open-source library for Natural Language Processing in Python. It features NER, POS tagging, dependency parsing, word vectors and more",
+        "name": "spaCy",
+        "parameters": {
+            "n_iter": "integer",
+            "dropout": "float"
+        }
+    },
+    {
+        "_id": "5babb6ee4eb7dd2c39b9671f",
+        "title": "Stanford CoreNLP Named Entity Recognition",
+        "description": "Stanford's natural language processing toolkit for named entity recognition (NER).  See https://stanfordnlp.github.io/CoreNLP/ for more information.",
+        "name": "corenlp",
+        "parameters": {
+            "max_left": "integer",
+            "use_class_feature": [true, false],
+            "use_word": [true, false],
+            "use_ngrams": [true, false],
+            "no_mid_ngrams": [true, false],
+            "max_ngram_length": "integer",
+            "use_prev": [true, false],
+            "use_next": [true, false],
+            "use_disjunctive": [true, false],
+            "use_sequences": [true, false],
+            "use_prev_sequences": [true, false],
+            "use_type_seqs": [true, false],
+            "use_type_seqs2": [true, false],
+            "use_type_y_sequences": [true, false]
+        }
+    }
+]

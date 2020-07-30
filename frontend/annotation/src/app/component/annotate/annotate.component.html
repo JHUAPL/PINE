@@ -26,14 +26,12 @@
             </mat-expansion-panel-header>
             <mat-chip-list>
                 <mat-checkbox *ngFor="let annotation of myDocAnnotations;" [(ngModel)]="annotation.checked">
-                    <mat-chip [style.background-color]="annotation.label.color" class="shadowed cursor-pointer">
-                        {{annotation.label.name}}
-                    </mat-chip>
+                    <mat-chip [style.background-color]="annotation.label.color" class="shadowed cursor-pointer">{{annotation.label.name}}</mat-chip>
                 </mat-checkbox>
             </mat-chip-list>
         </mat-expansion-panel>
 
-        <mat-expansion-panel id="myDocImage" expanded="true" *ngIf="doc.metadata && doc.metadata.imageUrl">
+        <mat-expansion-panel id="myDocImage" expanded="true" *ngIf="doc.metadata && doc.metadata['imageUrl']">
             <mat-expansion-panel-header>
                 <mat-panel-title>
                     <h2>Image</h2>
@@ -45,7 +43,7 @@
             <div #imageContainer class="image-container">
                 <div style="position: absolute; top: 0px; bottom: 0; left: 0; right: 0;">
                     <button class="full-screen-btn" mat-raised-button (click)="toggleImageFullscreen()">{{ isImageFullscreen() ? 'Close' : 'Open' }} Full Screen</button>
-                    <app-image-explorer [imageUrl]="doc.metadata.imageUrl" [documentId]="doc._id" [collectionId]="collection._id"></app-image-explorer>
+                    <app-image-explorer [imageUrl]="doc.metadata['imageUrl']" [documentId]="doc._id" [collectionId]="collection._id"></app-image-explorer>
                 </div>
             </div>
         </mat-expansion-panel>
@@ -130,7 +128,9 @@
                 <mat-icon>settings</mat-icon>
             </button>
             <div #docElem id="doc" class="cursor-pointer">
+                <!-- set word-start and word-end to help with testing -->
                 <span #wordsList class="word" *ngFor="let word of nerData.words" [id]="word.id"
+                    [attr.word-start]="word.start" [attr.word-end]="word.end"
                     [matTooltip]="getWordTooltip(word)" (mousedown)="mousedown($event, word)"
                     (mouseover)="mouseover($event, word)" (mouseout)="mouseout($event, word)"
                     (mouseup)="mouseup($event, word)" (click)="click($event, word)"
@@ -142,12 +142,6 @@
 
     <div *ngIf="!allowOverlappingNerAnnotations"> (Note: overlapping annotations are not allowed for this collection.)
     </div>
-
-    <div style="margin-top: 16px">
-        <app-ner-annotation-table [labels]="availableLabels" [data]="nerData" (remove)="removeAnnotation($event)">
-        </app-ner-annotation-table>
-    </div>
-
 
     <mat-card-actions>
         <button mat-raised-button (click)="save(false)" [disabled]="!canCurrentlyAnnotate">
@@ -164,12 +158,15 @@
         <app-error></app-error>
     </mat-card-actions>
 
+    <div style="margin-top: 16px">
+        <app-ner-annotation-table [labels]="availableLabels" [data]="nerData" (remove)="removeAnnotation($event)">
+        </app-ner-annotation-table>
+    </div>
+
     <div #popoverTemplate id="popoverTemplate" class="popover" hidden>
         <mat-chip-list>
             <mat-chip *ngFor="let label of availableLabels" [style.background-color]="label.color"
-                class="shadowed cursor-pointer">
-                {{label.name}}
-            </mat-chip>
+                class="shadowed cursor-pointer">{{label.name}}</mat-chip>
         </mat-chip-list>
         <div style="padding: 2px">
             <button mat-raised-button color="warn">

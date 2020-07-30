@@ -1,0 +1,127 @@
+:mod:`pine.backend.auth.bp`
+===========================
+
+.. py:module:: pine.backend.auth.bp
+
+
+Module Contents
+---------------
+
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   pine.backend.auth.bp.AuthModule
+
+
+
+Functions
+~~~~~~~~~
+
+.. autoapisummary::
+
+   pine.backend.auth.bp.is_flat
+   pine.backend.auth.bp.get_logged_in_user
+   pine.backend.auth.bp.login_required
+   pine.backend.auth.bp.admin_required
+   pine.backend.auth.bp.flask_get_module
+   pine.backend.auth.bp.flask_get_flat
+   pine.backend.auth.bp.flask_get_can_manage_users
+   pine.backend.auth.bp.flask_get_logged_in_user
+   pine.backend.auth.bp.flask_get_logged_in_user_details
+   pine.backend.auth.bp.flask_get_login_form
+   pine.backend.auth.bp.flask_post_logout
+   pine.backend.auth.bp.init_app
+
+
+.. data:: CONFIG_AUTH_MODULE_KEY
+   :annotation: = AUTH_MODULE
+
+   
+
+.. data:: bp
+   
+
+   
+
+.. data:: module
+   
+
+   
+
+.. function:: is_flat()
+
+
+.. function:: get_logged_in_user()
+
+
+.. function:: login_required(view)
+
+
+.. function:: admin_required(view)
+
+
+.. function:: flask_get_module()
+
+
+.. function:: flask_get_flat() -> Response
+
+
+.. function:: flask_get_can_manage_users() -> Response
+
+
+.. function:: flask_get_logged_in_user() -> Response
+
+
+.. function:: flask_get_logged_in_user_details() -> Response
+
+
+.. function:: flask_get_login_form() -> Response
+
+
+.. function:: flask_post_logout() -> Response
+
+
+.. py:class:: AuthModule(app, bp)
+
+   Bases: :class:`object`
+
+   Initialize self.  See help(type(self)) for accurate signature.
+
+   .. attribute:: __metaclass__
+      
+
+      
+
+   .. method:: is_flat(self)
+      :abstractmethod:
+
+
+
+   .. method:: can_manage_users(self)
+      :abstractmethod:
+
+
+
+   .. method:: get_login_form(self)
+      :abstractmethod:
+
+
+
+   .. method:: get_logged_in_user(self)
+
+
+
+   .. method:: get_logged_in_user_details(self)
+
+
+
+   .. method:: logout(self)
+
+
+
+
+.. function:: init_app(app)
+
+

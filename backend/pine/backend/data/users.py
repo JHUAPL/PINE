@@ -12,7 +12,16 @@ def get_all_users():
     return service.get_items("/users")
 
 def get_user(user_id):
-    return service.get_item_by_id("/users", user_id)
+    # getting by ID in the normal way doesn't work sometimes
+    items = service.get_items("users", params=service.params({
+        "where": {
+            "_id": user_id
+        }
+    }))
+    if items and len(items) == 1:
+        return items[0]
+    else:
+        abort(404)
 
 def get_user_by_email(email):
     where = {
@@ -107,7 +116,7 @@ def reset_user_passwords():
         service.remove_nonupdatable_fields(user)
         headers = {"If-Match": etag}
         click.echo("Putting to {}: {}".format(service.url("users", user["_id"]), user))
-        resp = service.put("users", user["_id"], json = user, headers = headers)
+        resp = service.put(["users", user["_id"]], json = user, headers = headers)
         if not resp.ok:
             click.echo("Failure! {}".format(resp))
         else:

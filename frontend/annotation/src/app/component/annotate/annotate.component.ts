@@ -77,7 +77,7 @@ export class AnnotateComponent implements OnInit, AfterViewInit {
     public doc: Document;
     public collection: Collection;
     private classifier: Classifier;
-    private nerData: NerData;
+    public nerData: NerData;
     private currentSelection: NerSelection;
 
     public availableLabels: DocLabel[];
@@ -90,7 +90,7 @@ export class AnnotateComponent implements OnInit, AfterViewInit {
     private mouseOutState = false;
     private recentWord = null;
 
-    private ann_agreement: number
+    public ann_agreement: number
     @ViewChildren("wordsList")
     public wordsList: QueryList<any>;
 
@@ -105,7 +105,7 @@ export class AnnotateComponent implements OnInit, AfterViewInit {
         private collections: CollectionRepositoryService,
         private pipelines: PipelineService,
         private events: EventService,
-        private auth: AuthService,
+        public auth: AuthService,
         private dialog: MatDialog,
         private annotatedService: AnnotatedService,
         private iaa_reporting: IaaReportingService,
@@ -426,7 +426,7 @@ export class AnnotateComponent implements OnInit, AfterViewInit {
         }
     }
 
-    public getColorFor(label) {
+    public getColorFor(label: string) {
         return this.getDocLabel(label).color;
     }
 
@@ -542,18 +542,18 @@ export class AnnotateComponent implements OnInit, AfterViewInit {
             }
         }
         this.error.clear();
-        this.annotations.saveAnnotations(this.doc._id, docAnnotations, this.nerData.annotations).subscribe((success: boolean) => {
+        this.annotations.saveAnnotations(this.doc._id, docAnnotations, this.nerData.annotations).subscribe((id: string) => {
             this.myNerAnnotations = this.nerData.annotations;
             this.changed = false;
-            this.events.showUserMessage.emit("Document annotations were " + (success ? "" : "NOT ") + "successfully updated.");
-            if (success && andAdvance) {
-                this.advanceToNext();
-            }
-            if (success) {
-                this.annotatedService.changeDocumentStatus({ collection_id: this.doc.collection_id, doc_id: this.doc._id })
+            this.events.showUserMessage.emit("Document annotations were " + (id ? "" : "NOT ") + "successfully updated.");
+            if(id) {
+                this.annotatedService.changeDocumentStatus({collection_id: this.doc.collection_id, doc_id: this.doc._id})
                 this.iaa_reporting.createIAAReport(this.doc.collection_id).toPromise().then((res) => {
-                    console.log(res)
-                })
+                    console.log(res);
+                });
+            }
+            if(id && andAdvance) {
+                this.advanceToNext();
             }
         }, (error: HttpErrorResponse) => {
             this.error.showHttp(error, "saving annotations");

@@ -1,0 +1,16 @@
+:mod:`pine.pipelines.shared`
+============================
+
+.. py:module:: pine.pipelines.shared
+
+
+Submodules
+----------
+.. toctree::
+   :titlesonly:
+   :maxdepth: 1
+
+   config/index.rst
+   transform/index.rst
+
+

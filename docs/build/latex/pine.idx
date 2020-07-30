@@ -1,0 +1,915 @@
+\indexentry{module@\spxentry{module}!pine@\spxentry{pine}|hyperpage}{1}
+\indexentry{pine@\spxentry{pine}!module@\spxentry{module}|hyperpage}{1}
+\indexentry{module@\spxentry{module}!pine.backend@\spxentry{pine.backend}|hyperpage}{1}
+\indexentry{pine.backend@\spxentry{pine.backend}!module@\spxentry{module}|hyperpage}{1}
+\indexentry{module@\spxentry{module}!pine.backend.admin@\spxentry{pine.backend.admin}|hyperpage}{1}
+\indexentry{pine.backend.admin@\spxentry{pine.backend.admin}!module@\spxentry{module}|hyperpage}{1}
+\indexentry{module@\spxentry{module}!pine.backend.admin.bp@\spxentry{pine.backend.admin.bp}|hyperpage}{1}
+\indexentry{pine.backend.admin.bp@\spxentry{pine.backend.admin.bp}!module@\spxentry{module}|hyperpage}{1}
+\indexentry{bp (in module pine.backend.admin.bp)@\spxentry{bp}\spxextra{in module pine.backend.admin.bp}|hyperpage}{2}
+\indexentry{get\_users() (in module pine.backend.admin.bp)@\spxentry{get\_users()}\spxextra{in module pine.backend.admin.bp}|hyperpage}{2}
+\indexentry{get\_user() (in module pine.backend.admin.bp)@\spxentry{get\_user()}\spxextra{in module pine.backend.admin.bp}|hyperpage}{2}
+\indexentry{update\_user\_password() (in module pine.backend.admin.bp)@\spxentry{update\_user\_password()}\spxextra{in module pine.backend.admin.bp}|hyperpage}{2}
+\indexentry{update\_user() (in module pine.backend.admin.bp)@\spxentry{update\_user()}\spxextra{in module pine.backend.admin.bp}|hyperpage}{2}
+\indexentry{add\_user() (in module pine.backend.admin.bp)@\spxentry{add\_user()}\spxextra{in module pine.backend.admin.bp}|hyperpage}{2}
+\indexentry{delete\_user() (in module pine.backend.admin.bp)@\spxentry{delete\_user()}\spxextra{in module pine.backend.admin.bp}|hyperpage}{2}
+\indexentry{system\_export() (in module pine.backend.admin.bp)@\spxentry{system\_export()}\spxextra{in module pine.backend.admin.bp}|hyperpage}{2}
+\indexentry{system\_import() (in module pine.backend.admin.bp)@\spxentry{system\_import()}\spxextra{in module pine.backend.admin.bp}|hyperpage}{2}
+\indexentry{init\_app() (in module pine.backend.admin.bp)@\spxentry{init\_app()}\spxextra{in module pine.backend.admin.bp}|hyperpage}{2}
+\indexentry{module@\spxentry{module}!pine.backend.annotations@\spxentry{pine.backend.annotations}|hyperpage}{2}
+\indexentry{pine.backend.annotations@\spxentry{pine.backend.annotations}!module@\spxentry{module}|hyperpage}{2}
+\indexentry{module@\spxentry{module}!pine.backend.annotations.bp@\spxentry{pine.backend.annotations.bp}|hyperpage}{2}
+\indexentry{pine.backend.annotations.bp@\spxentry{pine.backend.annotations.bp}!module@\spxentry{module}|hyperpage}{2}
+\indexentry{logger (in module pine.backend.annotations.bp)@\spxentry{logger}\spxextra{in module pine.backend.annotations.bp}|hyperpage}{3}
+\indexentry{CONFIG\_ALLOW\_OVERLAPPING\_NER\_ANNOTATIONS (in module pine.backend.annotations.bp)@\spxentry{CONFIG\_ALLOW\_OVERLAPPING\_NER\_ANNOTATIONS}\spxextra{in module pine.backend.annotations.bp}|hyperpage}{3}
+\indexentry{bp (in module pine.backend.annotations.bp)@\spxentry{bp}\spxextra{in module pine.backend.annotations.bp}|hyperpage}{3}
+\indexentry{check\_document\_by\_id() (in module pine.backend.annotations.bp)@\spxentry{check\_document\_by\_id()}\spxextra{in module pine.backend.annotations.bp}|hyperpage}{3}
+\indexentry{check\_document() (in module pine.backend.annotations.bp)@\spxentry{check\_document()}\spxextra{in module pine.backend.annotations.bp}|hyperpage}{3}
+\indexentry{get\_my\_annotations\_for\_document() (in module pine.backend.annotations.bp)@\spxentry{get\_my\_annotations\_for\_document()}\spxextra{in module pine.backend.annotations.bp}|hyperpage}{3}
+\indexentry{get\_others\_annotations\_for\_document() (in module pine.backend.annotations.bp)@\spxentry{get\_others\_annotations\_for\_document()}\spxextra{in module pine.backend.annotations.bp}|hyperpage}{3}
+\indexentry{get\_annotations\_for\_document() (in module pine.backend.annotations.bp)@\spxentry{get\_annotations\_for\_document()}\spxextra{in module pine.backend.annotations.bp}|hyperpage}{3}
+\indexentry{get\_current\_annotation() (in module pine.backend.annotations.bp)@\spxentry{get\_current\_annotation()}\spxextra{in module pine.backend.annotations.bp}|hyperpage}{3}
+\indexentry{check\_overlapping\_annotations() (in module pine.backend.annotations.bp)@\spxentry{check\_overlapping\_annotations()}\spxextra{in module pine.backend.annotations.bp}|hyperpage}{3}
+\indexentry{set\_document\_to\_annotated\_by\_user() (in module pine.backend.annotations.bp)@\spxentry{set\_document\_to\_annotated\_by\_user()}\spxextra{in module pine.backend.annotations.bp}|hyperpage}{3}
+\indexentry{\_make\_annotations() (in module pine.backend.annotations.bp)@\spxentry{\_make\_annotations()}\spxextra{in module pine.backend.annotations.bp}|hyperpage}{3}
+\indexentry{\_add\_or\_update\_annotation() (in module pine.backend.annotations.bp)@\spxentry{\_add\_or\_update\_annotation()}\spxextra{in module pine.backend.annotations.bp}|hyperpage}{4}
+\indexentry{save\_annotations() (in module pine.backend.annotations.bp)@\spxentry{save\_annotations()}\spxextra{in module pine.backend.annotations.bp}|hyperpage}{4}
+\indexentry{save\_collection\_annotations() (in module pine.backend.annotations.bp)@\spxentry{save\_collection\_annotations()}\spxextra{in module pine.backend.annotations.bp}|hyperpage}{4}
+\indexentry{init\_app() (in module pine.backend.annotations.bp)@\spxentry{init\_app()}\spxextra{in module pine.backend.annotations.bp}|hyperpage}{4}
+\indexentry{module@\spxentry{module}!pine.backend.auth@\spxentry{pine.backend.auth}|hyperpage}{4}
+\indexentry{pine.backend.auth@\spxentry{pine.backend.auth}!module@\spxentry{module}|hyperpage}{4}
+\indexentry{module@\spxentry{module}!pine.backend.auth.bp@\spxentry{pine.backend.auth.bp}|hyperpage}{4}
+\indexentry{pine.backend.auth.bp@\spxentry{pine.backend.auth.bp}!module@\spxentry{module}|hyperpage}{4}
+\indexentry{CONFIG\_AUTH\_MODULE\_KEY (in module pine.backend.auth.bp)@\spxentry{CONFIG\_AUTH\_MODULE\_KEY}\spxextra{in module pine.backend.auth.bp}|hyperpage}{4}
+\indexentry{bp (in module pine.backend.auth.bp)@\spxentry{bp}\spxextra{in module pine.backend.auth.bp}|hyperpage}{4}
+\indexentry{module (in module pine.backend.auth.bp)@\spxentry{module}\spxextra{in module pine.backend.auth.bp}|hyperpage}{4}
+\indexentry{is\_flat() (in module pine.backend.auth.bp)@\spxentry{is\_flat()}\spxextra{in module pine.backend.auth.bp}|hyperpage}{4}
+\indexentry{get\_logged\_in\_user() (in module pine.backend.auth.bp)@\spxentry{get\_logged\_in\_user()}\spxextra{in module pine.backend.auth.bp}|hyperpage}{4}
+\indexentry{login\_required() (in module pine.backend.auth.bp)@\spxentry{login\_required()}\spxextra{in module pine.backend.auth.bp}|hyperpage}{4}
+\indexentry{admin\_required() (in module pine.backend.auth.bp)@\spxentry{admin\_required()}\spxextra{in module pine.backend.auth.bp}|hyperpage}{4}
+\indexentry{flask\_get\_module() (in module pine.backend.auth.bp)@\spxentry{flask\_get\_module()}\spxextra{in module pine.backend.auth.bp}|hyperpage}{4}
+\indexentry{flask\_get\_flat() (in module pine.backend.auth.bp)@\spxentry{flask\_get\_flat()}\spxextra{in module pine.backend.auth.bp}|hyperpage}{5}
+\indexentry{flask\_get\_can\_manage\_users() (in module pine.backend.auth.bp)@\spxentry{flask\_get\_can\_manage\_users()}\spxextra{in module pine.backend.auth.bp}|hyperpage}{5}
+\indexentry{flask\_get\_logged\_in\_user() (in module pine.backend.auth.bp)@\spxentry{flask\_get\_logged\_in\_user()}\spxextra{in module pine.backend.auth.bp}|hyperpage}{5}
+\indexentry{flask\_get\_logged\_in\_user\_details() (in module pine.backend.auth.bp)@\spxentry{flask\_get\_logged\_in\_user\_details()}\spxextra{in module pine.backend.auth.bp}|hyperpage}{5}
+\indexentry{flask\_get\_login\_form() (in module pine.backend.auth.bp)@\spxentry{flask\_get\_login\_form()}\spxextra{in module pine.backend.auth.bp}|hyperpage}{5}
+\indexentry{flask\_post\_logout() (in module pine.backend.auth.bp)@\spxentry{flask\_post\_logout()}\spxextra{in module pine.backend.auth.bp}|hyperpage}{5}
+\indexentry{AuthModule (class in pine.backend.auth.bp)@\spxentry{AuthModule}\spxextra{class in pine.backend.auth.bp}|hyperpage}{5}
+\indexentry{\_\_metaclass\_\_ (pine.backend.auth.bp.AuthModule attribute)@\spxentry{\_\_metaclass\_\_}\spxextra{pine.backend.auth.bp.AuthModule attribute}|hyperpage}{5}
+\indexentry{is\_flat() (pine.backend.auth.bp.AuthModule method)@\spxentry{is\_flat()}\spxextra{pine.backend.auth.bp.AuthModule method}|hyperpage}{5}
+\indexentry{can\_manage\_users() (pine.backend.auth.bp.AuthModule method)@\spxentry{can\_manage\_users()}\spxextra{pine.backend.auth.bp.AuthModule method}|hyperpage}{5}
+\indexentry{get\_login\_form() (pine.backend.auth.bp.AuthModule method)@\spxentry{get\_login\_form()}\spxextra{pine.backend.auth.bp.AuthModule method}|hyperpage}{5}
+\indexentry{get\_logged\_in\_user() (pine.backend.auth.bp.AuthModule method)@\spxentry{get\_logged\_in\_user()}\spxextra{pine.backend.auth.bp.AuthModule method}|hyperpage}{5}
+\indexentry{get\_logged\_in\_user\_details() (pine.backend.auth.bp.AuthModule method)@\spxentry{get\_logged\_in\_user\_details()}\spxextra{pine.backend.auth.bp.AuthModule method}|hyperpage}{5}
+\indexentry{logout() (pine.backend.auth.bp.AuthModule method)@\spxentry{logout()}\spxextra{pine.backend.auth.bp.AuthModule method}|hyperpage}{5}
+\indexentry{init\_app() (in module pine.backend.auth.bp)@\spxentry{init\_app()}\spxextra{in module pine.backend.auth.bp}|hyperpage}{5}
+\indexentry{module@\spxentry{module}!pine.backend.auth.eve@\spxentry{pine.backend.auth.eve}|hyperpage}{5}
+\indexentry{pine.backend.auth.eve@\spxentry{pine.backend.auth.eve}!module@\spxentry{module}|hyperpage}{5}
+\indexentry{EveUser (class in pine.backend.auth.eve)@\spxentry{EveUser}\spxextra{class in pine.backend.auth.eve}|hyperpage}{5}
+\indexentry{id() (pine.backend.auth.eve.EveUser property)@\spxentry{id()}\spxextra{pine.backend.auth.eve.EveUser property}|hyperpage}{5}
+\indexentry{username() (pine.backend.auth.eve.EveUser property)@\spxentry{username()}\spxextra{pine.backend.auth.eve.EveUser property}|hyperpage}{5}
+\indexentry{display\_name() (pine.backend.auth.eve.EveUser property)@\spxentry{display\_name()}\spxextra{pine.backend.auth.eve.EveUser property}|hyperpage}{5}
+\indexentry{is\_admin() (pine.backend.auth.eve.EveUser property)@\spxentry{is\_admin()}\spxextra{pine.backend.auth.eve.EveUser property}|hyperpage}{5}
+\indexentry{get\_details() (pine.backend.auth.eve.EveUser method)@\spxentry{get\_details()}\spxextra{pine.backend.auth.eve.EveUser method}|hyperpage}{5}
+\indexentry{EveModule (class in pine.backend.auth.eve)@\spxentry{EveModule}\spxextra{class in pine.backend.auth.eve}|hyperpage}{5}
+\indexentry{is\_flat() (pine.backend.auth.eve.EveModule method)@\spxentry{is\_flat()}\spxextra{pine.backend.auth.eve.EveModule method}|hyperpage}{5}
+\indexentry{can\_manage\_users() (pine.backend.auth.eve.EveModule method)@\spxentry{can\_manage\_users()}\spxextra{pine.backend.auth.eve.EveModule method}|hyperpage}{5}
+\indexentry{get\_logged\_in\_user\_details() (pine.backend.auth.eve.EveModule method)@\spxentry{get\_logged\_in\_user\_details()}\spxextra{pine.backend.auth.eve.EveModule method}|hyperpage}{6}
+\indexentry{update\_user\_details() (pine.backend.auth.eve.EveModule method)@\spxentry{update\_user\_details()}\spxextra{pine.backend.auth.eve.EveModule method}|hyperpage}{6}
+\indexentry{update\_user\_password() (pine.backend.auth.eve.EveModule method)@\spxentry{update\_user\_password()}\spxextra{pine.backend.auth.eve.EveModule method}|hyperpage}{6}
+\indexentry{get\_login\_form() (pine.backend.auth.eve.EveModule method)@\spxentry{get\_login\_form()}\spxextra{pine.backend.auth.eve.EveModule method}|hyperpage}{6}
+\indexentry{login() (pine.backend.auth.eve.EveModule method)@\spxentry{login()}\spxextra{pine.backend.auth.eve.EveModule method}|hyperpage}{6}
+\indexentry{get\_all\_users() (pine.backend.auth.eve.EveModule method)@\spxentry{get\_all\_users()}\spxextra{pine.backend.auth.eve.EveModule method}|hyperpage}{6}
+\indexentry{module@\spxentry{module}!pine.backend.auth.oauth@\spxentry{pine.backend.auth.oauth}|hyperpage}{6}
+\indexentry{pine.backend.auth.oauth@\spxentry{pine.backend.auth.oauth}!module@\spxentry{module}|hyperpage}{6}
+\indexentry{OAuthUser (class in pine.backend.auth.oauth)@\spxentry{OAuthUser}\spxextra{class in pine.backend.auth.oauth}|hyperpage}{6}
+\indexentry{id() (pine.backend.auth.oauth.OAuthUser property)@\spxentry{id()}\spxextra{pine.backend.auth.oauth.OAuthUser property}|hyperpage}{6}
+\indexentry{username() (pine.backend.auth.oauth.OAuthUser property)@\spxentry{username()}\spxextra{pine.backend.auth.oauth.OAuthUser property}|hyperpage}{6}
+\indexentry{display\_name() (pine.backend.auth.oauth.OAuthUser property)@\spxentry{display\_name()}\spxextra{pine.backend.auth.oauth.OAuthUser property}|hyperpage}{6}
+\indexentry{is\_admin() (pine.backend.auth.oauth.OAuthUser property)@\spxentry{is\_admin()}\spxextra{pine.backend.auth.oauth.OAuthUser property}|hyperpage}{6}
+\indexentry{OAuthModule (class in pine.backend.auth.oauth)@\spxentry{OAuthModule}\spxextra{class in pine.backend.auth.oauth}|hyperpage}{6}
+\indexentry{register\_oauth() (pine.backend.auth.oauth.OAuthModule method)@\spxentry{register\_oauth()}\spxextra{pine.backend.auth.oauth.OAuthModule method}|hyperpage}{6}
+\indexentry{get\_login\_form\_button\_text() (pine.backend.auth.oauth.OAuthModule method)@\spxentry{get\_login\_form\_button\_text()}\spxextra{pine.backend.auth.oauth.OAuthModule method}|hyperpage}{6}
+\indexentry{is\_flat() (pine.backend.auth.oauth.OAuthModule method)@\spxentry{is\_flat()}\spxextra{pine.backend.auth.oauth.OAuthModule method}|hyperpage}{6}
+\indexentry{can\_manage\_users() (pine.backend.auth.oauth.OAuthModule method)@\spxentry{can\_manage\_users()}\spxextra{pine.backend.auth.oauth.OAuthModule method}|hyperpage}{6}
+\indexentry{get\_login\_form() (pine.backend.auth.oauth.OAuthModule method)@\spxentry{get\_login\_form()}\spxextra{pine.backend.auth.oauth.OAuthModule method}|hyperpage}{6}
+\indexentry{login() (pine.backend.auth.oauth.OAuthModule method)@\spxentry{login()}\spxextra{pine.backend.auth.oauth.OAuthModule method}|hyperpage}{6}
+\indexentry{authorize() (pine.backend.auth.oauth.OAuthModule method)@\spxentry{authorize()}\spxextra{pine.backend.auth.oauth.OAuthModule method}|hyperpage}{6}
+\indexentry{module@\spxentry{module}!pine.backend.auth.password@\spxentry{pine.backend.auth.password}|hyperpage}{7}
+\indexentry{pine.backend.auth.password@\spxentry{pine.backend.auth.password}!module@\spxentry{module}|hyperpage}{7}
+\indexentry{hash\_password() (in module pine.backend.auth.password)@\spxentry{hash\_password()}\spxextra{in module pine.backend.auth.password}|hyperpage}{7}
+\indexentry{check\_password() (in module pine.backend.auth.password)@\spxentry{check\_password()}\spxextra{in module pine.backend.auth.password}|hyperpage}{7}
+\indexentry{module@\spxentry{module}!pine.backend.auth.vegas@\spxentry{pine.backend.auth.vegas}|hyperpage}{7}
+\indexentry{pine.backend.auth.vegas@\spxentry{pine.backend.auth.vegas}!module@\spxentry{module}|hyperpage}{7}
+\indexentry{VegasAuthModule (class in pine.backend.auth.vegas)@\spxentry{VegasAuthModule}\spxextra{class in pine.backend.auth.vegas}|hyperpage}{7}
+\indexentry{register\_oauth() (pine.backend.auth.vegas.VegasAuthModule method)@\spxentry{register\_oauth()}\spxextra{pine.backend.auth.vegas.VegasAuthModule method}|hyperpage}{7}
+\indexentry{get\_login\_form\_button\_text() (pine.backend.auth.vegas.VegasAuthModule method)@\spxentry{get\_login\_form\_button\_text()}\spxextra{pine.backend.auth.vegas.VegasAuthModule method}|hyperpage}{7}
+\indexentry{login\_required() (in module pine.backend.auth)@\spxentry{login\_required()}\spxextra{in module pine.backend.auth}|hyperpage}{7}
+\indexentry{admin\_required() (in module pine.backend.auth)@\spxentry{admin\_required()}\spxextra{in module pine.backend.auth}|hyperpage}{7}
+\indexentry{module (in module pine.backend.auth)@\spxentry{module}\spxextra{in module pine.backend.auth}|hyperpage}{7}
+\indexentry{get\_logged\_in\_user() (in module pine.backend.auth)@\spxentry{get\_logged\_in\_user()}\spxextra{in module pine.backend.auth}|hyperpage}{7}
+\indexentry{is\_flat() (in module pine.backend.auth)@\spxentry{is\_flat()}\spxextra{in module pine.backend.auth}|hyperpage}{7}
+\indexentry{module@\spxentry{module}!pine.backend.collections@\spxentry{pine.backend.collections}|hyperpage}{8}
+\indexentry{pine.backend.collections@\spxentry{pine.backend.collections}!module@\spxentry{module}|hyperpage}{8}
+\indexentry{module@\spxentry{module}!pine.backend.collections.bp@\spxentry{pine.backend.collections.bp}|hyperpage}{8}
+\indexentry{pine.backend.collections.bp@\spxentry{pine.backend.collections.bp}!module@\spxentry{module}|hyperpage}{8}
+\indexentry{bp (in module pine.backend.collections.bp)@\spxentry{bp}\spxextra{in module pine.backend.collections.bp}|hyperpage}{9}
+\indexentry{LOGGER (in module pine.backend.collections.bp)@\spxentry{LOGGER}\spxextra{in module pine.backend.collections.bp}|hyperpage}{9}
+\indexentry{DOCUMENTS\_PER\_TRANSACTION (in module pine.backend.collections.bp)@\spxentry{DOCUMENTS\_PER\_TRANSACTION}\spxextra{in module pine.backend.collections.bp}|hyperpage}{9}
+\indexentry{LAST\_COLLECTION\_FOR\_IMAGE (in module pine.backend.collections.bp)@\spxentry{LAST\_COLLECTION\_FOR\_IMAGE}\spxextra{in module pine.backend.collections.bp}|hyperpage}{9}
+\indexentry{is\_cached\_last\_collection() (in module pine.backend.collections.bp)@\spxentry{is\_cached\_last\_collection()}\spxextra{in module pine.backend.collections.bp}|hyperpage}{9}
+\indexentry{update\_cached\_last\_collection() (in module pine.backend.collections.bp)@\spxentry{update\_cached\_last\_collection()}\spxextra{in module pine.backend.collections.bp}|hyperpage}{9}
+\indexentry{\_collection\_user\_can\_projection() (in module pine.backend.collections.bp)@\spxentry{\_collection\_user\_can\_projection()}\spxextra{in module pine.backend.collections.bp}|hyperpage}{9}
+\indexentry{\_collection\_user\_can() (in module pine.backend.collections.bp)@\spxentry{\_collection\_user\_can()}\spxextra{in module pine.backend.collections.bp}|hyperpage}{9}
+\indexentry{user\_can\_annotate() (in module pine.backend.collections.bp)@\spxentry{user\_can\_annotate()}\spxextra{in module pine.backend.collections.bp}|hyperpage}{9}
+\indexentry{user\_can\_view() (in module pine.backend.collections.bp)@\spxentry{user\_can\_view()}\spxextra{in module pine.backend.collections.bp}|hyperpage}{9}
+\indexentry{user\_can\_add\_documents\_or\_images() (in module pine.backend.collections.bp)@\spxentry{user\_can\_add\_documents\_or\_images()}\spxextra{in module pine.backend.collections.bp}|hyperpage}{9}
+\indexentry{user\_can\_modify\_document\_metadata() (in module pine.backend.collections.bp)@\spxentry{user\_can\_modify\_document\_metadata()}\spxextra{in module pine.backend.collections.bp}|hyperpage}{9}
+\indexentry{user\_can\_annotate\_by\_id() (in module pine.backend.collections.bp)@\spxentry{user\_can\_annotate\_by\_id()}\spxextra{in module pine.backend.collections.bp}|hyperpage}{9}
+\indexentry{user\_can\_annotate\_by\_ids() (in module pine.backend.collections.bp)@\spxentry{user\_can\_annotate\_by\_ids()}\spxextra{in module pine.backend.collections.bp}|hyperpage}{9}
+\indexentry{user\_can\_view\_by\_id() (in module pine.backend.collections.bp)@\spxentry{user\_can\_view\_by\_id()}\spxextra{in module pine.backend.collections.bp}|hyperpage}{9}
+\indexentry{user\_can\_add\_documents\_or\_images\_by\_id() (in module pine.backend.collections.bp)@\spxentry{user\_can\_add\_documents\_or\_images\_by\_id()}\spxextra{in module pine.backend.collections.bp}|hyperpage}{9}
+\indexentry{user\_can\_modify\_document\_metadata\_by\_id() (in module pine.backend.collections.bp)@\spxentry{user\_can\_modify\_document\_metadata\_by\_id()}\spxextra{in module pine.backend.collections.bp}|hyperpage}{9}
+\indexentry{get\_user\_collections() (in module pine.backend.collections.bp)@\spxentry{get\_user\_collections()}\spxextra{in module pine.backend.collections.bp}|hyperpage}{9}
+\indexentry{get\_unarchived\_user\_collections() (in module pine.backend.collections.bp)@\spxentry{get\_unarchived\_user\_collections()}\spxextra{in module pine.backend.collections.bp}|hyperpage}{9}
+\indexentry{get\_archived\_user\_collections() (in module pine.backend.collections.bp)@\spxentry{get\_archived\_user\_collections()}\spxextra{in module pine.backend.collections.bp}|hyperpage}{9}
+\indexentry{archive\_or\_unarchive\_collection() (in module pine.backend.collections.bp)@\spxentry{archive\_or\_unarchive\_collection()}\spxextra{in module pine.backend.collections.bp}|hyperpage}{10}
+\indexentry{archive\_collection() (in module pine.backend.collections.bp)@\spxentry{archive\_collection()}\spxextra{in module pine.backend.collections.bp}|hyperpage}{10}
+\indexentry{unarchive\_collection() (in module pine.backend.collections.bp)@\spxentry{unarchive\_collection()}\spxextra{in module pine.backend.collections.bp}|hyperpage}{10}
+\indexentry{get\_collection() (in module pine.backend.collections.bp)@\spxentry{get\_collection()}\spxextra{in module pine.backend.collections.bp}|hyperpage}{10}
+\indexentry{download\_collection() (in module pine.backend.collections.bp)@\spxentry{download\_collection()}\spxextra{in module pine.backend.collections.bp}|hyperpage}{10}
+\indexentry{get\_doc\_and\_overlap\_ids() (in module pine.backend.collections.bp)@\spxentry{get\_doc\_and\_overlap\_ids()}\spxextra{in module pine.backend.collections.bp}|hyperpage}{10}
+\indexentry{add\_annotator\_to\_collection() (in module pine.backend.collections.bp)@\spxentry{add\_annotator\_to\_collection()}\spxextra{in module pine.backend.collections.bp}|hyperpage}{10}
+\indexentry{add\_viewer\_to\_collection() (in module pine.backend.collections.bp)@\spxentry{add\_viewer\_to\_collection()}\spxextra{in module pine.backend.collections.bp}|hyperpage}{10}
+\indexentry{add\_label\_to\_collection() (in module pine.backend.collections.bp)@\spxentry{add\_label\_to\_collection()}\spxextra{in module pine.backend.collections.bp}|hyperpage}{10}
+\indexentry{get\_overlap\_ids() (in module pine.backend.collections.bp)@\spxentry{get\_overlap\_ids()}\spxextra{in module pine.backend.collections.bp}|hyperpage}{10}
+\indexentry{\_upload\_documents() (in module pine.backend.collections.bp)@\spxentry{\_upload\_documents()}\spxextra{in module pine.backend.collections.bp}|hyperpage}{10}
+\indexentry{create\_collection() (in module pine.backend.collections.bp)@\spxentry{create\_collection()}\spxextra{in module pine.backend.collections.bp}|hyperpage}{10}
+\indexentry{\_check\_collection\_and\_get\_image\_dir() (in module pine.backend.collections.bp)@\spxentry{\_check\_collection\_and\_get\_image\_dir()}\spxextra{in module pine.backend.collections.bp}|hyperpage}{10}
+\indexentry{get\_static\_collection\_images() (in module pine.backend.collections.bp)@\spxentry{get\_static\_collection\_images()}\spxextra{in module pine.backend.collections.bp}|hyperpage}{10}
+\indexentry{get\_collection\_images() (in module pine.backend.collections.bp)@\spxentry{get\_collection\_images()}\spxextra{in module pine.backend.collections.bp}|hyperpage}{10}
+\indexentry{get\_collection\_image() (in module pine.backend.collections.bp)@\spxentry{get\_collection\_image()}\spxextra{in module pine.backend.collections.bp}|hyperpage}{10}
+\indexentry{get\_collection\_image\_exists() (in module pine.backend.collections.bp)@\spxentry{get\_collection\_image\_exists()}\spxextra{in module pine.backend.collections.bp}|hyperpage}{11}
+\indexentry{\_path\_split() (in module pine.backend.collections.bp)@\spxentry{\_path\_split()}\spxextra{in module pine.backend.collections.bp}|hyperpage}{11}
+\indexentry{\_safe\_path() (in module pine.backend.collections.bp)@\spxentry{\_safe\_path()}\spxextra{in module pine.backend.collections.bp}|hyperpage}{11}
+\indexentry{get\_user\_can\_add\_documents\_or\_images() (in module pine.backend.collections.bp)@\spxentry{get\_user\_can\_add\_documents\_or\_images()}\spxextra{in module pine.backend.collections.bp}|hyperpage}{11}
+\indexentry{\_upload\_collection\_image\_file() (in module pine.backend.collections.bp)@\spxentry{\_upload\_collection\_image\_file()}\spxextra{in module pine.backend.collections.bp}|hyperpage}{11}
+\indexentry{post\_collection\_image() (in module pine.backend.collections.bp)@\spxentry{post\_collection\_image()}\spxextra{in module pine.backend.collections.bp}|hyperpage}{11}
+\indexentry{init\_app() (in module pine.backend.collections.bp)@\spxentry{init\_app()}\spxextra{in module pine.backend.collections.bp}|hyperpage}{11}
+\indexentry{user\_can\_annotate() (in module pine.backend.collections)@\spxentry{user\_can\_annotate()}\spxextra{in module pine.backend.collections}|hyperpage}{11}
+\indexentry{user\_can\_view() (in module pine.backend.collections)@\spxentry{user\_can\_view()}\spxextra{in module pine.backend.collections}|hyperpage}{11}
+\indexentry{user\_can\_add\_documents\_or\_images() (in module pine.backend.collections)@\spxentry{user\_can\_add\_documents\_or\_images()}\spxextra{in module pine.backend.collections}|hyperpage}{11}
+\indexentry{user\_can\_modify\_document\_metadata() (in module pine.backend.collections)@\spxentry{user\_can\_modify\_document\_metadata()}\spxextra{in module pine.backend.collections}|hyperpage}{11}
+\indexentry{user\_can\_annotate\_by\_id() (in module pine.backend.collections)@\spxentry{user\_can\_annotate\_by\_id()}\spxextra{in module pine.backend.collections}|hyperpage}{11}
+\indexentry{user\_can\_annotate\_by\_ids() (in module pine.backend.collections)@\spxentry{user\_can\_annotate\_by\_ids()}\spxextra{in module pine.backend.collections}|hyperpage}{11}
+\indexentry{user\_can\_view\_by\_id() (in module pine.backend.collections)@\spxentry{user\_can\_view\_by\_id()}\spxextra{in module pine.backend.collections}|hyperpage}{11}
+\indexentry{user\_can\_add\_documents\_or\_images\_by\_id() (in module pine.backend.collections)@\spxentry{user\_can\_add\_documents\_or\_images\_by\_id()}\spxextra{in module pine.backend.collections}|hyperpage}{11}
+\indexentry{user\_can\_modify\_document\_metadata\_by\_id() (in module pine.backend.collections)@\spxentry{user\_can\_modify\_document\_metadata\_by\_id()}\spxextra{in module pine.backend.collections}|hyperpage}{11}
+\indexentry{module@\spxentry{module}!pine.backend.data@\spxentry{pine.backend.data}|hyperpage}{12}
+\indexentry{pine.backend.data@\spxentry{pine.backend.data}!module@\spxentry{module}|hyperpage}{12}
+\indexentry{module@\spxentry{module}!pine.backend.data.bp@\spxentry{pine.backend.data.bp}|hyperpage}{12}
+\indexentry{pine.backend.data.bp@\spxentry{pine.backend.data.bp}!module@\spxentry{module}|hyperpage}{12}
+\indexentry{init\_app() (in module pine.backend.data.bp)@\spxentry{init\_app()}\spxextra{in module pine.backend.data.bp}|hyperpage}{12}
+\indexentry{module@\spxentry{module}!pine.backend.data.service@\spxentry{pine.backend.data.service}|hyperpage}{12}
+\indexentry{pine.backend.data.service@\spxentry{pine.backend.data.service}!module@\spxentry{module}|hyperpage}{12}
+\indexentry{logger (in module pine.backend.data.service)@\spxentry{logger}\spxextra{in module pine.backend.data.service}|hyperpage}{12}
+\indexentry{PerformanceHistory (class in pine.backend.data.service)@\spxentry{PerformanceHistory}\spxextra{class in pine.backend.data.service}|hyperpage}{12}
+\indexentry{pformat() (pine.backend.data.service.PerformanceHistory method)@\spxentry{pformat()}\spxextra{pine.backend.data.service.PerformanceHistory method}|hyperpage}{13}
+\indexentry{pprint() (pine.backend.data.service.PerformanceHistory method)@\spxentry{pprint()}\spxextra{pine.backend.data.service.PerformanceHistory method}|hyperpage}{13}
+\indexentry{add() (pine.backend.data.service.PerformanceHistory method)@\spxentry{add()}\spxextra{pine.backend.data.service.PerformanceHistory method}|hyperpage}{13}
+\indexentry{PERFORMANCE\_HISTORY (in module pine.backend.data.service)@\spxentry{PERFORMANCE\_HISTORY}\spxextra{in module pine.backend.data.service}|hyperpage}{13}
+\indexentry{\_standardize\_path() (in module pine.backend.data.service)@\spxentry{\_standardize\_path()}\spxextra{in module pine.backend.data.service}|hyperpage}{13}
+\indexentry{url() (in module pine.backend.data.service)@\spxentry{url()}\spxextra{in module pine.backend.data.service}|hyperpage}{13}
+\indexentry{where\_params() (in module pine.backend.data.service)@\spxentry{where\_params()}\spxextra{in module pine.backend.data.service}|hyperpage}{13}
+\indexentry{params() (in module pine.backend.data.service)@\spxentry{params()}\spxextra{in module pine.backend.data.service}|hyperpage}{13}
+\indexentry{get() (in module pine.backend.data.service)@\spxentry{get()}\spxextra{in module pine.backend.data.service}|hyperpage}{13}
+\indexentry{post() (in module pine.backend.data.service)@\spxentry{post()}\spxextra{in module pine.backend.data.service}|hyperpage}{13}
+\indexentry{put() (in module pine.backend.data.service)@\spxentry{put()}\spxextra{in module pine.backend.data.service}|hyperpage}{13}
+\indexentry{delete() (in module pine.backend.data.service)@\spxentry{delete()}\spxextra{in module pine.backend.data.service}|hyperpage}{14}
+\indexentry{patch() (in module pine.backend.data.service)@\spxentry{patch()}\spxextra{in module pine.backend.data.service}|hyperpage}{14}
+\indexentry{get\_items() (in module pine.backend.data.service)@\spxentry{get\_items()}\spxextra{in module pine.backend.data.service}|hyperpage}{14}
+\indexentry{get\_item\_by\_id() (in module pine.backend.data.service)@\spxentry{get\_item\_by\_id()}\spxextra{in module pine.backend.data.service}|hyperpage}{14}
+\indexentry{get\_all\_versions\_of\_item\_by\_id() (in module pine.backend.data.service)@\spxentry{get\_all\_versions\_of\_item\_by\_id()}\spxextra{in module pine.backend.data.service}|hyperpage}{14}
+\indexentry{get\_all\_using\_pagination() (in module pine.backend.data.service)@\spxentry{get\_all\_using\_pagination()}\spxextra{in module pine.backend.data.service}|hyperpage}{14}
+\indexentry{convert\_response() (in module pine.backend.data.service)@\spxentry{convert\_response()}\spxextra{in module pine.backend.data.service}|hyperpage}{14}
+\indexentry{remove\_eve\_fields() (in module pine.backend.data.service)@\spxentry{remove\_eve\_fields()}\spxextra{in module pine.backend.data.service}|hyperpage}{14}
+\indexentry{remove\_nonupdatable\_fields() (in module pine.backend.data.service)@\spxentry{remove\_nonupdatable\_fields()}\spxextra{in module pine.backend.data.service}|hyperpage}{14}
+\indexentry{module@\spxentry{module}!pine.backend.data.users@\spxentry{pine.backend.data.users}|hyperpage}{14}
+\indexentry{pine.backend.data.users@\spxentry{pine.backend.data.users}!module@\spxentry{module}|hyperpage}{14}
+\indexentry{get\_all\_users() (in module pine.backend.data.users)@\spxentry{get\_all\_users()}\spxextra{in module pine.backend.data.users}|hyperpage}{15}
+\indexentry{get\_user() (in module pine.backend.data.users)@\spxentry{get\_user()}\spxextra{in module pine.backend.data.users}|hyperpage}{15}
+\indexentry{get\_user\_by\_email() (in module pine.backend.data.users)@\spxentry{get\_user\_by\_email()}\spxextra{in module pine.backend.data.users}|hyperpage}{15}
+\indexentry{get\_user\_details() (in module pine.backend.data.users)@\spxentry{get\_user\_details()}\spxextra{in module pine.backend.data.users}|hyperpage}{15}
+\indexentry{update\_user() (in module pine.backend.data.users)@\spxentry{update\_user()}\spxextra{in module pine.backend.data.users}|hyperpage}{15}
+\indexentry{print\_users\_command() (in module pine.backend.data.users)@\spxentry{print\_users\_command()}\spxextra{in module pine.backend.data.users}|hyperpage}{15}
+\indexentry{add\_admin\_command() (in module pine.backend.data.users)@\spxentry{add\_admin\_command()}\spxextra{in module pine.backend.data.users}|hyperpage}{15}
+\indexentry{set\_user\_password\_by\_id() (in module pine.backend.data.users)@\spxentry{set\_user\_password\_by\_id()}\spxextra{in module pine.backend.data.users}|hyperpage}{15}
+\indexentry{set\_user\_password() (in module pine.backend.data.users)@\spxentry{set\_user\_password()}\spxextra{in module pine.backend.data.users}|hyperpage}{15}
+\indexentry{reset\_user\_passwords() (in module pine.backend.data.users)@\spxentry{reset\_user\_passwords()}\spxextra{in module pine.backend.data.users}|hyperpage}{15}
+\indexentry{module@\spxentry{module}!pine.backend.documents@\spxentry{pine.backend.documents}|hyperpage}{15}
+\indexentry{pine.backend.documents@\spxentry{pine.backend.documents}!module@\spxentry{module}|hyperpage}{15}
+\indexentry{module@\spxentry{module}!pine.backend.documents.bp@\spxentry{pine.backend.documents.bp}|hyperpage}{15}
+\indexentry{pine.backend.documents.bp@\spxentry{pine.backend.documents.bp}!module@\spxentry{module}|hyperpage}{15}
+\indexentry{bp (in module pine.backend.documents.bp)@\spxentry{bp}\spxextra{in module pine.backend.documents.bp}|hyperpage}{15}
+\indexentry{\_document\_user\_can\_projection() (in module pine.backend.documents.bp)@\spxentry{\_document\_user\_can\_projection()}\spxextra{in module pine.backend.documents.bp}|hyperpage}{15}
+\indexentry{get\_collection\_ids\_for() (in module pine.backend.documents.bp)@\spxentry{get\_collection\_ids\_for()}\spxextra{in module pine.backend.documents.bp}|hyperpage}{15}
+\indexentry{user\_can\_annotate() (in module pine.backend.documents.bp)@\spxentry{user\_can\_annotate()}\spxextra{in module pine.backend.documents.bp}|hyperpage}{16}
+\indexentry{user\_can\_view() (in module pine.backend.documents.bp)@\spxentry{user\_can\_view()}\spxextra{in module pine.backend.documents.bp}|hyperpage}{16}
+\indexentry{user\_can\_modify\_metadata() (in module pine.backend.documents.bp)@\spxentry{user\_can\_modify\_metadata()}\spxextra{in module pine.backend.documents.bp}|hyperpage}{16}
+\indexentry{user\_can\_annotate\_by\_id() (in module pine.backend.documents.bp)@\spxentry{user\_can\_annotate\_by\_id()}\spxextra{in module pine.backend.documents.bp}|hyperpage}{16}
+\indexentry{user\_can\_annotate\_by\_ids() (in module pine.backend.documents.bp)@\spxentry{user\_can\_annotate\_by\_ids()}\spxextra{in module pine.backend.documents.bp}|hyperpage}{16}
+\indexentry{user\_can\_view\_by\_id() (in module pine.backend.documents.bp)@\spxentry{user\_can\_view\_by\_id()}\spxextra{in module pine.backend.documents.bp}|hyperpage}{16}
+\indexentry{user\_can\_modify\_metadata\_by\_id() (in module pine.backend.documents.bp)@\spxentry{user\_can\_modify\_metadata\_by\_id()}\spxextra{in module pine.backend.documents.bp}|hyperpage}{16}
+\indexentry{get\_document() (in module pine.backend.documents.bp)@\spxentry{get\_document()}\spxextra{in module pine.backend.documents.bp}|hyperpage}{16}
+\indexentry{get\_documents\_in\_collection() (in module pine.backend.documents.bp)@\spxentry{get\_documents\_in\_collection()}\spxextra{in module pine.backend.documents.bp}|hyperpage}{16}
+\indexentry{\_check\_documents() (in module pine.backend.documents.bp)@\spxentry{\_check\_documents()}\spxextra{in module pine.backend.documents.bp}|hyperpage}{16}
+\indexentry{add\_document() (in module pine.backend.documents.bp)@\spxentry{add\_document()}\spxextra{in module pine.backend.documents.bp}|hyperpage}{16}
+\indexentry{can\_annotate\_document() (in module pine.backend.documents.bp)@\spxentry{can\_annotate\_document()}\spxextra{in module pine.backend.documents.bp}|hyperpage}{16}
+\indexentry{can\_modify\_metadata() (in module pine.backend.documents.bp)@\spxentry{can\_modify\_metadata()}\spxextra{in module pine.backend.documents.bp}|hyperpage}{16}
+\indexentry{update\_metadata() (in module pine.backend.documents.bp)@\spxentry{update\_metadata()}\spxextra{in module pine.backend.documents.bp}|hyperpage}{16}
+\indexentry{init\_app() (in module pine.backend.documents.bp)@\spxentry{init\_app()}\spxextra{in module pine.backend.documents.bp}|hyperpage}{16}
+\indexentry{module@\spxentry{module}!pine.backend.job\_manager@\spxentry{pine.backend.job\_manager}|hyperpage}{16}
+\indexentry{pine.backend.job\_manager@\spxentry{pine.backend.job\_manager}!module@\spxentry{module}|hyperpage}{16}
+\indexentry{module@\spxentry{module}!pine.backend.job\_manager.service@\spxentry{pine.backend.job\_manager.service}|hyperpage}{16}
+\indexentry{pine.backend.job\_manager.service@\spxentry{pine.backend.job\_manager.service}!module@\spxentry{module}|hyperpage}{16}
+\indexentry{config (in module pine.backend.job\_manager.service)@\spxentry{config}\spxextra{in module pine.backend.job\_manager.service}|hyperpage}{16}
+\indexentry{logger (in module pine.backend.job\_manager.service)@\spxentry{logger}\spxextra{in module pine.backend.job\_manager.service}|hyperpage}{16}
+\indexentry{ServiceManager (class in pine.backend.job\_manager.service)@\spxentry{ServiceManager}\spxextra{class in pine.backend.job\_manager.service}|hyperpage}{16}
+\indexentry{r\_pool (pine.backend.job\_manager.service.ServiceManager attribute)@\spxentry{r\_pool}\spxextra{pine.backend.job\_manager.service.ServiceManager attribute}|hyperpage}{16}
+\indexentry{r\_conn (pine.backend.job\_manager.service.ServiceManager attribute)@\spxentry{r\_conn}\spxextra{pine.backend.job\_manager.service.ServiceManager attribute}|hyperpage}{16}
+\indexentry{redis\_key\_prefix (pine.backend.job\_manager.service.ServiceManager attribute)@\spxentry{redis\_key\_prefix}\spxextra{pine.backend.job\_manager.service.ServiceManager attribute}|hyperpage}{16}
+\indexentry{redis\_reg\_key\_prefix (pine.backend.job\_manager.service.ServiceManager attribute)@\spxentry{redis\_reg\_key\_prefix}\spxextra{pine.backend.job\_manager.service.ServiceManager attribute}|hyperpage}{16}
+\indexentry{redis\_channels\_key (pine.backend.job\_manager.service.ServiceManager attribute)@\spxentry{redis\_channels\_key}\spxextra{pine.backend.job\_manager.service.ServiceManager attribute}|hyperpage}{16}
+\indexentry{redis\_channel\_ttl\_key\_prefix (pine.backend.job\_manager.service.ServiceManager attribute)@\spxentry{redis\_channel\_ttl\_key\_prefix}\spxextra{pine.backend.job\_manager.service.ServiceManager attribute}|hyperpage}{17}
+\indexentry{redis\_work\_queue\_key\_prefix (pine.backend.job\_manager.service.ServiceManager attribute)@\spxentry{redis\_work\_queue\_key\_prefix}\spxextra{pine.backend.job\_manager.service.ServiceManager attribute}|hyperpage}{17}
+\indexentry{redis\_work\_mutex\_key\_prefix (pine.backend.job\_manager.service.ServiceManager attribute)@\spxentry{redis\_work\_mutex\_key\_prefix}\spxextra{pine.backend.job\_manager.service.ServiceManager attribute}|hyperpage}{17}
+\indexentry{redis\_handler\_mutex\_key\_prefix (pine.backend.job\_manager.service.ServiceManager attribute)@\spxentry{redis\_handler\_mutex\_key\_prefix}\spxextra{pine.backend.job\_manager.service.ServiceManager attribute}|hyperpage}{17}
+\indexentry{redis\_reg\_key\_ttl (pine.backend.job\_manager.service.ServiceManager attribute)@\spxentry{redis\_reg\_key\_ttl}\spxextra{pine.backend.job\_manager.service.ServiceManager attribute}|hyperpage}{17}
+\indexentry{redis\_channels\_key\_ttl (pine.backend.job\_manager.service.ServiceManager attribute)@\spxentry{redis\_channels\_key\_ttl}\spxextra{pine.backend.job\_manager.service.ServiceManager attribute}|hyperpage}{17}
+\indexentry{redis\_work\_queue\_key\_ttl (pine.backend.job\_manager.service.ServiceManager attribute)@\spxentry{redis\_work\_queue\_key\_ttl}\spxextra{pine.backend.job\_manager.service.ServiceManager attribute}|hyperpage}{17}
+\indexentry{redis\_work\_mutex\_key\_ttl (pine.backend.job\_manager.service.ServiceManager attribute)@\spxentry{redis\_work\_mutex\_key\_ttl}\spxextra{pine.backend.job\_manager.service.ServiceManager attribute}|hyperpage}{17}
+\indexentry{redis\_handler\_mutex\_key\_ttl (pine.backend.job\_manager.service.ServiceManager attribute)@\spxentry{redis\_handler\_mutex\_key\_ttl}\spxextra{pine.backend.job\_manager.service.ServiceManager attribute}|hyperpage}{17}
+\indexentry{handler\_timeout (pine.backend.job\_manager.service.ServiceManager attribute)@\spxentry{handler\_timeout}\spxextra{pine.backend.job\_manager.service.ServiceManager attribute}|hyperpage}{17}
+\indexentry{registration\_worker\_name (pine.backend.job\_manager.service.ServiceManager attribute)@\spxentry{registration\_worker\_name}\spxextra{pine.backend.job\_manager.service.ServiceManager attribute}|hyperpage}{17}
+\indexentry{processing\_worker\_name (pine.backend.job\_manager.service.ServiceManager attribute)@\spxentry{processing\_worker\_name}\spxextra{pine.backend.job\_manager.service.ServiceManager attribute}|hyperpage}{17}
+\indexentry{channel\_worker\_name (pine.backend.job\_manager.service.ServiceManager attribute)@\spxentry{channel\_worker\_name}\spxextra{pine.backend.job\_manager.service.ServiceManager attribute}|hyperpage}{17}
+\indexentry{shutdown\_channel (pine.backend.job\_manager.service.ServiceManager attribute)@\spxentry{shutdown\_channel}\spxextra{pine.backend.job\_manager.service.ServiceManager attribute}|hyperpage}{17}
+\indexentry{registration\_channel (pine.backend.job\_manager.service.ServiceManager attribute)@\spxentry{registration\_channel}\spxextra{pine.backend.job\_manager.service.ServiceManager attribute}|hyperpage}{17}
+\indexentry{reserved\_channels (pine.backend.job\_manager.service.ServiceManager attribute)@\spxentry{reserved\_channels}\spxextra{pine.backend.job\_manager.service.ServiceManager attribute}|hyperpage}{17}
+\indexentry{get\_registered\_channels() (pine.backend.job\_manager.service.ServiceManager class method)@\spxentry{get\_registered\_channels()}\spxextra{pine.backend.job\_manager.service.ServiceManager class method}|hyperpage}{17}
+\indexentry{get\_registered\_service\_details() (pine.backend.job\_manager.service.ServiceManager class method)@\spxentry{get\_registered\_service\_details()}\spxextra{pine.backend.job\_manager.service.ServiceManager class method}|hyperpage}{17}
+\indexentry{get\_registered\_services() (pine.backend.job\_manager.service.ServiceManager class method)@\spxentry{get\_registered\_services()}\spxextra{pine.backend.job\_manager.service.ServiceManager class method}|hyperpage}{17}
+\indexentry{send\_service\_request() (pine.backend.job\_manager.service.ServiceManager class method)@\spxentry{send\_service\_request()}\spxextra{pine.backend.job\_manager.service.ServiceManager class method}|hyperpage}{17}
+\indexentry{start\_listeners() (pine.backend.job\_manager.service.ServiceManager method)@\spxentry{start\_listeners()}\spxextra{pine.backend.job\_manager.service.ServiceManager method}|hyperpage}{17}
+\indexentry{stop\_listeners() (pine.backend.job\_manager.service.ServiceManager method)@\spxentry{stop\_listeners()}\spxextra{pine.backend.job\_manager.service.ServiceManager method}|hyperpage}{17}
+\indexentry{\_start\_registration\_listener() (pine.backend.job\_manager.service.ServiceManager method)@\spxentry{\_start\_registration\_listener()}\spxextra{pine.backend.job\_manager.service.ServiceManager method}|hyperpage}{17}
+\indexentry{\_start\_processing\_listeners() (pine.backend.job\_manager.service.ServiceManager method)@\spxentry{\_start\_processing\_listeners()}\spxextra{pine.backend.job\_manager.service.ServiceManager method}|hyperpage}{17}
+\indexentry{\_start\_channel\_watchdog() (pine.backend.job\_manager.service.ServiceManager method)@\spxentry{\_start\_channel\_watchdog()}\spxextra{pine.backend.job\_manager.service.ServiceManager method}|hyperpage}{17}
+\indexentry{\_stop\_channel\_watchdog() (pine.backend.job\_manager.service.ServiceManager method)@\spxentry{\_stop\_channel\_watchdog()}\spxextra{pine.backend.job\_manager.service.ServiceManager method}|hyperpage}{17}
+\indexentry{\_registration\_listener() (pine.backend.job\_manager.service.ServiceManager method)@\spxentry{\_registration\_listener()}\spxextra{pine.backend.job\_manager.service.ServiceManager method}|hyperpage}{17}
+\indexentry{\_channel\_watchdog() (pine.backend.job\_manager.service.ServiceManager method)@\spxentry{\_channel\_watchdog()}\spxextra{pine.backend.job\_manager.service.ServiceManager method}|hyperpage}{18}
+\indexentry{\_thread\_killer() (pine.backend.job\_manager.service.ServiceManager static method)@\spxentry{\_thread\_killer()}\spxextra{pine.backend.job\_manager.service.ServiceManager static method}|hyperpage}{18}
+\indexentry{\_processing\_listener\_handler\_wrapper() (pine.backend.job\_manager.service.ServiceManager method)@\spxentry{\_processing\_listener\_handler\_wrapper()}\spxextra{pine.backend.job\_manager.service.ServiceManager method}|hyperpage}{18}
+\indexentry{\_processing\_listener() (pine.backend.job\_manager.service.ServiceManager method)@\spxentry{\_processing\_listener()}\spxextra{pine.backend.job\_manager.service.ServiceManager method}|hyperpage}{18}
+\indexentry{sm (in module pine.backend.job\_manager.service)@\spxentry{sm}\spxextra{in module pine.backend.job\_manager.service}|hyperpage}{18}
+\indexentry{module@\spxentry{module}!pine.backend.pineiaa@\spxentry{pine.backend.pineiaa}|hyperpage}{18}
+\indexentry{pine.backend.pineiaa@\spxentry{pine.backend.pineiaa}!module@\spxentry{module}|hyperpage}{18}
+\indexentry{module@\spxentry{module}!pine.backend.pineiaa.bratiaa@\spxentry{pine.backend.pineiaa.bratiaa}|hyperpage}{18}
+\indexentry{pine.backend.pineiaa.bratiaa@\spxentry{pine.backend.pineiaa.bratiaa}!module@\spxentry{module}|hyperpage}{18}
+\indexentry{module@\spxentry{module}!pine.backend.pineiaa.bratiaa.agree@\spxentry{pine.backend.pineiaa.bratiaa.agree}|hyperpage}{18}
+\indexentry{pine.backend.pineiaa.bratiaa.agree@\spxentry{pine.backend.pineiaa.bratiaa.agree}!module@\spxentry{module}|hyperpage}{18}
+\indexentry{Annotation (in module pine.backend.pineiaa.bratiaa.agree)@\spxentry{Annotation}\spxextra{in module pine.backend.pineiaa.bratiaa.agree}|hyperpage}{18}
+\indexentry{AnnFile (in module pine.backend.pineiaa.bratiaa.agree)@\spxentry{AnnFile}\spxextra{in module pine.backend.pineiaa.bratiaa.agree}|hyperpage}{18}
+\indexentry{LOGGER (in module pine.backend.pineiaa.bratiaa.agree)@\spxentry{LOGGER}\spxextra{in module pine.backend.pineiaa.bratiaa.agree}|hyperpage}{18}
+\indexentry{Document (class in pine.backend.pineiaa.bratiaa.agree)@\spxentry{Document}\spxextra{class in pine.backend.pineiaa.bratiaa.agree}|hyperpage}{18}
+\indexentry{\_\_slots\_\_ (pine.backend.pineiaa.bratiaa.agree.Document attribute)@\spxentry{\_\_slots\_\_}\spxextra{pine.backend.pineiaa.bratiaa.agree.Document attribute}|hyperpage}{19}
+\indexentry{input\_generator() (in module pine.backend.pineiaa.bratiaa.agree)@\spxentry{input\_generator()}\spxextra{in module pine.backend.pineiaa.bratiaa.agree}|hyperpage}{19}
+\indexentry{compute\_f1() (in module pine.backend.pineiaa.bratiaa.agree)@\spxentry{compute\_f1()}\spxextra{in module pine.backend.pineiaa.bratiaa.agree}|hyperpage}{19}
+\indexentry{F1Agreement (class in pine.backend.pineiaa.bratiaa.agree)@\spxentry{F1Agreement}\spxextra{class in pine.backend.pineiaa.bratiaa.agree}|hyperpage}{19}
+\indexentry{annotators() (pine.backend.pineiaa.bratiaa.agree.F1Agreement property)@\spxentry{annotators()}\spxextra{pine.backend.pineiaa.bratiaa.agree.F1Agreement property}|hyperpage}{19}
+\indexentry{documents() (pine.backend.pineiaa.bratiaa.agree.F1Agreement property)@\spxentry{documents()}\spxextra{pine.backend.pineiaa.bratiaa.agree.F1Agreement property}|hyperpage}{19}
+\indexentry{labels() (pine.backend.pineiaa.bratiaa.agree.F1Agreement property)@\spxentry{labels()}\spxextra{pine.backend.pineiaa.bratiaa.agree.F1Agreement property}|hyperpage}{19}
+\indexentry{\_compute\_tp\_fp\_fn() (pine.backend.pineiaa.bratiaa.agree.F1Agreement method)@\spxentry{\_compute\_tp\_fp\_fn()}\spxextra{pine.backend.pineiaa.bratiaa.agree.F1Agreement method}|hyperpage}{19}
+\indexentry{\_increment\_counts() (pine.backend.pineiaa.bratiaa.agree.F1Agreement method)@\spxentry{\_increment\_counts()}\spxextra{pine.backend.pineiaa.bratiaa.agree.F1Agreement method}|hyperpage}{19}
+\indexentry{mean\_sd\_per\_label() (pine.backend.pineiaa.bratiaa.agree.F1Agreement method)@\spxentry{mean\_sd\_per\_label()}\spxextra{pine.backend.pineiaa.bratiaa.agree.F1Agreement method}|hyperpage}{19}
+\indexentry{mean\_sd\_per\_document() (pine.backend.pineiaa.bratiaa.agree.F1Agreement method)@\spxentry{mean\_sd\_per\_document()}\spxextra{pine.backend.pineiaa.bratiaa.agree.F1Agreement method}|hyperpage}{19}
+\indexentry{mean\_sd\_total() (pine.backend.pineiaa.bratiaa.agree.F1Agreement method)@\spxentry{mean\_sd\_total()}\spxextra{pine.backend.pineiaa.bratiaa.agree.F1Agreement method}|hyperpage}{19}
+\indexentry{mean\_sd\_per\_label\_one\_vs\_rest() (pine.backend.pineiaa.bratiaa.agree.F1Agreement method)@\spxentry{mean\_sd\_per\_label\_one\_vs\_rest()}\spxextra{pine.backend.pineiaa.bratiaa.agree.F1Agreement method}|hyperpage}{19}
+\indexentry{mean\_sd\_total\_one\_vs\_rest() (pine.backend.pineiaa.bratiaa.agree.F1Agreement method)@\spxentry{mean\_sd\_total\_one\_vs\_rest()}\spxextra{pine.backend.pineiaa.bratiaa.agree.F1Agreement method}|hyperpage}{19}
+\indexentry{\_pairs\_involving() (pine.backend.pineiaa.bratiaa.agree.F1Agreement method)@\spxentry{\_pairs\_involving()}\spxextra{pine.backend.pineiaa.bratiaa.agree.F1Agreement method}|hyperpage}{19}
+\indexentry{\_mean\_sd() (pine.backend.pineiaa.bratiaa.agree.F1Agreement static method)@\spxentry{\_mean\_sd()}\spxextra{pine.backend.pineiaa.bratiaa.agree.F1Agreement static method}|hyperpage}{19}
+\indexentry{print\_table() (pine.backend.pineiaa.bratiaa.agree.F1Agreement static method)@\spxentry{print\_table()}\spxextra{pine.backend.pineiaa.bratiaa.agree.F1Agreement static method}|hyperpage}{19}
+\indexentry{compute\_total\_f1\_matrix() (pine.backend.pineiaa.bratiaa.agree.F1Agreement method)@\spxentry{compute\_total\_f1\_matrix()}\spxextra{pine.backend.pineiaa.bratiaa.agree.F1Agreement method}|hyperpage}{19}
+\indexentry{draw\_heatmap() (pine.backend.pineiaa.bratiaa.agree.F1Agreement method)@\spxentry{draw\_heatmap()}\spxextra{pine.backend.pineiaa.bratiaa.agree.F1Agreement method}|hyperpage}{19}
+\indexentry{compute\_f1\_agreement() (in module pine.backend.pineiaa.bratiaa.agree)@\spxentry{compute\_f1\_agreement()}\spxextra{in module pine.backend.pineiaa.bratiaa.agree}|hyperpage}{19}
+\indexentry{iaa\_report() (in module pine.backend.pineiaa.bratiaa.agree)@\spxentry{iaa\_report()}\spxextra{in module pine.backend.pineiaa.bratiaa.agree}|hyperpage}{19}
+\indexentry{module@\spxentry{module}!pine.backend.pineiaa.bratiaa.agree\_cli@\spxentry{pine.backend.pineiaa.bratiaa.agree\_cli}|hyperpage}{20}
+\indexentry{pine.backend.pineiaa.bratiaa.agree\_cli@\spxentry{pine.backend.pineiaa.bratiaa.agree\_cli}!module@\spxentry{module}|hyperpage}{20}
+\indexentry{parse\_args() (in module pine.backend.pineiaa.bratiaa.agree\_cli)@\spxentry{parse\_args()}\spxextra{in module pine.backend.pineiaa.bratiaa.agree\_cli}|hyperpage}{20}
+\indexentry{main() (in module pine.backend.pineiaa.bratiaa.agree\_cli)@\spxentry{main()}\spxextra{in module pine.backend.pineiaa.bratiaa.agree\_cli}|hyperpage}{20}
+\indexentry{module@\spxentry{module}!pine.backend.pineiaa.bratiaa.evaluation@\spxentry{pine.backend.pineiaa.bratiaa.evaluation}|hyperpage}{20}
+\indexentry{pine.backend.pineiaa.bratiaa.evaluation@\spxentry{pine.backend.pineiaa.bratiaa.evaluation}!module@\spxentry{module}|hyperpage}{20}
+\indexentry{Annotation (in module pine.backend.pineiaa.bratiaa.evaluation)@\spxentry{Annotation}\spxextra{in module pine.backend.pineiaa.bratiaa.evaluation}|hyperpage}{20}
+\indexentry{exact\_match\_instance\_evaluation() (in module pine.backend.pineiaa.bratiaa.evaluation)@\spxentry{exact\_match\_instance\_evaluation()}\spxextra{in module pine.backend.pineiaa.bratiaa.evaluation}|hyperpage}{20}
+\indexentry{exact\_match\_token\_evaluation() (in module pine.backend.pineiaa.bratiaa.evaluation)@\spxentry{exact\_match\_token\_evaluation()}\spxextra{in module pine.backend.pineiaa.bratiaa.evaluation}|hyperpage}{20}
+\indexentry{counter2list() (in module pine.backend.pineiaa.bratiaa.evaluation)@\spxentry{counter2list()}\spxextra{in module pine.backend.pineiaa.bratiaa.evaluation}|hyperpage}{20}
+\indexentry{\_read\_token\_annotations() (in module pine.backend.pineiaa.bratiaa.evaluation)@\spxentry{\_read\_token\_annotations()}\spxextra{in module pine.backend.pineiaa.bratiaa.evaluation}|hyperpage}{20}
+\indexentry{module@\spxentry{module}!pine.backend.pineiaa.bratiaa.iaa\_service@\spxentry{pine.backend.pineiaa.bratiaa.iaa\_service}|hyperpage}{21}
+\indexentry{pine.backend.pineiaa.bratiaa.iaa\_service@\spxentry{pine.backend.pineiaa.bratiaa.iaa\_service}!module@\spxentry{module}|hyperpage}{21}
+\indexentry{EVE\_HEADERS (in module pine.backend.pineiaa.bratiaa.iaa\_service)@\spxentry{EVE\_HEADERS}\spxextra{in module pine.backend.pineiaa.bratiaa.iaa\_service}|hyperpage}{21}
+\indexentry{get\_items() (in module pine.backend.pineiaa.bratiaa.iaa\_service)@\spxentry{get\_items()}\spxextra{in module pine.backend.pineiaa.bratiaa.iaa\_service}|hyperpage}{21}
+\indexentry{get\_all\_items() (in module pine.backend.pineiaa.bratiaa.iaa\_service)@\spxentry{get\_all\_items()}\spxextra{in module pine.backend.pineiaa.bratiaa.iaa\_service}|hyperpage}{21}
+\indexentry{get\_doc\_annotations() (in module pine.backend.pineiaa.bratiaa.iaa\_service)@\spxentry{get\_doc\_annotations()}\spxextra{in module pine.backend.pineiaa.bratiaa.iaa\_service}|hyperpage}{21}
+\indexentry{fix\_num\_for\_json() (in module pine.backend.pineiaa.bratiaa.iaa\_service)@\spxentry{fix\_num\_for\_json()}\spxextra{in module pine.backend.pineiaa.bratiaa.iaa\_service}|hyperpage}{21}
+\indexentry{getIAAReportForCollection() (in module pine.backend.pineiaa.bratiaa.iaa\_service)@\spxentry{getIAAReportForCollection()}\spxextra{in module pine.backend.pineiaa.bratiaa.iaa\_service}|hyperpage}{21}
+\indexentry{module@\spxentry{module}!pine.backend.pineiaa.bratiaa.utils@\spxentry{pine.backend.pineiaa.bratiaa.utils}|hyperpage}{21}
+\indexentry{pine.backend.pineiaa.bratiaa.utils@\spxentry{pine.backend.pineiaa.bratiaa.utils}!module@\spxentry{module}|hyperpage}{21}
+\indexentry{ENCODING (in module pine.backend.pineiaa.bratiaa.utils)@\spxentry{ENCODING}\spxextra{in module pine.backend.pineiaa.bratiaa.utils}|hyperpage}{21}
+\indexentry{TOKEN (in module pine.backend.pineiaa.bratiaa.utils)@\spxentry{TOKEN}\spxextra{in module pine.backend.pineiaa.bratiaa.utils}|hyperpage}{21}
+\indexentry{tokenize() (in module pine.backend.pineiaa.bratiaa.utils)@\spxentry{tokenize()}\spxextra{in module pine.backend.pineiaa.bratiaa.utils}|hyperpage}{21}
+\indexentry{read() (in module pine.backend.pineiaa.bratiaa.utils)@\spxentry{read()}\spxextra{in module pine.backend.pineiaa.bratiaa.utils}|hyperpage}{21}
+\indexentry{TokenOverlap (class in pine.backend.pineiaa.bratiaa.utils)@\spxentry{TokenOverlap}\spxextra{class in pine.backend.pineiaa.bratiaa.utils}|hyperpage}{21}
+\indexentry{compute\_mapping() (pine.backend.pineiaa.bratiaa.utils.TokenOverlap static method)@\spxentry{compute\_mapping()}\spxextra{pine.backend.pineiaa.bratiaa.utils.TokenOverlap static method}|hyperpage}{22}
+\indexentry{overlapping\_tokens() (pine.backend.pineiaa.bratiaa.utils.TokenOverlap method)@\spxentry{overlapping\_tokens()}\spxextra{pine.backend.pineiaa.bratiaa.utils.TokenOverlap method}|hyperpage}{22}
+\indexentry{compute\_f1\_agreement() (in module pine.backend.pineiaa.bratiaa)@\spxentry{compute\_f1\_agreement()}\spxextra{in module pine.backend.pineiaa.bratiaa}|hyperpage}{22}
+\indexentry{iaa\_report() (in module pine.backend.pineiaa.bratiaa)@\spxentry{iaa\_report()}\spxextra{in module pine.backend.pineiaa.bratiaa}|hyperpage}{22}
+\indexentry{AnnFile (in module pine.backend.pineiaa.bratiaa)@\spxentry{AnnFile}\spxextra{in module pine.backend.pineiaa.bratiaa}|hyperpage}{22}
+\indexentry{F1Agreement (class in pine.backend.pineiaa.bratiaa)@\spxentry{F1Agreement}\spxextra{class in pine.backend.pineiaa.bratiaa}|hyperpage}{22}
+\indexentry{annotators() (pine.backend.pineiaa.bratiaa.F1Agreement property)@\spxentry{annotators()}\spxextra{pine.backend.pineiaa.bratiaa.F1Agreement property}|hyperpage}{22}
+\indexentry{documents() (pine.backend.pineiaa.bratiaa.F1Agreement property)@\spxentry{documents()}\spxextra{pine.backend.pineiaa.bratiaa.F1Agreement property}|hyperpage}{22}
+\indexentry{labels() (pine.backend.pineiaa.bratiaa.F1Agreement property)@\spxentry{labels()}\spxextra{pine.backend.pineiaa.bratiaa.F1Agreement property}|hyperpage}{22}
+\indexentry{\_compute\_tp\_fp\_fn() (pine.backend.pineiaa.bratiaa.F1Agreement method)@\spxentry{\_compute\_tp\_fp\_fn()}\spxextra{pine.backend.pineiaa.bratiaa.F1Agreement method}|hyperpage}{22}
+\indexentry{\_increment\_counts() (pine.backend.pineiaa.bratiaa.F1Agreement method)@\spxentry{\_increment\_counts()}\spxextra{pine.backend.pineiaa.bratiaa.F1Agreement method}|hyperpage}{22}
+\indexentry{mean\_sd\_per\_label() (pine.backend.pineiaa.bratiaa.F1Agreement method)@\spxentry{mean\_sd\_per\_label()}\spxextra{pine.backend.pineiaa.bratiaa.F1Agreement method}|hyperpage}{22}
+\indexentry{mean\_sd\_per\_document() (pine.backend.pineiaa.bratiaa.F1Agreement method)@\spxentry{mean\_sd\_per\_document()}\spxextra{pine.backend.pineiaa.bratiaa.F1Agreement method}|hyperpage}{22}
+\indexentry{mean\_sd\_total() (pine.backend.pineiaa.bratiaa.F1Agreement method)@\spxentry{mean\_sd\_total()}\spxextra{pine.backend.pineiaa.bratiaa.F1Agreement method}|hyperpage}{22}
+\indexentry{mean\_sd\_per\_label\_one\_vs\_rest() (pine.backend.pineiaa.bratiaa.F1Agreement method)@\spxentry{mean\_sd\_per\_label\_one\_vs\_rest()}\spxextra{pine.backend.pineiaa.bratiaa.F1Agreement method}|hyperpage}{23}
+\indexentry{mean\_sd\_total\_one\_vs\_rest() (pine.backend.pineiaa.bratiaa.F1Agreement method)@\spxentry{mean\_sd\_total\_one\_vs\_rest()}\spxextra{pine.backend.pineiaa.bratiaa.F1Agreement method}|hyperpage}{23}
+\indexentry{\_pairs\_involving() (pine.backend.pineiaa.bratiaa.F1Agreement method)@\spxentry{\_pairs\_involving()}\spxextra{pine.backend.pineiaa.bratiaa.F1Agreement method}|hyperpage}{23}
+\indexentry{\_mean\_sd() (pine.backend.pineiaa.bratiaa.F1Agreement static method)@\spxentry{\_mean\_sd()}\spxextra{pine.backend.pineiaa.bratiaa.F1Agreement static method}|hyperpage}{23}
+\indexentry{print\_table() (pine.backend.pineiaa.bratiaa.F1Agreement static method)@\spxentry{print\_table()}\spxextra{pine.backend.pineiaa.bratiaa.F1Agreement static method}|hyperpage}{23}
+\indexentry{compute\_total\_f1\_matrix() (pine.backend.pineiaa.bratiaa.F1Agreement method)@\spxentry{compute\_total\_f1\_matrix()}\spxextra{pine.backend.pineiaa.bratiaa.F1Agreement method}|hyperpage}{23}
+\indexentry{draw\_heatmap() (pine.backend.pineiaa.bratiaa.F1Agreement method)@\spxentry{draw\_heatmap()}\spxextra{pine.backend.pineiaa.bratiaa.F1Agreement method}|hyperpage}{23}
+\indexentry{Document (class in pine.backend.pineiaa.bratiaa)@\spxentry{Document}\spxextra{class in pine.backend.pineiaa.bratiaa}|hyperpage}{23}
+\indexentry{\_\_slots\_\_ (pine.backend.pineiaa.bratiaa.Document attribute)@\spxentry{\_\_slots\_\_}\spxextra{pine.backend.pineiaa.bratiaa.Document attribute}|hyperpage}{23}
+\indexentry{input\_generator() (in module pine.backend.pineiaa.bratiaa)@\spxentry{input\_generator()}\spxextra{in module pine.backend.pineiaa.bratiaa}|hyperpage}{23}
+\indexentry{exact\_match\_instance\_evaluation() (in module pine.backend.pineiaa.bratiaa)@\spxentry{exact\_match\_instance\_evaluation()}\spxextra{in module pine.backend.pineiaa.bratiaa}|hyperpage}{23}
+\indexentry{exact\_match\_token\_evaluation() (in module pine.backend.pineiaa.bratiaa)@\spxentry{exact\_match\_token\_evaluation()}\spxextra{in module pine.backend.pineiaa.bratiaa}|hyperpage}{23}
+\indexentry{Annotation (in module pine.backend.pineiaa.bratiaa)@\spxentry{Annotation}\spxextra{in module pine.backend.pineiaa.bratiaa}|hyperpage}{23}
+\indexentry{tokenize() (in module pine.backend.pineiaa.bratiaa)@\spxentry{tokenize()}\spxextra{in module pine.backend.pineiaa.bratiaa}|hyperpage}{23}
+\indexentry{module@\spxentry{module}!pine.backend.pineiaa.bp@\spxentry{pine.backend.pineiaa.bp}|hyperpage}{23}
+\indexentry{pine.backend.pineiaa.bp@\spxentry{pine.backend.pineiaa.bp}!module@\spxentry{module}|hyperpage}{23}
+\indexentry{logger (in module pine.backend.pineiaa.bp)@\spxentry{logger}\spxextra{in module pine.backend.pineiaa.bp}|hyperpage}{23}
+\indexentry{bp (in module pine.backend.pineiaa.bp)@\spxentry{bp}\spxextra{in module pine.backend.pineiaa.bp}|hyperpage}{24}
+\indexentry{get\_current\_report() (in module pine.backend.pineiaa.bp)@\spxentry{get\_current\_report()}\spxextra{in module pine.backend.pineiaa.bp}|hyperpage}{24}
+\indexentry{get\_iia\_report\_by\_collection\_id() (in module pine.backend.pineiaa.bp)@\spxentry{get\_iia\_report\_by\_collection\_id()}\spxextra{in module pine.backend.pineiaa.bp}|hyperpage}{24}
+\indexentry{create\_iaa\_report\_by\_collection\_id() (in module pine.backend.pineiaa.bp)@\spxentry{create\_iaa\_report\_by\_collection\_id()}\spxextra{in module pine.backend.pineiaa.bp}|hyperpage}{24}
+\indexentry{init\_app() (in module pine.backend.pineiaa.bp)@\spxentry{init\_app()}\spxextra{in module pine.backend.pineiaa.bp}|hyperpage}{24}
+\indexentry{module@\spxentry{module}!pine.backend.pipelines@\spxentry{pine.backend.pipelines}|hyperpage}{24}
+\indexentry{pine.backend.pipelines@\spxentry{pine.backend.pipelines}!module@\spxentry{module}|hyperpage}{24}
+\indexentry{module@\spxentry{module}!pine.backend.pipelines.bp@\spxentry{pine.backend.pipelines.bp}|hyperpage}{24}
+\indexentry{pine.backend.pipelines.bp@\spxentry{pine.backend.pipelines.bp}!module@\spxentry{module}|hyperpage}{24}
+\indexentry{logger (in module pine.backend.pipelines.bp)@\spxentry{logger}\spxextra{in module pine.backend.pipelines.bp}|hyperpage}{24}
+\indexentry{service\_manager (in module pine.backend.pipelines.bp)@\spxentry{service\_manager}\spxextra{in module pine.backend.pipelines.bp}|hyperpage}{24}
+\indexentry{bp (in module pine.backend.pipelines.bp)@\spxentry{bp}\spxextra{in module pine.backend.pipelines.bp}|hyperpage}{24}
+\indexentry{classifier\_dict (in module pine.backend.pipelines.bp)@\spxentry{classifier\_dict}\spxextra{in module pine.backend.pipelines.bp}|hyperpage}{24}
+\indexentry{classifier\_pipelines (in module pine.backend.pipelines.bp)@\spxentry{classifier\_pipelines}\spxextra{in module pine.backend.pipelines.bp}|hyperpage}{24}
+\indexentry{get\_pipelines() (in module pine.backend.pipelines.bp)@\spxentry{get\_pipelines()}\spxextra{in module pine.backend.pipelines.bp}|hyperpage}{24}
+\indexentry{get\_pipeline\_by\_id() (in module pine.backend.pipelines.bp)@\spxentry{get\_pipeline\_by\_id()}\spxextra{in module pine.backend.pipelines.bp}|hyperpage}{24}
+\indexentry{\_get\_collection\_classifier() (in module pine.backend.pipelines.bp)@\spxentry{\_get\_collection\_classifier()}\spxextra{in module pine.backend.pipelines.bp}|hyperpage}{24}
+\indexentry{get\_collection\_classifier() (in module pine.backend.pipelines.bp)@\spxentry{get\_collection\_classifier()}\spxextra{in module pine.backend.pipelines.bp}|hyperpage}{24}
+\indexentry{\_get\_classifier\_metrics() (in module pine.backend.pipelines.bp)@\spxentry{\_get\_classifier\_metrics()}\spxextra{in module pine.backend.pipelines.bp}|hyperpage}{24}
+\indexentry{get\_metrics() (in module pine.backend.pipelines.bp)@\spxentry{get\_metrics()}\spxextra{in module pine.backend.pipelines.bp}|hyperpage}{24}
+\indexentry{get\_classifier\_metrics() (in module pine.backend.pipelines.bp)@\spxentry{get\_classifier\_metrics()}\spxextra{in module pine.backend.pipelines.bp}|hyperpage}{25}
+\indexentry{\_get\_classifier() (in module pine.backend.pipelines.bp)@\spxentry{\_get\_classifier()}\spxextra{in module pine.backend.pipelines.bp}|hyperpage}{25}
+\indexentry{\_get\_next\_instance() (in module pine.backend.pipelines.bp)@\spxentry{\_get\_next\_instance()}\spxextra{in module pine.backend.pipelines.bp}|hyperpage}{25}
+\indexentry{get\_next\_by\_classifier() (in module pine.backend.pipelines.bp)@\spxentry{get\_next\_by\_classifier()}\spxextra{in module pine.backend.pipelines.bp}|hyperpage}{25}
+\indexentry{advance\_to\_next\_document\_by\_classifier() (in module pine.backend.pipelines.bp)@\spxentry{advance\_to\_next\_document\_by\_classifier()}\spxextra{in module pine.backend.pipelines.bp}|hyperpage}{25}
+\indexentry{predict() (in module pine.backend.pipelines.bp)@\spxentry{predict()}\spxextra{in module pine.backend.pipelines.bp}|hyperpage}{25}
+\indexentry{test\_redis() (in module pine.backend.pipelines.bp)@\spxentry{test\_redis()}\spxextra{in module pine.backend.pipelines.bp}|hyperpage}{25}
+\indexentry{init\_app() (in module pine.backend.pipelines.bp)@\spxentry{init\_app()}\spxextra{in module pine.backend.pipelines.bp}|hyperpage}{25}
+\indexentry{module@\spxentry{module}!pine.backend.shared@\spxentry{pine.backend.shared}|hyperpage}{25}
+\indexentry{pine.backend.shared@\spxentry{pine.backend.shared}!module@\spxentry{module}|hyperpage}{25}
+\indexentry{module@\spxentry{module}!pine.backend.shared.config@\spxentry{pine.backend.shared.config}|hyperpage}{25}
+\indexentry{pine.backend.shared.config@\spxentry{pine.backend.shared.config}!module@\spxentry{module}|hyperpage}{25}
+\indexentry{LOGGER (in module pine.backend.shared.config)@\spxentry{LOGGER}\spxextra{in module pine.backend.shared.config}|hyperpage}{25}
+\indexentry{BaseConfig (class in pine.backend.shared.config)@\spxentry{BaseConfig}\spxextra{class in pine.backend.shared.config}|hyperpage}{25}
+\indexentry{ROOT\_DIR (pine.backend.shared.config.BaseConfig attribute)@\spxentry{ROOT\_DIR}\spxextra{pine.backend.shared.config.BaseConfig attribute}|hyperpage}{25}
+\indexentry{BASE\_DIR (pine.backend.shared.config.BaseConfig attribute)@\spxentry{BASE\_DIR}\spxextra{pine.backend.shared.config.BaseConfig attribute}|hyperpage}{25}
+\indexentry{BASE\_CFG\_FILE (pine.backend.shared.config.BaseConfig attribute)@\spxentry{BASE\_CFG\_FILE}\spxextra{pine.backend.shared.config.BaseConfig attribute}|hyperpage}{25}
+\indexentry{BASE\_ENV\_PREFIX (pine.backend.shared.config.BaseConfig attribute)@\spxentry{BASE\_ENV\_PREFIX}\spxextra{pine.backend.shared.config.BaseConfig attribute}|hyperpage}{25}
+\indexentry{DEBUG (pine.backend.shared.config.BaseConfig attribute)@\spxentry{DEBUG}\spxextra{pine.backend.shared.config.BaseConfig attribute}|hyperpage}{25}
+\indexentry{TESTING (pine.backend.shared.config.BaseConfig attribute)@\spxentry{TESTING}\spxextra{pine.backend.shared.config.BaseConfig attribute}|hyperpage}{25}
+\indexentry{LOGGER\_NAME (pine.backend.shared.config.BaseConfig attribute)@\spxentry{LOGGER\_NAME}\spxextra{pine.backend.shared.config.BaseConfig attribute}|hyperpage}{25}
+\indexentry{LOGGER\_DIR (pine.backend.shared.config.BaseConfig attribute)@\spxentry{LOGGER\_DIR}\spxextra{pine.backend.shared.config.BaseConfig attribute}|hyperpage}{25}
+\indexentry{LOGGER\_FILE (pine.backend.shared.config.BaseConfig attribute)@\spxentry{LOGGER\_FILE}\spxextra{pine.backend.shared.config.BaseConfig attribute}|hyperpage}{25}
+\indexentry{LOGGER\_LEVEL (pine.backend.shared.config.BaseConfig attribute)@\spxentry{LOGGER\_LEVEL}\spxextra{pine.backend.shared.config.BaseConfig attribute}|hyperpage}{25}
+\indexentry{EVE\_HOST (pine.backend.shared.config.BaseConfig attribute)@\spxentry{EVE\_HOST}\spxextra{pine.backend.shared.config.BaseConfig attribute}|hyperpage}{25}
+\indexentry{EVE\_PORT (pine.backend.shared.config.BaseConfig attribute)@\spxentry{EVE\_PORT}\spxextra{pine.backend.shared.config.BaseConfig attribute}|hyperpage}{26}
+\indexentry{REDIS\_HOST (pine.backend.shared.config.BaseConfig attribute)@\spxentry{REDIS\_HOST}\spxextra{pine.backend.shared.config.BaseConfig attribute}|hyperpage}{26}
+\indexentry{REDIS\_PORT (pine.backend.shared.config.BaseConfig attribute)@\spxentry{REDIS\_PORT}\spxextra{pine.backend.shared.config.BaseConfig attribute}|hyperpage}{26}
+\indexentry{REDIS\_USR (pine.backend.shared.config.BaseConfig attribute)@\spxentry{REDIS\_USR}\spxextra{pine.backend.shared.config.BaseConfig attribute}|hyperpage}{26}
+\indexentry{REDIS\_PWD (pine.backend.shared.config.BaseConfig attribute)@\spxentry{REDIS\_PWD}\spxextra{pine.backend.shared.config.BaseConfig attribute}|hyperpage}{26}
+\indexentry{REDIS\_DBNUM (pine.backend.shared.config.BaseConfig attribute)@\spxentry{REDIS\_DBNUM}\spxextra{pine.backend.shared.config.BaseConfig attribute}|hyperpage}{26}
+\indexentry{REDIS\_PREFIX (pine.backend.shared.config.BaseConfig attribute)@\spxentry{REDIS\_PREFIX}\spxextra{pine.backend.shared.config.BaseConfig attribute}|hyperpage}{26}
+\indexentry{REDIS\_EXPIRE (pine.backend.shared.config.BaseConfig attribute)@\spxentry{REDIS\_EXPIRE}\spxextra{pine.backend.shared.config.BaseConfig attribute}|hyperpage}{26}
+\indexentry{SCHEDULER\_REGISTRATION\_TIMEOUT (pine.backend.shared.config.BaseConfig attribute)@\spxentry{SCHEDULER\_REGISTRATION\_TIMEOUT}\spxextra{pine.backend.shared.config.BaseConfig attribute}|hyperpage}{26}
+\indexentry{SCHEDULER\_HANDLER\_TIMEOUT (pine.backend.shared.config.BaseConfig attribute)@\spxentry{SCHEDULER\_HANDLER\_TIMEOUT}\spxextra{pine.backend.shared.config.BaseConfig attribute}|hyperpage}{26}
+\indexentry{SCHEDULER\_QUEUE\_TIMEOUT (pine.backend.shared.config.BaseConfig attribute)@\spxentry{SCHEDULER\_QUEUE\_TIMEOUT}\spxextra{pine.backend.shared.config.BaseConfig attribute}|hyperpage}{26}
+\indexentry{SERVICE\_REGISTRATION\_CHANNEL (pine.backend.shared.config.BaseConfig attribute)@\spxentry{SERVICE\_REGISTRATION\_CHANNEL}\spxextra{pine.backend.shared.config.BaseConfig attribute}|hyperpage}{26}
+\indexentry{SERVICE\_REGISTRATION\_FREQUENCY (pine.backend.shared.config.BaseConfig attribute)@\spxentry{SERVICE\_REGISTRATION\_FREQUENCY}\spxextra{pine.backend.shared.config.BaseConfig attribute}|hyperpage}{26}
+\indexentry{SERVICE\_LISTENING\_FREQUENCY (pine.backend.shared.config.BaseConfig attribute)@\spxentry{SERVICE\_LISTENING\_FREQUENCY}\spxextra{pine.backend.shared.config.BaseConfig attribute}|hyperpage}{26}
+\indexentry{SERVICE\_HANDLER\_TIMEOUT (pine.backend.shared.config.BaseConfig attribute)@\spxentry{SERVICE\_HANDLER\_TIMEOUT}\spxextra{pine.backend.shared.config.BaseConfig attribute}|hyperpage}{26}
+\indexentry{SERVICE\_LIST (pine.backend.shared.config.BaseConfig attribute)@\spxentry{SERVICE\_LIST}\spxextra{pine.backend.shared.config.BaseConfig attribute}|hyperpage}{26}
+\indexentry{DATASETS\_LOCAL\_DIR (pine.backend.shared.config.BaseConfig attribute)@\spxentry{DATASETS\_LOCAL\_DIR}\spxextra{pine.backend.shared.config.BaseConfig attribute}|hyperpage}{26}
+\indexentry{MODELS\_LOCAL\_DIR (pine.backend.shared.config.BaseConfig attribute)@\spxentry{MODELS\_LOCAL\_DIR}\spxextra{pine.backend.shared.config.BaseConfig attribute}|hyperpage}{26}
+\indexentry{\_get\_config\_var\_paths() (pine.backend.shared.config.BaseConfig class method)@\spxentry{\_get\_config\_var\_paths()}\spxextra{pine.backend.shared.config.BaseConfig class method}|hyperpage}{26}
+\indexentry{\_process\_paths() (pine.backend.shared.config.BaseConfig class method)@\spxentry{\_process\_paths()}\spxextra{pine.backend.shared.config.BaseConfig class method}|hyperpage}{26}
+\indexentry{\_process\_file\_cfg() (pine.backend.shared.config.BaseConfig class method)@\spxentry{\_process\_file\_cfg()}\spxextra{pine.backend.shared.config.BaseConfig class method}|hyperpage}{26}
+\indexentry{\_process\_env\_vars() (pine.backend.shared.config.BaseConfig class method)@\spxentry{\_process\_env\_vars()}\spxextra{pine.backend.shared.config.BaseConfig class method}|hyperpage}{26}
+\indexentry{as\_dict() (pine.backend.shared.config.BaseConfig class method)@\spxentry{as\_dict()}\spxextra{pine.backend.shared.config.BaseConfig class method}|hyperpage}{26}
+\indexentry{as\_attr\_dict() (pine.backend.shared.config.BaseConfig class method)@\spxentry{as\_attr\_dict()}\spxextra{pine.backend.shared.config.BaseConfig class method}|hyperpage}{26}
+\indexentry{\_try\_cast() (pine.backend.shared.config.BaseConfig static method)@\spxentry{\_try\_cast()}\spxextra{pine.backend.shared.config.BaseConfig static method}|hyperpage}{26}
+\indexentry{\_str2bool() (pine.backend.shared.config.BaseConfig static method)@\spxentry{\_str2bool()}\spxextra{pine.backend.shared.config.BaseConfig static method}|hyperpage}{26}
+\indexentry{TestConfig (class in pine.backend.shared.config)@\spxentry{TestConfig}\spxextra{class in pine.backend.shared.config}|hyperpage}{26}
+\indexentry{ConfigBuilder (class in pine.backend.shared.config)@\spxentry{ConfigBuilder}\spxextra{class in pine.backend.shared.config}|hyperpage}{26}
+\indexentry{\_\_env\_cfg\_variable (pine.backend.shared.config.ConfigBuilder attribute)@\spxentry{\_\_env\_cfg\_variable}\spxextra{pine.backend.shared.config.ConfigBuilder attribute}|hyperpage}{26}
+\indexentry{\_\_current\_config\_instance (pine.backend.shared.config.ConfigBuilder attribute)@\spxentry{\_\_current\_config\_instance}\spxextra{pine.backend.shared.config.ConfigBuilder attribute}|hyperpage}{26}
+\indexentry{\_\_current\_config\_instance\_name (pine.backend.shared.config.ConfigBuilder attribute)@\spxentry{\_\_current\_config\_instance\_name}\spxextra{pine.backend.shared.config.ConfigBuilder attribute}|hyperpage}{26}
+\indexentry{\_\_current\_config\_instance\_print (pine.backend.shared.config.ConfigBuilder attribute)@\spxentry{\_\_current\_config\_instance\_print}\spxextra{pine.backend.shared.config.ConfigBuilder attribute}|hyperpage}{27}
+\indexentry{\_\_arg\_parser (pine.backend.shared.config.ConfigBuilder attribute)@\spxentry{\_\_arg\_parser}\spxextra{pine.backend.shared.config.ConfigBuilder attribute}|hyperpage}{27}
+\indexentry{\_\_get\_configs() (pine.backend.shared.config.ConfigBuilder static method)@\spxentry{\_\_get\_configs()}\spxextra{pine.backend.shared.config.ConfigBuilder static method}|hyperpage}{27}
+\indexentry{get\_config\_names() (pine.backend.shared.config.ConfigBuilder static method)@\spxentry{get\_config\_names()}\spxextra{pine.backend.shared.config.ConfigBuilder static method}|hyperpage}{27}
+\indexentry{get\_arg\_parser() (pine.backend.shared.config.ConfigBuilder class method)@\spxentry{get\_arg\_parser()}\spxextra{pine.backend.shared.config.ConfigBuilder class method}|hyperpage}{27}
+\indexentry{init\_config() (pine.backend.shared.config.ConfigBuilder class method)@\spxentry{init\_config()}\spxextra{pine.backend.shared.config.ConfigBuilder class method}|hyperpage}{27}
+\indexentry{get\_config() (pine.backend.shared.config.ConfigBuilder class method)@\spxentry{get\_config()}\spxextra{pine.backend.shared.config.ConfigBuilder class method}|hyperpage}{27}
+\indexentry{set\_config() (pine.backend.shared.config.ConfigBuilder class method)@\spxentry{set\_config()}\spxextra{pine.backend.shared.config.ConfigBuilder class method}|hyperpage}{27}
+\indexentry{\_\_parse\_terminal\_config() (pine.backend.shared.config.ConfigBuilder class method)@\spxentry{\_\_parse\_terminal\_config()}\spxextra{pine.backend.shared.config.ConfigBuilder class method}|hyperpage}{27}
+\indexentry{module@\spxentry{module}!pine.backend.shared.transform@\spxentry{pine.backend.shared.transform}|hyperpage}{27}
+\indexentry{pine.backend.shared.transform@\spxentry{pine.backend.shared.transform}!module@\spxentry{module}|hyperpage}{27}
+\indexentry{transform\_module\_by\_config() (in module pine.backend.shared.transform)@\spxentry{transform\_module\_by\_config()}\spxextra{in module pine.backend.shared.transform}|hyperpage}{27}
+\indexentry{module@\spxentry{module}!pine.backend.app@\spxentry{pine.backend.app}|hyperpage}{28}
+\indexentry{pine.backend.app@\spxentry{pine.backend.app}!module@\spxentry{module}|hyperpage}{28}
+\indexentry{VERSION (in module pine.backend.app)@\spxentry{VERSION}\spxextra{in module pine.backend.app}|hyperpage}{28}
+\indexentry{LOGGER (in module pine.backend.app)@\spxentry{LOGGER}\spxextra{in module pine.backend.app}|hyperpage}{28}
+\indexentry{handle\_error() (in module pine.backend.app)@\spxentry{handle\_error()}\spxextra{in module pine.backend.app}|hyperpage}{28}
+\indexentry{handle\_uncaught\_exception() (in module pine.backend.app)@\spxentry{handle\_uncaught\_exception()}\spxextra{in module pine.backend.app}|hyperpage}{28}
+\indexentry{create\_app() (in module pine.backend.app)@\spxentry{create\_app()}\spxextra{in module pine.backend.app}|hyperpage}{28}
+\indexentry{module@\spxentry{module}!pine.backend.config@\spxentry{pine.backend.config}|hyperpage}{28}
+\indexentry{pine.backend.config@\spxentry{pine.backend.config}!module@\spxentry{module}|hyperpage}{28}
+\indexentry{SECRET\_KEY (in module pine.backend.config)@\spxentry{SECRET\_KEY}\spxextra{in module pine.backend.config}|hyperpage}{28}
+\indexentry{DEBUG (in module pine.backend.config)@\spxentry{DEBUG}\spxextra{in module pine.backend.config}|hyperpage}{28}
+\indexentry{EVE\_SERVER (in module pine.backend.config)@\spxentry{EVE\_SERVER}\spxextra{in module pine.backend.config}|hyperpage}{28}
+\indexentry{REDIS\_SERVER (in module pine.backend.config)@\spxentry{REDIS\_SERVER}\spxextra{in module pine.backend.config}|hyperpage}{28}
+\indexentry{REDIS\_PORT (in module pine.backend.config)@\spxentry{REDIS\_PORT}\spxextra{in module pine.backend.config}|hyperpage}{28}
+\indexentry{AUTH\_MODULE (in module pine.backend.config)@\spxentry{AUTH\_MODULE}\spxextra{in module pine.backend.config}|hyperpage}{28}
+\indexentry{AUTH\_MODULE (in module pine.backend.config)@\spxentry{AUTH\_MODULE}\spxextra{in module pine.backend.config}|hyperpage}{28}
+\indexentry{VEGAS\_CLIENT\_SECRET (in module pine.backend.config)@\spxentry{VEGAS\_CLIENT\_SECRET}\spxextra{in module pine.backend.config}|hyperpage}{28}
+\indexentry{DOCUMENT\_IMAGE\_DIR (in module pine.backend.config)@\spxentry{DOCUMENT\_IMAGE\_DIR}\spxextra{in module pine.backend.config}|hyperpage}{28}
+\indexentry{module@\spxentry{module}!pine.backend.cors@\spxentry{pine.backend.cors}|hyperpage}{28}
+\indexentry{pine.backend.cors@\spxentry{pine.backend.cors}!module@\spxentry{module}|hyperpage}{28}
+\indexentry{not\_found() (in module pine.backend.cors)@\spxentry{not\_found()}\spxextra{in module pine.backend.cors}|hyperpage}{28}
+\indexentry{init\_app() (in module pine.backend.cors)@\spxentry{init\_app()}\spxextra{in module pine.backend.cors}|hyperpage}{29}
+\indexentry{module@\spxentry{module}!pine.backend.log@\spxentry{pine.backend.log}|hyperpage}{29}
+\indexentry{pine.backend.log@\spxentry{pine.backend.log}!module@\spxentry{module}|hyperpage}{29}
+\indexentry{CONFIG\_FILE\_ENV (in module pine.backend.log)@\spxentry{CONFIG\_FILE\_ENV}\spxextra{in module pine.backend.log}|hyperpage}{29}
+\indexentry{ACCESS\_LOGGER\_NAME (in module pine.backend.log)@\spxentry{ACCESS\_LOGGER\_NAME}\spxextra{in module pine.backend.log}|hyperpage}{29}
+\indexentry{ACCESS\_LOGGER (in module pine.backend.log)@\spxentry{ACCESS\_LOGGER}\spxextra{in module pine.backend.log}|hyperpage}{29}
+\indexentry{Action (class in pine.backend.log)@\spxentry{Action}\spxextra{class in pine.backend.log}|hyperpage}{29}
+\indexentry{LOGIN (pine.backend.log.Action attribute)@\spxentry{LOGIN}\spxextra{pine.backend.log.Action attribute}|hyperpage}{29}
+\indexentry{LOGOUT (pine.backend.log.Action attribute)@\spxentry{LOGOUT}\spxextra{pine.backend.log.Action attribute}|hyperpage}{29}
+\indexentry{CREATE\_COLLECTION (pine.backend.log.Action attribute)@\spxentry{CREATE\_COLLECTION}\spxextra{pine.backend.log.Action attribute}|hyperpage}{29}
+\indexentry{VIEW\_DOCUMENT (pine.backend.log.Action attribute)@\spxentry{VIEW\_DOCUMENT}\spxextra{pine.backend.log.Action attribute}|hyperpage}{29}
+\indexentry{ADD\_DOCUMENT (pine.backend.log.Action attribute)@\spxentry{ADD\_DOCUMENT}\spxextra{pine.backend.log.Action attribute}|hyperpage}{29}
+\indexentry{ADD\_DOCUMENTS (pine.backend.log.Action attribute)@\spxentry{ADD\_DOCUMENTS}\spxextra{pine.backend.log.Action attribute}|hyperpage}{29}
+\indexentry{ANNOTATE\_DOCUMENT (pine.backend.log.Action attribute)@\spxentry{ANNOTATE\_DOCUMENT}\spxextra{pine.backend.log.Action attribute}|hyperpage}{30}
+\indexentry{ANNOTATE\_DOCUMENTS (pine.backend.log.Action attribute)@\spxentry{ANNOTATE\_DOCUMENTS}\spxextra{pine.backend.log.Action attribute}|hyperpage}{30}
+\indexentry{setup\_logging() (in module pine.backend.log)@\spxentry{setup\_logging()}\spxextra{in module pine.backend.log}|hyperpage}{30}
+\indexentry{get\_flask\_request\_info() (in module pine.backend.log)@\spxentry{get\_flask\_request\_info()}\spxextra{in module pine.backend.log}|hyperpage}{30}
+\indexentry{get\_flask\_logged\_in\_user() (in module pine.backend.log)@\spxentry{get\_flask\_logged\_in\_user()}\spxextra{in module pine.backend.log}|hyperpage}{30}
+\indexentry{access\_flask\_login() (in module pine.backend.log)@\spxentry{access\_flask\_login()}\spxextra{in module pine.backend.log}|hyperpage}{30}
+\indexentry{access\_flask\_logout() (in module pine.backend.log)@\spxentry{access\_flask\_logout()}\spxextra{in module pine.backend.log}|hyperpage}{30}
+\indexentry{access\_flask\_add\_collection() (in module pine.backend.log)@\spxentry{access\_flask\_add\_collection()}\spxextra{in module pine.backend.log}|hyperpage}{30}
+\indexentry{access\_flask\_view\_document() (in module pine.backend.log)@\spxentry{access\_flask\_view\_document()}\spxextra{in module pine.backend.log}|hyperpage}{30}
+\indexentry{access\_flask\_add\_document() (in module pine.backend.log)@\spxentry{access\_flask\_add\_document()}\spxextra{in module pine.backend.log}|hyperpage}{30}
+\indexentry{access\_flask\_add\_documents() (in module pine.backend.log)@\spxentry{access\_flask\_add\_documents()}\spxextra{in module pine.backend.log}|hyperpage}{30}
+\indexentry{access\_flask\_annotate\_document() (in module pine.backend.log)@\spxentry{access\_flask\_annotate\_document()}\spxextra{in module pine.backend.log}|hyperpage}{30}
+\indexentry{access\_flask\_annotate\_documents() (in module pine.backend.log)@\spxentry{access\_flask\_annotate\_documents()}\spxextra{in module pine.backend.log}|hyperpage}{30}
+\indexentry{access() (in module pine.backend.log)@\spxentry{access()}\spxextra{in module pine.backend.log}|hyperpage}{30}
+\indexentry{module@\spxentry{module}!pine.backend.models@\spxentry{pine.backend.models}|hyperpage}{30}
+\indexentry{pine.backend.models@\spxentry{pine.backend.models}!module@\spxentry{module}|hyperpage}{30}
+\indexentry{LoginFormFieldType (class in pine.backend.models)@\spxentry{LoginFormFieldType}\spxextra{class in pine.backend.models}|hyperpage}{30}
+\indexentry{TEXT (pine.backend.models.LoginFormFieldType attribute)@\spxentry{TEXT}\spxextra{pine.backend.models.LoginFormFieldType attribute}|hyperpage}{30}
+\indexentry{PASSWORD (pine.backend.models.LoginFormFieldType attribute)@\spxentry{PASSWORD}\spxextra{pine.backend.models.LoginFormFieldType attribute}|hyperpage}{30}
+\indexentry{LoginFormField (class in pine.backend.models)@\spxentry{LoginFormField}\spxextra{class in pine.backend.models}|hyperpage}{30}
+\indexentry{to\_dict() (pine.backend.models.LoginFormField method)@\spxentry{to\_dict()}\spxextra{pine.backend.models.LoginFormField method}|hyperpage}{30}
+\indexentry{LoginForm (class in pine.backend.models)@\spxentry{LoginForm}\spxextra{class in pine.backend.models}|hyperpage}{31}
+\indexentry{to\_dict() (pine.backend.models.LoginForm method)@\spxentry{to\_dict()}\spxextra{pine.backend.models.LoginForm method}|hyperpage}{31}
+\indexentry{AuthUser (class in pine.backend.models)@\spxentry{AuthUser}\spxextra{class in pine.backend.models}|hyperpage}{31}
+\indexentry{id() (pine.backend.models.AuthUser property)@\spxentry{id()}\spxextra{pine.backend.models.AuthUser property}|hyperpage}{31}
+\indexentry{username() (pine.backend.models.AuthUser property)@\spxentry{username()}\spxextra{pine.backend.models.AuthUser property}|hyperpage}{31}
+\indexentry{display\_name() (pine.backend.models.AuthUser property)@\spxentry{display\_name()}\spxextra{pine.backend.models.AuthUser property}|hyperpage}{31}
+\indexentry{is\_admin() (pine.backend.models.AuthUser property)@\spxentry{is\_admin()}\spxextra{pine.backend.models.AuthUser property}|hyperpage}{31}
+\indexentry{to\_dict() (pine.backend.models.AuthUser method)@\spxentry{to\_dict()}\spxextra{pine.backend.models.AuthUser method}|hyperpage}{31}
+\indexentry{UserDetails (class in pine.backend.models)@\spxentry{UserDetails}\spxextra{class in pine.backend.models}|hyperpage}{31}
+\indexentry{to\_dict() (pine.backend.models.UserDetails method)@\spxentry{to\_dict()}\spxextra{pine.backend.models.UserDetails method}|hyperpage}{31}
+\indexentry{create\_app() (in module pine.backend)@\spxentry{create\_app()}\spxextra{in module pine.backend}|hyperpage}{31}
+\indexentry{VERSION (in module pine.backend)@\spxentry{VERSION}\spxextra{in module pine.backend}|hyperpage}{31}
+\indexentry{\_\_version\_\_ (in module pine.backend)@\spxentry{\_\_version\_\_}\spxextra{in module pine.backend}|hyperpage}{31}
+\indexentry{module@\spxentry{module}!pine.client@\spxentry{pine.client}|hyperpage}{31}
+\indexentry{pine.client@\spxentry{pine.client}!module@\spxentry{module}|hyperpage}{31}
+\indexentry{module@\spxentry{module}!pine.client.client@\spxentry{pine.client.client}|hyperpage}{31}
+\indexentry{pine.client.client@\spxentry{pine.client.client}!module@\spxentry{module}|hyperpage}{31}
+\indexentry{\_standardize\_path() (in module pine.client.client)@\spxentry{\_standardize\_path()}\spxextra{in module pine.client.client}|hyperpage}{32}
+\indexentry{BaseClient (class in pine.client.client)@\spxentry{BaseClient}\spxextra{class in pine.client.client}|hyperpage}{32}
+\indexentry{\_\_metaclass\_\_ (pine.client.client.BaseClient attribute)@\spxentry{\_\_metaclass\_\_}\spxextra{pine.client.client.BaseClient attribute}|hyperpage}{32}
+\indexentry{base\_uri (pine.client.client.BaseClient attribute)@\spxentry{base\_uri}\spxextra{pine.client.client.BaseClient attribute}|hyperpage}{32}
+\indexentry{session (pine.client.client.BaseClient attribute)@\spxentry{session}\spxextra{pine.client.client.BaseClient attribute}|hyperpage}{32}
+\indexentry{is\_valid() (pine.client.client.BaseClient method)@\spxentry{is\_valid()}\spxextra{pine.client.client.BaseClient method}|hyperpage}{32}
+\indexentry{uri() (pine.client.client.BaseClient method)@\spxentry{uri()}\spxextra{pine.client.client.BaseClient method}|hyperpage}{33}
+\indexentry{\_req() (pine.client.client.BaseClient method)@\spxentry{\_req()}\spxextra{pine.client.client.BaseClient method}|hyperpage}{33}
+\indexentry{get() (pine.client.client.BaseClient method)@\spxentry{get()}\spxextra{pine.client.client.BaseClient method}|hyperpage}{33}
+\indexentry{put() (pine.client.client.BaseClient method)@\spxentry{put()}\spxextra{pine.client.client.BaseClient method}|hyperpage}{33}
+\indexentry{patch() (pine.client.client.BaseClient method)@\spxentry{patch()}\spxextra{pine.client.client.BaseClient method}|hyperpage}{34}
+\indexentry{post() (pine.client.client.BaseClient method)@\spxentry{post()}\spxextra{pine.client.client.BaseClient method}|hyperpage}{34}
+\indexentry{EveClient (class in pine.client.client)@\spxentry{EveClient}\spxextra{class in pine.client.client}|hyperpage}{34}
+\indexentry{DEFAULT\_DBNAME (pine.client.client.EveClient attribute)@\spxentry{DEFAULT\_DBNAME}\spxextra{pine.client.client.EveClient attribute}|hyperpage}{35}
+\indexentry{mongo\_base\_uri (pine.client.client.EveClient attribute)@\spxentry{mongo\_base\_uri}\spxextra{pine.client.client.EveClient attribute}|hyperpage}{35}
+\indexentry{mongo (pine.client.client.EveClient attribute)@\spxentry{mongo}\spxextra{pine.client.client.EveClient attribute}|hyperpage}{35}
+\indexentry{mongo\_db (pine.client.client.EveClient attribute)@\spxentry{mongo\_db}\spxextra{pine.client.client.EveClient attribute}|hyperpage}{35}
+\indexentry{is\_valid() (pine.client.client.EveClient method)@\spxentry{is\_valid()}\spxextra{pine.client.client.EveClient method}|hyperpage}{35}
+\indexentry{ping() (pine.client.client.EveClient method)@\spxentry{ping()}\spxextra{pine.client.client.EveClient method}|hyperpage}{35}
+\indexentry{about() (pine.client.client.EveClient method)@\spxentry{about()}\spxextra{pine.client.client.EveClient method}|hyperpage}{35}
+\indexentry{get\_resource() (pine.client.client.EveClient method)@\spxentry{get\_resource()}\spxextra{pine.client.client.EveClient method}|hyperpage}{35}
+\indexentry{\_add\_or\_replace\_resource() (pine.client.client.EveClient method)@\spxentry{\_add\_or\_replace\_resource()}\spxextra{pine.client.client.EveClient method}|hyperpage}{35}
+\indexentry{\_add\_resources() (pine.client.client.EveClient method)@\spxentry{\_add\_resources()}\spxextra{pine.client.client.EveClient method}|hyperpage}{36}
+\indexentry{add\_users() (pine.client.client.EveClient method)@\spxentry{add\_users()}\spxextra{pine.client.client.EveClient method}|hyperpage}{36}
+\indexentry{get\_users() (pine.client.client.EveClient method)@\spxentry{get\_users()}\spxextra{pine.client.client.EveClient method}|hyperpage}{36}
+\indexentry{add\_pipelines() (pine.client.client.EveClient method)@\spxentry{add\_pipelines()}\spxextra{pine.client.client.EveClient method}|hyperpage}{36}
+\indexentry{PineClient (class in pine.client.client)@\spxentry{PineClient}\spxextra{class in pine.client.client}|hyperpage}{37}
+\indexentry{is\_valid() (pine.client.client.PineClient method)@\spxentry{is\_valid()}\spxextra{pine.client.client.PineClient method}|hyperpage}{37}
+\indexentry{ping() (pine.client.client.PineClient method)@\spxentry{ping()}\spxextra{pine.client.client.PineClient method}|hyperpage}{37}
+\indexentry{about() (pine.client.client.PineClient method)@\spxentry{about()}\spxextra{pine.client.client.PineClient method}|hyperpage}{37}
+\indexentry{get\_logged\_in\_user() (pine.client.client.PineClient method)@\spxentry{get\_logged\_in\_user()}\spxextra{pine.client.client.PineClient method}|hyperpage}{37}
+\indexentry{get\_my\_user\_id() (pine.client.client.PineClient method)@\spxentry{get\_my\_user\_id()}\spxextra{pine.client.client.PineClient method}|hyperpage}{37}
+\indexentry{is\_logged\_in() (pine.client.client.PineClient method)@\spxentry{is\_logged\_in()}\spxextra{pine.client.client.PineClient method}|hyperpage}{38}
+\indexentry{\_check\_login() (pine.client.client.PineClient method)@\spxentry{\_check\_login()}\spxextra{pine.client.client.PineClient method}|hyperpage}{38}
+\indexentry{get\_auth\_module() (pine.client.client.PineClient method)@\spxentry{get\_auth\_module()}\spxextra{pine.client.client.PineClient method}|hyperpage}{38}
+\indexentry{login\_eve() (pine.client.client.PineClient method)@\spxentry{login\_eve()}\spxextra{pine.client.client.PineClient method}|hyperpage}{38}
+\indexentry{logout() (pine.client.client.PineClient method)@\spxentry{logout()}\spxextra{pine.client.client.PineClient method}|hyperpage}{38}
+\indexentry{get\_pipelines() (pine.client.client.PineClient method)@\spxentry{get\_pipelines()}\spxextra{pine.client.client.PineClient method}|hyperpage}{38}
+\indexentry{collection\_builder() (pine.client.client.PineClient method)@\spxentry{collection\_builder()}\spxextra{pine.client.client.PineClient method}|hyperpage}{39}
+\indexentry{create\_collection() (pine.client.client.PineClient method)@\spxentry{create\_collection()}\spxextra{pine.client.client.PineClient method}|hyperpage}{39}
+\indexentry{get\_collection\_documents() (pine.client.client.PineClient method)@\spxentry{get\_collection\_documents()}\spxextra{pine.client.client.PineClient method}|hyperpage}{39}
+\indexentry{add\_document() (pine.client.client.PineClient method)@\spxentry{add\_document()}\spxextra{pine.client.client.PineClient method}|hyperpage}{39}
+\indexentry{add\_documents() (pine.client.client.PineClient method)@\spxentry{add\_documents()}\spxextra{pine.client.client.PineClient method}|hyperpage}{40}
+\indexentry{annotate\_document() (pine.client.client.PineClient method)@\spxentry{annotate\_document()}\spxextra{pine.client.client.PineClient method}|hyperpage}{40}
+\indexentry{annotate\_collection\_documents() (pine.client.client.PineClient method)@\spxentry{annotate\_collection\_documents()}\spxextra{pine.client.client.PineClient method}|hyperpage}{41}
+\indexentry{LocalPineClient (class in pine.client.client)@\spxentry{LocalPineClient}\spxextra{class in pine.client.client}|hyperpage}{41}
+\indexentry{eve (pine.client.client.LocalPineClient attribute)@\spxentry{eve}\spxextra{pine.client.client.LocalPineClient attribute}|hyperpage}{41}
+\indexentry{is\_valid() (pine.client.client.LocalPineClient method)@\spxentry{is\_valid()}\spxextra{pine.client.client.LocalPineClient method}|hyperpage}{41}
+\indexentry{module@\spxentry{module}!pine.client.exceptions@\spxentry{pine.client.exceptions}|hyperpage}{42}
+\indexentry{pine.client.exceptions@\spxentry{pine.client.exceptions}!module@\spxentry{module}|hyperpage}{42}
+\indexentry{PineClientException@\spxentry{PineClientException}|hyperpage}{42}
+\indexentry{message (pine.client.exceptions.PineClientException attribute)@\spxentry{message}\spxextra{pine.client.exceptions.PineClientException attribute}|hyperpage}{42}
+\indexentry{PineClientHttpException@\spxentry{PineClientHttpException}|hyperpage}{42}
+\indexentry{resp (pine.client.exceptions.PineClientHttpException attribute)@\spxentry{resp}\spxextra{pine.client.exceptions.PineClientHttpException attribute}|hyperpage}{42}
+\indexentry{PineClientValueException@\spxentry{PineClientValueException}|hyperpage}{42}
+\indexentry{PineClientAuthException@\spxentry{PineClientAuthException}|hyperpage}{43}
+\indexentry{module@\spxentry{module}!pine.client.log@\spxentry{pine.client.log}|hyperpage}{43}
+\indexentry{pine.client.log@\spxentry{pine.client.log}!module@\spxentry{module}|hyperpage}{43}
+\indexentry{CONFIG\_FILE\_ENV (in module pine.client.log)@\spxentry{CONFIG\_FILE\_ENV}\spxextra{in module pine.client.log}|hyperpage}{43}
+\indexentry{setup\_logging() (in module pine.client.log)@\spxentry{setup\_logging()}\spxextra{in module pine.client.log}|hyperpage}{43}
+\indexentry{module@\spxentry{module}!pine.client.models@\spxentry{pine.client.models}|hyperpage}{43}
+\indexentry{pine.client.models@\spxentry{pine.client.models}!module@\spxentry{module}|hyperpage}{43}
+\indexentry{ID\_FIELD (in module pine.client.models)@\spxentry{ID\_FIELD}\spxextra{in module pine.client.models}|hyperpage}{44}
+\indexentry{ITEMS\_FIELD (in module pine.client.models)@\spxentry{ITEMS\_FIELD}\spxextra{in module pine.client.models}|hyperpage}{44}
+\indexentry{\_check\_field\_required\_bool() (in module pine.client.models)@\spxentry{\_check\_field\_required\_bool()}\spxextra{in module pine.client.models}|hyperpage}{44}
+\indexentry{\_check\_field\_int() (in module pine.client.models)@\spxentry{\_check\_field\_int()}\spxextra{in module pine.client.models}|hyperpage}{45}
+\indexentry{\_check\_field\_required\_int() (in module pine.client.models)@\spxentry{\_check\_field\_required\_int()}\spxextra{in module pine.client.models}|hyperpage}{45}
+\indexentry{\_check\_field\_float() (in module pine.client.models)@\spxentry{\_check\_field\_float()}\spxextra{in module pine.client.models}|hyperpage}{45}
+\indexentry{\_check\_field\_required\_float() (in module pine.client.models)@\spxentry{\_check\_field\_required\_float()}\spxextra{in module pine.client.models}|hyperpage}{45}
+\indexentry{\_check\_field\_string() (in module pine.client.models)@\spxentry{\_check\_field\_string()}\spxextra{in module pine.client.models}|hyperpage}{45}
+\indexentry{\_check\_field\_required\_string() (in module pine.client.models)@\spxentry{\_check\_field\_required\_string()}\spxextra{in module pine.client.models}|hyperpage}{46}
+\indexentry{\_check\_field\_string\_list() (in module pine.client.models)@\spxentry{\_check\_field\_string\_list()}\spxextra{in module pine.client.models}|hyperpage}{46}
+\indexentry{\_check\_field\_required\_string\_list() (in module pine.client.models)@\spxentry{\_check\_field\_required\_string\_list()}\spxextra{in module pine.client.models}|hyperpage}{46}
+\indexentry{\_check\_field\_dict() (in module pine.client.models)@\spxentry{\_check\_field\_dict()}\spxextra{in module pine.client.models}|hyperpage}{46}
+\indexentry{\_check\_field\_required\_dict() (in module pine.client.models)@\spxentry{\_check\_field\_required\_dict()}\spxextra{in module pine.client.models}|hyperpage}{46}
+\indexentry{\_check\_field\_bool() (in module pine.client.models)@\spxentry{\_check\_field\_bool()}\spxextra{in module pine.client.models}|hyperpage}{47}
+\indexentry{is\_valid\_eve\_user() (in module pine.client.models)@\spxentry{is\_valid\_eve\_user()}\spxextra{in module pine.client.models}|hyperpage}{47}
+\indexentry{is\_valid\_eve\_pipeline() (in module pine.client.models)@\spxentry{is\_valid\_eve\_pipeline()}\spxextra{in module pine.client.models}|hyperpage}{47}
+\indexentry{is\_valid\_eve\_collection() (in module pine.client.models)@\spxentry{is\_valid\_eve\_collection()}\spxextra{in module pine.client.models}|hyperpage}{47}
+\indexentry{is\_valid\_collection() (in module pine.client.models)@\spxentry{is\_valid\_collection()}\spxextra{in module pine.client.models}|hyperpage}{48}
+\indexentry{is\_valid\_eve\_document() (in module pine.client.models)@\spxentry{is\_valid\_eve\_document()}\spxextra{in module pine.client.models}|hyperpage}{48}
+\indexentry{is\_valid\_doc\_annotation() (in module pine.client.models)@\spxentry{is\_valid\_doc\_annotation()}\spxextra{in module pine.client.models}|hyperpage}{48}
+\indexentry{is\_valid\_ner\_annotation() (in module pine.client.models)@\spxentry{is\_valid\_ner\_annotation()}\spxextra{in module pine.client.models}|hyperpage}{49}
+\indexentry{is\_valid\_annotation() (in module pine.client.models)@\spxentry{is\_valid\_annotation()}\spxextra{in module pine.client.models}|hyperpage}{49}
+\indexentry{is\_valid\_doc\_annotations() (in module pine.client.models)@\spxentry{is\_valid\_doc\_annotations()}\spxextra{in module pine.client.models}|hyperpage}{49}
+\indexentry{CollectionBuilder (class in pine.client.models)@\spxentry{CollectionBuilder}\spxextra{class in pine.client.models}|hyperpage}{50}
+\indexentry{form (pine.client.models.CollectionBuilder attribute)@\spxentry{form}\spxextra{pine.client.models.CollectionBuilder attribute}|hyperpage}{51}
+\indexentry{files (pine.client.models.CollectionBuilder attribute)@\spxentry{files}\spxextra{pine.client.models.CollectionBuilder attribute}|hyperpage}{51}
+\indexentry{collection() (pine.client.models.CollectionBuilder property)@\spxentry{collection()}\spxextra{pine.client.models.CollectionBuilder property}|hyperpage}{51}
+\indexentry{form\_json() (pine.client.models.CollectionBuilder property)@\spxentry{form\_json()}\spxextra{pine.client.models.CollectionBuilder property}|hyperpage}{51}
+\indexentry{creator\_id() (pine.client.models.CollectionBuilder method)@\spxentry{creator\_id()}\spxextra{pine.client.models.CollectionBuilder method}|hyperpage}{51}
+\indexentry{viewer() (pine.client.models.CollectionBuilder method)@\spxentry{viewer()}\spxextra{pine.client.models.CollectionBuilder method}|hyperpage}{51}
+\indexentry{annotator() (pine.client.models.CollectionBuilder method)@\spxentry{annotator()}\spxextra{pine.client.models.CollectionBuilder method}|hyperpage}{51}
+\indexentry{label() (pine.client.models.CollectionBuilder method)@\spxentry{label()}\spxextra{pine.client.models.CollectionBuilder method}|hyperpage}{52}
+\indexentry{metadata() (pine.client.models.CollectionBuilder method)@\spxentry{metadata()}\spxextra{pine.client.models.CollectionBuilder method}|hyperpage}{52}
+\indexentry{title() (pine.client.models.CollectionBuilder method)@\spxentry{title()}\spxextra{pine.client.models.CollectionBuilder method}|hyperpage}{52}
+\indexentry{description() (pine.client.models.CollectionBuilder method)@\spxentry{description()}\spxextra{pine.client.models.CollectionBuilder method}|hyperpage}{52}
+\indexentry{configuration() (pine.client.models.CollectionBuilder method)@\spxentry{configuration()}\spxextra{pine.client.models.CollectionBuilder method}|hyperpage}{52}
+\indexentry{allow\_overlapping\_ner\_annotations() (pine.client.models.CollectionBuilder method)@\spxentry{allow\_overlapping\_ner\_annotations()}\spxextra{pine.client.models.CollectionBuilder method}|hyperpage}{52}
+\indexentry{classifier() (pine.client.models.CollectionBuilder method)@\spxentry{classifier()}\spxextra{pine.client.models.CollectionBuilder method}|hyperpage}{52}
+\indexentry{document\_csv\_file() (pine.client.models.CollectionBuilder method)@\spxentry{document\_csv\_file()}\spxextra{pine.client.models.CollectionBuilder method}|hyperpage}{53}
+\indexentry{image\_file() (pine.client.models.CollectionBuilder method)@\spxentry{image\_file()}\spxextra{pine.client.models.CollectionBuilder method}|hyperpage}{53}
+\indexentry{is\_valid() (pine.client.models.CollectionBuilder method)@\spxentry{is\_valid()}\spxextra{pine.client.models.CollectionBuilder method}|hyperpage}{53}
+\indexentry{remove\_eve\_fields() (in module pine.client.models)@\spxentry{remove\_eve\_fields()}\spxextra{in module pine.client.models}|hyperpage}{53}
+\indexentry{remove\_nonupdatable\_fields() (in module pine.client.models)@\spxentry{remove\_nonupdatable\_fields()}\spxextra{in module pine.client.models}|hyperpage}{54}
+\indexentry{module@\spxentry{module}!pine.client.password@\spxentry{pine.client.password}|hyperpage}{54}
+\indexentry{pine.client.password@\spxentry{pine.client.password}!module@\spxentry{module}|hyperpage}{54}
+\indexentry{hash\_password() (in module pine.client.password)@\spxentry{hash\_password()}\spxextra{in module pine.client.password}|hyperpage}{54}
+\indexentry{check\_password() (in module pine.client.password)@\spxentry{check\_password()}\spxextra{in module pine.client.password}|hyperpage}{54}
+\indexentry{PineClient (class in pine.client)@\spxentry{PineClient}\spxextra{class in pine.client}|hyperpage}{55}
+\indexentry{is\_valid() (pine.client.PineClient method)@\spxentry{is\_valid()}\spxextra{pine.client.PineClient method}|hyperpage}{55}
+\indexentry{ping() (pine.client.PineClient method)@\spxentry{ping()}\spxextra{pine.client.PineClient method}|hyperpage}{55}
+\indexentry{about() (pine.client.PineClient method)@\spxentry{about()}\spxextra{pine.client.PineClient method}|hyperpage}{55}
+\indexentry{get\_logged\_in\_user() (pine.client.PineClient method)@\spxentry{get\_logged\_in\_user()}\spxextra{pine.client.PineClient method}|hyperpage}{55}
+\indexentry{get\_my\_user\_id() (pine.client.PineClient method)@\spxentry{get\_my\_user\_id()}\spxextra{pine.client.PineClient method}|hyperpage}{56}
+\indexentry{is\_logged\_in() (pine.client.PineClient method)@\spxentry{is\_logged\_in()}\spxextra{pine.client.PineClient method}|hyperpage}{56}
+\indexentry{\_check\_login() (pine.client.PineClient method)@\spxentry{\_check\_login()}\spxextra{pine.client.PineClient method}|hyperpage}{56}
+\indexentry{get\_auth\_module() (pine.client.PineClient method)@\spxentry{get\_auth\_module()}\spxextra{pine.client.PineClient method}|hyperpage}{56}
+\indexentry{login\_eve() (pine.client.PineClient method)@\spxentry{login\_eve()}\spxextra{pine.client.PineClient method}|hyperpage}{56}
+\indexentry{logout() (pine.client.PineClient method)@\spxentry{logout()}\spxextra{pine.client.PineClient method}|hyperpage}{56}
+\indexentry{get\_pipelines() (pine.client.PineClient method)@\spxentry{get\_pipelines()}\spxextra{pine.client.PineClient method}|hyperpage}{56}
+\indexentry{collection\_builder() (pine.client.PineClient method)@\spxentry{collection\_builder()}\spxextra{pine.client.PineClient method}|hyperpage}{57}
+\indexentry{create\_collection() (pine.client.PineClient method)@\spxentry{create\_collection()}\spxextra{pine.client.PineClient method}|hyperpage}{57}
+\indexentry{get\_collection\_documents() (pine.client.PineClient method)@\spxentry{get\_collection\_documents()}\spxextra{pine.client.PineClient method}|hyperpage}{57}
+\indexentry{add\_document() (pine.client.PineClient method)@\spxentry{add\_document()}\spxextra{pine.client.PineClient method}|hyperpage}{57}
+\indexentry{add\_documents() (pine.client.PineClient method)@\spxentry{add\_documents()}\spxextra{pine.client.PineClient method}|hyperpage}{58}
+\indexentry{annotate\_document() (pine.client.PineClient method)@\spxentry{annotate\_document()}\spxextra{pine.client.PineClient method}|hyperpage}{58}
+\indexentry{annotate\_collection\_documents() (pine.client.PineClient method)@\spxentry{annotate\_collection\_documents()}\spxextra{pine.client.PineClient method}|hyperpage}{59}
+\indexentry{LocalPineClient (class in pine.client)@\spxentry{LocalPineClient}\spxextra{class in pine.client}|hyperpage}{59}
+\indexentry{eve (pine.client.LocalPineClient attribute)@\spxentry{eve}\spxextra{pine.client.LocalPineClient attribute}|hyperpage}{59}
+\indexentry{is\_valid() (pine.client.LocalPineClient method)@\spxentry{is\_valid()}\spxextra{pine.client.LocalPineClient method}|hyperpage}{59}
+\indexentry{setup\_logging() (in module pine.client)@\spxentry{setup\_logging()}\spxextra{in module pine.client}|hyperpage}{60}
+\indexentry{CollectionBuilder (class in pine.client)@\spxentry{CollectionBuilder}\spxextra{class in pine.client}|hyperpage}{60}
+\indexentry{form (pine.client.CollectionBuilder attribute)@\spxentry{form}\spxextra{pine.client.CollectionBuilder attribute}|hyperpage}{61}
+\indexentry{files (pine.client.CollectionBuilder attribute)@\spxentry{files}\spxextra{pine.client.CollectionBuilder attribute}|hyperpage}{61}
+\indexentry{collection() (pine.client.CollectionBuilder property)@\spxentry{collection()}\spxextra{pine.client.CollectionBuilder property}|hyperpage}{61}
+\indexentry{form\_json() (pine.client.CollectionBuilder property)@\spxentry{form\_json()}\spxextra{pine.client.CollectionBuilder property}|hyperpage}{61}
+\indexentry{creator\_id() (pine.client.CollectionBuilder method)@\spxentry{creator\_id()}\spxextra{pine.client.CollectionBuilder method}|hyperpage}{61}
+\indexentry{viewer() (pine.client.CollectionBuilder method)@\spxentry{viewer()}\spxextra{pine.client.CollectionBuilder method}|hyperpage}{61}
+\indexentry{annotator() (pine.client.CollectionBuilder method)@\spxentry{annotator()}\spxextra{pine.client.CollectionBuilder method}|hyperpage}{61}
+\indexentry{label() (pine.client.CollectionBuilder method)@\spxentry{label()}\spxextra{pine.client.CollectionBuilder method}|hyperpage}{61}
+\indexentry{metadata() (pine.client.CollectionBuilder method)@\spxentry{metadata()}\spxextra{pine.client.CollectionBuilder method}|hyperpage}{62}
+\indexentry{title() (pine.client.CollectionBuilder method)@\spxentry{title()}\spxextra{pine.client.CollectionBuilder method}|hyperpage}{62}
+\indexentry{description() (pine.client.CollectionBuilder method)@\spxentry{description()}\spxextra{pine.client.CollectionBuilder method}|hyperpage}{62}
+\indexentry{configuration() (pine.client.CollectionBuilder method)@\spxentry{configuration()}\spxextra{pine.client.CollectionBuilder method}|hyperpage}{62}
+\indexentry{allow\_overlapping\_ner\_annotations() (pine.client.CollectionBuilder method)@\spxentry{allow\_overlapping\_ner\_annotations()}\spxextra{pine.client.CollectionBuilder method}|hyperpage}{62}
+\indexentry{classifier() (pine.client.CollectionBuilder method)@\spxentry{classifier()}\spxextra{pine.client.CollectionBuilder method}|hyperpage}{62}
+\indexentry{document\_csv\_file() (pine.client.CollectionBuilder method)@\spxentry{document\_csv\_file()}\spxextra{pine.client.CollectionBuilder method}|hyperpage}{63}
+\indexentry{image\_file() (pine.client.CollectionBuilder method)@\spxentry{image\_file()}\spxextra{pine.client.CollectionBuilder method}|hyperpage}{63}
+\indexentry{is\_valid() (pine.client.CollectionBuilder method)@\spxentry{is\_valid()}\spxextra{pine.client.CollectionBuilder method}|hyperpage}{63}
+\indexentry{module@\spxentry{module}!pine.pipelines@\spxentry{pine.pipelines}|hyperpage}{64}
+\indexentry{pine.pipelines@\spxentry{pine.pipelines}!module@\spxentry{module}|hyperpage}{64}
+\indexentry{module@\spxentry{module}!pine.pipelines.app@\spxentry{pine.pipelines.app}|hyperpage}{64}
+\indexentry{pine.pipelines.app@\spxentry{pine.pipelines.app}!module@\spxentry{module}|hyperpage}{64}
+\indexentry{module@\spxentry{module}!pine.pipelines.app.listener@\spxentry{pine.pipelines.app.listener}|hyperpage}{64}
+\indexentry{pine.pipelines.app.listener@\spxentry{pine.pipelines.app.listener}!module@\spxentry{module}|hyperpage}{64}
+\indexentry{module@\spxentry{module}!pine.pipelines.app.listener.main@\spxentry{pine.pipelines.app.listener.main}|hyperpage}{64}
+\indexentry{pine.pipelines.app.listener.main@\spxentry{pine.pipelines.app.listener.main}!module@\spxentry{module}|hyperpage}{64}
+\indexentry{backoff\_hdlr() (in module pine.pipelines.app.listener.main)@\spxentry{backoff\_hdlr()}\spxextra{in module pine.pipelines.app.listener.main}|hyperpage}{64}
+\indexentry{setup\_logging() (in module pine.pipelines.app.listener.main)@\spxentry{setup\_logging()}\spxextra{in module pine.pipelines.app.listener.main}|hyperpage}{64}
+\indexentry{run() (in module pine.pipelines.app.listener.main)@\spxentry{run()}\spxextra{in module pine.pipelines.app.listener.main}|hyperpage}{64}
+\indexentry{module@\spxentry{module}!pine.pipelines.app.listener.service\_listener@\spxentry{pine.pipelines.app.listener.service\_listener}|hyperpage}{64}
+\indexentry{pine.pipelines.app.listener.service\_listener@\spxentry{pine.pipelines.app.listener.service\_listener}!module@\spxentry{module}|hyperpage}{64}
+\indexentry{config (in module pine.pipelines.app.listener.service\_listener)@\spxentry{config}\spxextra{in module pine.pipelines.app.listener.service\_listener}|hyperpage}{64}
+\indexentry{logger (in module pine.pipelines.app.listener.service\_listener)@\spxentry{logger}\spxextra{in module pine.pipelines.app.listener.service\_listener}|hyperpage}{64}
+\indexentry{ServiceRegistration (class in pine.pipelines.app.listener.service\_listener)@\spxentry{ServiceRegistration}\spxextra{class in pine.pipelines.app.listener.service\_listener}|hyperpage}{64}
+\indexentry{from\_registration\_format() (pine.pipelines.app.listener.service\_listener.ServiceRegistration class method)@\spxentry{from\_registration\_format()}\spxextra{pine.pipelines.app.listener.service\_listener.ServiceRegistration class method}|hyperpage}{65}
+\indexentry{to\_registration\_format() (pine.pipelines.app.listener.service\_listener.ServiceRegistration method)@\spxentry{to\_registration\_format()}\spxextra{pine.pipelines.app.listener.service\_listener.ServiceRegistration method}|hyperpage}{65}
+\indexentry{ServiceListener (class in pine.pipelines.app.listener.service\_listener)@\spxentry{ServiceListener}\spxextra{class in pine.pipelines.app.listener.service\_listener}|hyperpage}{65}
+\indexentry{r\_pool (pine.pipelines.app.listener.service\_listener.ServiceListener attribute)@\spxentry{r\_pool}\spxextra{pine.pipelines.app.listener.service\_listener.ServiceListener attribute}|hyperpage}{65}
+\indexentry{r\_conn (pine.pipelines.app.listener.service\_listener.ServiceListener attribute)@\spxentry{r\_conn}\spxextra{pine.pipelines.app.listener.service\_listener.ServiceListener attribute}|hyperpage}{65}
+\indexentry{registration\_poll (pine.pipelines.app.listener.service\_listener.ServiceListener attribute)@\spxentry{registration\_poll}\spxextra{pine.pipelines.app.listener.service\_listener.ServiceListener attribute}|hyperpage}{65}
+\indexentry{listener\_poll (pine.pipelines.app.listener.service\_listener.ServiceListener attribute)@\spxentry{listener\_poll}\spxextra{pine.pipelines.app.listener.service\_listener.ServiceListener attribute}|hyperpage}{65}
+\indexentry{processor\_poll (pine.pipelines.app.listener.service\_listener.ServiceListener attribute)@\spxentry{processor\_poll}\spxextra{pine.pipelines.app.listener.service\_listener.ServiceListener attribute}|hyperpage}{65}
+\indexentry{processing\_limit (pine.pipelines.app.listener.service\_listener.ServiceListener attribute)@\spxentry{processing\_limit}\spxextra{pine.pipelines.app.listener.service\_listener.ServiceListener attribute}|hyperpage}{65}
+\indexentry{processing\_queue\_key (pine.pipelines.app.listener.service\_listener.ServiceListener attribute)@\spxentry{processing\_queue\_key}\spxextra{pine.pipelines.app.listener.service\_listener.ServiceListener attribute}|hyperpage}{65}
+\indexentry{processing\_queue\_key\_timeout (pine.pipelines.app.listener.service\_listener.ServiceListener attribute)@\spxentry{processing\_queue\_key\_timeout}\spxextra{pine.pipelines.app.listener.service\_listener.ServiceListener attribute}|hyperpage}{65}
+\indexentry{processing\_lock\_key (pine.pipelines.app.listener.service\_listener.ServiceListener attribute)@\spxentry{processing\_lock\_key}\spxextra{pine.pipelines.app.listener.service\_listener.ServiceListener attribute}|hyperpage}{65}
+\indexentry{processing\_lock\_key\_timeout (pine.pipelines.app.listener.service\_listener.ServiceListener attribute)@\spxentry{processing\_lock\_key\_timeout}\spxextra{pine.pipelines.app.listener.service\_listener.ServiceListener attribute}|hyperpage}{65}
+\indexentry{preprocessing\_lock\_key (pine.pipelines.app.listener.service\_listener.ServiceListener attribute)@\spxentry{preprocessing\_lock\_key}\spxextra{pine.pipelines.app.listener.service\_listener.ServiceListener attribute}|hyperpage}{65}
+\indexentry{preprocessing\_lock\_key\_timeout (pine.pipelines.app.listener.service\_listener.ServiceListener attribute)@\spxentry{preprocessing\_lock\_key\_timeout}\spxextra{pine.pipelines.app.listener.service\_listener.ServiceListener attribute}|hyperpage}{65}
+\indexentry{preprocessing\_worker\_lock\_key (pine.pipelines.app.listener.service\_listener.ServiceListener attribute)@\spxentry{preprocessing\_worker\_lock\_key}\spxextra{pine.pipelines.app.listener.service\_listener.ServiceListener attribute}|hyperpage}{65}
+\indexentry{preprocessing\_worker\_lock\_key\_timeout (pine.pipelines.app.listener.service\_listener.ServiceListener attribute)@\spxentry{preprocessing\_worker\_lock\_key\_timeout}\spxextra{pine.pipelines.app.listener.service\_listener.ServiceListener attribute}|hyperpage}{65}
+\indexentry{registration\_channel (pine.pipelines.app.listener.service\_listener.ServiceListener attribute)@\spxentry{registration\_channel}\spxextra{pine.pipelines.app.listener.service\_listener.ServiceListener attribute}|hyperpage}{65}
+\indexentry{publish\_response() (pine.pipelines.app.listener.service\_listener.ServiceListener class method)@\spxentry{publish\_response()}\spxextra{pine.pipelines.app.listener.service\_listener.ServiceListener class method}|hyperpage}{65}
+\indexentry{start\_workers() (pine.pipelines.app.listener.service\_listener.ServiceListener method)@\spxentry{start\_workers()}\spxextra{pine.pipelines.app.listener.service\_listener.ServiceListener method}|hyperpage}{65}
+\indexentry{stop\_workers() (pine.pipelines.app.listener.service\_listener.ServiceListener method)@\spxentry{stop\_workers()}\spxextra{pine.pipelines.app.listener.service\_listener.ServiceListener method}|hyperpage}{65}
+\indexentry{pre\_process\_message() (pine.pipelines.app.listener.service\_listener.ServiceListener method)@\spxentry{pre\_process\_message()}\spxextra{pine.pipelines.app.listener.service\_listener.ServiceListener method}|hyperpage}{65}
+\indexentry{process\_message() (pine.pipelines.app.listener.service\_listener.ServiceListener static method)@\spxentry{process\_message()}\spxextra{pine.pipelines.app.listener.service\_listener.ServiceListener static method}|hyperpage}{65}
+\indexentry{\_start\_registration\_task() (pine.pipelines.app.listener.service\_listener.ServiceListener method)@\spxentry{\_start\_registration\_task()}\spxextra{pine.pipelines.app.listener.service\_listener.ServiceListener method}|hyperpage}{65}
+\indexentry{\_start\_channel\_task() (pine.pipelines.app.listener.service\_listener.ServiceListener method)@\spxentry{\_start\_channel\_task()}\spxextra{pine.pipelines.app.listener.service\_listener.ServiceListener method}|hyperpage}{65}
+\indexentry{\_start\_listener\_task() (pine.pipelines.app.listener.service\_listener.ServiceListener method)@\spxentry{\_start\_listener\_task()}\spxextra{pine.pipelines.app.listener.service\_listener.ServiceListener method}|hyperpage}{66}
+\indexentry{\_start\_queue\_processor\_task() (pine.pipelines.app.listener.service\_listener.ServiceListener method)@\spxentry{\_start\_queue\_processor\_task()}\spxextra{pine.pipelines.app.listener.service\_listener.ServiceListener method}|hyperpage}{66}
+\indexentry{module@\spxentry{module}!pine.pipelines.shared@\spxentry{pine.pipelines.shared}|hyperpage}{66}
+\indexentry{pine.pipelines.shared@\spxentry{pine.pipelines.shared}!module@\spxentry{module}|hyperpage}{66}
+\indexentry{module@\spxentry{module}!pine.pipelines.shared.config@\spxentry{pine.pipelines.shared.config}|hyperpage}{66}
+\indexentry{pine.pipelines.shared.config@\spxentry{pine.pipelines.shared.config}!module@\spxentry{module}|hyperpage}{66}
+\indexentry{LOGGER (in module pine.pipelines.shared.config)@\spxentry{LOGGER}\spxextra{in module pine.pipelines.shared.config}|hyperpage}{66}
+\indexentry{BaseConfig (class in pine.pipelines.shared.config)@\spxentry{BaseConfig}\spxextra{class in pine.pipelines.shared.config}|hyperpage}{66}
+\indexentry{ROOT\_DIR (pine.pipelines.shared.config.BaseConfig attribute)@\spxentry{ROOT\_DIR}\spxextra{pine.pipelines.shared.config.BaseConfig attribute}|hyperpage}{66}
+\indexentry{BASE\_DIR (pine.pipelines.shared.config.BaseConfig attribute)@\spxentry{BASE\_DIR}\spxextra{pine.pipelines.shared.config.BaseConfig attribute}|hyperpage}{66}
+\indexentry{BASE\_CFG\_FILE (pine.pipelines.shared.config.BaseConfig attribute)@\spxentry{BASE\_CFG\_FILE}\spxextra{pine.pipelines.shared.config.BaseConfig attribute}|hyperpage}{66}
+\indexentry{BASE\_ENV\_PREFIX (pine.pipelines.shared.config.BaseConfig attribute)@\spxentry{BASE\_ENV\_PREFIX}\spxextra{pine.pipelines.shared.config.BaseConfig attribute}|hyperpage}{66}
+\indexentry{DEBUG (pine.pipelines.shared.config.BaseConfig attribute)@\spxentry{DEBUG}\spxextra{pine.pipelines.shared.config.BaseConfig attribute}|hyperpage}{66}
+\indexentry{TESTING (pine.pipelines.shared.config.BaseConfig attribute)@\spxentry{TESTING}\spxextra{pine.pipelines.shared.config.BaseConfig attribute}|hyperpage}{66}
+\indexentry{LOGGER\_NAME (pine.pipelines.shared.config.BaseConfig attribute)@\spxentry{LOGGER\_NAME}\spxextra{pine.pipelines.shared.config.BaseConfig attribute}|hyperpage}{66}
+\indexentry{LOGGER\_DIR (pine.pipelines.shared.config.BaseConfig attribute)@\spxentry{LOGGER\_DIR}\spxextra{pine.pipelines.shared.config.BaseConfig attribute}|hyperpage}{66}
+\indexentry{LOGGER\_FILE (pine.pipelines.shared.config.BaseConfig attribute)@\spxentry{LOGGER\_FILE}\spxextra{pine.pipelines.shared.config.BaseConfig attribute}|hyperpage}{66}
+\indexentry{LOGGER\_LEVEL (pine.pipelines.shared.config.BaseConfig attribute)@\spxentry{LOGGER\_LEVEL}\spxextra{pine.pipelines.shared.config.BaseConfig attribute}|hyperpage}{66}
+\indexentry{PIPELINE (pine.pipelines.shared.config.BaseConfig attribute)@\spxentry{PIPELINE}\spxextra{pine.pipelines.shared.config.BaseConfig attribute}|hyperpage}{66}
+\indexentry{EVE\_HOST (pine.pipelines.shared.config.BaseConfig attribute)@\spxentry{EVE\_HOST}\spxextra{pine.pipelines.shared.config.BaseConfig attribute}|hyperpage}{66}
+\indexentry{EVE\_PORT (pine.pipelines.shared.config.BaseConfig attribute)@\spxentry{EVE\_PORT}\spxextra{pine.pipelines.shared.config.BaseConfig attribute}|hyperpage}{66}
+\indexentry{REDIS\_HOST (pine.pipelines.shared.config.BaseConfig attribute)@\spxentry{REDIS\_HOST}\spxextra{pine.pipelines.shared.config.BaseConfig attribute}|hyperpage}{66}
+\indexentry{REDIS\_PORT (pine.pipelines.shared.config.BaseConfig attribute)@\spxentry{REDIS\_PORT}\spxextra{pine.pipelines.shared.config.BaseConfig attribute}|hyperpage}{66}
+\indexentry{REDIS\_USR (pine.pipelines.shared.config.BaseConfig attribute)@\spxentry{REDIS\_USR}\spxextra{pine.pipelines.shared.config.BaseConfig attribute}|hyperpage}{66}
+\indexentry{REDIS\_PWD (pine.pipelines.shared.config.BaseConfig attribute)@\spxentry{REDIS\_PWD}\spxextra{pine.pipelines.shared.config.BaseConfig attribute}|hyperpage}{66}
+\indexentry{REDIS\_DBNUM (pine.pipelines.shared.config.BaseConfig attribute)@\spxentry{REDIS\_DBNUM}\spxextra{pine.pipelines.shared.config.BaseConfig attribute}|hyperpage}{66}
+\indexentry{REDIS\_PREFIX (pine.pipelines.shared.config.BaseConfig attribute)@\spxentry{REDIS\_PREFIX}\spxextra{pine.pipelines.shared.config.BaseConfig attribute}|hyperpage}{66}
+\indexentry{REDIS\_EXPIRE (pine.pipelines.shared.config.BaseConfig attribute)@\spxentry{REDIS\_EXPIRE}\spxextra{pine.pipelines.shared.config.BaseConfig attribute}|hyperpage}{67}
+\indexentry{SCHEDULER\_REGISTRATION\_TIMEOUT (pine.pipelines.shared.config.BaseConfig attribute)@\spxentry{SCHEDULER\_REGISTRATION\_TIMEOUT}\spxextra{pine.pipelines.shared.config.BaseConfig attribute}|hyperpage}{67}
+\indexentry{SCHEDULER\_HANDLER\_TIMEOUT (pine.pipelines.shared.config.BaseConfig attribute)@\spxentry{SCHEDULER\_HANDLER\_TIMEOUT}\spxextra{pine.pipelines.shared.config.BaseConfig attribute}|hyperpage}{67}
+\indexentry{SCHEDULER\_QUEUE\_TIMEOUT (pine.pipelines.shared.config.BaseConfig attribute)@\spxentry{SCHEDULER\_QUEUE\_TIMEOUT}\spxextra{pine.pipelines.shared.config.BaseConfig attribute}|hyperpage}{67}
+\indexentry{SERVICE\_REGISTRATION\_CHANNEL (pine.pipelines.shared.config.BaseConfig attribute)@\spxentry{SERVICE\_REGISTRATION\_CHANNEL}\spxextra{pine.pipelines.shared.config.BaseConfig attribute}|hyperpage}{67}
+\indexentry{SERVICE\_REGISTRATION\_FREQUENCY (pine.pipelines.shared.config.BaseConfig attribute)@\spxentry{SERVICE\_REGISTRATION\_FREQUENCY}\spxextra{pine.pipelines.shared.config.BaseConfig attribute}|hyperpage}{67}
+\indexentry{SERVICE\_LISTENING\_FREQUENCY (pine.pipelines.shared.config.BaseConfig attribute)@\spxentry{SERVICE\_LISTENING\_FREQUENCY}\spxextra{pine.pipelines.shared.config.BaseConfig attribute}|hyperpage}{67}
+\indexentry{SERVICE\_HANDLER\_TIMEOUT (pine.pipelines.shared.config.BaseConfig attribute)@\spxentry{SERVICE\_HANDLER\_TIMEOUT}\spxextra{pine.pipelines.shared.config.BaseConfig attribute}|hyperpage}{67}
+\indexentry{SERVICE\_LIST (pine.pipelines.shared.config.BaseConfig attribute)@\spxentry{SERVICE\_LIST}\spxextra{pine.pipelines.shared.config.BaseConfig attribute}|hyperpage}{67}
+\indexentry{MODELS\_DIR (pine.pipelines.shared.config.BaseConfig attribute)@\spxentry{MODELS\_DIR}\spxextra{pine.pipelines.shared.config.BaseConfig attribute}|hyperpage}{67}
+\indexentry{\_get\_config\_var\_paths() (pine.pipelines.shared.config.BaseConfig class method)@\spxentry{\_get\_config\_var\_paths()}\spxextra{pine.pipelines.shared.config.BaseConfig class method}|hyperpage}{67}
+\indexentry{\_process\_paths() (pine.pipelines.shared.config.BaseConfig class method)@\spxentry{\_process\_paths()}\spxextra{pine.pipelines.shared.config.BaseConfig class method}|hyperpage}{67}
+\indexentry{\_process\_file\_cfg() (pine.pipelines.shared.config.BaseConfig class method)@\spxentry{\_process\_file\_cfg()}\spxextra{pine.pipelines.shared.config.BaseConfig class method}|hyperpage}{67}
+\indexentry{\_process\_env\_vars() (pine.pipelines.shared.config.BaseConfig class method)@\spxentry{\_process\_env\_vars()}\spxextra{pine.pipelines.shared.config.BaseConfig class method}|hyperpage}{67}
+\indexentry{as\_dict() (pine.pipelines.shared.config.BaseConfig class method)@\spxentry{as\_dict()}\spxextra{pine.pipelines.shared.config.BaseConfig class method}|hyperpage}{67}
+\indexentry{as\_attr\_dict() (pine.pipelines.shared.config.BaseConfig class method)@\spxentry{as\_attr\_dict()}\spxextra{pine.pipelines.shared.config.BaseConfig class method}|hyperpage}{67}
+\indexentry{\_try\_cast() (pine.pipelines.shared.config.BaseConfig static method)@\spxentry{\_try\_cast()}\spxextra{pine.pipelines.shared.config.BaseConfig static method}|hyperpage}{67}
+\indexentry{\_str2bool() (pine.pipelines.shared.config.BaseConfig static method)@\spxentry{\_str2bool()}\spxextra{pine.pipelines.shared.config.BaseConfig static method}|hyperpage}{67}
+\indexentry{TestConfig (class in pine.pipelines.shared.config)@\spxentry{TestConfig}\spxextra{class in pine.pipelines.shared.config}|hyperpage}{67}
+\indexentry{ConfigBuilder (class in pine.pipelines.shared.config)@\spxentry{ConfigBuilder}\spxextra{class in pine.pipelines.shared.config}|hyperpage}{67}
+\indexentry{\_\_env\_cfg\_variable (pine.pipelines.shared.config.ConfigBuilder attribute)@\spxentry{\_\_env\_cfg\_variable}\spxextra{pine.pipelines.shared.config.ConfigBuilder attribute}|hyperpage}{67}
+\indexentry{\_\_current\_config\_instance (pine.pipelines.shared.config.ConfigBuilder attribute)@\spxentry{\_\_current\_config\_instance}\spxextra{pine.pipelines.shared.config.ConfigBuilder attribute}|hyperpage}{67}
+\indexentry{\_\_current\_config\_instance\_name (pine.pipelines.shared.config.ConfigBuilder attribute)@\spxentry{\_\_current\_config\_instance\_name}\spxextra{pine.pipelines.shared.config.ConfigBuilder attribute}|hyperpage}{67}
+\indexentry{\_\_current\_config\_instance\_print (pine.pipelines.shared.config.ConfigBuilder attribute)@\spxentry{\_\_current\_config\_instance\_print}\spxextra{pine.pipelines.shared.config.ConfigBuilder attribute}|hyperpage}{67}
+\indexentry{\_\_arg\_parser (pine.pipelines.shared.config.ConfigBuilder attribute)@\spxentry{\_\_arg\_parser}\spxextra{pine.pipelines.shared.config.ConfigBuilder attribute}|hyperpage}{67}
+\indexentry{\_\_get\_configs() (pine.pipelines.shared.config.ConfigBuilder static method)@\spxentry{\_\_get\_configs()}\spxextra{pine.pipelines.shared.config.ConfigBuilder static method}|hyperpage}{67}
+\indexentry{get\_config\_names() (pine.pipelines.shared.config.ConfigBuilder static method)@\spxentry{get\_config\_names()}\spxextra{pine.pipelines.shared.config.ConfigBuilder static method}|hyperpage}{67}
+\indexentry{get\_arg\_parser() (pine.pipelines.shared.config.ConfigBuilder class method)@\spxentry{get\_arg\_parser()}\spxextra{pine.pipelines.shared.config.ConfigBuilder class method}|hyperpage}{67}
+\indexentry{init\_config() (pine.pipelines.shared.config.ConfigBuilder class method)@\spxentry{init\_config()}\spxextra{pine.pipelines.shared.config.ConfigBuilder class method}|hyperpage}{68}
+\indexentry{get\_config() (pine.pipelines.shared.config.ConfigBuilder class method)@\spxentry{get\_config()}\spxextra{pine.pipelines.shared.config.ConfigBuilder class method}|hyperpage}{68}
+\indexentry{set\_config() (pine.pipelines.shared.config.ConfigBuilder class method)@\spxentry{set\_config()}\spxextra{pine.pipelines.shared.config.ConfigBuilder class method}|hyperpage}{68}
+\indexentry{\_\_parse\_terminal\_config() (pine.pipelines.shared.config.ConfigBuilder class method)@\spxentry{\_\_parse\_terminal\_config()}\spxextra{pine.pipelines.shared.config.ConfigBuilder class method}|hyperpage}{68}
+\indexentry{module@\spxentry{module}!pine.pipelines.shared.transform@\spxentry{pine.pipelines.shared.transform}|hyperpage}{68}
+\indexentry{pine.pipelines.shared.transform@\spxentry{pine.pipelines.shared.transform}!module@\spxentry{module}|hyperpage}{68}
+\indexentry{transform\_module\_by\_config() (in module pine.pipelines.shared.transform)@\spxentry{transform\_module\_by\_config()}\spxextra{in module pine.pipelines.shared.transform}|hyperpage}{68}
+\indexentry{module@\spxentry{module}!pine.pipelines.EveClient@\spxentry{pine.pipelines.EveClient}|hyperpage}{68}
+\indexentry{pine.pipelines.EveClient@\spxentry{pine.pipelines.EveClient}!module@\spxentry{module}|hyperpage}{68}
+\indexentry{logger (in module pine.pipelines.EveClient)@\spxentry{logger}\spxextra{in module pine.pipelines.EveClient}|hyperpage}{68}
+\indexentry{config (in module pine.pipelines.EveClient)@\spxentry{config}\spxextra{in module pine.pipelines.EveClient}|hyperpage}{68}
+\indexentry{EveClient (class in pine.pipelines.EveClient)@\spxentry{EveClient}\spxextra{class in pine.pipelines.EveClient}|hyperpage}{68}
+\indexentry{eve\_headers (pine.pipelines.EveClient.EveClient attribute)@\spxentry{eve\_headers}\spxextra{pine.pipelines.EveClient.EveClient attribute}|hyperpage}{69}
+\indexentry{add() (pine.pipelines.EveClient.EveClient method)@\spxentry{add()}\spxextra{pine.pipelines.EveClient.EveClient method}|hyperpage}{69}
+\indexentry{get\_obj() (pine.pipelines.EveClient.EveClient method)@\spxentry{get\_obj()}\spxextra{pine.pipelines.EveClient.EveClient method}|hyperpage}{69}
+\indexentry{get\_all\_items() (pine.pipelines.EveClient.EveClient method)@\spxentry{get\_all\_items()}\spxextra{pine.pipelines.EveClient.EveClient method}|hyperpage}{69}
+\indexentry{get\_all\_ids() (pine.pipelines.EveClient.EveClient method)@\spxentry{get\_all\_ids()}\spxextra{pine.pipelines.EveClient.EveClient method}|hyperpage}{69}
+\indexentry{get\_items() (pine.pipelines.EveClient.EveClient method)@\spxentry{get\_items()}\spxextra{pine.pipelines.EveClient.EveClient method}|hyperpage}{69}
+\indexentry{get\_documents() (pine.pipelines.EveClient.EveClient method)@\spxentry{get\_documents()}\spxextra{pine.pipelines.EveClient.EveClient method}|hyperpage}{69}
+\indexentry{get\_docs\_with\_annotations() (pine.pipelines.EveClient.EveClient method)@\spxentry{get\_docs\_with\_annotations()}\spxextra{pine.pipelines.EveClient.EveClient method}|hyperpage}{69}
+\indexentry{update() (pine.pipelines.EveClient.EveClient method)@\spxentry{update()}\spxextra{pine.pipelines.EveClient.EveClient method}|hyperpage}{69}
+\indexentry{module@\spxentry{module}!pine.pipelines.NERWrapper@\spxentry{pine.pipelines.NERWrapper}|hyperpage}{69}
+\indexentry{pine.pipelines.NERWrapper@\spxentry{pine.pipelines.NERWrapper}!module@\spxentry{module}|hyperpage}{69}
+\indexentry{NERWrapper (class in pine.pipelines.NERWrapper)@\spxentry{NERWrapper}\spxextra{class in pine.pipelines.NERWrapper}|hyperpage}{69}
+\indexentry{eve\_headers (pine.pipelines.NERWrapper.NERWrapper attribute)@\spxentry{eve\_headers}\spxextra{pine.pipelines.NERWrapper.NERWrapper attribute}|hyperpage}{69}
+\indexentry{load\_classifier() (pine.pipelines.NERWrapper.NERWrapper method)@\spxentry{load\_classifier()}\spxextra{pine.pipelines.NERWrapper.NERWrapper method}|hyperpage}{69}
+\indexentry{predict() (pine.pipelines.NERWrapper.NERWrapper method)@\spxentry{predict()}\spxextra{pine.pipelines.NERWrapper.NERWrapper method}|hyperpage}{69}
+\indexentry{update\_model() (pine.pipelines.NERWrapper.NERWrapper method)@\spxentry{update\_model()}\spxextra{pine.pipelines.NERWrapper.NERWrapper method}|hyperpage}{69}
+\indexentry{update() (pine.pipelines.NERWrapper.NERWrapper method)@\spxentry{update()}\spxextra{pine.pipelines.NERWrapper.NERWrapper method}|hyperpage}{69}
+\indexentry{get\_obj() (pine.pipelines.NERWrapper.NERWrapper method)@\spxentry{get\_obj()}\spxextra{pine.pipelines.NERWrapper.NERWrapper method}|hyperpage}{69}
+\indexentry{get\_all\_items() (pine.pipelines.NERWrapper.NERWrapper method)@\spxentry{get\_all\_items()}\spxextra{pine.pipelines.NERWrapper.NERWrapper method}|hyperpage}{69}
+\indexentry{get\_all\_ids() (pine.pipelines.NERWrapper.NERWrapper method)@\spxentry{get\_all\_ids()}\spxextra{pine.pipelines.NERWrapper.NERWrapper method}|hyperpage}{69}
+\indexentry{get\_items() (pine.pipelines.NERWrapper.NERWrapper method)@\spxentry{get\_items()}\spxextra{pine.pipelines.NERWrapper.NERWrapper method}|hyperpage}{69}
+\indexentry{parser (in module pine.pipelines.NERWrapper)@\spxentry{parser}\spxextra{in module pine.pipelines.NERWrapper}|hyperpage}{69}
+\indexentry{module@\spxentry{module}!pine.pipelines.NER\_API@\spxentry{pine.pipelines.NER\_API}|hyperpage}{70}
+\indexentry{pine.pipelines.NER\_API@\spxentry{pine.pipelines.NER\_API}!module@\spxentry{module}|hyperpage}{70}
+\indexentry{logger (in module pine.pipelines.NER\_API)@\spxentry{logger}\spxextra{in module pine.pipelines.NER\_API}|hyperpage}{70}
+\indexentry{config (in module pine.pipelines.NER\_API)@\spxentry{config}\spxextra{in module pine.pipelines.NER\_API}|hyperpage}{70}
+\indexentry{ner\_api (class in pine.pipelines.NER\_API)@\spxentry{ner\_api}\spxextra{class in pine.pipelines.NER\_API}|hyperpage}{70}
+\indexentry{perform\_fold() (pine.pipelines.NER\_API.ner\_api method)@\spxentry{perform\_fold()}\spxextra{pine.pipelines.NER\_API.ner\_api method}|hyperpage}{70}
+\indexentry{perform\_five\_fold() (pine.pipelines.NER\_API.ner\_api method)@\spxentry{perform\_five\_fold()}\spxextra{pine.pipelines.NER\_API.ner\_api method}|hyperpage}{70}
+\indexentry{get\_document\_ranking() (pine.pipelines.NER\_API.ner\_api method)@\spxentry{get\_document\_ranking()}\spxextra{pine.pipelines.NER\_API.ner\_api method}|hyperpage}{70}
+\indexentry{get\_classifier\_pipeline\_metrics\_objs() (pine.pipelines.NER\_API.ner\_api method)@\spxentry{get\_classifier\_pipeline\_metrics\_objs()}\spxextra{pine.pipelines.NER\_API.ner\_api method}|hyperpage}{70}
+\indexentry{train\_model() (pine.pipelines.NER\_API.ner\_api method)@\spxentry{train\_model()}\spxextra{pine.pipelines.NER\_API.ner\_api method}|hyperpage}{70}
+\indexentry{predict() (pine.pipelines.NER\_API.ner\_api method)@\spxentry{predict()}\spxextra{pine.pipelines.NER\_API.ner\_api method}|hyperpage}{70}
+\indexentry{module@\spxentry{module}!pine.pipelines.RankingFunctions@\spxentry{pine.pipelines.RankingFunctions}|hyperpage}{70}
+\indexentry{pine.pipelines.RankingFunctions@\spxentry{pine.pipelines.RankingFunctions}!module@\spxentry{module}|hyperpage}{70}
+\indexentry{rank() (in module pine.pipelines.RankingFunctions)@\spxentry{rank()}\spxextra{in module pine.pipelines.RankingFunctions}|hyperpage}{70}
+\indexentry{least\_confidence() (in module pine.pipelines.RankingFunctions)@\spxentry{least\_confidence()}\spxextra{in module pine.pipelines.RankingFunctions}|hyperpage}{70}
+\indexentry{least\_confidence\_squared() (in module pine.pipelines.RankingFunctions)@\spxentry{least\_confidence\_squared()}\spxextra{in module pine.pipelines.RankingFunctions}|hyperpage}{70}
+\indexentry{least\_confidence\_squared\_by\_entity() (in module pine.pipelines.RankingFunctions)@\spxentry{least\_confidence\_squared\_by\_entity()}\spxextra{in module pine.pipelines.RankingFunctions}|hyperpage}{70}
+\indexentry{largest\_margin() (in module pine.pipelines.RankingFunctions)@\spxentry{largest\_margin()}\spxextra{in module pine.pipelines.RankingFunctions}|hyperpage}{71}
+\indexentry{entropy\_rank() (in module pine.pipelines.RankingFunctions)@\spxentry{entropy\_rank()}\spxextra{in module pine.pipelines.RankingFunctions}|hyperpage}{71}
+\indexentry{random\_rank() (in module pine.pipelines.RankingFunctions)@\spxentry{random\_rank()}\spxextra{in module pine.pipelines.RankingFunctions}|hyperpage}{71}
+\indexentry{most\_of\_least\_popular() (in module pine.pipelines.RankingFunctions)@\spxentry{most\_of\_least\_popular()}\spxextra{in module pine.pipelines.RankingFunctions}|hyperpage}{71}
+\indexentry{module@\spxentry{module}!pine.pipelines.corenlp\_NER\_pipeline@\spxentry{pine.pipelines.corenlp\_NER\_pipeline}|hyperpage}{71}
+\indexentry{pine.pipelines.corenlp\_NER\_pipeline@\spxentry{pine.pipelines.corenlp\_NER\_pipeline}!module@\spxentry{module}|hyperpage}{71}
+\indexentry{config (in module pine.pipelines.corenlp\_NER\_pipeline)@\spxentry{config}\spxextra{in module pine.pipelines.corenlp\_NER\_pipeline}|hyperpage}{71}
+\indexentry{logger (in module pine.pipelines.corenlp\_NER\_pipeline)@\spxentry{logger}\spxextra{in module pine.pipelines.corenlp\_NER\_pipeline}|hyperpage}{71}
+\indexentry{corenlp\_NER (class in pine.pipelines.corenlp\_NER\_pipeline)@\spxentry{corenlp\_NER}\spxextra{class in pine.pipelines.corenlp\_NER\_pipeline}|hyperpage}{71}
+\indexentry{\_\_jar (pine.pipelines.corenlp\_NER\_pipeline.corenlp\_NER attribute)@\spxentry{\_\_jar}\spxextra{pine.pipelines.corenlp\_NER\_pipeline.corenlp\_NER attribute}|hyperpage}{71}
+\indexentry{\_\_jdk\_dir (pine.pipelines.corenlp\_NER\_pipeline.corenlp\_NER attribute)@\spxentry{\_\_jdk\_dir}\spxextra{pine.pipelines.corenlp\_NER\_pipeline.corenlp\_NER attribute}|hyperpage}{71}
+\indexentry{\_\_train\_file (pine.pipelines.corenlp\_NER\_pipeline.corenlp\_NER attribute)@\spxentry{\_\_train\_file}\spxextra{pine.pipelines.corenlp\_NER\_pipeline.corenlp\_NER attribute}|hyperpage}{71}
+\indexentry{\_\_test\_file (pine.pipelines.corenlp\_NER\_pipeline.corenlp\_NER attribute)@\spxentry{\_\_test\_file}\spxextra{pine.pipelines.corenlp\_NER\_pipeline.corenlp\_NER attribute}|hyperpage}{71}
+\indexentry{\_\_model (pine.pipelines.corenlp\_NER\_pipeline.corenlp\_NER attribute)@\spxentry{\_\_model}\spxextra{pine.pipelines.corenlp\_NER\_pipeline.corenlp\_NER attribute}|hyperpage}{71}
+\indexentry{\_\_temp\_dir (pine.pipelines.corenlp\_NER\_pipeline.corenlp\_NER attribute)@\spxentry{\_\_temp\_dir}\spxextra{pine.pipelines.corenlp\_NER\_pipeline.corenlp\_NER attribute}|hyperpage}{71}
+\indexentry{\_\_crf (pine.pipelines.corenlp\_NER\_pipeline.corenlp\_NER attribute)@\spxentry{\_\_crf}\spxextra{pine.pipelines.corenlp\_NER\_pipeline.corenlp\_NER attribute}|hyperpage}{71}
+\indexentry{\_\_props (pine.pipelines.corenlp\_NER\_pipeline.corenlp\_NER attribute)@\spxentry{\_\_props}\spxextra{pine.pipelines.corenlp\_NER\_pipeline.corenlp\_NER attribute}|hyperpage}{71}
+\indexentry{\_\_id (pine.pipelines.corenlp\_NER\_pipeline.corenlp\_NER attribute)@\spxentry{\_\_id}\spxextra{pine.pipelines.corenlp\_NER\_pipeline.corenlp\_NER attribute}|hyperpage}{71}
+\indexentry{fit() (pine.pipelines.corenlp\_NER\_pipeline.corenlp\_NER method)@\spxentry{fit()}\spxextra{pine.pipelines.corenlp\_NER\_pipeline.corenlp\_NER method}|hyperpage}{71}
+\indexentry{predict() (pine.pipelines.corenlp\_NER\_pipeline.corenlp\_NER method)@\spxentry{predict()}\spxextra{pine.pipelines.corenlp\_NER\_pipeline.corenlp\_NER method}|hyperpage}{71}
+\indexentry{predict\_proba() (pine.pipelines.corenlp\_NER\_pipeline.corenlp\_NER method)@\spxentry{predict\_proba()}\spxextra{pine.pipelines.corenlp\_NER\_pipeline.corenlp\_NER method}|hyperpage}{71}
+\indexentry{next\_example() (pine.pipelines.corenlp\_NER\_pipeline.corenlp\_NER method)@\spxentry{next\_example()}\spxextra{pine.pipelines.corenlp\_NER\_pipeline.corenlp\_NER method}|hyperpage}{71}
+\indexentry{get\_id() (pine.pipelines.corenlp\_NER\_pipeline.corenlp\_NER method)@\spxentry{get\_id()}\spxextra{pine.pipelines.corenlp\_NER\_pipeline.corenlp\_NER method}|hyperpage}{71}
+\indexentry{format\_data() (pine.pipelines.corenlp\_NER\_pipeline.corenlp\_NER method)@\spxentry{format\_data()}\spxextra{pine.pipelines.corenlp\_NER\_pipeline.corenlp\_NER method}|hyperpage}{71}
+\indexentry{save\_model() (pine.pipelines.corenlp\_NER\_pipeline.corenlp\_NER method)@\spxentry{save\_model()}\spxextra{pine.pipelines.corenlp\_NER\_pipeline.corenlp\_NER method}|hyperpage}{71}
+\indexentry{load\_model() (pine.pipelines.corenlp\_NER\_pipeline.corenlp\_NER method)@\spxentry{load\_model()}\spxextra{pine.pipelines.corenlp\_NER\_pipeline.corenlp\_NER method}|hyperpage}{71}
+\indexentry{tokenize() (pine.pipelines.corenlp\_NER\_pipeline.corenlp\_NER method)@\spxentry{tokenize()}\spxextra{pine.pipelines.corenlp\_NER\_pipeline.corenlp\_NER method}|hyperpage}{72}
+\indexentry{evaluate() (pine.pipelines.corenlp\_NER\_pipeline.corenlp\_NER method)@\spxentry{evaluate()}\spxextra{pine.pipelines.corenlp\_NER\_pipeline.corenlp\_NER method}|hyperpage}{72}
+\indexentry{evaluate\_orig() (pine.pipelines.corenlp\_NER\_pipeline.corenlp\_NER method)@\spxentry{evaluate\_orig()}\spxextra{pine.pipelines.corenlp\_NER\_pipeline.corenlp\_NER method}|hyperpage}{72}
+\indexentry{module@\spxentry{module}!pine.pipelines.opennlp\_NER\_pipeline@\spxentry{pine.pipelines.opennlp\_NER\_pipeline}|hyperpage}{72}
+\indexentry{pine.pipelines.opennlp\_NER\_pipeline@\spxentry{pine.pipelines.opennlp\_NER\_pipeline}!module@\spxentry{module}|hyperpage}{72}
+\indexentry{config (in module pine.pipelines.opennlp\_NER\_pipeline)@\spxentry{config}\spxextra{in module pine.pipelines.opennlp\_NER\_pipeline}|hyperpage}{72}
+\indexentry{logger (in module pine.pipelines.opennlp\_NER\_pipeline)@\spxentry{logger}\spxextra{in module pine.pipelines.opennlp\_NER\_pipeline}|hyperpage}{72}
+\indexentry{opennlp\_NER (class in pine.pipelines.opennlp\_NER\_pipeline)@\spxentry{opennlp\_NER}\spxextra{class in pine.pipelines.opennlp\_NER\_pipeline}|hyperpage}{72}
+\indexentry{\_\_jar (pine.pipelines.opennlp\_NER\_pipeline.opennlp\_NER attribute)@\spxentry{\_\_jar}\spxextra{pine.pipelines.opennlp\_NER\_pipeline.opennlp\_NER attribute}|hyperpage}{72}
+\indexentry{\_\_jdk\_dir (pine.pipelines.opennlp\_NER\_pipeline.opennlp\_NER attribute)@\spxentry{\_\_jdk\_dir}\spxextra{pine.pipelines.opennlp\_NER\_pipeline.opennlp\_NER attribute}|hyperpage}{72}
+\indexentry{\_\_temp\_dir (pine.pipelines.opennlp\_NER\_pipeline.opennlp\_NER attribute)@\spxentry{\_\_temp\_dir}\spxextra{pine.pipelines.opennlp\_NER\_pipeline.opennlp\_NER attribute}|hyperpage}{72}
+\indexentry{\_\_train\_file (pine.pipelines.opennlp\_NER\_pipeline.opennlp\_NER attribute)@\spxentry{\_\_train\_file}\spxextra{pine.pipelines.opennlp\_NER\_pipeline.opennlp\_NER attribute}|hyperpage}{72}
+\indexentry{\_\_test\_file (pine.pipelines.opennlp\_NER\_pipeline.opennlp\_NER attribute)@\spxentry{\_\_test\_file}\spxextra{pine.pipelines.opennlp\_NER\_pipeline.opennlp\_NER attribute}|hyperpage}{72}
+\indexentry{\_\_model (pine.pipelines.opennlp\_NER\_pipeline.opennlp\_NER attribute)@\spxentry{\_\_model}\spxextra{pine.pipelines.opennlp\_NER\_pipeline.opennlp\_NER attribute}|hyperpage}{72}
+\indexentry{\_\_nameFinder (pine.pipelines.opennlp\_NER\_pipeline.opennlp\_NER attribute)@\spxentry{\_\_nameFinder}\spxextra{pine.pipelines.opennlp\_NER\_pipeline.opennlp\_NER attribute}|hyperpage}{72}
+\indexentry{\_\_id (pine.pipelines.opennlp\_NER\_pipeline.opennlp\_NER attribute)@\spxentry{\_\_id}\spxextra{pine.pipelines.opennlp\_NER\_pipeline.opennlp\_NER attribute}|hyperpage}{72}
+\indexentry{fit() (pine.pipelines.opennlp\_NER\_pipeline.opennlp\_NER method)@\spxentry{fit()}\spxextra{pine.pipelines.opennlp\_NER\_pipeline.opennlp\_NER method}|hyperpage}{72}
+\indexentry{predict() (pine.pipelines.opennlp\_NER\_pipeline.opennlp\_NER method)@\spxentry{predict()}\spxextra{pine.pipelines.opennlp\_NER\_pipeline.opennlp\_NER method}|hyperpage}{72}
+\indexentry{predict\_proba() (pine.pipelines.opennlp\_NER\_pipeline.opennlp\_NER method)@\spxentry{predict\_proba()}\spxextra{pine.pipelines.opennlp\_NER\_pipeline.opennlp\_NER method}|hyperpage}{72}
+\indexentry{next\_example() (pine.pipelines.opennlp\_NER\_pipeline.opennlp\_NER method)@\spxentry{next\_example()}\spxextra{pine.pipelines.opennlp\_NER\_pipeline.opennlp\_NER method}|hyperpage}{72}
+\indexentry{save\_model() (pine.pipelines.opennlp\_NER\_pipeline.opennlp\_NER method)@\spxentry{save\_model()}\spxextra{pine.pipelines.opennlp\_NER\_pipeline.opennlp\_NER method}|hyperpage}{72}
+\indexentry{load\_model() (pine.pipelines.opennlp\_NER\_pipeline.opennlp\_NER method)@\spxentry{load\_model()}\spxextra{pine.pipelines.opennlp\_NER\_pipeline.opennlp\_NER method}|hyperpage}{72}
+\indexentry{find\_all\_init() (pine.pipelines.opennlp\_NER\_pipeline.opennlp\_NER method)@\spxentry{find\_all\_init()}\spxextra{pine.pipelines.opennlp\_NER\_pipeline.opennlp\_NER method}|hyperpage}{72}
+\indexentry{find\_all() (pine.pipelines.opennlp\_NER\_pipeline.opennlp\_NER method)@\spxentry{find\_all()}\spxextra{pine.pipelines.opennlp\_NER\_pipeline.opennlp\_NER method}|hyperpage}{72}
+\indexentry{get\_id() (pine.pipelines.opennlp\_NER\_pipeline.opennlp\_NER method)@\spxentry{get\_id()}\spxextra{pine.pipelines.opennlp\_NER\_pipeline.opennlp\_NER method}|hyperpage}{72}
+\indexentry{format\_data() (pine.pipelines.opennlp\_NER\_pipeline.opennlp\_NER method)@\spxentry{format\_data()}\spxextra{pine.pipelines.opennlp\_NER\_pipeline.opennlp\_NER method}|hyperpage}{72}
+\indexentry{convert\_ann\_collection\_to\_per\_token() (pine.pipelines.opennlp\_NER\_pipeline.opennlp\_NER method)@\spxentry{convert\_ann\_collection\_to\_per\_token()}\spxextra{pine.pipelines.opennlp\_NER\_pipeline.opennlp\_NER method}|hyperpage}{72}
+\indexentry{evaluate() (pine.pipelines.opennlp\_NER\_pipeline.opennlp\_NER method)@\spxentry{evaluate()}\spxextra{pine.pipelines.opennlp\_NER\_pipeline.opennlp\_NER method}|hyperpage}{73}
+\indexentry{evaluate\_orig() (pine.pipelines.opennlp\_NER\_pipeline.opennlp\_NER method)@\spxentry{evaluate\_orig()}\spxextra{pine.pipelines.opennlp\_NER\_pipeline.opennlp\_NER method}|hyperpage}{73}
+\indexentry{module@\spxentry{module}!pine.pipelines.pipeline@\spxentry{pine.pipelines.pipeline}|hyperpage}{73}
+\indexentry{pine.pipelines.pipeline@\spxentry{pine.pipelines.pipeline}!module@\spxentry{module}|hyperpage}{73}
+\indexentry{Pipeline (class in pine.pipelines.pipeline)@\spxentry{Pipeline}\spxextra{class in pine.pipelines.pipeline}|hyperpage}{73}
+\indexentry{fit() (pine.pipelines.pipeline.Pipeline method)@\spxentry{fit()}\spxextra{pine.pipelines.pipeline.Pipeline method}|hyperpage}{73}
+\indexentry{predict() (pine.pipelines.pipeline.Pipeline method)@\spxentry{predict()}\spxextra{pine.pipelines.pipeline.Pipeline method}|hyperpage}{73}
+\indexentry{predict\_proba() (pine.pipelines.pipeline.Pipeline method)@\spxentry{predict\_proba()}\spxextra{pine.pipelines.pipeline.Pipeline method}|hyperpage}{73}
+\indexentry{next\_example() (pine.pipelines.pipeline.Pipeline method)@\spxentry{next\_example()}\spxextra{pine.pipelines.pipeline.Pipeline method}|hyperpage}{73}
+\indexentry{save\_model() (pine.pipelines.pipeline.Pipeline method)@\spxentry{save\_model()}\spxextra{pine.pipelines.pipeline.Pipeline method}|hyperpage}{73}
+\indexentry{load\_model() (pine.pipelines.pipeline.Pipeline method)@\spxentry{load\_model()}\spxextra{pine.pipelines.pipeline.Pipeline method}|hyperpage}{73}
+\indexentry{module@\spxentry{module}!pine.pipelines.pmap\_ner@\spxentry{pine.pipelines.pmap\_ner}|hyperpage}{73}
+\indexentry{pine.pipelines.pmap\_ner@\spxentry{pine.pipelines.pmap\_ner}!module@\spxentry{module}|hyperpage}{73}
+\indexentry{logger (in module pine.pipelines.pmap\_ner)@\spxentry{logger}\spxextra{in module pine.pipelines.pmap\_ner}|hyperpage}{73}
+\indexentry{NER (class in pine.pipelines.pmap\_ner)@\spxentry{NER}\spxextra{class in pine.pipelines.pmap\_ner}|hyperpage}{73}
+\indexentry{\_\_lib (pine.pipelines.pmap\_ner.NER attribute)@\spxentry{\_\_lib}\spxextra{pine.pipelines.pmap\_ner.NER attribute}|hyperpage}{73}
+\indexentry{pipeline (pine.pipelines.pmap\_ner.NER attribute)@\spxentry{pipeline}\spxextra{pine.pipelines.pmap\_ner.NER attribute}|hyperpage}{73}
+\indexentry{\_\_SUPPORTED\_PIPELINES (pine.pipelines.pmap\_ner.NER attribute)@\spxentry{\_\_SUPPORTED\_PIPELINES}\spxextra{pine.pipelines.pmap\_ner.NER attribute}|hyperpage}{73}
+\indexentry{pipe\_init() (pine.pipelines.pmap\_ner.NER method)@\spxentry{pipe\_init()}\spxextra{pine.pipelines.pmap\_ner.NER method}|hyperpage}{73}
+\indexentry{fit() (pine.pipelines.pmap\_ner.NER method)@\spxentry{fit()}\spxextra{pine.pipelines.pmap\_ner.NER method}|hyperpage}{73}
+\indexentry{predict() (pine.pipelines.pmap\_ner.NER method)@\spxentry{predict()}\spxextra{pine.pipelines.pmap\_ner.NER method}|hyperpage}{73}
+\indexentry{predict\_proba() (pine.pipelines.pmap\_ner.NER method)@\spxentry{predict\_proba()}\spxextra{pine.pipelines.pmap\_ner.NER method}|hyperpage}{73}
+\indexentry{evaluate() (pine.pipelines.pmap\_ner.NER method)@\spxentry{evaluate()}\spxextra{pine.pipelines.pmap\_ner.NER method}|hyperpage}{74}
+\indexentry{next\_example() (pine.pipelines.pmap\_ner.NER method)@\spxentry{next\_example()}\spxextra{pine.pipelines.pmap\_ner.NER method}|hyperpage}{74}
+\indexentry{save\_model() (pine.pipelines.pmap\_ner.NER method)@\spxentry{save\_model()}\spxextra{pine.pipelines.pmap\_ner.NER method}|hyperpage}{74}
+\indexentry{load\_model() (pine.pipelines.pmap\_ner.NER method)@\spxentry{load\_model()}\spxextra{pine.pipelines.pmap\_ner.NER method}|hyperpage}{74}
+\indexentry{module@\spxentry{module}!pine.pipelines.run\_service@\spxentry{pine.pipelines.run\_service}|hyperpage}{74}
+\indexentry{pine.pipelines.run\_service@\spxentry{pine.pipelines.run\_service}!module@\spxentry{module}|hyperpage}{74}
+\indexentry{module@\spxentry{module}!pine.pipelines.spacy\_NER\_pipeline@\spxentry{pine.pipelines.spacy\_NER\_pipeline}|hyperpage}{74}
+\indexentry{pine.pipelines.spacy\_NER\_pipeline@\spxentry{pine.pipelines.spacy\_NER\_pipeline}!module@\spxentry{module}|hyperpage}{74}
+\indexentry{spacy\_NER (class in pine.pipelines.spacy\_NER\_pipeline)@\spxentry{spacy\_NER}\spxextra{class in pine.pipelines.spacy\_NER\_pipeline}|hyperpage}{74}
+\indexentry{\_\_nlp (pine.pipelines.spacy\_NER\_pipeline.spacy\_NER attribute)@\spxentry{\_\_nlp}\spxextra{pine.pipelines.spacy\_NER\_pipeline.spacy\_NER attribute}|hyperpage}{74}
+\indexentry{\_\_ner (pine.pipelines.spacy\_NER\_pipeline.spacy\_NER attribute)@\spxentry{\_\_ner}\spxextra{pine.pipelines.spacy\_NER\_pipeline.spacy\_NER attribute}|hyperpage}{74}
+\indexentry{\_\_optimizer (pine.pipelines.spacy\_NER\_pipeline.spacy\_NER attribute)@\spxentry{\_\_optimizer}\spxextra{pine.pipelines.spacy\_NER\_pipeline.spacy\_NER attribute}|hyperpage}{74}
+\indexentry{fit() (pine.pipelines.spacy\_NER\_pipeline.spacy\_NER method)@\spxentry{fit()}\spxextra{pine.pipelines.spacy\_NER\_pipeline.spacy\_NER method}|hyperpage}{74}
+\indexentry{evaluate() (pine.pipelines.spacy\_NER\_pipeline.spacy\_NER method)@\spxentry{evaluate()}\spxextra{pine.pipelines.spacy\_NER\_pipeline.spacy\_NER method}|hyperpage}{74}
+\indexentry{predict() (pine.pipelines.spacy\_NER\_pipeline.spacy\_NER method)@\spxentry{predict()}\spxextra{pine.pipelines.spacy\_NER\_pipeline.spacy\_NER method}|hyperpage}{74}
+\indexentry{predict\_proba() (pine.pipelines.spacy\_NER\_pipeline.spacy\_NER method)@\spxentry{predict\_proba()}\spxextra{pine.pipelines.spacy\_NER\_pipeline.spacy\_NER method}|hyperpage}{74}
+\indexentry{next\_example() (pine.pipelines.spacy\_NER\_pipeline.spacy\_NER method)@\spxentry{next\_example()}\spxextra{pine.pipelines.spacy\_NER\_pipeline.spacy\_NER method}|hyperpage}{74}
+\indexentry{format\_data() (pine.pipelines.spacy\_NER\_pipeline.spacy\_NER method)@\spxentry{format\_data()}\spxextra{pine.pipelines.spacy\_NER\_pipeline.spacy\_NER method}|hyperpage}{74}
+\indexentry{add\_label() (pine.pipelines.spacy\_NER\_pipeline.spacy\_NER method)@\spxentry{add\_label()}\spxextra{pine.pipelines.spacy\_NER\_pipeline.spacy\_NER method}|hyperpage}{74}
+\indexentry{save\_model() (pine.pipelines.spacy\_NER\_pipeline.spacy\_NER method)@\spxentry{save\_model()}\spxextra{pine.pipelines.spacy\_NER\_pipeline.spacy\_NER method}|hyperpage}{74}
+\indexentry{load\_model() (pine.pipelines.spacy\_NER\_pipeline.spacy\_NER method)@\spxentry{load\_model()}\spxextra{pine.pipelines.spacy\_NER\_pipeline.spacy\_NER method}|hyperpage}{74}

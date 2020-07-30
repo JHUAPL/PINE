@@ -93,38 +93,52 @@ export class AuthService {
     private getFlat(): Observable<boolean> {
         return this.backend.get("/auth/flat");
     }
-    
+
     private getCanManageUsers(): Observable<boolean> {
         return this.backend.get("/auth/can_manage_users")
     }
-    
+
     public getLoggedInUserDetails(): Observable<UserDetails> {
         return this.backend.get("/auth/logged_in_user_details");
     }
-    
+
 //    public getAllUsers(): Observable<User[]> {
 //        return this.canManageUsers ? this.module.getAllUsers() : null;
 //    }
-    
+
     public isAuthenticated(): boolean {
         return this.loggedInUser != null;
     }
-    
+
     public getLoginForm(): Observable<LoginForm> {
         return this.backend.get<LoginForm>("/auth/login_form");
     }
-    
+
+    public checkBackend(returnTo: string): Observable<boolean> {
+        return new Observable((observer) => {
+            this.getBackendLoggedInUser().subscribe((user: User) => {
+                this.loggedInUser = user;
+                this.router.navigate([returnTo]);
+                observer.next(true);
+                observer.complete();
+            }, (_) => {
+                observer.next(false);
+                observer.complete();
+            });
+        });
+    }
+
     public login(values, returnTo: string, component: LoginComponent) {
         this.module.login(values, returnTo, component);
     }
-    
+
     public logout() {
         this.backend.post("/auth/logout").subscribe(() => {
             this.loggedInUser = null;
             this.router.navigate(["/login"]);
         });
     }
-    
+
     public getUserDisplayName(user_id: string) {
         return this.module.getUserDisplayName(user_id);
     }

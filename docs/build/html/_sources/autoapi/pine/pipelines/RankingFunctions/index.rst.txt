@@ -1,0 +1,60 @@
+:mod:`pine.pipelines.RankingFunctions`
+======================================
+
+.. py:module:: pine.pipelines.RankingFunctions
+
+
+Module Contents
+---------------
+
+
+Functions
+~~~~~~~~~
+
+.. autoapisummary::
+
+   pine.pipelines.RankingFunctions.rank
+   pine.pipelines.RankingFunctions.least_confidence
+   pine.pipelines.RankingFunctions.least_confidence_squared
+   pine.pipelines.RankingFunctions.least_confidence_squared_by_entity
+   pine.pipelines.RankingFunctions.largest_margin
+   pine.pipelines.RankingFunctions.entropy_rank
+   pine.pipelines.RankingFunctions.random_rank
+   pine.pipelines.RankingFunctions.most_of_least_popular
+
+
+.. function:: rank(results, metric)
+
+   if metric == 'lc': return least_confidence(results)
+   if metric == 'ma': return largest_margin(results)
+   if metric == 'en': return entropy_rank(results)
+   if metric == 'lcs': return least_confidence_squared(results)
+   if metric == 'lce': return least_confidence_squared_by_entity(results)
+   if metric == 'ra': return random_rank(results)
+   if metric == 'mlp': return most_of_least_popular(results)
+   return -1
+
+   #Dictionary method is inefficient as it runs every method before returning one
+
+
+.. function:: least_confidence(results)
+
+
+.. function:: least_confidence_squared(results)
+
+
+.. function:: least_confidence_squared_by_entity(results)
+
+
+.. function:: largest_margin(results)
+
+
+.. function:: entropy_rank(results, N=None)
+
+
+.. function:: random_rank(results)
+
+
+.. function:: most_of_least_popular(results)
+
+

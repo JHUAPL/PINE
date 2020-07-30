@@ -1,0 +1,681 @@
+:mod:`pine.client.client`
+=========================
+
+.. py:module:: pine.client.client
+
+.. autoapi-nested-parse::
+
+   PINE client classes module.
+
+
+
+Module Contents
+---------------
+
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   pine.client.client.BaseClient
+   pine.client.client.EveClient
+   pine.client.client.PineClient
+   pine.client.client.LocalPineClient
+
+
+
+Functions
+~~~~~~~~~
+
+.. autoapisummary::
+
+   pine.client.client._standardize_path
+
+
+.. function:: _standardize_path(path: str, *additional_paths: typing.List[str]) -> typing.List[str]
+
+   Standardize path(s) into a list of path components.
+
+   :param path: relative path, e.g. ``"users"``
+   :type path: str
+   :param \*additional_paths: any additional path components in a list
+   :type \*additional_paths: list(str), optional
+
+   :return: the standardized path components in a list
+   :rtype: list(str)
+
+
+.. py:class:: BaseClient(base_uri: str, name: str = None)
+
+   Bases: :class:`object`
+
+   Base class for a client using a REST interface.
+       
+
+   Constructor.
+
+   :param base_uri: the base URI for the server, e.g. ``"http://localhost:5000"``
+   :type base_uri: str
+   :param name: optional human-readable name for the server, defaults to None
+   :type name: str, optional
+
+   .. attribute:: __metaclass__
+      
+
+      
+
+   .. attribute:: base_uri
+      :annotation: :str
+
+      The server's base URI.
+
+      :type: str
+
+
+   .. attribute:: session
+      :annotation: :requests.Session
+
+      The currently open session, or ``None``.
+
+      :type: requests.Session
+
+
+   .. method:: is_valid(self)
+      :abstractmethod:
+
+
+      Returns whether this client and its connection(s) are valid.
+
+      :return: whether this client and its connection(s) are valid
+      :rtype: bool
+
+
+   .. method:: uri(self, path: str, *additional_paths: typing.List[str])
+
+
+      Makes a complete URI from the given path(s).
+
+      :param path: relative path, e.g. ``"users"``
+      :type path: str
+      :param \*additional_paths: any additional path components
+      :type \*additional_paths: list(str), optional
+
+      :return: the complete, standardized URI including the base URI, e.g. ``"http://localhost:5000/users"``
+      :rtype: str
+
+
+   .. method:: _req(self, method: str, path: str, *additional_paths: typing.List[str], **kwargs)
+
+
+      Makes a :py:mod:`requests` call, checks for errors, and returns the response.
+
+      :param method: REST method (``"get"``, ``"post"``, etc.)
+      :type method: str
+      :param path: relative path, e.g. ``"users"``
+      :type path: str
+      :param \*additional_paths: any additional path components
+      :type \*additional_paths: list(str), optional
+      :param \**kwargs: any additional kwargs to send to :py:mod:`requests`
+      :type \**kwargs: dict
+
+      :raises exceptions.PineClientHttpException: if the HTTP request returns an error
+
+      :return: the :py:mod:`requests` :py:class:`requests.Response` object
+      :rtype: requests.Response
+
+
+   .. method:: get(self, path: str, *additional_paths: typing.List[str], **kwargs)
+
+
+      Makes a :py:mod:`requests` ``GET`` call, checks for errors, and returns the response.
+
+      :param path: relative path, e.g. ``"users"``
+      :type path: str
+      :param \*additional_paths: any additional path components
+      :type \*additional_paths: list(str), optional
+      :param \**kwargs: any additional kwargs to send to :py:mod:`requests`
+      :type \**kwargs: dict
+
+      :raises exceptions.PineClientHttpException: if the HTTP request returns an error
+
+      :return: the :py:mod:`requests` :py:class:`Response <requests.Response>` object
+      :rtype: requests.Response
+
+
+   .. method:: put(self, path: str, *additional_paths: typing.List[str], **kwargs)
+
+
+      Makes a :py:mod:`requests` ``PUT`` call, checks for errors, and returns the response.
+
+      :param path: relative path, e.g. ``"users"``
+      :type path: str
+      :param \*additional_paths: any additional path components
+      :type \*additional_paths: list(str), optional
+      :param \**kwargs: any additional kwargs to send to :py:mod:`requests`
+      :type \**kwargs: dict
+
+      :raises exceptions.PineClientHttpException: if the HTTP request returns an error
+
+      :return: the :py:mod:`requests` :py:class:`Response <requests.Response>` object
+      :rtype: requests.Response
+
+
+   .. method:: patch(self, path: str, *additional_paths: typing.List[str], **kwargs)
+
+
+      Makes a :py:mod:`requests` ``PATCH`` call, checks for errors, and returns the response.
+
+      :param path: relative path, e.g. ``"users"``
+      :type path: str
+      :param \*additional_paths: any additional path components
+      :type \*additional_paths: list(str), optional
+      :param \**kwargs: any additional kwargs to send to :py:mod:`requests`
+      :type \**kwargs: dict
+
+      :raises exceptions.PineClientHttpException: if the HTTP request returns an error
+
+      :return: the :py:mod:`requests` :py:class:`Response <requests.Response>` object
+      :rtype: requests.Response
+
+
+   .. method:: post(self, path: str, *additional_paths: typing.List[str], **kwargs)
+
+
+      Makes a :py:mod:`requests` ``POST`` call, checks for errors, and returns the response.
+
+      :param path: relative path, e.g. ``"users"``
+      :type path: str
+      :param \*additional_paths: any additional path components
+      :type \*additional_paths: list(str), optional
+      :param \**kwargs: any additional kwargs to send to :py:mod:`requests`
+      :type \**kwargs: dict
+
+      :raises exceptions.PineClientHttpException: if the HTTP request returns an error
+
+      :return: the :py:mod:`requests` :py:class:`Response <requests.Response>` object
+      :rtype: requests.Response
+
+
+
+.. py:class:: EveClient(eve_base_uri: str, mongo_base_uri: str = None, mongo_dbname: str = DEFAULT_DBNAME)
+
+   Bases: :class:`pine.client.client.BaseClient`
+
+   A client to access Eve and, optionally, its underlying MongoDB instance.
+       
+
+   Constructor.
+
+   :param eve_base_uri: the base URI for the eve server, e.g. ``"http://localhost:5001"``
+   :type eve_base_uri: str
+   :param mongo_base_uri: the base URI for the mongodb server, e.g. ``"mongodb://localhost:27018"``, defaults to ``None``
+   :type mongo_base_uri: str, optional
+   :param mongo_dbname: the DB name that PINE uses, defaults to ``"pmap_nlp"``
+   :type mongo_dbname: str, optional
+
+   .. attribute:: DEFAULT_DBNAME
+      :annotation: :str = pmap_nlp
+
+      The default DB name used by PINE.
+
+      :type: str
+
+
+   .. attribute:: mongo_base_uri
+      :annotation: :str
+
+      The base URI for the MongoDB server.
+
+      :type: str
+
+
+   .. attribute:: mongo
+      :annotation: :pymongo.MongoClient
+
+      The :py:class:`pymongo.mongo_client.MongoClient` instance.
+
+      :type: pymongo.mongo_client.MongoClient
+
+
+   .. attribute:: mongo_db
+      :annotation: :pymongo.database.Database
+
+      The :py:class:`pymongo.database.Database` instance.
+
+      :type: pymongo.database.Database
+
+
+   .. method:: is_valid(self)
+
+
+      Returns whether this client and its connection(s) are valid.
+
+      :return: whether this client and its connection(s) are valid
+      :rtype: bool
+
+
+   .. method:: ping(self)
+
+
+      Pings the eve server and returns the result.
+
+      :raises exceptions.PineClientHttpException: if the HTTP request returns an error
+
+      :returns: the JSON response from the server (probably ``"pong"``)
+
+
+   .. method:: about(self)
+
+
+      Returns the 'about' dict from the server.
+
+      :raises exceptions.PineClientHttpException: if the HTTP request returns an error
+
+      :returns: the JSON response from the server
+      :rtype: dict
+
+
+   .. method:: get_resource(self, resource: str, resource_id: str)
+
+
+      Gets a resource from eve by its ID.
+
+      :raises exceptions.PineClientHttpException: if the HTTP request returns an error
+
+      :returns: the JSON object response from the server
+      :rtype: dict
+
+
+   .. method:: _add_or_replace_resource(self, resource: str, obj: dict, valid_fn: typing.Callable[[dict, typing.Callable[[str], None]], bool] = None)
+
+
+      Adds or replaces the given resource.
+
+      :param resource: the resource type, e.g. ``"users"``
+      :type resource: str
+      :param obj: the resource object
+      :type obj: dict
+      :param valid_fn: a function to validate the resource object, defaults to ``None``
+      :type valid_fn: function, optional
+
+      :raises exceptions.PineClientValueException: if a valid_fn is passed in and the object fails
+      :raises exceptions.PineClientHttpException: if the HTTP request returns an error
+
+      :returns: the ID of the added/replaced resource
+      :rtype: str
+
+
+   .. method:: _add_resources(self, resource: str, objs: typing.List[dict], valid_fn: typing.Callable[[dict, typing.Callable[[str], None]], bool] = None, replace_if_exists: bool = False)
+
+
+      Tries to add all the resource objects at once, optionally falling back to individual replacement if that fails.
+
+      :param resource: the resource type, e.g. ``"users"``
+      :type resource: str
+      :param objs: the resource objects
+      :type objs: list(dict)
+      :param valid_fn: a function to validate the resource object, defaults to ``None``
+      :type valid_fn: function, optional
+      :param replace_if_exists: whether to replace the resource with the given value if it already exists on the server, defaults to ``False``
+      :type replace_if_exists: bool, optional
+
+      :raises exceptions.PineClientValueException: if a valid_fn is passed in and any of the objects fails
+      :raises exceptions.PineClientHttpException: if the HTTP request returns an error
+
+      :returns: the IDs of the added resources
+      :rtype: list(str)
+
+
+   .. method:: add_users(self, users: typing.List[dict], replace_if_exists=False)
+
+
+      Adds the given users.
+
+      :param users: the user objects
+      :type users: list(dict)
+      :param replace_if_exists: whether to replace the resource with the given value if it already exists on the server, defaults to ``False``
+      :type replace_if_exists: bool, optional
+
+      :raises exceptions.PineClientValueException: if any of the user objects are not valid, see :py:func:`.models.is_valid_eve_user`
+      :raises exceptions.PineClientHttpException: if the HTTP request returns an error
+
+      :returns: the IDs of the added users
+      :rtype: list(str)
+
+
+   .. method:: get_users(self)
+
+
+      Gets all users.
+
+      :raises exceptions.PineClientHttpException: if the HTTP request returns an error
+
+      :returns: all the users
+      :rtype: list(dict)
+
+
+   .. method:: add_pipelines(self, pipelines: typing.List[dict], replace_if_exists=False)
+
+
+      Adds the given pipelines.
+
+      :param pipelines: the pipeline objects
+      :type pipelines: list(dict)
+      :param replace_if_exists: whether to replace the resource with the given value if it already exists on the server, defaults to ``False``
+      :type replace_if_exists: bool, optional
+
+      :raises exceptions.PineClientValueException: if any of the pipeline objects are not valid, see :py:func:`.models.is_valid_eve_pipeline`
+      :raises exceptions.PineClientHttpException: if the HTTP request returns an error
+
+      :returns: the IDs of the added pipelines
+      :rtype: list(str)
+
+
+
+.. py:class:: PineClient(backend_base_uri: str)
+
+   Bases: :class:`pine.client.client.BaseClient`
+
+   A client to access PINE (more specifically: the backend).
+       
+
+   Constructor.
+
+   :param backend_base_uri: the base URI for the backend server, e.g. ``"http://localhost:5000"``
+   :type backend_base_uri: str
+
+   .. method:: is_valid(self)
+
+
+      Returns whether this client and its connection(s) are valid.
+
+      :return: whether this client and its connection(s) are valid
+      :rtype: bool
+
+
+   .. method:: ping(self)
+
+
+      Pings the backend server and returns the result.
+
+      :raises exceptions.PineClientHttpException: if the HTTP request returns an error
+
+      :returns: the JSON response from the server (probably ``"pong"``)
+
+
+   .. method:: about(self)
+
+
+      Returns the 'about' dict from the server.
+
+      :raises exceptions.PineClientHttpException: if the HTTP request returns an error
+
+      :returns: the JSON response from the server
+      :rtype: dict
+
+
+   .. method:: get_logged_in_user(self)
+
+
+      Returns the currently logged in user, or None if not logged in.
+
+      :raises exceptions.PineClientHttpException: if the HTTP request returns an error
+
+      :returns: currently logged in user, or None if not logged in
+      :rtype: dict
+
+
+   .. method:: get_my_user_id(self)
+
+
+      Returns the ID of the logged in user, or None if not logged in.
+
+      :raises exceptions.PineClientHttpException: if the HTTP request returns an error
+
+      :returns: the ID of the logged in user, or None if not logged in
+      :rtype: str
+
+
+   .. method:: is_logged_in(self)
+
+
+      Returns whether the user is currently logged in or not.
+
+      :raises exceptions.PineClientHttpException: if the HTTP request returns an error
+
+      :returns: whether the user is currently logged in or not
+      :rtype: bool
+
+
+   .. method:: _check_login(self)
+
+
+      Checks whether user is logged in and raises an :py:class:`.exceptions.PineClientAuthException` if not.
+
+      :raises exceptions.PineClientAuthException: if not logged in
+      :raises exceptions.PineClientHttpException: if the HTTP request returns an error
+
+
+   .. method:: get_auth_module(self)
+
+
+      Returns the PINE authentication module, e.g. ``"eve"``.
+
+      :raises exceptions.PineClientHttpException: if the HTTP request returns an error
+
+      :returns: the PINE authentication module, e.g. ``"eve"``
+      :rtype: str
+
+
+   .. method:: login_eve(self, username: str, password: str)
+
+
+      Logs in using eve credentials, and returns whether it was successful.
+
+      :param username: username
+      :type username: str
+      :param password: password
+      :type password: str
+
+      :raises exceptions.PineClientAuthException: if auth module is not eve or login was not successful
+      :raises exceptions.PineClientHttpException: if the HTTP request returns an error
+
+      :returns: whether the login was successful
+      :rtype: bool
+
+
+   .. method:: logout(self)
+
+
+      Logs out the current user.
+
+      :raises exceptions.PineClientHttpException: if the HTTP request returns an error
+
+
+   .. method:: get_pipelines(self)
+
+
+      Returns all pipelines accessible to logged in user.
+
+      :raises exceptions.PineClientAuthException: if not logged in
+      :raises exceptions.PineClientHttpException: if the HTTP request returns an error
+
+      :returns: all pipelines accessible to logged in user
+      :rtype: list(dict)
+
+
+   .. method:: collection_builder(self, **kwargs: dict)
+
+
+      Makes and returns a new :py:class:`.models.CollectionBuilder` with the logged in user.
+
+      :param \**kwargs: any additional args to pass in to the constructor
+      :type \**kwargs: dict
+
+      :returns: a new :py:class:`.models.CollectionBuilder` with the logged in user
+      :rtype: models.CollectionBuilder
+
+
+   .. method:: create_collection(self, builder: models.CollectionBuilder)
+
+
+      Creates a collection using the current value of the given builder and returns its ID.
+
+      :param builder: collection builder
+      :type builder: models.CollectionBuilder
+
+      :raises exceptions.PineClientValueException: if the given collection is not valid, see :py:func:`.models.is_valid_collection`
+      :raises exceptions.PineClientAuthException: if not logged in
+      :raises exceptions.PineClientHttpException: if the HTTP request returns an error
+
+      :returns: the created collection's ID
+      :rtype: str
+
+
+   .. method:: get_collection_documents(self, collection_id: str, truncate: bool, truncate_length: int = 30)
+
+
+      Returns the documents in the given collection.
+
+      :param collection_id: the ID of the collection
+      :type collection_id: str
+      :param truncate: whether to truncate the document text (a good idea unless you need it)
+      :type truncate: bool
+      :param truncate_length: how many characters of the text you want if truncated, defaults to ``30``
+      :type truncate_length: int, optional
+
+      :returns: the documents in the given collection
+      :rtype: list(dict)
+
+
+   .. method:: add_document(self, document: dict = {}, creator_id: str = None, collection_id: str = None, overlap: int = None, text: str = None, metadata: dict = None)
+
+
+      Adds a new document to a collection and returns its ID.
+
+      Will use the logged in user ID for the creator_id if none is given.  Although all the
+      parameters are optional, you must provide values either in the document or through the
+      kwargs in order to make a valid document.
+
+      :param document: optional document dict, will be overridden with any kwargs, defaults to ``{}``
+      :type document: dict, optional
+      :param creator_id: optional creator_id for the document, defaults to ``None`` (not set)
+      :type creator_id: str, optional
+      :param collection_id: optional collection_id for the document, defaults to ``None`` (not set)
+      :type collection_id: str, optional
+      :param overlap: optional overlap for the document, defaults to ``None`` (not set)
+      :type overlap: int, optional
+      :param text: optional text for the document, defaults to ``None`` (not set)
+      :type text: str, optional
+      :param metadata: optional metadata for the document, defaults to ``None`` (not set)
+      :type metadata: dict, optional
+
+      :raises exceptions.PineClientValueException: if the given document parameters are not valid, see :py:func:`.models.is_valid_eve_document`
+      :raises exceptions.PineClientAuthException: if not logged in
+      :raises exceptions.PineClientHttpException: if the HTTP request returns an error
+
+      :returns: the created document's ID
+      :rtype: str
+
+
+   .. method:: add_documents(self, documents: typing.List[dict], creator_id: str = None, collection_id: str = None)
+
+
+      Adds multiple documents at once and returns their IDs.
+
+      Will use the logged in user ID for the creator_id if none is given.
+
+      :param documents: the documents to add
+      :type documents: list(dict)
+      :param creator_id: optional creator_id to set in the documents, defaults to ``None`` (not set)
+      :type creator_id: str, optional
+      :param collection_id: optional collection_id to set in the documents, defaults to ``None`` (not set)
+      :type collection_id: str, optional
+
+      :raises exceptions.PineClientValueException: if any of the given documents are not valid, see :py:func:`.models.is_valid_eve_document`
+      :raises exceptions.PineClientAuthException: if not logged in
+      :raises exceptions.PineClientHttpException: if the HTTP request returns an error
+
+      :returns: the created documents' IDs
+      :rtype: list(str)
+
+
+   .. method:: annotate_document(self, document_id: str, doc_annotations: typing.List[str], ner_annotations: typing.List[typing.Union[dict, list, tuple]])
+
+
+      Annotates the given document with the given values.
+
+      :param document_id: the document ID to annotate
+      :type document_id: str
+      :param doc_annotations: document annotations/labels
+      :type doc_annotations: list(str)
+      :param ner_annotations: NER annotations, where each annotation is either a list or a dict
+      :type ner_annotations: list
+
+      :raises exceptions.PineClientValueException: if any of the given annotations are not valid, see :py:func:`.models.is_valid_annotation`
+      :raises exceptions.PineClientAuthException: if not logged in
+      :raises exceptions.PineClientHttpException: if the HTTP request returns an error
+
+      :returns: the annotation ID
+      :rtype: str
+
+
+   .. method:: annotate_collection_documents(self, collection_id: str, document_annotations: dict, skip_document_updates=False)
+
+
+      Annotates documents in a collection.
+
+      :param collection_id: the ID of the collection containing the documents to annotate
+      :type collection_id: str
+      :param document_annotations: a dict containing "ner" list and "doc" list
+      :type document_annotations: dict
+      :param skip_document_updates: whether to skip updating the document "has_annotated" map, defaults to ``False``.
+                                    This should only be ``True`` if you properly set the
+                                    "has_annotated" map when you created the document.
+      :type skip_document_updates: bool
+
+      :raises exceptions.PineClientValueException: if any of the given annotations are not valid, see :py:func:`.models.is_valid_doc_annotations`
+      :raises exceptions.PineClientAuthException: if not logged in
+      :raises exceptions.PineClientHttpException: if the HTTP request returns an error
+
+      :returns: the annotation IDs
+      :rtype: list(str)
+
+
+
+.. py:class:: LocalPineClient(backend_base_uri: str, eve_base_uri: str, mongo_base_uri: str = None, mongo_dbname: str = EveClient.DEFAULT_DBNAME)
+
+   Bases: :class:`pine.client.client.PineClient`
+
+   A client for a local PINE instance, including an :py:class<.EveClient>.
+       
+
+   Constructor.
+
+   :param backend_base_uri: the base URI for the backend server, e.g. ``"http://localhost:5000"``
+   :type backend_base_uri: str
+   :param eve_base_uri: the base URI for the eve server, e.g. ``"http://localhost:5001"``
+   :type eve_base_uri: str
+   :param mongo_base_uri: the base URI for the mongodb server, e.g. ``"mongodb://localhost:27018"``, defaults to ``None``
+   :type mongo_base_uri: str, optional
+   :param mongo_dbname: the DB name that PINE uses, defaults to ``"pmap_nlp"``
+   :type mongo_dbname: str, optional
+
+   .. attribute:: eve
+      :annotation: :EveClient
+
+      The local :py:class:`EveClient` instance.
+
+      :type: EveClient
+
+
+   .. method:: is_valid(self)
+
+
+      Returns whether this client and its connection(s) are valid.
+
+      :return: whether this client and its connection(s) are valid
+      :rtype: bool
+
+
+

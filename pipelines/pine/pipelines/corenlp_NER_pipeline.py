@@ -81,7 +81,11 @@ class corenlp_NER(Pipeline):
         if isfile(self.__jar):
             os.environ['CLASSPATH'] = self.__jar
         else:
-            raise ImportError("ERROR: Stanford NER Library not found")
+            self.__jar = 'pine/pipelines/resources/stanford-corenlp-full-2018-02-27/stanford-corenlp-3.9.1.jar'
+            if isfile(self.__jar):
+                os.environ['CLASSPATH'] = self.__jar
+            else:
+                raise ImportError("ERROR: Stanford NER Library not found")
 
         #if you get to this point, java and stanford ner library should be located
         import jnius_config

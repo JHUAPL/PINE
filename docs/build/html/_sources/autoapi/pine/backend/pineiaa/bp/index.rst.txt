@@ -1,0 +1,43 @@
+:mod:`pine.backend.pineiaa.bp`
+==============================
+
+.. py:module:: pine.backend.pineiaa.bp
+
+
+Module Contents
+---------------
+
+
+Functions
+~~~~~~~~~
+
+.. autoapisummary::
+
+   pine.backend.pineiaa.bp.get_current_report
+   pine.backend.pineiaa.bp.get_iia_report_by_collection_id
+   pine.backend.pineiaa.bp.create_iaa_report_by_collection_id
+   pine.backend.pineiaa.bp.init_app
+
+
+.. data:: logger
+   
+
+   
+
+.. data:: bp
+   
+
+   
+
+.. function:: get_current_report(collection_id)
+
+
+.. function:: get_iia_report_by_collection_id(collection_id)
+
+
+.. function:: create_iaa_report_by_collection_id(collection_id)
+
+
+.. function:: init_app(app)
+
+

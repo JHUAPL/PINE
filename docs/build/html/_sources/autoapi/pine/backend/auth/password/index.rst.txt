@@ -1,0 +1,25 @@
+:mod:`pine.backend.auth.password`
+=================================
+
+.. py:module:: pine.backend.auth.password
+
+
+Module Contents
+---------------
+
+
+Functions
+~~~~~~~~~
+
+.. autoapisummary::
+
+   pine.backend.auth.password.hash_password
+   pine.backend.auth.password.check_password
+
+
+.. function:: hash_password(password: str) -> str
+
+
+.. function:: check_password(password: str, hashed_password: str)
+
+

@@ -48,13 +48,14 @@ services:
     volumes:
       - ${SHARED_VOLUME}:/nlp-web-app/shared
       - ${LOGS_VOLUME}:/nlp-web-app/logs
-      - ${DOCUMENT_IMAGE_VOLUME}:/nlp-web-app/document_images
+      - ${DOCUMENT_IMAGE_VOLUME}:/mnt/azure
     environment:
       AL_REDIS_HOST: redis
       AL_REDIS_PORT: ${REDIS_PORT}
       AUTH_MODULE: ${AUTH_MODULE}
       PINE_LOGGING_CONFIG_FILE: /nlp-web-app/shared/logging.python.json
-      DOCUMENT_IMAGE_DIR: /nlp-web-app/document_images
+      DOCUMENT_IMAGE_DIR: /mnt/azure
+      PINE_VERSION: ${PINE_VERSION:?Please set PINE_VERSION environment variable.}
     # Expose the following to test:
 #    ports:
 #      - ${BACKEND_PORT}:${BACKEND_PORT}

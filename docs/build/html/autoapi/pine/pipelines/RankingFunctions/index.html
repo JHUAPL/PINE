@@ -1,0 +1,244 @@
+
+
+<!doctype html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>pine.pipelines.RankingFunctions &#8212; pine  documentation</title>
+    <link rel="stylesheet" href="../../../../_static/bizstyle.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/graphviz.css" />
+    
+    <script id="documentation_options" data-url_root="../../../../" src="../../../../_static/documentation_options.js"></script>
+    <script src="../../../../_static/jquery.js"></script>
+    <script src="../../../../_static/underscore.js"></script>
+    <script src="../../../../_static/doctools.js"></script>
+    <script src="../../../../_static/language_data.js"></script>
+    <script src="../../../../_static/bizstyle.js"></script>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" />
+    <link rel="next" title="pine.pipelines.corenlp_NER_pipeline" href="../corenlp_NER_pipeline/index.html" />
+    <link rel="prev" title="pine.pipelines.NER_API" href="../NER_API/index.html" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <!--[if lt IE 9]>
+    <script src="_static/css3-mediaqueries.js"></script>
+    <![endif]-->
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="../corenlp_NER_pipeline/index.html" title="pine.pipelines.corenlp_NER_pipeline"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="../NER_API/index.html" title="pine.pipelines.NER_API"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../../index.html">pine  documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../../index.html" >API Reference</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../../index.html" ><code class="xref py py-mod docutils literal notranslate"><span class="pre">pine</span></code></a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="../index.html" accesskey="U"><code class="xref py py-mod docutils literal notranslate"><span class="pre">pine.pipelines</span></code></a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href=""><code class="xref py py-mod docutils literal notranslate"><span class="pre">pine.pipelines.RankingFunctions</span></code></a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="module-pine.pipelines.RankingFunctions">
+<span id="pine-pipelines-rankingfunctions"></span><h1><a class="reference internal" href="#module-pine.pipelines.RankingFunctions" title="pine.pipelines.RankingFunctions"><code class="xref py py-mod docutils literal notranslate"><span class="pre">pine.pipelines.RankingFunctions</span></code></a><a class="headerlink" href="#module-pine.pipelines.RankingFunctions" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="module-contents">
+<h2>Module Contents<a class="headerlink" href="#module-contents" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="functions">
+<h3>Functions<a class="headerlink" href="#functions" title="Permalink to this headline">¶</a></h3>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pine.pipelines.RankingFunctions.rank" title="pine.pipelines.RankingFunctions.rank"><code class="xref py py-obj docutils literal notranslate"><span class="pre">rank</span></code></a>(results, metric)</p></td>
+<td><p>if metric == ‘lc’: return least_confidence(results)</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#pine.pipelines.RankingFunctions.least_confidence" title="pine.pipelines.RankingFunctions.least_confidence"><code class="xref py py-obj docutils literal notranslate"><span class="pre">least_confidence</span></code></a>(results)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pine.pipelines.RankingFunctions.least_confidence_squared" title="pine.pipelines.RankingFunctions.least_confidence_squared"><code class="xref py py-obj docutils literal notranslate"><span class="pre">least_confidence_squared</span></code></a>(results)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#pine.pipelines.RankingFunctions.least_confidence_squared_by_entity" title="pine.pipelines.RankingFunctions.least_confidence_squared_by_entity"><code class="xref py py-obj docutils literal notranslate"><span class="pre">least_confidence_squared_by_entity</span></code></a>(results)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pine.pipelines.RankingFunctions.largest_margin" title="pine.pipelines.RankingFunctions.largest_margin"><code class="xref py py-obj docutils literal notranslate"><span class="pre">largest_margin</span></code></a>(results)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#pine.pipelines.RankingFunctions.entropy_rank" title="pine.pipelines.RankingFunctions.entropy_rank"><code class="xref py py-obj docutils literal notranslate"><span class="pre">entropy_rank</span></code></a>(results, N=None)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pine.pipelines.RankingFunctions.random_rank" title="pine.pipelines.RankingFunctions.random_rank"><code class="xref py py-obj docutils literal notranslate"><span class="pre">random_rank</span></code></a>(results)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#pine.pipelines.RankingFunctions.most_of_least_popular" title="pine.pipelines.RankingFunctions.most_of_least_popular"><code class="xref py py-obj docutils literal notranslate"><span class="pre">most_of_least_popular</span></code></a>(results)</p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
+<dl class="py function">
+<dt id="pine.pipelines.RankingFunctions.rank">
+<code class="sig-prename descclassname">pine.pipelines.RankingFunctions.</code><code class="sig-name descname">rank</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">results</span></em>, <em class="sig-param"><span class="n">metric</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.pipelines.RankingFunctions.rank" title="Permalink to this definition">¶</a></dt>
+<dd><p>if metric == ‘lc’: return least_confidence(results)
+if metric == ‘ma’: return largest_margin(results)
+if metric == ‘en’: return entropy_rank(results)
+if metric == ‘lcs’: return least_confidence_squared(results)
+if metric == ‘lce’: return least_confidence_squared_by_entity(results)
+if metric == ‘ra’: return random_rank(results)
+if metric == ‘mlp’: return most_of_least_popular(results)
+return -1</p>
+<p>#Dictionary method is inefficient as it runs every method before returning one</p>
+</dd></dl>
+
+<dl class="py function">
+<dt id="pine.pipelines.RankingFunctions.least_confidence">
+<code class="sig-prename descclassname">pine.pipelines.RankingFunctions.</code><code class="sig-name descname">least_confidence</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">results</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.pipelines.RankingFunctions.least_confidence" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt id="pine.pipelines.RankingFunctions.least_confidence_squared">
+<code class="sig-prename descclassname">pine.pipelines.RankingFunctions.</code><code class="sig-name descname">least_confidence_squared</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">results</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.pipelines.RankingFunctions.least_confidence_squared" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt id="pine.pipelines.RankingFunctions.least_confidence_squared_by_entity">
+<code class="sig-prename descclassname">pine.pipelines.RankingFunctions.</code><code class="sig-name descname">least_confidence_squared_by_entity</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">results</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.pipelines.RankingFunctions.least_confidence_squared_by_entity" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt id="pine.pipelines.RankingFunctions.largest_margin">
+<code class="sig-prename descclassname">pine.pipelines.RankingFunctions.</code><code class="sig-name descname">largest_margin</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">results</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.pipelines.RankingFunctions.largest_margin" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt id="pine.pipelines.RankingFunctions.entropy_rank">
+<code class="sig-prename descclassname">pine.pipelines.RankingFunctions.</code><code class="sig-name descname">entropy_rank</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">results</span></em>, <em class="sig-param"><span class="n">N</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.pipelines.RankingFunctions.entropy_rank" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt id="pine.pipelines.RankingFunctions.random_rank">
+<code class="sig-prename descclassname">pine.pipelines.RankingFunctions.</code><code class="sig-name descname">random_rank</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">results</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.pipelines.RankingFunctions.random_rank" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt id="pine.pipelines.RankingFunctions.most_of_least_popular">
+<code class="sig-prename descclassname">pine.pipelines.RankingFunctions.</code><code class="sig-name descname">most_of_least_popular</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">results</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.pipelines.RankingFunctions.most_of_least_popular" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+</div>
+</div>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../../../../index.html">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">pine.pipelines.RankingFunctions</span></code></a><ul>
+<li><a class="reference internal" href="#module-contents">Module Contents</a><ul>
+<li><a class="reference internal" href="#functions">Functions</a><ul>
+<li><a class="reference internal" href="#pine.pipelines.RankingFunctions.rank">rank</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#pine.pipelines.RankingFunctions.least_confidence">least_confidence</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#pine.pipelines.RankingFunctions.least_confidence_squared">least_confidence_squared</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#pine.pipelines.RankingFunctions.least_confidence_squared_by_entity">least_confidence_squared_by_entity</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#pine.pipelines.RankingFunctions.largest_margin">largest_margin</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#pine.pipelines.RankingFunctions.entropy_rank">entropy_rank</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#pine.pipelines.RankingFunctions.random_rank">random_rank</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#pine.pipelines.RankingFunctions.most_of_least_popular">most_of_least_popular</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="../NER_API/index.html"
+                        title="previous chapter"><code class="xref py py-mod docutils literal notranslate"><span class="pre">pine.pipelines.NER_API</span></code></a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="../corenlp_NER_pipeline/index.html"
+                        title="next chapter"><code class="xref py py-mod docutils literal notranslate"><span class="pre">pine.pipelines.corenlp_NER_pipeline</span></code></a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../../../_sources/autoapi/pine/pipelines/RankingFunctions/index.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="../corenlp_NER_pipeline/index.html" title="pine.pipelines.corenlp_NER_pipeline"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="../NER_API/index.html" title="pine.pipelines.NER_API"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../../index.html">pine  documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../../index.html" >API Reference</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../../index.html" ><code class="xref py py-mod docutils literal notranslate"><span class="pre">pine</span></code></a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="../index.html" ><code class="xref py py-mod docutils literal notranslate"><span class="pre">pine.pipelines</span></code></a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href=""><code class="xref py py-mod docutils literal notranslate"><span class="pre">pine.pipelines.RankingFunctions</span></code></a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright (C) 2019 The Johns Hopkins University Applied Physics Laboratory LLC..
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.1.2.
+    </div>
+  </body>
+</html>

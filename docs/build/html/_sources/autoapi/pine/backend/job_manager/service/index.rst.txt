@@ -1,0 +1,255 @@
+:mod:`pine.backend.job_manager.service`
+=======================================
+
+.. py:module:: pine.backend.job_manager.service
+
+
+Module Contents
+---------------
+
+Classes
+~~~~~~~
+
+.. autoapisummary::
+
+   pine.backend.job_manager.service.ServiceManager
+
+
+
+.. data:: config
+   
+
+   
+
+.. data:: logger
+   
+
+   
+
+.. py:class:: ServiceManager(default_handler=None)
+
+   Bases: :class:`object`
+
+   :type default_handler: callable
+
+   .. attribute:: r_pool
+      
+
+      
+
+   .. attribute:: r_conn
+      
+
+      
+
+   .. attribute:: redis_key_prefix
+      
+
+      
+
+   .. attribute:: redis_reg_key_prefix
+      
+
+      
+
+   .. attribute:: redis_channels_key
+      
+
+      
+
+   .. attribute:: redis_channel_ttl_key_prefix
+      
+
+      
+
+   .. attribute:: redis_work_queue_key_prefix
+      
+
+      
+
+   .. attribute:: redis_work_mutex_key_prefix
+      
+
+      
+
+   .. attribute:: redis_handler_mutex_key_prefix
+      
+
+      
+
+   .. attribute:: redis_reg_key_ttl
+      
+
+      
+
+   .. attribute:: redis_channels_key_ttl
+      
+
+      
+
+   .. attribute:: redis_work_queue_key_ttl
+      
+
+      
+
+   .. attribute:: redis_work_mutex_key_ttl
+      
+
+      
+
+   .. attribute:: redis_handler_mutex_key_ttl
+      
+
+      
+
+   .. attribute:: handler_timeout
+      
+
+      
+
+   .. attribute:: registration_worker_name
+      :annotation: = registration_worker
+
+      
+
+   .. attribute:: processing_worker_name
+      :annotation: = processing_worker
+
+      
+
+   .. attribute:: channel_worker_name
+      :annotation: = channel_worker
+
+      
+
+   .. attribute:: shutdown_channel
+      :annotation: = shutdown
+
+      
+
+   .. attribute:: registration_channel
+      :annotation: = registration
+
+      
+
+   .. attribute:: reserved_channels
+      
+
+      
+
+   .. method:: get_registered_channels(cls, include_ttl=False)
+      :classmethod:
+
+
+      Get list of registered channels, with registration time if requested.
+      :type include_ttl: bool
+      :rtype: list[str] | dict[str, datetime]
+
+
+   .. method:: get_registered_service_details(cls, service_name=None)
+      :classmethod:
+
+
+      Get registration details of a service.
+      :type service_name: str
+      :rtype: None | dict
+
+
+   .. method:: get_registered_services(cls, include_details=True)
+      :classmethod:
+
+
+      Get list of registered services and registration body if requested.
+      :type include_details: bool
+      :rtype: list[str] | list[dict]
+
+
+   .. method:: send_service_request(cls, service_name, data, job_id=None, encoder=None)
+      :classmethod:
+
+
+      Queue's a job for the requested service.
+      :type service_name: str
+      :type data: dict
+      :type job_id: str
+      :type encoder: json.JSONEncoder
+      :rtype: None | dict
+
+
+   .. method:: start_listeners(self)
+
+
+      Starts all the workers.
+
+
+   .. method:: stop_listeners(self)
+
+
+      Stops all the workers.
+
+
+   .. method:: _start_registration_listener(self)
+
+
+      Starts the registration worker.
+      :rtype: bool
+
+
+   .. method:: _start_processing_listeners(self)
+
+
+      Starts the processing workers.
+      :rtype: bool
+
+
+   .. method:: _start_channel_watchdog(self)
+
+
+      Starts the channel watchdog workers in an asyncio-only thread. It monitors the channel TTL's.
+      :rtype: bool
+
+
+   .. method:: _stop_channel_watchdog(self)
+
+
+      Stops the channel watchdog workers in an asyncio-only thread.
+      :rtype: bool
+
+
+   .. method:: _registration_listener(self)
+
+
+      Registration Listener Implementation.
+
+
+   .. method:: _channel_watchdog(self)
+      :async:
+
+
+      Channel Watchdog Implementation.
+      In asyncio, it monitors the channel-ttl keys and the channels SET to expire registered services as needed.
+      The other functionality is to register new channels as they're added to the pubsub in the processing listener.
+
+
+   .. method:: _thread_killer(thread_id)
+      :staticmethod:
+
+
+
+   .. method:: _processing_listener_handler_wrapper(self, job_id, job_type, job_queue, job_data)
+
+
+
+   .. method:: _processing_listener(self)
+
+
+      Processing Listener Implementation.
+      Runs a handler when a processing message gets send over an already registered channel.
+
+
+
+.. data:: sm
+   
+
+   
+

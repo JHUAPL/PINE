@@ -1,0 +1,25 @@
+/*(C) 2019 The Johns Hopkins University Applied Physics Laboratory LLC. */
+
+#content {
+    background-image: url("/assets/pine_small.png");
+    background-repeat: no-repeat;
+    background-position: center bottom;
+    background-size: 100% 100%;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+#content-card {
+    background-color: #FFFFFF;
+    opacity: 0.95;
+}
+
+#version-table mat-cell, #version-table .mat-cell,
+#version-table mat-footer-cell, #version-table .mat-footer-cell,
+#version-table mat-header-cell, #version-table .mat-header-cell {
+    padding: 0.75rem !important;
+}
+
+#buttons {
+    display: flex;
+}

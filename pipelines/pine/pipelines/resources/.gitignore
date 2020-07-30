@@ -1,0 +1,7 @@
+/apache-opennlp-*.tar.gz
+/stanford-corenlp-full-*.zip
+/stanford-ner-*.zip
+
+/apache-opennlp-*/
+/stanford-corenlp-full-*/
+/stanford-ner-*/

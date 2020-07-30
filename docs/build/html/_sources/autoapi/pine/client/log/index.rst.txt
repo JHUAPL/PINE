@@ -1,0 +1,34 @@
+:mod:`pine.client.log`
+======================
+
+.. py:module:: pine.client.log
+
+
+Module Contents
+---------------
+
+
+Functions
+~~~~~~~~~
+
+.. autoapisummary::
+
+   pine.client.log.setup_logging
+
+
+.. data:: CONFIG_FILE_ENV
+   :annotation: :str = PINE_LOGGING_CONFIG_FILE
+
+   The environment variable that optionally contains the file to use for logging configuration.
+
+   :type: str
+
+
+.. function:: setup_logging()
+
+   Sets up logging, if configured to do so.
+
+   The environment variable named by :py:data:`CONFIG_FILE_ENV` is checked and, if present, is
+   passed to :py:func:`logging.config.dictConfig`.
+
+
