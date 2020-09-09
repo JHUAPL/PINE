@@ -139,7 +139,7 @@ export class AuthService {
         });
     }
 
-    public getUserDisplayName(user_id: string) {
+    public getUserDisplayName(user_id: string): string {
         return this.module.getUserDisplayName(user_id);
     }
 

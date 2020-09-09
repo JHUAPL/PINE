@@ -37,7 +37,7 @@ export class MetricsComponent implements OnInit, AfterContentInit, OnChanges {
   ngOnChanges() {
     this.latest_avg_metrics = this.metrics._items[this.metrics._items.length - 1].metric_averages
     //Remove initial empty metric
-    console.log(this.metrics);
+    console.debug(this.metrics);
     const filteredMetrics = this.metrics._items.filter(a => {
       return a.metrics != null ? a.metrics.length > 0 : false
     })

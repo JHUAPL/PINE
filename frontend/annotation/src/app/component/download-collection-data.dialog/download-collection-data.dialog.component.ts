@@ -24,7 +24,7 @@ export class DownloadCollectionDataDialogComponent implements OnInit {
             include_document_metadata: new FormControl(true),
             include_document_text: new FormControl(true),
             include_annotations: new FormControl(true),
-            include_annotation_latest_version_only: new FormControl("true")
+            include_annotation_latest_version_only: new FormControl(true)
         });
     }
 
@@ -33,7 +33,6 @@ export class DownloadCollectionDataDialogComponent implements OnInit {
     
     public download() {
         let data = this.form.value;
-        data.include_annotation_latest_version_only = data.include_annotation_latest_version_only == "true";
         this.dialogRef.close(<DownloadCollectionData>data);
     }
     

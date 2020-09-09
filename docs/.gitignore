@@ -1,0 +1,3 @@
+build/latex/pine.*
+!build/latex/pine.tex
+!build/latex/pine.pdf

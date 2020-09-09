@@ -444,7 +444,7 @@ class PineClient(BaseClient):
         :returns: whether the user is currently logged in or not
         :rtype: bool
         """
-        return self.session and self.get_logged_in_user()
+        return self.session != None and self.get_logged_in_user() != None
 
     def _check_login(self):
         """Checks whether user is logged in and raises an :py:class:`.exceptions.PineClientAuthException` if not.
@@ -706,6 +706,65 @@ class PineClient(BaseClient):
         return self.post(["annotations", "mine", "by_collection_id", collection_id],
                          json=document_annotations,
                          params={"skip_document_updates":json.dumps(skip_document_updates)}).json()
+
+    def list_collections(self, include_archived: bool = False) -> typing.List[dict]:
+        """Returns a list of user's collections.
+        
+        :param include_archived: whether to include archived collections, defaults to ``False``
+        :type include_archived: bool
+        
+        :raises exceptions.PineClientAuthException: if not logged in
+        :raises exceptions.PineClientHttpException: if the HTTP request returns an error
+        
+        :returns: user's collections
+        :rtype: list(dict)
+        """
+        self._check_login()
+        cols = self.get(["collections", "unarchived"]).json()["_items"]
+        if include_archived:
+            cols += self.get(["collections", "archived"]).json()["_items"]
+        for col in cols:
+            models.remove_eve_fields(col, remove_timestamps=False)
+        return cols
+
+    def download_collection_data(self, collection_id: str, include_collection_metadata: bool = True,
+                                 include_document_metadata: bool = True, include_document_text: bool = True,
+                                 include_annotations: bool = True, include_annotation_latest_version_only: bool = True):
+        """Downloads collection data.
+        
+        :param collection_id: the ID of the collection for which to download data
+        :type collection_id: str
+        :param include_collection_metadata: whether to include collection metadata, defaults to ``True``
+        :type include_collection_metadata: bool
+        :param include_document_metadata: whether to include document metadata, defaults to ``True``
+        :type include_document_metadata: bool
+        :param include_document_text: whether to include document text, defaults to ``True``
+        :type include_document_text: bool
+        :param include_annotations: whether to include annotations, defaults to ``True``
+        :type include_annotations: bool
+        :param include_annotation_latest_version_only: whether to include only the latest version
+                        of annotations (``True``) or all versions (``False``), defaults to ``True``
+        :type include_annotation_latest_version_only: bool
+        
+        :raises exceptions.PineClientValueException: if given empty collection ID
+        :raises exceptions.PineClientAuthException: if not logged in
+        :raises exceptions.PineClientHttpException: if the HTTP request returns an error, such as if the
+                                                    collection doesn't exist
+
+        :returns: collection data
+        :rtype: dict
+        """
+        self._check_login()
+        if not collection_id:
+            raise exceptions.PineClientValueException(collection_id, "str")
+        return self.get(["collections", "by_id", collection_id, "download"], params={
+            "as_file": json.dumps(False),
+            "include_collection_metadata": json.dumps(include_collection_metadata),
+            "include_document_metadata": json.dumps(include_document_metadata),
+            "include_document_text": json.dumps(include_document_text),
+            "include_annotations": json.dumps(include_annotations),
+            "include_annotation_latest_version_only": json.dumps(include_annotation_latest_version_only)
+        }).json()
 
 
 class LocalPineClient(PineClient):

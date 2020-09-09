@@ -482,6 +482,62 @@ This should only be <code class="docutils literal notranslate"><span class="pre"
 </dl>
 </dd></dl>
 
+<dl class="py method">
+<dt id="pine.client.PineClient.list_collections">
+<code class="sig-name descname">list_collections</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="n">include_archived</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)">bool</a></span> <span class="o">=</span> <span class="default_value">False</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.client.PineClient.list_collections" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a list of user’s collections.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>include_archived</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)"><em>bool</em></a>) – whether to include archived collections, defaults to <code class="docutils literal notranslate"><span class="pre">False</span></code></p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><a class="reference internal" href="exceptions/index.html#pine.client.exceptions.PineClientAuthException" title="pine.client.exceptions.PineClientAuthException"><strong>exceptions.PineClientAuthException</strong></a> – if not logged in</p></li>
+<li><p><a class="reference internal" href="exceptions/index.html#pine.client.exceptions.PineClientHttpException" title="pine.client.exceptions.PineClientHttpException"><strong>exceptions.PineClientHttpException</strong></a> – if the HTTP request returns an error</p></li>
+</ul>
+</dd>
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>user’s collections</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.8)">list</a>(<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.8)">dict</a>)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pine.client.PineClient.download_collection_data">
+<code class="sig-name descname">download_collection_data</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="n">collection_id</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)">str</a></span></em>, <em class="sig-param"><span class="n">include_collection_metadata</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)">bool</a></span> <span class="o">=</span> <span class="default_value">True</span></em>, <em class="sig-param"><span class="n">include_document_metadata</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)">bool</a></span> <span class="o">=</span> <span class="default_value">True</span></em>, <em class="sig-param"><span class="n">include_document_text</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)">bool</a></span> <span class="o">=</span> <span class="default_value">True</span></em>, <em class="sig-param"><span class="n">include_annotations</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)">bool</a></span> <span class="o">=</span> <span class="default_value">True</span></em>, <em class="sig-param"><span class="n">include_annotation_latest_version_only</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)">bool</a></span> <span class="o">=</span> <span class="default_value">True</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.client.PineClient.download_collection_data" title="Permalink to this definition">¶</a></dt>
+<dd><p>Downloads collection data.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>collection_id</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – the ID of the collection for which to download data</p></li>
+<li><p><strong>include_collection_metadata</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)"><em>bool</em></a>) – whether to include collection metadata, defaults to <code class="docutils literal notranslate"><span class="pre">True</span></code></p></li>
+<li><p><strong>include_document_metadata</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)"><em>bool</em></a>) – whether to include document metadata, defaults to <code class="docutils literal notranslate"><span class="pre">True</span></code></p></li>
+<li><p><strong>include_document_text</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)"><em>bool</em></a>) – whether to include document text, defaults to <code class="docutils literal notranslate"><span class="pre">True</span></code></p></li>
+<li><p><strong>include_annotations</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)"><em>bool</em></a>) – whether to include annotations, defaults to <code class="docutils literal notranslate"><span class="pre">True</span></code></p></li>
+<li><p><strong>include_annotation_latest_version_only</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)"><em>bool</em></a>) – whether to include only the latest version
+of annotations (<code class="docutils literal notranslate"><span class="pre">True</span></code>) or all versions (<code class="docutils literal notranslate"><span class="pre">False</span></code>), defaults to <code class="docutils literal notranslate"><span class="pre">True</span></code></p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><a class="reference internal" href="exceptions/index.html#pine.client.exceptions.PineClientValueException" title="pine.client.exceptions.PineClientValueException"><strong>exceptions.PineClientValueException</strong></a> – if given empty collection ID</p></li>
+<li><p><a class="reference internal" href="exceptions/index.html#pine.client.exceptions.PineClientAuthException" title="pine.client.exceptions.PineClientAuthException"><strong>exceptions.PineClientAuthException</strong></a> – if not logged in</p></li>
+<li><p><a class="reference internal" href="exceptions/index.html#pine.client.exceptions.PineClientHttpException" title="pine.client.exceptions.PineClientHttpException"><strong>exceptions.PineClientHttpException</strong></a> – if the HTTP request returns an error, such as if the
+collection doesn’t exist</p></li>
+</ul>
+</dd>
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>collection data</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.8)">dict</a></p>
+</dd>
+</dl>
+</dd></dl>
+
 </dd></dl>
 
 <dl class="py class">
@@ -937,6 +993,12 @@ defaults to <code class="docutils literal notranslate"><span class="pre">None</s
 </ul>
 <ul>
 <li><a class="reference internal" href="#pine.client.PineClient.annotate_collection_documents">annotate_collection_documents</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#pine.client.PineClient.list_collections">list_collections</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#pine.client.PineClient.download_collection_data">download_collection_data</a></li>
 </ul>
 </li>
 </ul>
