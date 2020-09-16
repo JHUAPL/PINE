@@ -74,7 +74,7 @@
 
 
 \title{pine}
-\date{Jul 14, 2020}
+\date{Aug 17, 2020}
 \release{}
 \author{JHU/APL}
 \newcommand{\sphinxlogo}{\vbox{}}
@@ -6562,6 +6562,85 @@ the annotation IDs
 
 \end{fulllineitems}
 
+\index{list\_collections() (pine.client.client.PineClient method)@\spxentry{list\_collections()}\spxextra{pine.client.client.PineClient method}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{autoapi/pine/client/client/index:pine.client.client.PineClient.list_collections}}\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{list\_collections}}}{\emph{\DUrole{n}{self}}, \emph{\DUrole{n}{include\_archived}\DUrole{p}{:} \DUrole{n}{\sphinxhref{https://docs.python.org/3/library/functions.html\#bool}{bool}} \DUrole{o}{=} \DUrole{default_value}{False}}}{}
+Returns a list of user’s collections.
+\begin{quote}\begin{description}
+\item[{Parameters}] \leavevmode
+\sphinxstyleliteralstrong{\sphinxupquote{include\_archived}} (\sphinxhref{https://docs.python.org/3/library/functions.html\#bool}{\sphinxstyleliteralemphasis{\sphinxupquote{bool}}}) \textendash{} whether to include archived collections, defaults to \sphinxcode{\sphinxupquote{False}}
+
+\item[{Raises}] \leavevmode\begin{itemize}
+\item {} 
+{\hyperref[\detokenize{autoapi/pine/client/exceptions/index:pine.client.exceptions.PineClientAuthException}]{\sphinxcrossref{\sphinxstyleliteralstrong{\sphinxupquote{exceptions.PineClientAuthException}}}}} \textendash{} if not logged in
+
+\item {} 
+{\hyperref[\detokenize{autoapi/pine/client/exceptions/index:pine.client.exceptions.PineClientHttpException}]{\sphinxcrossref{\sphinxstyleliteralstrong{\sphinxupquote{exceptions.PineClientHttpException}}}}} \textendash{} if the HTTP request returns an error
+
+\end{itemize}
+
+\item[{Returns}] \leavevmode
+user’s collections
+
+\item[{Return type}] \leavevmode
+\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#list}{list}(\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#dict}{dict})
+
+\end{description}\end{quote}
+
+\end{fulllineitems}
+
+\index{download\_collection\_data() (pine.client.client.PineClient method)@\spxentry{download\_collection\_data()}\spxextra{pine.client.client.PineClient method}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{autoapi/pine/client/client/index:pine.client.client.PineClient.download_collection_data}}\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{download\_collection\_data}}}{\emph{\DUrole{n}{self}}, \emph{\DUrole{n}{collection\_id}\DUrole{p}{:} \DUrole{n}{\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#str}{str}}}, \emph{\DUrole{n}{include\_collection\_metadata}\DUrole{p}{:} \DUrole{n}{\sphinxhref{https://docs.python.org/3/library/functions.html\#bool}{bool}} \DUrole{o}{=} \DUrole{default_value}{True}}, \emph{\DUrole{n}{include\_document\_metadata}\DUrole{p}{:} \DUrole{n}{\sphinxhref{https://docs.python.org/3/library/functions.html\#bool}{bool}} \DUrole{o}{=} \DUrole{default_value}{True}}, \emph{\DUrole{n}{include\_document\_text}\DUrole{p}{:} \DUrole{n}{\sphinxhref{https://docs.python.org/3/library/functions.html\#bool}{bool}} \DUrole{o}{=} \DUrole{default_value}{True}}, \emph{\DUrole{n}{include\_annotations}\DUrole{p}{:} \DUrole{n}{\sphinxhref{https://docs.python.org/3/library/functions.html\#bool}{bool}} \DUrole{o}{=} \DUrole{default_value}{True}}, \emph{\DUrole{n}{include\_annotation\_latest\_version\_only}\DUrole{p}{:} \DUrole{n}{\sphinxhref{https://docs.python.org/3/library/functions.html\#bool}{bool}} \DUrole{o}{=} \DUrole{default_value}{True}}}{}
+Downloads collection data.
+\begin{quote}\begin{description}
+\item[{Parameters}] \leavevmode\begin{itemize}
+\item {} 
+\sphinxstyleliteralstrong{\sphinxupquote{collection\_id}} (\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#str}{\sphinxstyleliteralemphasis{\sphinxupquote{str}}}) \textendash{} the ID of the collection for which to download data
+
+\item {} 
+\sphinxstyleliteralstrong{\sphinxupquote{include\_collection\_metadata}} (\sphinxhref{https://docs.python.org/3/library/functions.html\#bool}{\sphinxstyleliteralemphasis{\sphinxupquote{bool}}}) \textendash{} whether to include collection metadata, defaults to \sphinxcode{\sphinxupquote{True}}
+
+\item {} 
+\sphinxstyleliteralstrong{\sphinxupquote{include\_document\_metadata}} (\sphinxhref{https://docs.python.org/3/library/functions.html\#bool}{\sphinxstyleliteralemphasis{\sphinxupquote{bool}}}) \textendash{} whether to include document metadata, defaults to \sphinxcode{\sphinxupquote{True}}
+
+\item {} 
+\sphinxstyleliteralstrong{\sphinxupquote{include\_document\_text}} (\sphinxhref{https://docs.python.org/3/library/functions.html\#bool}{\sphinxstyleliteralemphasis{\sphinxupquote{bool}}}) \textendash{} whether to include document text, defaults to \sphinxcode{\sphinxupquote{True}}
+
+\item {} 
+\sphinxstyleliteralstrong{\sphinxupquote{include\_annotations}} (\sphinxhref{https://docs.python.org/3/library/functions.html\#bool}{\sphinxstyleliteralemphasis{\sphinxupquote{bool}}}) \textendash{} whether to include annotations, defaults to \sphinxcode{\sphinxupquote{True}}
+
+\item {} 
+\sphinxstyleliteralstrong{\sphinxupquote{include\_annotation\_latest\_version\_only}} (\sphinxhref{https://docs.python.org/3/library/functions.html\#bool}{\sphinxstyleliteralemphasis{\sphinxupquote{bool}}}) \textendash{} whether to include only the latest version
+of annotations (\sphinxcode{\sphinxupquote{True}}) or all versions (\sphinxcode{\sphinxupquote{False}}), defaults to \sphinxcode{\sphinxupquote{True}}
+
+\end{itemize}
+
+\item[{Raises}] \leavevmode\begin{itemize}
+\item {} 
+{\hyperref[\detokenize{autoapi/pine/client/exceptions/index:pine.client.exceptions.PineClientValueException}]{\sphinxcrossref{\sphinxstyleliteralstrong{\sphinxupquote{exceptions.PineClientValueException}}}}} \textendash{} if given empty collection ID
+
+\item {} 
+{\hyperref[\detokenize{autoapi/pine/client/exceptions/index:pine.client.exceptions.PineClientAuthException}]{\sphinxcrossref{\sphinxstyleliteralstrong{\sphinxupquote{exceptions.PineClientAuthException}}}}} \textendash{} if not logged in
+
+\item {} 
+{\hyperref[\detokenize{autoapi/pine/client/exceptions/index:pine.client.exceptions.PineClientHttpException}]{\sphinxcrossref{\sphinxstyleliteralstrong{\sphinxupquote{exceptions.PineClientHttpException}}}}} \textendash{} if the HTTP request returns an error, such as if the
+collection doesn’t exist
+
+\end{itemize}
+
+\item[{Returns}] \leavevmode
+collection data
+
+\item[{Return type}] \leavevmode
+\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#dict}{dict}
+
+\end{description}\end{quote}
+
+\end{fulllineitems}
+
 
 \end{fulllineitems}
 
@@ -6910,7 +6989,7 @@ Checks that if the given field is in the object, that it is a string list.
 \hline
 {\hyperref[\detokenize{autoapi/pine/client/models/index:pine.client.models._check_field_required_string_list}]{\sphinxcrossref{\sphinxcode{\sphinxupquote{\_check\_field\_required\_string\_list}}}}}(obj: dict, field: str, min\_length: int = 0)
 &
-Checks that the given field is in the object and is a string.
+Checks that the given field is in the object and is a string list.
 \\
 \hline
 {\hyperref[\detokenize{autoapi/pine/client/models/index:pine.client.models._check_field_dict}]{\sphinxcrossref{\sphinxcode{\sphinxupquote{\_check\_field\_dict}}}}}(obj: dict, field: str)
@@ -7217,7 +7296,7 @@ if the given field is in the object, that it is a string list
 
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{autoapi/pine/client/models/index:pine.client.models._check_field_required_string_list}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{pine.client.models.}}\sphinxbfcode{\sphinxupquote{\_check\_field\_required\_string\_list}}}{\emph{\DUrole{n}{obj}\DUrole{p}{:} \DUrole{n}{\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#dict}{dict}}}, \emph{\DUrole{n}{field}\DUrole{p}{:} \DUrole{n}{\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#str}{str}}}, \emph{\DUrole{n}{min\_length}\DUrole{p}{:} \DUrole{n}{\sphinxhref{https://docs.python.org/3/library/functions.html\#int}{int}} \DUrole{o}{=} \DUrole{default_value}{0}}}{{ $\rightarrow$ \sphinxhref{https://docs.python.org/3/library/functions.html\#bool}{bool}}}
-Checks that the given field is in the object and is a string.
+Checks that the given field is in the object and is a string list.
 \begin{quote}\begin{description}
 \item[{Parameters}] \leavevmode\begin{itemize}
 \item {} 
@@ -8710,6 +8789,85 @@ the annotation IDs
 
 \item[{Return type}] \leavevmode
 \sphinxhref{https://docs.python.org/3/library/stdtypes.html\#list}{list}(\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#str}{str})
+
+\end{description}\end{quote}
+
+\end{fulllineitems}
+
+\index{list\_collections() (pine.client.PineClient method)@\spxentry{list\_collections()}\spxextra{pine.client.PineClient method}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{autoapi/pine/client/index:pine.client.PineClient.list_collections}}\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{list\_collections}}}{\emph{\DUrole{n}{self}}, \emph{\DUrole{n}{include\_archived}\DUrole{p}{:} \DUrole{n}{\sphinxhref{https://docs.python.org/3/library/functions.html\#bool}{bool}} \DUrole{o}{=} \DUrole{default_value}{False}}}{}
+Returns a list of user’s collections.
+\begin{quote}\begin{description}
+\item[{Parameters}] \leavevmode
+\sphinxstyleliteralstrong{\sphinxupquote{include\_archived}} (\sphinxhref{https://docs.python.org/3/library/functions.html\#bool}{\sphinxstyleliteralemphasis{\sphinxupquote{bool}}}) \textendash{} whether to include archived collections, defaults to \sphinxcode{\sphinxupquote{False}}
+
+\item[{Raises}] \leavevmode\begin{itemize}
+\item {} 
+{\hyperref[\detokenize{autoapi/pine/client/exceptions/index:pine.client.exceptions.PineClientAuthException}]{\sphinxcrossref{\sphinxstyleliteralstrong{\sphinxupquote{exceptions.PineClientAuthException}}}}} \textendash{} if not logged in
+
+\item {} 
+{\hyperref[\detokenize{autoapi/pine/client/exceptions/index:pine.client.exceptions.PineClientHttpException}]{\sphinxcrossref{\sphinxstyleliteralstrong{\sphinxupquote{exceptions.PineClientHttpException}}}}} \textendash{} if the HTTP request returns an error
+
+\end{itemize}
+
+\item[{Returns}] \leavevmode
+user’s collections
+
+\item[{Return type}] \leavevmode
+\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#list}{list}(\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#dict}{dict})
+
+\end{description}\end{quote}
+
+\end{fulllineitems}
+
+\index{download\_collection\_data() (pine.client.PineClient method)@\spxentry{download\_collection\_data()}\spxextra{pine.client.PineClient method}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{autoapi/pine/client/index:pine.client.PineClient.download_collection_data}}\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{download\_collection\_data}}}{\emph{\DUrole{n}{self}}, \emph{\DUrole{n}{collection\_id}\DUrole{p}{:} \DUrole{n}{\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#str}{str}}}, \emph{\DUrole{n}{include\_collection\_metadata}\DUrole{p}{:} \DUrole{n}{\sphinxhref{https://docs.python.org/3/library/functions.html\#bool}{bool}} \DUrole{o}{=} \DUrole{default_value}{True}}, \emph{\DUrole{n}{include\_document\_metadata}\DUrole{p}{:} \DUrole{n}{\sphinxhref{https://docs.python.org/3/library/functions.html\#bool}{bool}} \DUrole{o}{=} \DUrole{default_value}{True}}, \emph{\DUrole{n}{include\_document\_text}\DUrole{p}{:} \DUrole{n}{\sphinxhref{https://docs.python.org/3/library/functions.html\#bool}{bool}} \DUrole{o}{=} \DUrole{default_value}{True}}, \emph{\DUrole{n}{include\_annotations}\DUrole{p}{:} \DUrole{n}{\sphinxhref{https://docs.python.org/3/library/functions.html\#bool}{bool}} \DUrole{o}{=} \DUrole{default_value}{True}}, \emph{\DUrole{n}{include\_annotation\_latest\_version\_only}\DUrole{p}{:} \DUrole{n}{\sphinxhref{https://docs.python.org/3/library/functions.html\#bool}{bool}} \DUrole{o}{=} \DUrole{default_value}{True}}}{}
+Downloads collection data.
+\begin{quote}\begin{description}
+\item[{Parameters}] \leavevmode\begin{itemize}
+\item {} 
+\sphinxstyleliteralstrong{\sphinxupquote{collection\_id}} (\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#str}{\sphinxstyleliteralemphasis{\sphinxupquote{str}}}) \textendash{} the ID of the collection for which to download data
+
+\item {} 
+\sphinxstyleliteralstrong{\sphinxupquote{include\_collection\_metadata}} (\sphinxhref{https://docs.python.org/3/library/functions.html\#bool}{\sphinxstyleliteralemphasis{\sphinxupquote{bool}}}) \textendash{} whether to include collection metadata, defaults to \sphinxcode{\sphinxupquote{True}}
+
+\item {} 
+\sphinxstyleliteralstrong{\sphinxupquote{include\_document\_metadata}} (\sphinxhref{https://docs.python.org/3/library/functions.html\#bool}{\sphinxstyleliteralemphasis{\sphinxupquote{bool}}}) \textendash{} whether to include document metadata, defaults to \sphinxcode{\sphinxupquote{True}}
+
+\item {} 
+\sphinxstyleliteralstrong{\sphinxupquote{include\_document\_text}} (\sphinxhref{https://docs.python.org/3/library/functions.html\#bool}{\sphinxstyleliteralemphasis{\sphinxupquote{bool}}}) \textendash{} whether to include document text, defaults to \sphinxcode{\sphinxupquote{True}}
+
+\item {} 
+\sphinxstyleliteralstrong{\sphinxupquote{include\_annotations}} (\sphinxhref{https://docs.python.org/3/library/functions.html\#bool}{\sphinxstyleliteralemphasis{\sphinxupquote{bool}}}) \textendash{} whether to include annotations, defaults to \sphinxcode{\sphinxupquote{True}}
+
+\item {} 
+\sphinxstyleliteralstrong{\sphinxupquote{include\_annotation\_latest\_version\_only}} (\sphinxhref{https://docs.python.org/3/library/functions.html\#bool}{\sphinxstyleliteralemphasis{\sphinxupquote{bool}}}) \textendash{} whether to include only the latest version
+of annotations (\sphinxcode{\sphinxupquote{True}}) or all versions (\sphinxcode{\sphinxupquote{False}}), defaults to \sphinxcode{\sphinxupquote{True}}
+
+\end{itemize}
+
+\item[{Raises}] \leavevmode\begin{itemize}
+\item {} 
+{\hyperref[\detokenize{autoapi/pine/client/exceptions/index:pine.client.exceptions.PineClientValueException}]{\sphinxcrossref{\sphinxstyleliteralstrong{\sphinxupquote{exceptions.PineClientValueException}}}}} \textendash{} if given empty collection ID
+
+\item {} 
+{\hyperref[\detokenize{autoapi/pine/client/exceptions/index:pine.client.exceptions.PineClientAuthException}]{\sphinxcrossref{\sphinxstyleliteralstrong{\sphinxupquote{exceptions.PineClientAuthException}}}}} \textendash{} if not logged in
+
+\item {} 
+{\hyperref[\detokenize{autoapi/pine/client/exceptions/index:pine.client.exceptions.PineClientHttpException}]{\sphinxcrossref{\sphinxstyleliteralstrong{\sphinxupquote{exceptions.PineClientHttpException}}}}} \textendash{} if the HTTP request returns an error, such as if the
+collection doesn’t exist
+
+\end{itemize}
+
+\item[{Returns}] \leavevmode
+collection data
+
+\item[{Return type}] \leavevmode
+\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#dict}{dict}
 
 \end{description}\end{quote}
 

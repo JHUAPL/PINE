@@ -250,21 +250,38 @@ def download_collection(collection_id):
         })
 
     data["documents"] = service.get_all_using_pagination("documents", params)["_items"]
+
+    annotations_by_document = {}
+    if include_annotations:
+        params = service.params({
+            "where": {
+                "collection_id": collection_id
+            },
+            "projection": {
+                "collection_id": 0
+            }
+        })
+        annotations = service.get_all_using_pagination("annotations", params)["_items"]
+        for annotation in annotations:
+            doc_id = annotation["document_id"]
+            del annotation["document_id"]
+            if doc_id not in annotations_by_document:
+                annotations_by_document[doc_id] = []
+            annotations_by_document[doc_id].append(annotation)
+
     for document in data["documents"]:
         service.remove_eve_fields(document)
-        if include_annotations:
-            params = service.where_params({
-                "document_id": document["_id"]
-            })
-            params["projection"] = json.dumps({
-                "collection_id": 0,
-                "document_id": 0
-            })
-            annotations = service.get_all_using_pagination("annotations", params)["_items"]
+        if include_annotations and document["_id"] in annotations_by_document:
+            annotations = annotations_by_document[document["_id"]]
             if include_annotation_latest_version_only:
                 document["annotations"] = annotations
             else:
-                params = {"projection": params["projection"]}
+                params = service.params({
+                    "projection": {
+                        "collection_id": 0,
+                        "document_id": 0
+                    }
+                })
                 document["annotations"] = []
                 for annotation in annotations:
                     all_versions = service.get_all_versions_of_item_by_id("annotations", annotation["_id"],

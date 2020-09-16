@@ -170,7 +170,7 @@ Functions
 
 .. function:: _check_field_required_string_list(obj: dict, field: str, min_length: int = 0) -> bool
 
-   Checks that the given field is in the object and is a string.
+   Checks that the given field is in the object and is a string list.
 
    :param obj: the object to check
    :type obj: dict

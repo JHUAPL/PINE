@@ -2,7 +2,6 @@
 
 import { Component, OnInit, Input, AfterContentInit, ViewChild, OnChanges } from '@angular/core';
 import { Chart } from 'chart.js';
-import * as _ from "lodash";
 
 
 @Component({
@@ -35,8 +34,8 @@ export class MetricsHistoryComponent implements OnInit, AfterContentInit, OnChan
   }
   ngOnChanges() {
     if(!this.data.find((metric)=>metric.metrics.length < 1)){
-      this.sortedData = _.reverse(this.data)
-      this.updateChart()
+      this.sortedData = this.data.reverse();
+      this.updateChart();
     }
     
   }

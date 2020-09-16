@@ -84,7 +84,7 @@ export class UserChooserComponent implements OnInit {
         }
     }
 
-    public getUserDisplayName(id: string) {
+    public getUserDisplayName(id: string): string {
         return this.auth.getUserDisplayName(id);
     }
 

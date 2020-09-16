@@ -4,7 +4,6 @@ import { MatPaginator, MatTableDataSource, MatSort, MatDialog, MatDialogRef, MAT
 import { ActivatedRoute } from "@angular/router";
 import { HttpErrorResponse } from "@angular/common/http";
 
-import * as _ from "lodash";
 import { take } from "rxjs/operators";
 
 import { PATHS, PARAMS } from "../../app.paths";

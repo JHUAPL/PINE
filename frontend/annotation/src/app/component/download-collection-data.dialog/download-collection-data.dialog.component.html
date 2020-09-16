@@ -11,9 +11,12 @@
         <mat-checkbox formControlName="include_annotations">Include annotations</mat-checkbox><br />
         <div *ngIf="form.controls.include_annotations.value" id="annotations">
             <mat-radio-group formControlName="include_annotation_latest_version_only">
-                <mat-radio-button value="true">Latest version only</mat-radio-button><br />
-                <mat-radio-button value="false">All versions</mat-radio-button><br />
+                <mat-radio-button [value]="true">Latest version only</mat-radio-button><br />
+                <mat-radio-button [value]="false">All versions</mat-radio-button><br />
             </mat-radio-group>
+            <mat-error *ngIf="!form.controls.include_annotation_latest_version_only.value">
+                <b>Warning</b>: for large collections this may cause timeout issues.
+            </mat-error>
         </div>
         &nbsp;
     </form>

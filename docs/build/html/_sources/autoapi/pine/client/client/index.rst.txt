@@ -642,6 +642,49 @@ Functions
       :rtype: list(str)
 
 
+   .. method:: list_collections(self, include_archived: bool = False)
+
+
+      Returns a list of user's collections.
+
+      :param include_archived: whether to include archived collections, defaults to ``False``
+      :type include_archived: bool
+
+      :raises exceptions.PineClientAuthException: if not logged in
+      :raises exceptions.PineClientHttpException: if the HTTP request returns an error
+
+      :returns: user's collections
+      :rtype: list(dict)
+
+
+   .. method:: download_collection_data(self, collection_id: str, include_collection_metadata: bool = True, include_document_metadata: bool = True, include_document_text: bool = True, include_annotations: bool = True, include_annotation_latest_version_only: bool = True)
+
+
+      Downloads collection data.
+
+      :param collection_id: the ID of the collection for which to download data
+      :type collection_id: str
+      :param include_collection_metadata: whether to include collection metadata, defaults to ``True``
+      :type include_collection_metadata: bool
+      :param include_document_metadata: whether to include document metadata, defaults to ``True``
+      :type include_document_metadata: bool
+      :param include_document_text: whether to include document text, defaults to ``True``
+      :type include_document_text: bool
+      :param include_annotations: whether to include annotations, defaults to ``True``
+      :type include_annotations: bool
+      :param include_annotation_latest_version_only: whether to include only the latest version
+                      of annotations (``True``) or all versions (``False``), defaults to ``True``
+      :type include_annotation_latest_version_only: bool
+
+      :raises exceptions.PineClientValueException: if given empty collection ID
+      :raises exceptions.PineClientAuthException: if not logged in
+      :raises exceptions.PineClientHttpException: if the HTTP request returns an error, such as if the
+                                                  collection doesn't exist
+
+      :returns: collection data
+      :rtype: dict
+
+
 
 .. py:class:: LocalPineClient(backend_base_uri: str, eve_base_uri: str, mongo_base_uri: str = None, mongo_dbname: str = EveClient.DEFAULT_DBNAME)
 

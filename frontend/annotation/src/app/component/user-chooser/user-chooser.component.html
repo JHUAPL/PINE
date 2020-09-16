@@ -20,14 +20,22 @@
                [matChipInputAddOnBlur]="false"
                (matChipInputTokenEnd)="addUser($event)"
                [ngClass]="{ 'is-invalid': hasError }" />
-        <input *ngIf="auth.canManageUsers" #userInput placeholder="Add user..."
-               [formControl]="userCtrl"
-               [matAutocomplete]="auto"
-               [matChipInputFor]="chipList"
-               [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
-               [matChipInputAddOnBlur]="false"
-               (matChipInputTokenEnd)="addUser($event)"
-               [ngClass]="{ 'is-invalid': hasError }" />
+        <ng-container *ngIf="auth.canManageUsers">
+            <input #userInput placeholder="Add user..."
+                   [formControl]="userCtrl"
+                   [matAutocomplete]="auto"
+                   [matChipInputFor]="chipList"
+                   [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                   [matChipInputAddOnBlur]="false"
+                   (matChipInputTokenEnd)="addUser($event)"
+                   [ngClass]="{ 'is-invalid': hasError }" />
+            <mat-autocomplete #auto="matAutocomplete"
+                          (optionSelected)="selectedUser($event)">
+                <mat-option *ngFor="let userId of filteredUserIds | async" [value]="userId">
+                    {{ getUserDisplayName(userId) }}
+                </mat-option>
+            </mat-autocomplete>
+        </ng-container>
         <mat-error *ngIf="hasError">
             <div>{{ errorMessage }}</div>
         </mat-error>
@@ -35,10 +43,5 @@
     <mat-error *ngIf="hasError">
         <div>{{ errorMessage }}</div>
     </mat-error>
-    <mat-autocomplete *ngIf="auth.canManageUsers" #auto="matAutocomplete"
-                      (optionSelected)="selectedUser($event)">
-        <mat-option *ngFor="let userId of filteredUserIds | async" [value]="userId">
-            {{ getUserDisplayName(users[userId]) }}
-        </mat-option>
-    </mat-autocomplete>
+    
 </mat-form-field>
