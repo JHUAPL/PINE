@@ -5,14 +5,16 @@
     align-items: center;
     justify-content: center;
     padding-top: 1%;
-    padding-bottom: 1%
+    padding-bottom: 1%;
+    height: 100%;
 }
 
 #login-card {
 	width: 350px;
 	display: flex;
 	flex-direction: column;
-	justify-content: center;
+    justify-content: center;
+    margin-top: -64px;
 }
 
 #logo, #name, #long-name, #buttons {

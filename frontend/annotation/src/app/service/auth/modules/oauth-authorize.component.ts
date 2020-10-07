@@ -31,7 +31,7 @@ export class OAuthAuthorizeComponent implements OnInit {
     ngOnInit(): void {
         this.route.queryParams.subscribe((params) => {
             this.route.fragment.subscribe((fragment) => {
-              let return_to = PATHS.home;
+              let return_to = PATHS.collection.view;
               if(params["return_to"]) {
                   return_to = params["return_to"];
               }

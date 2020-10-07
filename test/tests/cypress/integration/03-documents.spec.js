@@ -8,11 +8,14 @@ const document_fragments = [
 ];
 
 function goToCollection(collection_title) {
-  cy.visit("/");
-  cy.contains("View My Collections")
+  cy.get(".doc-collections-btn")
     .should("be.visible")
     .click();
-  return cy.contains(collection_title)
+  cy.contains(collection_title)
+    .should("be.visible")
+    .click();
+  return cy.get(".title-tabs")
+    .contains("Details")
     .should("be.visible")
     .click().then(_ => {
       cy.contains("Collection title", {timeout: 20 * 1000})
@@ -36,16 +39,20 @@ function goToDocument(collection_title, document_fragment) {
   return goToCollection(collection_title).then(collection_id => {
     expect(collection_id).to.be.a("string");
     expect(collection_id.length).to.be.at.least(1);
-    cy.contains("Documents in Collection")
-      .parents("mat-card")
+    cy.get(".title-tabs")
+      .contains("Documents")
+      .should("be.visible")
+      .click();
+    cy.get(".doc-list-table")
       .find("table.mat-table")
       .then(table => {
         cy.wrap(table).find("td")
           .contains(document_fragment)
-          .click();
+          .click({ force: true });
       });
     var document_id;
-    cy.contains("Document Details")
+    cy.get(".title-tabs")
+      .contains("Details")
       .should("be.visible")
       .click().then(deets => {
         cy.wrap(deets).get("table")
@@ -63,6 +70,7 @@ function goToDocument(collection_title, document_fragment) {
         cy.wrap(deets).get("table")
           .get("tr")
           .contains("Collection")
+          .scrollIntoView()
           .should("be.visible")
           .parents("tr")
           .children("td").eq(1)
@@ -73,7 +81,7 @@ function goToDocument(collection_title, document_fragment) {
           });
       	});
     cy.location().should((loc) => {
-      expect(loc.pathname).to.eq(`/annotate/${document_id}`);
+      expect(loc.pathname).to.eq(`/collection/annotate/${document_id}`);
     });
     return document_id;
   });
@@ -117,7 +125,7 @@ function annotateWord(wordSubject, label) {
             // first column: text, should be the same as the word we clicked
           cy.wrap($tds[0]).should("have.text", $word.text());
           // second column: label, should be the same as the label we clicked
-          cy.wrap($tds[1]).should("have.text", $label.text());
+          cy.wrap($tds[1]).invoke("text").then((text) => { expect(text.trim()).to.equal($label.text().trim()) });
           // third column: start, should match the class of the word we clicked
           cy.wrap($tds[2]).should("have.text", $word.attr("word-start"));
           // fourth column: end, should match the class of the word we clicked
@@ -154,10 +162,7 @@ function unannotateWord(wordSubject) {
 }
 
 function save() {
-  return cy.get("@doc")
-    .parents("mat-card")
-    .find("button")
-    .contains("Save")
+  return cy.get(".annotate-button")
     .click().then(_ => {
       cy.get("snack-bar-container")
         .should("be.visible")
@@ -169,31 +174,16 @@ function save() {
 
 describe("Documents Tests", function() {
 
-  it("Checks Documents are Visible in Navigation Menu with Eve", function() {
-    cy.pine_login_eve();
-    cy.get("#pineNavMyCollections")
-      .should("be.visible")
-      .click();
-    cy.contains(collection_title)
-      .should("be.visible")
-      .click();
-    for(const frag of document_fragments) {
-      cy.contains(frag)
-        .should("exist", {timeout: 20 * 1000});
-    }
-    cy.get("#pineNavMyCollections")
-      .should("be.visible")
-      .click({force: true}); // close menu
-    cy.pine_logout();
-  });
-
   it("Checks Documents are Visible in Collection Details Page with Eve", function() {
     cy.pine_login_eve();
     goToCollection(collection_title);
-    cy.contains("Collection Details")
+    cy.contains(collection_title)
       .should("be.visible");
-    cy.contains("Documents in Collection")
-      .parents("mat-card")
+    cy.get(".title-tabs")
+      .contains("Documents")
+      .should("be.visible")
+      .click();
+    cy.get(".doc-list-table")
       .find("table.mat-table")
       .then(table => {
         for(const frag of document_fragments) {
@@ -209,23 +199,21 @@ describe("Documents Tests", function() {
     cy.pine_login_eve();
     const frag = document_fragments[0];
     goToDocument(collection_title, frag);
-    cy.get("mat-panel-title")
-      .contains("Document Details")
-      .should("exist");
-    cy.get("mat-panel-title")
+    cy.get(".mat-title")
       .contains("Document Labeling")
       .should("exist");
-    cy.get("mat-panel-title")
+    cy.get(".title-tabs")
       .contains("Image")
       .should("exist");
-    cy.get("mat-panel-title")
-      .contains("Others' Labels and Annotations")
-      .should("exist");
-    cy.get("mat-panel-title")
+    cy.get(".title-tabs")
+      .contains("Annotations")
+      .should("exist")
+      .click();
+    cy.get(".mat-title")
       .contains("NER Annotations")
       .should("exist");
-    cy.get("mat-panel-title")
-      .contains("My Annotations")
+    cy.get(".mat-title")
+      .contains("Annotation List")
       .should("exist");
     cy.get("#doc")
       .should(($doc) => {
@@ -237,18 +225,18 @@ describe("Documents Tests", function() {
   it("Annotates an Unannotated Document with Eve", function() {
     cy.pine_login_eve();
     goToCollection(collection_title);
+    cy.get(".title-tabs")
+      .contains("Documents")
+      .should("be.visible")
+      .click();
     // find the first unannotated document
-    cy.contains("Documents in Collection")
-      .parents("mat-card")
-      .find("mat-select")
-      .set_mat_select_value("100")
-      .parents("mat-card")
+    cy.get(".doc-list-table")
       .find("table.mat-table")
       .find("mat-icon")
       .contains("clear")
       .first()
       .should("exist")
-      .click();
+      .click({ force: true });
 
     cy.get("app-ner-annotation-table")
       .find("table")
@@ -269,12 +257,19 @@ describe("Documents Tests", function() {
       .should("not.have.class", "select")
       .should("not.have.class", "annotation")
       .as("firstWord");
-    cy.contains("Document Labeling")
-      .parents("mat-card")
+    cy.get(".title-tabs")
+      .contains("Details")
+      .should("be.visible")
+      .click();
+    cy.get(".doc-labeling-container")
       .find("mat-chip")
       .first()
       .then($firstLabel => {
-        annotateWord(cy.get("@firstWord"), $firstLabel.text());
+        cy.get(".title-tabs")
+        .contains("Annotations")
+        .should("be.visible")
+        .click();
+        annotateWord(cy.get("@firstWord"), $firstLabel.text().trim());
       });
 
     save();

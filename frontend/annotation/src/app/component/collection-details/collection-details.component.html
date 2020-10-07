@@ -1,214 +1,225 @@
 <!-- (C) 2019 The Johns Hopkins University Applied Physics Laboratory LLC.-->
-<mat-card class="card">
+<div fxFlexFill class="page-container" fxLayout="column">
+    <mat-toolbar class="title-toolbar">
+        <button mat-icon-button matTooltip="Go back to collection list" (click)="backToCollectionList()">
+            <mat-icon>keyboard_arrow_left</mat-icon>
+        </button>
+        <span class="page-title">{{collection?.getTitle()}}</span>
+        <span fxFlex="22px"></span>
+        <mat-tab-group *ngIf="collection" class="title-tabs" fxFlex mat-stretch-tabs [(selectedIndex)]="tabIndex"
+            (selectedIndexChange)="updateTabInUrl()">
+            <mat-tab label="Documents"></mat-tab>
+            <mat-tab label="Details"></mat-tab>
+        </mat-tab-group>
+    </mat-toolbar>
 
-  <mat-card-header>
-    <mat-card-title>
-      <h1><span *ngIf="collection?.archived" class="material-icons">archive</span><span
-          *ngIf="collection?.archived">Archived </span>Collection Details</h1>
-    </mat-card-title>
-  </mat-card-header>
+    <div class="page-content">
+        <section *ngIf="tabIndex == 1" #detailsSection>
+            <div *ngIf="loading">Loading...</div>
+            <div class="document-action-row">
+                <span fxFlex></span>
+                <button *ngIf="!collection?.archived" mat-stroked-button (click)="archiveCollection()"
+                    [disabled]="!canArchive">
+                    <mat-icon>archive</mat-icon>Archive
+                </button>
+                <button *ngIf="collection?.archived" mat-stroked-button (click)="unarchiveCollection()"
+                    [disabled]="!canArchive">
+                    <mat-icon>unarchive</mat-icon> Unarchive
+                </button>
+                <span fxFlex="10px"></span>
+                <button *ngIf="can_add_images" class="add-doc-btn" mat-stroked-button (click)="uploadImages()">
+                    <mat-icon>cloud_upload</mat-icon> Upload Images
+                </button>
+                <span fxFlex="10px"></span>
+                <button mat-stroked-button (click)="downloadData()">
+                    <mat-icon>cloud_download</mat-icon> Download Data
+                </button>
+            </div>
 
-  <mat-divider></mat-divider>
+            <div class="doc-list-table">
+                <table id="metadata-table" *ngIf="!loading">
+                    <tr style="vertical-align: top;">
+                        <td style="padding-top: 25px">
+                    <tr class="space-under">
+                        <td><b>Collection title:</b></td>
+                        <td>{{ collection?.getTitle() }}</td>
+                    </tr>
+                    <tr class="space-under">
+                        <td> <b>Collection ID:</b> </td>
+                        <td>{{collection?._id}}</td>
+                    </tr>
+                    <tr class="space-under">
+                        <td><b>Creation Date:</b></td>
+                        <td>{{collection?._created}}</td>
+                    </tr>
+                    <tr class="space-under">
+                        <td><b>Last Updated:</b></td>
+                        <td>{{collection?._updated}}</td>
+                    </tr>
+                    <tr class="space-under">
+                        <td><b>Creator:</b></td>
+                        <td colspan="3">{{auth.getUserDisplayName(collection?.creator_id)}}</td>
+                    </tr>
+                    <tr class="space-under">
+                        <td><b>Viewers:</b></td>
+                        <td colspan="3">
+                            <mat-chip-list>
+                                <mat-chip *ngFor="let viewer of collection?.viewers">
+                                    {{auth.getUserDisplayName(viewer)}}
+                                </mat-chip>
+                                <mat-chip *ngIf="can_add_users" (click)="openAddViewerDialog()">+</mat-chip>
+                            </mat-chip-list>
+                        </td>
+                    </tr>
+                    <tr class="space-under">
+                        <td><b>Annotators:</b></td>
+                        <td colspan="3">
+                            <mat-chip-list>
+                                <mat-chip *ngFor="let annotator of collection?.annotators">
+                                    {{auth.getUserDisplayName(annotator)}}</mat-chip>
+                                <mat-chip *ngIf="can_add_users" (click)="openAddAnnotatorDialog()">+</mat-chip>
+                            </mat-chip-list>
+                        </td>
+                    </tr>
+                    <tr class="space-under">
+                        <td><b>Labels:</b></td>
+                        <td colspan="3">
+                            <mat-chip-list>
+                                <mat-chip *ngFor="let label of collection?.labels">{{label}}</mat-chip>
+                                <mat-chip *ngIf="can_add_users" (click)="openAddLabelDialog()">+</mat-chip>
+                            </mat-chip-list>
+                        </td>
+                    </tr>
+                    <tr class="space-under">
+                        <td><b>Additional:</b></td>
+                        <td colspan="3">
+                            <table>
+                                <tr *ngFor="let item of getAdditionalMetadata() | keyvalue">
+                                    <td><b>{{item.key}}</b></td>
+                                    <td>{{item.value}}</td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                    <tr class="space-under">
+                        <td><b>Configuration:</b></td>
+                        <td colspan="3">
+                            <table>
+                                <tr *ngFor="let item of collection.configuration | keyvalue">
+                                    <td><b>{{item.key}}</b></td>
+                                    <td>{{item.value}}</td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><b>Classifier:</b></td>
+                        <td colspan="3">
+                            <table *ngIf="classifier">
+                                <tr>
+                                    <td *ngIf="pipeline">
+                                        <b>{{ pipeline.title }}</b><br />{{ pipeline.description }}
+                                    </td>
+                                    <td>
+                                        <table>
+                                            <tr *ngFor="let item of classifier.parameters | keyvalue">
+                                                <td><b>{{item.key}}</b></td>
+                                                <td>{{item.value}}</td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                            </table>
+                            <ng-container *ngIf="!classifier">
+                                <b>ERROR: No classifier configured for collection.</b>
+                            </ng-container>
+                        </td>
+                    </tr>
+                    </td>
 
-  <div *ngIf="loading">Loading...</div>
-  <mat-card-content>
+                    </tr>
+                    <tr *ngIf="iaa_report">
+                        <td>
 
-    <table id="metadata-table" *ngIf="!loading">
-      <tr style="vertical-align: top;">
-        <td style="padding-top: 25px">
-      <tr class="space-under">
-        <td><b>Collection title:</b></td>
-        <td>{{ collection?.getTitle() }}</td>
-      </tr>
-      <tr class="space-under">
-        <td> <b>Collection ID:</b> </td>
-        <td>{{collection?._id}}</td>
-      </tr>
-      <tr class="space-under">
-        <td><b>Creation Date:</b></td>
-        <td>{{collection?._created}}</td>
-      </tr>
-      <tr class="space-under">
-        <td><b>Last Updated:</b></td>
-        <td>{{collection?._updated}}</td>
-      </tr>
-      <tr class="space-under">
-        <td><b>Creator:</b></td>
-        <td colspan="3">{{auth.getUserDisplayName(collection?.creator_id)}}</td>
-      </tr>
-      <tr class="space-under">
-        <td><b>Viewers:</b></td>
-        <td colspan="3">
-          <mat-chip-list>
-            <mat-chip *ngFor="let viewer of collection?.viewers">{{auth.getUserDisplayName(viewer)}}</mat-chip>
-            <mat-chip *ngIf="can_add_users" (click)="openAddViewerDialog()">+</mat-chip>
-          </mat-chip-list>
-        </td>
-      </tr>
-      <tr class="space-under">
-        <td><b>Annotators:</b></td>
-        <td colspan="3">
-          <mat-chip-list>
-            <mat-chip *ngFor="let annotator of collection?.annotators">{{auth.getUserDisplayName(annotator)}}</mat-chip>
-            <mat-chip *ngIf="can_add_users" (click)="openAddAnnotatorDialog()">+</mat-chip>
-          </mat-chip-list>
-        </td>
-      </tr>
-      <tr class="space-under">
-        <td><b>Labels:</b></td>
-        <td colspan="3">
-          <mat-chip-list>
-            <mat-chip *ngFor="let label of collection?.labels">{{label}}</mat-chip>
-            <mat-chip *ngIf="can_add_users" (click)="openAddLabelDialog()">+</mat-chip>
-          </mat-chip-list>
-        </td>
-      </tr>
-      <tr class="space-under">
-        <td><b>Additional:</b></td>
-        <td colspan="3">
-          <table>
-            <tr *ngFor="let item of getAdditionalMetadata() | keyvalue">
-              <td><b>{{item.key}}</b></td>
-              <td>{{item.value}}</td>
-            </tr>
-          </table>
-        </td>
-      </tr>
-      <tr class="space-under">
-        <td><b>Configuration:</b></td>
-        <td colspan="3">
-          <table>
-            <tr *ngFor="let item of collection.configuration | keyvalue">
-              <td><b>{{item.key}}</b></td>
-              <td>{{item.value}}</td>
-            </tr>
-          </table>
-        </td>
-      </tr>
-      <tr>
-        <td><b>Classifier:</b></td>
-        <td colspan="3">
-          <table *ngIf="classifier">
-            <tr>
-              <td *ngIf="pipeline">
-                <b>{{ pipeline.title }}</b><br />{{ pipeline.description }}
-              </td>
-              <td>
-                <table>
-                  <tr *ngFor="let item of classifier.parameters | keyvalue">
-                    <td><b>{{item.key}}</b></td>
-                    <td>{{item.value}}</td>
-                  </tr>
+                            <app-collection-iaa-report [iaa_report]="iaa_report">
+
+                            </app-collection-iaa-report>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <app-metrics [metrics]="metrics">
+                            </app-metrics>
+                        </td>
+                    </tr>
                 </table>
-              </td>
-            </tr>
-          </table>
-          <ng-container *ngIf="!classifier">
-            <b>ERROR: No classifier configured for collection.</b>
-          </ng-container>
-        </td>
-      </tr>
-      </td>
+            </div>
+        </section>
 
-      </tr>
-      <tr *ngIf="iaa_report" >
-        <td>
+        <section *ngIf="tabIndex == 0" #documentsSection>
+            <div fxLayout="column">
+                <div class="document-action-row" fxLayout="row">
+                    <mat-form-field fxFlex="280px" floatLabel="never">
+                        <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+                    </mat-form-field>
+                    <span fxFlex></span>
+                    <button *ngIf="can_add_documents" mat-stroked-button (click)="addDocument()">
+                        <mat-icon>add</mat-icon> Add Document
+                    </button>
+                    <span fxFlex="10px"></span>
+                    <button mat-stroked-button [routerLink]="['/' + PATHS.document.annotate, nextDocId]"
+                        [disabled]="nextDocId == null">
+                        <mat-icon>navigate_next</mat-icon> Next Document to Annotate
+                    </button>
+                </div>
 
-          <app-collection-iaa-report [iaa_report]="iaa_report">
+                <div class="doc-list-table">
+                    <table mat-table class="table-selectable" [dataSource]="dataSource" matSort matSortActive="id"
+                        [hidden]="loading">
 
-          </app-collection-iaa-report>
-        </td>
-      </tr> 
-      <tr>
-        <td>
-          <app-metrics [metrics]="metrics">
-          </app-metrics>
-        </td>
-      </tr>
-    </table>
-  </mat-card-content>
-  <mat-card-actions>
-    <span [matTooltipDisabled]="canArchive" matTooltip="Only the collection's creator can unarchive it."><button
-        *ngIf="collection?.archived" class="add-doc-btn" mat-raised-button (click)="unarchiveCollection()"
-        [disabled]="!canArchive"><mat-icon>unarchive</mat-icon> Unarchive Collection</button></span>
-    <button *ngIf="can_add_documents" class="add-doc-btn" mat-raised-button [routerLink]="['/' + PATHS.document.add, collection?._id]">
-        <mat-icon>add</mat-icon> Add Document
-    </button>
-    <button *ngIf="can_add_images" class="add-doc-btn" mat-raised-button (click)="uploadImages()">
-        <mat-icon>cloud_upload</mat-icon> Upload Images
-    </button>
-    <button class="add-doc-btn" mat-raised-button [routerLink]="['/' + PATHS.document.annotate, nextDocId]"
-      [disabled]="nextDocId == null"><mat-icon>navigate_next</mat-icon> Next Document to Annotate</button>
-    <span [matTooltipDisabled]="canArchive" matTooltip="Only the collection's creator can archive it."><button
-        *ngIf="!collection?.archived" class="add-doc-btn" mat-raised-button (click)="archiveCollection()"
-        [disabled]="!canArchive"><mat-icon>archive</mat-icon> Archive Collection</button></span>
-    <button class="add-doc-btn" mat-raised-button (click)="downloadData()">
-      <mat-icon>cloud_download</mat-icon> Download Data
-    </button>
-  </mat-card-actions>
-</mat-card>
+                        <ng-container matColumnDef="id">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
+                            <td mat-cell *matCellDef="let document"> {{ document.id }} </td>
+                        </ng-container>
 
-<mat-card class="card">
-  <mat-card-header>
-    <mat-card-title>
-      <h1>Documents in Collection</h1>
+                        <ng-container matColumnDef="creator">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header> Creator </th>
+                            <td mat-cell *matCellDef="let document"> {{ document.creator }} </td>
+                        </ng-container>
 
-    </mat-card-title>
-  </mat-card-header>
+                        <ng-container matColumnDef="last_updated">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header> Last Updated </th>
+                            <td mat-cell *matCellDef="let document"> {{ document.last_updated }} </td>
+                        </ng-container>
 
-  <mat-divider></mat-divider>
+                        <ng-container matColumnDef="annotated">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header> Annotated </th>
+                            <td mat-cell *matCellDef="let document">
+                                <mat-icon *ngIf="document.annotated" style="color: green">done</mat-icon>
+                                <mat-icon *ngIf="!document.annotated" style="color: red">clear</mat-icon>
+                            </td>
+                        </ng-container>
 
-  <mat-card-content>
-    <mat-form-field>
-      <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
-    </mat-form-field>
-    <table mat-table [dataSource]="dataSource" matSort matSortActive="id" style="width: 100%;border-spacing: 0 5px;" [hidden]="loading">
+                        <ng-container matColumnDef="agreement">
+                            <th mat-header-cell *matHeaderCellDef> Annotation <br>Agreement </th>
+                            <td mat-cell *matCellDef="let document">
+                                <span
+                                    *ngIf="document.ann_agreement != 'null'">{{document.ann_agreement | percent:'1.2-2'}}</span>
+                                <span *ngIf="document.ann_agreement == 'null'">N/A</span>
+                            </td>
+                        </ng-container>
 
-      <ng-container matColumnDef="id">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
-        <td mat-cell *matCellDef="let document"> {{ document.id }} </td>
-      </ng-container>
+                        <ng-container matColumnDef="text_start">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header> Text </th>
+                            <td mat-cell *matCellDef="let document"> {{ document.text_start }} </td>
+                        </ng-container>
 
-      <ng-container matColumnDef="creator">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Creator </th>
-        <td mat-cell *matCellDef="let document"> {{ document.creator }} </td>
-      </ng-container>
-
-      <ng-container matColumnDef="last_updated">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Last Updated </th>
-        <td mat-cell *matCellDef="let document"> {{ document.last_updated }} </td>
-      </ng-container>
-
-      <ng-container matColumnDef="annotated">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Annotated </th>
-        <td mat-cell *matCellDef="let document">
-          <mat-icon *ngIf="document.annotated" style="color: green">done</mat-icon>
-          <mat-icon *ngIf="!document.annotated" style="color: red">clear</mat-icon>
-        </td>
-      </ng-container>
-
-      <ng-container matColumnDef="agreement">
-        <th mat-header-cell *matHeaderCellDef> Annotation <br>Agreement </th>
-        <td mat-cell *matCellDef="let document">
-          <span *ngIf="document.ann_agreement != 'null'">{{document.ann_agreement | percent:'1.2-2'}}</span>
-          <span *ngIf="document.ann_agreement == 'null'">N/A</span>
-        </td>
-      </ng-container>
-
-      <ng-container matColumnDef="text_start">
-        <th mat-header-cell *matHeaderCellDef  mat-sort-header> Text </th>
-        <td mat-cell *matCellDef="let document"> {{ document.text_start }} </td>
-      </ng-container>
-
-      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-      <tr mat-row class="trow" *matRowDef="let row; columns: displayedColumns;"
-        [routerLink]="['/' + PATHS.document.annotate, row.id ]"></tr>
-    </table>
-    <mat-paginator [pageSize]="20" [pageSizeOptions]="[5, 10, 20, 50, 100]" showFirstLastButtons></mat-paginator>
-  </mat-card-content>
-  <mat-card-actions>
-    <button mat-raised-button [routerLink]="['/' + PATHS.collection.view]">Go back</button>
-
-  </mat-card-actions>
-
-</mat-card>
+                        <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+                        <tr mat-row class="trow" *matRowDef="let row; columns: displayedColumns;"
+                            [routerLink]="['/' + PATHS.document.annotate, row.id ]"></tr>
+                    </table>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>

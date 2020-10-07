@@ -71,6 +71,11 @@ export class BackendService {
                 {...options, ...{withCredentials: true, headers: this.IEheaders }});
     }
 
+    public patch<T>(path: string, data: object = {}, options = {}): Observable<T> {
+        return this.http.patch<T>(AppConfig.settings.backend.host + path, data,
+                {...options, ...{withCredentials: true, headers: this.IEheaders }});
+    }
+
     public postForm<T>(path: string, form: FormData, options = {}): Observable<T> {
         // setting a header to "Content-Type": "multipart/form-data" makes this not work...
         return this.http.post<T>(AppConfig.settings.backend.host + path, form,

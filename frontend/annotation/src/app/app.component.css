@@ -1,47 +1,24 @@
 /*(C) 2019 The Johns Hopkins University Applied Physics Laboratory LLC. */
-
-.mat-toolbar .mat-primary {
-  position: sticky;
-  top: 0;
-  height: 64px;
+#top-div {
+    height: 100%;
+    width: 100%;
 }
 
-#app-container {
-
+.app-toolbar {
+    position: fixed;
+    top: 0px;
+    width: 100%;
 }
 
-#toolbar {
-	border-top-left-radius: 15px;
-	border-top-right-radius: 15px;
+.logo-img {
+    width: 30px;
+    margin-right: 8px;
 }
 
-#sidenav::after {
-	content: "";
-	opacity: 0.3;
-	top: 0;
-	left: 0;
-	bottom: 0;
-	right: 0;
-	position: absolute;
-	z-index: -1;
-	background-image: url("/assets/pine_small.png");
-	background-repeat: no-repeat;
-	background-position: center bottom;
-}
-
-#content {
-    padding: 5px;
-}
-
-:host::ng-deep.full-content {
-	width: 100%;
-    min-height: calc(100vh - 78px);
-}
-
-#status-bar {
-    position: absolute;
-    bottom: 0px;
+.page-content {
+    position: fixed;
+    top: 64px;
     left: 0px;
     right: 0px;
-    z-index: 100;
+    bottom: 0px;
 }

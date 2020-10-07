@@ -1,15 +1,12 @@
 // (C) 2019 The Johns Hopkins University Applied Physics Laboratory LLC.
 
 export const PATHS = {
-    home: "home",
     collection: {
-        add: "collection/add",
         details: "collection/details",
-        view: "collections"
+        view: "collection"
     },
     document: {
-        add: "document/add",
-        annotate: "annotate"
+        annotate: "collection/annotate"
     },
     user: {
         account: "account",

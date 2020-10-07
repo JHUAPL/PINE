@@ -6,7 +6,6 @@ import { PATHS, PARAMS } from "./app.paths";
 import { AuthGuard, AdminAuthGuard } from "./service/auth/auth-guard.service";
 
 import { LoginComponent } from "./component/login/login.component";
-import { HomeComponent } from "./component/home/home.component";
 import { AddCollectionComponent } from "./component/add-collection/add-collection.component";
 import { CollectionDetailsComponent } from "./component/collection-details/collection-details.component";
 import { AddDocumentComponent } from "./component/add-document/add-document.component";
@@ -20,18 +19,12 @@ import { AdminDataComponent } from "./component/admin-data/admin-data.component"
 import { OAuthAuthorizeComponent } from "./service/auth/modules/oauth-authorize.component";
 
 const appRoutes: Routes = [
-    {path: PATHS.user.login, component: LoginComponent,
-        data: { subtitle: LoginComponent.SUBTITLE }},
-    {path: PATHS.home, component: HomeComponent, canActivate: [AuthGuard],
-        data: {}},
+    {path: "", redirectTo: PATHS.collection.view, pathMatch: 'full'},
+    {path: PATHS.user.login, component: LoginComponent, data: { subtitle: LoginComponent.SUBTITLE }},
     {path: `${PATHS.document.annotate}/:${PARAMS.document.annotate.document_id}`, component: AnnotateComponent, canActivate: [AuthGuard],
         data: { subtitle: AnnotateComponent.SUBTITLE}},
-    {path: PATHS.collection.add, component: AddCollectionComponent, canActivate: [AuthGuard],
-        data: { subtitle: AddCollectionComponent.SUBTITLE }},
     {path: `${PATHS.collection.details}/:${PARAMS.collection.details.collection_id}`, component: CollectionDetailsComponent, canActivate: [AuthGuard],
         data: { subtitle: CollectionDetailsComponent.SUBTITLE }},
-    {path: `${PATHS.document.add}/:${PARAMS.document.add.collection_id}`, component: AddDocumentComponent, canActivate: [AuthGuard],
-        data: { subtitle: AddDocumentComponent.SUBTITLE }},
     {path: PATHS.collection.view, component: ViewCollectionsComponent, canActivate: [AuthGuard],
         data: { subtitle: ViewCollectionsComponent.SUBTITLE }},
     {path: PATHS.user.account, component: AccountComponent, canActivate: [AuthGuard],
@@ -46,7 +39,7 @@ const appRoutes: Routes = [
         data: { subtitle: AdminDataComponent.SUBTITLE }},
     {path: PATHS.user.oauth.authorize, component: OAuthAuthorizeComponent,
         data: { subtitle: OAuthAuthorizeComponent.SUBTITLE }},
-    {path: "**", redirectTo: PATHS.home}
+    {path: "**", redirectTo: PATHS.collection.view}
 ];
 
 export const routing = RouterModule.forRoot(appRoutes);

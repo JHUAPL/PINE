@@ -1,27 +1,29 @@
 <!-- (C) 2019 The Johns Hopkins University Applied Physics Laboratory LLC.-->
-<mat-sidenav-container id="app-container" autosize fullscreen>
-  <mat-sidenav *ngIf="ready && !backendError && getLoggedIn()"
-               id="sidenav" class="bordered background-primary-color-lighter"
-               fixedInViewport="false" [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
-               opened="true" mode="side">
-    <app-navigation></app-navigation>
-  </mat-sidenav>
-  <mat-sidenav-content id="content">
-    <mat-toolbar color="primary" class="bordered" id="toolbar">
-        <mat-toolbar-row>
-            <span>{{appConfig.appName}}</span>
-            <span class="spacer"></span>
-            <p class="login-text" *ngIf="getLoggedIn()">{{ getLoggedInUserString() }}</p>
-        </mat-toolbar-row>
-    </mat-toolbar>
-    <div id="outlet" class="bordered">
-        <div *ngIf="!ready">Connecting to backend...</div>
-        <div *ngIf="backendError">
-            <h1>Backend Error</h1>
-            <p>{{backendErrorMessage}}</p>
+<div fxLayout="column" id="top-div">
+    <mat-toolbar class="app-toolbar" color="primary" fxLayout="row">
+        <div fxLayout="row" style="cursor: pointer" [routerLink]=" ['/collection'] " routerLinkActive="active">
+            <img class="logo-img" src="assets/tree_icon_sketch.png" alt="PINE Logo"/>
+            <h1>{{title}}</h1>
         </div>
-        <router-outlet *ngIf="!backendError && ready"></router-outlet>
+        <ng-container *ngIf="ready && !backendError && getLoggedIn()">
+
+            <span fxFlex="8px"></span>
+            <app-toolbar-nav></app-toolbar-nav>
+
+            <span fxFlex></span>
+
+        <button class="user-menu-btn" mat-flat-button color="primary" [matMenuTriggerFor]="userMenu" aria-label="User Profile">
+            <span id="toolbar-user-name">{{ getLoggedInUserString() }}</span>
+            <mat-icon>keyboard_arrow_down</mat-icon>
+        </button>
+
+        <mat-menu #userMenu="matMenu" yPosition="below" overlapTrigger="false">
+            <app-user-card></app-user-card>
+        </mat-menu>
+        </ng-container>
+    </mat-toolbar>
+
+    <div class="page-content background-grey">
+        <router-outlet></router-outlet>
     </div>
-  </mat-sidenav-content>
-</mat-sidenav-container>
-<app-status-bar id="status-bar" [visible]="false"></app-status-bar>
+</div>

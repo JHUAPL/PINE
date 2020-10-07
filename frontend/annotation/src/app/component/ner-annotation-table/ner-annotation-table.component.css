@@ -1,7 +1,46 @@
 /*(C) 2019 The Johns Hopkins University Applied Physics Laboratory LLC. */
 
 :host {
-	width: 100%;
+    width: 100%;
+    display: block;
+    height: 100%;
+}
+
+.delete-icon {
+    margin-bottom: 4px;
+}
+
+.delete-cell {
+    padding-left: 0px !important;
+    width: 40px;
+}
+
+.annotate-table-wrapper {
+    position: absolute;
+    top: 56px;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    overflow-y: auto;
+}
+
+.annotate-doc-toolbar {
+    display: flex;
+    align-items: center;
+    padding: 8px 16px;
+    height: 56px;
+    position: absolute;
+    top: 0px;
+    width: 100%;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+}
+
+.annotate-doc-toolbar .mat-title {
+    margin-bottom: 0px;
+}
+
+.table-container {
+    
 }
 
 #table {
@@ -17,11 +56,6 @@
 #table .mat-header-cell {
 	padding-left: 10px;
 	padding-right: 10px;
-}
-
-#table .mat-column-text {
-	padding-left: 0px;
-    width: 100%;
 }
 
 #table .mat-column-actions {

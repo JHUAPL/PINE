@@ -4,13 +4,13 @@ describe("Sanity Tests", function() {
 
   it("Checks Page Loads and is Eve", function() {
     cy.visit("/");
-    cy.contains("Username or email")
+    cy.get(".login-field")
       .should("be.visible");
   });
 
   it("Checks Invalid Username Eve Login", function() {
     cy.visit("/");
-    cy.contains("Username or email")
+    cy.get(".login-field")
       .should("be.visible");
     cy.get("input[name='username']")
       .should("be.visible")
@@ -30,7 +30,7 @@ describe("Sanity Tests", function() {
 
   it("Checks Invalid Password Eve Login", function() {
     cy.visit("/");
-    cy.contains("Username or email")
+    cy.get(".login-field")
       .should("be.visible");
     cy.get("input[name='username']")
       .should("be.visible")
@@ -52,7 +52,7 @@ describe("Sanity Tests", function() {
     cy.fixture("users.json").then((users) => {
       var user = users.find((u) => u["_id"] == Cypress.env("LOGIN_USER") || u["email"] == Cypress.env("LOGIN_USER"));
       cy.visit("/");
-      cy.contains("Username or email")
+      cy.get(".login-field")
         .should("be.visible");
       cy.get("input[name='username']")
         .should("be.visible")
@@ -78,8 +78,8 @@ describe("Sanity Tests", function() {
   it("Checks About Dialog With Eve", function() {
 	  cy.pine_login_eve();
 	  cy.visit("/");
-	  cy.get("#nav-list")
-	    .contains("About")
+	  cy.get(".app-toolbar")
+	    .get(".info-btn")
 	    .should("be.visible")
 		.click();
 	  cy.get("app-about")
@@ -95,8 +95,8 @@ describe("Sanity Tests", function() {
 	    .find("button").contains("Close")
 	    .should("be.visible")
 	    .click();
-	  cy.get("#nav-list")
-	    .contains("About")
+	  cy.get(".app-toolbar")
+        .get(".info-btn")
 	    .should("be.visible");
 	  cy.pine_logout();
   });

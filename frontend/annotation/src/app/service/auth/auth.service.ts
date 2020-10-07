@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { Router } from "@angular/router";
 
-import { Observable, forkJoin } from "rxjs";
+import { Observable, forkJoin, of } from "rxjs";
 
 import { BackendService } from "../backend/backend.service";
 
@@ -16,40 +16,41 @@ import { EveAuthModule } from "./modules/eve-auth-module";
 
 import { LoginForm } from "../../model/login";
 import { User, UserDetails } from "../../model/user";
+import { map, catchError } from 'rxjs/operators';
 
 @Injectable()
 export class AuthService {
-    
+
     public module: AuthModule = null;
     public moduleName: string = null;
     public loggedInUser: User = null;
 
     public flat: boolean;
     public canManageUsers: boolean;
-    
+
     constructor(private backend: BackendService,
-                private router: Router,
-                private appConfig: AppConfig) {
+        private router: Router,
+        private appConfig: AppConfig) {
     }
-    
+
     public instantiate(): Observable<string> {
         return new Observable((observer) => {
             forkJoin([this.getModule(),
-                      this.getFlat(),
-                      this.getBackendLoggedInUser(),
-                      this.getCanManageUsers()]).subscribe(([module,
-                                                                 flat,
-                                                                 user,
-                                                                 canManageUsers]) => {
+            this.getFlat(),
+            this.getBackendLoggedInUser(),
+            this.getCanManageUsers()]).subscribe(([module,
+                flat,
+                user,
+                canManageUsers]) => {
                 this.moduleName = module;
                 this.flat = flat;
                 this.canManageUsers = canManageUsers;
                 this.loggedInUser = user;
-                if(module === VegasAuthModule.NAME) {
+                if (module === VegasAuthModule.NAME) {
                     this.module = new VegasAuthModule(this.backend, this, this.router);
                     observer.next(module);
                     observer.complete();
-                } else if(module === EveAuthModule.NAME) {
+                } else if (module === EveAuthModule.NAME) {
                     this.module = new EveAuthModule(this.backend, this, this.router);
                     (<EveAuthModule>this.module).reloadAllUsers().subscribe(() => {
                         observer.next(module);
@@ -68,7 +69,7 @@ export class AuthService {
             });
         });
     }
-    
+
     public updateLoggedInUser(): Observable<any> {
         return new Observable<any>((observer) => {
             this.getBackendLoggedInUser().subscribe((user: User) => {
@@ -81,7 +82,7 @@ export class AuthService {
             });
         });
     }
-    
+
     private getBackendLoggedInUser(): Observable<User> {
         return this.backend.get<User>("/auth/logged_in_user");
     }
@@ -102,12 +103,23 @@ export class AuthService {
         return this.backend.get("/auth/logged_in_user_details");
     }
 
-//    public getAllUsers(): Observable<User[]> {
-//        return this.canManageUsers ? this.module.getAllUsers() : null;
-//    }
+    //    public getAllUsers(): Observable<User[]> {
+    //        return this.canManageUsers ? this.module.getAllUsers() : null;
+    //    }
 
     public isAuthenticated(): boolean {
         return this.loggedInUser != null;
+    }
+
+    public isAuthenticatedObs(): Observable<boolean> {
+        return this.getBackendLoggedInUser().pipe(
+            catchError((err) => {
+                return of(false);
+            }),
+            map((user: User) => {
+                this.loggedInUser = user;
+                return user ? true : false;
+            }));
     }
 
     public getLoginForm(): Observable<LoginForm> {

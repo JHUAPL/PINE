@@ -1,0 +1,12 @@
+<a mat-button [routerLink]="link" routerLinkActive="selected">
+    <div fxLayout="column" class="btn-container">
+        <div fxFlex="6px"></div>
+        <div fxFlex class="btn-content">
+            <mat-icon *ngIf="icon" class="menu-icon">{{icon}}</mat-icon>
+            <span class="menu-text mat-h3">
+                <ng-content></ng-content>
+            </span>
+        </div>
+        <div fxFlex="6px" class="bottom-bar"></div>
+    </div>
+</a>

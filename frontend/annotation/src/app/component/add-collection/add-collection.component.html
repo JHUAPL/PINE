@@ -1,332 +1,295 @@
 <!-- (C) 2019 The Johns Hopkins University Applied Physics Laboratory LLC.-->
-<mat-card class="form-card">
-    <mat-card-header>
-        <mat-card-title>
-            <h1>Add Collection</h1>
-        </mat-card-title>
-    </mat-card-header>
-    <mat-divider></mat-divider>
-    
+<h2 mat-dialog-title>Add Document Collection</h2>
+<form *ngIf="!loading" [formGroup]="createForm" (ngSubmit)="create()">
     <div *ngIf="loading">Loading...</div>
-    <form *ngIf="!loading" [formGroup]="createForm" (ngSubmit)="create()">
-        <mat-card-content id="content">
+    <div mat-dialog-content id="content">
+        <mat-form-field class="form-field" appearance="standard">
+            <mat-label>Collection Title</mat-label>
+            <input matInput required formControlName="metadata_title" type="text" placeholder="title"
+                class="form-control"
+                [ngClass]="{ 'is-invalid': (f.metadata_title.dirty || f.metadata_title.touched || submitted) && f.metadata_title.errors }" />
+            <mat-error
+                *ngIf="(f.metadata_title.dirty || f.metadata_title.touched || submitted) && f.metadata_title.errors">
+                <div *ngIf="f.metadata_title.errors.required">Title is required.</div>
+            </mat-error>
+        </mat-form-field>
 
-            <mat-form-field class="form-field" appearance="standard">
-                <mat-label>Collection Title</mat-label>
-                <input matInput required formControlName="metadata_title" type="text"
-                       placeholder="title"
-                       class="form-control"
-                       [ngClass]="{ 'is-invalid': (f.metadata_title.dirty || f.metadata_title.touched || submitted) && f.metadata_title.errors }" />
-                <mat-error *ngIf="(f.metadata_title.dirty || f.metadata_title.touched || submitted) && f.metadata_title.errors">
-                    <div *ngIf="f.metadata_title.errors.required">Title is required.</div>
-                </mat-error>
-            </mat-form-field>
-
-            <mat-form-field class="form-field" appearance="standard">
-                <mat-label>Description</mat-label>
-                <textarea matInput required formControlName="metadata_description" type="text"
-                          cdkTextareaAutosize
-                          #autosize="cdkTextareaAutosize"
-                          cdkAutosizeMinRows="2"
-                          cdkAutosizeMaxRows="10"
-                          placeholder="Enter description..."
-                          class="form-control"
-                          [ngClass]="{ 'is-invalid': (f.metadata_description.dirty || f.metadata_description.touched || submitted) && f.metadata_description.errors }">
+        <mat-form-field class="form-field" appearance="standard">
+            <mat-label>Description</mat-label>
+            <textarea matInput required formControlName="metadata_description" type="text" cdkTextareaAutosize
+                #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="2" cdkAutosizeMaxRows="10"
+                placeholder="Enter description..." class="form-control"
+                [ngClass]="{ 'is-invalid': (f.metadata_description.dirty || f.metadata_description.touched || submitted) && f.metadata_description.errors }">
                 </textarea>
-                <mat-error *ngIf="(f.metadata_description.dirty || f.metadata_description.touched || submitted) && f.metadata_description.errors">
-                    <div *ngIf="f.metadata_description.errors.required">Description is required.</div>
-                </mat-error>
-            </mat-form-field>
+            <mat-error
+                *ngIf="(f.metadata_description.dirty || f.metadata_description.touched || submitted) && f.metadata_description.errors">
+                <div *ngIf="f.metadata_description.errors.required">Description is required.</div>
+            </mat-error>
+        </mat-form-field>
 
-            <mat-form-field class="form-field" appearance="standard">
-                <mat-label>Creator</mat-label>
-                <input matInput required formControlName="creator_name" type="text"
-                       class="form-control" />
-            </mat-form-field>
-            <input matInput hidden required type="text"
-                   formControlName="creator_id"
-                   class="form-control" />
+        <mat-form-field class="form-field" appearance="standard">
+            <mat-label>Creator</mat-label>
+            <input matInput required formControlName="creator_name" type="text" class="form-control" />
+        </mat-form-field>
+        <input matInput hidden required type="text" formControlName="creator_id" class="form-control" />
 
-            <app-user-chooser #viewers
-                              [formFieldClass]="'form-field'"
-                              [formFieldAppearance]="'standard'"
-                              [requireLoggedInUser]="true"
-                              [label]="'Viewers'"
-                              (userAdded)="viewersOrAnnotatorsChanged()"
-                              (userRemoved)="viewersOrAnnotatorsChanged()">
-            </app-user-chooser>
+        <app-user-chooser #viewers [formFieldClass]="'form-field'" [formFieldAppearance]="'standard'"
+            [requireLoggedInUser]="true" [label]="'Viewers'" (userAdded)="viewersOrAnnotatorsChanged()"
+            (userRemoved)="viewersOrAnnotatorsChanged()">
+        </app-user-chooser>
 
-            <app-user-chooser #annotators
-                              [formFieldClass]="'form-field'"
-                              [formFieldAppearance]="'standard'"
-                              [requireLoggedInUser]="true"
-                              [label]="'Annotators'"
-                              (userAdded)="viewersOrAnnotatorsChanged()"
-                              (userRemoved)="viewersOrAnnotatorsChanged()">
-            </app-user-chooser>
+        <app-user-chooser #annotators [formFieldClass]="'form-field'" [formFieldAppearance]="'standard'"
+            [requireLoggedInUser]="true" [label]="'Annotators'" (userAdded)="viewersOrAnnotatorsChanged()"
+            (userRemoved)="viewersOrAnnotatorsChanged()">
+        </app-user-chooser>
 
-            <app-label-chooser #labels
-                               [formFieldClass]="'form-field'"
-                               [formFieldAppearance]="'standard'"
-                               [label]="'Labels *'"
-                               (labelAdded)="labelAdded()">
-            </app-label-chooser>
+        <app-label-chooser #labels [formFieldClass]="'form-field'" [formFieldAppearance]="'standard'"
+            [label]="'Labels *'" (labelAdded)="labelAdded()">
+        </app-label-chooser>
 
-            <mat-accordion multi>
-                <mat-expansion-panel expanded>
-                    <mat-expansion-panel-header>
-                        <mat-panel-title>Collection Documents</mat-panel-title>
-                        <mat-panel-description>Add documents to this collection.</mat-panel-description>
-                    </mat-expansion-panel-header>
-                    <mat-form-field class="form-field" appearance="standard">
-                        <mat-label>CSV File with Documents</mat-label>
-                        <div style="display: flex; flex-direction: row;">
-                            <input matInput type="text" readonly
-                                   formControlName="csv_file" />
-                            <label for="file_upload" class="mat-raised-button">
-                                Choose
-                            </label>
-                        </div>
-                        <input hidden type="file" accept=".csv,text/csv"
-                               id="file_upload" name="file_upload" 
-                               (change)="handleFileInput($event.target.files)" />
-                    </mat-form-field>
+        <mat-accordion multi>
+            <mat-expansion-panel expanded>
+                <mat-expansion-panel-header>
+                    <mat-panel-title>Collection Documents</mat-panel-title>
+                    <mat-panel-description>Add documents to this collection.</mat-panel-description>
+                </mat-expansion-panel-header>
+                <mat-form-field class="form-field" appearance="standard">
+                    <mat-label>CSV File with Documents</mat-label>
+                    <div style="display: flex; flex-direction: row;">
+                        <input matInput type="text" readonly formControlName="csv_file" />
+                        <label for="file_upload" class="mat-raised-button">
+                            Choose
+                        </label>
+                    </div>
+                    <input hidden type="file" accept=".csv,text/csv" id="file_upload" name="file_upload"
+                        (change)="handleFileInput($event.target.files)" />
+                </mat-form-field>
 
-                    <mat-checkbox *ngIf="hasCsvFile" matInput formControlName="csv_has_header">
-                        CSV has header row
-                    </mat-checkbox>
+                <mat-checkbox *ngIf="hasCsvFile" matInput formControlName="csv_has_header">
+                    CSV has header row
+                </mat-checkbox>
 
-                    <mat-form-field *ngIf="hasCsvFile && f.csv_has_header.value" class="form-field" appearance="standard">
-                        <mat-label>CSV Text Column</mat-label>
-                        <mat-select matInput formControlName="csv_text_col"
-                                    placeholder="CSV Text Column"
-                                    class="form-control"
-                                    selectionChange
-                                    [ngClass]="{ 'is-invalid': (f.csv_text_col.dirty || f.csv_text_col.touched || submitted) && f.csv_text_col.errors }">
-                            <mat-option *ngFor="let header of csvHeader; index as i" [value]="i">
-                                {{ header }}
-                            </mat-option>
-                        </mat-select>
-                    </mat-form-field>
-                </mat-expansion-panel>
+                <mat-form-field *ngIf="hasCsvFile && f.csv_has_header.value" class="form-field" appearance="standard">
+                    <mat-label>CSV Text Column</mat-label>
+                    <mat-select matInput formControlName="csv_text_col" placeholder="CSV Text Column"
+                        class="form-control" selectionChange
+                        [ngClass]="{ 'is-invalid': (f.csv_text_col.dirty || f.csv_text_col.touched || submitted) && f.csv_text_col.errors }">
+                        <mat-option *ngFor="let header of csvHeader; index as i" [value]="i">
+                            {{ header }}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </mat-expansion-panel>
 
-                <mat-expansion-panel>
-                    <mat-expansion-panel-header>
-                        <mat-panel-title>Collection Images</mat-panel-title>
-                        <mat-panel-description>Add images to this collection.</mat-panel-description>
-                    </mat-expansion-panel-header>
-                    <app-image-collection-uploader></app-image-collection-uploader>
-                </mat-expansion-panel>
+            <mat-expansion-panel>
+                <mat-expansion-panel-header>
+                    <mat-panel-title>Collection Images</mat-panel-title>
+                    <mat-panel-description>Add images to this collection.</mat-panel-description>
+                </mat-expansion-panel-header>
+                <app-image-collection-uploader></app-image-collection-uploader>
+            </mat-expansion-panel>
 
-                <mat-expansion-panel expanded>
-                    <mat-expansion-panel-header>
-                        <mat-panel-title>Classifier</mat-panel-title>
-                        <mat-panel-description>Customize classifier for this collection.</mat-panel-description>
-                    </mat-expansion-panel-header>
-                    
-                    <mat-form-field class="form-field" appearance="standard">
-                        <mat-label>Pipeline</mat-label>
-                        <mat-select required formControlName="pipeline_id"
-                               placeholder="pipeline"
-                               class="form-control"
-                               selectionChange
-                               [ngClass]="{ 'is-invalid': (f.pipeline_id.dirty || f.pipeline_id.touched || submitted) && f.pipeline_id.errors }">
-                            <mat-option *ngFor="let pipeline of pipelines" [value]="pipeline._id">
-                                {{ pipeline.title }}
-                            </mat-option>
-                        </mat-select>
-                        <mat-error *ngIf="(f.pipeline_id.dirty || f.pipeline_id.touched || submitted) && f.pipeline_id.errors">
-                            <div *ngIf="f.pipeline_id.errors.required">Pipeline is required.</div>
-                        </mat-error>
-                    </mat-form-field>
-                    <div *ngIf="f.pipeline_id.value"><b>Description:</b> {{ pipelineDescription(f.pipeline_id.value) }}</div>
-                    
-                    <div class="form-field">
+            <mat-expansion-panel expanded>
+                <mat-expansion-panel-header>
+                    <mat-panel-title>Classifier</mat-panel-title>
+                    <mat-panel-description>Customize classifier for this collection.</mat-panel-description>
+                </mat-expansion-panel-header>
+
+                <mat-form-field class="form-field" appearance="standard">
+                    <mat-label>Pipeline</mat-label>
+                    <mat-select required formControlName="pipeline_id" placeholder="pipeline" class="form-control"
+                        selectionChange
+                        [ngClass]="{ 'is-invalid': (f.pipeline_id.dirty || f.pipeline_id.touched || submitted) && f.pipeline_id.errors }">
+                        <mat-option *ngFor="let pipeline of pipelines" [value]="pipeline._id">
+                            {{ pipeline.title }}
+                        </mat-option>
+                    </mat-select>
+                    <mat-error
+                        *ngIf="(f.pipeline_id.dirty || f.pipeline_id.touched || submitted) && f.pipeline_id.errors">
+                        <div *ngIf="f.pipeline_id.errors.required">Pipeline is required.</div>
+                    </mat-error>
+                </mat-form-field>
+                <div *ngIf="f.pipeline_id.value"><b>Description:</b> {{ pipelineDescription(f.pipeline_id.value) }}
+                </div>
+
+                <div class="form-field">
                     <mat-form-field appearance="standard">
                         <mat-label>Train Model Every</mat-label>
-                        <input matInput required formControlName="train_every" type="number"
-                               min="1"
-                               placeholder="train every"
-                               class="form-control"
-                               [ngClass]="{ 'is-invalid': (f.train_every.dirty || f.train_every.touched || submitted) && f.train_every.errors }" />
+                        <input matInput required formControlName="train_every" type="number" min="1"
+                            placeholder="train every" class="form-control"
+                            [ngClass]="{ 'is-invalid': (f.train_every.dirty || f.train_every.touched || submitted) && f.train_every.errors }" />
                         <mat-hint>Documents</mat-hint>
-                        <mat-error *ngIf="(f.train_every.dirty || f.train_every.touched || submitted) && f.train_every.errors">
+                        <mat-error
+                            *ngIf="(f.train_every.dirty || f.train_every.touched || submitted) && f.train_every.errors">
                             <div *ngIf="f.train_every.errors.required">Value is required.</div>
-                            <div *ngIf="f.train_every.errors.min">Minimum allowed value is {{f.train_every.errors.min["min"]}}.</div>
+                            <div *ngIf="f.train_every.errors.min">Minimum allowed value is
+                                {{f.train_every.errors.min["min"]}}.</div>
                         </mat-error>
                     </mat-form-field>
                     <div class="space"></div>
                     <mat-form-field appearance="standard">
                         <mat-label>Document Overlap</mat-label>
-                        <input matInput required formControlName="overlap" type="number"
-                               min="0" max="1"
-                               placeholder="overlap"
-                               class="form-control"
-                               [ngClass]="{ 'is-invalid': (f.overlap.dirty || f.overlap.touched || submitted) && f.overlap.errors }" />
+                        <input matInput required formControlName="overlap" type="number" min="0" max="1"
+                            placeholder="overlap" class="form-control"
+                            [ngClass]="{ 'is-invalid': (f.overlap.dirty || f.overlap.touched || submitted) && f.overlap.errors }" />
                         <mat-error *ngIf="(f.overlap.dirty || f.overlap.touched || submitted) && f.overlap.errors">
                             <div *ngIf="f.overlap.errors.required">Overlap is required.</div>
-                            <div *ngIf="f.overlap.errors.max">Maximum allowed value is {{f.overlap.errors.max["max"]}}.</div>
-                            <div *ngIf="f.overlap.errors.min">Minimum allowed value is {{f.overlap.errors.min["min"]}}.</div>
+                            <div *ngIf="f.overlap.errors.max">Maximum allowed value is
+                                {{f.overlap.errors.max["max"]}}.</div>
+                            <div *ngIf="f.overlap.errors.min">Minimum allowed value is
+                                {{f.overlap.errors.min["min"]}}.</div>
                         </mat-error>
                     </mat-form-field>
-                    </div>
+                </div>
 
-                    <mat-form-field class="form-field" appearance="standard">
-                        <mat-label>Classifier Parameters</mat-label>
-                        <textarea matInput formControlName="classifier_parameters" type="text"
-                            cdkTextareaAutosize
-                            #autosize="cdkTextareaAutosize"
-                            cdkAutosizeMinRows="2"
-                            cdkAutosizeMaxRows="20"
-                            placeholder="Enter parameters in JSON format"
-                            class="form-control"
-                            [ngClass]="{ 'is-invalid': (f.classifier_parameters.dirty || f.classifier_parameters.touched || submitted) && f.classifier_parameters.errors }">
+                <mat-form-field class="form-field" appearance="standard">
+                    <mat-label>Classifier Parameters</mat-label>
+                    <textarea matInput formControlName="classifier_parameters" type="text" cdkTextareaAutosize
+                        #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="2" cdkAutosizeMaxRows="20"
+                        placeholder="Enter parameters in JSON format" class="form-control"
+                        [ngClass]="{ 'is-invalid': (f.classifier_parameters.dirty || f.classifier_parameters.touched || submitted) && f.classifier_parameters.errors }">
                         </textarea>
-                        <mat-error *ngIf="(f.classifier_parameters.dirty || f.classifier_parameters.touched || submitted) && f.classifier_parameters.errors">
-                            <div *ngIf="f.classifier_parameters.errors.invalid_json">JSON format is invalid: {{f.classifier_parameters.errors.invalid_json["error"]}}.</div>
-                        </mat-error>
-                    </mat-form-field>
+                    <mat-error
+                        *ngIf="(f.classifier_parameters.dirty || f.classifier_parameters.touched || submitted) && f.classifier_parameters.errors">
+                        <div *ngIf="f.classifier_parameters.errors.invalid_json">JSON format is invalid:
+                            {{f.classifier_parameters.errors.invalid_json["error"]}}.</div>
+                    </mat-error>
+                </mat-form-field>
 
-                </mat-expansion-panel>
+            </mat-expansion-panel>
 
-                <mat-expansion-panel expanded>
-                    <mat-expansion-panel-header>
-                        <mat-panel-title>Configuration</mat-panel-title>
-                        <mat-panel-description>Configure collection settings</mat-panel-description>
-                    </mat-expansion-panel-header>
+            <mat-expansion-panel expanded>
+                <mat-expansion-panel-header>
+                    <mat-panel-title>Configuration</mat-panel-title>
+                    <mat-panel-description>Configure collection settings</mat-panel-description>
+                </mat-expansion-panel-header>
 
-                    <mat-checkbox [checked]="configAllowOverlappingNerAnnotations" (change)="configAllowOverlappingNerAnnotations = !configAllowOverlappingNerAnnotations">
-                      Allow overlapping NER annotations
-                    </mat-checkbox>
-                </mat-expansion-panel>
+                <mat-checkbox [checked]="configAllowOverlappingNerAnnotations"
+                    (change)="configAllowOverlappingNerAnnotations = !configAllowOverlappingNerAnnotations">
+                    Allow overlapping NER annotations
+                </mat-checkbox>
+            </mat-expansion-panel>
 
-                <mat-expansion-panel>
-                    <mat-expansion-panel-header>
-                        <mat-panel-title>Metadata</mat-panel-title>
-                        <mat-panel-description>Enter additional metadata</mat-panel-description>
-                    </mat-expansion-panel-header>
+            <mat-expansion-panel>
+                <mat-expansion-panel-header>
+                    <mat-panel-title>Metadata</mat-panel-title>
+                    <mat-panel-description>Enter additional metadata</mat-panel-description>
+                </mat-expansion-panel-header>
 
-                    <mat-form-field class="form-field" appearance="standard">
-                        <mat-label>Subject</mat-label>
-                        <input matInput formControlName="metadata_subject" type="text"
-                               placeholder="Enter subject..."
-                               class="form-control"
-                               [ngClass]="{ 'is-invalid': (f.metadata_subject.dirty || f.metadata_subject.touched || submitted) && f.metadata_subject.errors }" />
-                    </mat-form-field>
+                <mat-form-field class="form-field" appearance="standard">
+                    <mat-label>Subject</mat-label>
+                    <input matInput formControlName="metadata_subject" type="text" placeholder="Enter subject..."
+                        class="form-control"
+                        [ngClass]="{ 'is-invalid': (f.metadata_subject.dirty || f.metadata_subject.touched || submitted) && f.metadata_subject.errors }" />
+                </mat-form-field>
 
-                    <mat-form-field class="form-field" appearance="standard">
-                        <mat-label>Publisher</mat-label>
-                        <input matInput formControlName="metadata_publisher" type="text"
-                               placeholder="Enter publisher..."
-                               class="form-control"
-                               [ngClass]="{ 'is-invalid': (f.metadata_publisher.dirty || f.metadata_publisher.touched || submitted) && f.metadata_publisher.errors }" />
-                    </mat-form-field>
+                <mat-form-field class="form-field" appearance="standard">
+                    <mat-label>Publisher</mat-label>
+                    <input matInput formControlName="metadata_publisher" type="text" placeholder="Enter publisher..."
+                        class="form-control"
+                        [ngClass]="{ 'is-invalid': (f.metadata_publisher.dirty || f.metadata_publisher.touched || submitted) && f.metadata_publisher.errors }" />
+                </mat-form-field>
 
-                    <mat-form-field class="form-field" appearance="standard">
-                        <mat-label>Contributor</mat-label>
-                        <input matInput formControlName="metadata_contributor" type="text"
-                               placeholder="Enter contributor..."
-                               class="form-control"
-                               [ngClass]="{ 'is-invalid': (f.metadata_contributor.dirty || f.metadata_contributor.touched || submitted) && f.metadata_contributor.errors }" />
-                    </mat-form-field>
+                <mat-form-field class="form-field" appearance="standard">
+                    <mat-label>Contributor</mat-label>
+                    <input matInput formControlName="metadata_contributor" type="text"
+                        placeholder="Enter contributor..." class="form-control"
+                        [ngClass]="{ 'is-invalid': (f.metadata_contributor.dirty || f.metadata_contributor.touched || submitted) && f.metadata_contributor.errors }" />
+                </mat-form-field>
 
-                    <mat-form-field class="form-field" appearance="standard">
-                        <mat-label>Date</mat-label>
-                        <input matInput formControlName="metadata_date" [matDatepicker]="datePicker"
-                               placeholder="Choose a date..."
-                               class="form-control"
-                               [ngClass]="{ 'is-invalid': (f.metadata_date.dirty || f.metadata_date.touched || submitted) && f.metadata_date.errors }">
-                            <mat-datepicker-toggle matSuffix [for]="datePicker"></mat-datepicker-toggle>
-                            <mat-datepicker #datePicker></mat-datepicker>
-                    </mat-form-field>
-                    
-                    <mat-form-field class="form-field" appearance="standard">
-                        <mat-label>Type</mat-label>
-                        <input matInput formControlName="metadata_type" type="text"
-                               placeholder="Enter type..."
-                               class="form-control"
-                               [ngClass]="{ 'is-invalid': (f.metadata_type.dirty || f.metadata_type.touched || submitted) && f.metadata_type.errors }" />
-                    </mat-form-field>
-                    
-                    <mat-form-field class="form-field" appearance="standard">
-                        <mat-label>Format</mat-label>
-                        <input matInput formControlName="metadata_format" type="text"
-                               placeholder="Enter format..."
-                               class="form-control"
-                               [ngClass]="{ 'is-invalid': (f.metadata_format.dirty || f.metadata_format.touched || submitted) && f.metadata_format.errors }" />
-                    </mat-form-field>
-                    
-                    <mat-form-field class="form-field" appearance="standard">
-                        <mat-label>Identifier</mat-label>
-                        <input matInput formControlName="metadata_identifier" type="text"
-                               placeholder="Enter identifier..."
-                               class="form-control"
-                               [ngClass]="{ 'is-invalid': (f.metadata_identifier.dirty || f.metadata_identifier.touched || submitted) && f.metadata_identifier.errors }" />
-                    </mat-form-field>
-                    
-                    <mat-form-field class="form-field" appearance="standard">
-                        <mat-label>Source</mat-label>
-                        <input matInput formControlName="metadata_source" type="text"
-                               placeholder="Enter source..."
-                               class="form-control"
-                               [ngClass]="{ 'is-invalid': (f.metadata_source.dirty || f.metadata_source.touched || submitted) && f.metadata_source.errors }" />
-                    </mat-form-field>
-                    
-                    <mat-form-field class="form-field" appearance="standard">
-                        <mat-label>Language</mat-label>
-                        <input matInput formControlName="metadata_language" type="text"
-                               placeholder="Enter language..."
-                               class="form-control"
-                               [ngClass]="{ 'is-invalid': (f.metadata_language.dirty || f.metadata_language.touched || submitted) && f.metadata_language.errors }" />
-                    </mat-form-field>
-                    
-                    <mat-form-field class="form-field" appearance="standard">
-                        <mat-label>Relation</mat-label>
-                        <input matInput formControlName="metadata_relation" type="text"
-                               placeholder="Enter relation..."
-                               class="form-control"
-                               [ngClass]="{ 'is-invalid': (f.metadata_relation.dirty || f.metadata_relation.touched || submitted) && f.metadata_relation.errors }" />
-                    </mat-form-field>
-                    
-                    <mat-form-field class="form-field" appearance="standard">
-                        <mat-label>Coverage</mat-label>
-                        <input matInput formControlName="metadata_coverage" type="text"
-                               placeholder="Enter coverage..."
-                               class="form-control"
-                               [ngClass]="{ 'is-invalid': (f.metadata_coverage.dirty || f.metadata_coverage.touched || submitted) && f.metadata_coverage.errors }" />
-                    </mat-form-field>
-                    
-                    <mat-form-field class="form-field" appearance="standard">
-                        <mat-label>Rights</mat-label>
-                        <input matInput formControlName="metadata_rights" type="text"
-                               placeholder="Enter rights..."
-                               class="form-control"
-                               [ngClass]="{ 'is-invalid': (f.metadata_rights.dirty || f.metadata_rights.touched || submitted) && f.metadata_rights.errors }" />
-                    </mat-form-field>
+                <mat-form-field class="form-field" appearance="standard">
+                    <mat-label>Date</mat-label>
+                    <input matInput formControlName="metadata_date" [matDatepicker]="datePicker"
+                        placeholder="Choose a date..." class="form-control"
+                        [ngClass]="{ 'is-invalid': (f.metadata_date.dirty || f.metadata_date.touched || submitted) && f.metadata_date.errors }">
+                    <mat-datepicker-toggle matSuffix [for]="datePicker"></mat-datepicker-toggle>
+                    <mat-datepicker #datePicker></mat-datepicker>
+                </mat-form-field>
 
-                </mat-expansion-panel>
-            </mat-accordion>
+                <mat-form-field class="form-field" appearance="standard">
+                    <mat-label>Type</mat-label>
+                    <input matInput formControlName="metadata_type" type="text" placeholder="Enter type..."
+                        class="form-control"
+                        [ngClass]="{ 'is-invalid': (f.metadata_type.dirty || f.metadata_type.touched || submitted) && f.metadata_type.errors }" />
+                </mat-form-field>
 
-            <mat-error *ngIf="hadError">
-                {{ errorMessage }}
-            </mat-error>
+                <mat-form-field class="form-field" appearance="standard">
+                    <mat-label>Format</mat-label>
+                    <input matInput formControlName="metadata_format" type="text" placeholder="Enter format..."
+                        class="form-control"
+                        [ngClass]="{ 'is-invalid': (f.metadata_format.dirty || f.metadata_format.touched || submitted) && f.metadata_format.errors }" />
+                </mat-form-field>
 
-            <mat-card *ngIf="submitting" class="submitting">
-                <mat-card-title>
-                    <h2 *ngIf="submittingPercent < 100">Uploading Files...</h2>
-                    <h2 *ngIf="submittingPercent >= 100">Processing...</h2>
-                </mat-card-title>
-                <mat-card-content>
-                    <mat-progress-spinner [mode]="submittingPercent < 100 ? 'determinate' : 'indeterminate'"
-                                          [value]="submittingPercent"></mat-progress-spinner>
-                </mat-card-content>
-            </mat-card>
+                <mat-form-field class="form-field" appearance="standard">
+                    <mat-label>Identifier</mat-label>
+                    <input matInput formControlName="metadata_identifier" type="text" placeholder="Enter identifier..."
+                        class="form-control"
+                        [ngClass]="{ 'is-invalid': (f.metadata_identifier.dirty || f.metadata_identifier.touched || submitted) && f.metadata_identifier.errors }" />
+                </mat-form-field>
 
-        </mat-card-content>
+                <mat-form-field class="form-field" appearance="standard">
+                    <mat-label>Source</mat-label>
+                    <input matInput formControlName="metadata_source" type="text" placeholder="Enter source..."
+                        class="form-control"
+                        [ngClass]="{ 'is-invalid': (f.metadata_source.dirty || f.metadata_source.touched || submitted) && f.metadata_source.errors }" />
+                </mat-form-field>
 
-        <mat-card-actions>
-            <button mat-raised-button [disabled]="loading"><span class="material-icons">save</span>Save</button>
-            <button mat-raised-button [routerLink]="[appConfig.landingPage]" type="button"><span class="material-icons">cancel</span>Cancel</button>
-        </mat-card-actions>
-    </form>
-</mat-card>
+                <mat-form-field class="form-field" appearance="standard">
+                    <mat-label>Language</mat-label>
+                    <input matInput formControlName="metadata_language" type="text" placeholder="Enter language..."
+                        class="form-control"
+                        [ngClass]="{ 'is-invalid': (f.metadata_language.dirty || f.metadata_language.touched || submitted) && f.metadata_language.errors }" />
+                </mat-form-field>
+
+                <mat-form-field class="form-field" appearance="standard">
+                    <mat-label>Relation</mat-label>
+                    <input matInput formControlName="metadata_relation" type="text" placeholder="Enter relation..."
+                        class="form-control"
+                        [ngClass]="{ 'is-invalid': (f.metadata_relation.dirty || f.metadata_relation.touched || submitted) && f.metadata_relation.errors }" />
+                </mat-form-field>
+
+                <mat-form-field class="form-field" appearance="standard">
+                    <mat-label>Coverage</mat-label>
+                    <input matInput formControlName="metadata_coverage" type="text" placeholder="Enter coverage..."
+                        class="form-control"
+                        [ngClass]="{ 'is-invalid': (f.metadata_coverage.dirty || f.metadata_coverage.touched || submitted) && f.metadata_coverage.errors }" />
+                </mat-form-field>
+
+                <mat-form-field class="form-field" appearance="standard">
+                    <mat-label>Rights</mat-label>
+                    <input matInput formControlName="metadata_rights" type="text" placeholder="Enter rights..."
+                        class="form-control"
+                        [ngClass]="{ 'is-invalid': (f.metadata_rights.dirty || f.metadata_rights.touched || submitted) && f.metadata_rights.errors }" />
+                </mat-form-field>
+
+            </mat-expansion-panel>
+        </mat-accordion>
+
+        <mat-error *ngIf="hadError">
+            {{ errorMessage }}
+        </mat-error>
+
+        <mat-card *ngIf="submitting" class="submitting">
+            <mat-card-title>
+                <h2 *ngIf="submittingPercent < 100">Uploading Files...</h2>
+                <h2 *ngIf="submittingPercent >= 100">Processing...</h2>
+            </mat-card-title>
+            <mat-card-content>
+                <mat-progress-spinner [mode]="submittingPercent < 100 ? 'determinate' : 'indeterminate'"
+                    [value]="submittingPercent"></mat-progress-spinner>
+            </mat-card-content>
+        </mat-card>
+    </div>
+
+    <div mat-dialog-actions>
+        <button mat-raised-button type="button" [mat-dialog-close]="false">
+            <mat-icon>cancel</mat-icon>Cancel
+        </button>
+        <span fxFlex></span>
+        <mat-spinner *ngIf="loading" [diameter]="28"></mat-spinner>
+        <span fxFlex="10px"></span>
+        <button mat-raised-button color="primary" [disabled]="loading">
+            <mat-icon>save</mat-icon>Save
+        </button>
+    </div>
+</form>

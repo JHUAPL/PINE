@@ -33,6 +33,8 @@ export class AppComponent implements OnInit, AfterViewInit {
 
     public backendErrorMessage = "";
 
+    public title: string = 'PINE';
+
     @ViewChild(StatusBarComponent)
     public statusBar: StatusBarComponent;
 
