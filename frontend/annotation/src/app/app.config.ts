@@ -17,11 +17,11 @@ export class AppConfig {
 
     public appLongName = "PMed Interface for NLP Experimentation";
 
-    public appLogoAsset = "pine_logo.png";
+    public appLogoAsset = "tree_icon_sketch.png";
 
     public loginPage = `/${PATHS.user.login}`;
 
-    public landingPage = `/${PATHS.home}`;
+    public landingPage = `/${PATHS.collection.view}`;
 
     constructor(private http: HttpClient) { }
 

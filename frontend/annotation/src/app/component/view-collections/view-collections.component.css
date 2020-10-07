@@ -1,42 +1,45 @@
 /*(C) 2019 The Johns Hopkins University Applied Physics Laboratory LLC. */
-#header {
-	width: 100%;
+.list-container {
+    height: 100%;
+    width: 100%;
+    position: relative;
 }
 
-/deep/ #header > .mat-card-header-text {
-	width: 100%;
+.filter-bar {
+    position: absolute;
+    top: 64px;
+    height: 58px;
+    padding: 0px 16px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.12);
 }
 
-#title {
-	display: flex;
-	flex-direction: row;
-	align-items: center;
-	width: 100%;
+::ng-deep .archive-toggle .mat-button-toggle-label-content {
+    line-height: 32px !important;
 }
 
-.add-doc-btn {
-	padding: 0 50px;
+.keyword-input {
+    width: 280px;
 }
 
-tr.trow {
-	background-color: #f7ffff;
-	transition: .2s;
-	border-radius: 6px;
-	box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.26);
-	border: 1px solid #f7ffff;
-	margin: 10px;
+.list-container > mat-toolbar {
+    position: absolute;
+    top: 0px;
+    width: 100%;
 }
 
-tr.trow:hover {
-	background-color: #eafdfd;
-	transition: .2s;
-	box-shadow: 0 4px 12px 0 rgba(0, 0, 0, 0.26);
-	border: 1px solid #eafdfd;
+.list-container > .table-container {
+    position: absolute;
+    top: 122px;
+    bottom: 0px;
+    right: 0px;
+    left: 0px;
+    overflow-y: auto;
 }
 
-tr.trow:active {
-	background-color: #e7fdfd;
-	transition: .2s;
-	box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
-	border: 1px solid #ddffff;
+.list-container > .table-container table {
+    width: 100%;
 }

@@ -23,6 +23,7 @@ import { PATHS } from "../../app.paths";
 import { Collection, CONFIG_ALLOW_OVERLAPPING_NER_ANNOTATIONS } from "../../model/collection";
 import { Pipeline } from "../../model/pipeline";
 import { CreatedObject } from "../../model/created";
+import { MatDialogRef } from '@angular/material';
 
 @Component({
     selector: "app-add-collection",
@@ -59,7 +60,8 @@ export class AddCollectionComponent implements OnInit {
                 private formBuilder: FormBuilder,
                 private router: Router,
                 private event: EventService,
-                private pipeline: PipelineService) {
+                private pipeline: PipelineService,
+                public dialogRef: MatDialogRef<AddCollectionComponent>) {
     }
 
     ngOnInit() {
@@ -190,6 +192,8 @@ export class AddCollectionComponent implements OnInit {
             return;
         }
 
+        this.loading = true;
+
         const collection = <Collection>{};
         collection.creator_id = this.f.creator_id.value;
         collection.annotators = this.annotators.getChosenUserIds();
@@ -259,7 +263,7 @@ export class AddCollectionComponent implements OnInit {
                                 this.collectionRepository.getCollectionDetails(collectionId).pipe(take(1)).subscribe((collection: Collection) => {
                                     this.event.showUserMessage.emit("Successfully added collection with ID " + collectionId);
                                     this.event.collectionAddedOrArchived.emit(collection);
-                                    this.router.navigate([PATHS.collection.details, collectionId]);
+                                    this.dialogRef.close(collection);
                                 }, (error: HttpErrorResponse) => {
                                     this.errorMessage = "Error: " + error.error;
                                     this.hadError = true;
@@ -268,11 +272,14 @@ export class AddCollectionComponent implements OnInit {
                             default:
                                 break;
                         }
+                        this.loading = false;
                     }, (error: HttpErrorResponse) => {
+                        this.loading = false;
                         this.errorMessage = "Error: " + error.error;
                         this.hadError = true;
                     }, () => {
                         subs.unsubscribe();
+                        this.loading = false;
                         this.submitting = false;
                         this.createForm.enable();
                     });

@@ -1,11 +1,13 @@
 <!-- (C) 2019 The Johns Hopkins University Applied Physics Laboratory LLC.-->
-<mat-expansion-panel [expanded]="true">
-    <mat-expansion-panel-header>
-        <mat-panel-title>
-            <h1>My Annotations</h1>
+<div class="annotate-doc-toolbar" fxLayout="row">
+    <span class="mat-title">Annotation List</span>
+    <span fxFlex></span>
+    <mat-form-field id="filter" floatLabel="never">
+        <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+    </mat-form-field>
 
-        </mat-panel-title>
-    </mat-expansion-panel-header>
+</div>
+<div class="annotate-table-wrapper">
     <table mat-table id="table" [dataSource]="dataSource" matSort>
 
         <ng-container matColumnDef="text">
@@ -16,7 +18,8 @@
         <ng-container matColumnDef="label">
             <th mat-header-cell *matHeaderCellDef mat-sort-header> Label </th>
             <td mat-cell *matCellDef="let annotation">
-                <mat-chip [style.background-color]="getLabelColor(annotation.label)" class="shadowed">{{annotation.label}}</mat-chip>
+                <mat-chip [style.background-color]="getLabelColor(annotation.label)" class="shadowed">
+                    {{annotation.label}}</mat-chip>
             </td>
         </ng-container>
 
@@ -31,9 +34,11 @@
         </ng-container>
 
         <ng-container matColumnDef="actions">
-            <th mat-header-cell *matHeaderCellDef> Actions </th>
-            <td mat-cell *matCellDef="let annotation">
-                <button mat-raised-button (click)="removeAnnotation(annotation)">Remove</button>
+            <th class="delete-cell" mat-header-cell *matHeaderCellDef></th>
+            <td class="delete-cell" mat-cell *matCellDef="let annotation">
+                <button mat-icon-button color="warn" (click)="removeAnnotation(annotation)">
+                    <mat-icon class="delete-icon">delete_outline</mat-icon>
+                </button>
             </td>
         </ng-container>
 
@@ -41,16 +46,4 @@
         <tr mat-row class="trow" *matRowDef="let row; columns: displayedColumns;"></tr>
 
     </table>
-
-    <div id="paginator">
-
-        <mat-form-field id="filter">
-            <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
-        </mat-form-field>
-
-        <div class="spacer"></div>
-
-        <mat-paginator [pageSizeOptions]="[5, 10, 20, 50]" showFirstLastButtons></mat-paginator>
-
-    </div>
-</mat-expansion-panel>
+</div>

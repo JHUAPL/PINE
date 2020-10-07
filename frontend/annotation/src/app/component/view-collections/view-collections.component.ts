@@ -1,17 +1,16 @@
 /*(C) 2019 The Johns Hopkins University Applied Physics Laboratory LLC. */
 
 import { Component, OnInit, ViewChild } from "@angular/core";
-import { MatPaginator, MatTableDataSource } from "@angular/material";
+import { MatPaginator, MatTableDataSource, MatDialog } from "@angular/material";
 
 import { PATHS } from "../../app.paths";
 import { AppConfig } from "../../app.config";
-
-import { LoadingComponent } from "../loading/loading.component";
 
 import { CollectionRepositoryService } from "../../service/collection-repository/collection-repository.service";
 import { AuthService } from "../../service/auth/auth.service";
 
 import { Collection } from "../../model/collection";
+import { AddCollectionComponent } from '../add-collection/add-collection.component';
 
 export interface CollectionRow {
     id: string;
@@ -31,8 +30,8 @@ export class ViewCollectionsComponent implements OnInit {
 
     public readonly PATHS = PATHS;
 
-    @ViewChild(LoadingComponent)
-    public loading: LoadingComponent;
+    public loading: boolean;
+    public error: string;
 
     public active = true;
 
@@ -47,15 +46,27 @@ export class ViewCollectionsComponent implements OnInit {
 
     constructor(public collectionsService: CollectionRepositoryService,
                 public appConfig: AppConfig,
-                private auth: AuthService) { }
+                private auth: AuthService,
+                private dialogService: MatDialog) { }
 
     ngOnInit() {
         this.reload();
     }
 
+    public openCreateCollectionDialog() {
+        let dialogRef = this.dialogService.open(AddCollectionComponent, {
+            width: '520px'
+        });
+        dialogRef.afterClosed().subscribe((result) => {
+            if (result) {
+                this.reload();
+            }
+        });
+    }
+
     private reload() {
-        this.loading.loading = true;
-        this.loading.clearError();
+        this.loading = true;
+        this.error = undefined;
         const response = this.active ? this.collectionsService.getMyUnarchivedCollectionsPaginated() :
             this.collectionsService.getMyArchivedCollectionsPaginated();
         const temp = [];
@@ -67,14 +78,14 @@ export class ViewCollectionsComponent implements OnInit {
                 last_updated: collection._updated,
             });
         }, (error) => {
-            this.loading.setError(`Error ${error.status}: ${error.message}`);
-            this.loading.loading = false;
+            this.error = `Error ${error.status}: ${error.message}`;
+            this.loading = false;
         }, () => {
             temp.sort((a: CollectionRow, b: CollectionRow) => a.title.localeCompare(b.title));
             this.collections = temp;
             this.dataSource.data = this.collections;
             this.dataSource.paginator = this.paginator;
-            this.loading.loading = false;
+            this.loading = false;
         });
     }
 

@@ -1,0 +1,27 @@
+<div *ngIf="user" class="user-container">
+    <div fxLayout="row" class="user-details">
+        <mat-icon class="user-icon">person</mat-icon>
+        <span fxFlex>
+            <div class="mat-body-strong">{{user.display_name}}</div>
+            <div class="mat-body">{{user.username}}</div>
+        </span>
+    </div>
+
+    <mat-divider></mat-divider>
+
+    <div fxLayout="column" class="action-buttons">
+        <button class="user-btn" *ngIf="user.is_admin" mat-raised-button [routerLink]="['/' + PATHS.admin.dashboard]" routerLinkActive="active">
+            <mat-icon>settings_applications</mat-icon>
+            <span fxFlex>Admin Dashboard</span>
+        </button>
+        <button class="user-btn" mat-raised-button [routerLink]="['/' + PATHS.user.account]" routerLinkActive="active">
+            <mat-icon>account_circle</mat-icon>
+            <span fxFlex>Manage Account</span>
+        </button>
+        <button class="user-btn logout-btn" color="accent" mat-raised-button (click)="logout()">
+            <mat-icon>exit_to_app</mat-icon>
+            <span fxFlex>Logout</span>
+        </button>
+    </div>
+
+</div>

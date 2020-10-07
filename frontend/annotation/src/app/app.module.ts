@@ -9,6 +9,7 @@ import { AppComponent } from "./app.component";
 import { LayoutModule } from "@angular/cdk/layout";
 import { HttpClientModule } from "@angular/common/http";
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 import {
     MatAutocompleteModule,
@@ -66,7 +67,6 @@ import { SettingsService } from "./service/settings/settings.service";
 import { AuthGuard, AdminAuthGuard } from "./service/auth/auth-guard.service";
 
 import { LoginComponent } from "./component/login/login.component";
-import { HomeComponent } from "./component/home/home.component";
 import { AddCollectionComponent } from "./component/add-collection/add-collection.component";
 import { CollectionDetailsComponent, AddLabelDialog, AddViewerDialog, AddAnnotatorDialog} from "./component/collection-details/collection-details.component";
 import { AddDocumentComponent } from "./component/add-document/add-document.component";
@@ -102,6 +102,10 @@ import { ImageCollectionUploaderComponent, ImageCollectionUploaderDialog } from 
 import { StatusBarComponent } from './component/status-bar/status-bar.component';
 import { StatusBarService } from "./service/status-bar/status-bar.service";
 import { AboutComponent } from './component/about/about.component';
+import { ToolbarComponent } from './component/toolbar';
+import { ToolbarNavComponent } from './component/toolbar/toolbar-nav/toolbar-nav.component';
+import { ToolbarNavButtonComponent } from './component/toolbar/toolbar-nav-button/toolbar-nav-button.component';
+import { UserCardComponent } from './component/user-card/user-card.component';
 
 export function initializeApp(appConfig: AppConfig) {
     return () => appConfig.load();
@@ -111,7 +115,6 @@ export function initializeApp(appConfig: AppConfig) {
     declarations: [
         AppComponent,
         LoginComponent,
-        HomeComponent,
         AddCollectionComponent,
         CollectionDetailsComponent,
         AddDocumentComponent,
@@ -149,12 +152,17 @@ export function initializeApp(appConfig: AppConfig) {
         ImageCollectionUploaderComponent,
         ImageCollectionUploaderDialog,
         StatusBarComponent,
-        AboutComponent
+        AboutComponent,
+        ToolbarComponent,
+        ToolbarNavComponent,
+        ToolbarNavButtonComponent,
+        UserCardComponent
     ],
     imports: [
         BrowserModule,
         BrowserAnimationsModule,
         ReactiveFormsModule,
+        FlexLayoutModule,
         LayoutModule,
         MatAutocompleteModule,
         MatBadgeModule,
@@ -228,7 +236,9 @@ export function initializeApp(appConfig: AppConfig) {
         AddViewerDialog,
         ImageChooserDialog,
         ImageCollectionUploaderDialog,
-        AboutComponent
+        AboutComponent,
+        AddCollectionComponent,
+        AddDocumentComponent
     ]
 
 })

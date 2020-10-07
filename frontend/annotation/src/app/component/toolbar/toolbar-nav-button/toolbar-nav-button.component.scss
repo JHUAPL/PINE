@@ -1,0 +1,24 @@
+a {
+    display: flex;
+    height: 100%;
+    align-items: center;
+    border-radius: 0;
+    padding: 0px;
+}
+
+a.selected {
+    background-color: rgba(0, 0, 0, 0.1);
+}
+a.selected .bottom-bar {
+    background-color: #232941;
+}
+
+.btn-container {
+    line-height: 52px;
+}
+fa-icon {
+    margin-right: 8px;
+}
+.btn-content {
+    padding: 0 16px;
+}

@@ -1,0 +1,23 @@
+<mat-toolbar class="app-toolbar" color="primary" fxFlex="nogrow" fxLayout="row">
+    <div></div>
+    <div fxLayout="row" style="cursor: pointer" [routerLink]=" ['/home'] " routerLinkActive="active">
+        <img class="logo-img" src="assets/PMAP_data_catalog_logo_crop@4x.png" alt="PMAP Data Catalog Logo"/>
+        <h1>{{title}}</h1>
+    </div>
+
+    <ng-container *ngIf="user">
+        <app-toolbar-nav></app-toolbar-nav>
+
+        <span fxFlex></span>
+
+        <button mat-flat-button color="primary" [matMenuTriggerFor]="userMenu" aria-label="User Profile">
+            <mat-icon class="account-icon">account_circle</mat-icon>
+            <span id="toolbar-user-name">{{user.details.givenName}} {{user.details.sn}}</span>
+            <mat-icon>keyboard_arrow_down</mat-icon>
+        </button>
+
+        <mat-menu #userMenu="matMenu" yPosition="below" overlapTrigger="false">
+            <!-- <app-user-card></app-user-card> -->
+        </mat-menu>
+    </ng-container>
+</mat-toolbar>

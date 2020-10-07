@@ -10,7 +10,7 @@ function verifyCollectionDetails(collection = {
   viewers: array,
   annotators: array
 }) {
-  cy.contains("Collection Details")
+  cy.contains(collection.metadata.title)
     .should("be.visible");
   return cy.get("#metadata-table", {timeout: 20 * 1000})
     .should("be.visible")
@@ -94,7 +94,7 @@ function verifyCollectionDetails(collection = {
     	}
       });
 
-      for(const button of ["Add Document", "Upload Images", "Next Document to Annotate", "Archive Collection", "Download Data"]) {
+      for(const button of ["Upload Images", "Archive", "Download Data"]) {
         cy.get("button")
           .contains(button)
           .parent("button")
@@ -109,36 +109,16 @@ function verifyCollectionDetails(collection = {
 
 describe("Collections Tests", function() {
 
-  it("Checks Collections are Visible in Navigation Menu with Eve", function() {
-    cy.pine_login_eve();
-    cy.get("#pineNavMyCollections")
-      .should("be.visible")
-      .click();
-    cy.get("#pineNavViewAllCollections")
-      .should("be.visible");
-    cy.fixture("collections.json").then((collections) => {
-      for(const data of collections) {
-        const collection = data.collection;
-        cy.containsElemExactly("button", collection.metadata.title, true)
-          .should("be.visible");
-      }
-    });
-    cy.get("#pineNavMyCollections")
-      .should("be.visible")
-      .click({force: true}); // close menu
-    cy.pine_logout();
-  });
-
   it("Checks Collections are Visible in My Collections Page with Eve", function() {
     cy.pine_login_eve();
-    cy.contains("View My Collections")
+    cy.get(".doc-collections-btn")
       .should("be.visible")
       .click();
     cy.fixture("collections.json").then((collections) => {
       for(const data of collections) {
         const collection = data.collection;
         cy.containsElemExactly("td", collection.metadata.title)
-          .should("be.visible");
+        .should("be.visible");
       }
     });
     cy.pine_logout();
@@ -149,11 +129,14 @@ describe("Collections Tests", function() {
     cy.fixture("collections.json").then((collections) => {
       for(const data of collections) {
         const collection = data.collection;
-        cy.visit("/home");
-        cy.contains("View My Collections")
+        cy.get(".doc-collections-btn")
           .should("be.visible")
           .click();
         cy.containsElemExactly("td", collection.metadata.title)
+          .should("be.visible")
+          .click();
+        cy.get(".title-tabs")
+          .contains("Details")
           .should("be.visible")
           .click();
         verifyCollectionDetails(collection);
@@ -165,8 +148,7 @@ describe("Collections Tests", function() {
   it("Checks Adding and Archiving of a Collection with Eve", function() {
     cy.pine_login_eve();
     cy.visit("/")
-    cy.get("#nav-list")
-      .contains("Add Collection")
+    cy.contains("Add Document Collection")
       .should("be.visible")
       .click();
     cy.get("app-add-collection")
@@ -273,63 +255,43 @@ describe("Collections Tests", function() {
     cy.get("@form")
       .submit();
 
-    // wait to get redirected to details page
-    cy.location().should((loc) => {
-      expect(loc.pathname).to.include("collection/details");
-    });
-
-    verifyCollectionDetails(collection).then(collection_id => collection._id = collection_id);
-    cy.location().should((loc) => {
-    	expect(loc.pathname).to.eq(`/collection/details/${collection._id}`);
-    });
-
     // make sure title is now listed in collection details page and in the nav menu
-    cy.get("#pineNavMyCollections")
-      .should("be.visible")
-      .click();
-    cy.containsElemExactly("button", collection.metadata.title, true)
-        .should("be.visible");
-    cy.get("#pineNavMyCollections")
-      .should("be.visible")
-      .click({force: true}); // close menu
-    cy.visit("/");
-    cy.contains("View My Collections")
+    cy.get(".doc-collections-btn")
       .should("be.visible")
       .click();
     cy.containsElemExactly("td", collection.metadata.title)
       .should("be.visible")
       .click();
+    cy.get(".title-tabs")
+        .contains("Details")
+        .should("be.visible")
+        .click();
+    verifyCollectionDetails(collection).then(collection_id => collection._id = collection_id);
     cy.location().should((loc) => {
     	expect(loc.pathname).to.eq(`/collection/details/${collection._id}`);
     });
     
     // archive collection
     cy.get("button")
-      .contains("Unarchive Collection")
+      .contains("Unarchive")
       .should("not.exist");
     cy.get("button")
-      .contains("Archive Collection")
-      .parent("button")
+      .contains("Archive")
       .click();
+    cy.wait(500);
     cy.get("button")
-      .contains("Unarchive Collection")
+      .contains("Unarchive")
       .should("exist");
 
     // make sure title is no longer listed
-    cy.get("#pineNavMyCollections")
-      .should("be.visible")
-      .click();
-    cy.containsElemExactly("button", collection.metadata.title, true)
-      .should("not.exist");
-    cy.get("#pineNavMyCollections")
-      .should("be.visible")
-      .click({force: true}); // close menu
-    cy.visit("/");
-    cy.contains("View My Collections")
+    cy.get(".doc-collections-btn")
       .should("be.visible")
       .click();
     cy.containsElemExactly("td", collection.metadata.title)
       .should("not.exist");
+
+    // wait for snackbar
+    cy.wait(3000);
     
     cy.pine_logout();
   });

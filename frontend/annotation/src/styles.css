@@ -3,6 +3,29 @@
 @import '~roboto-fontface/css/roboto/roboto-fontface.css';
 @import '~tippy.js/dist/themes/light-border.css';
 
+/* make Flex work. */
+html,
+body,
+app-root {
+    height: 100%;
+    width: 100%;
+    margin: 0px;
+    display: flex;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+body {
+    margin: 0px !important;
+}
+
+.btn-short {
+    max-height: 36px;
+}
+
+.mat-form-field-infix {
+    width: auto !important;
+}
+
 #loading {
     font-weight: bold;
 }

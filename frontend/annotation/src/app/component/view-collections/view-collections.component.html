@@ -1,52 +1,54 @@
 <!-- (C) 2019 The Johns Hopkins University Applied Physics Laboratory LLC.-->
-<app-loading></app-loading>
 
-<mat-card *ngIf="!loading.loading && !loading.error">
-  <mat-card-header id="header">
-    <mat-card-title id="title">
-      <h1>My Collections</h1>
-      <span class="spacer"></span>
-      <mat-radio-group [value]="active ? 'active' : 'archived'" (change)="archiveChanged($event)">
-        <mat-radio-button value="active">Active</mat-radio-button>
-        &nbsp;&nbsp;&nbsp;&nbsp;
-        <mat-radio-button value="archived">Archived</mat-radio-button>
-      </mat-radio-group>
-    </mat-card-title>
-  </mat-card-header>
+<!-- <app-loading></app-loading> -->
 
-  <mat-divider></mat-divider>
+<div class="list-container" fxFlexFill>
+    <mat-toolbar>
+        <span>Document Collections</span>
+        <span *ngIf="loading || error" fxFlex="10px"></span>
+        <mat-spinner *ngIf="loading" diameter="26"></mat-spinner>
+        <mat-error class="mat-body" *ngIf="!loading && error">{{error}}</mat-error>
+        <span fxFlex></span>
+        <button mat-stroked-button (click)="openCreateCollectionDialog()">
+            <mat-icon>add</mat-icon>Add Document Collection
+        </button>
+    </mat-toolbar>
 
-  <mat-card-content style="padding-top: 2%; width: 100%">
-    <mat-form-field>
-      <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
-    </mat-form-field>
-    <table mat-table [dataSource]="dataSource" style="width: 100%; border-spacing: 0 5px;">
+    <div class="filter-bar">
+        <mat-button-toggle-group [value]="active ? 'active' : 'archived'" class="archive-toggle"
+            aria-label="Archive Toggle" (change)="archiveChanged($event)">
+            <mat-button-toggle value="active">Active</mat-button-toggle>
+            <mat-button-toggle value="archive">Archived</mat-button-toggle>
+        </mat-button-toggle-group>
 
-      <ng-container matColumnDef="title">
-        <th mat-header-cell *matHeaderCellDef>Title</th>
-        <td mat-cell *matCellDef="let collection">{{ collection.title }}</td>
-      </ng-container>
+        <span fxFlex="32px"></span>
 
-      <ng-container matColumnDef="creator">
-        <th mat-header-cell *matHeaderCellDef>Creator</th>
-        <td mat-cell *matCellDef="let collection">{{ collection.creator }}</td>
-      </ng-container>
+        <mat-form-field class="keyword-input" floatLabel="never">
+            <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+        </mat-form-field>
+    </div>
 
-      <ng-container matColumnDef="last_updated">
-        <th mat-header-cell *matHeaderCellDef>Last Updated</th>
-        <td mat-cell *matCellDef="let collection">{{ collection.last_updated }}</td>
-      </ng-container>
+    <div class="table-container">
+        <table mat-table class="table-selectable" [dataSource]="dataSource">
 
-      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-      <tr mat-row class="trow spacing" *matRowDef="let row; columns: displayedColumns;" [routerLink]="['/' + PATHS.collection.details, row.id]" ></tr>
-    </table>
-    <mat-paginator [pageSize]="20" [pageSizeOptions]="[5, 10, 20, 150, 00]" showFirstLastButtons></mat-paginator>
+            <ng-container matColumnDef="title">
+                <th mat-header-cell *matHeaderCellDef>Title</th>
+                <td mat-cell *matCellDef="let collection">{{ collection.title }}</td>
+            </ng-container>
 
+            <ng-container matColumnDef="creator">
+                <th mat-header-cell *matHeaderCellDef>Creator</th>
+                <td mat-cell *matCellDef="let collection">{{ collection.creator }}</td>
+            </ng-container>
 
-  </mat-card-content>
-  <mat-card-actions>
-    <button mat-raised-button [routerLink]="[appConfig.landingPage]"><span class="material-icons">home</span>Home</button>
+            <ng-container matColumnDef="last_updated">
+                <th mat-header-cell *matHeaderCellDef>Last Updated</th>
+                <td mat-cell *matCellDef="let collection">{{ collection.last_updated }}</td>
+            </ng-container>
 
-  </mat-card-actions>
-
-</mat-card>
+            <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+            <tr mat-row class="trow spacing" *matRowDef="let row; columns: displayedColumns;"
+                [routerLink]="['/' + PATHS.collection.details, row.id]"></tr>
+        </table>
+    </div>
+</div>

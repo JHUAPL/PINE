@@ -100,17 +100,19 @@ Cypress.Commands.add("pine_login_eve", {}, () => {
     cy.request("POST", Cypress.env("API_URL") + "/auth/login",
       {"username": Cypress.env("LOGIN_USER"), "password": user["password"]});
     cy.visit("/login?checkBackend");
-    cy.get("#toolbar")
+    cy.get(".app-toolbar")
       .contains(user["_id"])
       .should("be.visible");
   });
 });
 
 Cypress.Commands.add("pine_logout", {}, () => {
-  cy.get("#pineNavLogout")
+  cy.get(".user-menu-btn")
+    .click()
+    .get(".logout-btn")
     .should("be.visible")
     .click();
   // the following check should change if auth module isn't eve
-  cy.contains("Username or email")
+  cy.get(".login-field")
     .should("be.visible");
 });

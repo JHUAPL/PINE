@@ -1,8 +1,6 @@
 /*(C) 2019 The Johns Hopkins University Applied Physics Laboratory LLC. */
-import { Component, OnInit, AfterViewInit, ViewChild } from "@angular/core";
+import { Component, OnInit, AfterViewInit, ViewChild, Inject } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
-import { ActivatedRoute } from "@angular/router";
-import { Router } from "@angular/router";
 import { HttpErrorResponse } from "@angular/common/http";
 
 import { take } from "rxjs/operators";
@@ -11,7 +9,6 @@ import { PATHS } from "../../app.paths";
 
 import { AuthService } from "../../service/auth/auth.service";
 import { DocumentRepositoryService } from "../../service/document-repository/document-repository.service";
-import { CollectionRepositoryService } from "../../service/collection-repository/collection-repository.service";
 import { EventService } from "../../service/event/event.service";
 
 import { Document } from "../../model/document";
@@ -19,6 +16,12 @@ import { CreatedObject } from "../../model/created";
 
 import { ImageChooserComponent } from "../image-chooser/image-chooser.component";
 import { uuidv4 } from "../util";
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { Collection } from 'src/app/model/collection';
+
+export class AddDocumentDialogData {
+    collection: Collection;
+}
 
 @Component({
     selector: "app-add-document",
@@ -44,13 +47,12 @@ export class AddDocumentComponent implements OnInit, AfterViewInit {
     @ViewChild(ImageChooserComponent)
     public imageChooser: ImageChooserComponent;
 
-    constructor(private route: ActivatedRoute,
-                private router: Router,
-                private auth: AuthService,
+    constructor(private auth: AuthService,
                 private event: EventService,
                 private formBuilder: FormBuilder,
                 private documentRepository: DocumentRepositoryService,
-                private collectionRepository: CollectionRepositoryService) {
+                public dialogRef: MatDialogRef<AddDocumentComponent>,
+                @Inject(MAT_DIALOG_DATA) public data: AddDocumentDialogData) {
         this.createForm = this.formBuilder.group({
             creator_name: [{value: this.auth.loggedInUser.display_name, disabled: true},
                            [Validators.required]],
@@ -64,11 +66,11 @@ export class AddDocumentComponent implements OnInit, AfterViewInit {
 
     ngOnInit() {
         this.loading = true;
-        this.route.paramMap.subscribe(params => {
-            this.collection_id = params.get("collection_id");
-            this.f.collection_id.setValue(this.collection_id);
+        if(this.data.collection) {
+            this.collection_id = this.data.collection._id;
+            this.f.collection_id.setValue(this.data.collection._id);
             this.loading = false;
-        });
+        }
     }
 
     ngAfterViewInit() {
@@ -95,6 +97,8 @@ export class AddDocumentComponent implements OnInit, AfterViewInit {
             return;
         }
 
+        this.loading = true;
+
         const document = <Document>{};
         document.creator_id = this.f.creator_id.value;
         document.collection_id = this.f.collection_id.value;
@@ -108,17 +112,20 @@ export class AddDocumentComponent implements OnInit, AfterViewInit {
             console.log(document);
             this.documentRepository.postDocument(document).subscribe(
                 (createdDocument: CreatedObject) => {
+                    this.loading = false;
                     const documentId = createdDocument._id;
                     this.event.showUserMessage.emit("Successfully added document with ID " + documentId);
                     this.event.documentAddedById.emit({collectionId: this.collection_id, documentId: documentId});
-                    this.router.navigate([`/${PATHS.document.annotate}`, documentId]);
+                    this.dialogRef.close(true);
                 }, (error: HttpErrorResponse) => {
+                    this.loading = false;
                     console.error(error);
                     this.errorMessage = "Error: " + JSON.stringify(error["error"]);
                     this.hadError = true;
                 }
             );
         }, (error) => {
+            this.loading = false;
             console.error(error);
             this.errorMessage = "Error uploading image: " + JSON.stringify(error["error"]);
             this.hadError = true;

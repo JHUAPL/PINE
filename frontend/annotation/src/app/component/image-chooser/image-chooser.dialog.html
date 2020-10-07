@@ -6,7 +6,14 @@
     <app-image-chooser [collectionId]="data.collectionId" [startingUrl]="data.startingUrl"></app-image-chooser>
 </mat-dialog-content>
 
-<mat-dialog-actions class="buttons" align="end">
-    <button mat-button mat-raised-button (click)="closeDialog(true)" cdkFocusInitial>Save</button>
-    <button mat-button mat-raised-button (click)="closeDialog(false)">Cancel</button>
+<mat-dialog-actions class="buttons">
+    <button mat-button mat-raised-button (click)="closeDialog(false)">
+        <mat-icon>cancel</mat-icon>
+        <span>&nbsp;Cancel</span>
+    </button>
+    <span fxFlex></span>
+    <button mat-button mat-raised-button color="primary" (click)="closeDialog(true)" cdkFocusInitial>
+        <mat-icon>save</mat-icon>
+        <span>&nbsp;Save</span>
+    </button>
 </mat-dialog-actions>

@@ -38,6 +38,7 @@ import { PATHS, PARAMS } from "../../app.paths";
 import { AnnotatedService } from 'src/app/service/annotated/annotated.service';
 import { IaaReportingService } from 'src/app/service/iaa-reporting/iaa-reporting.service';
 import { IAAReport } from 'src/app/model/iaareport';
+import * as _ from 'lodash';
 
 class DocAnnotation {
     constructor(public label: DocLabel, public checked: boolean) {
@@ -69,6 +70,8 @@ export class AnnotateComponent implements OnInit, AfterViewInit {
     private selectionChangeTimer;
     private mouseDown: LeftMouseDown;
 
+    public tabIndex = 0;
+
     public canAnnotate = false;
     public canCurrentlyAnnotate = false; // for showing others' annotations
     public allowOverlappingNerAnnotations = true;
@@ -89,6 +92,8 @@ export class AnnotateComponent implements OnInit, AfterViewInit {
 
     private mouseOutState = false;
     private recentWord = null;
+
+    public showList: boolean = true;
 
     public ann_agreement: number
     @ViewChildren("wordsList")
@@ -116,6 +121,11 @@ export class AnnotateComponent implements OnInit, AfterViewInit {
     }
 
     ngOnInit() {
+        this.route.queryParams.subscribe(params => {
+            if(params.tab != undefined) {
+                this.tabIndex = params.tab;
+            }
+        });
     }
 
     ngAfterViewInit() {
@@ -193,6 +203,21 @@ export class AnnotateComponent implements OnInit, AfterViewInit {
                 this.loading.loading = false;
             });
         });
+    }
+
+    public updateTabInUrl() {
+        let param = { tab: this.tabIndex };
+        this.router.navigate([], {
+            relativeTo: this.route,
+            queryParams: param,
+            queryParamsHandling: 'merge'
+        });
+    }
+
+    public backToCollectionDetails() {
+        if(this.collection) {
+           this.router.navigate(['collection', 'details', this.collection._id]); 
+        }
     }
 
     public imageChanged(imageUrl: string) {

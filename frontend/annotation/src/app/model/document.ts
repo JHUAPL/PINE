@@ -25,6 +25,7 @@ export class Document extends ModelObject implements DBDocument {
     public text: string;
     public metadata: {[key: string]: any};
     public has_annotated: {[user_id: string]: boolean};
+    public _created: any;
     
     public getTextPreview(n: number = Document.DEFAULT_PREVIEW_LENGTH) {
         return `${this.text.slice(0, n)}...`;
