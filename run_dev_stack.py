@@ -41,7 +41,7 @@ def lock_print(message):
         PRINT_LOCK.release()
 
 def source_env_file():
-    proc = subprocess.Popen(shlex.split("env -i bash -c 'set -a && source {}/.env && env'".format(DIR)), stdout = subprocess.PIPE)
+    proc = subprocess.Popen(shlex.split("env -i bash -c 'set -a && source {}/.env && env'".format(DIR)), stdout=subprocess.PIPE)
     read_vars = {}
     for line in proc.stdout:
         (key, _, value) = line.decode().rstrip().partition("=")
@@ -63,7 +63,7 @@ def prepend_cmd(cmd, prefix_text, prefix_color):
     return p
 
 def set_version():
-    proc = subprocess.run([os.path.join(DIR, "version.sh")], shell=True, check=True, capture_output=True)
+    proc = subprocess.run([os.path.join(DIR, "version.sh")], shell=True, check=True, stdout=subprocess.PIPE)
     os.environ["PINE_VERSION"] = proc.stdout.strip().decode()
 
 def start_eve_process(start_dir, start_cmd):

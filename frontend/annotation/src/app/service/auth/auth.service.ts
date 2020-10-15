@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { Router } from "@angular/router";
 
-import { Observable, forkJoin, of } from "rxjs";
+import { Observable, BehaviorSubject, forkJoin, of } from "rxjs";
 
 import { BackendService } from "../backend/backend.service";
 
@@ -20,6 +20,9 @@ import { map, catchError } from 'rxjs/operators';
 
 @Injectable()
 export class AuthService {
+
+    private loadedSubject = new BehaviorSubject<boolean>(false);
+    public loaded$: Observable<boolean> = this.loadedSubject.asObservable();
 
     public module: AuthModule = null;
     public moduleName: string = null;
@@ -63,9 +66,11 @@ export class AuthService {
                     observer.error(`Unknown auth module: ${module}`);
                     observer.complete();
                 }
+                this.loadedSubject.next(true);
             }, (error) => {
                 observer.error(error);
                 observer.complete();
+                this.loadedSubject.error(error);
             });
         });
     }
