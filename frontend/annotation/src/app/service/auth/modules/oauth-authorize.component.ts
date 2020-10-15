@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 
-import { forkJoin } from "rxjs";
+import { filter, take } from "rxjs/operators";
 
 import { LoadingComponent } from "../../../component/loading/loading.component";
 
@@ -35,7 +35,14 @@ export class OAuthAuthorizeComponent implements OnInit {
               if(params["return_to"]) {
                   return_to = params["return_to"];
               }
-              (<OAuthModule>this.auth.module).authorize(params, fragment, return_to, this);
+              this.auth.loaded$.pipe(
+                filter(loaded => loaded),
+                take(1)
+              ).subscribe(_ => {
+                (<OAuthModule>this.auth.module).authorize(params, fragment, return_to, this);
+              }, (error) => {
+                this.setLoginError(error);
+              });
             });
         });
     }
