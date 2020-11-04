@@ -58,7 +58,7 @@ To our knowledge no current tool supports realtime generation of inter-annotator
 
 The database resources are wrapped in a Guincorn-deployed Eve server, which provides a REST interface on top of a remote or local database that supports the MongoDB wire protocol [@gunicorn:2017] [@eve:2020] [@chodorow:2013]. The figure \autoref{fig:architecture} depicts the architecture of `PINE`.  Individual Docker containers are notated by the grey rectangles.  Data is transfered between containers within a private Docker network denoted by arrows within the larger `PINE` rectangle which represents the appliction.  Volumes which hold persistent data are denoted by the orange file boxes.  Persistent data includes generated models and image files.  Optionally MongoDB and authentication services can be deployed within Docker containers in the `PINE` application.  However, the current deployment at Johns Hopkins uses external databases and authentication denoted by the clouds.  
 
-![Diagram of the current architecture.  `PINE` consists of multiple Docker containers denoted by the grey rectangles. Docker containers communicate via a Docker network.  Services such as database and authentication can be optionally deployed outside of `PINE` and are indicated by the cloud icons.] {fig:architecture}(architecture.png)
+![Diagram of the current architecture.  `PINE` consists of multiple Docker containers denoted by the grey rectangles. Docker containers communicate via a Docker network.  Services such as database and authentication can be optionally deployed outside of `PINE` and are indicated by the cloud icons.\label{fig:architecture}](architecture.png)
 <!--
 Figures can be included like this:
 ![Caption for example figure.\label{fig:example}](figure.png)
