@@ -1,16 +1,14 @@
 /*(C) 2019 The Johns Hopkins University Applied Physics Laboratory LLC. */
-import { Component, OnInit, ViewChild, AfterViewInit, Inject } from "@angular/core";
+import { Component, OnInit, ViewChild, Inject } from "@angular/core";
 import { MatPaginator, MatTableDataSource, MatSort, MatDialog, MatDialogRef, MAT_DIALOG_DATA } from "@angular/material";
 import { ActivatedRoute, Router } from "@angular/router";
 import { HttpErrorResponse } from "@angular/common/http";
 
 import * as _ from "lodash";
-import * as moment from "moment";
 import { take } from "rxjs/operators";
 
 import { PATHS, PARAMS } from "../../app.paths";
 
-import { AnnotationService } from "../../service/annotation/annotation.service";
 import { AuthService } from "../../service/auth/auth.service";
 import { BackendService } from "../../service/backend/backend.service"
 import { CollectionRepositoryService } from "../../service/collection-repository/collection-repository.service";
@@ -19,13 +17,10 @@ import { EventService } from "../../service/event/event.service";
 import { PipelineService } from "../../service/pipeline/pipeline.service";
 import { MetricsService } from "../../service/metrics/metrics.service";
 
-import { Annotation } from "../../model/annotation";
 import { Document } from "../../model/document";
 import { Classifier } from "../../model/classifier";
 import { Collection, DownloadCollectionData, METADATA_TITLE } from "../../model/collection";
 import { Pipeline } from "../../model/pipeline";
-import { DocumentMenuItem } from "../nav-collection-menu/nav-collection-menu.component";
-import { Metric } from "../../model/metrics";
 import { IaaReportingService } from '../../service/iaa-reporting/iaa-reporting.service';
 import { IAAReport } from '../../model/iaareport';
 import { DownloadCollectionDataDialogComponent } from '../download-collection-data.dialog/download-collection-data.dialog.component';
@@ -93,7 +88,6 @@ export class CollectionDetailsComponent implements OnInit {
 
     constructor(private router: Router,
         private route: ActivatedRoute,
-        private annotationService: AnnotationService,
         private collectionService: CollectionRepositoryService,
         private documentsService: DocumentRepositoryService,
         private pipelineService: PipelineService,

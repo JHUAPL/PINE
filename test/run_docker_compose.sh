@@ -32,6 +32,7 @@ else
     docker run -it \
         --name pine-cypress \
         --network nlp_webapp_default \
+        --ipc=host \
         --env AUTH_MODULE="${AUTH_MODULE}" \
         --env CYPRESS_BASE_URL="https://frontend_annotation" \
         --env CYPRESS_API_URL="https://frontend_annotation/api" \

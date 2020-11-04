@@ -86,7 +86,7 @@ describe("Sanity Tests", function() {
 	    .find("#content")
 	    .should("be.visible")
 	    .within(() => {
-	    	cy.contains("PINE")
+	    	cy.contains("PINE", {timeout: 20 * 1000})
 	    	  .should("be.visible", {timeout: 20 * 1000});
 	    	cy.contains("database")
 	    	  .should("be.visible");
