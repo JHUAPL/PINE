@@ -71,9 +71,6 @@ import { AddCollectionComponent } from "./component/add-collection/add-collectio
 import { CollectionDetailsComponent, AddLabelDialog, AddViewerDialog, AddAnnotatorDialog} from "./component/collection-details/collection-details.component";
 import { AddDocumentComponent } from "./component/add-document/add-document.component";
 import { ViewCollectionsComponent } from "./component/view-collections/view-collections.component";
-import { NavMyCollectionsComponent } from "./component/nav-my-collections/nav-my-collections.component";
-import { NavCollectionMenuComponent } from "./component/nav-collection-menu/nav-collection-menu.component";
-import { NavigationComponent } from "./component/navigation/navigation.component";
 import { UserChooserComponent } from "./component/user-chooser/user-chooser.component";
 import { LabelChooserComponent } from "./component/label-chooser/label-chooser.component";
 import { AdminComponent } from "./component/admin/admin.component";
@@ -102,7 +99,6 @@ import { ImageCollectionUploaderComponent, ImageCollectionUploaderDialog } from 
 import { StatusBarComponent } from './component/status-bar/status-bar.component';
 import { StatusBarService } from "./service/status-bar/status-bar.service";
 import { AboutComponent } from './component/about/about.component';
-import { ToolbarComponent } from './component/toolbar';
 import { ToolbarNavComponent } from './component/toolbar/toolbar-nav/toolbar-nav.component';
 import { ToolbarNavButtonComponent } from './component/toolbar/toolbar-nav-button/toolbar-nav-button.component';
 import { UserCardComponent } from './component/user-card/user-card.component';
@@ -119,9 +115,6 @@ export function initializeApp(appConfig: AppConfig) {
         CollectionDetailsComponent,
         AddDocumentComponent,
         ViewCollectionsComponent,
-        NavMyCollectionsComponent,
-        NavCollectionMenuComponent,
-        NavigationComponent,
         UserChooserComponent,
         LabelChooserComponent,
         AdminComponent,
@@ -153,7 +146,6 @@ export function initializeApp(appConfig: AppConfig) {
         ImageCollectionUploaderDialog,
         StatusBarComponent,
         AboutComponent,
-        ToolbarComponent,
         ToolbarNavComponent,
         ToolbarNavButtonComponent,
         UserCardComponent
