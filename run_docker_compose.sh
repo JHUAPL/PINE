@@ -10,6 +10,7 @@ if [[ $# -lt 1 ]]; then
     exit 1
 fi
 COMMAND="$1"
+shift
 
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 cd ${DIR}
@@ -18,13 +19,13 @@ set -x
 
 export PINE_VERSION=$(./version.sh)
 if [[ ${COMMAND} == --build ]]; then
-    docker-compose build
+    docker-compose build $@
 elif [[ ${COMMAND} == --up ]]; then
-    docker-compose up --abort-on-container-exit
+    docker-compose up --abort-on-container-exit $@
 elif [[ ${COMMAND} == --up-test ]]; then
     docker-compose \
         -f docker-compose.yml -f docker-compose.override.yml -f docker-compose.test.yml \
-        up --abort-on-container-exit
+        up --abort-on-container-exit $@
 elif [[ ${COMMAND} == --down ]]; then
-    docker-compose down
+    docker-compose down $@
 fi
