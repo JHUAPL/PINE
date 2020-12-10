@@ -29,6 +29,28 @@
     overflow-y: auto;
 }
 
+.image-annotation-container {
+    top: 50px;
+    left: 10px;
+    width: 204px;
+    bottom: 10px;
+    position: absolute;
+    z-index: 1000;
+}
+
+.image-annotation-divider {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    position: relative !important;
+}
+
+.image-annotation-list {
+    flex-grow: 1;
+    overflow-y: auto;
+    padding-left: 8px;
+    padding-right:4px;
+}
+
 /* annotation tab */
 .filter-bar {
     position: absolute;

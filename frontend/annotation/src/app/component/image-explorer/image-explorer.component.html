@@ -12,8 +12,8 @@
         </button>
     </div>
 
-    <button [color]="mode === 'invert' ? 'primary' : 'default'" class="image-btn image-btn-space image-btn-invert" mat-raised-button
-        (click)="setMode('invert')" matTooltip="Invert Colors">
+    <button [color]="mode === 'invert' ? 'primary' : 'default'" class="image-btn image-btn-space image-btn-invert"
+        mat-raised-button (click)="setMode('invert')" matTooltip="Invert Colors">
         <mat-icon>compare</mat-icon>
     </button>
     <button [color]="mode === 'sharpen' ? 'primary' : 'default'" class="image-btn image-btn-space" mat-raised-button
@@ -22,14 +22,19 @@
     </button>
     <button [color]="mode === 'histogram' ? 'primary' : 'default'" class="image-btn image-btn-space" mat-raised-button
         (click)="setMode('histogram')" matTooltip="Histogram Equalizer">
-        <mat-icon>bar_chart</mat-icon>
+        <mat-icon>insert_chart</mat-icon>
     </button>
     <button class="image-btn image-btn-space" mat-raised-button (click)="setMode('none')" matTooltip="Clear Filters">
         <mat-icon>layers_clear</mat-icon>
     </button>
 </div>
-<pan-zoom [config]="panZoomConfig">
-    <canvas id="imageCanvas" #imageCanvas [ngStyle]="{ 'filter': mode === 'invert' ? 'invert(1)' : 'none' }"></canvas>
-</pan-zoom>
+<div class="pan-zoom-container">
+    <pan-zoom [config]="panZoomConfig">
+        <canvas id="imageCanvas" #imageCanvas
+            [ngStyle]="{ 'filter': mode === 'invert' ? 'invert(1)' : 'none' }"></canvas>
+    </pan-zoom>
+</div>
 
-<div *ngIf="loadError" class="image-error"><mat-error>Error Loading Image</mat-error></div>
+<div *ngIf="loadError" class="image-error">
+    <mat-error>Error Loading Image</mat-error>
+</div>
