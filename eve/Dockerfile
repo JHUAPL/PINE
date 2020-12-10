@@ -33,11 +33,15 @@ RUN apt-get -y update && \
     pip3 install --upgrade pip gunicorn pipenv
 
 # Install latest mongodb
+# It can no longer be installed from packages due to the packages relying on systemctl which is not
+#   in the Ubuntu docker image.
+# https://docs.mongodb.com/manual/tutorial/install-mongodb-on-ubuntu-tarball/
+ARG MONGO_VERSION=ubuntu1804-4.2.11
 RUN if [ -n "${DB_DIR}" ] ; then \
-    apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv E162F504A20CDF15827F718D4B7C549A058F8B6B && \
-    echo "deb [ arch=amd64 ] https://repo.mongodb.org/apt/ubuntu bionic/mongodb-org/4.2 multiverse" > /etc/apt/sources.list.d/mongodb-org-4.2.list && \
-    apt-get -y update && \
-    apt-get install -y mongodb-org mongodb-org-server mongodb-org-tools mongodb-org-shell; \
+    apt-get -y install libcurl4 openssl liblzma5 wget && \
+    wget --progress=dot https://fastdl.mongodb.org/linux/mongodb-linux-x86_64-${MONGO_VERSION}.tgz && \
+    tar xzf mongodb-linux-x86_64-${MONGO_VERSION}.tgz && \
+    mv mongodb-linux-x86_64-${MONGO_VERSION}/bin/* /usr/local/bin/; \
     fi
 
 # Install python packages

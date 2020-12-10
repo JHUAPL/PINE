@@ -88,8 +88,8 @@ describe("Sanity Tests", function() {
 	    .within(() => {
 	    	cy.contains("PINE", {timeout: 20 * 1000})
 	    	  .should("be.visible", {timeout: 20 * 1000});
-	    	cy.contains("database")
-	    	  .should("be.visible");
+	    	cy.contains("database", {timeout: 20 * 1000})
+	    	  .should("be.visible", {timeout: 20 * 1000});
 	    });
 	  cy.get("app-about")
 	    .find("button").contains("Close")

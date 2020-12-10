@@ -1,6 +1,6 @@
 /*(C) 2019 The Johns Hopkins University Applied Physics Laboratory LLC. */
 
-import { Component, OnInit } from "@angular/core";
+import { Component, Input, OnChanges, OnInit, SimpleChanges } from "@angular/core";
 import { HttpErrorResponse } from "@angular/common/http";
 
 @Component({
@@ -8,7 +8,11 @@ import { HttpErrorResponse } from "@angular/common/http";
     templateUrl: "./error.component.html",
     styleUrls: ["./error.component.css"]
 })
-export class ErrorComponent implements OnInit {
+export class ErrorComponent implements OnInit, OnChanges {
+
+    @Input() httpError: HttpErrorResponse;
+    @Input() htmlError: string;
+    @Input() operation: string = null;
 
     public visible = false;
 
@@ -17,6 +21,16 @@ export class ErrorComponent implements OnInit {
     constructor() { }
 
     ngOnInit() {
+    }
+
+    ngOnChanges(changes: SimpleChanges) {
+        if(this.htmlError) {
+            this.showHtml(this.htmlError);
+        } else if(this.htmlError) {
+            this.showHttp(this.httpError);
+        } else {
+            this.clear();
+        }
     }
 
     public clear() {

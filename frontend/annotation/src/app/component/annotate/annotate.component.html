@@ -1,7 +1,8 @@
 <!-- (C) 2019 The Johns Hopkins University Applied Physics Laboratory LLC.-->
 <div fxFlexFill class="page-container" fxLayout="column">
     <mat-toolbar class="title-toolbar">
-        <button class="doc-back-button" mat-icon-button matTooltip="Go back to collection details" (click)="backToCollectionDetails()">
+        <button class="doc-back-button" mat-icon-button matTooltip="Go back to collection details"
+            (click)="backToCollectionDetails()">
             <mat-icon>keyboard_arrow_left</mat-icon>
         </button>
         <span class="page-title">Document {{doc?._id}}</span>
@@ -56,8 +57,8 @@
                         <b>
                             Document Overall Agreement:
                         </b>
-                        <span *ngIf="ann_agreement != undefined">{{ann_agreement | percent:'1.2-2'}}</span>
-                        <span *ngIf="ann_agreement == undefined">N/A</span>
+                        <span *ngIf="ann_agreement != null && ann_agreement != 'null'">{{ann_agreement | percent:'1.2-2'}}</span>
+                        <span *ngIf="ann_agreement == null || ann_agreement == 'null'">N/A</span>
                     </span>
                 </div>
             </div>
@@ -127,7 +128,8 @@
                 </button>
                 <app-error></app-error>
                 <span fxFlex></span>
-                <button class="annotate-button" mat-raised-button (click)="save(false)" [disabled]="!canCurrentlyAnnotate">
+                <button class="annotate-button" mat-raised-button (click)="save(false)"
+                    [disabled]="!canCurrentlyAnnotate">
                     <span class="material-icons">save</span>Save
                 </button>
                 <span fxFlex="10px"></span>
@@ -140,6 +142,31 @@
 
         <section *ngIf="tabIndex == 1 && !loading.loading && !loading.error" #imageSection fxFlexFill>
             <div *ngIf="doc.metadata && doc.metadata['imageUrl']" id="myDocImage" class="image-container">
+                <mat-card class="image-annotation-container" fxLayout="column">
+                    <div>Annotations</div>
+                    <mat-divider class="image-annotation-divider"></mat-divider>
+                    <div class="image-annotation-list" fxLayout="column">
+                        <mat-chip-list class="mat-chip-list-stacked">
+                            <mat-checkbox *ngFor="let annotation of myDocAnnotations;" [(ngModel)]="annotation.checked">
+                                <mat-chip [style.background-color]="annotation.label.color"
+                                    class="shadowed cursor-pointer">
+                                    {{annotation.label.name}}</mat-chip>
+                            </mat-checkbox>
+                        </mat-chip-list>
+
+                    </div>
+                    <div fxLayout="row">
+                        <mat-error *ngIf="!canAnnotate" id="cantAnnotate">
+                            <h3>Note: you do not have authority to change or add annotations for this document.</h3>
+                        </mat-error>
+                        <span fxFlex></span>
+                        <button class="btn-short annotate-button" mat-raised-button color="primary"
+                            (click)="save(false)" [disabled]="!canCurrentlyAnnotate">
+                            <span class="material-icons">save</span>Save
+                        </button>
+                    </div>
+
+                </mat-card>
                 <div style="position: absolute; top: 0px; bottom: 0; left: 0; right: 0;">
                     <button class="full-screen-btn" mat-raised-button
                         (click)="toggleImageFullscreen()">{{ isImageFullscreen() ? 'Close' : 'Open' }} Full

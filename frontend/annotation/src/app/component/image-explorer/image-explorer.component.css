@@ -55,3 +55,11 @@
     -webkit-filter: invert(1);
     filter: invert(1);
 }
+
+.pan-zoom-container {
+    position: absolute;
+    top: 54px;
+    left: 224px;
+    right: 0;
+    bottom: 0;
+}

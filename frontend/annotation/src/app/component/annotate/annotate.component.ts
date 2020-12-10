@@ -62,8 +62,9 @@ export class AnnotateComponent implements OnInit, AfterViewInit {
     @ViewChild(LoadingComponent)
     public loading: LoadingComponent;
 
-    @ViewChild(ErrorComponent)
-    public error: ErrorComponent;
+    public htmlError: string;
+    public httpError: HttpErrorResponse;
+    public errorOperation: string;
 
     @ViewChild("docElem")
     public docElem: ElementRef;
@@ -558,6 +559,12 @@ export class AnnotateComponent implements OnInit, AfterViewInit {
         }
     }
 
+    private clearError() {
+        this.httpError = null;
+        this.htmlError = null;
+        this.errorOperation = null;
+    }
+
     public save(andAdvance: boolean) {
         if (!this.canAnnotate) { return; }
         const docAnnotations = [];
@@ -566,7 +573,7 @@ export class AnnotateComponent implements OnInit, AfterViewInit {
                 docAnnotations.push(annotation.label.name);
             }
         }
-        this.error.clear();
+        this.clearError();
         this.annotations.saveAnnotations(this.doc._id, docAnnotations, this.nerData.annotations).subscribe((id: string) => {
             this.myNerAnnotations = this.nerData.annotations;
             this.changed = false;
@@ -581,12 +588,13 @@ export class AnnotateComponent implements OnInit, AfterViewInit {
                 this.advanceToNext();
             }
         }, (error: HttpErrorResponse) => {
-            this.error.showHttp(error, "saving annotations");
+            this.httpError = error;
+            this.errorOperation = "saving annotations";
         });
     }
 
     private advanceToNext() {
-        this.error.clear();
+        this.clearError();
         this.pipelines.advanceToNextDocumentForClassifier(this.classifier._id, this.doc._id).subscribe((success: boolean) => {
             if (success) {
                 this.pipelines.getNextDocumentIdForClassifier(this.classifier._id).subscribe((documentId: string) => {
@@ -599,13 +607,15 @@ export class AnnotateComponent implements OnInit, AfterViewInit {
                         this.router.navigate([`/${PATHS.collection.details}`, this.collection._id]);
                     }
                 }, (error: HttpErrorResponse) => {
-                    this.error.showHttp(error, "advancing to next document");
+                    this.httpError = error;
+                    this.errorOperation = "advancing to next document";
                 });
             } else {
-                this.error.showHtml("Unable to advance to next document.");
+                this.htmlError = "Unable to advance to next document.";
             }
         }, (error: HttpErrorResponse) => {
-            this.error.showHttp(error, "advancing to next document");
+            this.httpError = error;
+            this.errorOperation = "advancing to next document";
         });
     }
 
