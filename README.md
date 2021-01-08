@@ -53,6 +53,64 @@ These are required to build docker images for active learning.
 
 ----------------------------------------------------------------------------------------------------
 
+## Quickstart
+
+There are two main ways to run PINE:
+* The "dev stack", whichs runs all the services on the host system using development servers that
+  automatically update when the code is changed.  The development environment takes some time to set
+  up the various dependencies and is the appropriate choice if you are going to be changing code.
+* The docker compose stack, which runs individual services in different Docker containers networked
+  together.  This environment requires only Docker and docker-compose to be installed and is the
+  appropriate choice if you are just going to be running PINE, especially in a production setting.
+  There are further configurations of the docker compose stack depending on the setting.
+
+All activity in the PINE web user interface requires the user to log in.  Additionally, the PINE
+data has access controls on it such that each user must be given permission to view or annotate
+individual collections.  The user management is handled by what PINE refers to as an "auth module."
+PINE currently supports two auth modules:
+* The "eve" module defines users in PINE's database.  Admin users can create and manage users using
+  the Admin Dashboard in the web interface, or users can be added to the database using
+  command-line tools on the host.
+* The "vegas" module integrates with the JHU user directory.  It requires an additional setup step
+  as there is a secret associated with PINE that must be added to its configuration.  This is
+  probably not the correct choice for external/standlone PINE instances.
+
+The auth module configuration is independent of the environment chosen.  Both the dev stack and the
+docker compose stack read configuration values from the `.env` file, which includes the
+configuration of the auth module.
+
+This repository also provides testing data that can be imported into PINE, which includes users and
+sample collections.
+
+### Getting started with the dev stack
+
+See [Development Environment](#development-environment).
+
+### Getting started with the docker compose stack
+
+See [Docker Environments](#docker-environments).
+
+### Getting started with the "eve" auth module
+
+1. Set `AUTH_MODULE=eve` in the `.env` file.
+2. On first setup, the database will have no users in it.  To add users, either import the testing
+   dataset, or use the scripts in `scripts/data` in the backend to manage users.  (See the
+   *User management using "eve" auth module* sections in
+   [Development Environment](#development-environment) and
+   [Docker Environments](#docker-environments) below for exact commands.) Once an admin
+   user has been added, users can also be added/managed by logging in as that user and using the
+   Admin Dashboad.
+3. Log in with the user credentials.
+
+### Getting started with the "vegas" auth module
+
+1. Set `AUTH_MODULE=vegas` and `VEGAS_CLIENT_SECRET` in the `.env` file.  `VEGAS_CLIENT_SECRET`
+   must be obtained by contacting one of the PINE developers and being authorized to use it.
+2. VEGAS users are managed externally.
+3. Log in with your JHED credentials.
+
+----------------------------------------------------------------------------------------------------
+
 ## Development Environment
 
 First, refer to the various README files in the subproject directories for dependencies.
@@ -94,6 +152,33 @@ To import testing data, run the dev stack and then run:
 
 *WARNING*: This script will remove any pre-existing data.  If you need to clear your database
 for other reasons, stop your dev stack and then `rm -rf local_data/dev/eve/db`.
+
+### User management using "eve" auth module
+
+Note: these scripts only apply to the "eve" auth module, which stores users
+in the eve database.  Users in the "vegas" module are managed externally.
+
+Once the system is up and running:
+```bash
+cd backend && scripts/data/list_users.sh
+```
+
+This script will reset all user passwords to their email:
+```bash
+cd backend && scripts/data/reset_user_passwords.sh
+```
+
+This script will add a new administrator:
+```bash
+cd backend && scripts/data/add_admin.sh <unique id> <email/username> <password>
+```
+
+This script will set a single user's password.
+```bash
+cd backend && scripts/data/set_user_password.sh <id/email/username> <password>
+```
+
+Alternatively, there is an Admin Dashboard through the web interface.
 
 ### Testing
 
@@ -228,22 +313,22 @@ in the eve database.  Users in the "vegas" module are managed externally.
 
 Once the system is up and running:
 ```bash
-docker-compose exec backend scripts/data/list_users.sh
+PINE_VERSION=$(./version.sh) docker-compose exec backend scripts/data/list_users.sh
 ```
 
 This script will reset all user passwords to their email:
 ```bash
-docker-compose exec backend scripts/data/reset_user_passwords.sh
+PINE_VERSION=$(./version.sh) docker-compose exec backend scripts/data/reset_user_passwords.sh
 ```
 
 This script will add a new administrator:
 ```bash
-docker-compose exec backend scripts/data/add_admin.sh <email username> <password>
+PINE_VERSION=$(./version.sh) docker-compose exec backend scripts/data/add_admin.sh <id> <email/username> <password>
 ```
 
 This script will set a single user's password.
 ```bash
-docker-compose exec backend scripts/data/set_user_password.sh <email username> <password>
+PINE_VERSION=$(./version.sh) docker-compose exec backend scripts/data/set_user_password.sh <id/email/username> <password>
 ```
 
 Alternatively, there is an Admin Dashboard through the web interface.
