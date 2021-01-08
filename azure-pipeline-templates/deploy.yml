@@ -9,6 +9,7 @@ parameters:
   backendStorageShareName: ""
   deployEnvironment: $(deployEnvironment)
   deploymentName: "CONTAINER_DEPLOY"
+  dockerAuthSecretName: $(dockerAuthSecretName)
   helmChart: "pine-chart"
   imageTag: $(Build.BuildId)
   ingressClass: "nginx"
@@ -62,6 +63,20 @@ jobs:
               APP_URL: ${{ parameters.appUrl }}
               AZURE_SUBSCRIPTION: ${{ parameters.azureSubscriptionEndpointForSecrets }}
             displayName: Check for required parameters
+          - task: Kubernetes@1
+            displayName: 'kubectl set imagePullSecrets'
+            inputs:
+              connectionType: 'Kubernetes Service Connection'
+              kubernetesServiceEndpoint: '${{ parameters.kubeServiceConnection }}'
+              namespace: '${{ parameters.namespace }}'
+              command: 'get'
+              arguments: 'service'
+              secretType: 'dockerRegistry'
+              containerRegistryType: 'Azure Container Registry'
+              azureSubscriptionEndpointForSecrets: ${{ parameters.azureSubscriptionEndpointForSecrets }}
+              azureContainerRegistry: ${{ parameters.azureContainerRegistry }}
+              secretName: '${{ parameters.dockerAuthSecretName }}'
+              versionSpec: '1.13.10'
           - task: HelmInstaller@1
             displayName: 'Install Helm 2.16.1'
             inputs:
@@ -170,3 +185,4 @@ jobs:
               kubernetesServiceConnection: '${{ parameters.kubeServiceConnection }}'
               namespace: '${{ parameters.namespace }}'
               manifests: $(bake.manifestsBundle)
+              imagePullSecrets: '${{ parameters.dockerAuthSecretName }}'

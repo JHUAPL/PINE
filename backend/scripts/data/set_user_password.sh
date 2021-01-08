@@ -2,7 +2,7 @@
 # (C) 2019 The Johns Hopkins University Applied Physics Laboratory LLC.
 
 if [[ $# -lt 2 ]]; then
-    echo "Usage: $0 <username> <password>"
+    echo "Usage: $0 <id/email/username> <password>"
     exit 1
 fi
 

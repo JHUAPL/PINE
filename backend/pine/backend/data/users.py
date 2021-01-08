@@ -33,6 +33,12 @@ def get_user_by_email(email):
     else:
         return None
 
+def get_user_by_id_or_email(username):
+    try:
+        return get_user(username)
+    except:
+        return get_user_by_email(username)
+
 def get_user_details(user_id):
     user = get_user(user_id)
     return models.UserDetails(first_name = user["firstname"], last_name = user["lastname"],
@@ -58,14 +64,25 @@ def update_user(user_id: str, details: models.UserDetails):
 def print_users_command():
     click.echo("Using data backend {}".format(service.url("")))
     for user in get_all_users():
-        click.echo("* {} (uuid {})\n  {}".format(user["email"], user["_id"], user["description"]))
+        click.echo("* email={} id={}{}\n  {} {}: {}".format(user["email"], user["_id"],
+            " (admin)" if "role" in user and "administrator" in user["role"] else "",
+            user["firstname"], user["lastname"],
+            user["description"]))
 
 @click.command("add-admin")
+@click.argument("user_id")
 @click.argument("username")
 @click.argument("password")
 @with_appcontext
-def add_admin_command(username, password):
+def add_admin_command(user_id, username, password):
+    try:
+        get_user(user_id)
+        click.echo("User with ID {} already exists.".format(user_id))
+        return
+    except:
+        pass
     user = {
+        "_id": user_id,
         "email": username,
         "passwdhash": authpassword.hash_password(password),
         "firstname": "New",
@@ -73,6 +90,7 @@ def add_admin_command(username, password):
         "description": "New administrator account.",
         "role": ["administrator"]
     }
+    click.echo("Putting to {}: {}".format(service.url("users"), user))
     resp = service.post("users", json = user)
     if not resp.ok:
         abort(resp.status_code)
@@ -94,7 +112,10 @@ def set_user_password_by_id(user_id, password):
 @with_appcontext
 def set_user_password(username, password):
     click.echo("Using data backend {}".format(service.url("")))
-    user = get_user_by_email(username)
+    user = get_user_by_id_or_email(username)
+    if user == None:
+        click.echo("Unable to find user with username {}\nPlease pass in email or ID.".format(username))
+        return
     user["passwdhash"] = authpassword.hash_password(password)
     etag = user["_etag"]
     service.remove_nonupdatable_fields(user)
@@ -110,6 +131,7 @@ def set_user_password(username, password):
 @with_appcontext
 def reset_user_passwords():
     click.echo("Using data backend {}".format(service.url("")))
+    click.echo("Resetting all user passwords to the user's email.")
     for user in get_all_users():
         user["passwdhash"] = authpassword.hash_password(user["email"])
         etag = user["_etag"]

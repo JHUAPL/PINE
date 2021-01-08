@@ -98,7 +98,7 @@ users = {
         },
         'passwdhash': {'type': 'string'}
     },
-    'item_url': 'regex("[a-z]{4,9}[0-9]{1,4}")',
+    'item_url': 'regex(".+")',
     #'item_lookup_field': '_id', # Name of object field ex. mongo object id here
     'query_objectid_as_string': True,
     'item_methods':['GET', 'PUT', 'DELETE']
