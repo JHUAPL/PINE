@@ -2,7 +2,6 @@
 
 import logging
 import os
-import sys
 
 from . import log
 log.setup_logging()
@@ -18,8 +17,6 @@ LOGGER = logging.getLogger(__name__)
 
 def handle_error(e):
     logging.getLogger(__name__).error(e, exc_info=True)
-    sys.stdout.flush()
-    sys.stderr.flush()
     return jsonify(str(e.description)), e.code
 
 def handle_uncaught_exception(e):

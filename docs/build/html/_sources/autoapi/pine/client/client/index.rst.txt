@@ -535,7 +535,7 @@ Functions
    .. method:: get_collection_documents(self, collection_id: str, truncate: bool, truncate_length: int = 30)
 
 
-      Returns all the documents in the given collection.
+      Returns the documents in the given collection.
 
       :param collection_id: the ID of the collection
       :type collection_id: str
@@ -544,7 +544,7 @@ Functions
       :param truncate_length: how many characters of the text you want if truncated, defaults to ``30``
       :type truncate_length: int, optional
 
-      :returns: all the documents in the given collection
+      :returns: the documents in the given collection
       :rtype: list(dict)
 
 

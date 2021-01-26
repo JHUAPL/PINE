@@ -6,7 +6,6 @@ import json
 import logging
 import os
 import random
-import sys
 import traceback
 import unicodedata
 
@@ -65,7 +64,7 @@ def user_can_annotate_by_id(collection_id):
     return _collection_user_can(collection, annotate = True)
 
 def user_can_annotate_by_ids(collection_ids):
-    collections = service.get_all_items("collections", params=service.params({
+    collections = service.get_items("collections", params=service.params({
         "where": {
             "_id": {"$in": collection_ids}
         }, "projection": {
@@ -112,7 +111,7 @@ def get_user_collections(archived, page):
     }
     params = service.where_params(where)
     if page == "all":
-        return jsonify(service.get_all("collections", params))
+        return jsonify(service.get_all_using_pagination("collections", params))
     if page: params["page"] = page
     resp = service.get("collections", params = params)
     return service.convert_response(resp)
@@ -250,7 +249,7 @@ def download_collection(collection_id):
             "collection_id": 0
         })
 
-    data["documents"] = service.get_all_items("documents", params)
+    data["documents"] = service.get_all_using_pagination("documents", params)["_items"]
 
     annotations_by_document = {}
     if include_annotations:
@@ -262,7 +261,7 @@ def download_collection(collection_id):
                 "collection_id": 0
             }
         })
-        annotations = service.get_all_items("annotations", params)
+        annotations = service.get_all_using_pagination("annotations", params)["_items"]
         for annotation in annotations:
             doc_id = annotation["document_id"]
             del annotation["document_id"]
@@ -318,7 +317,7 @@ def get_doc_and_overlap_ids(collection_id):
         "where": {"collection_id": collection_id, "overlap": 0},
         "projection": {"_id": 1}
     })
-    doc_ids = [doc["_id"] for doc in service.get_all_items("documents", params)]
+    doc_ids = [doc["_id"] for doc in service.get_all_using_pagination("documents", params)['_items']]
     # doc_ids = get_all_ids("documents?where={\"collection_id\":\"%s\",\"overlap\":0}"%(collection_id))
     random.shuffle(doc_ids)
     overlap_ids = get_overlap_ids(collection_id)
@@ -418,7 +417,7 @@ def get_overlap_ids(collection_id):
     """
     where = {"collection_id": collection_id, "overlap": 1}
     params = service.where_params(where)
-    return [doc["_id"] for doc in service.get_all_items("documents", params)]
+    return [doc["_id"] for doc in service.get_all_using_pagination("documents", params)['_items']]
 
 
 def _upload_documents(collection, docs):
@@ -494,7 +493,6 @@ def create_collection():
                 image_files.append(request.files[key])
     except Exception as e:
         traceback.print_exc()
-        sys.stderr.flush()
         abort(400, "Error parsing input:" + str(e))
 
     if collection["creator_id"] != user_id:

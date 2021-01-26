@@ -43,25 +43,22 @@ export class AdminAuthGuard implements CanActivate, CanActivateChild {
         private router: Router,
         private appConfig: AppConfig) { }
 
-    canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> | boolean {
+    canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
         if (this.authService.flat) {
             return false;
-        }
-        return this.authService.isAuthenticatedObs().pipe(map((isAuth) => {
-            if(isAuth) {
-                return this.authService.loggedInUser.is_admin;
+        } else if (this.authService.isAuthenticated()) {
+            return this.authService.loggedInUser.is_admin;
+        } else {
+            if (state.url === "/" || "") {
+                this.router.navigate([this.appConfig.loginPage], { queryParams: { returnUrl: this.appConfig.landingPage } });
             } else {
-                if (state.url === "/" || "") {
-                    this.router.navigate([this.appConfig.loginPage], { queryParams: { returnUrl: this.appConfig.landingPage } });
-                } else {
-                    this.router.navigate([this.appConfig.loginPage], { queryParams: { returnUrl: state.url } });
-                }
+                this.router.navigate([this.appConfig.loginPage], { queryParams: { returnUrl: state.url } });
             }
-            return isAuth;
-        }));
+        }
+        return false;
     }
 
-    canActivateChild(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> | boolean {
+    canActivateChild(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
         return this.canActivate(route, state);
     }
 }

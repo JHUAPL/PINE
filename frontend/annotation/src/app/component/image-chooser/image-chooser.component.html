@@ -5,8 +5,6 @@
 
         <mat-radio-button value="none">No Image</mat-radio-button>
 
-        <span fxFlex="6px"></span>
-
         <mat-radio-button value="url">Image URL</mat-radio-button>
         <div [hidden]="f.type.value != 'url'">
             <mat-card class="image-field image-col">
@@ -36,8 +34,6 @@
                 </div>
             </mat-card>
         </div>
-
-        <span fxFlex="6px"></span>
 
         <mat-radio-button value="file" *ngIf="canUploadFile">Image File</mat-radio-button>
         <div *ngIf="canUploadFile" [hidden]="f.type.value != 'file'">
@@ -69,7 +65,7 @@
                         Current image can be viewed here: <a [href]="existingCollectionImageUrl" target="_blank">{{ existingCollectionImageUrl }}</a>
                     </mat-error>
                 </div>
-                <label [for]="fileUpload.id" class="mat-button mat-raised-button image-top image-choose-btn">
+                <label [for]="fileUpload.id" class="mat-button mat-raised-button image-top">
                     Choose File
                 </label>
             </mat-card>

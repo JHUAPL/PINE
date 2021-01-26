@@ -1,54 +1,51 @@
 <!-- (C) 2019 The Johns Hopkins University Applied Physics Laboratory LLC.-->
-<div class="data-container">
-    <mat-toolbar>
-        <span>Export/Import System Data</span>
-    </mat-toolbar>
+<mat-card>
 
-    <div class="data-content">
-        <div class="card-row" fxLayout="row">
-            <mat-card fxFlex>
-                <p>This will export the entire content of your database and save the file through your
-                    browser.</p>
-                <p>This will be a gzipped archive produced by the underlying database system.</p>
-                <div style="width: 100%; text-align: center">
-                    <button mat-raised-button (click)="export()">Export to Local File</button><br />
-                    <a style="display: none" #exportDownload></a>
-                    <mat-spinner id="export-spinner" *ngIf="exporting"></mat-spinner>
-                </div>
-                <app-error #exportError></app-error>
-            </mat-card>
+  <mat-card-header>
+    <mat-card-title>
+      Export/Import System Data
+    </mat-card-title>
+  </mat-card-header>
+  
+  <mat-card-content class="row">
+    <mat-card>
+      <p>This will export the entire content of your database and save the file through your
+         browser.</p>
+      <p>This will be a gzipped archive produced by the underlying database system.</p>
+      <div style="width: 100%; text-align: center">
+        <button mat-raised-button (click)="export()">Export to Local File</button><br />
+        <a style="display: none" #exportDownload></a>
+        <mat-spinner id="export-spinner" *ngIf="exporting"></mat-spinner>
+      </div>
+      <app-error #exportError></app-error>
+    </mat-card>
+    
+    <mat-card>
+      <p>This will import exported database content into the current database through a file
+         uploaded by your browser.</p>
+      <p>If the "drop" checkbox is checked, existing data will be dropped before the import.</p>
+      <p>You may need to log out and log back in again for all changes to take effect.</p>
+      <div style="width: 100%; text-align: center">
+        <form>
+          <mat-form-field class="form-field" appearance="standard">
+            <mat-label>Exported Data File</mat-label>
+            <div style="display: flex; flex-direction: row;">
+              <input matInput #fileDisplay type="text" readonly/>
+              <label for="file_upload" class="mat-raised-button">
+                Choose
+              </label>
+            </div>
+            <input hidden type="file" id="file_upload" name="file_upload" (change)="onFilesAdded($event.target.files)" />
+          </mat-form-field>
+          <mat-checkbox matInput [(ngModel)]="importDropFirst" name="importDropFirst">
+            Drop Existing Data First
+          </mat-checkbox>
+        </form><br />
+        <button mat-raised-button (click)="import()" #importButton disabled>Import from Local File</button>
+        <mat-spinner id="import-spinner" *ngIf="importing"></mat-spinner>
+      </div>
+     <app-error #importError></app-error>
+    </mat-card>
+  </mat-card-content>
 
-            <span fxFlex="20px"></span>
-
-            <mat-card fxFlex>
-                <p>This will import exported database content into the current database through a file
-                    uploaded by your browser.</p>
-                <p>If the "drop" checkbox is checked, existing data will be dropped before the import.</p>
-                <p>You may need to log out and log back in again for all changes to take effect.</p>
-                <div style="width: 100%; text-align: center">
-                    <form>
-                        <mat-form-field class="form-field" appearance="standard">
-                            <mat-label>Exported Data File</mat-label>
-                            <div style="display: flex; flex-direction: row;">
-                                <input matInput #fileDisplay type="text" readonly />
-                                <label for="file_upload" class="mat-raised-button">
-                                    Choose
-                                </label>
-                            </div>
-                            <input hidden type="file" id="file_upload" name="file_upload"
-                                (change)="onFilesAdded($event.target.files)" />
-                        </mat-form-field>
-                        <mat-checkbox matInput [(ngModel)]="importDropFirst" name="importDropFirst">
-                            Drop Existing Data First
-                        </mat-checkbox>
-                    </form><br />
-                    <button mat-raised-button (click)="import()" #importButton disabled>Import from Local File</button>
-                    <mat-spinner id="import-spinner" *ngIf="importing"></mat-spinner>
-                </div>
-                <app-error #importError></app-error>
-            </mat-card>
-        </div>
-
-    </div>
-
-</div>
+</mat-card>

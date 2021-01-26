@@ -553,7 +553,7 @@ class PineClient(BaseClient):
         return self.post("collections", data=builder.form_json, files=builder.files).json()[models.ID_FIELD]
 
     def get_collection_documents(self, collection_id: str, truncate: bool, truncate_length: int = 30) -> typing.List[dict]:
-        """Returns all the documents in the given collection.
+        """Returns the documents in the given collection.
         
         :param collection_id: the ID of the collection
         :type collection_id: str
@@ -562,10 +562,10 @@ class PineClient(BaseClient):
         :param truncate_length: how many characters of the text you want if truncated, defaults to ``30``
         :type truncate_length: int, optional
         
-        :returns: all the documents in the given collection
+        :returns: the documents in the given collection
         :rtype: list(dict)
         """
-        return self.get(["documents", "by_collection_id_all", collection_id], params={
+        return self.get(["documents", "by_collection_id", collection_id], params={
             "truncate": json.dumps(truncate),
             "truncateLength": json.dumps(truncate_length)
         }).json()["_items"]

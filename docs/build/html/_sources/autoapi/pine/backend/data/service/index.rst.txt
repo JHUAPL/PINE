@@ -30,10 +30,10 @@ Functions
    pine.backend.data.service.put
    pine.backend.data.service.delete
    pine.backend.data.service.patch
+   pine.backend.data.service.get_items
    pine.backend.data.service.get_item_by_id
    pine.backend.data.service.get_all_versions_of_item_by_id
-   pine.backend.data.service.get_all
-   pine.backend.data.service.get_all_items
+   pine.backend.data.service.get_all_using_pagination
    pine.backend.data.service.convert_response
    pine.backend.data.service.remove_eve_fields
    pine.backend.data.service.remove_nonupdatable_fields
@@ -145,36 +145,16 @@ Functions
    :return: requests.Response
 
 
+.. function:: get_items(path, params={})
+
+
 .. function:: get_item_by_id(path, item_id, params={})
-
-   Gets a single item by the given ID.
-
-   :param path: str: eve-relative path (e.g. "collections")
-   :param item_id: str: item ID
-   :param params: dict: optional additional parameters to send in with GET
-   :return: the item as a dict
 
 
 .. function:: get_all_versions_of_item_by_id(path, item_id, params={})
 
 
-.. function:: get_all(path, params={})
-
-   Returns ALL database items, using pagination if needed.  This returns the "normal" eve
-   JSON with "_items", "_meta", etc.
-
-   :param path: str: eve-relative path (e.g. "collections")
-   :param params: dict: optional additional parameters to send in with GET
-   :return: an eve collections dict with, e.g., _items
-
-
-.. function:: get_all_items(path, params={})
-
-   Returns ALL database items, using pagination if needed.
-
-   :param path: str: eve-relative path (e.g. "collections")
-   :param params: dict: optional additional parameters to send in with GET
-   :return: the items as a list of dicts
+.. function:: get_all_using_pagination(path, params)
 
 
 .. function:: convert_response(requests_response)

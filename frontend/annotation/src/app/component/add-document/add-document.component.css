@@ -19,11 +19,3 @@ mat-dialog-content {
 .file-upload-button {
     float: right;
 }
-
-::ng-deep .doc-text-form-field .mat-form-field-underline {
-    display: none;
-}
-
-.doc-text-btn-row {
-    align-items: center;
-}
