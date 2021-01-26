@@ -42,7 +42,7 @@ def _get_collection_classifier(collection_id):
     where = {
         "collection_id": collection_id
     }
-    classifiers = service.get_all_items("/classifiers", params=service.where_params(where))
+    classifiers = service.get_items("/classifiers", params=service.where_params(where))
     if len(classifiers) != 1:
         raise exceptions.BadRequest(description="Expected one classifier but found {}.".format(len(classifiers)))
     return classifiers[0]
@@ -58,7 +58,7 @@ def _get_classifier_metrics(classifier_id):
     where = {
         "classifier_id": classifier_id
     }
-    metrics = service.get_all_items("/metrics", params=service.where_params(where))
+    metrics = service.get_items("/metrics", params=service.where_params(where))
     logger.info(metrics)
     if len(metrics) != 1:
         raise exceptions.BadRequest(description="Expected one metric but found {}.".format(len(metrics)))
@@ -99,7 +99,7 @@ def _get_next_instance(classifier_id):
     if classifier_id not in classifier_dict:
         if not _get_classifier(classifier_id):
             raise exceptions.NotFound(description = "Classifier not found: could not load classifier.")
-    items = service.get_all_items("/next_instances", params=service.where_params({"classifier_id": classifier_id}))
+    items = service.get_items("/next_instances", service.where_params({"classifier_id": classifier_id}))
 #     r = requests.get(ENTRY_POINT + '/next_instances?where={"classifier_id":"' + classifier_id + '"}',
 #                      headers=EVE_HEADERS)
 #     items = get_items_from_response(r)["_items"]
@@ -115,7 +115,7 @@ def get_next_by_classifier(classifier_id):
     user_id = auth.get_logged_in_user()["id"]
 
     if user_id not in instance["overlap_document_ids"]:
-        logger.info("new user: adding to overlap document ids")
+        print("new user: adding to overlap document ids")
         instance["overlap_document_ids"][user_id] = collectionsbp.get_overlap_ids(classifier_dict[classifier_id]["collection_id"])
         to_patch = {
             "_id": instance["_id"],

@@ -21,9 +21,6 @@
     overflow-y: auto;
 }
 
-.chip-can-click {
-    cursor: pointer;
-}
 
 .title-tabs {
     position: relative;
@@ -51,13 +48,6 @@
     display: flex;
     align-items: center;
     border-bottom: 1px solid rgba(0, 0, 0, 0.12);
-}
-
-.spinner-container {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
 }
 
 .doc-list-table {

@@ -1,7 +1,5 @@
 # (C) 2019 The Johns Hopkins University Applied Physics Laboratory LLC.
 
-import sys
-
 import click
 from flask import abort
 from flask.cli import with_appcontext
@@ -11,11 +9,11 @@ from ..auth import password as authpassword
 from .. import models
 
 def get_all_users():
-    return service.get_all_items("/users")
+    return service.get_items("/users")
 
 def get_user(user_id):
     # getting by ID in the normal way doesn't work sometimes
-    items = service.get_all_items("users", params=service.params({
+    items = service.get_items("users", params=service.params({
         "where": {
             "_id": user_id
         }
@@ -29,7 +27,7 @@ def get_user_by_email(email):
     where = {
         "email": email
     }
-    users = service.get_all_items("/users", params=service.where_params(where))
+    users = service.get_items("/users", service.where_params(where))
     if len(users) > 0:
         return users[0]
     else:
@@ -104,7 +102,6 @@ def set_user_password_by_id(user_id, password):
     service.remove_nonupdatable_fields(user)
     headers = {"If-Match": etag}
     print("Putting to {}: {}".format(service.url(["users", user["_id"]]), user))
-    sys.stdout.flush()
     resp = service.put(["users", user["_id"]], json = user, headers = headers)
     if not resp.ok:
         abort(resp.status_code)

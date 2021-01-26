@@ -92,7 +92,6 @@ export class AddDocumentComponent implements OnInit, AfterViewInit {
     public create() {
         this.submitted = true;
         this.imageChooser.markAsTouched();
-        this.createForm.get('text').markAsTouched();
         
         if(this.createForm.invalid) {
             return;

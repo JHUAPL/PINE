@@ -23,9 +23,6 @@ export class NERAnnotationTableComponent implements OnInit {
     @Input()
     public data: NerData;
 
-    @Input()
-    public readOnly: boolean;
-
     @Output()
     public remove = new EventEmitter<NerAnnotation>();
 

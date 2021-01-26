@@ -1,7 +1,6 @@
 # (C) 2019 The Johns Hopkins University Applied Physics Laboratory LLC.
 
 import abc
-import sys
 import traceback
 
 from authlib.integrations.flask_client import OAuth
@@ -84,7 +83,6 @@ class OAuthModule(bp.AuthModule):
             token = self.app.fetch_access_token(authorization_response = authorization_response)
         except Exception as e:
             traceback.print_exc()
-            sys.stderr.flush()
             raise exceptions.SecurityError(description = str(e))
         access_token = token["access_token"]
         secret = current_app.config["VEGAS_CLIENT_SECRET"]
@@ -93,7 +91,6 @@ class OAuthModule(bp.AuthModule):
             decoded = jwt.decode(access_token, secret, verify = True, audience = decoded["aud"])
         except jwt.exceptions.InvalidTokenError as e:
             traceback.print_exc()
-            sys.stderr.flush()
             raise exceptions.SecurityError(description = str(e))
         session["auth"] = {
             "user": OAuthUser(decoded).to_dict(),

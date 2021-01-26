@@ -8,7 +8,7 @@ LOGGER = logging.getLogger("pine.eve." + __name__)
 ################
 # IMPORTANT: if you make any schema changes, you must update this version
 
-PINE_EVE_VERSION = (1, 0, 1)
+PINE_EVE_VERSION = (1, 0, 0)
 PINE_EVE_VERSION_STR = ".".join([str(x) for x in PINE_EVE_VERSION])
 
 collections = {
@@ -37,14 +37,8 @@ documents = {
         'metadata': {'type': 'dict'},
         "has_annotated" : {'type' : 'dict'}
     },
-    'pagination': True,
     'item_methods': ['GET', 'PUT', 'PATCH'],
-    'mongo_indexes': {
-        'doc_creator_id': [('creator_id', 1)],
-        'doc_collection_id':[('collection_id', 1)],
-        # uncomment to allow text search
-        #'doc_text': [('text', 'text')]
-    }
+    'mongo_indexes':{'doc_creator_id': [('creator_id', 1)], 'doc_collection_id':[('collection_id', 1)]}
 }
 
 iaa_reports = {
@@ -195,10 +189,6 @@ else:
 #MONGO_USERNAME = '<your username>'
 #MONGO_PASSWORD = '<your password>'
 MONGO_DBNAME = 'pmap_nlp'
-
-# allow the $regex operator.  this is considered risky for a public API but only other services
-# can access it
-MONGO_QUERY_BLACKLIST = ['$where']
 
 # Enable reads (GET), inserts (POST) and DELETE for resources/collections
 # (if you omit this line, the API will default to ['GET'] and provide

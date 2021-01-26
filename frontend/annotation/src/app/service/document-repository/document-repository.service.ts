@@ -1,5 +1,3 @@
-/*(C) 2019 The Johns Hopkins University Applied Physics Laboratory LLC. */
-
 import { Injectable } from '@angular/core';
 import { Observable } from "rxjs";
 import { map } from "rxjs/operators";
@@ -8,12 +6,6 @@ import { BackendService } from "../../service/backend/backend.service";
 
 import { CreatedObject } from "../../model/created";
 import { DBDocument, DBDocuments, Document } from "../../model/document";
-import { DBMeta } from "../../model/db";
-
-export interface PaginatedDocuments {
-    documents: Document[],
-    meta: DBMeta
-}
 
 @Injectable({
     providedIn: 'root'
@@ -29,38 +21,27 @@ export class DocumentRepositoryService {
     getUserCanAnnotate(docId: string): Observable<boolean> {
         return this.backend.get<boolean>("/documents/can_annotate/" + docId);
     }
-    
-    public getCountOfDocumentsInCollection(collection_id: string): Observable<number> {
-        return this.backend.get<number>(`/documents/count_by_collection_id/${collection_id}`);
-    }
 
-    public getAllDocumentsByCollectionID(collection_id: string, truncate: boolean, truncateLength: number = Document.DEFAULT_PREVIEW_LENGTH): Observable<Document[]> {
-        let url = `/documents/by_collection_id_all/${collection_id}`;
+//    getDocumentsByCollectionID(colID: string): Observable<Document[]> {
+//        return this.backend.get<DBDocuments>(`/documents/by_collection_id/${colID}`).pipe(map(Document.fromDBItems));
+//    }
+
+    public getDocumentsByCollectionID(collection_id: string, truncate: boolean, truncateLength: number = Document.DEFAULT_PREVIEW_LENGTH): Observable<Document[]> {
+        let url = `/documents/by_collection_id/${collection_id}`;
         if(truncate) {
             url += `?truncate=true&truncateLength=${truncateLength}`;
         }
         return this.backend.get<DBDocuments>(url).pipe(map(Document.fromDBItems));
     }
     
-    public getPaginatedDocumentsByCollectionID(collectionId: string,
-            page: number, pageSize: number, sortField: string, sortAscending: boolean, filter: string,
-            truncate: boolean, truncateLength: number = Document.DEFAULT_PREVIEW_LENGTH): Observable<PaginatedDocuments> {
-        let params = {page, pageSize, truncate, truncateLength};
-        if(sortField && sortAscending !== undefined) {
-            params["sort"] = JSON.stringify({
-                "field": sortField,
-                "ascending": sortAscending,
-            });
-        }
-        if(filter) params["filter"] = filter;
-        return this.backend.get<DBDocuments>(`/documents/by_collection_id_paginated/${collectionId}`, {
-            params
-        }).pipe(
-            map((docs: DBDocuments) => <PaginatedDocuments>{
-                documents: Document.fromDBItems(docs),
-                meta: docs._meta
-            })
-        );
+    public getDocumentsByCollectionIDPaginated(collection_id: string, truncate: boolean, truncateLength: number = Document.DEFAULT_PREVIEW_LENGTH): Observable<Document> {
+        return this.backend.getItemsPaginated((page: number) => {
+            let url = `/documents/by_collection_id/${collection_id}/${page}`;
+            if(truncate) {
+                url += `?truncate=true&truncateLength=${truncateLength}`;
+            }
+            return this.backend.get<DBDocuments>(url);
+        }).pipe(map(Document.fromDB));
     }
 
     public postDocument(document: Document): Observable<CreatedObject> {
