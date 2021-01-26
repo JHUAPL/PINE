@@ -108,17 +108,17 @@
 <tr class="row-odd"><td><p><a class="reference internal" href="#pine.backend.data.service.patch" title="pine.backend.data.service.patch"><code class="xref py py-obj docutils literal notranslate"><span class="pre">patch</span></code></a>(path, **kwargs)</p></td>
 <td><p>Wraps requests.patch for the given eve-relative path.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#pine.backend.data.service.get_items" title="pine.backend.data.service.get_items"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_items</span></code></a>(path, params={})</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#pine.backend.data.service.get_item_by_id" title="pine.backend.data.service.get_item_by_id"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_item_by_id</span></code></a>(path, item_id, params={})</p></td>
+<td><p>Gets a single item by the given ID.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pine.backend.data.service.get_all_versions_of_item_by_id" title="pine.backend.data.service.get_all_versions_of_item_by_id"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_all_versions_of_item_by_id</span></code></a>(path, item_id, params={})</p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#pine.backend.data.service.get_item_by_id" title="pine.backend.data.service.get_item_by_id"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_item_by_id</span></code></a>(path, item_id, params={})</p></td>
-<td><p></p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#pine.backend.data.service.get_all" title="pine.backend.data.service.get_all"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_all</span></code></a>(path, params={})</p></td>
+<td><p>Returns ALL database items, using pagination if needed.  This returns the “normal” eve</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#pine.backend.data.service.get_all_versions_of_item_by_id" title="pine.backend.data.service.get_all_versions_of_item_by_id"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_all_versions_of_item_by_id</span></code></a>(path, item_id, params={})</p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#pine.backend.data.service.get_all_using_pagination" title="pine.backend.data.service.get_all_using_pagination"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_all_using_pagination</span></code></a>(path, params)</p></td>
-<td><p></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pine.backend.data.service.get_all_items" title="pine.backend.data.service.get_all_items"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_all_items</span></code></a>(path, params={})</p></td>
+<td><p>Returns ALL database items, using pagination if needed.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#pine.backend.data.service.convert_response" title="pine.backend.data.service.convert_response"><code class="xref py py-obj docutils literal notranslate"><span class="pre">convert_response</span></code></a>(requests_response)</p></td>
 <td><p></p></td>
@@ -139,7 +139,7 @@
 <dl class="py class">
 <dt id="pine.backend.data.service.PerformanceHistory">
 <em class="property">class </em><code class="sig-prename descclassname">pine.backend.data.service.</code><code class="sig-name descname">PerformanceHistory</code><a class="headerlink" href="#pine.backend.data.service.PerformanceHistory" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.8)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
 <p>Initialize self.  See help(type(self)) for accurate signature.</p>
 <dl class="py method">
 <dt id="pine.backend.data.service.PerformanceHistory.pformat">
@@ -306,14 +306,22 @@
 </dd></dl>
 
 <dl class="py function">
-<dt id="pine.backend.data.service.get_items">
-<code class="sig-prename descclassname">pine.backend.data.service.</code><code class="sig-name descname">get_items</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">path</span></em>, <em class="sig-param"><span class="n">params</span><span class="o">=</span><span class="default_value">{}</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.data.service.get_items" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py function">
 <dt id="pine.backend.data.service.get_item_by_id">
 <code class="sig-prename descclassname">pine.backend.data.service.</code><code class="sig-name descname">get_item_by_id</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">path</span></em>, <em class="sig-param"><span class="n">item_id</span></em>, <em class="sig-param"><span class="n">params</span><span class="o">=</span><span class="default_value">{}</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.data.service.get_item_by_id" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Gets a single item by the given ID.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>path</strong> – str: eve-relative path (e.g. “collections”)</p></li>
+<li><p><strong>item_id</strong> – str: item ID</p></li>
+<li><p><strong>params</strong> – dict: optional additional parameters to send in with GET</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>the item as a dict</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py function">
 <dt id="pine.backend.data.service.get_all_versions_of_item_by_id">
@@ -321,9 +329,39 @@
 <dd></dd></dl>
 
 <dl class="py function">
-<dt id="pine.backend.data.service.get_all_using_pagination">
-<code class="sig-prename descclassname">pine.backend.data.service.</code><code class="sig-name descname">get_all_using_pagination</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">path</span></em>, <em class="sig-param"><span class="n">params</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.data.service.get_all_using_pagination" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dt id="pine.backend.data.service.get_all">
+<code class="sig-prename descclassname">pine.backend.data.service.</code><code class="sig-name descname">get_all</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">path</span></em>, <em class="sig-param"><span class="n">params</span><span class="o">=</span><span class="default_value">{}</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.data.service.get_all" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns ALL database items, using pagination if needed.  This returns the “normal” eve
+JSON with “_items”, “_meta”, etc.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>path</strong> – str: eve-relative path (e.g. “collections”)</p></li>
+<li><p><strong>params</strong> – dict: optional additional parameters to send in with GET</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>an eve collections dict with, e.g., _items</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="pine.backend.data.service.get_all_items">
+<code class="sig-prename descclassname">pine.backend.data.service.</code><code class="sig-name descname">get_all_items</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">path</span></em>, <em class="sig-param"><span class="n">params</span><span class="o">=</span><span class="default_value">{}</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.data.service.get_all_items" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns ALL database items, using pagination if needed.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>path</strong> – str: eve-relative path (e.g. “collections”)</p></li>
+<li><p><strong>params</strong> – dict: optional additional parameters to send in with GET</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>the items as a list of dicts</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py function">
 <dt id="pine.backend.data.service.convert_response">
@@ -402,16 +440,16 @@
 <li><a class="reference internal" href="#pine.backend.data.service.patch">patch</a></li>
 </ul>
 <ul>
-<li><a class="reference internal" href="#pine.backend.data.service.get_items">get_items</a></li>
-</ul>
-<ul>
 <li><a class="reference internal" href="#pine.backend.data.service.get_item_by_id">get_item_by_id</a></li>
 </ul>
 <ul>
 <li><a class="reference internal" href="#pine.backend.data.service.get_all_versions_of_item_by_id">get_all_versions_of_item_by_id</a></li>
 </ul>
 <ul>
-<li><a class="reference internal" href="#pine.backend.data.service.get_all_using_pagination">get_all_using_pagination</a></li>
+<li><a class="reference internal" href="#pine.backend.data.service.get_all">get_all</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#pine.backend.data.service.get_all_items">get_all_items</a></li>
 </ul>
 <ul>
 <li><a class="reference internal" href="#pine.backend.data.service.convert_response">convert_response</a></li>

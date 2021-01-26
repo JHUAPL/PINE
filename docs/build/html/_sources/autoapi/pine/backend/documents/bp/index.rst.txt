@@ -23,7 +23,9 @@ Functions
    pine.backend.documents.bp.user_can_view_by_id
    pine.backend.documents.bp.user_can_modify_metadata_by_id
    pine.backend.documents.bp.get_document
-   pine.backend.documents.bp.get_documents_in_collection
+   pine.backend.documents.bp.count_documents_in_collection
+   pine.backend.documents.bp.get_all_documents_in_collection
+   pine.backend.documents.bp.get_paginated_documents_in_collection
    pine.backend.documents.bp._check_documents
    pine.backend.documents.bp.add_document
    pine.backend.documents.bp.can_annotate_document
@@ -67,7 +69,13 @@ Functions
 .. function:: get_document(doc_id)
 
 
-.. function:: get_documents_in_collection(col_id, page)
+.. function:: count_documents_in_collection(col_id)
+
+
+.. function:: get_all_documents_in_collection(col_id)
+
+
+.. function:: get_paginated_documents_in_collection(collection_id)
 
 
 .. function:: _check_documents(documents) -> dict

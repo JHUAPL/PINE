@@ -16,20 +16,25 @@
 
         <app-image-chooser [collectionId]="collection_id"></app-image-chooser>
 
-        <mat-form-field class="form-field" appearance="standard">
+        <mat-form-field class="form-field doc-text-form-field" appearance="standard">
             <mat-label>Document text</mat-label>
-            <textarea matInput required readonly type="text" formControlName="text" cdkTextareaAutosize
-                #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="5" cdkAutosizeMaxRows="30"></textarea>
+            <textarea class="doc-text-area" matInput required readonly type="text" formControlName="text"
+                cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="2"
+                cdkAutosizeMaxRows="30"></textarea>
 
             <input hidden type="file" accept=".txt,text/plain" #textFile [id]="uuidv4 + '-file_upload'"
                 name="file_upload" (change)="handleFileInput($event.target.files)" />
-            <label [for]="textFile.id" class="mat-raised-button">
-                Click to choose text file for document
-            </label>
 
-            <mat-error *ngIf="(f.text.dirty || f.text.touched || submitted) && f.text.errors">
-                <div *ngIf="f.text.errors['required']">Document text is required.</div>
-            </mat-error>
+            <div class="doc-text-btn-row" fxLayout="row">
+                <label [for]="textFile.id" class="mat-raised-button">
+                    Click to choose text file for document
+                </label>
+                <span fxFlex></span>
+                <mat-error *ngIf="(f.text.dirty || f.text.touched || submitted) && f.text.errors">
+                    <div
+                        *ngIf="f.text.errors['required']">Document text is required.</div>
+                </mat-error>
+            </div>
         </mat-form-field>
 
         <mat-error *ngIf="hadError">

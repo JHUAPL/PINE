@@ -1,176 +1,179 @@
 <!-- (C) 2019 The Johns Hopkins University Applied Physics Laboratory LLC.-->
-<mat-card>
-    <mat-card-header>
-        <mat-card-title>
-            <h1>Manage Users</h1>
-        </mat-card-title>
-    </mat-card-header>
-    <mat-divider></mat-divider>
 
-<div *ngIf="loading">Loading...</div>
-<mat-accordion *ngIf="!loading" multi="true">
+<div class="admin-users-container">
+    <mat-toolbar>
+        <span>Manage Users</span>
+    </mat-toolbar>
 
-<mat-expansion-panel expanded>
-  <mat-expansion-panel-header>
-    <mat-panel-title>
-      Existing Users
-    </mat-panel-title>
-    <mat-panel-description>
-      See and modify existing users.
-    </mat-panel-description>
-  </mat-expansion-panel-header>
+    <div class="admin-users-content">
+        <div *ngIf="loading">Loading...</div>
+        <mat-accordion *ngIf="!loading" multi="true">
 
-  <table mat-table [dataSource]="existingUsers" matSort class="mat-elevation-z8" id="userTable">
+            <mat-expansion-panel expanded>
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        Existing Users
+                    </mat-panel-title>
+                    <mat-panel-description>
+                        See and modify existing users.
+                    </mat-panel-description>
+                </mat-expansion-panel-header>
 
-    <!-- User ID -->
-    <ng-container matColumnDef="id">
-      <th mat-header-cell *matHeaderCellDef> ID </th> <!-- mat-sort-header -->
-      <td mat-cell *matCellDef="let element"> {{element._id}} </td>
-    </ng-container>
+                <table mat-table [dataSource]="existingUsers" matSort class="mat-elevation-z8" id="userTable">
 
-    <!-- Username -->
-    <ng-container matColumnDef="username">
-      <th mat-header-cell *matHeaderCellDef> Username / Email </th>
-      <td mat-cell *matCellDef="let element"> {{element.email}} </td>
-    </ng-container>
+                    <!-- User ID -->
+                    <ng-container matColumnDef="id">
+                        <th mat-header-cell *matHeaderCellDef> Username/ID </th> <!-- mat-sort-header -->
+                        <td mat-cell *matCellDef="let element"> {{element._id}} </td>
+                    </ng-container>
 
-    <!-- First Name -->
-    <ng-container matColumnDef="first_name">
-      <th mat-header-cell *matHeaderCellDef> First Name </th>
-      <td mat-cell *matCellDef="let element"> {{element.firstname}} </td>
-    </ng-container>
+                    <!-- Username -->
+                    <ng-container matColumnDef="username">
+                        <th mat-header-cell *matHeaderCellDef> Email </th>
+                        <td mat-cell *matCellDef="let element"> {{element.email}} </td>
+                    </ng-container>
 
-    <!-- Last Name -->
-    <ng-container matColumnDef="last_name">
-      <th mat-header-cell *matHeaderCellDef> Last Name </th>
-      <td mat-cell *matCellDef="let element"> {{element.lastname}} </td>
-    </ng-container>
+                    <!-- First Name -->
+                    <ng-container matColumnDef="first_name">
+                        <th mat-header-cell *matHeaderCellDef> First Name </th>
+                        <td mat-cell *matCellDef="let element"> {{element.firstname}} </td>
+                    </ng-container>
 
-    <!-- Actions -->
-    <ng-container matColumnDef="actions">
-      <th mat-header-cell *matHeaderCellDef> Actions </th>
-      <td mat-cell *matCellDef="let element">
-        <button mat-raised-button [routerLink]="['/' + PATHS.admin.modify_user, element._id]">Modify User</button>&nbsp;
-        <button mat-raised-button (click)="deleteUser(element._id)" [disabled]="loggedInId === element._id">Delete User</button>
-        <div *ngIf="loggedInId === element._id">(This is your account.)</div>
-      </td>
-    </ng-container>
+                    <!-- Last Name -->
+                    <ng-container matColumnDef="last_name">
+                        <th mat-header-cell *matHeaderCellDef> Last Name </th>
+                        <td mat-cell *matCellDef="let element"> {{element.lastname}} </td>
+                    </ng-container>
 
-    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                    <!-- Actions -->
+                    <ng-container matColumnDef="actions">
+                        <th mat-header-cell *matHeaderCellDef> Actions </th>
+                        <td mat-cell *matCellDef="let element">
+                            <button mat-raised-button [routerLink]="['/' + PATHS.admin.modify_user, element._id]">Modify
+                                User</button>&nbsp;
+                            <button mat-raised-button (click)="deleteUser(element._id)"
+                                [disabled]="loggedInId === element._id">Delete User</button>
+                            <div *ngIf="loggedInId === element._id">(This is your account.)</div>
+                        </td>
+                    </ng-container>
 
-  </table>
-  
-  <br />
-  <mat-card *ngIf="userHadError">
-    <mat-error><b>Error:</b> {{ userError }}</mat-error>
-  </mat-card>
-</mat-expansion-panel>
+                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 
-<mat-expansion-panel expanded>
-  <mat-expansion-panel-header>
-    <mat-panel-title>
-      Add User
-    </mat-panel-title>
-    <mat-panel-description>
-      Add a new user.
-    </mat-panel-description>
-  </mat-expansion-panel-header>
-  <form [formGroup]="newUserForm" (ngSubmit)="createNewUser()">
-        
-    <table class="form-control" width="100%">
-    <tr>
-    <td>
-    <mat-form-field class="form-field" appearance="standard">
-      <mat-label>Username/ID</mat-label>
-      <input matInput required formControlName="id" type="text"
-             class="form-control"
-             [ngClass]="{ 'is-invalid': (n.id.dirty || n.id.touched || submittedDetails) && n.id.errors }" />
-      <mat-error *ngIf="(n.id.dirty || n.id.touched || submittedPassword) && n.id.errors">
-        <div *ngIf="n.id.errors.required">Username/ID is required.</div>
-        <div *ngIf="n.id.errors.invalidId">Username/ID is invalid ({{ idValidatorDescription() }}).</div>
-      </mat-error>
-    </mat-form-field>
-    </td>
+                </table>
 
-    <td>
-    <mat-form-field class="form-field" appearance="standard">
-      <mat-label>Email</mat-label>
-      <input matInput required formControlName="email" type="email"
-             class="form-control"
-             [ngClass]="{ 'is-invalid': (n.email.dirty || n.email.touched || submittedDetails) && n.email.errors }" />
-      <mat-error *ngIf="(n.email.dirty || n.email.touched || submittedPassword) && n.email.errors">
-        <div *ngIf="n.email.errors.email">Email is not valid.</div>
-        <div *ngIf="n.email.errors.required">Email is required.</div>
-      </mat-error>
-    </mat-form-field>
-    </td>
-    
-    <td>
-    <mat-form-field class="form-field" appearance="standard">
-      <mat-label>Starting Password</mat-label>
-      <input matInput required formControlName="passwd" type="password"
-             class="form-control"
-             [ngClass]="{ 'is-invalid': (n.passwd.dirty || n.passwd.touched || submittedDetails) && n.passwd.errors }" />
-      <mat-error *ngIf="(n.passwd.dirty || n.passwd.touched || submittedPassword) && n.passwd.errors">
-        <div *ngIf="n.passwd.errors.required">Starting password is required.</div>
-      </mat-error>
-    </mat-form-field>
-    </td>
-    
-    <td width="1%">
-    <mat-checkbox matInput formControlName="is_admin">
-      Admin
-    </mat-checkbox>
-    </td>
-    </tr>
-    </table>
-    
-    <table class="form-control" width="100%">
-    <tr>
-    <td>
-    <mat-form-field class="form-field" appearance="standard">
-      <mat-label>First Name</mat-label>
-      <input matInput required formControlName="firstname" type="text"
-             class="form-control"
-             [ngClass]="{ 'is-invalid': (n.firstname.dirty || n.firstname.touched || submittedDetails) && n.firstname.errors }" />
-      <mat-error *ngIf="(n.firstname.dirty || n.firstname.touched || submittedPassword) && n.firstname.errors">
-        <div *ngIf="n.firstname.errors.required">First name is required.</div>
-      </mat-error>
-    </mat-form-field>
-    </td>
-    
-    <td>
-    <mat-form-field class="form-field" appearance="standard">
-      <mat-label>Last Name</mat-label>
-      <input matInput required formControlName="lastname" type="text"
-             class="form-control"
-             [ngClass]="{ 'is-invalid': (n.lastname.dirty || n.lastname.touched || submittedDetails) && n.lastname.errors }" />
-      <mat-error *ngIf="(n.lastname.dirty || n.lastname.touched || submittedPassword) && n.lastname.errors">
-        <div *ngIf="n.lastname.errors.required">Last name is required.</div>
-      </mat-error>
-    </mat-form-field>
-    </td>
-    </tr>
-    </table>
+                <br />
+                <mat-card *ngIf="userHadError">
+                    <mat-error><b>Error:</b> {{ userError }}</mat-error>
+                </mat-card>
+            </mat-expansion-panel>
 
-    <mat-form-field class="form-field" appearance="standard">
-      <mat-label>Description</mat-label>
-      <textarea matInput formControlName="description" cdkTextareaAutosize
-                class="form-control"
-                 [ngClass]="{ 'is-dirty': (n.description.dirty), 'is-invalid': (n.description.dirty || n.description.touched || submittedDetails) && n.description.errors }">
-      </textarea>
-    </mat-form-field>
+            <mat-expansion-panel expanded>
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        Add User
+                    </mat-panel-title>
+                    <mat-panel-description>
+                        Add a new user.
+                    </mat-panel-description>
+                </mat-expansion-panel-header>
+                <form [formGroup]="newUserForm" (ngSubmit)="createNewUser()">
 
-    <mat-error *ngIf="newUserHadError">
-        {{ newUserError }}
-    </mat-error>
+                    <table class="form-control" width="100%">
+                        <tr>
+                            <td>
+                                <mat-form-field class="form-field" appearance="standard">
+                                    <mat-label>Username/ID</mat-label>
+                                    <input matInput required formControlName="id" type="text" class="form-control"
+                                        [ngClass]="{ 'is-invalid': (n.id.dirty || n.id.touched || submittedDetails) && n.id.errors }" />
+                                    <mat-error *ngIf="(n.id.dirty || n.id.touched || submittedPassword) && n.id.errors">
+                                        <div *ngIf="n.id.errors.required">Username/ID is required.</div>
+                                        <div *ngIf="n.id.errors.invalidId">Username/ID is invalid ({{
+                                            idValidatorDescription() }}).</div>
+                                    </mat-error>
+                                </mat-form-field>
+                            </td>
 
-    <mat-action-row>
-      <button mat-raised-button [disabled]="!newUserForm.dirty">Save</button>
-    </mat-action-row>
-  </form>
-</mat-expansion-panel>
+                            <td>
+                                <mat-form-field class="form-field" appearance="standard">
+                                    <mat-label>Email</mat-label>
+                                    <input matInput required formControlName="email" type="email" class="form-control"
+                                        [ngClass]="{ 'is-invalid': (n.email.dirty || n.email.touched || submittedDetails) && n.email.errors }" />
+                                    <mat-error
+                                        *ngIf="(n.email.dirty || n.email.touched || submittedPassword) && n.email.errors">
+                                        <div *ngIf="n.email.errors.email">Email is not valid.</div>
+                                        <div *ngIf="n.email.errors.required">Email is required.</div>
+                                    </mat-error>
+                                </mat-form-field>
+                            </td>
 
-</mat-accordion>
-</mat-card>
+                            <td>
+                                <mat-form-field class="form-field" appearance="standard">
+                                    <mat-label>Starting Password</mat-label>
+                                    <input matInput required formControlName="passwd" type="password"
+                                        class="form-control"
+                                        [ngClass]="{ 'is-invalid': (n.passwd.dirty || n.passwd.touched || submittedDetails) && n.passwd.errors }" />
+                                    <mat-error
+                                        *ngIf="(n.passwd.dirty || n.passwd.touched || submittedPassword) && n.passwd.errors">
+                                        <div *ngIf="n.passwd.errors.required">Starting password is required.</div>
+                                    </mat-error>
+                                </mat-form-field>
+                            </td>
+
+                            <td width="1%">
+                                <mat-checkbox matInput formControlName="is_admin">
+                                    Admin
+                                </mat-checkbox>
+                            </td>
+                        </tr>
+                    </table>
+
+                    <table class="form-control" width="100%">
+                        <tr>
+                            <td>
+                                <mat-form-field class="form-field" appearance="standard">
+                                    <mat-label>First Name</mat-label>
+                                    <input matInput required formControlName="firstname" type="text"
+                                        class="form-control"
+                                        [ngClass]="{ 'is-invalid': (n.firstname.dirty || n.firstname.touched || submittedDetails) && n.firstname.errors }" />
+                                    <mat-error
+                                        *ngIf="(n.firstname.dirty || n.firstname.touched || submittedPassword) && n.firstname.errors">
+                                        <div *ngIf="n.firstname.errors.required">First name is required.</div>
+                                    </mat-error>
+                                </mat-form-field>
+                            </td>
+
+                            <td>
+                                <mat-form-field class="form-field" appearance="standard">
+                                    <mat-label>Last Name</mat-label>
+                                    <input matInput required formControlName="lastname" type="text" class="form-control"
+                                        [ngClass]="{ 'is-invalid': (n.lastname.dirty || n.lastname.touched || submittedDetails) && n.lastname.errors }" />
+                                    <mat-error
+                                        *ngIf="(n.lastname.dirty || n.lastname.touched || submittedPassword) && n.lastname.errors">
+                                        <div *ngIf="n.lastname.errors.required">Last name is required.</div>
+                                    </mat-error>
+                                </mat-form-field>
+                            </td>
+                        </tr>
+                    </table>
+
+                    <mat-form-field class="form-field" appearance="standard">
+                        <mat-label>Description</mat-label>
+                        <textarea matInput formControlName="description" cdkTextareaAutosize class="form-control"
+                            [ngClass]="{ 'is-dirty': (n.description.dirty), 'is-invalid': (n.description.dirty || n.description.touched || submittedDetails) && n.description.errors }">
+                        </textarea>
+                    </mat-form-field>
+
+                    <mat-error *ngIf="newUserHadError">
+                        {{ newUserError }}
+                    </mat-error>
+
+                    <mat-action-row>
+                        <button mat-raised-button [disabled]="!newUserForm.dirty">Save</button>
+                    </mat-action-row>
+                </form>
+            </mat-expansion-panel>
+
+        </mat-accordion>
+    </div>
+</div>
