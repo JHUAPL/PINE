@@ -97,7 +97,13 @@
 <tr class="row-even"><td><p><a class="reference internal" href="#pine.backend.documents.bp.get_document" title="pine.backend.documents.bp.get_document"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_document</span></code></a>(doc_id)</p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#pine.backend.documents.bp.get_documents_in_collection" title="pine.backend.documents.bp.get_documents_in_collection"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_documents_in_collection</span></code></a>(col_id, page)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pine.backend.documents.bp.count_documents_in_collection" title="pine.backend.documents.bp.count_documents_in_collection"><code class="xref py py-obj docutils literal notranslate"><span class="pre">count_documents_in_collection</span></code></a>(col_id)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#pine.backend.documents.bp.get_all_documents_in_collection" title="pine.backend.documents.bp.get_all_documents_in_collection"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_all_documents_in_collection</span></code></a>(col_id)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pine.backend.documents.bp.get_paginated_documents_in_collection" title="pine.backend.documents.bp.get_paginated_documents_in_collection"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_paginated_documents_in_collection</span></code></a>(collection_id)</p></td>
 <td><p></p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#pine.backend.documents.bp._check_documents" title="pine.backend.documents.bp._check_documents"><code class="xref py py-obj docutils literal notranslate"><span class="pre">_check_documents</span></code></a>(documents)</p></td>
@@ -132,7 +138,7 @@
 
 <dl class="py function">
 <dt id="pine.backend.documents.bp.get_collection_ids_for">
-<code class="sig-prename descclassname">pine.backend.documents.bp.</code><code class="sig-name descname">get_collection_ids_for</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">document_ids</span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#set" title="(in Python v3.8)">set</a><a class="headerlink" href="#pine.backend.documents.bp.get_collection_ids_for" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">pine.backend.documents.bp.</code><code class="sig-name descname">get_collection_ids_for</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">document_ids</span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#set" title="(in Python v3.9)">set</a><a class="headerlink" href="#pine.backend.documents.bp.get_collection_ids_for" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py function">
@@ -176,13 +182,23 @@
 <dd></dd></dl>
 
 <dl class="py function">
-<dt id="pine.backend.documents.bp.get_documents_in_collection">
-<code class="sig-prename descclassname">pine.backend.documents.bp.</code><code class="sig-name descname">get_documents_in_collection</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">col_id</span></em>, <em class="sig-param"><span class="n">page</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.documents.bp.get_documents_in_collection" title="Permalink to this definition">¶</a></dt>
+<dt id="pine.backend.documents.bp.count_documents_in_collection">
+<code class="sig-prename descclassname">pine.backend.documents.bp.</code><code class="sig-name descname">count_documents_in_collection</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">col_id</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.documents.bp.count_documents_in_collection" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt id="pine.backend.documents.bp.get_all_documents_in_collection">
+<code class="sig-prename descclassname">pine.backend.documents.bp.</code><code class="sig-name descname">get_all_documents_in_collection</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">col_id</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.documents.bp.get_all_documents_in_collection" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt id="pine.backend.documents.bp.get_paginated_documents_in_collection">
+<code class="sig-prename descclassname">pine.backend.documents.bp.</code><code class="sig-name descname">get_paginated_documents_in_collection</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">collection_id</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.documents.bp.get_paginated_documents_in_collection" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py function">
 <dt id="pine.backend.documents.bp._check_documents">
-<code class="sig-prename descclassname">pine.backend.documents.bp.</code><code class="sig-name descname">_check_documents</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">documents</span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.8)">dict</a><a class="headerlink" href="#pine.backend.documents.bp._check_documents" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">pine.backend.documents.bp.</code><code class="sig-name descname">_check_documents</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">documents</span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)">dict</a><a class="headerlink" href="#pine.backend.documents.bp._check_documents" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py function">
@@ -259,7 +275,13 @@
 <li><a class="reference internal" href="#pine.backend.documents.bp.get_document">get_document</a></li>
 </ul>
 <ul>
-<li><a class="reference internal" href="#pine.backend.documents.bp.get_documents_in_collection">get_documents_in_collection</a></li>
+<li><a class="reference internal" href="#pine.backend.documents.bp.count_documents_in_collection">count_documents_in_collection</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#pine.backend.documents.bp.get_all_documents_in_collection">get_all_documents_in_collection</a></li>
+</ul>
+<ul>
+<li><a class="reference internal" href="#pine.backend.documents.bp.get_paginated_documents_in_collection">get_paginated_documents_in_collection</a></li>
 </ul>
 <ul>
 <li><a class="reference internal" href="#pine.backend.documents.bp._check_documents">_check_documents</a></li>

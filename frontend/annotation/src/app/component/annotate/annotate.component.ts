@@ -328,7 +328,6 @@ export class AnnotateComponent implements OnInit, AfterViewInit {
     public contextMenu(event: MouseEvent, word: Word) {
         if (!this.canCurrentlyAnnotate) return;
         const t = (<any>word.elem)._tippy;
-        console.log('context menu');
         if (t) {
             t.show();
         }

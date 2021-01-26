@@ -2,6 +2,7 @@
 
 import json
 import random
+import re
 
 from flask import abort, Blueprint, jsonify, request
 from werkzeug import exceptions
@@ -20,7 +21,7 @@ def get_collection_ids_for(document_ids) -> set:
     if isinstance(document_ids, str):
         document_ids = [document_ids]
     # ideally we would use some "unique" or "distinct" feature here but eve doesn't seem to have it
-    return set(item["collection_id"] for item in service.get_items("documents", params=service.params({
+    return set(item["collection_id"] for item in service.get_all_items("documents", params=service.params({
         "where": {
             "_id": {"$in": list(document_ids)}
         }, "projection": {
@@ -66,10 +67,32 @@ def get_document(doc_id):
     else:
         raise exceptions.Unauthorized()
 
-@bp.route("/by_collection_id/<col_id>", defaults = {"page": "all"}, methods = ["GET"])
-@bp.route("/by_collection_id/<col_id>/<page>", methods = ["GET"])
+@bp.route("/count_by_collection_id/<col_id>", methods = ["GET"])
 @auth.login_required
-def get_documents_in_collection(col_id, page):
+def count_documents_in_collection(col_id):
+    collection = service.get_item_by_id("collections", col_id)
+    if not collections.user_can_view(collection):
+        raise exceptions.Unauthorized()
+    params = service.params({
+        "where": {
+            "collection_id": col_id
+        },
+        "projection": {
+            "_id": 1
+        },
+        "max_results": 1
+    })
+    resp = service.get("documents", params=params)
+    if not resp.ok:
+        abort(resp.status_code)
+    resp = resp.json()
+    if "_meta" not in resp or resp["_meta"]["max_results"] != 1 or "total" not in resp["_meta"]:
+        raise exceptions.InternalServerError("Pagination has not been turned on or correctly configured for documents.")
+    return jsonify(resp["_meta"]["total"])
+
+@bp.route("/by_collection_id_all/<col_id>", methods = ["GET"])
+@auth.login_required
+def get_all_documents_in_collection(col_id):
     truncate = json.loads(request.args.get("truncate", "true"))
     truncate_length = json.loads(request.args.get("truncateLength", "50"))
     collection = service.get_item_by_id("collections", col_id)
@@ -90,18 +113,68 @@ def get_documents_in_collection(col_id, page):
             })
             params["truncate"] = truncate_length
 
-    if page == "all":
-        return jsonify(service.get_all_using_pagination("documents", params))
+    return jsonify(service.get_all("documents", params=params))
 
-    if page: params["page"] = page
-    resp = service.get("documents", params = params)
-    if not resp.ok:
-        abort(resp.status_code, resp.content)
-    data = resp.json()
-    if truncate and truncate_length != 0:
-        for document in data["_items"]:
-            document["text"] = document["text"][0:truncate_length]
-    return jsonify(data)
+@bp.route("/by_collection_id_paginated/<collection_id>", methods = ["GET"])
+@auth.login_required
+def get_paginated_documents_in_collection(collection_id):
+    collection = service.get_item_by_id("collections", collection_id)
+    if not collections.user_can_view(collection):
+        raise exceptions.Unauthorized()
+
+    if not "page" in request.args or not "pageSize" in request.args:
+        raise exceptions.BadRequest("'page' and 'pageSize' must be provided.")
+
+    page = json.loads(request.args.get("page"))
+    if not isinstance(page, int):
+        raise exceptions.BadRequest("'page' must be an integer.")
+    # eve's pagination is 1-based
+    page += 1
+
+    page_size = json.loads(request.args.get("pageSize"))
+    if not isinstance(page_size, int):
+        raise exceptions.BadRequest("'pageSize' must be an integer.")
+
+    sort = request.args.get("sort", None)
+    if sort: sort = json.loads(sort)
+    if sort and ("field" not in sort or "ascending" not in sort):
+        raise exceptions.BadRequest("'sort' should have 'field' and 'ascending'.")
+
+    filter_str = request.args.get("filter", None)
+    if filter_str: filter_str = str(filter_str)
+
+    truncate = json.loads(request.args.get("truncate", "true"))
+    if not isinstance(truncate, bool):
+        raise exceptions.BadRequest("'truncate' must be a boolean.")
+    truncate_length = json.loads(request.args.get("truncateLength", "50"))
+    if not isinstance(truncate_length, int):
+        raise exceptions.BadRequest("'truncateLength' must be an integer.")
+
+    params = {
+        "where": {
+            "collection_id": collection_id
+        },
+        "max_results": page_size,
+        "page": page
+    }
+    if sort:
+        params["sort"] = ("" if sort["ascending"] else "-") + sort["field"]
+    if filter_str:
+        params["where"] = {
+            "$and": [
+                params["where"],
+                {
+                    "text": {
+                        "$regex": ".*{}.*".format(re.escape(filter_str))
+                    }
+                }
+            ]
+        }
+    if truncate:
+        params["projection"] = json.dumps({"metadata": 0})
+        params["truncate"] = truncate_length
+
+    return service.convert_response(service.get("documents", params=service.params(params)))
 
 def _check_documents(documents) -> dict:
     collection_ids = set()

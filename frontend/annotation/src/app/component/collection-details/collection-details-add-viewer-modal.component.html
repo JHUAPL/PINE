@@ -1,12 +1,13 @@
 <!-- (C) 2019 The Johns Hopkins University Applied Physics Laboratory LLC.-->
 <title mat-dialog-title>Add a New Viewer</title>
 <div mat-dialog-content>
-  <mat-form-field>
-    <mat-label>Viewer JHED</mat-label>
+  <mat-form-field floatLabel="always" class="full-width">
+    <mat-label>Viewer Username/ID</mat-label>
     <input matInput [(ngModel)]="data.viewer">
   </mat-form-field>
 </div>
 <div mat-dialog-actions>
-  <button mat-button (click)="onNoClick()">Cancel</button>
-  <button mat-button [mat-dialog-close]="data.viewer" cdkFocusInitial>Save</button>
+  <button mat-raised-button (click)="onNoClick()">Cancel</button>
+  <span fxFlex></span>
+  <button mat-raised-button color="primary" [mat-dialog-close]="data.viewer" cdkFocusInitial>Save</button>
 </div>
