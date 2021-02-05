@@ -19,7 +19,7 @@ def get_current_report(collection_id):
     where = {
         "collection_id": collection_id,
     }
-    reports = service.get_items("/iaa_reports", service.where_params(where))
+    reports = service.get_all_items("/iaa_reports", params=service.where_params(where))
     if len(reports) > 0:
         return reports[0]
     else:

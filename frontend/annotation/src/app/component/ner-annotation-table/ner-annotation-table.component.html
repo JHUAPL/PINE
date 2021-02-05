@@ -36,7 +36,7 @@
         <ng-container matColumnDef="actions">
             <th class="delete-cell" mat-header-cell *matHeaderCellDef></th>
             <td class="delete-cell" mat-cell *matCellDef="let annotation">
-                <button mat-icon-button color="warn" (click)="removeAnnotation(annotation)">
+                <button *ngIf="!readOnly" mat-icon-button color="warn" (click)="removeAnnotation(annotation)">
                     <mat-icon class="delete-icon">delete_outline</mat-icon>
                 </button>
             </td>

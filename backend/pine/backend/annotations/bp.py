@@ -101,7 +101,7 @@ def get_current_annotation(doc_id, user_id):
         "document_id": doc_id,
         "creator_id": user_id
     }
-    annotations = service.get_items("/annotations", service.where_params(where))
+    annotations = service.get_all_items("/annotations", params=service.where_params(where))
     if len(annotations) > 0:
         return annotations[0]
     else:

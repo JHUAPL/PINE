@@ -4,6 +4,7 @@ import json
 import logging
 import math
 from pprint import pformat, pprint
+import sys
 import threading
 
 from flask import abort, current_app, Response
@@ -30,6 +31,7 @@ class PerformanceHistory(object):
         self.lock.acquire()
         try:
             pprint(self.data)
+            sys.stdout.flush()
         finally:
             self.lock.release()
 
@@ -158,14 +160,14 @@ def patch(path, **kwargs):
     return resp
 
 
-def get_items(path, params={}):
-    resp = get(path, params=params)
-    if not resp.ok:
-        abort(resp.status_code, resp.content)
-    return resp.json()["_items"]
-
-
 def get_item_by_id(path, item_id, params={}):
+    """Gets a single item by the given ID.
+    
+    :param path: str: eve-relative path (e.g. "collections")
+    :param item_id: str: item ID
+    :param params: dict: optional additional parameters to send in with GET
+    :return: the item as a dict
+    """
     resp = get([path, item_id], params=params)
     if not resp.ok:
         abort(resp.status_code, resp.content)
@@ -180,7 +182,26 @@ def get_all_versions_of_item_by_id(path, item_id, params = {}):
     return resp.json()
 
 
-def get_all_using_pagination(path, params):
+# def get_items(path, params={}):
+#     """Returns (potentially only the first page of) database items.
+#     
+#     :param path: str: eve-relative path (e.g. "collections")
+#     :param params: dict: optional additional parameters to send in with GET
+#     :return: the items as a list of dicts
+#     """
+#     resp = get(path, params=params)
+#     if not resp.ok:
+#         abort(resp.status_code, resp.content)
+#     return resp.json()["_items"]
+
+def get_all(path, params={}):
+    """Returns ALL database items, using pagination if needed.  This returns the "normal" eve
+    JSON with "_items", "_meta", etc.
+    
+    :param path: str: eve-relative path (e.g. "collections")
+    :param params: dict: optional additional parameters to send in with GET
+    :return: an eve collections dict with, e.g., _items
+    """
     resp = get(path, params=params)
     if not resp.ok:
         abort(resp.status_code)
@@ -205,6 +226,16 @@ def get_all_using_pagination(path, params):
         total_pages = math.ceil(body["_meta"]["total"] / body["_meta"]["max_results"])
 
     return all_items
+
+
+def get_all_items(path, params={}):
+    """Returns ALL database items, using pagination if needed.
+    
+    :param path: str: eve-relative path (e.g. "collections")
+    :param params: dict: optional additional parameters to send in with GET
+    :return: the items as a list of dicts
+    """
+    return get_all(path, params=params)["_items"]
 
 
 def convert_response(requests_response):

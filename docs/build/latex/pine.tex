@@ -74,7 +74,7 @@
 
 
 \title{pine}
-\date{Aug 17, 2020}
+\date{Oct 08, 2020}
 \release{}
 \author{JHU/APL}
 \newcommand{\sphinxlogo}{\vbox{}}
@@ -2062,14 +2062,9 @@ Wraps requests.delete for the given eve\sphinxhyphen{}relative path.
 Wraps requests.patch for the given eve\sphinxhyphen{}relative path.
 \\
 \hline
-{\hyperref[\detokenize{autoapi/pine/backend/data/service/index:pine.backend.data.service.get_items}]{\sphinxcrossref{\sphinxcode{\sphinxupquote{get\_items}}}}}(path, params=\{\})
-&
-
-\\
-\hline
 {\hyperref[\detokenize{autoapi/pine/backend/data/service/index:pine.backend.data.service.get_item_by_id}]{\sphinxcrossref{\sphinxcode{\sphinxupquote{get\_item\_by\_id}}}}}(path, item\_id, params=\{\})
 &
-
+Gets a single item by the given ID.
 \\
 \hline
 {\hyperref[\detokenize{autoapi/pine/backend/data/service/index:pine.backend.data.service.get_all_versions_of_item_by_id}]{\sphinxcrossref{\sphinxcode{\sphinxupquote{get\_all\_versions\_of\_item\_by\_id}}}}}(path, item\_id, params=\{\})
@@ -2077,9 +2072,14 @@ Wraps requests.patch for the given eve\sphinxhyphen{}relative path.
 
 \\
 \hline
-{\hyperref[\detokenize{autoapi/pine/backend/data/service/index:pine.backend.data.service.get_all_using_pagination}]{\sphinxcrossref{\sphinxcode{\sphinxupquote{get\_all\_using\_pagination}}}}}(path, params)
+{\hyperref[\detokenize{autoapi/pine/backend/data/service/index:pine.backend.data.service.get_all}]{\sphinxcrossref{\sphinxcode{\sphinxupquote{get\_all}}}}}(path, params=\{\})
 &
-
+Returns ALL database items, using pagination if needed.  This returns the “normal” eve
+\\
+\hline
+{\hyperref[\detokenize{autoapi/pine/backend/data/service/index:pine.backend.data.service.get_all_items}]{\sphinxcrossref{\sphinxcode{\sphinxupquote{get\_all\_items}}}}}(path, params=\{\})
+&
+Returns ALL database items, using pagination if needed.
 \\
 \hline
 {\hyperref[\detokenize{autoapi/pine/backend/data/service/index:pine.backend.data.service.convert_response}]{\sphinxcrossref{\sphinxcode{\sphinxupquote{convert\_response}}}}}(requests\_response)
@@ -2322,16 +2322,29 @@ requests.Response
 
 \end{fulllineitems}
 
-\index{get\_items() (in module pine.backend.data.service)@\spxentry{get\_items()}\spxextra{in module pine.backend.data.service}}
-
-\begin{fulllineitems}
-\phantomsection\label{\detokenize{autoapi/pine/backend/data/service/index:pine.backend.data.service.get_items}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{pine.backend.data.service.}}\sphinxbfcode{\sphinxupquote{get\_items}}}{\emph{\DUrole{n}{path}}, \emph{\DUrole{n}{params}\DUrole{o}{=}\DUrole{default_value}{\{\}}}}{}
-\end{fulllineitems}
-
 \index{get\_item\_by\_id() (in module pine.backend.data.service)@\spxentry{get\_item\_by\_id()}\spxextra{in module pine.backend.data.service}}
 
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{autoapi/pine/backend/data/service/index:pine.backend.data.service.get_item_by_id}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{pine.backend.data.service.}}\sphinxbfcode{\sphinxupquote{get\_item\_by\_id}}}{\emph{\DUrole{n}{path}}, \emph{\DUrole{n}{item\_id}}, \emph{\DUrole{n}{params}\DUrole{o}{=}\DUrole{default_value}{\{\}}}}{}
+Gets a single item by the given ID.
+\begin{quote}\begin{description}
+\item[{Parameters}] \leavevmode\begin{itemize}
+\item {} 
+\sphinxstyleliteralstrong{\sphinxupquote{path}} \textendash{} str: eve\sphinxhyphen{}relative path (e.g. “collections”)
+
+\item {} 
+\sphinxstyleliteralstrong{\sphinxupquote{item\_id}} \textendash{} str: item ID
+
+\item {} 
+\sphinxstyleliteralstrong{\sphinxupquote{params}} \textendash{} dict: optional additional parameters to send in with GET
+
+\end{itemize}
+
+\item[{Returns}] \leavevmode
+the item as a dict
+
+\end{description}\end{quote}
+
 \end{fulllineitems}
 
 \index{get\_all\_versions\_of\_item\_by\_id() (in module pine.backend.data.service)@\spxentry{get\_all\_versions\_of\_item\_by\_id()}\spxextra{in module pine.backend.data.service}}
@@ -2340,10 +2353,49 @@ requests.Response
 \phantomsection\label{\detokenize{autoapi/pine/backend/data/service/index:pine.backend.data.service.get_all_versions_of_item_by_id}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{pine.backend.data.service.}}\sphinxbfcode{\sphinxupquote{get\_all\_versions\_of\_item\_by\_id}}}{\emph{\DUrole{n}{path}}, \emph{\DUrole{n}{item\_id}}, \emph{\DUrole{n}{params}\DUrole{o}{=}\DUrole{default_value}{\{\}}}}{}
 \end{fulllineitems}
 
-\index{get\_all\_using\_pagination() (in module pine.backend.data.service)@\spxentry{get\_all\_using\_pagination()}\spxextra{in module pine.backend.data.service}}
+\index{get\_all() (in module pine.backend.data.service)@\spxentry{get\_all()}\spxextra{in module pine.backend.data.service}}
 
 \begin{fulllineitems}
-\phantomsection\label{\detokenize{autoapi/pine/backend/data/service/index:pine.backend.data.service.get_all_using_pagination}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{pine.backend.data.service.}}\sphinxbfcode{\sphinxupquote{get\_all\_using\_pagination}}}{\emph{\DUrole{n}{path}}, \emph{\DUrole{n}{params}}}{}
+\phantomsection\label{\detokenize{autoapi/pine/backend/data/service/index:pine.backend.data.service.get_all}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{pine.backend.data.service.}}\sphinxbfcode{\sphinxupquote{get\_all}}}{\emph{\DUrole{n}{path}}, \emph{\DUrole{n}{params}\DUrole{o}{=}\DUrole{default_value}{\{\}}}}{}
+Returns ALL database items, using pagination if needed.  This returns the “normal” eve
+JSON with “\_items”, “\_meta”, etc.
+\begin{quote}\begin{description}
+\item[{Parameters}] \leavevmode\begin{itemize}
+\item {} 
+\sphinxstyleliteralstrong{\sphinxupquote{path}} \textendash{} str: eve\sphinxhyphen{}relative path (e.g. “collections”)
+
+\item {} 
+\sphinxstyleliteralstrong{\sphinxupquote{params}} \textendash{} dict: optional additional parameters to send in with GET
+
+\end{itemize}
+
+\item[{Returns}] \leavevmode
+an eve collections dict with, e.g., \_items
+
+\end{description}\end{quote}
+
+\end{fulllineitems}
+
+\index{get\_all\_items() (in module pine.backend.data.service)@\spxentry{get\_all\_items()}\spxextra{in module pine.backend.data.service}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{autoapi/pine/backend/data/service/index:pine.backend.data.service.get_all_items}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{pine.backend.data.service.}}\sphinxbfcode{\sphinxupquote{get\_all\_items}}}{\emph{\DUrole{n}{path}}, \emph{\DUrole{n}{params}\DUrole{o}{=}\DUrole{default_value}{\{\}}}}{}
+Returns ALL database items, using pagination if needed.
+\begin{quote}\begin{description}
+\item[{Parameters}] \leavevmode\begin{itemize}
+\item {} 
+\sphinxstyleliteralstrong{\sphinxupquote{path}} \textendash{} str: eve\sphinxhyphen{}relative path (e.g. “collections”)
+
+\item {} 
+\sphinxstyleliteralstrong{\sphinxupquote{params}} \textendash{} dict: optional additional parameters to send in with GET
+
+\end{itemize}
+
+\item[{Returns}] \leavevmode
+the items as a list of dicts
+
+\end{description}\end{quote}
+
 \end{fulllineitems}
 
 \index{convert\_response() (in module pine.backend.data.service)@\spxentry{convert\_response()}\spxextra{in module pine.backend.data.service}}
@@ -2587,7 +2639,17 @@ requests.Response
 
 \\
 \hline
-{\hyperref[\detokenize{autoapi/pine/backend/documents/bp/index:pine.backend.documents.bp.get_documents_in_collection}]{\sphinxcrossref{\sphinxcode{\sphinxupquote{get\_documents\_in\_collection}}}}}(col\_id, page)
+{\hyperref[\detokenize{autoapi/pine/backend/documents/bp/index:pine.backend.documents.bp.count_documents_in_collection}]{\sphinxcrossref{\sphinxcode{\sphinxupquote{count\_documents\_in\_collection}}}}}(col\_id)
+&
+
+\\
+\hline
+{\hyperref[\detokenize{autoapi/pine/backend/documents/bp/index:pine.backend.documents.bp.get_all_documents_in_collection}]{\sphinxcrossref{\sphinxcode{\sphinxupquote{get\_all\_documents\_in\_collection}}}}}(col\_id)
+&
+
+\\
+\hline
+{\hyperref[\detokenize{autoapi/pine/backend/documents/bp/index:pine.backend.documents.bp.get_paginated_documents_in_collection}]{\sphinxcrossref{\sphinxcode{\sphinxupquote{get\_paginated\_documents\_in\_collection}}}}}(collection\_id)
 &
 
 \\
@@ -2689,10 +2751,22 @@ requests.Response
 \phantomsection\label{\detokenize{autoapi/pine/backend/documents/bp/index:pine.backend.documents.bp.get_document}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{pine.backend.documents.bp.}}\sphinxbfcode{\sphinxupquote{get\_document}}}{\emph{\DUrole{n}{doc\_id}}}{}
 \end{fulllineitems}
 
-\index{get\_documents\_in\_collection() (in module pine.backend.documents.bp)@\spxentry{get\_documents\_in\_collection()}\spxextra{in module pine.backend.documents.bp}}
+\index{count\_documents\_in\_collection() (in module pine.backend.documents.bp)@\spxentry{count\_documents\_in\_collection()}\spxextra{in module pine.backend.documents.bp}}
 
 \begin{fulllineitems}
-\phantomsection\label{\detokenize{autoapi/pine/backend/documents/bp/index:pine.backend.documents.bp.get_documents_in_collection}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{pine.backend.documents.bp.}}\sphinxbfcode{\sphinxupquote{get\_documents\_in\_collection}}}{\emph{\DUrole{n}{col\_id}}, \emph{\DUrole{n}{page}}}{}
+\phantomsection\label{\detokenize{autoapi/pine/backend/documents/bp/index:pine.backend.documents.bp.count_documents_in_collection}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{pine.backend.documents.bp.}}\sphinxbfcode{\sphinxupquote{count\_documents\_in\_collection}}}{\emph{\DUrole{n}{col\_id}}}{}
+\end{fulllineitems}
+
+\index{get\_all\_documents\_in\_collection() (in module pine.backend.documents.bp)@\spxentry{get\_all\_documents\_in\_collection()}\spxextra{in module pine.backend.documents.bp}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{autoapi/pine/backend/documents/bp/index:pine.backend.documents.bp.get_all_documents_in_collection}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{pine.backend.documents.bp.}}\sphinxbfcode{\sphinxupquote{get\_all\_documents\_in\_collection}}}{\emph{\DUrole{n}{col\_id}}}{}
+\end{fulllineitems}
+
+\index{get\_paginated\_documents\_in\_collection() (in module pine.backend.documents.bp)@\spxentry{get\_paginated\_documents\_in\_collection()}\spxextra{in module pine.backend.documents.bp}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{autoapi/pine/backend/documents/bp/index:pine.backend.documents.bp.get_paginated_documents_in_collection}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{pine.backend.documents.bp.}}\sphinxbfcode{\sphinxupquote{get\_paginated\_documents\_in\_collection}}}{\emph{\DUrole{n}{collection\_id}}}{}
 \end{fulllineitems}
 
 \index{\_check\_documents() (in module pine.backend.documents.bp)@\spxentry{\_check\_documents()}\spxextra{in module pine.backend.documents.bp}}
@@ -6361,7 +6435,7 @@ the created collection’s ID
 
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{autoapi/pine/client/client/index:pine.client.client.PineClient.get_collection_documents}}\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{get\_collection\_documents}}}{\emph{\DUrole{n}{self}}, \emph{\DUrole{n}{collection\_id}\DUrole{p}{:} \DUrole{n}{\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#str}{str}}}, \emph{\DUrole{n}{truncate}\DUrole{p}{:} \DUrole{n}{\sphinxhref{https://docs.python.org/3/library/functions.html\#bool}{bool}}}, \emph{\DUrole{n}{truncate\_length}\DUrole{p}{:} \DUrole{n}{\sphinxhref{https://docs.python.org/3/library/functions.html\#int}{int}} \DUrole{o}{=} \DUrole{default_value}{30}}}{}
-Returns the documents in the given collection.
+Returns all the documents in the given collection.
 \begin{quote}\begin{description}
 \item[{Parameters}] \leavevmode\begin{itemize}
 \item {} 
@@ -6376,7 +6450,7 @@ Returns the documents in the given collection.
 \end{itemize}
 
 \item[{Returns}] \leavevmode
-the documents in the given collection
+all the documents in the given collection
 
 \item[{Return type}] \leavevmode
 \sphinxhref{https://docs.python.org/3/library/stdtypes.html\#list}{list}(\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#dict}{dict})
@@ -8593,7 +8667,7 @@ the created collection’s ID
 
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{autoapi/pine/client/index:pine.client.PineClient.get_collection_documents}}\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{get\_collection\_documents}}}{\emph{\DUrole{n}{self}}, \emph{\DUrole{n}{collection\_id}\DUrole{p}{:} \DUrole{n}{\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#str}{str}}}, \emph{\DUrole{n}{truncate}\DUrole{p}{:} \DUrole{n}{\sphinxhref{https://docs.python.org/3/library/functions.html\#bool}{bool}}}, \emph{\DUrole{n}{truncate\_length}\DUrole{p}{:} \DUrole{n}{\sphinxhref{https://docs.python.org/3/library/functions.html\#int}{int}} \DUrole{o}{=} \DUrole{default_value}{30}}}{}
-Returns the documents in the given collection.
+Returns all the documents in the given collection.
 \begin{quote}\begin{description}
 \item[{Parameters}] \leavevmode\begin{itemize}
 \item {} 
@@ -8608,7 +8682,7 @@ Returns the documents in the given collection.
 \end{itemize}
 
 \item[{Returns}] \leavevmode
-the documents in the given collection
+all the documents in the given collection
 
 \item[{Return type}] \leavevmode
 \sphinxhref{https://docs.python.org/3/library/stdtypes.html\#list}{list}(\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#dict}{dict})
