@@ -15,7 +15,7 @@
     </mat-toolbar>
 
     <div class="filter-bar">
-        <mat-button-toggle-group [value]="active ? 'active' : 'archived'" class="archive-toggle"
+        <mat-button-toggle-group [value]="active ? 'active' : 'archive'" class="archive-toggle"
             aria-label="Archive Toggle" (change)="archiveChanged($event)">
             <mat-button-toggle value="active">Active</mat-button-toggle>
             <mat-button-toggle value="archive">Archived</mat-button-toggle>

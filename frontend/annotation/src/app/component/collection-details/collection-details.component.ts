@@ -1,11 +1,13 @@
-/*(C) 2019 The Johns Hopkins University Applied Physics Laboratory LLC. */
-import { Component, OnInit, ViewChild, Inject } from "@angular/core";
-import { MatPaginator, MatTableDataSource, MatSort, MatDialog, MatDialogRef, MAT_DIALOG_DATA } from "@angular/material";
+/* (C) 2019 The Johns Hopkins University Applied Physics Laboratory LLC. */
+import { Component, OnInit, ViewChild, AfterViewInit, Inject, OnDestroy, ElementRef } from "@angular/core";
+import { MatPaginator, MatSort, MatDialog, MatDialogRef, MAT_DIALOG_DATA } from "@angular/material";
 import { ActivatedRoute, Router } from "@angular/router";
 import { HttpErrorResponse } from "@angular/common/http";
 
+import { forkJoin, BehaviorSubject } from "rxjs";
+import { filter, take } from "rxjs/operators";
+
 import * as _ from "lodash";
-import { take } from "rxjs/operators";
 
 import { PATHS, PARAMS } from "../../app.paths";
 
@@ -17,15 +19,17 @@ import { EventService } from "../../service/event/event.service";
 import { PipelineService } from "../../service/pipeline/pipeline.service";
 import { MetricsService } from "../../service/metrics/metrics.service";
 
-import { Document } from "../../model/document";
 import { Classifier } from "../../model/classifier";
 import { Collection, DownloadCollectionData, METADATA_TITLE } from "../../model/collection";
 import { Pipeline } from "../../model/pipeline";
+import { Metric } from "../../model/metrics";
 import { IaaReportingService } from '../../service/iaa-reporting/iaa-reporting.service';
 import { IAAReport } from '../../model/iaareport';
 import { DownloadCollectionDataDialogComponent } from '../download-collection-data.dialog/download-collection-data.dialog.component';
 import { ImageCollectionUploaderComponent, dialog } from "../image-collection-uploader/image-collection-uploader.component";
 import { AddDocumentComponent, AddDocumentDialogData } from '../add-document/add-document.component';
+
+import { DocumentDataSource } from "./document-data-source";
 
 export interface AnnotatorDialogData {
     annotator: string;
@@ -39,22 +43,12 @@ export interface LabelDialogData {
     label: string;
 }
 
-export interface DocumentRow {
-    id: string;
-    creator: string;
-    last_updated: Date;
-    text_start: string;
-    annotated: boolean;
-    ann_agreement: number;
-    created: Date;
-}
-
 @Component({
     selector: "app-collection-details",
     templateUrl: "./collection-details.component.html",
     styleUrls: ["./collection-details.component.css"]
 })
-export class CollectionDetailsComponent implements OnInit {
+export class CollectionDetailsComponent implements OnInit, AfterViewInit, OnDestroy {
 
     public static readonly SUBTITLE = "Collection Details";
 
@@ -69,9 +63,7 @@ export class CollectionDetailsComponent implements OnInit {
     collection: Collection;
     public classifier: Classifier;
     public pipeline: Pipeline;
-    documents: DocumentRow[];
-    dataSource = new MatTableDataSource<DocumentRow>();
-    oldestDocId: string = null;
+    public documents: DocumentDataSource;
     nextDocId: string = null;
     metrics: object;
     iaa_report: IAAReport;
@@ -82,9 +74,10 @@ export class CollectionDetailsComponent implements OnInit {
     public can_add_documents: boolean = false;
     public can_add_images: boolean = false;
 
-
-    @ViewChild(MatPaginator) paginator: MatPaginator;
-    @ViewChild(MatSort) sort: MatSort;
+    @ViewChild(MatPaginator) public paginator: MatPaginator;
+    @ViewChild(MatSort) public sort: MatSort;
+    @ViewChild("filter") public filter: ElementRef;
+    private tableReady = new BehaviorSubject<boolean>(false);
 
     constructor(private router: Router,
         private route: ActivatedRoute,
@@ -101,78 +94,71 @@ export class CollectionDetailsComponent implements OnInit {
 
     ngOnInit() {
         this.loading = true;
-        this.dataSource.paginator = this.paginator;
+        this.documents = new DocumentDataSource(this.documentsService, this.auth, this.iaa_reports);
 
         this.route.queryParams.subscribe(params => {
             if(params.tab != undefined) {
                 this.tabIndex = params.tab;
             }
         });
-
         this.route.paramMap.subscribe(params => {
-            const colId = params.get(PARAMS.collection.details.collection_id);
-            this.collectionService.getCanAddDocumentsOrImages(colId).pipe(take(1)).subscribe((val: boolean) => {
-                this.can_add_images = this.can_add_documents = val;
-            }, (error) => {
-                console.error(error);
-            });
-            const tempDocuments = [];
-            this.collectionService.getCollectionDetails(colId).subscribe((collection: Collection) => {
-                this.collection = collection;
-                this.can_add_users = collection.creator_id === this.auth.loggedInUser.id;
-                this.canArchive = true;//collection.creator_id === this.auth.getLocalLoggedInUser().id;
-                if (this.documents) {
-                    this.documents.length = 0;
-                }
-                this.iaa_reports.getIIAReportByCollection(colId).subscribe((iaa_report: any) => {
-                    this.iaa_report = iaa_report[0]
-                })
-                this.documentsService.getDocumentsByCollectionIDPaginated(colId, true).subscribe((document: Document) => {
-                    tempDocuments.push(<DocumentRow>{
-                        id: document._id,
-                        creator: this.auth.getUserDisplayName(document.creator_id),
-                        last_updated: document._updated,
-                        created: new Date(document._created),
-                        text_start: document.getTextPreview(),
-                        annotated: document.has_annotated ? document.has_annotated[this.auth.loggedInUser.id] : undefined,
-                        ann_agreement: this.iaa_report ? this.iaa_report.per_doc_agreement[this.iaa_report.per_doc_agreement.findIndex((doc: any) => doc.doc_id == document._id)]["avg"] : null
-                    });
-                }, (error) => { },
-                    () => {
-                        this.documents = tempDocuments;
-                        this.dataSource.data = this.documents;
-                        this.dataSource.sort = this.sort
-                        this.pipelineService.getClassifierForCollection(colId).subscribe((classifier: Classifier) => {
-                            this.classifier = classifier;
-                            this.nextDocId = null;
-                            this.metricsService.getMetricForClassifier(this.classifier._id).toPromise().then((metrics) => {
-                                this.metrics = metrics
-                            }, (err) => {
-                                console.error(err);
-                            });
-                            this.pipelineService.getPipeline(classifier.pipeline_id).subscribe((pipeline: Pipeline) => {
-                                this.pipeline = pipeline;
-                                this.pipelineService.getNextDocumentIdForClassifier(classifier._id).subscribe((docId: string) => {
-                                    this.nextDocId = docId;
-                                    this.loading = false;
-                                }, (error: HttpErrorResponse) => {
-                                    console.error("Error getting next document ID for collection", error);
-                                    this.loading = false;
-                                },
-                                    () => {
-                                        // this.metricsService.getMetricForClassifier()
-                                    }
-                                );
-                            });
-                        }, (error) => {
-                            console.error("Error getting classifier for collection", error);
-                            this.classifier = null;
-                            this.nextDocId = null;
-                            this.loading = false;
-                        });
-                    });
+            this.loadCollection(params.get(PARAMS.collection.details.collection_id));
+        });
+        
+    }
 
+    ngAfterViewInit() {
+        this.tableReady.next(true);
+    }
+
+    ngOnDestroy() {
+        this.documents.ngOnDestroy();
+    }
+
+    private loadCollection(collectionId: string) {
+        this.loading = true;
+        forkJoin(
+            this.documents.setCollection(collectionId),
+            this.collectionService.getCanAddDocumentsOrImages(collectionId),
+            this.collectionService.getCollectionDetails(collectionId),
+            this.pipelineService.getClassifierForCollection(collectionId),
+        ).pipe(
+            take(1)
+        ).subscribe(([_, canAddDocsOrImages, collection, classifier]: [boolean, boolean, Collection, Classifier]) => {
+            this.tableReady.asObservable().pipe(
+                filter(ready => ready),
+                take(1)
+            ).subscribe((_) => {
+                this.documents.setPaginatorSortAndFilter(this.paginator, this.sort, this.filter);
             });
+            this.can_add_images = this.can_add_documents = canAddDocsOrImages;
+            this.collection = collection;
+            this.classifier = classifier;
+
+            this.can_add_users = this.collection.creator_id === this.auth.loggedInUser.id;
+            this.canArchive = true;//collection.creator_id === this.auth.getLocalLoggedInUser().id;
+            this.nextDocId = null;
+            this.pipeline = null;
+            forkJoin(
+                this.metricsService.getMetricForClassifier(this.classifier._id),
+                this.pipelineService.getPipeline(this.classifier.pipeline_id),
+                this.pipelineService.getNextDocumentIdForClassifier(this.classifier._id)
+            ).pipe(take(1)).subscribe((results: [Metric, Pipeline, string]) => {
+                this.metrics = results[0];
+                this.pipeline = results[1];
+                this.nextDocId = results[2];
+            }, (error) => {
+                console.error("Error loading classifier data.", error);
+                this.classifier = null;
+                this.nextDocId = null;
+            }, () => {
+                this.loading = false;
+            });
+        }, (error) => {
+            console.error("Error loading collection data.", error);
+            this.classifier = null;
+            this.nextDocId = null;
+            this.loading = false;
         });
     }
 
@@ -191,7 +177,7 @@ export class CollectionDetailsComponent implements OnInit {
                 collection: this.collection
             };
             const dialogRef = this.dialog.open(AddDocumentComponent, {
-                width: '450px',
+                width: '550px',
                 data: dialogData
             });
         }
@@ -209,10 +195,6 @@ export class CollectionDetailsComponent implements OnInit {
             }
         }
         return additional;
-    }
-
-    applyFilter(filterValue: string) {
-        this.dataSource.filter = filterValue.trim().toLowerCase();
     }
 
     public archiveCollection() {
