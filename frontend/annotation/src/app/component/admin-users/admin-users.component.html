@@ -1,11 +1,14 @@
 <!-- (C) 2019 The Johns Hopkins University Applied Physics Laboratory LLC.-->
 
-<div class="admin-users-container">
+<div class="page-container">
     <mat-toolbar>
-        <span>Manage Users</span>
+        <button mat-icon-button matTooltip="Go back to admin dashboard" [routerLink]="['/' + PATHS.admin.dashboard]">
+            <mat-icon>keyboard_arrow_left</mat-icon>
+        </button>
+        Manage Users
     </mat-toolbar>
 
-    <div class="admin-users-content">
+    <div class="page-content">
         <div *ngIf="loading">Loading...</div>
         <mat-accordion *ngIf="!loading" multi="true">
 
@@ -85,11 +88,9 @@
                                 <mat-form-field class="form-field" appearance="standard">
                                     <mat-label>Username/ID</mat-label>
                                     <input matInput required formControlName="id" type="text" class="form-control"
-                                        [ngClass]="{ 'is-invalid': (n.id.dirty || n.id.touched || submittedDetails) && n.id.errors }" />
-                                    <mat-error *ngIf="(n.id.dirty || n.id.touched || submittedPassword) && n.id.errors">
+                                        [ngClass]="{ 'is-invalid': (n.id.dirty || n.id.touched || submittedNewUser) && n.id.errors }" />
+                                    <mat-error *ngIf="(n.id.dirty || n.id.touched || submittedNewUser) && n.id.errors">
                                         <div *ngIf="n.id.errors.required">Username/ID is required.</div>
-                                        <div *ngIf="n.id.errors.invalidId">Username/ID is invalid ({{
-                                            idValidatorDescription() }}).</div>
                                     </mat-error>
                                 </mat-form-field>
                             </td>
@@ -98,9 +99,9 @@
                                 <mat-form-field class="form-field" appearance="standard">
                                     <mat-label>Email</mat-label>
                                     <input matInput required formControlName="email" type="email" class="form-control"
-                                        [ngClass]="{ 'is-invalid': (n.email.dirty || n.email.touched || submittedDetails) && n.email.errors }" />
+                                        [ngClass]="{ 'is-invalid': (n.email.dirty || n.email.touched || submittedNewUser) && n.email.errors }" />
                                     <mat-error
-                                        *ngIf="(n.email.dirty || n.email.touched || submittedPassword) && n.email.errors">
+                                        *ngIf="(n.email.dirty || n.email.touched || submittedNewUser) && n.email.errors">
                                         <div *ngIf="n.email.errors.email">Email is not valid.</div>
                                         <div *ngIf="n.email.errors.required">Email is required.</div>
                                     </mat-error>
@@ -112,9 +113,9 @@
                                     <mat-label>Starting Password</mat-label>
                                     <input matInput required formControlName="passwd" type="password"
                                         class="form-control"
-                                        [ngClass]="{ 'is-invalid': (n.passwd.dirty || n.passwd.touched || submittedDetails) && n.passwd.errors }" />
+                                        [ngClass]="{ 'is-invalid': (n.passwd.dirty || n.passwd.touched || submittedNewUser) && n.passwd.errors }" />
                                     <mat-error
-                                        *ngIf="(n.passwd.dirty || n.passwd.touched || submittedPassword) && n.passwd.errors">
+                                        *ngIf="(n.passwd.dirty || n.passwd.touched || submittedNewUser) && n.passwd.errors">
                                         <div *ngIf="n.passwd.errors.required">Starting password is required.</div>
                                     </mat-error>
                                 </mat-form-field>
@@ -135,9 +136,9 @@
                                     <mat-label>First Name</mat-label>
                                     <input matInput required formControlName="firstname" type="text"
                                         class="form-control"
-                                        [ngClass]="{ 'is-invalid': (n.firstname.dirty || n.firstname.touched || submittedDetails) && n.firstname.errors }" />
+                                        [ngClass]="{ 'is-invalid': (n.firstname.dirty || n.firstname.touched || submittedNewUser) && n.firstname.errors }" />
                                     <mat-error
-                                        *ngIf="(n.firstname.dirty || n.firstname.touched || submittedPassword) && n.firstname.errors">
+                                        *ngIf="(n.firstname.dirty || n.firstname.touched || submittedNewUser) && n.firstname.errors">
                                         <div *ngIf="n.firstname.errors.required">First name is required.</div>
                                     </mat-error>
                                 </mat-form-field>
@@ -147,9 +148,9 @@
                                 <mat-form-field class="form-field" appearance="standard">
                                     <mat-label>Last Name</mat-label>
                                     <input matInput required formControlName="lastname" type="text" class="form-control"
-                                        [ngClass]="{ 'is-invalid': (n.lastname.dirty || n.lastname.touched || submittedDetails) && n.lastname.errors }" />
+                                        [ngClass]="{ 'is-invalid': (n.lastname.dirty || n.lastname.touched || submittedNewUser) && n.lastname.errors }" />
                                     <mat-error
-                                        *ngIf="(n.lastname.dirty || n.lastname.touched || submittedPassword) && n.lastname.errors">
+                                        *ngIf="(n.lastname.dirty || n.lastname.touched || submittedNewUser) && n.lastname.errors">
                                         <div *ngIf="n.lastname.errors.required">Last name is required.</div>
                                     </mat-error>
                                 </mat-form-field>
@@ -160,7 +161,7 @@
                     <mat-form-field class="form-field" appearance="standard">
                         <mat-label>Description</mat-label>
                         <textarea matInput formControlName="description" cdkTextareaAutosize class="form-control"
-                            [ngClass]="{ 'is-dirty': (n.description.dirty), 'is-invalid': (n.description.dirty || n.description.touched || submittedDetails) && n.description.errors }">
+                            [ngClass]="{ 'is-dirty': (n.description.dirty), 'is-invalid': (n.description.dirty || n.description.touched || submittedNewUser) && n.description.errors }">
                         </textarea>
                     </mat-form-field>
 

@@ -12,7 +12,7 @@ import { DocumentRepositoryService } from "../../service/document-repository/doc
 import { CollectionRepositoryService } from "../../service/collection-repository/collection-repository.service";
 import { EventService } from "../../service/event/event.service";
 
-import { Collection } from "../../model/collection";
+import { Collection, CollectionUserPermissions, newPermissions } from "../../model/collection";
 import { Document } from "../../model/document";
 
 import { ImageChooserComponent, dialog } from "../image-chooser/image-chooser.component";
@@ -35,7 +35,7 @@ export class DocumentDetailsComponent implements OnInit {
     @Input()
     public collection: Collection;
 
-    public canUpdateMetadata: boolean = false;
+    public permissions: CollectionUserPermissions = newPermissions();
 
     @Output()
     public imageUrlChanged = new EventEmitter<string>();
@@ -45,12 +45,13 @@ export class DocumentDetailsComponent implements OnInit {
                 public auth: AuthService,
                 private dialog: MatDialog,
                 private event: EventService) {
-        this.canUpdateMetadata = false;
     }
 
     ngOnInit() {
-        this.documents.getCanModifyMetadata(this.document._id).pipe(take(1)).subscribe((val: boolean) => {
-            this.canUpdateMetadata = val;
+        this.documents.getCollectionUserPermissions(this.document._id).pipe(
+            take(1)
+        ).subscribe((permissions: CollectionUserPermissions) => {
+            this.permissions = permissions;
         }, (error) => {
             console.error(error);
         });
@@ -64,6 +65,9 @@ export class DocumentDetailsComponent implements OnInit {
     }
 
     public updateImage() {
+        if(!this.permissions.modify_document_metadata) {
+            return;
+        }
         dialog(this.dialog, this.collection._id, this.document.metadata ? this.document.metadata["imageUrl"] : undefined).pipe(take(1)).subscribe((result: ImageChooserComponent) => {
             if(result) {
                 result.updateExistingDocument(this.document._id)

@@ -7,26 +7,13 @@
     overflow-y: auto;
 }
 
-.page-container {
-    height: 100%;
-    width: 100%;
-    position: relative;
-}
-
-.title-toolbar {
-    position: absolute;
-    top: 0px;
-    width: 100%;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.12);
-}
-
 .page-content {
-    position: absolute;
-    top: 64px;
-    right: 0px;
-    bottom: 0px;
-    left: 0px;
-    overflow-y: auto;
+    padding: 0px !important;
+}
+
+mat-expansion-panel-header {
+    height: 48px !important;
+    border-top: 1px solid rgba(0, 0, 0, 0.12);
 }
 
 .image-annotation-container {
@@ -62,12 +49,13 @@
     align-items: center;
     flex-direction: row;
     border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+    border-top: 1px solid rgba(0, 0, 0, 0.12);
 }
 
 .annotate-area {
     position: absolute;
     top: 58px;
-    bottom: 58px;
+    bottom: 0px;
     right: 0px;
     left: 0px;
     display: flex;
@@ -92,6 +80,14 @@
     background-color: whitesmoke;
 }
 
+.doc-content-container {
+    position: relative;
+}
+
+::ng-deep .no-padding .mat-expansion-panel-body {
+    padding: 0;
+}
+
 .annotate-doc-container {
     position: relative;
     border-left: 1px solid rgba(0, 0, 0, 0.12);
@@ -102,7 +98,7 @@
 }
 
 .doc-labeling-container {
-    padding: 28px;
+    padding: 10px 20px 20px 20px;
 }
 
 .annotate-table-wrapper {
@@ -147,8 +143,7 @@
 .image-container {
     position: relative;
     width: 100%;
-    height: 100%;
-    background-color: lightgray;
+    height: 440px;
 }
 
 .full-screen-btn {

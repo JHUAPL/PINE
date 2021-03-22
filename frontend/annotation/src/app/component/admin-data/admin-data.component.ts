@@ -3,6 +3,8 @@ import { Component, OnInit, ViewChild, ElementRef } from "@angular/core";
 import { HttpErrorResponse, HttpResponse } from "@angular/common/http";
 import { MatButton } from "@angular/material";
 
+import { PATHS } from "../../app.paths";
+
 import { BackendService } from "../../service/backend/backend.service";
 import { AdminService } from "../../service/admin/admin.service";
 import { EventService } from "../../service/event/event.service";
@@ -17,6 +19,8 @@ import { ErrorComponent } from "../error/error.component";
 export class AdminDataComponent implements OnInit {
 
     public static readonly SUBTITLE = "Manage System Data";
+    
+    public readonly PATHS = PATHS;
 
     public importDropFirst = false;
 

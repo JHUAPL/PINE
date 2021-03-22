@@ -9,7 +9,7 @@ import { map, flatMap } from "rxjs/operators";
 import { AppConfig } from "../../app.config";
 import { BackendService } from "../backend/backend.service";
 
-import { DBCollection, DBCollections, Collection, DownloadCollectionData } from "../../model/collection";
+import { DBCollection, DBCollections, Collection, CollectionUserPermissions, DownloadCollectionData } from "../../model/collection";
 import { CreatedObject } from "../../model/created";
 
 @Injectable({
@@ -39,8 +39,8 @@ export class CollectionRepositoryService {
         }).pipe(map(Collection.fromDB));
     }
 
-    public getCanAddDocumentsOrImages(collection_id: string): Observable<boolean> {
-        return this.backend.get<boolean>(`/collections/can_add_documents_or_images/${collection_id}`);
+    public getUserPermissions(collection_id: string): Observable<CollectionUserPermissions> {
+        return this.backend.get<CollectionUserPermissions>(`/collections/user_permissions/${collection_id}`);
     }
 
     public getCollectionDetails(colID: string): Observable<Collection> {

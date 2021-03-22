@@ -6,9 +6,8 @@ import logging
 from flask import abort, Blueprint, jsonify, request
 from werkzeug import exceptions
 
-from .. import auth, collections, log
+from .. import auth, collections, documents, log
 from ..data import service
-from ..documents import bp as documents
 
 """This module contains the api methods required to perform and display annotations in the front-end and store the 
 annotations in the backend"""
@@ -19,18 +18,22 @@ CONFIG_ALLOW_OVERLAPPING_NER_ANNOTATIONS = "allow_overlapping_ner_annotations"
 
 bp = Blueprint("annotations", __name__, url_prefix = "/annotations")
 
-def check_document_by_id(doc_id: str):
+def check_document_view_by_id(doc_id: str):
     """
     Verify that a document with the given doc_id exists and that the logged in user has permissions to access the
     document
     :param doc_id: str
     :return: dict
     """
-    if not documents.user_can_view_by_id(doc_id):
+    if not documents.get_user_permissions_by_id(doc_id).view:
         raise exceptions.Unauthorized()
 
-def check_document(doc: dict):
-    if not documents.user_can_view(doc):
+def check_document_view(doc: dict):
+    if not documents.get_user_permissions(doc).view:
+        raise exceptions.Unauthorized()
+
+def check_document_annotate(doc: dict):
+    if not documents.get_user_permissions(doc).annotate:
         raise exceptions.Unauthorized()
 
 @bp.route("/mine/by_document_id/<doc_id>")
@@ -42,7 +45,7 @@ def get_my_annotations_for_document(doc_id):
     :param doc_id: str
     :return: Response
     """
-    check_document_by_id(doc_id)
+    check_document_view_by_id(doc_id)
     where = {
         "document_id": doc_id,
         "creator_id": auth.get_logged_in_user()["id"]
@@ -61,7 +64,7 @@ def get_others_annotations_for_document(doc_id):
     :param doc_id: str
     :return: str
     """
-    check_document_by_id(doc_id)
+    check_document_view_by_id(doc_id)
     where = {
         "document_id": doc_id,
         # $eq doesn't work here for some reason -- maybe because objectid?
@@ -81,7 +84,7 @@ def get_annotations_for_document(doc_id):
     :param doc_id: str
     :return: str
     """
-    check_document_by_id(doc_id)
+    check_document_view_by_id(doc_id)
     where = {
         "document_id": doc_id
     }
@@ -330,7 +333,7 @@ def save_annotations(doc_id):
             "metadata": 1
         }
     }))
-    check_document(document)
+    check_document_annotate(document)
 
     body = request.get_json()
     (doc_labels, ner_annotations) = _make_annotations(body)
@@ -357,13 +360,14 @@ def save_collection_annotations(collection_id: str):
     # If you change input or output, update client modules pine.client.models and pine.client.client
     collection = service.get_item_by_id("collections", collection_id, params=service.params({
         "projection": {
-            "configuration": 1,
-            "creator_id": 1,
-            "viewer": 1,
-            "annotators": 1
+            **collections.user_permissions_projection(),
+            **{
+                "configuration": 1,
+            }
         }
     }))
-    if not collections.user_can_annotate(collection):
+    collection_permissions = collections.get_user_permissions(collection)
+    if not collection_permissions.annotate:
         raise exceptions.Unauthorized()
 
     if not request.is_json:

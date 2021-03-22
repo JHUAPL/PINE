@@ -1,6 +1,6 @@
 <!-- (C) 2019 The Johns Hopkins University Applied Physics Laboratory LLC.-->
 <div fxFlexFill class="page-container" fxLayout="column">
-    <mat-toolbar class="title-toolbar">
+    <mat-toolbar>
         <button mat-icon-button matTooltip="Go back to collection list" (click)="backToCollectionList()">
             <mat-icon>keyboard_arrow_left</mat-icon>
         </button>
@@ -18,34 +18,40 @@
             <div *ngIf="loading">Loading...</div>
             <div class="document-action-row">
                 <span fxFlex></span>
-                <button *ngIf="!collection?.archived" mat-stroked-button (click)="archiveCollection()"
-                    [disabled]="!canArchive">
-                    <mat-icon>archive</mat-icon>Archive
-                </button>
-                <button *ngIf="collection?.archived" mat-stroked-button (click)="unarchiveCollection()"
-                    [disabled]="!canArchive">
-                    <mat-icon>unarchive</mat-icon> Unarchive
-                </button>
+                <span [matTooltip]="permissionTooltip(permissions.archive, 'un/archive')">
+                    <button *ngIf="!collection?.archived" mat-stroked-button (click)="archiveCollection()"
+                            [disabled]="!permissions.archive">
+                        <mat-icon>archive</mat-icon>Archive
+                    </button>
+                    <button *ngIf="collection?.archived" mat-stroked-button (click)="unarchiveCollection()"
+                            [disabled]="!permissions.archive">
+                        <mat-icon>unarchive</mat-icon> Unarchive
+                    </button>
+                </span>
                 <span fxFlex="10px"></span>
-                <button *ngIf="can_add_images" class="add-doc-btn" mat-stroked-button (click)="uploadImages()">
-                    <mat-icon>cloud_upload</mat-icon> Upload Images
-                </button>
+                <span [matTooltip]="permissionTooltip(permissions.add_images, 'add images to')">
+                    <button class="add-doc-btn" mat-stroked-button (click)="uploadImages()"
+                            [disabled]="!permissions.add_images">
+                        <mat-icon>cloud_upload</mat-icon> Upload Images
+                    </button>
+                </span>
                 <span fxFlex="10px"></span>
-                <button mat-stroked-button (click)="downloadData()">
-                    <mat-icon>cloud_download</mat-icon> Download Data
-                </button>
+                <span [matTooltip]="permissionTooltip(permissions.download_data, 'download')">
+                    <button mat-stroked-button (click)="downloadData()"
+                            [disabled]="!permissions.download_data">
+                        <mat-icon>cloud_download</mat-icon> Download Data
+                    </button>
+                </span>
             </div>
 
             <div class="doc-list-table">
                 <table id="metadata-table" *ngIf="!loading">
-                    <tr style="vertical-align: top;">
-                        <td style="padding-top: 25px">
                     <tr class="space-under">
-                        <td><b>Collection title:</b></td>
+                        <td><b>Collection&nbsp;title:</b></td>
                         <td>{{ collection?.getTitle() }}</td>
                     </tr>
                     <tr class="space-under">
-                        <td> <b>Collection ID:</b> </td>
+                        <td> <b>Collection&nbsp;ID:</b> </td>
                         <td>{{collection?._id}}</td>
                     </tr>
                     <tr class="space-under">
@@ -67,7 +73,7 @@
                                 <mat-chip *ngFor="let viewer of collection?.viewers">
                                     {{auth.getUserDisplayName(viewer)}}
                                 </mat-chip>
-                                <mat-chip class="chip-can-click" *ngIf="can_add_users" (click)="openAddViewerDialog()">+</mat-chip>
+                                <mat-chip class="chip-can-click" *ngIf="permissions.modify_users" (click)="openAddViewerDialog()">+</mat-chip>
                             </mat-chip-list>
                         </td>
                     </tr>
@@ -77,7 +83,7 @@
                             <mat-chip-list>
                                 <mat-chip *ngFor="let annotator of collection?.annotators">
                                     {{auth.getUserDisplayName(annotator)}}</mat-chip>
-                                <mat-chip class="chip-can-click" *ngIf="can_add_users" (click)="openAddAnnotatorDialog()">+</mat-chip>
+                                <mat-chip class="chip-can-click" *ngIf="permissions.modify_users" (click)="openAddAnnotatorDialog()">+</mat-chip>
                             </mat-chip-list>
                         </td>
                     </tr>
@@ -86,7 +92,7 @@
                         <td colspan="3">
                             <mat-chip-list>
                                 <mat-chip *ngFor="let label of collection?.labels">{{label}}</mat-chip>
-                                <mat-chip class="chip-can-click" *ngIf="can_add_users" (click)="openAddLabelDialog()">+</mat-chip>
+                                <mat-chip class="chip-can-click" *ngIf="permissions.modify_labels" (click)="openAddLabelDialog()">+</mat-chip>
                             </mat-chip-list>
                         </td>
                     </tr>
@@ -135,24 +141,23 @@
                             </ng-container>
                         </td>
                     </tr>
-                    </td>
-
-                    </tr>
-                    <tr *ngIf="iaa_report">
-                        <td>
-
-                            <app-collection-iaa-report [iaa_report]="iaa_report">
-
-                            </app-collection-iaa-report>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <app-metrics [metrics]="metrics">
-                            </app-metrics>
-                        </td>
-                    </tr>
                 </table>
+                <div *ngIf="!loading && iaa_report">
+                    <app-collection-iaa-report [iaa_report]="iaa_report"></app-collection-iaa-report>
+                </div>
+                <div *ngIf="!loading">
+                    <app-metrics [metrics]="metrics"></app-metrics>
+                </div>
+                <div *ngIf="!loading">
+                    <h3>Your Collection Permissions</h3>
+                    <ul>
+                        <li *ngFor="let perm of permissions | keyvalue : permissionSorter">
+                            <span>{{ PERMISSION_TITLES[perm.key] }}: </span>
+                            <span *ngIf="perm.value"><mat-icon>check</mat-icon> yes</span>
+                            <span *ngIf="!perm.value"><mat-icon>close</mat-icon> no</span>
+                        </li>
+                    </ul>
+                </div>
             </div>
         </section>
 
@@ -163,9 +168,12 @@
                         <input matInput placeholder="Filter" #filter>
                     </mat-form-field>
                     <span fxFlex></span>
-                    <button *ngIf="can_add_documents" mat-stroked-button (click)="addDocument()">
-                        <mat-icon>add</mat-icon> Add Document
-                    </button>
+                    <span [matTooltip]="permissionTooltip(permissions.add_documents, 'add documents to')">
+                        <button mat-stroked-button (click)="addDocument()"
+                                [disabled]="!permissions.add_documents">
+                            <mat-icon>add</mat-icon> Add Document
+                        </button>
+                    </span>
                     <span fxFlex="10px"></span>
                     <button mat-stroked-button [routerLink]="['/' + PATHS.document.annotate, nextDocId]"
                         [disabled]="nextDocId == null">

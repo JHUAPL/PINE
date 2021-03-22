@@ -46,7 +46,6 @@ export class AppComponent implements OnInit, AfterViewInit {
     }
 
     public ngOnInit() {
-        localStorage.clear();
         this.authService.instantiate().subscribe((name: string) => {
             console.log(`Using auth module ${name}`);
                 this.ready = true;

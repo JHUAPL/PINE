@@ -3,11 +3,12 @@
 import json
 import random
 import re
+import typing
 
 from flask import abort, Blueprint, jsonify, request
 from werkzeug import exceptions
 
-from .. import auth, collections, log
+from .. import auth, collections, log, models
 from ..data import service
 
 bp = Blueprint("documents", __name__, url_prefix = "/documents")
@@ -29,29 +30,15 @@ def get_collection_ids_for(document_ids) -> set:
         }
     }))) 
 
-def user_can_annotate(document):
-    return collections.user_can_annotate_by_id(document["collection_id"])
+def get_user_permissions(document: dict) -> models.CollectionUserPermissions:
+    return collections.get_user_permissions_by_id(document["collection_id"])
 
-def user_can_view(document):
-    return collections.user_can_view_by_id(document["collection_id"])
-
-def user_can_modify_metadata(document):
-    return collections.user_can_modify_document_metadata_by_id(document["collection_id"])
-
-def user_can_annotate_by_id(document_id):
+def get_user_permissions_by_id(document_id: str) -> models.CollectionUserPermissions:
     document = service.get_item_by_id("documents", document_id, params=_document_user_can_projection())
-    return user_can_annotate(document)
+    return get_user_permissions(document)
 
-def user_can_annotate_by_ids(document_ids):
-    return collections.user_can_annotate_by_ids(get_collection_ids_for(document_ids))
-
-def user_can_view_by_id(document_id):
-    document = service.get_item_by_id("documents", document_id, params=_document_user_can_projection())
-    return user_can_view(document)
-
-def user_can_modify_metadata_by_id(document_id):
-    document = service.get_item_by_id("documents", document_id, params=_document_user_can_projection())
-    return user_can_modify_metadata(document)
+def get_user_permissions_by_ids(document_ids: typing.Iterable[str]) -> typing.List[models.CollectionUserPermissions]:
+    return collections.get_user_permissions_by_ids(get_collection_ids_for(document_ids))
 
 
 @bp.route("/by_id/<doc_id>", methods = ["GET"])
@@ -61,7 +48,7 @@ def get_document(doc_id):
     if not resp.ok:
         abort(resp.status_code)
     document = resp.json()
-    if user_can_view(document):
+    if get_user_permissions(document).view:
         log.access_flask_view_document(document)
         return service.convert_response(resp)
     else:
@@ -71,7 +58,7 @@ def get_document(doc_id):
 @auth.login_required
 def count_documents_in_collection(col_id):
     collection = service.get_item_by_id("collections", col_id)
-    if not collections.user_can_view(collection):
+    if not collections.get_user_permissions(collection).view:
         raise exceptions.Unauthorized()
     params = service.params({
         "where": {
@@ -96,7 +83,7 @@ def get_all_documents_in_collection(col_id):
     truncate = json.loads(request.args.get("truncate", "true"))
     truncate_length = json.loads(request.args.get("truncateLength", "50"))
     collection = service.get_item_by_id("collections", col_id)
-    if not collections.user_can_view(collection):
+    if not collections.get_user_permissions(collection).view:
         raise exceptions.Unauthorized()
     params = service.where_params({
         "collection_id": col_id
@@ -119,7 +106,7 @@ def get_all_documents_in_collection(col_id):
 @auth.login_required
 def get_paginated_documents_in_collection(collection_id):
     collection = service.get_item_by_id("collections", collection_id)
-    if not collections.user_can_view(collection):
+    if not collections.get_user_permissions(collection).view:
         raise exceptions.Unauthorized()
 
     if not "page" in request.args or not "pageSize" in request.args:
@@ -185,13 +172,9 @@ def _check_documents(documents) -> dict:
     collections_by_id = {}
     for collection_id in collection_ids:
         collection = service.get_item_by_id("collections", collection_id, params=service.params({
-            "projection": {
-                "creator_id": 1,
-                "annotators": 1,
-                "viewers": 1
-            }
+            "projection": collections.user_permissions_projection()
         }))
-        if not collections.user_can_add_documents_or_images(collection):
+        if not collections.get_user_permissions(collection).add_documents:
             raise exceptions.Unauthorized()
         collections_by_id[collection_id] = collection
     return collections_by_id
@@ -294,15 +277,10 @@ def add_document():
 
     return service.convert_response(doc_resp)
 
-@bp.route("/can_annotate/<doc_id>", methods = ["GET"])
+@bp.route("/user_permissions/<doc_id>", methods = ["GET"])
 @auth.login_required
-def can_annotate_document(doc_id):
-    return jsonify(user_can_annotate_by_id(doc_id))
-
-@bp.route("/can_modify_metadata/<doc_id>", methods = ["GET"])
-@auth.login_required
-def can_modify_metadata(doc_id):
-    return jsonify(user_can_modify_metadata_by_id(doc_id))
+def endpoint_get_user_permissions(doc_id):
+    return jsonify(get_user_permissions_by_id(doc_id).to_dict())
 
 @bp.route("/metadata/<doc_id>", methods = ["PUT"])
 def update_metadata(doc_id):
@@ -317,7 +295,7 @@ def update_metadata(doc_id):
             "collection_id": 1
         })
     })
-    if not user_can_modify_metadata(document):
+    if not get_user_permissions(document).modify_document_metadata:
         raise exceptions.Unauthorized()
 
     # update document

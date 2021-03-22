@@ -1,9 +1,4 @@
 /*(C) 2019 The Johns Hopkins University Applied Physics Laboratory LLC. */
-.list-container {
-    height: 100%;
-    width: 100%;
-    position: relative;
-}
 
 .filter-bar {
     position: absolute;
@@ -25,21 +20,11 @@
     width: 280px;
 }
 
-.list-container > mat-toolbar {
-    position: absolute;
-    top: 0px;
-    width: 100%;
+.page-container > .page-content {
+    top: 122px !important;
+    padding: 0px !important;
 }
 
-.list-container > .table-container {
-    position: absolute;
-    top: 122px;
-    bottom: 0px;
-    right: 0px;
-    left: 0px;
-    overflow-y: auto;
-}
-
-.list-container > .table-container table {
+.page-container > .page-content table {
     width: 100%;
 }

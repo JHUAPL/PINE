@@ -1,10 +1,13 @@
 <!-- (C) 2019 The Johns Hopkins University Applied Physics Laboratory LLC.-->
-<div class="data-container">
+<div class="page-container">
     <mat-toolbar>
-        <span>Export/Import System Data</span>
+        <button mat-icon-button matTooltip="Go back to admin dashboard" [routerLink]="['/' + PATHS.admin.dashboard]">
+            <mat-icon>keyboard_arrow_left</mat-icon>
+        </button>
+        Export/Import System Data
     </mat-toolbar>
 
-    <div class="data-content">
+    <div class="page-content">
         <div class="card-row" fxLayout="row">
             <mat-card fxFlex>
                 <p>This will export the entire content of your database and save the file through your

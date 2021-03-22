@@ -31,13 +31,13 @@
                                     <span
                                         *ngIf="item.value !== collections.collectionImageUrl(collection._id, item.value)">({{collections.collectionImageUrl(collection._id, item.value)}})</span>
                                 </a>
-                                <div><button *ngIf="canUpdateMetadata" mat-button mat-raised-button
+                                <div><button *ngIf="permissions.modify_document_metadata" mat-button mat-raised-button
                                         (click)="updateImage()">Update document image</button></div>
                             </td>
                         </tr>
                     </ng-container>
                     <tr
-                        *ngIf="canUpdateMetadata && (!document || !document.metadata || !document.metadata.hasOwnProperty('imageUrl'))">
+                        *ngIf="permissions.modify_document_metadata && (!document || !document.metadata || !document.metadata.hasOwnProperty('imageUrl'))">
                         <td><b>imageUrl</b></td>
                         <td><button mat-button mat-raised-button (click)="updateImage()">Update document
                                 image</button></td>

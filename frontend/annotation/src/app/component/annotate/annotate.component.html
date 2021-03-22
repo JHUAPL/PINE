@@ -1,211 +1,210 @@
 <!-- (C) 2019 The Johns Hopkins University Applied Physics Laboratory LLC.-->
 <div fxFlexFill class="page-container" fxLayout="column">
-    <mat-toolbar class="title-toolbar">
+    <mat-toolbar>
         <button class="doc-back-button" mat-icon-button matTooltip="Go back to collection details"
             (click)="backToCollectionDetails()">
             <mat-icon>keyboard_arrow_left</mat-icon>
         </button>
         <span class="page-title">Document {{doc?._id}}</span>
-        <span fxFlex="22px"></span>
-        <mat-tab-group *ngIf="collection" class="title-tabs" fxFlex mat-stretch-tabs [(selectedIndex)]="tabIndex"
-            (selectedIndexChange)="updateTabInUrl()">
-            <mat-tab class="tab-annotations" label="Annotations"></mat-tab>
-            <mat-tab class="tab-image" label="Image"></mat-tab>
-            <mat-tab class="tab-details" label="Details"></mat-tab>
-        </mat-tab-group>
+        <span fxFlex="8px"></span>
+        <button class="title-toolbar-button" mat-stroked-button (click)="scroll('detailsFlag')">Details</button>
+        <span fxFlex="8px"></span>
+        <button class="title-toolbar-button" mat-stroked-button (click)="scroll('docAnnotateFlag')">Labeling</button>
+        <span fxFlex="8px"></span>
+        <button class="title-toolbar-button" mat-stroked-button (click)="scroll('imageFlag')">Image</button>
+        <span fxFlex="8px"></span>
+        <button class="title-toolbar-button" mat-stroked-button (click)="scroll('documentFlag')">Document</button>
+        <span fxFlex></span>
+        <button class="annotate-button" mat-raised-button (click)="save(false)">
+            <span class="material-icons">save</span>Save
+        </button>
+        <span fxFlex="10px"></span>
+        <button mat-raised-button (click)="save(true)">
+            <span class="material-icons">skip_next</span>
+            Save and Go to Next Document
+        </button>
     </mat-toolbar>
 
-    <div class="page-content">
+    <div class="page-content" id="page-content" #pageContent>
 
         <app-loading></app-loading>
-        <section *ngIf="tabIndex == 0 && !loading.loading && !loading.error" #annotateSection>
-            <div class="filter-bar">
-                <button mat-icon-button (click)="showList = !showList">
-                    <mat-icon>list</mat-icon>
-                </button>
 
-                <span fxFlex="22px"></span>
+        <mat-accordion *ngIf="!loading.loading && !loading.error" [multi]="true" displayMode="flat">
+            <mat-expansion-panel class="mat-elevation-z0" id="detailsFlag" [expanded]="panelExpanded.detailsFlag"
+                (closed)="panelIsOpen('detailsFlag', false)" (opened)="panelIsOpen('detailsFlag', true)"
+                (afterExpand)="onAfterExpand('detailsFlag')">
+                <mat-expansion-panel-header>
+                    <mat-panel-title>Document Details</mat-panel-title>
+                </mat-expansion-panel-header>
 
-                <span *ngIf="others.length === 0">No annotations from other users.</span>
-                <div *ngIf="others.length > 0" id="others">
-                    <mat-form-field fxFlex="180px" floatLabel="never">
-                        <mat-label>Show Annotations:</mat-label>
-                        <mat-select id="othersAnnotations" value="" #othersSelect>
-                            <mat-option value="" (click)="showAnnotationsOf(othersSelect, null)">
-                                Mine
-                            </mat-option>
-                            <mat-option *ngFor="let other of others" [value]="other"
-                                (click)="showAnnotationsOf(othersSelect, other)">
-                                {{ auth.getUserDisplayName(other) }}</mat-option>
-                        </mat-select>
-                    </mat-form-field>
-                    <span fxFlex="10px"></span>
-                    <mat-chip-list
-                        *ngIf="othersSelect.value && othersDocAnnotations.hasOwnProperty(othersSelect.value) && othersDocAnnotations[othersSelect.value].length > 0">
-                        <mat-chip *ngFor="let label of othersDocAnnotations[othersSelect.value]"
-                            [style.background-color]="getColorFor(label)">
-                            {{label}}
-                        </mat-chip>
-                    </mat-chip-list>
-                    <span
-                        *ngIf="othersSelect.value && (!othersDocAnnotations.hasOwnProperty(othersSelect.value) || othersDocAnnotations[othersSelect.value].length === 0)">No
-                        labels for this document.</span>
-                </div>
-                <span fxFlex></span>
-                <div>
-                    <span>
-                        <b>
-                            Document Overall Agreement:
-                        </b>
-                        <span *ngIf="ann_agreement != null && ann_agreement != 'null'">{{ann_agreement | percent:'1.2-2'}}</span>
-                        <span *ngIf="ann_agreement == null || ann_agreement == 'null'">N/A</span>
-                    </span>
-                </div>
-            </div>
+                <app-document-details expanded="true" [document]="doc" [collection]="collection"
+                    (imageUrlChanged)="imageChanged($event)">
+                </app-document-details>
+            </mat-expansion-panel>
 
-            <div class="annotate-area">
-                <div *ngIf="showList" class="annotate-table-container" fxFlex="30%">
-                    <app-ner-annotation-table [labels]="availableLabels" [data]="nerData"
-                        (remove)="removeAnnotation($event)" [readOnly]="showingAnnotationsFor !== null">
-                    </app-ner-annotation-table>
-                </div>
-                <div class="annotate-doc-container" fxFlex>
-                    <div class="annotate-doc-toolbar" fxLayout="row">
-                        <span class="mat-title">NER Annotations</span>
-                        <span fxFlex></span>
-                        <span *ngIf="showingAnnotationsFor === null">Click to select text; right-click to annotate
-                            selection</span>
-                        <span *ngIf="showingAnnotationsFor !== null">Showing
-                            {{ auth.getUserDisplayName(showingAnnotationsFor) }}'s
-                            annotations in read-only mode</span>
-                        <span fxFlex="10px"></span>
-                        <mat-menu #settingsMenu="matMenu" id="settings">
-                            <button>
-                                <mat-checkbox matMenuItem [(ngModel)]="settingMonospace"
-                                    (click)="$event.stopPropagation()" class="mat-menu-item">
-                                    Monospace font
-                                </mat-checkbox>
-                            </button>
-                        </mat-menu>
-                        <button mat-icon-button [matMenuTriggerFor]="settingsMenu" id="settingsButton"
-                            matTooltip="Document/annotation settings">
-                            <mat-icon>settings</mat-icon>
-                        </button>
+            <mat-expansion-panel class="mat-elevation-z0" id="docAnnotateFlag" [expanded]="panelExpanded.docAnnotateFlag"
+                (closed)="panelIsOpen('docAnnotateFlag', false)" (opened)="panelIsOpen('docAnnotateFlag', true)"
+                (afterExpand)="onAfterExpand('docAnnotateFlag')">
+                <mat-expansion-panel-header>
+                    <mat-panel-title>Document Labeling</mat-panel-title>
+                </mat-expansion-panel-header>
+
+                <div class="doc-labeling-container">
+                    <div fxLayout="row">
+                        <mat-error *ngIf="!permissions.annotate" id="cantAnnotate">
+                            <h3>Note: you do not have authority to change or add annotations for this document.</h3>
+                        </mat-error>
                     </div>
 
-                    <div #docElem id="doc" class="cursor-pointer">
-                        <!-- set word-start and word-end to help with testing -->
-                        <span #wordsList class="word" *ngFor="let word of nerData.words" [id]="word.id"
-                            [attr.word-start]="word.start" [attr.word-end]="word.end"
-                            [matTooltip]="getWordTooltip(word)" (mousedown)="mousedown($event, word)"
-                            (mouseover)="mouseover($event, word)" (mouseout)="mouseout($event, word)"
-                            (mouseup)="mouseup($event, word)" (click)="click($event, word)"
-                            (contextmenu)="contextMenu($event, word)">{{ word.text }}</span>
-                    </div>
-
-                    <div *ngIf="!allowOverlappingNerAnnotations"> (Note: overlapping annotations are not allowed for
-                        this
-                        collection.)
-                    </div>
-
-                    <div #popoverTemplate id="popoverTemplate" class="popover" hidden>
-                        <mat-chip-list>
-                            <mat-chip *ngFor="let label of availableLabels" [style.background-color]="label.color"
-                                class="shadowed cursor-pointer doc-label-chip">{{label.name}}</mat-chip>
-                        </mat-chip-list>
-                        <div style="padding: 2px">
-                            <button mat-raised-button color="warn">
-                                Remove / Reset
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="action-bar" fxLayout="row">
-                <button mat-raised-button [routerLink]="['/' + PATHS.collection.details, doc.collection_id]">
-                    <span class="material-icons">cancel</span>Cancel
-                </button>
-                <app-error></app-error>
-                <span fxFlex></span>
-                <button class="annotate-button" mat-raised-button (click)="save(false)"
-                    [disabled]="!canCurrentlyAnnotate">
-                    <span class="material-icons">save</span>Save
-                </button>
-                <span fxFlex="10px"></span>
-                <button mat-raised-button (click)="save(true)" [disabled]="!canCurrentlyAnnotate">
-                    <span class="material-icons">save</span><span class="material-icons">navigate_next</span>
-                    Save and Advance to Next Document
-                </button>
-            </div>
-        </section>
-
-        <section *ngIf="tabIndex == 1 && !loading.loading && !loading.error" #imageSection fxFlexFill>
-            <div *ngIf="doc.metadata && doc.metadata['imageUrl']" id="myDocImage" class="image-container">
-                <mat-card class="image-annotation-container" fxLayout="column">
-                    <div>Annotations</div>
-                    <mat-divider class="image-annotation-divider"></mat-divider>
-                    <div class="image-annotation-list" fxLayout="column">
-                        <mat-chip-list class="mat-chip-list-stacked">
+                    <div class="doc-label-list" fxLayout="row">
+                        <mat-chip-list fxFlex>
                             <mat-checkbox *ngFor="let annotation of myDocAnnotations;" [(ngModel)]="annotation.checked">
                                 <mat-chip [style.background-color]="annotation.label.color"
                                     class="shadowed cursor-pointer">
                                     {{annotation.label.name}}</mat-chip>
                             </mat-checkbox>
                         </mat-chip-list>
-
                     </div>
-                    <div fxLayout="row">
-                        <mat-error *ngIf="!canAnnotate" id="cantAnnotate">
-                            <h3>Note: you do not have authority to change or add annotations for this document.</h3>
-                        </mat-error>
-                        <span fxFlex></span>
-                        <button class="btn-short annotate-button" mat-raised-button color="primary"
-                            (click)="save(false)" [disabled]="!canCurrentlyAnnotate">
-                            <span class="material-icons">save</span>Save
+                </div>
+            </mat-expansion-panel>
+
+            <mat-expansion-panel class="mat-elevation-z0" id="imageFlag" class="no-padding" [expanded]="panelExpanded.imageFlag"
+                (closed)="panelIsOpen('imageFlag', false)" (opened)="panelIsOpen('imageFlag', true)"
+                (afterExpand)="onAfterExpand('imageFlag')">
+                <mat-expansion-panel-header>
+                    <mat-panel-title>Image</mat-panel-title>
+                </mat-expansion-panel-header>
+
+                <div *ngIf="doc.metadata && doc.metadata['imageUrl']" id="myDocImage" class="image-container"
+                    [ngStyle]="{'height': (pageHeight - 48 - 127) + 'px'}" #imageContainer>
+                    <div
+                        style="position: absolute; top: 0px; bottom: 20px; left: 20px; right: 20px; background-color: lightgray">
+                        <button class="full-screen-btn" mat-raised-button (click)="toggleImageFullscreen()">{{
+                            isImageFullscreen() ? 'Close' : 'Open' }} Full
+                            Screen</button>
+                        <app-image-explorer [imageUrl]="doc.metadata['imageUrl']" [documentId]="doc._id"
+                            [collectionId]="collection._id"></app-image-explorer>
+                    </div>
+                </div>
+            </mat-expansion-panel>
+
+            <mat-expansion-panel class="mat-elevation-z0" id="documentFlag" class="no-padding" [expanded]="panelExpanded.documentFlag"
+                (closed)="panelIsOpen('documentFlag', false)" (opened)="panelIsOpen('documentFlag', true)"
+                (afterExpand)="onAfterExpand('documentFlag')">
+                <mat-expansion-panel-header>
+                    <mat-panel-title>Document</mat-panel-title>
+                </mat-expansion-panel-header>
+
+                <div class="doc-content-container" [ngStyle]="{'height': (pageHeight - 48 - 127) + 'px'}">
+                    <div class="filter-bar">
+                        <button mat-icon-button (click)="showList = !showList">
+                            <mat-icon>list</mat-icon>
                         </button>
+
+                        <span fxFlex="22px"></span>
+
+                        <span *ngIf="others.length === 0">No annotations from other users.</span>
+                        <div *ngIf="others.length > 0" id="others">
+                            <mat-form-field fxFlex="180px" floatLabel="never">
+                                <mat-label>Show Annotations:</mat-label>
+                                <mat-select id="othersAnnotations" value="" #othersSelect>
+                                    <mat-option value="" (click)="showAnnotationsOf(othersSelect, null)">
+                                        Mine
+                                    </mat-option>
+                                    <mat-option *ngFor="let other of others" [value]="other"
+                                        (click)="showAnnotationsOf(othersSelect, other)">
+                                        {{ auth.getUserDisplayName(other) }}</mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                            <span fxFlex="10px"></span>
+                            <mat-chip-list
+                                *ngIf="othersSelect.value && othersDocAnnotations.hasOwnProperty(othersSelect.value) && othersDocAnnotations[othersSelect.value].length > 0">
+                                <mat-chip *ngFor="let label of othersDocAnnotations[othersSelect.value]"
+                                    [style.background-color]="getColorFor(label)">
+                                    {{label}}
+                                </mat-chip>
+                            </mat-chip-list>
+                            <span
+                                *ngIf="othersSelect.value && (!othersDocAnnotations.hasOwnProperty(othersSelect.value) || othersDocAnnotations[othersSelect.value].length === 0)">No
+                                labels for this document.</span>
+                        </div>
+                        <span fxFlex></span>
+                        <div>
+                            <span>
+                                <b>
+                                    Document Overall Agreement:
+                                </b>
+                                <span *ngIf="ann_agreement != null && ann_agreement != 'null'">{{ann_agreement |
+                                    percent:'1.2-2'}}</span>
+                                <span *ngIf="ann_agreement == null || ann_agreement == 'null'">N/A</span>
+                            </span>
+                        </div>
                     </div>
 
-                </mat-card>
-                <div style="position: absolute; top: 0px; bottom: 0; left: 0; right: 0;">
-                    <button class="full-screen-btn" mat-raised-button
-                        (click)="toggleImageFullscreen()">{{ isImageFullscreen() ? 'Close' : 'Open' }} Full
-                        Screen</button>
-                    <app-image-explorer [imageUrl]="doc.metadata['imageUrl']" [documentId]="doc._id"
-                        [collectionId]="collection._id"></app-image-explorer>
+                    <div class="annotate-area">
+                        <div *ngIf="showList" class="annotate-table-container" fxFlex="30%">
+                            <app-ner-annotation-table [labels]="availableLabels" [data]="nerData"
+                                (remove)="removeAnnotation($event)" [readOnly]="showingAnnotationsFor !== null">
+                            </app-ner-annotation-table>
+                        </div>
+                        <div class="annotate-doc-container" fxFlex>
+                            <div class="annotate-doc-toolbar" fxLayout="row">
+                                <span class="mat-title">NER Annotations</span>
+                                <span fxFlex></span>
+                                <span *ngIf="showingAnnotationsFor === null">Click to select text; right-click to
+                                    annotate
+                                    selection</span>
+                                <span *ngIf="showingAnnotationsFor !== null">Showing
+                                    {{ auth.getUserDisplayName(showingAnnotationsFor) }}'s
+                                    annotations in read-only mode</span>
+                                <span fxFlex="10px"></span>
+                                <mat-menu #settingsMenu="matMenu" id="settings">
+                                    <button>
+                                        <mat-checkbox matMenuItem [(ngModel)]="settingMonospace"
+                                            (click)="$event.stopPropagation()" class="mat-menu-item">
+                                            Monospace font
+                                        </mat-checkbox>
+                                    </button>
+                                </mat-menu>
+                                <button mat-icon-button [matMenuTriggerFor]="settingsMenu" id="settingsButton"
+                                    matTooltip="Document/annotation settings">
+                                    <mat-icon>settings</mat-icon>
+                                </button>
+                            </div>
+
+                            <div #docElem id="doc" class="cursor-pointer">
+                                <!-- set word-start and word-end to help with testing -->
+                                <span #wordsList class="word" *ngFor="let word of nerData.words" [id]="word.id"
+                                    [attr.word-start]="word.start" [attr.word-end]="word.end"
+                                    [matTooltip]="getWordTooltip(word)" (mousedown)="mousedown($event, word)"
+                                    (mouseover)="mouseover($event, word)" (mouseout)="mouseout($event, word)"
+                                    (mouseup)="mouseup($event, word)" (click)="click($event, word)"
+                                    (contextmenu)="contextMenu($event, word)">{{ word.text }}</span>
+                            </div>
+
+                            <div *ngIf="!allowOverlappingNerAnnotations"> (Note: overlapping annotations are not allowed
+                                for
+                                this
+                                collection.)
+                            </div>
+
+                            <div #popoverTemplate id="popoverTemplate" class="popover" hidden>
+                                <mat-chip-list>
+                                    <mat-chip *ngFor="let label of availableLabels"
+                                        [style.background-color]="label.color"
+                                        class="shadowed cursor-pointer doc-label-chip">{{label.name}}</mat-chip>
+                                </mat-chip-list>
+                                <div style="padding: 2px">
+                                    <button mat-raised-button color="warn">
+                                        Remove / Reset
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </section>
 
-        <section *ngIf="tabIndex == 2 && !loading.loading && !loading.error" #detailSection>
-            <div class="doc-labeling-container">
-                <div fxLayout="row">
-                    <h2 class="mat-title">Document Labeling</h2>
-                    <mat-error *ngIf="!canAnnotate" id="cantAnnotate">
-                        <h3>Note: you do not have authority to change or add annotations for this document.</h3>
-                    </mat-error>
-                </div>
-
-                <div class="doc-label-list" fxLayout="row">
-                    <mat-chip-list fxFlex>
-                        <mat-checkbox *ngFor="let annotation of myDocAnnotations;" [(ngModel)]="annotation.checked">
-                            <mat-chip [style.background-color]="annotation.label.color" class="shadowed cursor-pointer">
-                                {{annotation.label.name}}</mat-chip>
-                        </mat-checkbox>
-                    </mat-chip-list>
-                    <button class="btn-short annotate-button" mat-raised-button color="primary" (click)="save(false)"
-                        [disabled]="!canCurrentlyAnnotate">
-                        <span class="material-icons">save</span>Save
-                    </button>
-                </div>
-            </div>
-
-            <mat-divider></mat-divider>
-
-            <app-document-details expanded="true" [document]="doc" [collection]="collection"
-                (imageUrlChanged)="imageChanged($event)">
-            </app-document-details>
-        </section>
-
+            </mat-expansion-panel>
+        </mat-accordion>
     </div>
 </div>

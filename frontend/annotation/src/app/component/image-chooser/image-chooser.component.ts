@@ -12,6 +12,7 @@ import { CollectionRepositoryService } from "../../service/collection-repository
 import { DocumentRepositoryService } from "../../service/document-repository/document-repository.service";
 import { uuidv4 } from "../util";
 
+import { CollectionUserPermissions, newPermissions } from "../../model/collection";
 import { Document } from "../../model/document";
 
 @Component({
@@ -29,7 +30,7 @@ export class ImageChooserComponent implements OnInit {
 
     public readonly uuidv4 = uuidv4();
 
-    public canUploadFile: boolean;
+    public permissions: CollectionUserPermissions = newPermissions();
     public form: FormGroup;
     public existingCollectionImageUrl: string;
     private file: File;
@@ -43,12 +44,13 @@ export class ImageChooserComponent implements OnInit {
             file_display: [],
             file_path: [],
         });
-        this.canUploadFile = false;
     }
 
     ngOnInit() {
-        this.collections.getCanAddDocumentsOrImages(this.collectionId).pipe(take(1)).subscribe((val: boolean) => {
-            this.canUploadFile = val;
+        this.collections.getUserPermissions(this.collectionId).pipe(
+            take(1)
+        ).subscribe((permissions: CollectionUserPermissions) => {
+            this.permissions = permissions;
         }, (error) => {
             console.error(error);
         });

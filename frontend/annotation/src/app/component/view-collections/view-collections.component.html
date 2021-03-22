@@ -2,7 +2,7 @@
 
 <!-- <app-loading></app-loading> -->
 
-<div class="list-container" fxFlexFill>
+<div class="page-container" fxFlexFill>
     <mat-toolbar>
         <span>Document Collections</span>
         <span *ngIf="loading || error" fxFlex="10px"></span>
@@ -28,7 +28,7 @@
         </mat-form-field>
     </div>
 
-    <div class="table-container">
+    <div class="page-content">
         <table mat-table class="table-selectable" [dataSource]="dataSource">
 
             <ng-container matColumnDef="title">
