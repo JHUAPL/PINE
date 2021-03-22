@@ -51,7 +51,7 @@ function goToDocument(collection_title, document_fragment) {
           .click({ force: true });
       });
     var document_id;
-    cy.get(".title-tabs")
+    cy.get(".title-toolbar-button")
       .contains("Details")
       .should("be.visible")
       .click().then(deets => {
@@ -199,16 +199,29 @@ describe("Documents Tests", function() {
     cy.pine_login_eve();
     const frag = document_fragments[0];
     goToDocument(collection_title, frag);
-    cy.get(".mat-title")
-      .contains("Document Labeling")
+    cy.get(".title-toolbar-button")
+      .contains("Details")
       .should("exist");
-    cy.get(".title-tabs")
+    cy.get("mat-panel-title")
+      .contains("Document Details")
+      .should("exist");
+    cy.get(".title-toolbar-button")
       .contains("Image")
       .should("exist");
-    cy.get(".title-tabs")
-      .contains("Annotations")
+    cy.get("mat-panel-title")
+      .contains("Image")
+      .should("exist");
+    cy.get(".title-toolbar-button")
+      .contains("Labeling")
+      .should("exist");
+    cy.get("mat-panel-title")
+      .contains("Document Labeling")
+      .should("exist");
+    cy.get(".title-toolbar-button")
+      .contains("Document")
       .should("exist")
       .click();
+    cy.wait(1000);
     cy.get(".mat-title")
       .contains("NER Annotations")
       .should("exist");
@@ -257,18 +270,20 @@ describe("Documents Tests", function() {
       .should("not.have.class", "select")
       .should("not.have.class", "annotation")
       .as("firstWord");
-    cy.get(".title-tabs")
-      .contains("Details")
+    cy.get(".title-toolbar-button")
+      .contains("Labeling")
       .should("be.visible")
       .click();
+    cy.wait(1000);
     cy.get(".doc-labeling-container")
       .find("mat-chip")
       .first()
       .then($firstLabel => {
-        cy.get(".title-tabs")
-        .contains("Annotations")
+        cy.get(".title-toolbar-button")
+        .contains("Document")
         .should("be.visible")
         .click();
+        cy.wait(1000);
         annotateWord(cy.get("@firstWord"), $firstLabel.text().trim());
       });
 

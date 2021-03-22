@@ -11,8 +11,9 @@
 }
 
 .logo-img {
-    width: 30px;
-    margin-right: 8px;
+    height: 30px;
+    width: auto;
+    margin-right: 10px;
 }
 
 .page-content {
@@ -29,4 +30,27 @@
     left: 0px;
     right: 0px;
     z-index: 100;
+}
+
+::ng-deep .page-container {
+    height: 100%;
+    width: 100%;
+    position: relative;
+}
+
+::ng-deep .page-container > mat-toolbar {
+    position: absolute;
+    top: 0px;
+    width: 100%;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+}
+
+::ng-deep .page-container > .page-content {
+    position: absolute;
+    top: 64px;
+    bottom: 0px;
+    right: 0px;
+    left: 0px;
+    padding: 20px;
+    overflow-y: auto;
 }

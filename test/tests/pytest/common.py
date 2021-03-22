@@ -47,10 +47,13 @@ def test_collection_data(title: str = None) -> typing.Union[dict, typing.List[di
     else:
         return collections
 
-def login_with_test_user(client: pine.client.LocalPineClient) -> pine.client.LocalPineClient:
-    user = test_user_data(TEST_USER)
+def login_with_user(user_id_or_email: str, client: pine.client.LocalPineClient) -> pine.client.LocalPineClient:
+    user = test_user_data(user_id_or_email)
     assert client.is_logged_in() == False
     client.login_eve(user["_id"], user["password"])
     assert client.is_logged_in() == True
     assert client.get_my_user_id() == user["_id"]
     return client
+
+def login_with_test_user(client: pine.client.LocalPineClient) -> pine.client.LocalPineClient:
+    return login_with_user(TEST_USER, client)

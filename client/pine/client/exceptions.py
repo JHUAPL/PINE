@@ -41,11 +41,15 @@ class PineClientHttpException(PineClientException):
         :type resp: requests.Response
         """
         super().__init__("HTTP error with {} to {}: {} ({})".format(method, path, resp.status_code, resp.reason))
-        self.resp = resp
+        self.resp: requests.Response = resp
         """The :py:class:`Response <requests.Response>` with the error info
         
         :type: requests.Response
         """
+
+    @property
+    def status_code(self):
+        return self.resp.status_code
 
 class PineClientValueException(PineClientException):
     """A PINE client exception caused by passing invalid data.

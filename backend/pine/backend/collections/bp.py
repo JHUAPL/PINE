@@ -8,12 +8,13 @@ import os
 import random
 import sys
 import traceback
+import typing
 import unicodedata
 
 from flask import abort, Blueprint, current_app, jsonify, request, safe_join, send_file, send_from_directory
 from werkzeug import exceptions
 
-from .. import auth, log
+from .. import auth, log, models
 from ..data import service
 
 bp = Blueprint("collections", __name__, url_prefix = "/collections")
@@ -30,66 +31,45 @@ def update_cached_last_collection(collection_id):
     global LAST_COLLECTION_FOR_IMAGE
     LAST_COLLECTION_FOR_IMAGE = [collection_id, auth.get_logged_in_user()["id"]]
 
-def _collection_user_can_projection():
-    return service.params({
-        "projection": {
-            "creator_id": 1,
-            "annotators": 1,
-            "viewers": 1
-        }
-    })
+def user_permissions_projection():
+    return {
+        "creator_id": 1,
+        "annotators": 1,
+        "viewers": 1
+    }
 
-def _collection_user_can(collection, annotate):
+def get_user_permissions(collection: dict) -> models.CollectionUserPermissions:
     user_id = auth.get_logged_in_user()["id"]
-    if annotate and not auth.is_flat():
-        return collection["creator_id"] == user_id or user_id in collection["annotators"]
-    else:
-        return collection["creator_id"] == user_id or user_id in collection["viewers"] or user_id in collection["annotators"]
+    is_creator = collection["creator_id"] == user_id
+    is_viewer = user_id in collection["viewers"]
+    is_annotator = user_id in collection["annotators"]
 
-def user_can_annotate(collection):
-    return _collection_user_can(collection, annotate = True)
+    can_view = is_creator or is_viewer or is_annotator
 
-def user_can_view(collection):
-    return _collection_user_can(collection, annotate = False)
+    return models.CollectionUserPermissions(
+        view = can_view,
+        annotate = auth.is_flat() or is_creator or is_annotator,
+        add_documents = can_view,
+        add_images = can_view,
+        modify_users = is_creator,
+        modify_labels = is_creator,
+        modify_document_metadata = can_view,
+        download_data = is_creator,
+        archive = auth.is_flat() or is_creator)
 
-def user_can_add_documents_or_images(collection):
-    # for now, this is the same thing as just being able to view
-    return user_can_view(collection)
+def get_user_permissions_by_id(collection_id: str) -> models.CollectionUserPermissions:
+    collection = service.get_item_by_id("/collections", collection_id, service.params({
+        "projection": user_permissions_projection()
+    }))
+    return get_user_permissions(collection)
 
-def user_can_modify_document_metadata(collection):
-    # for now, this is the same thing as just being able to view
-    return user_can_view(collection)
-
-def user_can_annotate_by_id(collection_id):
-    collection = service.get_item_by_id("/collections", collection_id, _collection_user_can_projection())
-    return _collection_user_can(collection, annotate = True)
-
-def user_can_annotate_by_ids(collection_ids):
+def get_user_permissions_by_ids(collection_ids: typing.Iterable[str]) -> typing.List[models.CollectionUserPermissions]:
     collections = service.get_all_items("collections", params=service.params({
         "where": {
             "_id": {"$in": collection_ids}
-        }, "projection": {
-            "creator_id": 1,
-            "annotators": 1,
-            "viewers": 1
-        }
+        }, "projection": user_permissions_projection()
     }))
-    for collection in collections:
-        if not user_can_annotate(collection):
-            return False
-    return True
-
-def user_can_view_by_id(collection_id):
-    collection = service.get_item_by_id("/collections", collection_id, _collection_user_can_projection())
-    return _collection_user_can(collection, annotate = False)
-
-def user_can_add_documents_or_images_by_id(collection_id):
-    collection = service.get_item_by_id("/collections", collection_id, _collection_user_can_projection())
-    return user_can_add_documents_or_images(collection)
-
-def user_can_modify_document_metadata_by_id(collection_id):
-    collection = service.get_item_by_id("/collections", collection_id, _collection_user_can_projection())
-    return user_can_modify_document_metadata(collection)
+    return [get_user_permissions(c) for c in collections]
 
 
 def get_user_collections(archived, page):
@@ -148,13 +128,12 @@ def archive_or_unarchive_collection(collection_id, archive):
     :param archive: Bool
     :return: Response
     """
-    user_id = auth.get_logged_in_user()["id"]
     resp = service.get("collections/" + collection_id)
     if not resp.ok:
         abort(resp.status_code)
     collection = resp.json()
-    if not auth.is_flat() and collection["creator_id"] != user_id:
-        raise exceptions.Unauthorized("Only the creator can archive a collection.")
+    if not get_user_permissions(collection).archive:
+        raise exceptions.Unauthorized()
     collection["archived"] = archive
     headers = {"If-Match": collection["_etag"]}
     service.remove_nonupdatable_fields(collection)
@@ -196,7 +175,7 @@ def get_collection(collection_id):
     if not resp.ok:
         abort(resp.status_code)
     collection = resp.json()
-    if user_can_view(collection):
+    if get_user_permissions(collection).view:
         return service.convert_response(resp)
     else:
         raise exceptions.Unauthorized()
@@ -208,7 +187,7 @@ def download_collection(collection_id):
     if not resp.ok:
         abort(resp.status_code)
     collection = resp.json()
-    if not user_can_view(collection):
+    if not get_user_permissions(collection).download_data:
         return exceptions.Unauthorized()
     
     def flag(name): return name not in request.args or json.loads(request.args[name])
@@ -251,6 +230,13 @@ def download_collection(collection_id):
         })
 
     data["documents"] = service.get_all_items("documents", params)
+    if include_document_metadata or include_document_text:
+        # add dict key if missing
+        for document in data["documents"]:
+            if include_document_metadata and "metadata" not in document:
+                document["metadata"] = {}
+            if include_document_text and "text" not in document:
+                document["text"] = None
 
     annotations_by_document = {}
     if include_annotations:
@@ -291,6 +277,8 @@ def download_collection(collection_id):
             for annotation in document["annotations"]:
                 service.remove_eve_fields(annotation,
                                           remove_versions = include_annotation_latest_version_only)
+        elif include_annotations:
+            document["annotations"] = []
 
     if as_file:
         data_bytes = io.BytesIO()
@@ -333,8 +321,7 @@ def add_annotator_to_collection(collection_id):
     if not resp.ok:
         abort(resp.status_code)
     collection = resp.json()
-    auth_id = auth.get_logged_in_user()["id"]
-    if not (collection["creator_id"] == auth_id):
+    if not get_user_permissions(collection).modify_users:
         raise exceptions.Unauthorized()
     if user_id not in collection["annotators"]:
         LOGGER.info("new annotator: adding to collection")
@@ -366,8 +353,7 @@ def add_viewer_to_collection(collection_id):
     if not resp.ok:
         abort(resp.status_code)
     collection = resp.json()
-    auth_id = auth.get_logged_in_user()["id"]
-    if not (collection["creator_id"] == auth_id):
+    if not get_user_permissions(collection).modify_users:
         raise exceptions.Unauthorized()
     if user_id not in collection["viewers"]:
         LOGGER.info("new viewer: adding to collection")
@@ -392,8 +378,7 @@ def add_label_to_collection(collection_id):
     if not resp.ok:
         abort(resp.status_code)
     collection = resp.json()
-    auth_id = auth.get_logged_in_user()["id"]
-    if not (collection["creator_id"] == auth_id):
+    if not get_user_permissions(collection).modify_labels:
         raise exceptions.Unauthorized()
     if new_label not in collection["labels"]:
         LOGGER.info("new label: adding to collection")
@@ -625,7 +610,7 @@ def create_collection():
 def _check_collection_and_get_image_dir(collection_id, path):
     # make sure user can view collection
     if not is_cached_last_collection(collection_id):
-        if not user_can_view_by_id(collection_id):
+        if not get_user_permissions_by_id(collection_id).view:
             raise exceptions.Unauthorized()
 
     image_dir = current_app.config["DOCUMENT_IMAGE_DIR"]
@@ -692,10 +677,10 @@ def _safe_path(path):
         path = path[0:-1]
     return "/".join([p for p in _path_split(path) if p not in [".", "/", ".."]])
 
-@bp.route("/can_add_documents_or_images/<collection_id>", methods=["GET"])
+@bp.route("/user_permissions/<collection_id>", methods=["GET"])
 @auth.login_required
-def get_user_can_add_documents_or_images(collection_id):
-    return jsonify(user_can_add_documents_or_images_by_id(collection_id))
+def endpoint_get_user_permissions(collection_id):
+    return jsonify(get_user_permissions_by_id(collection_id).to_dict())
 
 def _upload_collection_image_file(collection_id, path, image_file):
     # get filename on disk to save to
@@ -715,7 +700,7 @@ def _upload_collection_image_file(collection_id, path, image_file):
 @auth.login_required
 def post_collection_image(collection_id, path):
     if not is_cached_last_collection(collection_id):
-        if not user_can_add_documents_or_images_by_id(collection_id):
+        if not get_user_permissions_by_id(collection_id).add_images:
             raise exceptions.Unauthorized()
     if "file" not in request.files:
         raise exceptions.BadRequest("Missing file form part.")

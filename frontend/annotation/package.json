@@ -34,7 +34,6 @@
     "material-icons": "^0.3.1",
     "ng2-charts": "^2.3.0",
     "ng2-panzoom": "^2.1.0",
-    "ngx-cookie-service": "2.3.0",
     "papaparse": "^5.2.0",
     "roboto-fontface": "^0.9.0",
     "rxjs": "^6.5.3",

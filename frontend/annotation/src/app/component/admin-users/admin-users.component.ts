@@ -51,8 +51,7 @@ export class AdminUsersComponent implements OnInit {
         if(!this.auth.canManageUsers) return;
         this.loggedInId = this.auth.loggedInUser.id;
         this.newUserForm = this.formBuilder.group({
-            id: [{value: "", disabled: false}, Validators.compose([
-                Validators.required, this.idValidator()])],
+            id: [{value: "", disabled: false}, Validators.required],
             email: [{value: "", disabled: false}, Validators.compose([
                 Validators.required, Validators.email])],
             firstname: [{value: "", disabled: false}, Validators.required],
@@ -62,17 +61,6 @@ export class AdminUsersComponent implements OnInit {
             passwd: [{value: "", disabled: false}, Validators.required]
         });
         this.reload();
-    }
-    
-    private idValidator(): ValidatorFn {
-        const pattern = /\w{4,}\d/;
-        return (control: AbstractControl): {[key: string]: any} | null => {
-            return pattern.test(control.value) ? null : {"invalidId": {value: control.value}};
-        }
-    }
-    
-    private idValidatorDescription() {
-        return "5+ characters and ending with a number";
     }
 
     public reload() {

@@ -34,8 +34,8 @@
     {
         "collection": {
             "creator_id": "margaret",
-            "annotators": ["ada", "margaret", "katherine"],
-            "viewers": ["ada", "margaret", "katherine"],
+            "annotators": ["ada", "margaret", "katherine", "admin"],
+            "viewers": ["ada", "margaret", "katherine", "admin"],
             "labels": ["geo", "gpe", "per", "org", "tim", "art", "nat", "eve"],
             "metadata": {
                 "title": "NER Test Collection",

@@ -41,20 +41,21 @@ def test_list_collections():
         assert col["archived"] == (not found)
 
 
-def test_download_collection_data():
-    client = common.login_with_test_user(common.client())
-    with pytest.raises(pine.client.exceptions.PineClientValueException):
-        client.download_collection_data(None)
-    
-    # find a collection that has annotations
-    collection_title = "NER Test Collection"
-    col_data = common.test_collection_data(collection_title)
-    assert col_data != None
-    collection_id = None
+def _get_collection_id(collection_title: str, client):
     for col in client.list_collections():
         if col["metadata"]["title"] == collection_title:
-            collection_id = col["_id"]
-            break
+            return col["_id"]
+    raise AssertionError("Couldn't find collection with title " + collection_title)
+
+def test_download_collection_data():
+    # find a collection that has annotations that the test user has access to
+    user = "margaret"
+    collection_title = "NER Test Collection"
+    client = common.login_with_user(user, common.client())
+
+    col_data = common.test_collection_data(collection_title)
+    assert col_data != None
+    collection_id = _get_collection_id(collection_title, client)
     assert collection_id != None
 
     # start with nothing but IDs
@@ -116,3 +117,53 @@ def test_download_collection_data():
         assert type(annotations) is list and len(annotations) > 0
         for annotation in annotations:
             assert set(annotation.keys()) == {"_id", "creator_id", "annotation", "_version", "_latest_version"}
+
+
+def test_download_collection_data_errors():
+    # find a collection that has annotations that the test user does NOT have access to
+    user = "ada"
+    collection_title = "NER Test Collection"
+    client = common.login_with_user(user, common.client())
+
+    with pytest.raises(pine.client.exceptions.PineClientValueException):
+        client.download_collection_data(None)
+
+    collection_id = _get_collection_id(collection_title, client)
+    assert collection_id != None
+    with pytest.raises(pine.client.exceptions.PineClientHttpException) as excinfo:
+        client.download_collection_data(collection_id)
+    assert excinfo.value.status_code == 401
+
+
+def test_collection_user_permissions():
+    client = common.login_with_test_user(common.client())
+
+    collection_id = _get_collection_id("NER Test Collection", client)
+    assert collection_id != None
+    permissions = client.get_collection_permissions(collection_id)
+    assert permissions.to_dict() == {
+        "view": True,
+        "annotate": True,
+        "add_documents": True,
+        "add_images": True,
+        "modify_users": False,
+        "modify_labels": False,
+        "modify_document_metadata": True,
+        "download_data": False,
+        "archive": False
+    }
+
+    collection_id = _get_collection_id("Trial Collection", client)
+    assert collection_id != None
+    permissions = client.get_collection_permissions(collection_id)
+    assert permissions.to_dict() == {
+        "view": True,
+        "annotate": True,
+        "add_documents": True,
+        "add_images": True,
+        "modify_users": True,
+        "modify_labels": True,
+        "modify_document_metadata": True,
+        "download_data": True,
+        "archive": True
+    }

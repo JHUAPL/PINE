@@ -1,24 +1,7 @@
 /*(C) 2019 The Johns Hopkins University Applied Physics Laboratory LLC. */
-.page-container {
-    height: 100%;
-    width: 100%;
-    position: relative;
-}
-
-.title-toolbar {
-    position: absolute;
-    top: 0px;
-    width: 100%;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.12);
-}
 
 .page-content {
-    position: absolute;
-    top: 64px;
-    right: 0px;
-    bottom: 0px;
-    left: 0px;
-    overflow-y: auto;
+    padding: 0px !important;
 }
 
 .chip-can-click {
@@ -71,6 +54,10 @@
 
 .doc-list-table table {
     width: 100%;
+}
+
+#metadata-table {
+    padding-right: 5px; /* necessary to avoid a scrollbar on the bottom for some reason? */
 }
 
 .detail-btn-area {

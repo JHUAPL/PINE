@@ -52,7 +52,8 @@ function verifyCollectionDetails(collection = {
       };
 
       if(collection._id) {
-    	checkEquals("Collection ID", collection_id);
+    	checkEquals("Collection ID", collection._id);
+    	cy.url().should("end.with", "/" + collection._id);
       }
       checkEquals("Collection title", collection.metadata.title);
       if(collection.metadata.description) {
@@ -93,15 +94,24 @@ function verifyCollectionDetails(collection = {
     	  }
     	}
       });
-
-      for(const button of ["Upload Images", "Archive", "Download Data"]) {
-        cy.get("button")
-          .contains(button)
-          .parent("button")
-          .scrollIntoView()
-          .should("be.visible")
-          .should("be.enabled");
-      }
+      
+      getValue("Collection ID").then(collection_id => {
+        cy.request("GET", Cypress.env("API_URL") + "/collections/user_permissions/" + collection_id).then(response => {
+            expect(response.status).to.eq(200);
+            const permissions = response.body;
+            const check_button = (text, enabled) => {
+                cy.get("button")
+                  .contains(text)
+                  .parent("button")
+                  .scrollIntoView()
+                  .should("be.visible")
+                  .should(enabled ? "be.enabled" : "be.disabled");
+            };
+            check_button("Upload Images", permissions.add_images);
+            check_button("Archive", permissions.archive);
+            check_button("Download Data", permissions.download_data);
+        });
+      });
       
       return getValue("Collection ID");
     });

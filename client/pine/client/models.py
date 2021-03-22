@@ -907,6 +907,62 @@ class CollectionBuilder(object):
         """
         return is_valid_collection(self.form, self.files, error_callback=error_callback)
 
+class CollectionUserPermissions(object):
+    """Collection permissions for a user as a dictionary of boolean flags.
+    """
+    # this class should be updated in the following places:
+    # * backend/pine/backend/models.py
+    # * client/pine/client/models.py
+    # * frontend/annotation/src/app/model/collection.ts
+    
+    def __init__(self, view = False, annotate = False, add_documents = False, add_images = False,
+                 modify_users = False, modify_labels = False, modify_document_metadata = False,
+                 download_data = False, archive = False):
+        self.view: bool = view
+        """Whether the user can view the collection and documents.
+        :type: bool
+        """
+        self.annotate: bool = annotate
+        """Whether the user can annotate collection documents.
+        :type: bool
+        """
+        self.add_documents: bool = add_documents
+        """Whether the user can add documents to the collection.
+        :type: bool
+        """
+        self.add_images: bool = add_images
+        """Whether the user can add images to the collection.
+        :type: bool
+        """
+        self.modify_users: bool = modify_users
+        """Whether the user can modify the list of viewers/annotators for the collection.
+        :type: bool
+        """
+        self.modify_labels: bool = modify_labels
+        """Whether the user can modify the list of labels for the collection.
+        :type: bool
+        """
+        self.modify_document_metadata: bool = modify_document_metadata
+        """Whether the user can modify document metadata (such as changing the image).
+        :type: bool
+        """
+        self.download_data: bool = download_data
+        """Whether the user can download the collection data
+        :type: bool
+        """
+        self.archive: bool = archive
+        """Whether the user can archive or unarchive the collection.
+        :type: bool
+        """
+
+    def to_dict(self) -> dict:
+        """Returns a dict version of this object for conversion to JSON.
+        
+        :returns: a dict version of this object for conversion to JSON
+        :rtype: dict
+        """
+        return self.__dict__
+
 ####################################################################################################
 
 def remove_eve_fields(obj: dict, remove_timestamps: bool = True, remove_versions: bool = True):

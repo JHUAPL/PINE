@@ -39,8 +39,8 @@
 
         <span fxFlex="6px"></span>
 
-        <mat-radio-button value="file" *ngIf="canUploadFile">Image File</mat-radio-button>
-        <div *ngIf="canUploadFile" [hidden]="f.type.value != 'file'">
+        <mat-radio-button value="file" *ngIf="permissions.add_images">Image File</mat-radio-button>
+        <div *ngIf="permissions.add_images" [hidden]="f.type.value != 'file'">
             <mat-card class="image-field image-row">
                 <div class="form-field">
                     <input hidden type="file" [id]="uuidv4 + '-file-upload'" #fileUpload

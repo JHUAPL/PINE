@@ -7,6 +7,7 @@ import { map } from "rxjs/operators";
 import { BackendService } from "../../service/backend/backend.service";
 
 import { CreatedObject } from "../../model/created";
+import { CollectionUserPermissions } from "../../model/collection";
 import { DBDocument, DBDocuments, Document } from "../../model/document";
 import { DBMeta } from "../../model/db";
 
@@ -26,10 +27,10 @@ export class DocumentRepositoryService {
         return this.backend.get<DBDocument>(`/documents/by_id/${docID}`).pipe(map(Document.fromDB));
     }
 
-    getUserCanAnnotate(docId: string): Observable<boolean> {
-        return this.backend.get<boolean>("/documents/can_annotate/" + docId);
+    public getCollectionUserPermissions(document_id: string): Observable<CollectionUserPermissions> {
+        return this.backend.get<CollectionUserPermissions>(`/documents/user_permissions/${document_id}`);
     }
-    
+
     public getCountOfDocumentsInCollection(collection_id: string): Observable<number> {
         return this.backend.get<number>(`/documents/count_by_collection_id/${collection_id}`);
     }
@@ -67,9 +68,9 @@ export class DocumentRepositoryService {
         return this.backend.post<CreatedObject>("/documents", document);
     }
 
-    public getCanModifyMetadata(document_id: string): Observable<boolean> {
-        return this.backend.get<boolean>(`/documents/can_modify_metadata/${document_id}`);
-    }
+//    public getCanModifyMetadata(document_id: string): Observable<boolean> {
+//        return this.backend.get<boolean>(`/documents/can_modify_metadata/${document_id}`);
+//    }
 
     public updateMetadata(document_id: string, metadata: object): Observable<any> {
         return this.backend.put(`/documents/metadata/${document_id}`, metadata);

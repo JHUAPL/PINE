@@ -1,5 +1,5 @@
 /*(C) 2019 The Johns Hopkins University Applied Physics Laboratory LLC. */
-import { Component, OnInit, AfterViewInit, ViewChild, ViewChildren, ElementRef, QueryList } from "@angular/core";
+import { Component, OnInit, AfterViewInit, ViewChild, ViewChildren, ElementRef, QueryList, HostListener } from "@angular/core";
 import { ActivatedRoute, ParamMap, Router } from "@angular/router";
 import { HttpErrorResponse } from "@angular/common/http";
 import { MatDialog } from "@angular/material";
@@ -26,7 +26,7 @@ import { LeftMouseDown } from "../../service/utils";
 
 import { Annotation, NerAnnotation } from "../../model/annotation";
 import { Classifier } from "../../model/classifier";
-import { Collection } from "../../model/collection";
+import { Collection, CollectionUserPermissions, newPermissions } from "../../model/collection";
 import { Document } from "../../model/document";
 import { DocLabel } from "../../model/doclabel";
 import { Word } from "../../model/word";
@@ -48,19 +48,31 @@ class DocAnnotation {
 @Component({
     selector: "app-annotate",
     templateUrl: "./annotate.component.html",
-    styleUrls: ["./annotate.component.css"]
+    styleUrls: ["./annotate.component.css"],
 })
 export class AnnotateComponent implements OnInit, AfterViewInit {
 
     public static readonly SUBTITLE = "Annotate Document";
-    public static readonly SETTINGS_KEY = "annotation";
+
+    public static readonly SETTING_MONOSPACE_FONT =
+        SettingsService.SETTINGS_PREFIX + "annotate.monospaceFont";
+
+    public static readonly SETTING_EXPANDED_PANELS =
+        SettingsService.SETTINGS_PREFIX + "annotate.expandedPanels";
 
     public readonly PATHS = PATHS;
+
+    @ViewChild('pageContent') pageContent;
+    public pageHeight: number;
 
     @ViewChild('imageContainer') imageRef;
 
     @ViewChild(LoadingComponent)
     public loading: LoadingComponent;
+    @HostListener("window:resize", [])
+    private onResize() {
+        this.updateOffsetHeight();
+    }
 
     public htmlError: string;
     public httpError: HttpErrorResponse;
@@ -71,9 +83,9 @@ export class AnnotateComponent implements OnInit, AfterViewInit {
     private selectionChangeTimer;
     private mouseDown: LeftMouseDown;
 
-    public tabIndex = 0;
+    public tabIndex = -1;
 
-    public canAnnotate = false;
+    public permissions: CollectionUserPermissions = newPermissions();
     public canCurrentlyAnnotate = false; // for showing others' annotations
     public allowOverlappingNerAnnotations = true;
     public showingAnnotationsFor: string = null;
@@ -104,6 +116,14 @@ export class AnnotateComponent implements OnInit, AfterViewInit {
     public popoverTemplate: ElementRef;
     public changed = false;
 
+    private animationPanel: string;
+    public panelExpanded = {
+        detailsFlag: true,
+        docAnnotateFlag: true,
+        imageFlag: true,
+        documentFlag: true
+    };
+
     constructor(private route: ActivatedRoute,
         private router: Router,
         private annotations: AnnotationService,
@@ -123,10 +143,16 @@ export class AnnotateComponent implements OnInit, AfterViewInit {
 
     ngOnInit() {
         this.route.queryParams.subscribe(params => {
-            if(params.tab != undefined) {
+            if (params.tab != undefined) {
                 this.tabIndex = params.tab;
             }
         });
+
+        if (this.settings.has(AnnotateComponent.SETTING_EXPANDED_PANELS)) {
+            this.panelExpanded = this.settings.get(AnnotateComponent.SETTING_EXPANDED_PANELS);
+        } else {
+            this.savePanelState();
+        }
     }
 
     ngAfterViewInit() {
@@ -144,24 +170,25 @@ export class AnnotateComponent implements OnInit, AfterViewInit {
         this.removeAllAnnotations();
         this.changed = false;
 
+        this.updateOffsetHeight();
+
         this.route.paramMap.subscribe((params: ParamMap) => {
             const docId = params.get(PARAMS.document.annotate.document_id);
 
             this.documents.getDocumentDetails(docId).subscribe((doc: Document) => {
                 this.doc = doc;
-                forkJoin(this.documents.getUserCanAnnotate(docId),
+                forkJoin(this.documents.getCollectionUserPermissions(docId),
                     this.collections.getCollectionDetails(this.doc.collection_id),
                     this.annotations.getMyAnnotationsForDocument(docId),
                     this.annotations.getOthersAnnotationsForDocument(docId),
-                    this.pipelines.getClassifierForCollection(this.doc.collection_id))
-                    .subscribe((results: any[]) => {
-                        this.canAnnotate = results[0];
-                        this.collection = results[1];
-                        const myAnnotations: Annotation[] = results[2];
-                        const othersAnnotations: Annotation[] = results[3];
-                        this.classifier = results[4];
+                    this.pipelines.getClassifierForCollection(this.doc.collection_id)
+                ).subscribe(([permissions, collection, myAnnotations, othersAnnotations, classifier]:
+                             [CollectionUserPermissions, Collection, Annotation[], Annotation[], Classifier]) => {
+                        this.permissions = permissions;
+                        this.collection = collection;
+                        this.classifier = classifier;
 
-                        this.canCurrentlyAnnotate = this.canAnnotate;
+                        this.canCurrentlyAnnotate = this.permissions.annotate;
                         this.showingAnnotationsFor = null;
                         this.allowOverlappingNerAnnotations = this.collection.getAllowOverlappingNerAnnotations(true);
                         this.currentSelection.setAllowOverlappingAnnotations(this.allowOverlappingNerAnnotations);
@@ -206,6 +233,39 @@ export class AnnotateComponent implements OnInit, AfterViewInit {
         });
     }
 
+    public updateOffsetHeight() {
+        if (this.pageContent && this.pageContent.nativeElement) {
+            this.pageHeight = this.pageContent.nativeElement.offsetHeight;
+        }
+    }
+
+    public scroll(id) {
+        if (this.panelExpanded[id]) {
+            let el = document.getElementById(id);
+            el.scrollIntoView();
+        } else {
+            this.animationPanel = id;
+            this.panelExpanded[id] = true;
+        }
+    }
+
+    public onAfterExpand(id) {
+        if (this.animationPanel == id) {
+            this.animationPanel = undefined;
+            let el = document.getElementById(id);
+            el.scrollIntoView();
+        }
+    }
+
+    public savePanelState() {
+        this.settings.set(AnnotateComponent.SETTING_EXPANDED_PANELS, this.panelExpanded);
+    }
+
+    public panelIsOpen(id, state: boolean) {
+        this.panelExpanded[id] = state;
+        this.savePanelState();
+    }
+
     public updateTabInUrl() {
         let param = { tab: this.tabIndex };
         this.router.navigate([], {
@@ -216,13 +276,13 @@ export class AnnotateComponent implements OnInit, AfterViewInit {
     }
 
     public backToCollectionDetails() {
-        if(this.collection) {
-           this.router.navigate(['collection', 'details', this.collection._id]); 
+        if (this.collection) {
+            this.router.navigate(['collection', 'details', this.collection._id]);
         }
     }
 
     public imageChanged(imageUrl: string) {
-        if(!this.doc.metadata) {
+        if (!this.doc.metadata) {
             this.doc.metadata = {};
         }
         this.doc.metadata["imageUrl"] = imageUrl;
@@ -251,16 +311,12 @@ export class AnnotateComponent implements OnInit, AfterViewInit {
         }
     }
 
-    public get settingMonospace() {
-        const s = this.settings.get(AnnotateComponent.SETTINGS_KEY, {});
-        if ("monospace" in s) return s.monospace;
-        else return false;
+    public get settingMonospace(): boolean {
+        return this.settings.get(AnnotateComponent.SETTING_MONOSPACE_FONT, false);
     }
 
     public set settingMonospace(val: boolean) {
-        const s = this.settings.get(AnnotateComponent.SETTINGS_KEY, {});
-        s.monospace = val;
-        this.settings.set(AnnotateComponent.SETTINGS_KEY, s);
+        this.settings.set(AnnotateComponent.SETTING_MONOSPACE_FONT, val);
         this.updateMonospace(val);
     }
 
@@ -296,7 +352,7 @@ export class AnnotateComponent implements OnInit, AfterViewInit {
         this.removeAllAnnotations();
         if (user_id == null) {
             this.nerData.setAnnotations(this.myNerAnnotations);
-            this.canCurrentlyAnnotate = this.canAnnotate;
+            this.canCurrentlyAnnotate = this.permissions.annotate;
         } else {
             this.nerData.setAnnotations(this.othersNerAnnotations[user_id]);
             this.canCurrentlyAnnotate = false;
@@ -565,7 +621,7 @@ export class AnnotateComponent implements OnInit, AfterViewInit {
     }
 
     public save(andAdvance: boolean) {
-        if (!this.canAnnotate) { return; }
+        if (!this.permissions.annotate) { return; }
         const docAnnotations = [];
         for (const annotation of this.myDocAnnotations) {
             if (annotation.checked) {
@@ -577,13 +633,13 @@ export class AnnotateComponent implements OnInit, AfterViewInit {
             this.myNerAnnotations = this.nerData.annotations;
             this.changed = false;
             this.events.showUserMessage.emit("Document annotations were " + (id ? "" : "NOT ") + "successfully updated.");
-            if(id) {
-                this.annotatedService.changeDocumentStatus({collection_id: this.doc.collection_id, doc_id: this.doc._id})
+            if (id) {
+                this.annotatedService.changeDocumentStatus({ collection_id: this.doc.collection_id, doc_id: this.doc._id })
                 this.iaa_reporting.createIAAReport(this.doc.collection_id).toPromise().then((res) => {
                     console.log(res);
                 });
             }
-            if(id && andAdvance) {
+            if (id && andAdvance) {
                 this.advanceToNext();
             }
         }, (error: HttpErrorResponse) => {

@@ -552,6 +552,19 @@ class PineClient(BaseClient):
             raise exceptions.PineClientValueException(builder, "collection")
         return self.post("collections", data=builder.form_json, files=builder.files).json()[models.ID_FIELD]
 
+    def get_collection_permissions(self, collection_id: str) -> models.CollectionUserPermissions:
+        """Returns collection permissions for the logged in user.
+        
+        :param collection_id: the ID of the collection
+        :type collection_id: str
+        
+        :returns: the collection permissions
+        :rtype: models.CollectionUserPermissions
+        """
+        self._check_login()
+        data = self.get(["collections", "user_permissions", collection_id]).json()
+        return models.CollectionUserPermissions(**data)
+
     def get_collection_documents(self, collection_id: str, truncate: bool, truncate_length: int = 30) -> typing.List[dict]:
         """Returns all the documents in the given collection.
         

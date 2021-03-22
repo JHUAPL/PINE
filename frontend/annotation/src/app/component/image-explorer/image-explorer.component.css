@@ -59,7 +59,7 @@
 .pan-zoom-container {
     position: absolute;
     top: 54px;
-    left: 224px;
+    left: 0;
     right: 0;
     bottom: 0;
 }

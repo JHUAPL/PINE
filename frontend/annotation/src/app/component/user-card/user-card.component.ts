@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+
 import { User, UserDetails } from 'src/app/model/user';
 import { AuthService } from 'src/app/service/auth/auth.service';
 import { PATHS } from "../../app.paths";

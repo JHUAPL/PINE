@@ -1,27 +1,5 @@
 /*(C) 2019 The Johns Hopkins University Applied Physics Laboratory LLC. */
 
-.admin-users-container {
-    height: 100%;
-    width: 100%;
-    position: relative;
-}
-
-.admin-users-container > mat-toolbar {
-    position: absolute;
-    top: 0px;
-    width: 100%;
-}
-
-.admin-users-container > .admin-users-content {
-    position: absolute;
-    top: 64px;
-    bottom: 0px;
-    right: 0px;
-    left: 0px;
-    padding: 20px;
-    overflow-y: auto;
-}
-
 #userTable {
 	width: 100%;
 }

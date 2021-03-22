@@ -134,7 +134,7 @@ class TestDataImporter(object):
                 doc["has_annotated"] = {user_id: False for user_id in collection["annotators"]}
                 if doc_annotations and doc_annotations[i]:
                     doc["has_annotated"][doc_annotations[i]["creator_id"]] = True
-            skip_document_updates=True
+            skip_document_updates = True
 
             doc_ids = client.add_documents(docs)
             self._update_ids(docs, doc_ids)
@@ -213,6 +213,7 @@ class TestDataImporter(object):
                 "creator_id": user_id,
                 "collection_id": collection_id,
                 "overlap": doc_overlap,
+                "metadata": {},
                 "text": doc_texts[i]
             } for i in range(len(doc_texts))]
 
@@ -220,7 +221,7 @@ class TestDataImporter(object):
                 images = documents["random_images"]
                 num_images = len(images)
                 for doc in docs:
-                    doc["metadata"] = {"imageUrl": images[random.randrange(0, num_images)]}
+                    doc["metadata"]["imageUrl"] = images[random.randrange(0, num_images)]
 
         if len(docs) != len(doc_annotations):
             raise Exception("Number of documents and annotations don't match.")

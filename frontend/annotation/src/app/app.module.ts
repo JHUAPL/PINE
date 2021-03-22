@@ -52,8 +52,6 @@ import { Ng2PanZoomModule } from "ng2-panzoom";
 
 import "hammerjs";
 
-import { CookieService } from "ngx-cookie-service";
-
 import { AppConfig } from "./app.config";
 import { routing } from "./app.routing";
 
@@ -201,7 +199,6 @@ export function initializeApp(appConfig: AppConfig) {
     ],
     providers: [
         Title,
-        CookieService,
         AppConfig,
         {
             provide: APP_INITIALIZER,

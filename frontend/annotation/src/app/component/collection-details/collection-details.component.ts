@@ -1,5 +1,6 @@
 /* (C) 2019 The Johns Hopkins University Applied Physics Laboratory LLC. */
 import { Component, OnInit, ViewChild, AfterViewInit, Inject, OnDestroy, ElementRef } from "@angular/core";
+import { KeyValue } from "@angular/common";
 import { MatPaginator, MatSort, MatDialog, MatDialogRef, MAT_DIALOG_DATA } from "@angular/material";
 import { ActivatedRoute, Router } from "@angular/router";
 import { HttpErrorResponse } from "@angular/common/http";
@@ -20,7 +21,7 @@ import { PipelineService } from "../../service/pipeline/pipeline.service";
 import { MetricsService } from "../../service/metrics/metrics.service";
 
 import { Classifier } from "../../model/classifier";
-import { Collection, DownloadCollectionData, METADATA_TITLE } from "../../model/collection";
+import { Collection, CollectionUserPermissions, DownloadCollectionData, METADATA_TITLE, newPermissions, PERMISSION_TITLES } from "../../model/collection";
 import { Pipeline } from "../../model/pipeline";
 import { Metric } from "../../model/metrics";
 import { IaaReportingService } from '../../service/iaa-reporting/iaa-reporting.service';
@@ -53,11 +54,11 @@ export class CollectionDetailsComponent implements OnInit, AfterViewInit, OnDest
     public static readonly SUBTITLE = "Collection Details";
 
     public readonly PATHS = PATHS;
+    public readonly PERMISSION_TITLES = PERMISSION_TITLES;
 
     public tabIndex: number = 0;
 
     public loading = false;
-    public canArchive = false;
 
     displayedColumns: string[] = ["id", "creator", "last_updated", "text_start", "annotated", "agreement"];
     collection: Collection;
@@ -70,9 +71,7 @@ export class CollectionDetailsComponent implements OnInit, AfterViewInit, OnDest
     private new_annotator: string = null;
     private new_viewer: string = null;
     private new_label: string = null;
-    public can_add_users: boolean = false;
-    public can_add_documents: boolean = false;
-    public can_add_images: boolean = false;
+    public permissions: CollectionUserPermissions = newPermissions();
 
     @ViewChild(MatPaginator) public paginator: MatPaginator;
     @ViewChild(MatSort) public sort: MatSort;
@@ -89,7 +88,6 @@ export class CollectionDetailsComponent implements OnInit, AfterViewInit, OnDest
         public auth: AuthService,
         private iaa_reports: IaaReportingService,
         private dialog: MatDialog) {
-        this.can_add_images = this.can_add_documents = false;
     }
 
     ngOnInit() {
@@ -119,24 +117,22 @@ export class CollectionDetailsComponent implements OnInit, AfterViewInit, OnDest
         this.loading = true;
         forkJoin(
             this.documents.setCollection(collectionId),
-            this.collectionService.getCanAddDocumentsOrImages(collectionId),
+            this.collectionService.getUserPermissions(collectionId),
             this.collectionService.getCollectionDetails(collectionId),
             this.pipelineService.getClassifierForCollection(collectionId),
         ).pipe(
             take(1)
-        ).subscribe(([_, canAddDocsOrImages, collection, classifier]: [boolean, boolean, Collection, Classifier]) => {
+        ).subscribe(([_, permissions, collection, classifier]: [boolean, CollectionUserPermissions, Collection, Classifier]) => {
             this.tableReady.asObservable().pipe(
                 filter(ready => ready),
                 take(1)
             ).subscribe((_) => {
                 this.documents.setPaginatorSortAndFilter(this.paginator, this.sort, this.filter);
             });
-            this.can_add_images = this.can_add_documents = canAddDocsOrImages;
+            this.permissions = permissions;
             this.collection = collection;
             this.classifier = classifier;
 
-            this.can_add_users = this.collection.creator_id === this.auth.loggedInUser.id;
-            this.canArchive = true;//collection.creator_id === this.auth.getLocalLoggedInUser().id;
             this.nextDocId = null;
             this.pipeline = null;
             forkJoin(
@@ -171,8 +167,16 @@ export class CollectionDetailsComponent implements OnInit, AfterViewInit, OnDest
         });
     }
 
+    public permissionTooltip(permission: boolean, action: string = "do this action on") {
+        return permission ? undefined : `You do not have permission to ${action} this collection.`;
+    }
+    
+    public permissionSorter(a: KeyValue<string, boolean>, b: KeyValue<string, boolean>): number {
+        return PERMISSION_TITLES[a.key].localeCompare(PERMISSION_TITLES[b.key]);
+    }
+
     public addDocument() {
-        if (this.collection) {
+        if (this.collection && this.permissions.add_documents) {
             let dialogData: AddDocumentDialogData = {
                 collection: this.collection
             };
@@ -198,6 +202,9 @@ export class CollectionDetailsComponent implements OnInit, AfterViewInit, OnDest
     }
 
     public archiveCollection() {
+        if(!this.permissions.archive) {
+            return;
+        }
         this.collectionService.archiveCollection(this.collection._id).subscribe((collection: Collection) => {
             this.collection = collection;
             this.events.collectionAddedOrArchived.emit(collection);
@@ -209,6 +216,9 @@ export class CollectionDetailsComponent implements OnInit, AfterViewInit, OnDest
     }
 
     public unarchiveCollection() {
+        if(!this.permissions.archive) {
+            return;
+        }
         this.collectionService.unarchiveCollection(this.collection._id).subscribe((collection: Collection) => {
             this.collection = collection;
             this.events.collectionAddedOrArchived.emit(collection);
@@ -220,6 +230,9 @@ export class CollectionDetailsComponent implements OnInit, AfterViewInit, OnDest
     }
 
     public uploadImages() {
+        if(!this.permissions.add_images) {
+            return;
+        }
         dialog(this.dialog)
             .pipe(take(1))
             .subscribe((uploader: ImageCollectionUploaderComponent) => {
@@ -236,6 +249,10 @@ export class CollectionDetailsComponent implements OnInit, AfterViewInit, OnDest
     }
 
     public openAddAnnotatorDialog() {
+        if(!this.permissions.modify_users) {
+            return;
+        }
+
         const dialogRef = this.dialog.open(AddAnnotatorDialog, {
             width: '250px',
             data: { new_annotator: this.new_annotator }
@@ -261,6 +278,10 @@ export class CollectionDetailsComponent implements OnInit, AfterViewInit, OnDest
     }
 
     public openAddViewerDialog() {
+        if(!this.permissions.modify_users) {
+            return;
+        }
+
         const dialogRef = this.dialog.open(AddViewerDialog, {
             width: '250px',
             data: { new_viewer: this.new_viewer }
@@ -283,6 +304,10 @@ export class CollectionDetailsComponent implements OnInit, AfterViewInit, OnDest
     }
 
     public openAddLabelDialog() {
+        if(!this.permissions.modify_labels) {
+            return;
+        }
+
         const dialogRef = this.dialog.open(AddLabelDialog, {
             width: '250px',
             data: { new_label: this.new_label }
@@ -305,6 +330,10 @@ export class CollectionDetailsComponent implements OnInit, AfterViewInit, OnDest
     }
 
     public downloadData() {
+        if(!this.permissions.download_data) {
+            return;
+        }
+
         DownloadCollectionDataDialogComponent.show(this.dialog, this.collection).subscribe(
             (value: DownloadCollectionData) => {
                 if (value) {
