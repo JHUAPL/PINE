@@ -21,6 +21,7 @@ docker build \
 popd &> /dev/null
 
 pushd ${DIR}/../ &> /dev/null
+AUTH_MODULE=eve docker-compose ${DOCKER_COMPOSE_FLAGS} down
 AUTH_MODULE=eve docker-compose ${DOCKER_COMPOSE_FLAGS} build
 
 if [[ $1 != --no-data ]]; then
