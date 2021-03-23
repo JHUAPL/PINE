@@ -482,11 +482,11 @@ def is_valid_ner_annotation(ann: typing.Any, error_callback: typing.Callable[[st
     :rtype: bool
     """
     if isinstance(ann, dict):
-        if not "start" in ann or not ann["start"] or not isinstance(ann["start"], int) or ann["start"] < 0:
+        if not "start" in ann or ann["start"] == None or not isinstance(ann["start"], int) or ann["start"] < 0:
             if error_callback:
                 error_callback("Field start is not valid ({}).".format(ann["start"] if "start" in ann else None))
             return False
-        if not "end" in ann or not ann["end"] or not isinstance(ann["end"], int) or ann["end"] < 0:
+        if not "end" in ann or ann["end"] == None or not isinstance(ann["end"], int) or ann["end"] < 0:
             if error_callback:
                 error_callback("Field end is not valid ({}).".format(ann["end"] if "end" in ann else None))
             return False
@@ -679,7 +679,7 @@ class CollectionBuilder(object):
         if viewers:
             for viewer in viewers: self.viewer(viewer)
         if annotators:
-            for annotator in annotator: self.annotator(annotator)
+            for annotator in annotators: self.annotator(annotator)
         if labels:
             for label in labels: self.label(label)
         if title:

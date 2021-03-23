@@ -75,7 +75,9 @@ describe("Sanity Tests", function() {
     cy.pine_logout();
   });
 
-  it("Checks About Dialog With Eve", function() {
+  it("Checks About Dialog With Eve", {
+      retries: 2,
+    }, function() {
 	  cy.pine_login_eve();
 	  cy.visit("/");
 	  cy.get(".app-toolbar")
