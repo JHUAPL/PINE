@@ -15,17 +15,10 @@ Functions
 
    pine.backend.collections.bp.is_cached_last_collection
    pine.backend.collections.bp.update_cached_last_collection
-   pine.backend.collections.bp._collection_user_can_projection
-   pine.backend.collections.bp._collection_user_can
-   pine.backend.collections.bp.user_can_annotate
-   pine.backend.collections.bp.user_can_view
-   pine.backend.collections.bp.user_can_add_documents_or_images
-   pine.backend.collections.bp.user_can_modify_document_metadata
-   pine.backend.collections.bp.user_can_annotate_by_id
-   pine.backend.collections.bp.user_can_annotate_by_ids
-   pine.backend.collections.bp.user_can_view_by_id
-   pine.backend.collections.bp.user_can_add_documents_or_images_by_id
-   pine.backend.collections.bp.user_can_modify_document_metadata_by_id
+   pine.backend.collections.bp.user_permissions_projection
+   pine.backend.collections.bp.get_user_permissions
+   pine.backend.collections.bp.get_user_permissions_by_id
+   pine.backend.collections.bp.get_user_permissions_by_ids
    pine.backend.collections.bp.get_user_collections
    pine.backend.collections.bp.get_unarchived_user_collections
    pine.backend.collections.bp.get_archived_user_collections
@@ -48,7 +41,7 @@ Functions
    pine.backend.collections.bp.get_collection_image_exists
    pine.backend.collections.bp._path_split
    pine.backend.collections.bp._safe_path
-   pine.backend.collections.bp.get_user_can_add_documents_or_images
+   pine.backend.collections.bp.endpoint_get_user_permissions
    pine.backend.collections.bp._upload_collection_image_file
    pine.backend.collections.bp.post_collection_image
    pine.backend.collections.bp.init_app
@@ -80,37 +73,16 @@ Functions
 .. function:: update_cached_last_collection(collection_id)
 
 
-.. function:: _collection_user_can_projection()
+.. function:: user_permissions_projection()
 
 
-.. function:: _collection_user_can(collection, annotate)
+.. function:: get_user_permissions(collection: dict) -> pine.backend.models.CollectionUserPermissions
 
 
-.. function:: user_can_annotate(collection)
+.. function:: get_user_permissions_by_id(collection_id: str) -> pine.backend.models.CollectionUserPermissions
 
 
-.. function:: user_can_view(collection)
-
-
-.. function:: user_can_add_documents_or_images(collection)
-
-
-.. function:: user_can_modify_document_metadata(collection)
-
-
-.. function:: user_can_annotate_by_id(collection_id)
-
-
-.. function:: user_can_annotate_by_ids(collection_ids)
-
-
-.. function:: user_can_view_by_id(collection_id)
-
-
-.. function:: user_can_add_documents_or_images_by_id(collection_id)
-
-
-.. function:: user_can_modify_document_metadata_by_id(collection_id)
+.. function:: get_user_permissions_by_ids(collection_ids: Iterable[str]) -> List[models.CollectionUserPermissions]
 
 
 .. function:: get_user_collections(archived, page)
@@ -240,7 +212,7 @@ Functions
 .. function:: _safe_path(path)
 
 
-.. function:: get_user_can_add_documents_or_images(collection_id)
+.. function:: endpoint_get_user_permissions(collection_id)
 
 
 .. function:: _upload_collection_image_file(collection_id, path, image_file)

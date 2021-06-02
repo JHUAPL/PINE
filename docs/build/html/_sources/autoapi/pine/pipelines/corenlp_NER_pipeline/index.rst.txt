@@ -26,11 +26,10 @@ Classes
 
    
 
-.. py:class:: corenlp_NER(java_dir=None, ner_path=None, load_model=None, tmp_dir=None)
+.. class:: corenlp_NER(java_dir=None, ner_path=None, load_model=None, tmp_dir=None)
+
 
    Bases: :class:`pine.pipelines.pipeline.Pipeline`
-
-   Initialize self.  See help(type(self)) for accurate signature.
 
    .. attribute:: __jar
       :annotation: = 
@@ -80,45 +79,34 @@ Classes
    .. method:: fit(self, X, y, params=None)
 
 
-
    .. method:: predict(self, X, Xid)
-
 
 
    .. method:: predict_proba(self, X, Xid, get_all_labels=False, include_other=False)
 
 
-
    .. method:: next_example(self, X, Xid)
-
 
 
    .. method:: get_id(self)
 
 
-
    .. method:: format_data(self, X, y)
-
 
 
    .. method:: save_model(self, model_name)
 
 
-
    .. method:: load_model(self, model_name)
-
 
 
    .. method:: tokenize(self, input_text)
 
 
-
    .. method:: evaluate(self, X, y, Xid, verbose=False)
 
 
-
    .. method:: evaluate_orig(self, X, y, Xid)
-
 
 
 

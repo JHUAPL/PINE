@@ -5,23 +5,22 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>pine.client.models &#8212; pine  documentation</title>
-    <link rel="stylesheet" href="../../../../_static/bizstyle.css" type="text/css" />
     <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../_static/bizstyle.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../../../../_static/graphviz.css" />
     
     <script id="documentation_options" data-url_root="../../../../" src="../../../../_static/documentation_options.js"></script>
     <script src="../../../../_static/jquery.js"></script>
     <script src="../../../../_static/underscore.js"></script>
     <script src="../../../../_static/doctools.js"></script>
-    <script src="../../../../_static/language_data.js"></script>
     <script src="../../../../_static/bizstyle.js"></script>
     <link rel="index" title="Index" href="../../../../genindex.html" />
     <link rel="search" title="Search" href="../../../../search.html" />
     <link rel="next" title="pine.client.password" href="../password/index.html" />
     <link rel="prev" title="pine.client.log" href="../log/index.html" />
-    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
     <!--[if lt IE 9]>
     <script src="_static/css3-mediaqueries.js"></script>
     <![endif]-->
@@ -66,8 +65,11 @@
 <col style="width: 90%" />
 </colgroup>
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#pine.client.models.CollectionBuilder" title="pine.client.models.CollectionBuilder"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CollectionBuilder</span></code></a>(collection: dict = None, creator_id: str = None, viewers: typing.List[str] = None, annotators: typing.List[str] = None, labels: typing.List[str] = None, title: str = None, description: str = None, allow_overlapping_ner_annotations: bool = None, pipelineId: str = None, overlap: float = None, train_every: int = None, classifierParameters: dict = None, document_csv_file: str = None, document_csv_file_has_header: bool = None, document_csv_file_text_column: int = None, image_files: typing.List[str] = None)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pine.client.models.CollectionBuilder" title="pine.client.models.CollectionBuilder"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CollectionBuilder</span></code></a></p></td>
 <td><p>A class that can build the form and files fields that are necessary to create a collection.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#pine.client.models.CollectionUserPermissions" title="pine.client.models.CollectionUserPermissions"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CollectionUserPermissions</span></code></a></p></td>
+<td><p>Collection permissions for a user as a dictionary of boolean flags.</p></td>
 </tr>
 </tbody>
 </table>
@@ -80,67 +82,67 @@
 <col style="width: 90%" />
 </colgroup>
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#pine.client.models._check_field_required_bool" title="pine.client.models._check_field_required_bool"><code class="xref py py-obj docutils literal notranslate"><span class="pre">_check_field_required_bool</span></code></a>(obj: dict, field: str)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pine.client.models._check_field_required_bool" title="pine.client.models._check_field_required_bool"><code class="xref py py-obj docutils literal notranslate"><span class="pre">_check_field_required_bool</span></code></a>(obj: dict, field: str) → bool</p></td>
 <td><p>Checks that the given field is in the object and is a bool.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#pine.client.models._check_field_int" title="pine.client.models._check_field_int"><code class="xref py py-obj docutils literal notranslate"><span class="pre">_check_field_int</span></code></a>(obj: dict, field: str)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#pine.client.models._check_field_int" title="pine.client.models._check_field_int"><code class="xref py py-obj docutils literal notranslate"><span class="pre">_check_field_int</span></code></a>(obj: dict, field: str) → bool</p></td>
 <td><p>Checks that if the given field is in the object, that it is an int.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#pine.client.models._check_field_required_int" title="pine.client.models._check_field_required_int"><code class="xref py py-obj docutils literal notranslate"><span class="pre">_check_field_required_int</span></code></a>(obj: dict, field: str)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pine.client.models._check_field_required_int" title="pine.client.models._check_field_required_int"><code class="xref py py-obj docutils literal notranslate"><span class="pre">_check_field_required_int</span></code></a>(obj: dict, field: str) → bool</p></td>
 <td><p>Checks that the given field is in the object and is an int.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#pine.client.models._check_field_float" title="pine.client.models._check_field_float"><code class="xref py py-obj docutils literal notranslate"><span class="pre">_check_field_float</span></code></a>(obj: dict, field: str)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#pine.client.models._check_field_float" title="pine.client.models._check_field_float"><code class="xref py py-obj docutils literal notranslate"><span class="pre">_check_field_float</span></code></a>(obj: dict, field: str) → bool</p></td>
 <td><p>Checks that if the given field is in the object, that it is a float.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#pine.client.models._check_field_required_float" title="pine.client.models._check_field_required_float"><code class="xref py py-obj docutils literal notranslate"><span class="pre">_check_field_required_float</span></code></a>(obj: dict, field: str)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pine.client.models._check_field_required_float" title="pine.client.models._check_field_required_float"><code class="xref py py-obj docutils literal notranslate"><span class="pre">_check_field_required_float</span></code></a>(obj: dict, field: str) → bool</p></td>
 <td><p>Checks that the given field is in the object and is a float.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#pine.client.models._check_field_string" title="pine.client.models._check_field_string"><code class="xref py py-obj docutils literal notranslate"><span class="pre">_check_field_string</span></code></a>(obj: dict, field: str)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#pine.client.models._check_field_string" title="pine.client.models._check_field_string"><code class="xref py py-obj docutils literal notranslate"><span class="pre">_check_field_string</span></code></a>(obj: dict, field: str) → bool</p></td>
 <td><p>Checks that if the given field is in the object, that it is a string.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#pine.client.models._check_field_required_string" title="pine.client.models._check_field_required_string"><code class="xref py py-obj docutils literal notranslate"><span class="pre">_check_field_required_string</span></code></a>(obj: dict, field: str)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pine.client.models._check_field_required_string" title="pine.client.models._check_field_required_string"><code class="xref py py-obj docutils literal notranslate"><span class="pre">_check_field_required_string</span></code></a>(obj: dict, field: str) → bool</p></td>
 <td><p>Checks that the given field is in the object and is a string.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#pine.client.models._check_field_string_list" title="pine.client.models._check_field_string_list"><code class="xref py py-obj docutils literal notranslate"><span class="pre">_check_field_string_list</span></code></a>(obj: dict, field: str, min_length: int = 0)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#pine.client.models._check_field_string_list" title="pine.client.models._check_field_string_list"><code class="xref py py-obj docutils literal notranslate"><span class="pre">_check_field_string_list</span></code></a>(obj: dict, field: str, min_length: int = 0) → bool</p></td>
 <td><p>Checks that if the given field is in the object, that it is a string list.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#pine.client.models._check_field_required_string_list" title="pine.client.models._check_field_required_string_list"><code class="xref py py-obj docutils literal notranslate"><span class="pre">_check_field_required_string_list</span></code></a>(obj: dict, field: str, min_length: int = 0)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pine.client.models._check_field_required_string_list" title="pine.client.models._check_field_required_string_list"><code class="xref py py-obj docutils literal notranslate"><span class="pre">_check_field_required_string_list</span></code></a>(obj: dict, field: str, min_length: int = 0) → bool</p></td>
 <td><p>Checks that the given field is in the object and is a string list.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#pine.client.models._check_field_dict" title="pine.client.models._check_field_dict"><code class="xref py py-obj docutils literal notranslate"><span class="pre">_check_field_dict</span></code></a>(obj: dict, field: str)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#pine.client.models._check_field_dict" title="pine.client.models._check_field_dict"><code class="xref py py-obj docutils literal notranslate"><span class="pre">_check_field_dict</span></code></a>(obj: dict, field: str) → bool</p></td>
 <td><p>Checks that if the given field is in the object, that it is a dict.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#pine.client.models._check_field_required_dict" title="pine.client.models._check_field_required_dict"><code class="xref py py-obj docutils literal notranslate"><span class="pre">_check_field_required_dict</span></code></a>(obj: dict, field: str)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pine.client.models._check_field_required_dict" title="pine.client.models._check_field_required_dict"><code class="xref py py-obj docutils literal notranslate"><span class="pre">_check_field_required_dict</span></code></a>(obj: dict, field: str) → bool</p></td>
 <td><p>Checks that the given field is in the object and is a dict.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#pine.client.models._check_field_bool" title="pine.client.models._check_field_bool"><code class="xref py py-obj docutils literal notranslate"><span class="pre">_check_field_bool</span></code></a>(obj: dict, field: str)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#pine.client.models._check_field_bool" title="pine.client.models._check_field_bool"><code class="xref py py-obj docutils literal notranslate"><span class="pre">_check_field_bool</span></code></a>(obj: dict, field: str) → bool</p></td>
 <td><p>Checks that if the given field is in the object, that it is a bool.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#pine.client.models.is_valid_eve_user" title="pine.client.models.is_valid_eve_user"><code class="xref py py-obj docutils literal notranslate"><span class="pre">is_valid_eve_user</span></code></a>(user: dict, error_callback: typing.Callable[[str], None] = None)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pine.client.models.is_valid_eve_user" title="pine.client.models.is_valid_eve_user"><code class="xref py py-obj docutils literal notranslate"><span class="pre">is_valid_eve_user</span></code></a>(user: dict, error_callback: Callable[([str], None)] = None) → bool</p></td>
 <td><p>Checks whether the given user object is valid.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#pine.client.models.is_valid_eve_pipeline" title="pine.client.models.is_valid_eve_pipeline"><code class="xref py py-obj docutils literal notranslate"><span class="pre">is_valid_eve_pipeline</span></code></a>(pipeline: dict, error_callback: typing.Callable[[str], None] = None)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#pine.client.models.is_valid_eve_pipeline" title="pine.client.models.is_valid_eve_pipeline"><code class="xref py py-obj docutils literal notranslate"><span class="pre">is_valid_eve_pipeline</span></code></a>(pipeline: dict, error_callback: Callable[([str], None)] = None) → bool</p></td>
 <td><p>Checks whether the given pipeline object is valid.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#pine.client.models.is_valid_eve_collection" title="pine.client.models.is_valid_eve_collection"><code class="xref py py-obj docutils literal notranslate"><span class="pre">is_valid_eve_collection</span></code></a>(collection: dict, error_callback: typing.Callable[[str], None] = None)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pine.client.models.is_valid_eve_collection" title="pine.client.models.is_valid_eve_collection"><code class="xref py py-obj docutils literal notranslate"><span class="pre">is_valid_eve_collection</span></code></a>(collection: dict, error_callback: Callable[([str], None)] = None) → bool</p></td>
 <td><p>Checks whether the given collection object is valid.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#pine.client.models.is_valid_collection" title="pine.client.models.is_valid_collection"><code class="xref py py-obj docutils literal notranslate"><span class="pre">is_valid_collection</span></code></a>(form: dict, files: dict, error_callback: typing.Callable[[str], None] = None)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#pine.client.models.is_valid_collection" title="pine.client.models.is_valid_collection"><code class="xref py py-obj docutils literal notranslate"><span class="pre">is_valid_collection</span></code></a>(form: dict, files: dict, error_callback: Callable[([str], None)] = None) → bool</p></td>
 <td><p>Checks whether the given form and files parameters are valid for creating a collection.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#pine.client.models.is_valid_eve_document" title="pine.client.models.is_valid_eve_document"><code class="xref py py-obj docutils literal notranslate"><span class="pre">is_valid_eve_document</span></code></a>(document: dict, error_callback: typing.Callable[[str], None] = None)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pine.client.models.is_valid_eve_document" title="pine.client.models.is_valid_eve_document"><code class="xref py py-obj docutils literal notranslate"><span class="pre">is_valid_eve_document</span></code></a>(document: dict, error_callback: Callable[([str], None)] = None) → bool</p></td>
 <td><p>Checks whether the given document object is valid.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#pine.client.models.is_valid_doc_annotation" title="pine.client.models.is_valid_doc_annotation"><code class="xref py py-obj docutils literal notranslate"><span class="pre">is_valid_doc_annotation</span></code></a>(ann: typing.Any, error_callback: typing.Callable[[str], None] = None)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#pine.client.models.is_valid_doc_annotation" title="pine.client.models.is_valid_doc_annotation"><code class="xref py py-obj docutils literal notranslate"><span class="pre">is_valid_doc_annotation</span></code></a>(ann: Any, error_callback: Callable[([str], None)] = None) → bool</p></td>
 <td><p>Checks whether the given annotation is a valid document label/annotation.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#pine.client.models.is_valid_ner_annotation" title="pine.client.models.is_valid_ner_annotation"><code class="xref py py-obj docutils literal notranslate"><span class="pre">is_valid_ner_annotation</span></code></a>(ann: typing.Any, error_callback: typing.Callable[[str], None] = None)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pine.client.models.is_valid_ner_annotation" title="pine.client.models.is_valid_ner_annotation"><code class="xref py py-obj docutils literal notranslate"><span class="pre">is_valid_ner_annotation</span></code></a>(ann: Any, error_callback: Callable[([str], None)] = None) → bool</p></td>
 <td><p>Checks whether the given annotation is a valid document NER annotation.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#pine.client.models.is_valid_annotation" title="pine.client.models.is_valid_annotation"><code class="xref py py-obj docutils literal notranslate"><span class="pre">is_valid_annotation</span></code></a>(body: dict, error_callback: typing.Callable[[str], None] = None)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#pine.client.models.is_valid_annotation" title="pine.client.models.is_valid_annotation"><code class="xref py py-obj docutils literal notranslate"><span class="pre">is_valid_annotation</span></code></a>(body: dict, error_callback: Callable[([str], None)] = None) → bool</p></td>
 <td><p>Checks whether the given body is valid to create an annotation.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#pine.client.models.is_valid_doc_annotations" title="pine.client.models.is_valid_doc_annotations"><code class="xref py py-obj docutils literal notranslate"><span class="pre">is_valid_doc_annotations</span></code></a>(doc_annotations: dict, error_callback: typing.Callable[[str], None] = None)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pine.client.models.is_valid_doc_annotations" title="pine.client.models.is_valid_doc_annotations"><code class="xref py py-obj docutils literal notranslate"><span class="pre">is_valid_doc_annotations</span></code></a>(doc_annotations: dict, error_callback: Callable[([str], None)] = None) → bool</p></td>
 <td><p>Checks whether the given document annotations are valid.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#pine.client.models.remove_eve_fields" title="pine.client.models.remove_eve_fields"><code class="xref py py-obj docutils literal notranslate"><span class="pre">remove_eve_fields</span></code></a>(obj: dict, remove_timestamps: bool = True, remove_versions: bool = True)</p></td>
@@ -153,7 +155,7 @@
 </table>
 <dl class="py data">
 <dt id="pine.client.models.ID_FIELD">
-<code class="sig-prename descclassname">pine.client.models.</code><code class="sig-name descname">ID_FIELD</code><em class="property"> :str = _id</em><a class="headerlink" href="#pine.client.models.ID_FIELD" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname"><span class="pre">pine.client.models.</span></code><code class="sig-name descname"><span class="pre">ID_FIELD</span></code><em class="property"> <span class="pre">:str</span> <span class="pre">=</span> <span class="pre">_id</span></em><a class="headerlink" href="#pine.client.models.ID_FIELD" title="Permalink to this definition">¶</a></dt>
 <dd><p>The field used to store database ID.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
@@ -164,7 +166,7 @@
 
 <dl class="py data">
 <dt id="pine.client.models.ITEMS_FIELD">
-<code class="sig-prename descclassname">pine.client.models.</code><code class="sig-name descname">ITEMS_FIELD</code><em class="property"> :str = _items</em><a class="headerlink" href="#pine.client.models.ITEMS_FIELD" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname"><span class="pre">pine.client.models.</span></code><code class="sig-name descname"><span class="pre">ITEMS_FIELD</span></code><em class="property"> <span class="pre">:str</span> <span class="pre">=</span> <span class="pre">_items</span></em><a class="headerlink" href="#pine.client.models.ITEMS_FIELD" title="Permalink to this definition">¶</a></dt>
 <dd><p>The field used to access the items in a multi-item database response.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
@@ -175,7 +177,7 @@
 
 <dl class="py function">
 <dt id="pine.client.models._check_field_required_bool">
-<code class="sig-prename descclassname">pine.client.models.</code><code class="sig-name descname">_check_field_required_bool</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">obj</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)">dict</a></span></em>, <em class="sig-param"><span class="n">field</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)">bool</a><a class="headerlink" href="#pine.client.models._check_field_required_bool" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname"><span class="pre">pine.client.models.</span></code><code class="sig-name descname"><span class="pre">_check_field_required_bool</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">obj</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><span class="pre">dict</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">field</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><span class="pre">bool</span></a><a class="headerlink" href="#pine.client.models._check_field_required_bool" title="Permalink to this definition">¶</a></dt>
 <dd><p>Checks that the given field is in the object and is a bool.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -195,7 +197,7 @@
 
 <dl class="py function">
 <dt id="pine.client.models._check_field_int">
-<code class="sig-prename descclassname">pine.client.models.</code><code class="sig-name descname">_check_field_int</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">obj</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)">dict</a></span></em>, <em class="sig-param"><span class="n">field</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)">bool</a><a class="headerlink" href="#pine.client.models._check_field_int" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname"><span class="pre">pine.client.models.</span></code><code class="sig-name descname"><span class="pre">_check_field_int</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">obj</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><span class="pre">dict</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">field</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><span class="pre">bool</span></a><a class="headerlink" href="#pine.client.models._check_field_int" title="Permalink to this definition">¶</a></dt>
 <dd><p>Checks that if the given field is in the object, that it is an int.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -215,7 +217,7 @@
 
 <dl class="py function">
 <dt id="pine.client.models._check_field_required_int">
-<code class="sig-prename descclassname">pine.client.models.</code><code class="sig-name descname">_check_field_required_int</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">obj</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)">dict</a></span></em>, <em class="sig-param"><span class="n">field</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)">bool</a><a class="headerlink" href="#pine.client.models._check_field_required_int" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname"><span class="pre">pine.client.models.</span></code><code class="sig-name descname"><span class="pre">_check_field_required_int</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">obj</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><span class="pre">dict</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">field</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><span class="pre">bool</span></a><a class="headerlink" href="#pine.client.models._check_field_required_int" title="Permalink to this definition">¶</a></dt>
 <dd><p>Checks that the given field is in the object and is an int.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -235,7 +237,7 @@
 
 <dl class="py function">
 <dt id="pine.client.models._check_field_float">
-<code class="sig-prename descclassname">pine.client.models.</code><code class="sig-name descname">_check_field_float</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">obj</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)">dict</a></span></em>, <em class="sig-param"><span class="n">field</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)">bool</a><a class="headerlink" href="#pine.client.models._check_field_float" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname"><span class="pre">pine.client.models.</span></code><code class="sig-name descname"><span class="pre">_check_field_float</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">obj</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><span class="pre">dict</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">field</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><span class="pre">bool</span></a><a class="headerlink" href="#pine.client.models._check_field_float" title="Permalink to this definition">¶</a></dt>
 <dd><p>Checks that if the given field is in the object, that it is a float.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -255,7 +257,7 @@
 
 <dl class="py function">
 <dt id="pine.client.models._check_field_required_float">
-<code class="sig-prename descclassname">pine.client.models.</code><code class="sig-name descname">_check_field_required_float</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">obj</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)">dict</a></span></em>, <em class="sig-param"><span class="n">field</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)">bool</a><a class="headerlink" href="#pine.client.models._check_field_required_float" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname"><span class="pre">pine.client.models.</span></code><code class="sig-name descname"><span class="pre">_check_field_required_float</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">obj</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><span class="pre">dict</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">field</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><span class="pre">bool</span></a><a class="headerlink" href="#pine.client.models._check_field_required_float" title="Permalink to this definition">¶</a></dt>
 <dd><p>Checks that the given field is in the object and is a float.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -275,7 +277,7 @@
 
 <dl class="py function">
 <dt id="pine.client.models._check_field_string">
-<code class="sig-prename descclassname">pine.client.models.</code><code class="sig-name descname">_check_field_string</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">obj</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)">dict</a></span></em>, <em class="sig-param"><span class="n">field</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)">bool</a><a class="headerlink" href="#pine.client.models._check_field_string" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname"><span class="pre">pine.client.models.</span></code><code class="sig-name descname"><span class="pre">_check_field_string</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">obj</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><span class="pre">dict</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">field</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><span class="pre">bool</span></a><a class="headerlink" href="#pine.client.models._check_field_string" title="Permalink to this definition">¶</a></dt>
 <dd><p>Checks that if the given field is in the object, that it is a string.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -295,7 +297,7 @@
 
 <dl class="py function">
 <dt id="pine.client.models._check_field_required_string">
-<code class="sig-prename descclassname">pine.client.models.</code><code class="sig-name descname">_check_field_required_string</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">obj</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)">dict</a></span></em>, <em class="sig-param"><span class="n">field</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)">bool</a><a class="headerlink" href="#pine.client.models._check_field_required_string" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname"><span class="pre">pine.client.models.</span></code><code class="sig-name descname"><span class="pre">_check_field_required_string</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">obj</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><span class="pre">dict</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">field</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><span class="pre">bool</span></a><a class="headerlink" href="#pine.client.models._check_field_required_string" title="Permalink to this definition">¶</a></dt>
 <dd><p>Checks that the given field is in the object and is a string.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -315,7 +317,7 @@
 
 <dl class="py function">
 <dt id="pine.client.models._check_field_string_list">
-<code class="sig-prename descclassname">pine.client.models.</code><code class="sig-name descname">_check_field_string_list</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">obj</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)">dict</a></span></em>, <em class="sig-param"><span class="n">field</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a></span></em>, <em class="sig-param"><span class="n">min_length</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)">int</a></span> <span class="o">=</span> <span class="default_value">0</span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)">bool</a><a class="headerlink" href="#pine.client.models._check_field_string_list" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname"><span class="pre">pine.client.models.</span></code><code class="sig-name descname"><span class="pre">_check_field_string_list</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">obj</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><span class="pre">dict</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">field</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">min_length</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><span class="pre">int</span></a></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><span class="pre">bool</span></a><a class="headerlink" href="#pine.client.models._check_field_string_list" title="Permalink to this definition">¶</a></dt>
 <dd><p>Checks that if the given field is in the object, that it is a string list.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -336,7 +338,7 @@
 
 <dl class="py function">
 <dt id="pine.client.models._check_field_required_string_list">
-<code class="sig-prename descclassname">pine.client.models.</code><code class="sig-name descname">_check_field_required_string_list</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">obj</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)">dict</a></span></em>, <em class="sig-param"><span class="n">field</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a></span></em>, <em class="sig-param"><span class="n">min_length</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)">int</a></span> <span class="o">=</span> <span class="default_value">0</span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)">bool</a><a class="headerlink" href="#pine.client.models._check_field_required_string_list" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname"><span class="pre">pine.client.models.</span></code><code class="sig-name descname"><span class="pre">_check_field_required_string_list</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">obj</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><span class="pre">dict</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">field</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">min_length</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><span class="pre">int</span></a></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><span class="pre">bool</span></a><a class="headerlink" href="#pine.client.models._check_field_required_string_list" title="Permalink to this definition">¶</a></dt>
 <dd><p>Checks that the given field is in the object and is a string list.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -357,7 +359,7 @@
 
 <dl class="py function">
 <dt id="pine.client.models._check_field_dict">
-<code class="sig-prename descclassname">pine.client.models.</code><code class="sig-name descname">_check_field_dict</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">obj</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)">dict</a></span></em>, <em class="sig-param"><span class="n">field</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)">bool</a><a class="headerlink" href="#pine.client.models._check_field_dict" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname"><span class="pre">pine.client.models.</span></code><code class="sig-name descname"><span class="pre">_check_field_dict</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">obj</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><span class="pre">dict</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">field</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><span class="pre">bool</span></a><a class="headerlink" href="#pine.client.models._check_field_dict" title="Permalink to this definition">¶</a></dt>
 <dd><p>Checks that if the given field is in the object, that it is a dict.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -377,7 +379,7 @@
 
 <dl class="py function">
 <dt id="pine.client.models._check_field_required_dict">
-<code class="sig-prename descclassname">pine.client.models.</code><code class="sig-name descname">_check_field_required_dict</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">obj</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)">dict</a></span></em>, <em class="sig-param"><span class="n">field</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)">bool</a><a class="headerlink" href="#pine.client.models._check_field_required_dict" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname"><span class="pre">pine.client.models.</span></code><code class="sig-name descname"><span class="pre">_check_field_required_dict</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">obj</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><span class="pre">dict</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">field</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><span class="pre">bool</span></a><a class="headerlink" href="#pine.client.models._check_field_required_dict" title="Permalink to this definition">¶</a></dt>
 <dd><p>Checks that the given field is in the object and is a dict.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -397,7 +399,7 @@
 
 <dl class="py function">
 <dt id="pine.client.models._check_field_bool">
-<code class="sig-prename descclassname">pine.client.models.</code><code class="sig-name descname">_check_field_bool</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">obj</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)">dict</a></span></em>, <em class="sig-param"><span class="n">field</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)">bool</a><a class="headerlink" href="#pine.client.models._check_field_bool" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname"><span class="pre">pine.client.models.</span></code><code class="sig-name descname"><span class="pre">_check_field_bool</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">obj</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><span class="pre">dict</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">field</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><span class="pre">bool</span></a><a class="headerlink" href="#pine.client.models._check_field_bool" title="Permalink to this definition">¶</a></dt>
 <dd><p>Checks that if the given field is in the object, that it is a bool.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -417,7 +419,7 @@
 
 <dl class="py function">
 <dt id="pine.client.models.is_valid_eve_user">
-<code class="sig-prename descclassname">pine.client.models.</code><code class="sig-name descname">is_valid_eve_user</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">user</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)">dict</a></span></em>, <em class="sig-param"><span class="n">error_callback</span><span class="p">:</span> <span class="n">typing.Callable[[str], None]</span> <span class="o">=</span> <span class="default_value">None</span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)">bool</a><a class="headerlink" href="#pine.client.models.is_valid_eve_user" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname"><span class="pre">pine.client.models.</span></code><code class="sig-name descname"><span class="pre">is_valid_eve_user</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">user</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><span class="pre">dict</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">error_callback</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Callable</span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.9)"><span class="pre">None</span></a><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><span class="pre">bool</span></a><a class="headerlink" href="#pine.client.models.is_valid_eve_user" title="Permalink to this definition">¶</a></dt>
 <dd><p>Checks whether the given user object is valid.</p>
 <p>A valid user object has an <code class="docutils literal notranslate"><span class="pre">_id</span></code>, <code class="docutils literal notranslate"><span class="pre">firstname</span></code>, and <code class="docutils literal notranslate"><span class="pre">lastname</span></code> that are non-empty string
 fields.  If <code class="docutils literal notranslate"><span class="pre">email</span></code>, <code class="docutils literal notranslate"><span class="pre">description</span></code>, or <code class="docutils literal notranslate"><span class="pre">passwdhash</span></code> are present, they are string fields.
@@ -440,7 +442,7 @@ If <code class="docutils literal notranslate"><span class="pre">role</span></cod
 
 <dl class="py function">
 <dt id="pine.client.models.is_valid_eve_pipeline">
-<code class="sig-prename descclassname">pine.client.models.</code><code class="sig-name descname">is_valid_eve_pipeline</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">pipeline</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)">dict</a></span></em>, <em class="sig-param"><span class="n">error_callback</span><span class="p">:</span> <span class="n">typing.Callable[[str], None]</span> <span class="o">=</span> <span class="default_value">None</span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)">bool</a><a class="headerlink" href="#pine.client.models.is_valid_eve_pipeline" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname"><span class="pre">pine.client.models.</span></code><code class="sig-name descname"><span class="pre">is_valid_eve_pipeline</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pipeline</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><span class="pre">dict</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">error_callback</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Callable</span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.9)"><span class="pre">None</span></a><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><span class="pre">bool</span></a><a class="headerlink" href="#pine.client.models.is_valid_eve_pipeline" title="Permalink to this definition">¶</a></dt>
 <dd><p>Checks whether the given pipeline object is valid.</p>
 <p>A valid pipeline has an <code class="docutils literal notranslate"><span class="pre">_id</span></code>, <code class="docutils literal notranslate"><span class="pre">title</span></code>, and <code class="docutils literal notranslate"><span class="pre">name</span></code> that are non-empty string fields.  If
 <code class="docutils literal notranslate"><span class="pre">description</span></code> is provided, it is a string field.  If <code class="docutils literal notranslate"><span class="pre">parameters</span></code> are provided, it is a
@@ -463,7 +465,7 @@ dict field.</p>
 
 <dl class="py function">
 <dt id="pine.client.models.is_valid_eve_collection">
-<code class="sig-prename descclassname">pine.client.models.</code><code class="sig-name descname">is_valid_eve_collection</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">collection</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)">dict</a></span></em>, <em class="sig-param"><span class="n">error_callback</span><span class="p">:</span> <span class="n">typing.Callable[[str], None]</span> <span class="o">=</span> <span class="default_value">None</span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)">bool</a><a class="headerlink" href="#pine.client.models.is_valid_eve_collection" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname"><span class="pre">pine.client.models.</span></code><code class="sig-name descname"><span class="pre">is_valid_eve_collection</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">collection</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><span class="pre">dict</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">error_callback</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Callable</span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.9)"><span class="pre">None</span></a><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><span class="pre">bool</span></a><a class="headerlink" href="#pine.client.models.is_valid_eve_collection" title="Permalink to this definition">¶</a></dt>
 <dd><p>Checks whether the given collection object is valid.</p>
 <p>A valid collection has a <code class="docutils literal notranslate"><span class="pre">creator_id</span></code> that is a non-empty string field.  It has a <code class="docutils literal notranslate"><span class="pre">labels</span></code>
 that is a non-empty list of strings.  If <code class="docutils literal notranslate"><span class="pre">annotators</span></code> or <code class="docutils literal notranslate"><span class="pre">viewers</span></code> are provided, they are
@@ -487,7 +489,7 @@ lists of strings.  If <code class="docutils literal notranslate"><span class="pr
 
 <dl class="py function">
 <dt id="pine.client.models.is_valid_collection">
-<code class="sig-prename descclassname">pine.client.models.</code><code class="sig-name descname">is_valid_collection</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">form</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)">dict</a></span></em>, <em class="sig-param"><span class="n">files</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)">dict</a></span></em>, <em class="sig-param"><span class="n">error_callback</span><span class="p">:</span> <span class="n">typing.Callable[[str], None]</span> <span class="o">=</span> <span class="default_value">None</span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)">bool</a><a class="headerlink" href="#pine.client.models.is_valid_collection" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname"><span class="pre">pine.client.models.</span></code><code class="sig-name descname"><span class="pre">is_valid_collection</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">form</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><span class="pre">dict</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">files</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><span class="pre">dict</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">error_callback</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Callable</span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.9)"><span class="pre">None</span></a><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><span class="pre">bool</span></a><a class="headerlink" href="#pine.client.models.is_valid_collection" title="Permalink to this definition">¶</a></dt>
 <dd><p>Checks whether the given form and files parameters are valid for creating a collection.</p>
 <p>A valid form has a <code class="docutils literal notranslate"><span class="pre">collection</span></code> that is a dict field and is valid via
 <a class="reference internal" href="#pine.client.models.is_valid_eve_collection" title="pine.client.models.is_valid_eve_collection"><code class="xref py py-func docutils literal notranslate"><span class="pre">is_valid_eve_collection()</span></code></a>.  Additionally, the collection has string <code class="docutils literal notranslate"><span class="pre">title</span></code> and
@@ -518,7 +520,7 @@ int <code class="docutils literal notranslate"><span class="pre">csvTextCol</spa
 
 <dl class="py function">
 <dt id="pine.client.models.is_valid_eve_document">
-<code class="sig-prename descclassname">pine.client.models.</code><code class="sig-name descname">is_valid_eve_document</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">document</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)">dict</a></span></em>, <em class="sig-param"><span class="n">error_callback</span><span class="p">:</span> <span class="n">typing.Callable[[str], None]</span> <span class="o">=</span> <span class="default_value">None</span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)">bool</a><a class="headerlink" href="#pine.client.models.is_valid_eve_document" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname"><span class="pre">pine.client.models.</span></code><code class="sig-name descname"><span class="pre">is_valid_eve_document</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">document</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><span class="pre">dict</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">error_callback</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Callable</span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.9)"><span class="pre">None</span></a><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><span class="pre">bool</span></a><a class="headerlink" href="#pine.client.models.is_valid_eve_document" title="Permalink to this definition">¶</a></dt>
 <dd><p>Checks whether the given document object is valid.</p>
 <p>A valid document has a <code class="docutils literal notranslate"><span class="pre">creator_id</span></code> and <code class="docutils literal notranslate"><span class="pre">collection_id</span></code> that are non-empty string fields.
 Optionally, it may have an int <code class="docutils literal notranslate"><span class="pre">overlap</span></code> field, string <code class="docutils literal notranslate"><span class="pre">text``field,</span> <span class="pre">and</span> <span class="pre">dict</span>
@@ -541,7 +543,7 @@ Optionally, it may have an int <code class="docutils literal notranslate"><span 
 
 <dl class="py function">
 <dt id="pine.client.models.is_valid_doc_annotation">
-<code class="sig-prename descclassname">pine.client.models.</code><code class="sig-name descname">is_valid_doc_annotation</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">ann</span><span class="p">:</span> <span class="n">typing.Any</span></em>, <em class="sig-param"><span class="n">error_callback</span><span class="p">:</span> <span class="n">typing.Callable[[str], None]</span> <span class="o">=</span> <span class="default_value">None</span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)">bool</a><a class="headerlink" href="#pine.client.models.is_valid_doc_annotation" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname"><span class="pre">pine.client.models.</span></code><code class="sig-name descname"><span class="pre">is_valid_doc_annotation</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ann</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Any</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">error_callback</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Callable</span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.9)"><span class="pre">None</span></a><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><span class="pre">bool</span></a><a class="headerlink" href="#pine.client.models.is_valid_doc_annotation" title="Permalink to this definition">¶</a></dt>
 <dd><p>Checks whether the given annotation is a valid document label/annotation.</p>
 <p>This means that it is a non-empty string.</p>
 <dl class="field-list simple">
@@ -562,7 +564,7 @@ Optionally, it may have an int <code class="docutils literal notranslate"><span 
 
 <dl class="py function">
 <dt id="pine.client.models.is_valid_ner_annotation">
-<code class="sig-prename descclassname">pine.client.models.</code><code class="sig-name descname">is_valid_ner_annotation</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">ann</span><span class="p">:</span> <span class="n">typing.Any</span></em>, <em class="sig-param"><span class="n">error_callback</span><span class="p">:</span> <span class="n">typing.Callable[[str], None]</span> <span class="o">=</span> <span class="default_value">None</span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)">bool</a><a class="headerlink" href="#pine.client.models.is_valid_ner_annotation" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname"><span class="pre">pine.client.models.</span></code><code class="sig-name descname"><span class="pre">is_valid_ner_annotation</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ann</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Any</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">error_callback</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Callable</span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.9)"><span class="pre">None</span></a><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><span class="pre">bool</span></a><a class="headerlink" href="#pine.client.models.is_valid_ner_annotation" title="Permalink to this definition">¶</a></dt>
 <dd><p>Checks whether the given annotation is a valid document NER annotation.</p>
 <p>Valid NER annotations take one of two forms: a <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></a> or a
 <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a>/<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code></a> of size 3.</p>
@@ -596,7 +598,7 @@ Optionally, it may have an int <code class="docutils literal notranslate"><span 
 
 <dl class="py function">
 <dt id="pine.client.models.is_valid_annotation">
-<code class="sig-prename descclassname">pine.client.models.</code><code class="sig-name descname">is_valid_annotation</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">body</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)">dict</a></span></em>, <em class="sig-param"><span class="n">error_callback</span><span class="p">:</span> <span class="n">typing.Callable[[str], None]</span> <span class="o">=</span> <span class="default_value">None</span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)">bool</a><a class="headerlink" href="#pine.client.models.is_valid_annotation" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname"><span class="pre">pine.client.models.</span></code><code class="sig-name descname"><span class="pre">is_valid_annotation</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">body</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><span class="pre">dict</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">error_callback</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Callable</span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.9)"><span class="pre">None</span></a><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><span class="pre">bool</span></a><a class="headerlink" href="#pine.client.models.is_valid_annotation" title="Permalink to this definition">¶</a></dt>
 <dd><p>Checks whether the given body is valid to create an annotation.</p>
 <p>A valid body is a <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></a> with two fields:</p>
 <ul class="simple">
@@ -621,7 +623,7 @@ Optionally, it may have an int <code class="docutils literal notranslate"><span 
 
 <dl class="py function">
 <dt id="pine.client.models.is_valid_doc_annotations">
-<code class="sig-prename descclassname">pine.client.models.</code><code class="sig-name descname">is_valid_doc_annotations</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">doc_annotations</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)">dict</a></span></em>, <em class="sig-param"><span class="n">error_callback</span><span class="p">:</span> <span class="n">typing.Callable[[str], None]</span> <span class="o">=</span> <span class="default_value">None</span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)">bool</a><a class="headerlink" href="#pine.client.models.is_valid_doc_annotations" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname"><span class="pre">pine.client.models.</span></code><code class="sig-name descname"><span class="pre">is_valid_doc_annotations</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">doc_annotations</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><span class="pre">dict</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">error_callback</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Callable</span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.9)"><span class="pre">None</span></a><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><span class="pre">bool</span></a><a class="headerlink" href="#pine.client.models.is_valid_doc_annotations" title="Permalink to this definition">¶</a></dt>
 <dd><p>Checks whether the given document annotations are valid.</p>
 <p>A valid document annotations object is a <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></a>, where the keys are <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>
 document IDs, and the values are valid annotation bodies (see <a class="reference internal" href="#pine.client.models.is_valid_annotation" title="pine.client.models.is_valid_annotation"><code class="xref py py-func docutils literal notranslate"><span class="pre">is_valid_annotation()</span></code></a>).</p>
@@ -643,7 +645,7 @@ document IDs, and the values are valid annotation bodies (see <a class="referenc
 
 <dl class="py class">
 <dt id="pine.client.models.CollectionBuilder">
-<em class="property">class </em><code class="sig-prename descclassname">pine.client.models.</code><code class="sig-name descname">CollectionBuilder</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">collection</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)">dict</a></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">creator_id</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">viewers</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.9)">typing.List</a><span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">annotators</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.9)">typing.List</a><span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">labels</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.9)">typing.List</a><span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">title</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">description</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">allow_overlapping_ner_annotations</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)">bool</a></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">pipelineId</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">overlap</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)">float</a></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">train_every</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)">int</a></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">classifierParameters</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)">dict</a></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">document_csv_file</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">document_csv_file_has_header</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)">bool</a></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">document_csv_file_text_column</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)">int</a></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">image_files</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.9)">typing.List</a><span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.client.models.CollectionBuilder" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">pine.client.models.</span></code><code class="sig-name descname"><span class="pre">CollectionBuilder</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">collection</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><span class="pre">dict</span></a></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">creator_id</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">viewers</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">annotators</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">labels</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">title</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">description</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">allow_overlapping_ner_annotations</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><span class="pre">bool</span></a></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pipelineId</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">overlap</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><span class="pre">float</span></a></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">train_every</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><span class="pre">int</span></a></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">classifierParameters</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><span class="pre">dict</span></a></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">document_csv_file</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">document_csv_file_has_header</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><span class="pre">bool</span></a></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">document_csv_file_text_column</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><span class="pre">int</span></a></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">image_files</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.client.models.CollectionBuilder" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
 <p>A class that can build the form and files fields that are necessary to create a collection.</p>
 <p>Constructor.</p>
@@ -682,7 +684,7 @@ defaults to <code class="docutils literal notranslate"><span class="pre">None</s
 </dl>
 <dl class="py attribute">
 <dt id="pine.client.models.CollectionBuilder.form">
-<code class="sig-name descname">form</code><a class="headerlink" href="#pine.client.models.CollectionBuilder.form" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">form</span></code><a class="headerlink" href="#pine.client.models.CollectionBuilder.form" title="Permalink to this definition">¶</a></dt>
 <dd><p>The form data.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
@@ -693,7 +695,7 @@ defaults to <code class="docutils literal notranslate"><span class="pre">None</s
 
 <dl class="py attribute">
 <dt id="pine.client.models.CollectionBuilder.files">
-<code class="sig-name descname">files</code><a class="headerlink" href="#pine.client.models.CollectionBuilder.files" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">files</span></code><a class="headerlink" href="#pine.client.models.CollectionBuilder.files" title="Permalink to this definition">¶</a></dt>
 <dd><p>The files data.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
@@ -704,7 +706,7 @@ defaults to <code class="docutils literal notranslate"><span class="pre">None</s
 
 <dl class="py method">
 <dt id="pine.client.models.CollectionBuilder.collection">
-<em class="property">property </em><code class="sig-name descname">collection</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.client.models.CollectionBuilder.collection" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">property</span> </em><code class="sig-name descname"><span class="pre">collection</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><span class="pre">dict</span></a><a class="headerlink" href="#pine.client.models.CollectionBuilder.collection" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns the collection information from the form.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
@@ -718,7 +720,7 @@ defaults to <code class="docutils literal notranslate"><span class="pre">None</s
 
 <dl class="py method">
 <dt id="pine.client.models.CollectionBuilder.form_json">
-<em class="property">property </em><code class="sig-name descname">form_json</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.client.models.CollectionBuilder.form_json" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">property</span> </em><code class="sig-name descname"><span class="pre">form_json</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><span class="pre">dict</span></a><a class="headerlink" href="#pine.client.models.CollectionBuilder.form_json" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns the form where the values have been JSON-encoded.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
@@ -732,7 +734,7 @@ defaults to <code class="docutils literal notranslate"><span class="pre">None</s
 
 <dl class="py method">
 <dt id="pine.client.models.CollectionBuilder.creator_id">
-<code class="sig-name descname">creator_id</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="n">user_id</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.client.models.CollectionBuilder.creator_id" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">creator_id</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">user_id</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference internal" href="#pine.client.models.CollectionBuilder" title="pine.client.models.CollectionBuilder"><span class="pre">pine.client.models.CollectionBuilder</span></a><a class="headerlink" href="#pine.client.models.CollectionBuilder.creator_id" title="Permalink to this definition">¶</a></dt>
 <dd><p>Sets the creator_id to the given, and adds to viewers and annotators.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -749,7 +751,7 @@ defaults to <code class="docutils literal notranslate"><span class="pre">None</s
 
 <dl class="py method">
 <dt id="pine.client.models.CollectionBuilder.viewer">
-<code class="sig-name descname">viewer</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="n">user_id</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.client.models.CollectionBuilder.viewer" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">viewer</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">user_id</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference internal" href="#pine.client.models.CollectionBuilder" title="pine.client.models.CollectionBuilder"><span class="pre">pine.client.models.CollectionBuilder</span></a><a class="headerlink" href="#pine.client.models.CollectionBuilder.viewer" title="Permalink to this definition">¶</a></dt>
 <dd><p>Adds the given user to the list of viewers.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -766,7 +768,7 @@ defaults to <code class="docutils literal notranslate"><span class="pre">None</s
 
 <dl class="py method">
 <dt id="pine.client.models.CollectionBuilder.annotator">
-<code class="sig-name descname">annotator</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="n">user_id</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.client.models.CollectionBuilder.annotator" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">annotator</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">user_id</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference internal" href="#pine.client.models.CollectionBuilder" title="pine.client.models.CollectionBuilder"><span class="pre">pine.client.models.CollectionBuilder</span></a><a class="headerlink" href="#pine.client.models.CollectionBuilder.annotator" title="Permalink to this definition">¶</a></dt>
 <dd><p>Adds the given user to the list of annotators.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -783,7 +785,7 @@ defaults to <code class="docutils literal notranslate"><span class="pre">None</s
 
 <dl class="py method">
 <dt id="pine.client.models.CollectionBuilder.label">
-<code class="sig-name descname">label</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="n">label</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.client.models.CollectionBuilder.label" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">label</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">label</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference internal" href="#pine.client.models.CollectionBuilder" title="pine.client.models.CollectionBuilder"><span class="pre">pine.client.models.CollectionBuilder</span></a><a class="headerlink" href="#pine.client.models.CollectionBuilder.label" title="Permalink to this definition">¶</a></dt>
 <dd><p>Adds the given label to the collection.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -800,7 +802,7 @@ defaults to <code class="docutils literal notranslate"><span class="pre">None</s
 
 <dl class="py method">
 <dt id="pine.client.models.CollectionBuilder.metadata">
-<code class="sig-name descname">metadata</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="n">key</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a></span></em>, <em class="sig-param"><span class="n">value</span><span class="p">:</span> <span class="n">typing.Any</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.client.models.CollectionBuilder.metadata" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">metadata</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">key</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Any</span></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference internal" href="#pine.client.models.CollectionBuilder" title="pine.client.models.CollectionBuilder"><span class="pre">pine.client.models.CollectionBuilder</span></a><a class="headerlink" href="#pine.client.models.CollectionBuilder.metadata" title="Permalink to this definition">¶</a></dt>
 <dd><p>Adds the given metadata key/value to the collection.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -820,7 +822,7 @@ defaults to <code class="docutils literal notranslate"><span class="pre">None</s
 
 <dl class="py method">
 <dt id="pine.client.models.CollectionBuilder.title">
-<code class="sig-name descname">title</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="n">title</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.client.models.CollectionBuilder.title" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">title</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">title</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference internal" href="#pine.client.models.CollectionBuilder" title="pine.client.models.CollectionBuilder"><span class="pre">pine.client.models.CollectionBuilder</span></a><a class="headerlink" href="#pine.client.models.CollectionBuilder.title" title="Permalink to this definition">¶</a></dt>
 <dd><p>Sets the metadata title to the given.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -837,7 +839,7 @@ defaults to <code class="docutils literal notranslate"><span class="pre">None</s
 
 <dl class="py method">
 <dt id="pine.client.models.CollectionBuilder.description">
-<code class="sig-name descname">description</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="n">description</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.client.models.CollectionBuilder.description" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">description</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">description</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference internal" href="#pine.client.models.CollectionBuilder" title="pine.client.models.CollectionBuilder"><span class="pre">pine.client.models.CollectionBuilder</span></a><a class="headerlink" href="#pine.client.models.CollectionBuilder.description" title="Permalink to this definition">¶</a></dt>
 <dd><p>Sets the metadata description to the given.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -854,7 +856,7 @@ defaults to <code class="docutils literal notranslate"><span class="pre">None</s
 
 <dl class="py method">
 <dt id="pine.client.models.CollectionBuilder.configuration">
-<code class="sig-name descname">configuration</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="n">key</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a></span></em>, <em class="sig-param"><span class="n">value</span><span class="p">:</span> <span class="n">typing.Any</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.client.models.CollectionBuilder.configuration" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">configuration</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">key</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Any</span></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference internal" href="#pine.client.models.CollectionBuilder" title="pine.client.models.CollectionBuilder"><span class="pre">pine.client.models.CollectionBuilder</span></a><a class="headerlink" href="#pine.client.models.CollectionBuilder.configuration" title="Permalink to this definition">¶</a></dt>
 <dd><p>Adds the given configuration key/value to the collection.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -874,7 +876,7 @@ defaults to <code class="docutils literal notranslate"><span class="pre">None</s
 
 <dl class="py method">
 <dt id="pine.client.models.CollectionBuilder.allow_overlapping_ner_annotations">
-<code class="sig-name descname">allow_overlapping_ner_annotations</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="n">allow_overlapping_ner_annotations</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)">bool</a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.client.models.CollectionBuilder.allow_overlapping_ner_annotations" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">allow_overlapping_ner_annotations</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">allow_overlapping_ner_annotations</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><span class="pre">bool</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.client.models.CollectionBuilder.allow_overlapping_ner_annotations" title="Permalink to this definition">¶</a></dt>
 <dd><p>Sets the configuration value for allow_overlapping_ner_annotations to the given.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -891,7 +893,7 @@ defaults to <code class="docutils literal notranslate"><span class="pre">None</s
 
 <dl class="py method">
 <dt id="pine.client.models.CollectionBuilder.classifier">
-<code class="sig-name descname">classifier</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="n">pipelineId</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a></span></em>, <em class="sig-param"><span class="n">overlap</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)">float</a></span> <span class="o">=</span> <span class="default_value">0</span></em>, <em class="sig-param"><span class="n">train_every</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)">int</a></span> <span class="o">=</span> <span class="default_value">100</span></em>, <em class="sig-param"><span class="n">classifierParameters</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)">dict</a></span> <span class="o">=</span> <span class="default_value">{}</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.client.models.CollectionBuilder.classifier" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">classifier</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pipelineId</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">overlap</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><span class="pre">float</span></a></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">train_every</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><span class="pre">int</span></a></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">100</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">classifierParameters</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><span class="pre">dict</span></a></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">{}</span></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference internal" href="#pine.client.models.CollectionBuilder" title="pine.client.models.CollectionBuilder"><span class="pre">pine.client.models.CollectionBuilder</span></a><a class="headerlink" href="#pine.client.models.CollectionBuilder.classifier" title="Permalink to this definition">¶</a></dt>
 <dd><p>Sets classifier information for the created collection.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -913,7 +915,7 @@ defaults to <code class="docutils literal notranslate"><span class="pre">None</s
 
 <dl class="py method">
 <dt id="pine.client.models.CollectionBuilder.document_csv_file">
-<code class="sig-name descname">document_csv_file</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="n">csv_filename</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a></span></em>, <em class="sig-param"><span class="n">has_header</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)">bool</a></span></em>, <em class="sig-param"><span class="n">text_column</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)">int</a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.client.models.CollectionBuilder.document_csv_file" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">document_csv_file</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">csv_filename</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">has_header</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><span class="pre">bool</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">text_column</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference internal" href="#pine.client.models.CollectionBuilder" title="pine.client.models.CollectionBuilder"><span class="pre">pine.client.models.CollectionBuilder</span></a><a class="headerlink" href="#pine.client.models.CollectionBuilder.document_csv_file" title="Permalink to this definition">¶</a></dt>
 <dd><p>Sets the CSV file used to create documents to the given.</p>
 <p>May raise an Exception if there is a problem opening the indicated file.</p>
 <dl class="field-list simple">
@@ -936,7 +938,7 @@ defaults to <code class="docutils literal notranslate"><span class="pre">None</s
 
 <dl class="py method">
 <dt id="pine.client.models.CollectionBuilder.image_file">
-<code class="sig-name descname">image_file</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="n">image_filename</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.client.models.CollectionBuilder.image_file" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">image_file</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">image_filename</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference internal" href="#pine.client.models.CollectionBuilder" title="pine.client.models.CollectionBuilder"><span class="pre">pine.client.models.CollectionBuilder</span></a><a class="headerlink" href="#pine.client.models.CollectionBuilder.image_file" title="Permalink to this definition">¶</a></dt>
 <dd><p>Adds the given image file to the collection.</p>
 <p>May raise an Exception if there is a problem opening the indicated file.</p>
 <dl class="field-list simple">
@@ -954,7 +956,7 @@ defaults to <code class="docutils literal notranslate"><span class="pre">None</s
 
 <dl class="py method">
 <dt id="pine.client.models.CollectionBuilder.is_valid">
-<code class="sig-name descname">is_valid</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="n">error_callback</span><span class="p">:</span> <span class="n">typing.Callable[[str], None]</span> <span class="o">=</span> <span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.client.models.CollectionBuilder.is_valid" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">is_valid</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">error_callback</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Callable</span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.9)"><span class="pre">None</span></a><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.client.models.CollectionBuilder.is_valid" title="Permalink to this definition">¶</a></dt>
 <dd><p>Checks whether the currently set values are valid or not.</p>
 <p>See <a class="reference internal" href="#pine.client.models.is_valid_collection" title="pine.client.models.is_valid_collection"><code class="xref py py-func docutils literal notranslate"><span class="pre">is_valid_collection()</span></code></a>.</p>
 <dl class="field-list simple">
@@ -972,9 +974,93 @@ defaults to <code class="docutils literal notranslate"><span class="pre">None</s
 
 </dd></dl>
 
+<dl class="py class">
+<dt id="pine.client.models.CollectionUserPermissions">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">pine.client.models.</span></code><code class="sig-name descname"><span class="pre">CollectionUserPermissions</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">view</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">annotate</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">add_documents</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">add_images</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">modify_users</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">modify_labels</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">modify_document_metadata</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">download_data</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">archive</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.client.models.CollectionUserPermissions" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>Collection permissions for a user as a dictionary of boolean flags.</p>
+<dl class="py attribute">
+<dt id="pine.client.models.CollectionUserPermissions.view">
+<code class="sig-name descname"><span class="pre">view</span></code><em class="property"> <span class="pre">:bool</span></em><a class="headerlink" href="#pine.client.models.CollectionUserPermissions.view" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether the user can view the collection and documents.
+:type: bool</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="pine.client.models.CollectionUserPermissions.annotate">
+<code class="sig-name descname"><span class="pre">annotate</span></code><em class="property"> <span class="pre">:bool</span></em><a class="headerlink" href="#pine.client.models.CollectionUserPermissions.annotate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether the user can annotate collection documents.
+:type: bool</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="pine.client.models.CollectionUserPermissions.add_documents">
+<code class="sig-name descname"><span class="pre">add_documents</span></code><em class="property"> <span class="pre">:bool</span></em><a class="headerlink" href="#pine.client.models.CollectionUserPermissions.add_documents" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether the user can add documents to the collection.
+:type: bool</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="pine.client.models.CollectionUserPermissions.add_images">
+<code class="sig-name descname"><span class="pre">add_images</span></code><em class="property"> <span class="pre">:bool</span></em><a class="headerlink" href="#pine.client.models.CollectionUserPermissions.add_images" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether the user can add images to the collection.
+:type: bool</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="pine.client.models.CollectionUserPermissions.modify_users">
+<code class="sig-name descname"><span class="pre">modify_users</span></code><em class="property"> <span class="pre">:bool</span></em><a class="headerlink" href="#pine.client.models.CollectionUserPermissions.modify_users" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether the user can modify the list of viewers/annotators for the collection.
+:type: bool</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="pine.client.models.CollectionUserPermissions.modify_labels">
+<code class="sig-name descname"><span class="pre">modify_labels</span></code><em class="property"> <span class="pre">:bool</span></em><a class="headerlink" href="#pine.client.models.CollectionUserPermissions.modify_labels" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether the user can modify the list of labels for the collection.
+:type: bool</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="pine.client.models.CollectionUserPermissions.modify_document_metadata">
+<code class="sig-name descname"><span class="pre">modify_document_metadata</span></code><em class="property"> <span class="pre">:bool</span></em><a class="headerlink" href="#pine.client.models.CollectionUserPermissions.modify_document_metadata" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether the user can modify document metadata (such as changing the image).
+:type: bool</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="pine.client.models.CollectionUserPermissions.download_data">
+<code class="sig-name descname"><span class="pre">download_data</span></code><em class="property"> <span class="pre">:bool</span></em><a class="headerlink" href="#pine.client.models.CollectionUserPermissions.download_data" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether the user can download the collection data
+:type: bool</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="pine.client.models.CollectionUserPermissions.archive">
+<code class="sig-name descname"><span class="pre">archive</span></code><em class="property"> <span class="pre">:bool</span></em><a class="headerlink" href="#pine.client.models.CollectionUserPermissions.archive" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether the user can archive or unarchive the collection.
+:type: bool</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pine.client.models.CollectionUserPermissions.to_dict">
+<code class="sig-name descname"><span class="pre">to_dict</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><span class="pre">dict</span></a><a class="headerlink" href="#pine.client.models.CollectionUserPermissions.to_dict" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a dict version of this object for conversion to JSON.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>a dict version of this object for conversion to JSON</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)">dict</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
 <dl class="py function">
 <dt id="pine.client.models.remove_eve_fields">
-<code class="sig-prename descclassname">pine.client.models.</code><code class="sig-name descname">remove_eve_fields</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">obj</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)">dict</a></span></em>, <em class="sig-param"><span class="n">remove_timestamps</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)">bool</a></span> <span class="o">=</span> <span class="default_value">True</span></em>, <em class="sig-param"><span class="n">remove_versions</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)">bool</a></span> <span class="o">=</span> <span class="default_value">True</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.client.models.remove_eve_fields" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname"><span class="pre">pine.client.models.</span></code><code class="sig-name descname"><span class="pre">remove_eve_fields</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">obj</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><span class="pre">dict</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">remove_timestamps</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><span class="pre">bool</span></a></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">remove_versions</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><span class="pre">bool</span></a></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.client.models.remove_eve_fields" title="Permalink to this definition">¶</a></dt>
 <dd><p>Removes fields inserted by eve from the given object.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -989,7 +1075,7 @@ defaults to <code class="docutils literal notranslate"><span class="pre">None</s
 
 <dl class="py function">
 <dt id="pine.client.models.remove_nonupdatable_fields">
-<code class="sig-prename descclassname">pine.client.models.</code><code class="sig-name descname">remove_nonupdatable_fields</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">obj</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)">dict</a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.client.models.remove_nonupdatable_fields" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname"><span class="pre">pine.client.models.</span></code><code class="sig-name descname"><span class="pre">remove_nonupdatable_fields</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">obj</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><span class="pre">dict</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.client.models.remove_nonupdatable_fields" title="Permalink to this definition">¶</a></dt>
 <dd><p>Removes all non-updatable fields from the given object.</p>
 <p>These fields would cause a <code class="docutils literal notranslate"><span class="pre">PUT</span></code>/<code class="docutils literal notranslate"><span class="pre">PATCH</span></code> to be rejected because they are not user-modifiable.</p>
 <dl class="field-list simple">
@@ -1017,131 +1103,62 @@ defaults to <code class="docutils literal notranslate"><span class="pre">None</s
 <li><a class="reference internal" href="#classes">Classes</a></li>
 <li><a class="reference internal" href="#functions">Functions</a><ul>
 <li><a class="reference internal" href="#pine.client.models.ID_FIELD">ID_FIELD</a></li>
-</ul>
-<ul>
 <li><a class="reference internal" href="#pine.client.models.ITEMS_FIELD">ITEMS_FIELD</a></li>
-</ul>
-<ul>
 <li><a class="reference internal" href="#pine.client.models._check_field_required_bool">_check_field_required_bool</a></li>
-</ul>
-<ul>
 <li><a class="reference internal" href="#pine.client.models._check_field_int">_check_field_int</a></li>
-</ul>
-<ul>
 <li><a class="reference internal" href="#pine.client.models._check_field_required_int">_check_field_required_int</a></li>
-</ul>
-<ul>
 <li><a class="reference internal" href="#pine.client.models._check_field_float">_check_field_float</a></li>
-</ul>
-<ul>
 <li><a class="reference internal" href="#pine.client.models._check_field_required_float">_check_field_required_float</a></li>
-</ul>
-<ul>
 <li><a class="reference internal" href="#pine.client.models._check_field_string">_check_field_string</a></li>
-</ul>
-<ul>
 <li><a class="reference internal" href="#pine.client.models._check_field_required_string">_check_field_required_string</a></li>
-</ul>
-<ul>
 <li><a class="reference internal" href="#pine.client.models._check_field_string_list">_check_field_string_list</a></li>
-</ul>
-<ul>
 <li><a class="reference internal" href="#pine.client.models._check_field_required_string_list">_check_field_required_string_list</a></li>
-</ul>
-<ul>
 <li><a class="reference internal" href="#pine.client.models._check_field_dict">_check_field_dict</a></li>
-</ul>
-<ul>
 <li><a class="reference internal" href="#pine.client.models._check_field_required_dict">_check_field_required_dict</a></li>
-</ul>
-<ul>
 <li><a class="reference internal" href="#pine.client.models._check_field_bool">_check_field_bool</a></li>
-</ul>
-<ul>
 <li><a class="reference internal" href="#pine.client.models.is_valid_eve_user">is_valid_eve_user</a></li>
-</ul>
-<ul>
 <li><a class="reference internal" href="#pine.client.models.is_valid_eve_pipeline">is_valid_eve_pipeline</a></li>
-</ul>
-<ul>
 <li><a class="reference internal" href="#pine.client.models.is_valid_eve_collection">is_valid_eve_collection</a></li>
-</ul>
-<ul>
 <li><a class="reference internal" href="#pine.client.models.is_valid_collection">is_valid_collection</a></li>
-</ul>
-<ul>
 <li><a class="reference internal" href="#pine.client.models.is_valid_eve_document">is_valid_eve_document</a></li>
-</ul>
-<ul>
 <li><a class="reference internal" href="#pine.client.models.is_valid_doc_annotation">is_valid_doc_annotation</a></li>
-</ul>
-<ul>
 <li><a class="reference internal" href="#pine.client.models.is_valid_ner_annotation">is_valid_ner_annotation</a></li>
-</ul>
-<ul>
 <li><a class="reference internal" href="#pine.client.models.is_valid_annotation">is_valid_annotation</a></li>
-</ul>
-<ul>
 <li><a class="reference internal" href="#pine.client.models.is_valid_doc_annotations">is_valid_doc_annotations</a></li>
-</ul>
-<ul>
 <li><a class="reference internal" href="#pine.client.models.CollectionBuilder">CollectionBuilder</a><ul>
 <li><a class="reference internal" href="#pine.client.models.CollectionBuilder.form">form</a></li>
-</ul>
-<ul>
 <li><a class="reference internal" href="#pine.client.models.CollectionBuilder.files">files</a></li>
-</ul>
-<ul>
 <li><a class="reference internal" href="#pine.client.models.CollectionBuilder.collection">collection</a></li>
-</ul>
-<ul>
 <li><a class="reference internal" href="#pine.client.models.CollectionBuilder.form_json">form_json</a></li>
-</ul>
-<ul>
 <li><a class="reference internal" href="#pine.client.models.CollectionBuilder.creator_id">creator_id</a></li>
-</ul>
-<ul>
 <li><a class="reference internal" href="#pine.client.models.CollectionBuilder.viewer">viewer</a></li>
-</ul>
-<ul>
 <li><a class="reference internal" href="#pine.client.models.CollectionBuilder.annotator">annotator</a></li>
-</ul>
-<ul>
 <li><a class="reference internal" href="#pine.client.models.CollectionBuilder.label">label</a></li>
-</ul>
-<ul>
 <li><a class="reference internal" href="#pine.client.models.CollectionBuilder.metadata">metadata</a></li>
-</ul>
-<ul>
 <li><a class="reference internal" href="#pine.client.models.CollectionBuilder.title">title</a></li>
-</ul>
-<ul>
 <li><a class="reference internal" href="#pine.client.models.CollectionBuilder.description">description</a></li>
-</ul>
-<ul>
 <li><a class="reference internal" href="#pine.client.models.CollectionBuilder.configuration">configuration</a></li>
-</ul>
-<ul>
 <li><a class="reference internal" href="#pine.client.models.CollectionBuilder.allow_overlapping_ner_annotations">allow_overlapping_ner_annotations</a></li>
-</ul>
-<ul>
 <li><a class="reference internal" href="#pine.client.models.CollectionBuilder.classifier">classifier</a></li>
-</ul>
-<ul>
 <li><a class="reference internal" href="#pine.client.models.CollectionBuilder.document_csv_file">document_csv_file</a></li>
-</ul>
-<ul>
 <li><a class="reference internal" href="#pine.client.models.CollectionBuilder.image_file">image_file</a></li>
-</ul>
-<ul>
 <li><a class="reference internal" href="#pine.client.models.CollectionBuilder.is_valid">is_valid</a></li>
 </ul>
 </li>
+<li><a class="reference internal" href="#pine.client.models.CollectionUserPermissions">CollectionUserPermissions</a><ul>
+<li><a class="reference internal" href="#pine.client.models.CollectionUserPermissions.view">view</a></li>
+<li><a class="reference internal" href="#pine.client.models.CollectionUserPermissions.annotate">annotate</a></li>
+<li><a class="reference internal" href="#pine.client.models.CollectionUserPermissions.add_documents">add_documents</a></li>
+<li><a class="reference internal" href="#pine.client.models.CollectionUserPermissions.add_images">add_images</a></li>
+<li><a class="reference internal" href="#pine.client.models.CollectionUserPermissions.modify_users">modify_users</a></li>
+<li><a class="reference internal" href="#pine.client.models.CollectionUserPermissions.modify_labels">modify_labels</a></li>
+<li><a class="reference internal" href="#pine.client.models.CollectionUserPermissions.modify_document_metadata">modify_document_metadata</a></li>
+<li><a class="reference internal" href="#pine.client.models.CollectionUserPermissions.download_data">download_data</a></li>
+<li><a class="reference internal" href="#pine.client.models.CollectionUserPermissions.archive">archive</a></li>
+<li><a class="reference internal" href="#pine.client.models.CollectionUserPermissions.to_dict">to_dict</a></li>
 </ul>
-<ul>
+</li>
 <li><a class="reference internal" href="#pine.client.models.remove_eve_fields">remove_eve_fields</a></li>
-</ul>
-<ul>
 <li><a class="reference internal" href="#pine.client.models.remove_nonupdatable_fields">remove_nonupdatable_fields</a></li>
 </ul>
 </li>
@@ -1202,7 +1219,7 @@ defaults to <code class="docutils literal notranslate"><span class="pre">None</s
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright (C) 2019 The Johns Hopkins University Applied Physics Laboratory LLC..
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.1.2.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.5.3.
     </div>
   </body>
 </html>

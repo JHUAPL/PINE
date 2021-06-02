@@ -5,23 +5,22 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>pine.client.client &#8212; pine  documentation</title>
-    <link rel="stylesheet" href="../../../../_static/bizstyle.css" type="text/css" />
     <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../_static/bizstyle.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../../../../_static/graphviz.css" />
     
     <script id="documentation_options" data-url_root="../../../../" src="../../../../_static/documentation_options.js"></script>
     <script src="../../../../_static/jquery.js"></script>
     <script src="../../../../_static/underscore.js"></script>
     <script src="../../../../_static/doctools.js"></script>
-    <script src="../../../../_static/language_data.js"></script>
     <script src="../../../../_static/bizstyle.js"></script>
     <link rel="index" title="Index" href="../../../../genindex.html" />
     <link rel="search" title="Search" href="../../../../search.html" />
     <link rel="next" title="pine.client.exceptions" href="../exceptions/index.html" />
     <link rel="prev" title="pine.client" href="../index.html" />
-    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
     <!--[if lt IE 9]>
     <script src="_static/css3-mediaqueries.js"></script>
     <![endif]-->
@@ -56,8 +55,7 @@
             
   <div class="section" id="module-pine.client.client">
 <span id="pine-client-client"></span><h1><a class="reference internal" href="#module-pine.client.client" title="pine.client.client"><code class="xref py py-mod docutils literal notranslate"><span class="pre">pine.client.client</span></code></a><a class="headerlink" href="#module-pine.client.client" title="Permalink to this headline">¶</a></h1>
-<p><p>PINE client classes module.</p>
-</p>
+<p>PINE client classes module.</p>
 <div class="section" id="module-contents">
 <h2>Module Contents<a class="headerlink" href="#module-contents" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="classes">
@@ -68,17 +66,17 @@
 <col style="width: 90%" />
 </colgroup>
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#pine.client.client.BaseClient" title="pine.client.client.BaseClient"><code class="xref py py-obj docutils literal notranslate"><span class="pre">BaseClient</span></code></a>(base_uri: str, name: str = None)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pine.client.client.BaseClient" title="pine.client.client.BaseClient"><code class="xref py py-obj docutils literal notranslate"><span class="pre">BaseClient</span></code></a></p></td>
 <td><p>Base class for a client using a REST interface.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#pine.client.client.EveClient" title="pine.client.client.EveClient"><code class="xref py py-obj docutils literal notranslate"><span class="pre">EveClient</span></code></a>(eve_base_uri: str, mongo_base_uri: str = None, mongo_dbname: str = DEFAULT_DBNAME)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#pine.client.client.EveClient" title="pine.client.client.EveClient"><code class="xref py py-obj docutils literal notranslate"><span class="pre">EveClient</span></code></a></p></td>
 <td><p>A client to access Eve and, optionally, its underlying MongoDB instance.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#pine.client.client.PineClient" title="pine.client.client.PineClient"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PineClient</span></code></a>(backend_base_uri: str)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pine.client.client.PineClient" title="pine.client.client.PineClient"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PineClient</span></code></a></p></td>
 <td><p>A client to access PINE (more specifically: the backend).</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#pine.client.client.LocalPineClient" title="pine.client.client.LocalPineClient"><code class="xref py py-obj docutils literal notranslate"><span class="pre">LocalPineClient</span></code></a>(backend_base_uri: str, eve_base_uri: str, mongo_base_uri: str = None, mongo_dbname: str = EveClient.DEFAULT_DBNAME)</p></td>
-<td><p>A client for a local PINE instance, including an :py:class&lt;.EveClient&gt;.</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#pine.client.client.LocalPineClient" title="pine.client.client.LocalPineClient"><code class="xref py py-obj docutils literal notranslate"><span class="pre">LocalPineClient</span></code></a></p></td>
+<td><p>A client for a local PINE instance, including an <a class="reference internal" href="#pine.client.client.EveClient" title="pine.client.client.EveClient"><code class="xref py py-class docutils literal notranslate"><span class="pre">EveClient</span></code></a>.</p></td>
 </tr>
 </tbody>
 </table>
@@ -91,14 +89,14 @@
 <col style="width: 90%" />
 </colgroup>
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#pine.client.client._standardize_path" title="pine.client.client._standardize_path"><code class="xref py py-obj docutils literal notranslate"><span class="pre">_standardize_path</span></code></a>(path: str, *additional_paths: typing.List[str])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pine.client.client._standardize_path" title="pine.client.client._standardize_path"><code class="xref py py-obj docutils literal notranslate"><span class="pre">_standardize_path</span></code></a>(path: str, *additional_paths: List[str]) → List[str]</p></td>
 <td><p>Standardize path(s) into a list of path components.</p></td>
 </tr>
 </tbody>
 </table>
 <dl class="py function">
 <dt id="pine.client.client._standardize_path">
-<code class="sig-prename descclassname">pine.client.client.</code><code class="sig-name descname">_standardize_path</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">path</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a></span></em>, <em class="sig-param"><span class="o">*</span><span class="n">additional_paths</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.9)">typing.List</a><span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a><span class="p">]</span></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.9)">typing.List</a><span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a><span class="p">]</span><a class="headerlink" href="#pine.client.client._standardize_path" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname"><span class="pre">pine.client.client.</span></code><code class="sig-name descname"><span class="pre">_standardize_path</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">additional_paths</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#pine.client.client._standardize_path" title="Permalink to this definition">¶</a></dt>
 <dd><p>Standardize path(s) into a list of path components.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -118,7 +116,7 @@
 
 <dl class="py class">
 <dt id="pine.client.client.BaseClient">
-<em class="property">class </em><code class="sig-prename descclassname">pine.client.client.</code><code class="sig-name descname">BaseClient</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">base_uri</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a></span></em>, <em class="sig-param"><span class="n">name</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a></span> <span class="o">=</span> <span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.client.client.BaseClient" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">pine.client.client.</span></code><code class="sig-name descname"><span class="pre">BaseClient</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">base_uri</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verify_ssl</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><span class="pre">bool</span></a></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.client.client.BaseClient" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
 <p>Base class for a client using a REST interface.</p>
 <p>Constructor.</p>
@@ -127,17 +125,19 @@
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>base_uri</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – the base URI for the server, e.g. <code class="docutils literal notranslate"><span class="pre">&quot;http://localhost:5000&quot;</span></code></p></li>
 <li><p><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a><em>, </em><em>optional</em>) – optional human-readable name for the server, defaults to None</p></li>
+<li><p><strong>verify_ssl</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><em>bool</em></a><em>, </em><em>optional</em>) – whether to verify SSL/HTTPs calls; do not turn this off unless you
+are fully aware of the security consequences</p></li>
 </ul>
 </dd>
 </dl>
 <dl class="py attribute">
 <dt id="pine.client.client.BaseClient.__metaclass__">
-<code class="sig-name descname">__metaclass__</code><a class="headerlink" href="#pine.client.client.BaseClient.__metaclass__" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">__metaclass__</span></code><a class="headerlink" href="#pine.client.client.BaseClient.__metaclass__" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt id="pine.client.client.BaseClient.base_uri">
-<code class="sig-name descname">base_uri</code><em class="property"> :str</em><a class="headerlink" href="#pine.client.client.BaseClient.base_uri" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">base_uri</span></code><em class="property"> <span class="pre">:str</span></em><a class="headerlink" href="#pine.client.client.BaseClient.base_uri" title="Permalink to this definition">¶</a></dt>
 <dd><p>The server’s base URI.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
@@ -148,18 +148,30 @@
 
 <dl class="py attribute">
 <dt id="pine.client.client.BaseClient.session">
-<code class="sig-name descname">session</code><em class="property"> :requests.Session</em><a class="headerlink" href="#pine.client.client.BaseClient.session" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">session</span></code><em class="property"> <span class="pre">:requests.Session</span></em><a class="headerlink" href="#pine.client.client.BaseClient.session" title="Permalink to this definition">¶</a></dt>
 <dd><p>The currently open session, or <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://requests.readthedocs.io/en/master/api/#requests.Session" title="(in Requests v2.24.0)">requests.Session</a></p>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python-requests.org/en/master/api/#requests.Session" title="(in Requests v2.25.1)">requests.Session</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="pine.client.client.BaseClient.verify_ssl">
+<code class="sig-name descname"><span class="pre">verify_ssl</span></code><em class="property"> <span class="pre">:bool</span></em><a class="headerlink" href="#pine.client.client.BaseClient.verify_ssl" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether to verify SSL/HTTPS calls.  If you turn this off you should be fully aware of the
+security consequences of such.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)">bool</a></p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py method">
 <dt id="pine.client.client.BaseClient.is_valid">
-<em class="property">abstract </em><code class="sig-name descname">is_valid</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.client.client.BaseClient.is_valid" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">abstract</span> </em><code class="sig-name descname"><span class="pre">is_valid</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><span class="pre">bool</span></a><a class="headerlink" href="#pine.client.client.BaseClient.is_valid" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns whether this client and its connection(s) are valid.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
@@ -173,7 +185,7 @@
 
 <dl class="py method">
 <dt id="pine.client.client.BaseClient.uri">
-<code class="sig-name descname">uri</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="n">path</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a></span></em>, <em class="sig-param"><span class="o">*</span><span class="n">additional_paths</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.9)">typing.List</a><span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a><span class="p">]</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.client.client.BaseClient.uri" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">uri</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">path</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">additional_paths</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a><a class="headerlink" href="#pine.client.client.BaseClient.uri" title="Permalink to this definition">¶</a></dt>
 <dd><p>Makes a complete URI from the given path(s).</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -193,121 +205,121 @@
 
 <dl class="py method">
 <dt id="pine.client.client.BaseClient._req">
-<code class="sig-name descname">_req</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="n">method</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a></span></em>, <em class="sig-param"><span class="n">path</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a></span></em>, <em class="sig-param"><span class="o">*</span><span class="n">additional_paths</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.9)">typing.List</a><span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a><span class="p">]</span></span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.client.client.BaseClient._req" title="Permalink to this definition">¶</a></dt>
-<dd><p>Makes a <a class="reference external" href="https://requests.readthedocs.io/en/master/api/#module-requests" title="(in Requests v2.24.0)"><code class="xref py py-mod docutils literal notranslate"><span class="pre">requests</span></code></a> call, checks for errors, and returns the response.</p>
+<code class="sig-name descname"><span class="pre">_req</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">method</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">path</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">additional_paths</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python-requests.org/en/master/api/#requests.Response" title="(in Requests v2.25.1)"><span class="pre">requests.Response</span></a><a class="headerlink" href="#pine.client.client.BaseClient._req" title="Permalink to this definition">¶</a></dt>
+<dd><p>Makes a <a class="reference external" href="https://docs.python-requests.org/en/master/api/#module-requests" title="(in Requests v2.25.1)"><code class="xref py py-mod docutils literal notranslate"><span class="pre">requests</span></code></a> call, checks for errors, and returns the response.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>method</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – REST method (<code class="docutils literal notranslate"><span class="pre">&quot;get&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;post&quot;</span></code>, etc.)</p></li>
 <li><p><strong>path</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – relative path, e.g. <code class="docutils literal notranslate"><span class="pre">&quot;users&quot;</span></code></p></li>
 <li><p><strong>*additional_paths</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)"><em>list</em></a><em>(</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a><em>)</em><em>, </em><em>optional</em>) – any additional path components</p></li>
-<li><p><strong>**kwargs</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><em>dict</em></a>) – any additional kwargs to send to <a class="reference external" href="https://requests.readthedocs.io/en/master/api/#module-requests" title="(in Requests v2.24.0)"><code class="xref py py-mod docutils literal notranslate"><span class="pre">requests</span></code></a></p></li>
+<li><p><strong>**kwargs</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><em>dict</em></a>) – any additional kwargs to send to <a class="reference external" href="https://docs.python-requests.org/en/master/api/#module-requests" title="(in Requests v2.25.1)"><code class="xref py py-mod docutils literal notranslate"><span class="pre">requests</span></code></a></p></li>
 </ul>
 </dd>
 <dt class="field-even">Raises</dt>
 <dd class="field-even"><p><a class="reference internal" href="../exceptions/index.html#pine.client.exceptions.PineClientHttpException" title="pine.client.exceptions.PineClientHttpException"><strong>exceptions.PineClientHttpException</strong></a> – if the HTTP request returns an error</p>
 </dd>
 <dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p>the <a class="reference external" href="https://requests.readthedocs.io/en/master/api/#module-requests" title="(in Requests v2.24.0)"><code class="xref py py-mod docutils literal notranslate"><span class="pre">requests</span></code></a> <a class="reference external" href="https://requests.readthedocs.io/en/master/api/#requests.Response" title="(in Requests v2.24.0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">requests.Response</span></code></a> object</p>
+<dd class="field-odd"><p>the <a class="reference external" href="https://docs.python-requests.org/en/master/api/#module-requests" title="(in Requests v2.25.1)"><code class="xref py py-mod docutils literal notranslate"><span class="pre">requests</span></code></a> <a class="reference external" href="https://docs.python-requests.org/en/master/api/#requests.Response" title="(in Requests v2.25.1)"><code class="xref py py-class docutils literal notranslate"><span class="pre">requests.Response</span></code></a> object</p>
 </dd>
 <dt class="field-even">Return type</dt>
-<dd class="field-even"><p><a class="reference external" href="https://requests.readthedocs.io/en/master/api/#requests.Response" title="(in Requests v2.24.0)">requests.Response</a></p>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python-requests.org/en/master/api/#requests.Response" title="(in Requests v2.25.1)">requests.Response</a></p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py method">
 <dt id="pine.client.client.BaseClient.get">
-<code class="sig-name descname">get</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="n">path</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a></span></em>, <em class="sig-param"><span class="o">*</span><span class="n">additional_paths</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.9)">typing.List</a><span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a><span class="p">]</span></span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.client.client.BaseClient.get" title="Permalink to this definition">¶</a></dt>
-<dd><p>Makes a <a class="reference external" href="https://requests.readthedocs.io/en/master/api/#module-requests" title="(in Requests v2.24.0)"><code class="xref py py-mod docutils literal notranslate"><span class="pre">requests</span></code></a> <code class="docutils literal notranslate"><span class="pre">GET</span></code> call, checks for errors, and returns the response.</p>
+<code class="sig-name descname"><span class="pre">get</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">path</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">additional_paths</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python-requests.org/en/master/api/#requests.Response" title="(in Requests v2.25.1)"><span class="pre">requests.Response</span></a><a class="headerlink" href="#pine.client.client.BaseClient.get" title="Permalink to this definition">¶</a></dt>
+<dd><p>Makes a <a class="reference external" href="https://docs.python-requests.org/en/master/api/#module-requests" title="(in Requests v2.25.1)"><code class="xref py py-mod docutils literal notranslate"><span class="pre">requests</span></code></a> <code class="docutils literal notranslate"><span class="pre">GET</span></code> call, checks for errors, and returns the response.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>path</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – relative path, e.g. <code class="docutils literal notranslate"><span class="pre">&quot;users&quot;</span></code></p></li>
 <li><p><strong>*additional_paths</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)"><em>list</em></a><em>(</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a><em>)</em><em>, </em><em>optional</em>) – any additional path components</p></li>
-<li><p><strong>**kwargs</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><em>dict</em></a>) – any additional kwargs to send to <a class="reference external" href="https://requests.readthedocs.io/en/master/api/#module-requests" title="(in Requests v2.24.0)"><code class="xref py py-mod docutils literal notranslate"><span class="pre">requests</span></code></a></p></li>
+<li><p><strong>**kwargs</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><em>dict</em></a>) – any additional kwargs to send to <a class="reference external" href="https://docs.python-requests.org/en/master/api/#module-requests" title="(in Requests v2.25.1)"><code class="xref py py-mod docutils literal notranslate"><span class="pre">requests</span></code></a></p></li>
 </ul>
 </dd>
 <dt class="field-even">Raises</dt>
 <dd class="field-even"><p><a class="reference internal" href="../exceptions/index.html#pine.client.exceptions.PineClientHttpException" title="pine.client.exceptions.PineClientHttpException"><strong>exceptions.PineClientHttpException</strong></a> – if the HTTP request returns an error</p>
 </dd>
 <dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p>the <a class="reference external" href="https://requests.readthedocs.io/en/master/api/#module-requests" title="(in Requests v2.24.0)"><code class="xref py py-mod docutils literal notranslate"><span class="pre">requests</span></code></a> <a class="reference external" href="https://requests.readthedocs.io/en/master/api/#requests.Response" title="(in Requests v2.24.0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Response</span></code></a> object</p>
+<dd class="field-odd"><p>the <a class="reference external" href="https://docs.python-requests.org/en/master/api/#module-requests" title="(in Requests v2.25.1)"><code class="xref py py-mod docutils literal notranslate"><span class="pre">requests</span></code></a> <a class="reference external" href="https://docs.python-requests.org/en/master/api/#requests.Response" title="(in Requests v2.25.1)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Response</span></code></a> object</p>
 </dd>
 <dt class="field-even">Return type</dt>
-<dd class="field-even"><p><a class="reference external" href="https://requests.readthedocs.io/en/master/api/#requests.Response" title="(in Requests v2.24.0)">requests.Response</a></p>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python-requests.org/en/master/api/#requests.Response" title="(in Requests v2.25.1)">requests.Response</a></p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py method">
 <dt id="pine.client.client.BaseClient.put">
-<code class="sig-name descname">put</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="n">path</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a></span></em>, <em class="sig-param"><span class="o">*</span><span class="n">additional_paths</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.9)">typing.List</a><span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a><span class="p">]</span></span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.client.client.BaseClient.put" title="Permalink to this definition">¶</a></dt>
-<dd><p>Makes a <a class="reference external" href="https://requests.readthedocs.io/en/master/api/#module-requests" title="(in Requests v2.24.0)"><code class="xref py py-mod docutils literal notranslate"><span class="pre">requests</span></code></a> <code class="docutils literal notranslate"><span class="pre">PUT</span></code> call, checks for errors, and returns the response.</p>
+<code class="sig-name descname"><span class="pre">put</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">path</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">additional_paths</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python-requests.org/en/master/api/#requests.Response" title="(in Requests v2.25.1)"><span class="pre">requests.Response</span></a><a class="headerlink" href="#pine.client.client.BaseClient.put" title="Permalink to this definition">¶</a></dt>
+<dd><p>Makes a <a class="reference external" href="https://docs.python-requests.org/en/master/api/#module-requests" title="(in Requests v2.25.1)"><code class="xref py py-mod docutils literal notranslate"><span class="pre">requests</span></code></a> <code class="docutils literal notranslate"><span class="pre">PUT</span></code> call, checks for errors, and returns the response.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>path</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – relative path, e.g. <code class="docutils literal notranslate"><span class="pre">&quot;users&quot;</span></code></p></li>
 <li><p><strong>*additional_paths</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)"><em>list</em></a><em>(</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a><em>)</em><em>, </em><em>optional</em>) – any additional path components</p></li>
-<li><p><strong>**kwargs</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><em>dict</em></a>) – any additional kwargs to send to <a class="reference external" href="https://requests.readthedocs.io/en/master/api/#module-requests" title="(in Requests v2.24.0)"><code class="xref py py-mod docutils literal notranslate"><span class="pre">requests</span></code></a></p></li>
+<li><p><strong>**kwargs</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><em>dict</em></a>) – any additional kwargs to send to <a class="reference external" href="https://docs.python-requests.org/en/master/api/#module-requests" title="(in Requests v2.25.1)"><code class="xref py py-mod docutils literal notranslate"><span class="pre">requests</span></code></a></p></li>
 </ul>
 </dd>
 <dt class="field-even">Raises</dt>
 <dd class="field-even"><p><a class="reference internal" href="../exceptions/index.html#pine.client.exceptions.PineClientHttpException" title="pine.client.exceptions.PineClientHttpException"><strong>exceptions.PineClientHttpException</strong></a> – if the HTTP request returns an error</p>
 </dd>
 <dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p>the <a class="reference external" href="https://requests.readthedocs.io/en/master/api/#module-requests" title="(in Requests v2.24.0)"><code class="xref py py-mod docutils literal notranslate"><span class="pre">requests</span></code></a> <a class="reference external" href="https://requests.readthedocs.io/en/master/api/#requests.Response" title="(in Requests v2.24.0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Response</span></code></a> object</p>
+<dd class="field-odd"><p>the <a class="reference external" href="https://docs.python-requests.org/en/master/api/#module-requests" title="(in Requests v2.25.1)"><code class="xref py py-mod docutils literal notranslate"><span class="pre">requests</span></code></a> <a class="reference external" href="https://docs.python-requests.org/en/master/api/#requests.Response" title="(in Requests v2.25.1)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Response</span></code></a> object</p>
 </dd>
 <dt class="field-even">Return type</dt>
-<dd class="field-even"><p><a class="reference external" href="https://requests.readthedocs.io/en/master/api/#requests.Response" title="(in Requests v2.24.0)">requests.Response</a></p>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python-requests.org/en/master/api/#requests.Response" title="(in Requests v2.25.1)">requests.Response</a></p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py method">
 <dt id="pine.client.client.BaseClient.patch">
-<code class="sig-name descname">patch</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="n">path</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a></span></em>, <em class="sig-param"><span class="o">*</span><span class="n">additional_paths</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.9)">typing.List</a><span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a><span class="p">]</span></span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.client.client.BaseClient.patch" title="Permalink to this definition">¶</a></dt>
-<dd><p>Makes a <a class="reference external" href="https://requests.readthedocs.io/en/master/api/#module-requests" title="(in Requests v2.24.0)"><code class="xref py py-mod docutils literal notranslate"><span class="pre">requests</span></code></a> <code class="docutils literal notranslate"><span class="pre">PATCH</span></code> call, checks for errors, and returns the response.</p>
+<code class="sig-name descname"><span class="pre">patch</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">path</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">additional_paths</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python-requests.org/en/master/api/#requests.Response" title="(in Requests v2.25.1)"><span class="pre">requests.Response</span></a><a class="headerlink" href="#pine.client.client.BaseClient.patch" title="Permalink to this definition">¶</a></dt>
+<dd><p>Makes a <a class="reference external" href="https://docs.python-requests.org/en/master/api/#module-requests" title="(in Requests v2.25.1)"><code class="xref py py-mod docutils literal notranslate"><span class="pre">requests</span></code></a> <code class="docutils literal notranslate"><span class="pre">PATCH</span></code> call, checks for errors, and returns the response.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>path</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – relative path, e.g. <code class="docutils literal notranslate"><span class="pre">&quot;users&quot;</span></code></p></li>
 <li><p><strong>*additional_paths</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)"><em>list</em></a><em>(</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a><em>)</em><em>, </em><em>optional</em>) – any additional path components</p></li>
-<li><p><strong>**kwargs</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><em>dict</em></a>) – any additional kwargs to send to <a class="reference external" href="https://requests.readthedocs.io/en/master/api/#module-requests" title="(in Requests v2.24.0)"><code class="xref py py-mod docutils literal notranslate"><span class="pre">requests</span></code></a></p></li>
+<li><p><strong>**kwargs</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><em>dict</em></a>) – any additional kwargs to send to <a class="reference external" href="https://docs.python-requests.org/en/master/api/#module-requests" title="(in Requests v2.25.1)"><code class="xref py py-mod docutils literal notranslate"><span class="pre">requests</span></code></a></p></li>
 </ul>
 </dd>
 <dt class="field-even">Raises</dt>
 <dd class="field-even"><p><a class="reference internal" href="../exceptions/index.html#pine.client.exceptions.PineClientHttpException" title="pine.client.exceptions.PineClientHttpException"><strong>exceptions.PineClientHttpException</strong></a> – if the HTTP request returns an error</p>
 </dd>
 <dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p>the <a class="reference external" href="https://requests.readthedocs.io/en/master/api/#module-requests" title="(in Requests v2.24.0)"><code class="xref py py-mod docutils literal notranslate"><span class="pre">requests</span></code></a> <a class="reference external" href="https://requests.readthedocs.io/en/master/api/#requests.Response" title="(in Requests v2.24.0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Response</span></code></a> object</p>
+<dd class="field-odd"><p>the <a class="reference external" href="https://docs.python-requests.org/en/master/api/#module-requests" title="(in Requests v2.25.1)"><code class="xref py py-mod docutils literal notranslate"><span class="pre">requests</span></code></a> <a class="reference external" href="https://docs.python-requests.org/en/master/api/#requests.Response" title="(in Requests v2.25.1)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Response</span></code></a> object</p>
 </dd>
 <dt class="field-even">Return type</dt>
-<dd class="field-even"><p><a class="reference external" href="https://requests.readthedocs.io/en/master/api/#requests.Response" title="(in Requests v2.24.0)">requests.Response</a></p>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python-requests.org/en/master/api/#requests.Response" title="(in Requests v2.25.1)">requests.Response</a></p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py method">
 <dt id="pine.client.client.BaseClient.post">
-<code class="sig-name descname">post</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="n">path</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a></span></em>, <em class="sig-param"><span class="o">*</span><span class="n">additional_paths</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.9)">typing.List</a><span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a><span class="p">]</span></span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.client.client.BaseClient.post" title="Permalink to this definition">¶</a></dt>
-<dd><p>Makes a <a class="reference external" href="https://requests.readthedocs.io/en/master/api/#module-requests" title="(in Requests v2.24.0)"><code class="xref py py-mod docutils literal notranslate"><span class="pre">requests</span></code></a> <code class="docutils literal notranslate"><span class="pre">POST</span></code> call, checks for errors, and returns the response.</p>
+<code class="sig-name descname"><span class="pre">post</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">path</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">additional_paths</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python-requests.org/en/master/api/#requests.Response" title="(in Requests v2.25.1)"><span class="pre">requests.Response</span></a><a class="headerlink" href="#pine.client.client.BaseClient.post" title="Permalink to this definition">¶</a></dt>
+<dd><p>Makes a <a class="reference external" href="https://docs.python-requests.org/en/master/api/#module-requests" title="(in Requests v2.25.1)"><code class="xref py py-mod docutils literal notranslate"><span class="pre">requests</span></code></a> <code class="docutils literal notranslate"><span class="pre">POST</span></code> call, checks for errors, and returns the response.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>path</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – relative path, e.g. <code class="docutils literal notranslate"><span class="pre">&quot;users&quot;</span></code></p></li>
 <li><p><strong>*additional_paths</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)"><em>list</em></a><em>(</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a><em>)</em><em>, </em><em>optional</em>) – any additional path components</p></li>
-<li><p><strong>**kwargs</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><em>dict</em></a>) – any additional kwargs to send to <a class="reference external" href="https://requests.readthedocs.io/en/master/api/#module-requests" title="(in Requests v2.24.0)"><code class="xref py py-mod docutils literal notranslate"><span class="pre">requests</span></code></a></p></li>
+<li><p><strong>**kwargs</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><em>dict</em></a>) – any additional kwargs to send to <a class="reference external" href="https://docs.python-requests.org/en/master/api/#module-requests" title="(in Requests v2.25.1)"><code class="xref py py-mod docutils literal notranslate"><span class="pre">requests</span></code></a></p></li>
 </ul>
 </dd>
 <dt class="field-even">Raises</dt>
 <dd class="field-even"><p><a class="reference internal" href="../exceptions/index.html#pine.client.exceptions.PineClientHttpException" title="pine.client.exceptions.PineClientHttpException"><strong>exceptions.PineClientHttpException</strong></a> – if the HTTP request returns an error</p>
 </dd>
 <dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p>the <a class="reference external" href="https://requests.readthedocs.io/en/master/api/#module-requests" title="(in Requests v2.24.0)"><code class="xref py py-mod docutils literal notranslate"><span class="pre">requests</span></code></a> <a class="reference external" href="https://requests.readthedocs.io/en/master/api/#requests.Response" title="(in Requests v2.24.0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Response</span></code></a> object</p>
+<dd class="field-odd"><p>the <a class="reference external" href="https://docs.python-requests.org/en/master/api/#module-requests" title="(in Requests v2.25.1)"><code class="xref py py-mod docutils literal notranslate"><span class="pre">requests</span></code></a> <a class="reference external" href="https://docs.python-requests.org/en/master/api/#requests.Response" title="(in Requests v2.25.1)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Response</span></code></a> object</p>
 </dd>
 <dt class="field-even">Return type</dt>
-<dd class="field-even"><p><a class="reference external" href="https://requests.readthedocs.io/en/master/api/#requests.Response" title="(in Requests v2.24.0)">requests.Response</a></p>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python-requests.org/en/master/api/#requests.Response" title="(in Requests v2.25.1)">requests.Response</a></p>
 </dd>
 </dl>
 </dd></dl>
@@ -316,7 +328,7 @@
 
 <dl class="py class">
 <dt id="pine.client.client.EveClient">
-<em class="property">class </em><code class="sig-prename descclassname">pine.client.client.</code><code class="sig-name descname">EveClient</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">eve_base_uri</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a></span></em>, <em class="sig-param"><span class="n">mongo_base_uri</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">mongo_dbname</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a></span> <span class="o">=</span> <span class="default_value">DEFAULT_DBNAME</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.client.client.EveClient" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">pine.client.client.</span></code><code class="sig-name descname"><span class="pre">EveClient</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">eve_base_uri</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">mongo_base_uri</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mongo_dbname</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">DEFAULT_DBNAME</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verify_ssl</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><span class="pre">bool</span></a></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.client.client.EveClient" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#pine.client.client.BaseClient" title="pine.client.client.BaseClient"><code class="xref py py-class docutils literal notranslate"><span class="pre">pine.client.client.BaseClient</span></code></a></p>
 <p>A client to access Eve and, optionally, its underlying MongoDB instance.</p>
 <p>Constructor.</p>
@@ -326,12 +338,14 @@
 <li><p><strong>eve_base_uri</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – the base URI for the eve server, e.g. <code class="docutils literal notranslate"><span class="pre">&quot;http://localhost:5001&quot;</span></code></p></li>
 <li><p><strong>mongo_base_uri</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a><em>, </em><em>optional</em>) – the base URI for the mongodb server, e.g. <code class="docutils literal notranslate"><span class="pre">&quot;mongodb://localhost:27018&quot;</span></code>, defaults to <code class="docutils literal notranslate"><span class="pre">None</span></code></p></li>
 <li><p><strong>mongo_dbname</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a><em>, </em><em>optional</em>) – the DB name that PINE uses, defaults to <code class="docutils literal notranslate"><span class="pre">&quot;pmap_nlp&quot;</span></code></p></li>
+<li><p><strong>verify_ssl</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><em>bool</em></a><em>, </em><em>optional</em>) – whether to verify SSL/HTTPs calls; do not turn this off unless you
+are fully aware of the security consequences</p></li>
 </ul>
 </dd>
 </dl>
 <dl class="py attribute">
 <dt id="pine.client.client.EveClient.DEFAULT_DBNAME">
-<code class="sig-name descname">DEFAULT_DBNAME</code><em class="property"> :str = pmap_nlp</em><a class="headerlink" href="#pine.client.client.EveClient.DEFAULT_DBNAME" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">DEFAULT_DBNAME</span></code><em class="property"> <span class="pre">:str</span> <span class="pre">=</span> <span class="pre">pmap_nlp</span></em><a class="headerlink" href="#pine.client.client.EveClient.DEFAULT_DBNAME" title="Permalink to this definition">¶</a></dt>
 <dd><p>The default DB name used by PINE.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
@@ -342,7 +356,7 @@
 
 <dl class="py attribute">
 <dt id="pine.client.client.EveClient.mongo_base_uri">
-<code class="sig-name descname">mongo_base_uri</code><em class="property"> :str</em><a class="headerlink" href="#pine.client.client.EveClient.mongo_base_uri" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">mongo_base_uri</span></code><em class="property"> <span class="pre">:str</span></em><a class="headerlink" href="#pine.client.client.EveClient.mongo_base_uri" title="Permalink to this definition">¶</a></dt>
 <dd><p>The base URI for the MongoDB server.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
@@ -353,29 +367,29 @@
 
 <dl class="py attribute">
 <dt id="pine.client.client.EveClient.mongo">
-<code class="sig-name descname">mongo</code><em class="property"> :pymongo.MongoClient</em><a class="headerlink" href="#pine.client.client.EveClient.mongo" title="Permalink to this definition">¶</a></dt>
-<dd><p>The <a class="reference external" href="https://pymongo.readthedocs.io/en/stable/api/pymongo/mongo_client.html#pymongo.mongo_client.MongoClient" title="(in PyMongo v3.11.0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">pymongo.mongo_client.MongoClient</span></code></a> instance.</p>
+<code class="sig-name descname"><span class="pre">mongo</span></code><em class="property"> <span class="pre">:pymongo.MongoClient</span></em><a class="headerlink" href="#pine.client.client.EveClient.mongo" title="Permalink to this definition">¶</a></dt>
+<dd><p>The <a class="reference external" href="https://pymongo.readthedocs.io/en/stable/api/pymongo/mongo_client.html#pymongo.mongo_client.MongoClient" title="(in PyMongo v3.11.3)"><code class="xref py py-class docutils literal notranslate"><span class="pre">pymongo.mongo_client.MongoClient</span></code></a> instance.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://pymongo.readthedocs.io/en/stable/api/pymongo/mongo_client.html#pymongo.mongo_client.MongoClient" title="(in PyMongo v3.11.0)">pymongo.mongo_client.MongoClient</a></p>
+<dd class="field-odd"><p><a class="reference external" href="https://pymongo.readthedocs.io/en/stable/api/pymongo/mongo_client.html#pymongo.mongo_client.MongoClient" title="(in PyMongo v3.11.3)">pymongo.mongo_client.MongoClient</a></p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py attribute">
 <dt id="pine.client.client.EveClient.mongo_db">
-<code class="sig-name descname">mongo_db</code><em class="property"> :pymongo.database.Database</em><a class="headerlink" href="#pine.client.client.EveClient.mongo_db" title="Permalink to this definition">¶</a></dt>
-<dd><p>The <a class="reference external" href="https://pymongo.readthedocs.io/en/stable/api/pymongo/database.html#pymongo.database.Database" title="(in PyMongo v3.11.0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">pymongo.database.Database</span></code></a> instance.</p>
+<code class="sig-name descname"><span class="pre">mongo_db</span></code><em class="property"> <span class="pre">:pymongo.database.Database</span></em><a class="headerlink" href="#pine.client.client.EveClient.mongo_db" title="Permalink to this definition">¶</a></dt>
+<dd><p>The <a class="reference external" href="https://pymongo.readthedocs.io/en/stable/api/pymongo/database.html#pymongo.database.Database" title="(in PyMongo v3.11.3)"><code class="xref py py-class docutils literal notranslate"><span class="pre">pymongo.database.Database</span></code></a> instance.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://pymongo.readthedocs.io/en/stable/api/pymongo/database.html#pymongo.database.Database" title="(in PyMongo v3.11.0)">pymongo.database.Database</a></p>
+<dd class="field-odd"><p><a class="reference external" href="https://pymongo.readthedocs.io/en/stable/api/pymongo/database.html#pymongo.database.Database" title="(in PyMongo v3.11.3)">pymongo.database.Database</a></p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py method">
 <dt id="pine.client.client.EveClient.is_valid">
-<code class="sig-name descname">is_valid</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.client.client.EveClient.is_valid" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">is_valid</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><span class="pre">bool</span></a><a class="headerlink" href="#pine.client.client.EveClient.is_valid" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns whether this client and its connection(s) are valid.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
@@ -389,7 +403,7 @@
 
 <dl class="py method">
 <dt id="pine.client.client.EveClient.ping">
-<code class="sig-name descname">ping</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.client.client.EveClient.ping" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">ping</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">Any</span><a class="headerlink" href="#pine.client.client.EveClient.ping" title="Permalink to this definition">¶</a></dt>
 <dd><p>Pings the eve server and returns the result.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Raises</dt>
@@ -403,7 +417,7 @@
 
 <dl class="py method">
 <dt id="pine.client.client.EveClient.about">
-<code class="sig-name descname">about</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.client.client.EveClient.about" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">about</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><span class="pre">dict</span></a><a class="headerlink" href="#pine.client.client.EveClient.about" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns the ‘about’ dict from the server.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Raises</dt>
@@ -420,7 +434,7 @@
 
 <dl class="py method">
 <dt id="pine.client.client.EveClient.get_resource">
-<code class="sig-name descname">get_resource</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="n">resource</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a></span></em>, <em class="sig-param"><span class="n">resource_id</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.client.client.EveClient.get_resource" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">get_resource</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">resource</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">resource_id</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><span class="pre">dict</span></a><a class="headerlink" href="#pine.client.client.EveClient.get_resource" title="Permalink to this definition">¶</a></dt>
 <dd><p>Gets a resource from eve by its ID.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Raises</dt>
@@ -437,7 +451,7 @@
 
 <dl class="py method">
 <dt id="pine.client.client.EveClient._add_or_replace_resource">
-<code class="sig-name descname">_add_or_replace_resource</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="n">resource</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a></span></em>, <em class="sig-param"><span class="n">obj</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)">dict</a></span></em>, <em class="sig-param"><span class="n">valid_fn</span><span class="p">:</span> <span class="n">typing.Callable[[dict, typing.Callable[[str], None]], bool]</span> <span class="o">=</span> <span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.client.client.EveClient._add_or_replace_resource" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">_add_or_replace_resource</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">resource</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">obj</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><span class="pre">dict</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">valid_fn</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Callable</span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><span class="pre">dict</span></a><span class="p"><span class="pre">,</span> </span><span class="pre">typing.Callable</span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.9)"><span class="pre">None</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><span class="pre">bool</span></a><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a><a class="headerlink" href="#pine.client.client.EveClient._add_or_replace_resource" title="Permalink to this definition">¶</a></dt>
 <dd><p>Adds or replaces the given resource.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -464,7 +478,7 @@
 
 <dl class="py method">
 <dt id="pine.client.client.EveClient._add_resources">
-<code class="sig-name descname">_add_resources</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="n">resource</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a></span></em>, <em class="sig-param"><span class="n">objs</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.9)">typing.List</a><span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)">dict</a><span class="p">]</span></span></em>, <em class="sig-param"><span class="n">valid_fn</span><span class="p">:</span> <span class="n">typing.Callable[[dict, typing.Callable[[str], None]], bool]</span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">replace_if_exists</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)">bool</a></span> <span class="o">=</span> <span class="default_value">False</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.client.client.EveClient._add_resources" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">_add_resources</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">resource</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">objs</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><span class="pre">dict</span></a><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">valid_fn</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Callable</span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><span class="pre">dict</span></a><span class="p"><span class="pre">,</span> </span><span class="pre">typing.Callable</span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.9)"><span class="pre">None</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><span class="pre">bool</span></a><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">replace_if_exists</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><span class="pre">bool</span></a></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.client.client.EveClient._add_resources" title="Permalink to this definition">¶</a></dt>
 <dd><p>Tries to add all the resource objects at once, optionally falling back to individual replacement if that fails.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -492,7 +506,7 @@
 
 <dl class="py method">
 <dt id="pine.client.client.EveClient.add_users">
-<code class="sig-name descname">add_users</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="n">users</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.9)">typing.List</a><span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)">dict</a><span class="p">]</span></span></em>, <em class="sig-param"><span class="n">replace_if_exists</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.client.client.EveClient.add_users" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">add_users</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">users</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><span class="pre">dict</span></a><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">replace_if_exists</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#pine.client.client.EveClient.add_users" title="Permalink to this definition">¶</a></dt>
 <dd><p>Adds the given users.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -518,7 +532,7 @@
 
 <dl class="py method">
 <dt id="pine.client.client.EveClient.get_users">
-<code class="sig-name descname">get_users</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.client.client.EveClient.get_users" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">get_users</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.client.client.EveClient.get_users" title="Permalink to this definition">¶</a></dt>
 <dd><p>Gets all users.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Raises</dt>
@@ -535,7 +549,7 @@
 
 <dl class="py method">
 <dt id="pine.client.client.EveClient.add_pipelines">
-<code class="sig-name descname">add_pipelines</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="n">pipelines</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.9)">typing.List</a><span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)">dict</a><span class="p">]</span></span></em>, <em class="sig-param"><span class="n">replace_if_exists</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.client.client.EveClient.add_pipelines" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">add_pipelines</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pipelines</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><span class="pre">dict</span></a><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">replace_if_exists</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#pine.client.client.EveClient.add_pipelines" title="Permalink to this definition">¶</a></dt>
 <dd><p>Adds the given pipelines.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -563,18 +577,22 @@
 
 <dl class="py class">
 <dt id="pine.client.client.PineClient">
-<em class="property">class </em><code class="sig-prename descclassname">pine.client.client.</code><code class="sig-name descname">PineClient</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">backend_base_uri</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.client.client.PineClient" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">pine.client.client.</span></code><code class="sig-name descname"><span class="pre">PineClient</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">backend_base_uri</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">verify_ssl</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><span class="pre">bool</span></a></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.client.client.PineClient" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#pine.client.client.BaseClient" title="pine.client.client.BaseClient"><code class="xref py py-class docutils literal notranslate"><span class="pre">pine.client.client.BaseClient</span></code></a></p>
 <p>A client to access PINE (more specifically: the backend).</p>
 <p>Constructor.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>backend_base_uri</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – the base URI for the backend server, e.g. <code class="docutils literal notranslate"><span class="pre">&quot;http://localhost:5000&quot;</span></code></p>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>backend_base_uri</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – the base URI for the backend server, e.g. <code class="docutils literal notranslate"><span class="pre">&quot;http://localhost:5000&quot;</span></code></p></li>
+<li><p><strong>verify_ssl</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><em>bool</em></a><em>, </em><em>optional</em>) – whether to verify SSL/HTTPs calls; do not turn this off unless you
+are fully aware of the security consequences</p></li>
+</ul>
 </dd>
 </dl>
 <dl class="py method">
 <dt id="pine.client.client.PineClient.is_valid">
-<code class="sig-name descname">is_valid</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.client.client.PineClient.is_valid" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">is_valid</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><span class="pre">bool</span></a><a class="headerlink" href="#pine.client.client.PineClient.is_valid" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns whether this client and its connection(s) are valid.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
@@ -588,7 +606,7 @@
 
 <dl class="py method">
 <dt id="pine.client.client.PineClient.ping">
-<code class="sig-name descname">ping</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.client.client.PineClient.ping" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">ping</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">Any</span><a class="headerlink" href="#pine.client.client.PineClient.ping" title="Permalink to this definition">¶</a></dt>
 <dd><p>Pings the backend server and returns the result.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Raises</dt>
@@ -602,7 +620,7 @@
 
 <dl class="py method">
 <dt id="pine.client.client.PineClient.about">
-<code class="sig-name descname">about</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.client.client.PineClient.about" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">about</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><span class="pre">dict</span></a><a class="headerlink" href="#pine.client.client.PineClient.about" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns the ‘about’ dict from the server.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Raises</dt>
@@ -619,7 +637,7 @@
 
 <dl class="py method">
 <dt id="pine.client.client.PineClient.get_logged_in_user">
-<code class="sig-name descname">get_logged_in_user</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.client.client.PineClient.get_logged_in_user" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">get_logged_in_user</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><span class="pre">dict</span></a><a class="headerlink" href="#pine.client.client.PineClient.get_logged_in_user" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns the currently logged in user, or None if not logged in.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Raises</dt>
@@ -636,7 +654,7 @@
 
 <dl class="py method">
 <dt id="pine.client.client.PineClient.get_my_user_id">
-<code class="sig-name descname">get_my_user_id</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.client.client.PineClient.get_my_user_id" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">get_my_user_id</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a><a class="headerlink" href="#pine.client.client.PineClient.get_my_user_id" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns the ID of the logged in user, or None if not logged in.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Raises</dt>
@@ -653,7 +671,7 @@
 
 <dl class="py method">
 <dt id="pine.client.client.PineClient.is_logged_in">
-<code class="sig-name descname">is_logged_in</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.client.client.PineClient.is_logged_in" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">is_logged_in</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><span class="pre">bool</span></a><a class="headerlink" href="#pine.client.client.PineClient.is_logged_in" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns whether the user is currently logged in or not.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Raises</dt>
@@ -670,7 +688,7 @@
 
 <dl class="py method">
 <dt id="pine.client.client.PineClient._check_login">
-<code class="sig-name descname">_check_login</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.client.client.PineClient._check_login" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">_check_login</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.client.client.PineClient._check_login" title="Permalink to this definition">¶</a></dt>
 <dd><p>Checks whether user is logged in and raises an <a class="reference internal" href="../exceptions/index.html#pine.client.exceptions.PineClientAuthException" title="pine.client.exceptions.PineClientAuthException"><code class="xref py py-class docutils literal notranslate"><span class="pre">exceptions.PineClientAuthException</span></code></a> if not.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Raises</dt>
@@ -684,7 +702,7 @@
 
 <dl class="py method">
 <dt id="pine.client.client.PineClient.get_auth_module">
-<code class="sig-name descname">get_auth_module</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.client.client.PineClient.get_auth_module" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">get_auth_module</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a><a class="headerlink" href="#pine.client.client.PineClient.get_auth_module" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns the PINE authentication module, e.g. <code class="docutils literal notranslate"><span class="pre">&quot;eve&quot;</span></code>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Raises</dt>
@@ -701,7 +719,7 @@
 
 <dl class="py method">
 <dt id="pine.client.client.PineClient.login_eve">
-<code class="sig-name descname">login_eve</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="n">username</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a></span></em>, <em class="sig-param"><span class="n">password</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.client.client.PineClient.login_eve" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">login_eve</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">username</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">password</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><span class="pre">bool</span></a><a class="headerlink" href="#pine.client.client.PineClient.login_eve" title="Permalink to this definition">¶</a></dt>
 <dd><p>Logs in using eve credentials, and returns whether it was successful.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -727,7 +745,7 @@
 
 <dl class="py method">
 <dt id="pine.client.client.PineClient.logout">
-<code class="sig-name descname">logout</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.client.client.PineClient.logout" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">logout</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.client.client.PineClient.logout" title="Permalink to this definition">¶</a></dt>
 <dd><p>Logs out the current user.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Raises</dt>
@@ -738,7 +756,7 @@
 
 <dl class="py method">
 <dt id="pine.client.client.PineClient.get_pipelines">
-<code class="sig-name descname">get_pipelines</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.client.client.PineClient.get_pipelines" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">get_pipelines</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><span class="pre">dict</span></a><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#pine.client.client.PineClient.get_pipelines" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns all pipelines accessible to logged in user.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Raises</dt>
@@ -758,7 +776,7 @@
 
 <dl class="py method">
 <dt id="pine.client.client.PineClient.collection_builder">
-<code class="sig-name descname">collection_builder</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)">dict</a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.client.client.PineClient.collection_builder" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">collection_builder</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><span class="pre">dict</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference internal" href="../models/index.html#pine.client.models.CollectionBuilder" title="pine.client.models.CollectionBuilder"><span class="pre">pine.client.models.CollectionBuilder</span></a><a class="headerlink" href="#pine.client.client.PineClient.collection_builder" title="Permalink to this definition">¶</a></dt>
 <dd><p>Makes and returns a new <a class="reference internal" href="../models/index.html#pine.client.models.CollectionBuilder" title="pine.client.models.CollectionBuilder"><code class="xref py py-class docutils literal notranslate"><span class="pre">models.CollectionBuilder</span></code></a> with the logged in user.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -775,7 +793,7 @@
 
 <dl class="py method">
 <dt id="pine.client.client.PineClient.create_collection">
-<code class="sig-name descname">create_collection</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="n">builder</span><span class="p">:</span> <span class="n">models.CollectionBuilder</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.client.client.PineClient.create_collection" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">create_collection</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">builder</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="../models/index.html#pine.client.models.CollectionBuilder" title="pine.client.models.CollectionBuilder"><span class="pre">pine.client.models.CollectionBuilder</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a><a class="headerlink" href="#pine.client.client.PineClient.create_collection" title="Permalink to this definition">¶</a></dt>
 <dd><p>Creates a collection using the current value of the given builder and returns its ID.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -798,8 +816,25 @@
 </dd></dl>
 
 <dl class="py method">
+<dt id="pine.client.client.PineClient.get_collection_permissions">
+<code class="sig-name descname"><span class="pre">get_collection_permissions</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">collection_id</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference internal" href="../models/index.html#pine.client.models.CollectionUserPermissions" title="pine.client.models.CollectionUserPermissions"><span class="pre">pine.client.models.CollectionUserPermissions</span></a><a class="headerlink" href="#pine.client.client.PineClient.get_collection_permissions" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns collection permissions for the logged in user.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>collection_id</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – the ID of the collection</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>the collection permissions</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="../../backend/models/index.html#pine.backend.models.CollectionUserPermissions" title="pine.backend.models.CollectionUserPermissions">models.CollectionUserPermissions</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
 <dt id="pine.client.client.PineClient.get_collection_documents">
-<code class="sig-name descname">get_collection_documents</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="n">collection_id</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a></span></em>, <em class="sig-param"><span class="n">truncate</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)">bool</a></span></em>, <em class="sig-param"><span class="n">truncate_length</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)">int</a></span> <span class="o">=</span> <span class="default_value">30</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.client.client.PineClient.get_collection_documents" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">get_collection_documents</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">collection_id</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">truncate</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><span class="pre">bool</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">truncate_length</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><span class="pre">int</span></a></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">30</span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><span class="pre">dict</span></a><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#pine.client.client.PineClient.get_collection_documents" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns all the documents in the given collection.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -820,7 +855,7 @@
 
 <dl class="py method">
 <dt id="pine.client.client.PineClient.add_document">
-<code class="sig-name descname">add_document</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="n">document</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)">dict</a></span> <span class="o">=</span> <span class="default_value">{}</span></em>, <em class="sig-param"><span class="n">creator_id</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">collection_id</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">overlap</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)">int</a></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">text</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">metadata</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)">dict</a></span> <span class="o">=</span> <span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.client.client.PineClient.add_document" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">add_document</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">document</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><span class="pre">dict</span></a></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">{}</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">creator_id</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">collection_id</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">overlap</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><span class="pre">int</span></a></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">text</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">metadata</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><span class="pre">dict</span></a></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a><a class="headerlink" href="#pine.client.client.PineClient.add_document" title="Permalink to this definition">¶</a></dt>
 <dd><p>Adds a new document to a collection and returns its ID.</p>
 <p>Will use the logged in user ID for the creator_id if none is given.  Although all the
 parameters are optional, you must provide values either in the document or through the
@@ -854,7 +889,7 @@ kwargs in order to make a valid document.</p>
 
 <dl class="py method">
 <dt id="pine.client.client.PineClient.add_documents">
-<code class="sig-name descname">add_documents</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="n">documents</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.9)">typing.List</a><span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)">dict</a><span class="p">]</span></span></em>, <em class="sig-param"><span class="n">creator_id</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">collection_id</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a></span> <span class="o">=</span> <span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.client.client.PineClient.add_documents" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">add_documents</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">documents</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><span class="pre">dict</span></a><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">creator_id</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">collection_id</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#pine.client.client.PineClient.add_documents" title="Permalink to this definition">¶</a></dt>
 <dd><p>Adds multiple documents at once and returns their IDs.</p>
 <p>Will use the logged in user ID for the creator_id if none is given.</p>
 <dl class="field-list simple">
@@ -883,7 +918,7 @@ kwargs in order to make a valid document.</p>
 
 <dl class="py method">
 <dt id="pine.client.client.PineClient.annotate_document">
-<code class="sig-name descname">annotate_document</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="n">document_id</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a></span></em>, <em class="sig-param"><span class="n">doc_annotations</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.9)">typing.List</a><span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a><span class="p">]</span></span></em>, <em class="sig-param"><span class="n">ner_annotations</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.9)">typing.List</a><span class="p">[</span>typing.Union<span class="p">[</span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)">dict</a><span class="p">, </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)">list</a><span class="p">, </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.9)">tuple</a><span class="p">]</span><span class="p">]</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.client.client.PineClient.annotate_document" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">annotate_document</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">document_id</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">doc_annotations</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ner_annotations</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><span class="pre">dict</span></a><span class="p"><span class="pre">,</span> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)"><span class="pre">list</span></a><span class="p"><span class="pre">,</span> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.9)"><span class="pre">tuple</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a><a class="headerlink" href="#pine.client.client.PineClient.annotate_document" title="Permalink to this definition">¶</a></dt>
 <dd><p>Annotates the given document with the given values.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -911,7 +946,7 @@ kwargs in order to make a valid document.</p>
 
 <dl class="py method">
 <dt id="pine.client.client.PineClient.annotate_collection_documents">
-<code class="sig-name descname">annotate_collection_documents</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="n">collection_id</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a></span></em>, <em class="sig-param"><span class="n">document_annotations</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)">dict</a></span></em>, <em class="sig-param"><span class="n">skip_document_updates</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.client.client.PineClient.annotate_collection_documents" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">annotate_collection_documents</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">collection_id</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">document_annotations</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><span class="pre">dict</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">skip_document_updates</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#pine.client.client.PineClient.annotate_collection_documents" title="Permalink to this definition">¶</a></dt>
 <dd><p>Annotates documents in a collection.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -941,7 +976,7 @@ This should only be <code class="docutils literal notranslate"><span class="pre"
 
 <dl class="py method">
 <dt id="pine.client.client.PineClient.list_collections">
-<code class="sig-name descname">list_collections</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="n">include_archived</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)">bool</a></span> <span class="o">=</span> <span class="default_value">False</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.client.client.PineClient.list_collections" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">list_collections</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">include_archived</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><span class="pre">bool</span></a></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><span class="pre">dict</span></a><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#pine.client.client.PineClient.list_collections" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns a list of user’s collections.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -964,7 +999,7 @@ This should only be <code class="docutils literal notranslate"><span class="pre"
 
 <dl class="py method">
 <dt id="pine.client.client.PineClient.download_collection_data">
-<code class="sig-name descname">download_collection_data</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="n">collection_id</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a></span></em>, <em class="sig-param"><span class="n">include_collection_metadata</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)">bool</a></span> <span class="o">=</span> <span class="default_value">True</span></em>, <em class="sig-param"><span class="n">include_document_metadata</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)">bool</a></span> <span class="o">=</span> <span class="default_value">True</span></em>, <em class="sig-param"><span class="n">include_document_text</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)">bool</a></span> <span class="o">=</span> <span class="default_value">True</span></em>, <em class="sig-param"><span class="n">include_annotations</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)">bool</a></span> <span class="o">=</span> <span class="default_value">True</span></em>, <em class="sig-param"><span class="n">include_annotation_latest_version_only</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)">bool</a></span> <span class="o">=</span> <span class="default_value">True</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.client.client.PineClient.download_collection_data" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">download_collection_data</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">collection_id</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">include_collection_metadata</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><span class="pre">bool</span></a></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">include_document_metadata</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><span class="pre">bool</span></a></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">include_document_text</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><span class="pre">bool</span></a></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">include_annotations</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><span class="pre">bool</span></a></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">include_annotation_latest_version_only</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><span class="pre">bool</span></a></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.client.client.PineClient.download_collection_data" title="Permalink to this definition">¶</a></dt>
 <dd><p>Downloads collection data.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -999,9 +1034,9 @@ collection doesn’t exist</p></li>
 
 <dl class="py class">
 <dt id="pine.client.client.LocalPineClient">
-<em class="property">class </em><code class="sig-prename descclassname">pine.client.client.</code><code class="sig-name descname">LocalPineClient</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">backend_base_uri</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a></span></em>, <em class="sig-param"><span class="n">eve_base_uri</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a></span></em>, <em class="sig-param"><span class="n">mongo_base_uri</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">mongo_dbname</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a></span> <span class="o">=</span> <span class="default_value">EveClient.DEFAULT_DBNAME</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.client.client.LocalPineClient" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">pine.client.client.</span></code><code class="sig-name descname"><span class="pre">LocalPineClient</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">backend_base_uri</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">eve_base_uri</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">mongo_base_uri</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mongo_dbname</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">EveClient.DEFAULT_DBNAME</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verify_ssl</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><span class="pre">bool</span></a></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.client.client.LocalPineClient" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#pine.client.client.PineClient" title="pine.client.client.PineClient"><code class="xref py py-class docutils literal notranslate"><span class="pre">pine.client.client.PineClient</span></code></a></p>
-<p>A client for a local PINE instance, including an :py:class&lt;.EveClient&gt;.</p>
+<p>A client for a local PINE instance, including an <a class="reference internal" href="#pine.client.client.EveClient" title="pine.client.client.EveClient"><code class="xref py py-class docutils literal notranslate"><span class="pre">EveClient</span></code></a>.</p>
 <p>Constructor.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -1010,12 +1045,14 @@ collection doesn’t exist</p></li>
 <li><p><strong>eve_base_uri</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – the base URI for the eve server, e.g. <code class="docutils literal notranslate"><span class="pre">&quot;http://localhost:5001&quot;</span></code></p></li>
 <li><p><strong>mongo_base_uri</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a><em>, </em><em>optional</em>) – the base URI for the mongodb server, e.g. <code class="docutils literal notranslate"><span class="pre">&quot;mongodb://localhost:27018&quot;</span></code>, defaults to <code class="docutils literal notranslate"><span class="pre">None</span></code></p></li>
 <li><p><strong>mongo_dbname</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a><em>, </em><em>optional</em>) – the DB name that PINE uses, defaults to <code class="docutils literal notranslate"><span class="pre">&quot;pmap_nlp&quot;</span></code></p></li>
+<li><p><strong>verify_ssl</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><em>bool</em></a><em>, </em><em>optional</em>) – whether to verify SSL/HTTPs calls; do not turn this off unless you
+are fully aware of the security consequences</p></li>
 </ul>
 </dd>
 </dl>
 <dl class="py attribute">
 <dt id="pine.client.client.LocalPineClient.eve">
-<code class="sig-name descname">eve</code><em class="property"> :EveClient</em><a class="headerlink" href="#pine.client.client.LocalPineClient.eve" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">eve</span></code><em class="property"> <span class="pre">:EveClient</span></em><a class="headerlink" href="#pine.client.client.LocalPineClient.eve" title="Permalink to this definition">¶</a></dt>
 <dd><p>The local <a class="reference internal" href="#pine.client.client.EveClient" title="pine.client.client.EveClient"><code class="xref py py-class docutils literal notranslate"><span class="pre">EveClient</span></code></a> instance.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type</dt>
@@ -1026,7 +1063,7 @@ collection doesn’t exist</p></li>
 
 <dl class="py method">
 <dt id="pine.client.client.LocalPineClient.is_valid">
-<code class="sig-name descname">is_valid</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.client.client.LocalPineClient.is_valid" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">is_valid</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><span class="pre">bool</span></a><a class="headerlink" href="#pine.client.client.LocalPineClient.is_valid" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns whether this client and its connection(s) are valid.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
@@ -1058,150 +1095,62 @@ collection doesn’t exist</p></li>
 <li><a class="reference internal" href="#classes">Classes</a></li>
 <li><a class="reference internal" href="#functions">Functions</a><ul>
 <li><a class="reference internal" href="#pine.client.client._standardize_path">_standardize_path</a></li>
-</ul>
-<ul>
 <li><a class="reference internal" href="#pine.client.client.BaseClient">BaseClient</a><ul>
 <li><a class="reference internal" href="#pine.client.client.BaseClient.__metaclass__">__metaclass__</a></li>
-</ul>
-<ul>
 <li><a class="reference internal" href="#pine.client.client.BaseClient.base_uri">base_uri</a></li>
-</ul>
-<ul>
 <li><a class="reference internal" href="#pine.client.client.BaseClient.session">session</a></li>
-</ul>
-<ul>
+<li><a class="reference internal" href="#pine.client.client.BaseClient.verify_ssl">verify_ssl</a></li>
 <li><a class="reference internal" href="#pine.client.client.BaseClient.is_valid">is_valid</a></li>
-</ul>
-<ul>
 <li><a class="reference internal" href="#pine.client.client.BaseClient.uri">uri</a></li>
-</ul>
-<ul>
 <li><a class="reference internal" href="#pine.client.client.BaseClient._req">_req</a></li>
-</ul>
-<ul>
 <li><a class="reference internal" href="#pine.client.client.BaseClient.get">get</a></li>
-</ul>
-<ul>
 <li><a class="reference internal" href="#pine.client.client.BaseClient.put">put</a></li>
-</ul>
-<ul>
 <li><a class="reference internal" href="#pine.client.client.BaseClient.patch">patch</a></li>
-</ul>
-<ul>
 <li><a class="reference internal" href="#pine.client.client.BaseClient.post">post</a></li>
 </ul>
 </li>
-</ul>
-<ul>
 <li><a class="reference internal" href="#pine.client.client.EveClient">EveClient</a><ul>
 <li><a class="reference internal" href="#pine.client.client.EveClient.DEFAULT_DBNAME">DEFAULT_DBNAME</a></li>
-</ul>
-<ul>
 <li><a class="reference internal" href="#pine.client.client.EveClient.mongo_base_uri">mongo_base_uri</a></li>
-</ul>
-<ul>
 <li><a class="reference internal" href="#pine.client.client.EveClient.mongo">mongo</a></li>
-</ul>
-<ul>
 <li><a class="reference internal" href="#pine.client.client.EveClient.mongo_db">mongo_db</a></li>
-</ul>
-<ul>
 <li><a class="reference internal" href="#pine.client.client.EveClient.is_valid">is_valid</a></li>
-</ul>
-<ul>
 <li><a class="reference internal" href="#pine.client.client.EveClient.ping">ping</a></li>
-</ul>
-<ul>
 <li><a class="reference internal" href="#pine.client.client.EveClient.about">about</a></li>
-</ul>
-<ul>
 <li><a class="reference internal" href="#pine.client.client.EveClient.get_resource">get_resource</a></li>
-</ul>
-<ul>
 <li><a class="reference internal" href="#pine.client.client.EveClient._add_or_replace_resource">_add_or_replace_resource</a></li>
-</ul>
-<ul>
 <li><a class="reference internal" href="#pine.client.client.EveClient._add_resources">_add_resources</a></li>
-</ul>
-<ul>
 <li><a class="reference internal" href="#pine.client.client.EveClient.add_users">add_users</a></li>
-</ul>
-<ul>
 <li><a class="reference internal" href="#pine.client.client.EveClient.get_users">get_users</a></li>
-</ul>
-<ul>
 <li><a class="reference internal" href="#pine.client.client.EveClient.add_pipelines">add_pipelines</a></li>
 </ul>
 </li>
-</ul>
-<ul>
 <li><a class="reference internal" href="#pine.client.client.PineClient">PineClient</a><ul>
 <li><a class="reference internal" href="#pine.client.client.PineClient.is_valid">is_valid</a></li>
-</ul>
-<ul>
 <li><a class="reference internal" href="#pine.client.client.PineClient.ping">ping</a></li>
-</ul>
-<ul>
 <li><a class="reference internal" href="#pine.client.client.PineClient.about">about</a></li>
-</ul>
-<ul>
 <li><a class="reference internal" href="#pine.client.client.PineClient.get_logged_in_user">get_logged_in_user</a></li>
-</ul>
-<ul>
 <li><a class="reference internal" href="#pine.client.client.PineClient.get_my_user_id">get_my_user_id</a></li>
-</ul>
-<ul>
 <li><a class="reference internal" href="#pine.client.client.PineClient.is_logged_in">is_logged_in</a></li>
-</ul>
-<ul>
 <li><a class="reference internal" href="#pine.client.client.PineClient._check_login">_check_login</a></li>
-</ul>
-<ul>
 <li><a class="reference internal" href="#pine.client.client.PineClient.get_auth_module">get_auth_module</a></li>
-</ul>
-<ul>
 <li><a class="reference internal" href="#pine.client.client.PineClient.login_eve">login_eve</a></li>
-</ul>
-<ul>
 <li><a class="reference internal" href="#pine.client.client.PineClient.logout">logout</a></li>
-</ul>
-<ul>
 <li><a class="reference internal" href="#pine.client.client.PineClient.get_pipelines">get_pipelines</a></li>
-</ul>
-<ul>
 <li><a class="reference internal" href="#pine.client.client.PineClient.collection_builder">collection_builder</a></li>
-</ul>
-<ul>
 <li><a class="reference internal" href="#pine.client.client.PineClient.create_collection">create_collection</a></li>
-</ul>
-<ul>
+<li><a class="reference internal" href="#pine.client.client.PineClient.get_collection_permissions">get_collection_permissions</a></li>
 <li><a class="reference internal" href="#pine.client.client.PineClient.get_collection_documents">get_collection_documents</a></li>
-</ul>
-<ul>
 <li><a class="reference internal" href="#pine.client.client.PineClient.add_document">add_document</a></li>
-</ul>
-<ul>
 <li><a class="reference internal" href="#pine.client.client.PineClient.add_documents">add_documents</a></li>
-</ul>
-<ul>
 <li><a class="reference internal" href="#pine.client.client.PineClient.annotate_document">annotate_document</a></li>
-</ul>
-<ul>
 <li><a class="reference internal" href="#pine.client.client.PineClient.annotate_collection_documents">annotate_collection_documents</a></li>
-</ul>
-<ul>
 <li><a class="reference internal" href="#pine.client.client.PineClient.list_collections">list_collections</a></li>
-</ul>
-<ul>
 <li><a class="reference internal" href="#pine.client.client.PineClient.download_collection_data">download_collection_data</a></li>
 </ul>
 </li>
-</ul>
-<ul>
 <li><a class="reference internal" href="#pine.client.client.LocalPineClient">LocalPineClient</a><ul>
 <li><a class="reference internal" href="#pine.client.client.LocalPineClient.eve">eve</a></li>
-</ul>
-<ul>
 <li><a class="reference internal" href="#pine.client.client.LocalPineClient.is_valid">is_valid</a></li>
 </ul>
 </li>
@@ -1264,7 +1213,7 @@ collection doesn’t exist</p></li>
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright (C) 2019 The Johns Hopkins University Applied Physics Laboratory LLC..
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.1.2.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.5.3.
     </div>
   </body>
 </html>

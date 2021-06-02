@@ -1,0 +1,17 @@
+# (C) 2019 The Johns Hopkins University Applied Physics Laboratory LLC.
+
+kind: NetworkPolicy
+apiVersion: networking.k8s.io/v1
+
+metadata:
+  name: pine-network-policy
+  namespace: {{ .Values.namespace }}
+spec:
+  podSelector:
+    matchLabels:
+      app: {{ template "pine-chart.name" . }}
+  ingress:
+    - from:
+      - podSelector:
+          matchLabels:
+            app: {{ template "pine-chart.name" . }}

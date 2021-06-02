@@ -28,41 +28,21 @@ Functions
 
 .. autoapisummary::
 
-   pine.backend.collections.user_can_annotate
-   pine.backend.collections.user_can_view
-   pine.backend.collections.user_can_add_documents_or_images
-   pine.backend.collections.user_can_modify_document_metadata
-   pine.backend.collections.user_can_annotate_by_id
-   pine.backend.collections.user_can_annotate_by_ids
-   pine.backend.collections.user_can_view_by_id
-   pine.backend.collections.user_can_add_documents_or_images_by_id
-   pine.backend.collections.user_can_modify_document_metadata_by_id
+   pine.backend.collections.user_permissions_projection
+   pine.backend.collections.get_user_permissions
+   pine.backend.collections.get_user_permissions_by_id
+   pine.backend.collections.get_user_permissions_by_ids
 
 
-.. function:: user_can_annotate(collection)
+.. function:: user_permissions_projection()
 
 
-.. function:: user_can_view(collection)
+.. function:: get_user_permissions(collection: dict) -> pine.backend.models.CollectionUserPermissions
 
 
-.. function:: user_can_add_documents_or_images(collection)
+.. function:: get_user_permissions_by_id(collection_id: str) -> pine.backend.models.CollectionUserPermissions
 
 
-.. function:: user_can_modify_document_metadata(collection)
-
-
-.. function:: user_can_annotate_by_id(collection_id)
-
-
-.. function:: user_can_annotate_by_ids(collection_ids)
-
-
-.. function:: user_can_view_by_id(collection_id)
-
-
-.. function:: user_can_add_documents_or_images_by_id(collection_id)
-
-
-.. function:: user_can_modify_document_metadata_by_id(collection_id)
+.. function:: get_user_permissions_by_ids(collection_ids: Iterable[str]) -> List[models.CollectionUserPermissions]
 
 

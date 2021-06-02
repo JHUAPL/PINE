@@ -15,21 +15,16 @@ Functions
 
    pine.backend.documents.bp._document_user_can_projection
    pine.backend.documents.bp.get_collection_ids_for
-   pine.backend.documents.bp.user_can_annotate
-   pine.backend.documents.bp.user_can_view
-   pine.backend.documents.bp.user_can_modify_metadata
-   pine.backend.documents.bp.user_can_annotate_by_id
-   pine.backend.documents.bp.user_can_annotate_by_ids
-   pine.backend.documents.bp.user_can_view_by_id
-   pine.backend.documents.bp.user_can_modify_metadata_by_id
+   pine.backend.documents.bp.get_user_permissions
+   pine.backend.documents.bp.get_user_permissions_by_id
+   pine.backend.documents.bp.get_user_permissions_by_ids
    pine.backend.documents.bp.get_document
    pine.backend.documents.bp.count_documents_in_collection
    pine.backend.documents.bp.get_all_documents_in_collection
    pine.backend.documents.bp.get_paginated_documents_in_collection
    pine.backend.documents.bp._check_documents
    pine.backend.documents.bp.add_document
-   pine.backend.documents.bp.can_annotate_document
-   pine.backend.documents.bp.can_modify_metadata
+   pine.backend.documents.bp.endpoint_get_user_permissions
    pine.backend.documents.bp.update_metadata
    pine.backend.documents.bp.init_app
 
@@ -45,25 +40,13 @@ Functions
 .. function:: get_collection_ids_for(document_ids) -> set
 
 
-.. function:: user_can_annotate(document)
+.. function:: get_user_permissions(document: dict) -> pine.backend.models.CollectionUserPermissions
 
 
-.. function:: user_can_view(document)
+.. function:: get_user_permissions_by_id(document_id: str) -> pine.backend.models.CollectionUserPermissions
 
 
-.. function:: user_can_modify_metadata(document)
-
-
-.. function:: user_can_annotate_by_id(document_id)
-
-
-.. function:: user_can_annotate_by_ids(document_ids)
-
-
-.. function:: user_can_view_by_id(document_id)
-
-
-.. function:: user_can_modify_metadata_by_id(document_id)
+.. function:: get_user_permissions_by_ids(document_ids: Iterable[str]) -> List[models.CollectionUserPermissions]
 
 
 .. function:: get_document(doc_id)
@@ -84,10 +67,7 @@ Functions
 .. function:: add_document()
 
 
-.. function:: can_annotate_document(doc_id)
-
-
-.. function:: can_modify_metadata(doc_id)
+.. function:: endpoint_get_user_permissions(doc_id)
 
 
 .. function:: update_metadata(doc_id)

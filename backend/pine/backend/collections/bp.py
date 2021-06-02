@@ -295,22 +295,22 @@ def download_collection(collection_id):
     else:
         return jsonify(data)
 
-def get_doc_and_overlap_ids(collection_id):
-    """
-    Return lists of ids for overlapping and non-overlapping documents for the collection matching the provided
-    collection id.
-    :param collection_id: str
-    :return: tuple
-    """
-    params = service.params({
-        "where": {"collection_id": collection_id, "overlap": 0},
-        "projection": {"_id": 1}
-    })
-    doc_ids = [doc["_id"] for doc in service.get_all_items("documents", params)]
-    # doc_ids = get_all_ids("documents?where={\"collection_id\":\"%s\",\"overlap\":0}"%(collection_id))
-    random.shuffle(doc_ids)
-    overlap_ids = get_overlap_ids(collection_id)
-    return (doc_ids, overlap_ids)
+# def get_doc_and_overlap_ids(collection_id):
+    # """
+    # Return lists of ids for overlapping and non-overlapping documents for the collection matching the provided
+    # collection id.
+    # :param collection_id: str
+    # :return: tuple
+    # """
+    # params = service.params({
+        # "where": {"collection_id": collection_id, "overlap": 0},
+        # "projection": {"_id": 1}
+    # })
+    # doc_ids = [doc["_id"] for doc in service.get_all_items("documents", params)]
+    # # doc_ids = get_all_ids("documents?where={\"collection_id\":\"%s\",\"overlap\":0}"%(collection_id))
+    # random.shuffle(doc_ids)
+    # overlap_ids = get_overlap_ids(collection_id)
+    # return (doc_ids, overlap_ids)
 
 
 @bp.route("/add_annotator/<collection_id>", methods=["POST"])
@@ -401,8 +401,10 @@ def get_overlap_ids(collection_id):
     :param collection_id: str
     :return: tuple
     """
-    where = {"collection_id": collection_id, "overlap": 1}
-    params = service.where_params(where)
+    params = service.params({
+        "where": {"collection_id": collection_id, "overlap": 1},
+        "projection": {"_id": 1}
+    })
     return [doc["_id"] for doc in service.get_all_items("documents", params)]
 
 
@@ -545,6 +547,8 @@ def create_collection():
 
     #create documents if CSV file was sent in
     doc_ids = []
+    doc_ids_overlap_0 = []
+    doc_ids_overlap_1 = []
     if posted_file != None:
         docs = []
         csvreader = csv.reader(posted_file)
@@ -579,18 +583,25 @@ def create_collection():
                 doc["overlap"] = 0
             docs.append(doc)
             if len(docs) >= DOCUMENTS_PER_TRANSACTION:
-                doc_ids += _upload_documents(collection, docs)
+                transaction_doc_ids = _upload_documents(collection, docs)
+                doc_ids += transaction_doc_ids
+                for (i, doc_id) in enumerate(transaction_doc_ids):
+                    if docs[i]["overlap"] == 0:
+                        doc_ids_overlap_0.append(doc_id)
+                    else:
+                        doc_ids_overlap_1.append(doc_id)
                 docs = []
         if len(docs) > 0:
             doc_ids += _upload_documents(collection, docs)
             docs = []
 
     # create next ids
-    (doc_ids, overlap_ids) = get_doc_and_overlap_ids(collection_id)
+    random.shuffle(doc_ids_overlap_0)
+    #(doc_ids, overlap_ids) = get_doc_and_overlap_ids(collection_id)
     overlap_obj = {
         "classifier_id": classifier_id,
-        "document_ids": doc_ids,
-        "overlap_document_ids": { ann_id: overlap_ids for ann_id in collection["annotators"] }
+        "document_ids": doc_ids_overlap_0,
+        "overlap_document_ids": { ann_id: doc_ids_overlap_1 for ann_id in collection["annotators"] }
     }
     #for ann_id in collection["annotators"]:
     #    overlap_obj["overlap_document_ids"][ann_id] = overlap_ids
@@ -599,7 +610,7 @@ def create_collection():
     if not instances_response.ok:
         abort(instances_response.status_code, instances_response.content)
     #post_items("next_instances", overlap_obj)
-    doc_ids.extend(overlap_ids)
+    #doc_ids.extend(overlap_ids)
 
     # upload any image files
     for image_file in image_files:

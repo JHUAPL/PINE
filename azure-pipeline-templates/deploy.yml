@@ -6,7 +6,6 @@ parameters:
   azureContainerRegistry: $(azureContainerRegistry)
   azureSubscriptionEndpointForSecrets: $(azureSubscriptionEndpointForSecrets)
   backendStorageMountPath: "/mnt/azure"
-  backendStorageShareName: ""
   deployEnvironment: $(deployEnvironment)
   deploymentName: "CONTAINER_DEPLOY"
   dockerAuthSecretName: $(dockerAuthSecretName)
@@ -113,7 +112,6 @@ jobs:
                     tag: ${{ parameters.imageTag }}
                   persistence:
                     enabled: true
-                    shareName: ${{ parameters.backendStorageShareName }}
                     mountPath: ${{ parameters.backendStorageMountPath }}
                 nlpAnnotation:
                   image:

@@ -23,11 +23,10 @@ Classes
 
    
 
-.. py:class:: BaseConfig(root_dir=None)
+.. class:: BaseConfig(root_dir=None)
+
 
    Bases: :class:`object`
-
-   Initialize self.  See help(type(self)) for accurate signature.
 
    .. attribute:: ROOT_DIR
       
@@ -178,32 +177,26 @@ Classes
       :classmethod:
 
 
-
    .. method:: _process_paths(cls, alt_path=None)
       :classmethod:
-
 
 
    .. method:: _process_file_cfg(cls)
       :classmethod:
 
 
-
    .. method:: _process_env_vars(cls)
       :classmethod:
 
 
-
    .. method:: as_dict(cls)
       :classmethod:
-
 
       :rtype: dict
 
 
    .. method:: as_attr_dict(cls)
       :classmethod:
-
 
       :rtype: munch.Munch | dict
 
@@ -212,25 +205,21 @@ Classes
       :staticmethod:
 
 
-
    .. method:: _str2bool(_str, _default=None)
       :staticmethod:
 
 
 
+.. class:: TestConfig(root_dir=None)
 
-.. py:class:: TestConfig(root_dir=None)
 
    Bases: :class:`pine.backend.shared.config.BaseConfig`
 
-   Initialize self.  See help(type(self)) for accurate signature.
 
+.. class:: ConfigBuilder
 
-.. py:class:: ConfigBuilder
 
    Bases: :class:`object`
-
-   Initialize self.  See help(type(self)) for accurate signature.
 
    .. attribute:: __env_cfg_variable
       :annotation: = BUILDER_CFG_PROFILE
@@ -260,13 +249,11 @@ Classes
    .. method:: __get_configs()
       :staticmethod:
 
-
       :rtype list[Callable[..., BaseConfig]]
 
 
    .. method:: get_config_names()
       :staticmethod:
-
 
       :rtype: list[str]
 
@@ -274,13 +261,11 @@ Classes
    .. method:: get_arg_parser(cls)
       :classmethod:
 
-
       :rtype: ArgumentParser
 
 
    .. method:: init_config(cls, config_name=None, config_base=None, enable_terminal=True, as_attr_dict=True)
       :classmethod:
-
 
       :type config_name: str | None
       :type config_base: str | None
@@ -290,7 +275,6 @@ Classes
 
    .. method:: get_config(cls, config_name=None, config_base=None, enable_terminal=True, as_attr_dict=True)
       :classmethod:
-
 
       :type config_name: str | None
       :type config_base: str | None
@@ -302,7 +286,6 @@ Classes
    .. method:: set_config(cls, config_name=None, config_base=None, enable_terminal=True, as_attr_dict=True)
       :classmethod:
 
-
       :type config_name: str | None
       :type config_base: str | None
       :type enable_terminal: bool
@@ -311,7 +294,6 @@ Classes
 
    .. method:: __parse_terminal_config(cls)
       :classmethod:
-
 
       :rtype: argparse.Namespace
 

@@ -13,3 +13,30 @@ Submodules
    bp/index.rst
 
 
+Package Contents
+----------------
+
+
+Functions
+~~~~~~~~~
+
+.. autoapisummary::
+
+   pine.backend.documents.get_collection_ids_for
+   pine.backend.documents.get_user_permissions
+   pine.backend.documents.get_user_permissions_by_id
+   pine.backend.documents.get_user_permissions_by_ids
+
+
+.. function:: get_collection_ids_for(document_ids) -> set
+
+
+.. function:: get_user_permissions(document: dict) -> pine.backend.models.CollectionUserPermissions
+
+
+.. function:: get_user_permissions_by_id(document_id: str) -> pine.backend.models.CollectionUserPermissions
+
+
+.. function:: get_user_permissions_by_ids(document_ids: Iterable[str]) -> List[models.CollectionUserPermissions]
+
+

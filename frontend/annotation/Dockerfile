@@ -6,9 +6,14 @@ ENV LC_ALL C.UTF-8
 ENV LANG C.UTF-8
 ENV DEBIAN_FRONTEND noninteractive
 
+# Install basic dependencies
 RUN apt-get clean && \
     apt-get -y update && \
-    apt-get -y install software-properties-common
+    apt-get -y install software-properties-common ca-certificates
+
+# Copy any certs
+COPY docker/*.crt /usr/local/share/ca-certificates/
+RUN rm /usr/local/share/ca-certificates/empty.crt && update-ca-certificates
 
 RUN apt-get -y update && \
     apt-get -y install git build-essential curl jq wget ruby gettext-base && \
@@ -39,6 +44,7 @@ WORKDIR $ROOT_DIR
 ADD angular.json $ROOT_DIR/
 ADD package*.json $ROOT_DIR/
 
+RUN npm config set cafile /etc/ssl/certs/ca-certificates.crt
 RUN npm install
 
 ADD e2e/ $ROOT_DIR/e2e

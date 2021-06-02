@@ -149,6 +149,7 @@ To import testing data, run the dev stack and then run:
 ```bash
 ./setup_dev_test_data.sh
 ```
+You will need python3 and pipenv installed to run this script.
 
 *WARNING*: This script will remove any pre-existing data.  If you need to clear your database
 for other reasons, stop your dev stack and then `rm -rf local_data/dev/eve/db`.
@@ -253,6 +254,13 @@ Or use the convenience script:
 ```bash
 ./run_docker_compose.sh --build
 ```
+If your network has an SSL certificate in its configuration, you may be able to do this:
+```bash
+./run_docker_compose.sh --build-with-cert <crt file>
+```
+This has only been tested in internal environments and may not cover all scenarios.  For example:
+the docker container has to be able to install the ca-certificates package before it can be
+installed.
 
 To run containers as daemons for DEFAULT configuration (remove -d flag to see logs):
 ```bash
@@ -294,6 +302,7 @@ Once the system is up and running:
 ```bash
 ./setup_docker_test_data.sh
 ```
+You will need python3 and pipenv installed to run this script.
 
 Once the test data has been imported, you no longer need to use the docker-compose.test.yml file.
 

@@ -5,23 +5,22 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>pine.backend.models &#8212; pine  documentation</title>
-    <link rel="stylesheet" href="../../../../_static/bizstyle.css" type="text/css" />
     <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../_static/bizstyle.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../../../../_static/graphviz.css" />
     
     <script id="documentation_options" data-url_root="../../../../" src="../../../../_static/documentation_options.js"></script>
     <script src="../../../../_static/jquery.js"></script>
     <script src="../../../../_static/underscore.js"></script>
     <script src="../../../../_static/doctools.js"></script>
-    <script src="../../../../_static/language_data.js"></script>
     <script src="../../../../_static/bizstyle.js"></script>
     <link rel="index" title="Index" href="../../../../genindex.html" />
     <link rel="search" title="Search" href="../../../../search.html" />
     <link rel="next" title="pine.client" href="../../client/index.html" />
     <link rel="prev" title="pine.backend.log" href="../log/index.html" />
-    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
     <!--[if lt IE 9]>
     <script src="_static/css3-mediaqueries.js"></script>
     <![endif]-->
@@ -66,107 +65,189 @@
 <col style="width: 90%" />
 </colgroup>
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#pine.backend.models.LoginFormFieldType" title="pine.backend.models.LoginFormFieldType"><code class="xref py py-obj docutils literal notranslate"><span class="pre">LoginFormFieldType</span></code></a>()</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pine.backend.models.LoginFormFieldType" title="pine.backend.models.LoginFormFieldType"><code class="xref py py-obj docutils literal notranslate"><span class="pre">LoginFormFieldType</span></code></a></p></td>
 <td><p>Generic enumeration.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#pine.backend.models.LoginFormField" title="pine.backend.models.LoginFormField"><code class="xref py py-obj docutils literal notranslate"><span class="pre">LoginFormField</span></code></a>(name: str, display: str, field_type: LoginFormFieldType)</p></td>
-<td><p>Initialize self.  See help(type(self)) for accurate signature.</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#pine.backend.models.LoginFormField" title="pine.backend.models.LoginFormField"><code class="xref py py-obj docutils literal notranslate"><span class="pre">LoginFormField</span></code></a></p></td>
+<td><p></p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#pine.backend.models.LoginForm" title="pine.backend.models.LoginForm"><code class="xref py py-obj docutils literal notranslate"><span class="pre">LoginForm</span></code></a>(fields: list, button_text: str)</p></td>
-<td><p>Initialize self.  See help(type(self)) for accurate signature.</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pine.backend.models.LoginForm" title="pine.backend.models.LoginForm"><code class="xref py py-obj docutils literal notranslate"><span class="pre">LoginForm</span></code></a></p></td>
+<td><p></p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#pine.backend.models.AuthUser" title="pine.backend.models.AuthUser"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AuthUser</span></code></a>()</p></td>
-<td><p>Initialize self.  See help(type(self)) for accurate signature.</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#pine.backend.models.AuthUser" title="pine.backend.models.AuthUser"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AuthUser</span></code></a></p></td>
+<td><p></p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#pine.backend.models.UserDetails" title="pine.backend.models.UserDetails"><code class="xref py py-obj docutils literal notranslate"><span class="pre">UserDetails</span></code></a>(first_name, last_name, description)</p></td>
-<td><p>Initialize self.  See help(type(self)) for accurate signature.</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pine.backend.models.UserDetails" title="pine.backend.models.UserDetails"><code class="xref py py-obj docutils literal notranslate"><span class="pre">UserDetails</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#pine.backend.models.CollectionUserPermissions" title="pine.backend.models.CollectionUserPermissions"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CollectionUserPermissions</span></code></a></p></td>
+<td><p>Collection permissions for a user as a dictionary of boolean flags.</p></td>
 </tr>
 </tbody>
 </table>
 <dl class="py class">
 <dt id="pine.backend.models.LoginFormFieldType">
-<em class="property">class </em><code class="sig-prename descclassname">pine.backend.models.</code><code class="sig-name descname">LoginFormFieldType</code><a class="headerlink" href="#pine.backend.models.LoginFormFieldType" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">pine.backend.models.</span></code><code class="sig-name descname"><span class="pre">LoginFormFieldType</span></code><a class="headerlink" href="#pine.backend.models.LoginFormFieldType" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/enum.html#enum.Enum" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">enum.Enum</span></code></a></p>
 <p>Generic enumeration.</p>
 <p>Derive from this class to define new enumerations.</p>
-<p>Create and return a new object.  See help(type) for accurate signature.</p>
 <dl class="py attribute">
 <dt id="pine.backend.models.LoginFormFieldType.TEXT">
-<code class="sig-name descname">TEXT</code><em class="property"> = text</em><a class="headerlink" href="#pine.backend.models.LoginFormFieldType.TEXT" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">TEXT</span></code><em class="property"> <span class="pre">=</span> <span class="pre">text</span></em><a class="headerlink" href="#pine.backend.models.LoginFormFieldType.TEXT" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt id="pine.backend.models.LoginFormFieldType.PASSWORD">
-<code class="sig-name descname">PASSWORD</code><em class="property"> = password</em><a class="headerlink" href="#pine.backend.models.LoginFormFieldType.PASSWORD" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">PASSWORD</span></code><em class="property"> <span class="pre">=</span> <span class="pre">password</span></em><a class="headerlink" href="#pine.backend.models.LoginFormFieldType.PASSWORD" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
 
 <dl class="py class">
 <dt id="pine.backend.models.LoginFormField">
-<em class="property">class </em><code class="sig-prename descclassname">pine.backend.models.</code><code class="sig-name descname">LoginFormField</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a></span></em>, <em class="sig-param"><span class="n">display</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a></span></em>, <em class="sig-param"><span class="n">field_type</span><span class="p">:</span> <span class="n">LoginFormFieldType</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.models.LoginFormField" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">pine.backend.models.</span></code><code class="sig-name descname"><span class="pre">LoginFormField</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">display</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">field_type</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#pine.backend.models.LoginFormFieldType" title="pine.backend.models.LoginFormFieldType"><span class="pre">pine.backend.models.LoginFormFieldType</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.models.LoginFormField" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
-<p>Initialize self.  See help(type(self)) for accurate signature.</p>
 <dl class="py method">
 <dt id="pine.backend.models.LoginFormField.to_dict">
-<code class="sig-name descname">to_dict</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.models.LoginFormField.to_dict" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">to_dict</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.models.LoginFormField.to_dict" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
 
 <dl class="py class">
 <dt id="pine.backend.models.LoginForm">
-<em class="property">class </em><code class="sig-prename descclassname">pine.backend.models.</code><code class="sig-name descname">LoginForm</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">fields</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)">list</a></span></em>, <em class="sig-param"><span class="n">button_text</span><span class="p">:</span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.models.LoginForm" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">pine.backend.models.</span></code><code class="sig-name descname"><span class="pre">LoginForm</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fields</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)"><span class="pre">list</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">button_text</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.models.LoginForm" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
-<p>Initialize self.  See help(type(self)) for accurate signature.</p>
 <dl class="py method">
 <dt id="pine.backend.models.LoginForm.to_dict">
-<code class="sig-name descname">to_dict</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.models.LoginForm.to_dict" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">to_dict</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.models.LoginForm.to_dict" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
 
 <dl class="py class">
 <dt id="pine.backend.models.AuthUser">
-<em class="property">class </em><code class="sig-prename descclassname">pine.backend.models.</code><code class="sig-name descname">AuthUser</code><a class="headerlink" href="#pine.backend.models.AuthUser" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">pine.backend.models.</span></code><code class="sig-name descname"><span class="pre">AuthUser</span></code><a class="headerlink" href="#pine.backend.models.AuthUser" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
-<p>Initialize self.  See help(type(self)) for accurate signature.</p>
 <dl class="py method">
 <dt id="pine.backend.models.AuthUser.id">
-<em class="property">property </em><code class="sig-name descname">id</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.models.AuthUser.id" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">property</span> </em><code class="sig-name descname"><span class="pre">id</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.models.AuthUser.id" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt id="pine.backend.models.AuthUser.username">
-<em class="property">property </em><code class="sig-name descname">username</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.models.AuthUser.username" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">property</span> </em><code class="sig-name descname"><span class="pre">username</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.models.AuthUser.username" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt id="pine.backend.models.AuthUser.display_name">
-<em class="property">property </em><code class="sig-name descname">display_name</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.models.AuthUser.display_name" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">property</span> </em><code class="sig-name descname"><span class="pre">display_name</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.models.AuthUser.display_name" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt id="pine.backend.models.AuthUser.is_admin">
-<em class="property">property </em><code class="sig-name descname">is_admin</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.models.AuthUser.is_admin" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">property</span> </em><code class="sig-name descname"><span class="pre">is_admin</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.models.AuthUser.is_admin" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt id="pine.backend.models.AuthUser.to_dict">
-<code class="sig-name descname">to_dict</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.models.AuthUser.to_dict" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">to_dict</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.models.AuthUser.to_dict" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
 
 <dl class="py class">
 <dt id="pine.backend.models.UserDetails">
-<em class="property">class </em><code class="sig-prename descclassname">pine.backend.models.</code><code class="sig-name descname">UserDetails</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">first_name</span></em>, <em class="sig-param"><span class="n">last_name</span></em>, <em class="sig-param"><span class="n">description</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.models.UserDetails" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">pine.backend.models.</span></code><code class="sig-name descname"><span class="pre">UserDetails</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">first_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">last_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">description</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.models.UserDetails" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
-<p>Initialize self.  See help(type(self)) for accurate signature.</p>
 <dl class="py method">
 <dt id="pine.backend.models.UserDetails.to_dict">
-<code class="sig-name descname">to_dict</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.models.UserDetails.to_dict" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">to_dict</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.models.UserDetails.to_dict" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="pine.backend.models.CollectionUserPermissions">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">pine.backend.models.</span></code><code class="sig-name descname"><span class="pre">CollectionUserPermissions</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">view</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">annotate</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">add_documents</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">add_images</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">modify_users</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">modify_labels</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">modify_document_metadata</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">download_data</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">archive</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.models.CollectionUserPermissions" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>Collection permissions for a user as a dictionary of boolean flags.</p>
+<dl class="py attribute">
+<dt id="pine.backend.models.CollectionUserPermissions.view">
+<code class="sig-name descname"><span class="pre">view</span></code><em class="property"> <span class="pre">:bool</span></em><a class="headerlink" href="#pine.backend.models.CollectionUserPermissions.view" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether the user can view the collection and documents.
+:type: bool</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="pine.backend.models.CollectionUserPermissions.annotate">
+<code class="sig-name descname"><span class="pre">annotate</span></code><em class="property"> <span class="pre">:bool</span></em><a class="headerlink" href="#pine.backend.models.CollectionUserPermissions.annotate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether the user can annotate collection documents.
+:type: bool</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="pine.backend.models.CollectionUserPermissions.add_documents">
+<code class="sig-name descname"><span class="pre">add_documents</span></code><em class="property"> <span class="pre">:bool</span></em><a class="headerlink" href="#pine.backend.models.CollectionUserPermissions.add_documents" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether the user can add documents to the collection.
+:type: bool</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="pine.backend.models.CollectionUserPermissions.add_images">
+<code class="sig-name descname"><span class="pre">add_images</span></code><em class="property"> <span class="pre">:bool</span></em><a class="headerlink" href="#pine.backend.models.CollectionUserPermissions.add_images" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether the user can add images to the collection.
+:type: bool</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="pine.backend.models.CollectionUserPermissions.modify_users">
+<code class="sig-name descname"><span class="pre">modify_users</span></code><em class="property"> <span class="pre">:bool</span></em><a class="headerlink" href="#pine.backend.models.CollectionUserPermissions.modify_users" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether the user can modify the list of viewers/annotators for the collection.
+:type: bool</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="pine.backend.models.CollectionUserPermissions.modify_labels">
+<code class="sig-name descname"><span class="pre">modify_labels</span></code><em class="property"> <span class="pre">:bool</span></em><a class="headerlink" href="#pine.backend.models.CollectionUserPermissions.modify_labels" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether the user can modify the list of labels for the collection.
+:type: bool</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="pine.backend.models.CollectionUserPermissions.modify_document_metadata">
+<code class="sig-name descname"><span class="pre">modify_document_metadata</span></code><em class="property"> <span class="pre">:bool</span></em><a class="headerlink" href="#pine.backend.models.CollectionUserPermissions.modify_document_metadata" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether the user can modify document metadata (such as changing the image).
+:type: bool</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="pine.backend.models.CollectionUserPermissions.download_data">
+<code class="sig-name descname"><span class="pre">download_data</span></code><em class="property"> <span class="pre">:bool</span></em><a class="headerlink" href="#pine.backend.models.CollectionUserPermissions.download_data" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether the user can download the collection data
+:type: bool</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="pine.backend.models.CollectionUserPermissions.archive">
+<code class="sig-name descname"><span class="pre">archive</span></code><em class="property"> <span class="pre">:bool</span></em><a class="headerlink" href="#pine.backend.models.CollectionUserPermissions.archive" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether the user can archive or unarchive the collection.
+:type: bool</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pine.backend.models.CollectionUserPermissions.to_dict">
+<code class="sig-name descname"><span class="pre">to_dict</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><span class="pre">dict</span></a><a class="headerlink" href="#pine.backend.models.CollectionUserPermissions.to_dict" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a dict version of this object for conversion to JSON.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>a dict version of this object for conversion to JSON</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)">dict</a></p>
+</dd>
+</dl>
+</dd></dl>
 
 </dd></dl>
 
@@ -188,45 +269,40 @@
 <li><a class="reference internal" href="#classes">Classes</a><ul>
 <li><a class="reference internal" href="#pine.backend.models.LoginFormFieldType">LoginFormFieldType</a><ul>
 <li><a class="reference internal" href="#pine.backend.models.LoginFormFieldType.TEXT">TEXT</a></li>
-</ul>
-<ul>
 <li><a class="reference internal" href="#pine.backend.models.LoginFormFieldType.PASSWORD">PASSWORD</a></li>
 </ul>
 </li>
-</ul>
-<ul>
 <li><a class="reference internal" href="#pine.backend.models.LoginFormField">LoginFormField</a><ul>
 <li><a class="reference internal" href="#pine.backend.models.LoginFormField.to_dict">to_dict</a></li>
 </ul>
 </li>
-</ul>
-<ul>
 <li><a class="reference internal" href="#pine.backend.models.LoginForm">LoginForm</a><ul>
 <li><a class="reference internal" href="#pine.backend.models.LoginForm.to_dict">to_dict</a></li>
 </ul>
 </li>
-</ul>
-<ul>
 <li><a class="reference internal" href="#pine.backend.models.AuthUser">AuthUser</a><ul>
 <li><a class="reference internal" href="#pine.backend.models.AuthUser.id">id</a></li>
-</ul>
-<ul>
 <li><a class="reference internal" href="#pine.backend.models.AuthUser.username">username</a></li>
-</ul>
-<ul>
 <li><a class="reference internal" href="#pine.backend.models.AuthUser.display_name">display_name</a></li>
-</ul>
-<ul>
 <li><a class="reference internal" href="#pine.backend.models.AuthUser.is_admin">is_admin</a></li>
-</ul>
-<ul>
 <li><a class="reference internal" href="#pine.backend.models.AuthUser.to_dict">to_dict</a></li>
 </ul>
 </li>
-</ul>
-<ul>
 <li><a class="reference internal" href="#pine.backend.models.UserDetails">UserDetails</a><ul>
 <li><a class="reference internal" href="#pine.backend.models.UserDetails.to_dict">to_dict</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#pine.backend.models.CollectionUserPermissions">CollectionUserPermissions</a><ul>
+<li><a class="reference internal" href="#pine.backend.models.CollectionUserPermissions.view">view</a></li>
+<li><a class="reference internal" href="#pine.backend.models.CollectionUserPermissions.annotate">annotate</a></li>
+<li><a class="reference internal" href="#pine.backend.models.CollectionUserPermissions.add_documents">add_documents</a></li>
+<li><a class="reference internal" href="#pine.backend.models.CollectionUserPermissions.add_images">add_images</a></li>
+<li><a class="reference internal" href="#pine.backend.models.CollectionUserPermissions.modify_users">modify_users</a></li>
+<li><a class="reference internal" href="#pine.backend.models.CollectionUserPermissions.modify_labels">modify_labels</a></li>
+<li><a class="reference internal" href="#pine.backend.models.CollectionUserPermissions.modify_document_metadata">modify_document_metadata</a></li>
+<li><a class="reference internal" href="#pine.backend.models.CollectionUserPermissions.download_data">download_data</a></li>
+<li><a class="reference internal" href="#pine.backend.models.CollectionUserPermissions.archive">archive</a></li>
+<li><a class="reference internal" href="#pine.backend.models.CollectionUserPermissions.to_dict">to_dict</a></li>
 </ul>
 </li>
 </ul>
@@ -288,7 +364,7 @@
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright (C) 2019 The Johns Hopkins University Applied Physics Laboratory LLC..
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.1.2.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.5.3.
     </div>
   </body>
 </html>

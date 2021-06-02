@@ -1,7 +1,7 @@
 # (C) 2019 The Johns Hopkins University Applied Physics Laboratory LLC.
 
 {{- $component := .Values.backend }}
-apiVersion: apps/v1beta2
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: {{ template "pine-chart.fullname" . }}-{{ $component.name }}
@@ -72,8 +72,6 @@ spec:
     {{- if .Values.backend.persistence.enabled }}
       volumes:
         - name: {{ template "pine-chart.fullname" $root }}-backend-volume
-          azureFile:
-            secretName: {{ template "pine-chart.fullname" $root }}-azure-secret
-            shareName: {{ .Values.backend.persistence.shareName }}
-            readOnly: false
+          persistentVolumeClaim:
+            claimName: {{ .Values.backend.persistence.claimName }}
     {{- end }}

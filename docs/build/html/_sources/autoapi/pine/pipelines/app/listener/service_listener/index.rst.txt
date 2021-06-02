@@ -27,23 +27,21 @@ Classes
 
    
 
-.. py:class:: ServiceRegistration(name, version, channel, framework, framework_types)
+.. class:: ServiceRegistration(name, version, channel, framework, framework_types)
+
 
    Bases: :class:`object`
 
-   Initialize self.  See help(type(self)) for accurate signature.
-
    .. method:: from_registration_format(cls, **kwargs)
       :classmethod:
-
 
 
    .. method:: to_registration_format(self)
 
 
 
+.. class:: ServiceListener(services=None)
 
-.. py:class:: ServiceListener(services=None)
 
    Bases: :class:`object`
 
@@ -127,7 +125,6 @@ Classes
    .. method:: publish_response(cls, channel, data)
       :classmethod:
 
-
       :type channel: str
       :type data: dict
       :rtype: bool
@@ -136,13 +133,10 @@ Classes
    .. method:: start_workers(self)
 
 
-
    .. method:: stop_workers(self)
 
 
-
    .. method:: pre_process_message(self, message_channel, message_data)
-
 
       :type message_channel: str
       :type message_data: str | bytes
@@ -153,21 +147,16 @@ Classes
       :staticmethod:
 
 
-
    .. method:: _start_registration_task(self)
-
 
 
    .. method:: _start_channel_task(self)
 
 
-
    .. method:: _start_listener_task(self)
 
 
-
    .. method:: _start_queue_processor_task(self)
-
 
 
 

@@ -57,9 +57,13 @@ backend:
     tag: latest
     pullPolicy: IfNotPresent
   persistence:
-    enabled: false
-    shareName: ""
+    claimName: pine-backend-pvc
+    enabled: true
     mountPath: "/mnt/azure"
+    annotations: {} ## Set annotations on pvc
+    storageClass: "azurefile-retain"
+    accessMode: ReadWriteMany # ReadWriteOnce
+    size: 32Gi
 nlpAnnotation:
   image:
     repository: VALUE_TO_BE_OVERRIDDEN
@@ -75,7 +79,7 @@ nlpAnnotation:
     ##   set, choosing the default provisioner.  (gp2 on AWS, standard on
     ##   GKE, AWS & OpenStack)
     ##
-    storageClass: "azurefile"
+    storageClass: "azurefile-retain"
     accessMode: ReadWriteMany # ReadWriteOnce
     size: 10Gi
   annotators:

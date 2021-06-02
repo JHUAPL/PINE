@@ -1,0 +1,179 @@
+# (C) 2019 The Johns Hopkins University Applied Physics Laboratory LLC.
+parameters:
+  appReleaseName: ""
+  appTlsSecretName: $(appTlsSecretName)
+  appUrl: ""
+  azureContainerRegistry: $(azureContainerRegistry)
+  azureSubscriptionEndpointForSecrets: $(azureSubscriptionEndpointForSecrets)
+  backendStorageMountPath: "/mnt/azure"
+  backendStorageClaimName: ""
+  deployEnvironment: $(deployEnvironment)
+  deploymentName: "CONTAINER_DEPLOY"
+  dockerAuthSecretName: $(dockerAuthSecretName)
+  helmRepoName: $(Pipeline.Workspace) # Default to chart published as artifact and automatically downloaded into workspace
+  helmChart: "pine-chart"
+  imageTag: $(Build.BuildId)
+  ingressClass: "nginx"
+  kubeServiceConnection: $(kubeServiceConnection)
+  namespace: $(namespace)
+  secrets: []
+  redisImageName: $(redisImageName)
+  eveImageName: $(eveImageName)
+  backendImageName: $(backendImageName)
+  frontendImageName: $(frontendImageName)
+  pipelineImageName: $(pipelineImageName)
+
+jobs:
+    # track deployments on the environment
+  - deployment: "${{ parameters.deploymentName }}"
+    pool: Default
+    # creates an environment if it doesn’t exist
+    environment: ${{ parameters.deployEnvironment }}
+    strategy:
+      # default deployment strategy
+      runOnce:
+        deploy:
+          steps:
+          - task: Bash@3
+            displayName: Display settings
+            inputs:
+              targetType: 'inline'
+              script: |
+                echo "appReleaseName:  ${{ parameters.appReleaseName }}"
+                echo "appUrl: ${{ parameters.appUrl }}"
+                echo "deployEnvironment: ${{ parameters.deployEnvironment }}"
+                echo "kubeServiceConnection: ${{ parameters.kubeServiceConnection }}"
+                echo "namespace: ${{ parameters.namespace }}"
+                echo "ingressClass: ${{ parameters.ingressClass }}"
+                echo "imageTag: ${{ parameters.imageTag }}"
+          - bash: |
+              if [ -z "$APP_RELEASE_NAME" ]; then
+                echo "##vso[task.logissue type=error;]Missing template parameter \"appReleaseName\""
+                echo "##vso[task.complete result=Failed;]"
+              fi
+              if [ -z "$APP_URL" ]; then
+                echo "##vso[task.logissue type=error;]Missing template parameter \"appUrl\""
+                echo "##vso[task.complete result=Failed;]"
+              fi
+              if [ -z "$AZURE_SUBSCRIPTION" ]; then
+                echo "##vso[task.logissue type=error;]Missing variable \"azureSubscriptionEndpointForSecrets\""
+                echo "##vso[task.complete result=Failed;]"
+              fi
+            env:
+              APP_RELEASE_NAME: ${{ parameters.appReleaseName }}
+              APP_URL: ${{ parameters.appUrl }}
+              AZURE_SUBSCRIPTION: ${{ parameters.azureSubscriptionEndpointForSecrets }}
+            displayName: Check for required parameters
+          - task: HelmInstaller@1
+            displayName: 'Install Helm 3.5.3'
+            inputs:
+              helmVersionToInstall: 3.5.3
+          - task: KubectlInstaller@0
+            inputs:
+              kubectlVersion: 'latest'
+          - task: Kubernetes@1
+            displayName: 'kubectl set imagePullSecrets'
+            inputs:
+              connectionType: 'Kubernetes Service Connection'
+              kubernetesServiceEndpoint: '${{ parameters.kubeServiceConnection }}'
+              namespace: '${{ parameters.namespace }}'
+              command: 'get'
+              arguments: 'service'
+              secretType: 'dockerRegistry'
+              containerRegistryType: 'Azure Container Registry'
+              azureSubscriptionEndpointForSecrets: ${{ parameters.azureSubscriptionEndpointForSecrets }}
+              azureContainerRegistry: ${{ parameters.azureContainerRegistry }}
+              secretName: '${{ parameters.dockerAuthSecretName }}'
+              versionSpec: '1.13.10'
+          - task: Bash@3
+            displayName: "set default overrides"
+            inputs:
+              targetType: 'inline'
+              script: |
+                #!/bin/bash
+                echo "Creating pipelineHelmOverrideValues.yaml file"
+                cat > pipelineHelmOverrideValues.yaml <<- EOM
+                fullnameOverride: ${{ parameters.appReleaseName }}
+                name: ${{ parameters.appReleaseName }}
+                eve:
+                  image:
+                    repository: ${{ parameters.azureContainerRegistry }}/${{ parameters.eveImageName }}
+                    tag: ${{ parameters.imageTag }}
+                redis:
+                  image:
+                    repository: ${{ parameters.azureContainerRegistry }}/${{ parameters.redisImageName }}
+                    tag: ${{ parameters.imageTag }}
+                backend:
+                  image:
+                    repository: ${{ parameters.azureContainerRegistry }}/${{ parameters.backendImageName }}
+                    tag: ${{ parameters.imageTag }}
+                  persistence:
+                    enabled: true
+                    mountPath: ${{ parameters.backendStorageMountPath }}
+                nlpAnnotation:
+                  image:
+                    repository: ${{ parameters.azureContainerRegistry }}/${{ parameters.pipelineImageName }}
+                    tag: ${{ parameters.imageTag }}
+                frontend:
+                  serverName: ${{ parameters.appUrl }}
+                  image:
+                    repository: ${{ parameters.azureContainerRegistry }}/${{ parameters.frontendImageName }}
+                    tag: ${{ parameters.imageTag }}
+                namespace: ${{ parameters.namespace }}
+                ingress:
+                  annotations:
+                    kubernetes.io/ingress.class: ${{ parameters.ingressClass }}
+                  hosts:
+                    - ${{ parameters.appUrl }}
+                  tls:
+                    - hosts:
+                      - ${{ parameters.appUrl }}
+                      secretName: ${{ parameters.appTlsSecretName }}
+                imagePullSecrets:
+                  - ${{ parameters.dockerAuthSecretName }}
+                EOM
+                echo "File created"
+                cat pipelineHelmOverrideValues.yaml
+          - ${{ if ne(parameters.secrets, '') }}:
+            - task: Bash@3
+              displayName: "Add secrets section to overrides"
+              inputs:
+                targetType: 'inline'
+                script: |
+                  #!/bin/bash
+                  cat >> pipelineHelmOverrideValues.yaml <<- EOM
+                  secrets:
+                  EOM
+                  echo "File updated"
+          - ${{ each secret in parameters.secrets }}:
+            - task: Bash@3
+              displayName: "Add secret to overrides"
+              inputs:
+                targetType: 'inline'
+                script: |
+                  #!/bin/bash
+                  cat >> pipelineHelmOverrideValues.yaml <<- EOM
+                    ${{ secret.key }}:
+                  EOM
+                  echo "File updated"
+            - ${{ each secretData in secret.value }}:
+              - task: Bash@3
+                displayName: "Add secret data to overrides"
+                inputs:
+                  targetType: 'inline'
+                  script: |
+                    #!/bin/bash
+                    cat >> pipelineHelmOverrideValues.yaml <<- EOM
+                        ${{ secretData.key }}: ${{ secretData.value }}
+                    EOM
+          - task: HelmDeploy@0
+            displayName: Helm upgrade
+            inputs:
+              connectionType: 'Kubernetes Service Connection'
+              kubernetesServiceConnection: '${{ parameters.kubeServiceConnection }}'
+              namespace: '${{ parameters.namespace }}'
+              command: 'upgrade'
+              chartType: 'Name'
+              chartName: '${{ parameters.helmRepoName }}/${{ parameters.helmChart }}'
+              releaseName: ${{ parameters.appReleaseName }}
+              valueFile: 'pipelineHelmOverrideValues.yaml'

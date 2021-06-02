@@ -16,9 +16,8 @@ Classes
 
 
 
-.. py:class:: NERWrapper(classifier_type, model_dir='models', entry_point='localhost:5000')
+.. class:: NERWrapper(classifier_type, model_dir='models', entry_point='localhost:5000')
 
-   Initialize self.  See help(type(self)) for accurate signature.
 
    .. attribute:: eve_headers
       
@@ -28,33 +27,25 @@ Classes
    .. method:: load_classifier(self, classifier_id)
 
 
-
    .. method:: predict(self, classifier_id, documents, document_ids)
-
 
 
    .. method:: update_model(self, classifier_id)
 
 
-
    .. method:: update(self, resource, id, etag, update_obj)
-
 
 
    .. method:: get_obj(self, resource, id)
 
 
-
    .. method:: get_all_items(self, resource)
-
 
 
    .. method:: get_all_ids(self, resource)
 
 
-
    .. method:: get_items(self, resource)
-
 
 
 

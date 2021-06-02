@@ -13,8 +13,9 @@ Functions
 
 .. autoapisummary::
 
-   pine.backend.annotations.bp.check_document_by_id
-   pine.backend.annotations.bp.check_document
+   pine.backend.annotations.bp.check_document_view_by_id
+   pine.backend.annotations.bp.check_document_view
+   pine.backend.annotations.bp.check_document_annotate
    pine.backend.annotations.bp.get_my_annotations_for_document
    pine.backend.annotations.bp.get_others_annotations_for_document
    pine.backend.annotations.bp.get_annotations_for_document
@@ -43,7 +44,7 @@ Functions
 
    
 
-.. function:: check_document_by_id(doc_id: str)
+.. function:: check_document_view_by_id(doc_id: str)
 
    Verify that a document with the given doc_id exists and that the logged in user has permissions to access the
    document
@@ -51,7 +52,10 @@ Functions
    :return: dict
 
 
-.. function:: check_document(doc: dict)
+.. function:: check_document_view(doc: dict)
+
+
+.. function:: check_document_annotate(doc: dict)
 
 
 .. function:: get_my_annotations_for_document(doc_id)

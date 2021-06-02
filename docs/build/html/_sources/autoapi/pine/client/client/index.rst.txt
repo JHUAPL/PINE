@@ -32,7 +32,7 @@ Functions
    pine.client.client._standardize_path
 
 
-.. function:: _standardize_path(path: str, *additional_paths: typing.List[str]) -> typing.List[str]
+.. function:: _standardize_path(path: str, *additional_paths: List[str]) -> List[str]
 
    Standardize path(s) into a list of path components.
 
@@ -45,7 +45,8 @@ Functions
    :rtype: list(str)
 
 
-.. py:class:: BaseClient(base_uri: str, name: str = None)
+.. class:: BaseClient(base_uri: str, name: str = None, verify_ssl: bool = True)
+
 
    Bases: :class:`object`
 
@@ -58,6 +59,9 @@ Functions
    :type base_uri: str
    :param name: optional human-readable name for the server, defaults to None
    :type name: str, optional
+   :param verify_ssl: whether to verify SSL/HTTPs calls; do not turn this off unless you
+                      are fully aware of the security consequences
+   :type verify_ssl: bool, optional
 
    .. attribute:: __metaclass__
       
@@ -80,9 +84,17 @@ Functions
       :type: requests.Session
 
 
-   .. method:: is_valid(self)
-      :abstractmethod:
+   .. attribute:: verify_ssl
+      :annotation: :bool
 
+      Whether to verify SSL/HTTPS calls.  If you turn this off you should be fully aware of the
+      security consequences of such.
+
+      :type: bool
+
+
+   .. method:: is_valid(self) -> bool
+      :abstractmethod:
 
       Returns whether this client and its connection(s) are valid.
 
@@ -90,8 +102,7 @@ Functions
       :rtype: bool
 
 
-   .. method:: uri(self, path: str, *additional_paths: typing.List[str])
-
+   .. method:: uri(self, path: str, *additional_paths: List[str]) -> str
 
       Makes a complete URI from the given path(s).
 
@@ -104,8 +115,7 @@ Functions
       :rtype: str
 
 
-   .. method:: _req(self, method: str, path: str, *additional_paths: typing.List[str], **kwargs)
-
+   .. method:: _req(self, method: str, path: str, *additional_paths: List[str], **kwargs) -> requests.Response
 
       Makes a :py:mod:`requests` call, checks for errors, and returns the response.
 
@@ -124,8 +134,7 @@ Functions
       :rtype: requests.Response
 
 
-   .. method:: get(self, path: str, *additional_paths: typing.List[str], **kwargs)
-
+   .. method:: get(self, path: str, *additional_paths: List[str], **kwargs) -> requests.Response
 
       Makes a :py:mod:`requests` ``GET`` call, checks for errors, and returns the response.
 
@@ -142,8 +151,7 @@ Functions
       :rtype: requests.Response
 
 
-   .. method:: put(self, path: str, *additional_paths: typing.List[str], **kwargs)
-
+   .. method:: put(self, path: str, *additional_paths: List[str], **kwargs) -> requests.Response
 
       Makes a :py:mod:`requests` ``PUT`` call, checks for errors, and returns the response.
 
@@ -160,8 +168,7 @@ Functions
       :rtype: requests.Response
 
 
-   .. method:: patch(self, path: str, *additional_paths: typing.List[str], **kwargs)
-
+   .. method:: patch(self, path: str, *additional_paths: List[str], **kwargs) -> requests.Response
 
       Makes a :py:mod:`requests` ``PATCH`` call, checks for errors, and returns the response.
 
@@ -178,8 +185,7 @@ Functions
       :rtype: requests.Response
 
 
-   .. method:: post(self, path: str, *additional_paths: typing.List[str], **kwargs)
-
+   .. method:: post(self, path: str, *additional_paths: List[str], **kwargs) -> requests.Response
 
       Makes a :py:mod:`requests` ``POST`` call, checks for errors, and returns the response.
 
@@ -197,7 +203,8 @@ Functions
 
 
 
-.. py:class:: EveClient(eve_base_uri: str, mongo_base_uri: str = None, mongo_dbname: str = DEFAULT_DBNAME)
+.. class:: EveClient(eve_base_uri: str, mongo_base_uri: str = None, mongo_dbname: str = DEFAULT_DBNAME, verify_ssl: bool = True)
+
 
    Bases: :class:`pine.client.client.BaseClient`
 
@@ -212,6 +219,9 @@ Functions
    :type mongo_base_uri: str, optional
    :param mongo_dbname: the DB name that PINE uses, defaults to ``"pmap_nlp"``
    :type mongo_dbname: str, optional
+   :param verify_ssl: whether to verify SSL/HTTPs calls; do not turn this off unless you
+                      are fully aware of the security consequences
+   :type verify_ssl: bool, optional
 
    .. attribute:: DEFAULT_DBNAME
       :annotation: :str = pmap_nlp
@@ -245,8 +255,7 @@ Functions
       :type: pymongo.database.Database
 
 
-   .. method:: is_valid(self)
-
+   .. method:: is_valid(self) -> bool
 
       Returns whether this client and its connection(s) are valid.
 
@@ -254,8 +263,7 @@ Functions
       :rtype: bool
 
 
-   .. method:: ping(self)
-
+   .. method:: ping(self) -> Any
 
       Pings the eve server and returns the result.
 
@@ -264,8 +272,7 @@ Functions
       :returns: the JSON response from the server (probably ``"pong"``)
 
 
-   .. method:: about(self)
-
+   .. method:: about(self) -> dict
 
       Returns the 'about' dict from the server.
 
@@ -275,8 +282,7 @@ Functions
       :rtype: dict
 
 
-   .. method:: get_resource(self, resource: str, resource_id: str)
-
+   .. method:: get_resource(self, resource: str, resource_id: str) -> dict
 
       Gets a resource from eve by its ID.
 
@@ -286,8 +292,7 @@ Functions
       :rtype: dict
 
 
-   .. method:: _add_or_replace_resource(self, resource: str, obj: dict, valid_fn: typing.Callable[[dict, typing.Callable[[str], None]], bool] = None)
-
+   .. method:: _add_or_replace_resource(self, resource: str, obj: dict, valid_fn: Callable[([dict, typing.Callable[[str], None]], bool)] = None) -> str
 
       Adds or replaces the given resource.
 
@@ -305,8 +310,7 @@ Functions
       :rtype: str
 
 
-   .. method:: _add_resources(self, resource: str, objs: typing.List[dict], valid_fn: typing.Callable[[dict, typing.Callable[[str], None]], bool] = None, replace_if_exists: bool = False)
-
+   .. method:: _add_resources(self, resource: str, objs: List[dict], valid_fn: Callable[([dict, typing.Callable[[str], None]], bool)] = None, replace_if_exists: bool = False)
 
       Tries to add all the resource objects at once, optionally falling back to individual replacement if that fails.
 
@@ -326,8 +330,7 @@ Functions
       :rtype: list(str)
 
 
-   .. method:: add_users(self, users: typing.List[dict], replace_if_exists=False)
-
+   .. method:: add_users(self, users: List[dict], replace_if_exists=False) -> List[str]
 
       Adds the given users.
 
@@ -345,7 +348,6 @@ Functions
 
    .. method:: get_users(self)
 
-
       Gets all users.
 
       :raises exceptions.PineClientHttpException: if the HTTP request returns an error
@@ -354,8 +356,7 @@ Functions
       :rtype: list(dict)
 
 
-   .. method:: add_pipelines(self, pipelines: typing.List[dict], replace_if_exists=False)
-
+   .. method:: add_pipelines(self, pipelines: List[dict], replace_if_exists=False) -> List[str]
 
       Adds the given pipelines.
 
@@ -372,7 +373,8 @@ Functions
 
 
 
-.. py:class:: PineClient(backend_base_uri: str)
+.. class:: PineClient(backend_base_uri: str, verify_ssl: bool = True)
+
 
    Bases: :class:`pine.client.client.BaseClient`
 
@@ -383,9 +385,11 @@ Functions
 
    :param backend_base_uri: the base URI for the backend server, e.g. ``"http://localhost:5000"``
    :type backend_base_uri: str
+   :param verify_ssl: whether to verify SSL/HTTPs calls; do not turn this off unless you
+                      are fully aware of the security consequences
+   :type verify_ssl: bool, optional
 
-   .. method:: is_valid(self)
-
+   .. method:: is_valid(self) -> bool
 
       Returns whether this client and its connection(s) are valid.
 
@@ -393,8 +397,7 @@ Functions
       :rtype: bool
 
 
-   .. method:: ping(self)
-
+   .. method:: ping(self) -> Any
 
       Pings the backend server and returns the result.
 
@@ -403,8 +406,7 @@ Functions
       :returns: the JSON response from the server (probably ``"pong"``)
 
 
-   .. method:: about(self)
-
+   .. method:: about(self) -> dict
 
       Returns the 'about' dict from the server.
 
@@ -414,8 +416,7 @@ Functions
       :rtype: dict
 
 
-   .. method:: get_logged_in_user(self)
-
+   .. method:: get_logged_in_user(self) -> dict
 
       Returns the currently logged in user, or None if not logged in.
 
@@ -425,8 +426,7 @@ Functions
       :rtype: dict
 
 
-   .. method:: get_my_user_id(self)
-
+   .. method:: get_my_user_id(self) -> str
 
       Returns the ID of the logged in user, or None if not logged in.
 
@@ -436,8 +436,7 @@ Functions
       :rtype: str
 
 
-   .. method:: is_logged_in(self)
-
+   .. method:: is_logged_in(self) -> bool
 
       Returns whether the user is currently logged in or not.
 
@@ -449,15 +448,13 @@ Functions
 
    .. method:: _check_login(self)
 
-
       Checks whether user is logged in and raises an :py:class:`.exceptions.PineClientAuthException` if not.
 
       :raises exceptions.PineClientAuthException: if not logged in
       :raises exceptions.PineClientHttpException: if the HTTP request returns an error
 
 
-   .. method:: get_auth_module(self)
-
+   .. method:: get_auth_module(self) -> str
 
       Returns the PINE authentication module, e.g. ``"eve"``.
 
@@ -467,8 +464,7 @@ Functions
       :rtype: str
 
 
-   .. method:: login_eve(self, username: str, password: str)
-
+   .. method:: login_eve(self, username: str, password: str) -> bool
 
       Logs in using eve credentials, and returns whether it was successful.
 
@@ -486,14 +482,12 @@ Functions
 
    .. method:: logout(self)
 
-
       Logs out the current user.
 
       :raises exceptions.PineClientHttpException: if the HTTP request returns an error
 
 
-   .. method:: get_pipelines(self)
-
+   .. method:: get_pipelines(self) -> List[dict]
 
       Returns all pipelines accessible to logged in user.
 
@@ -504,8 +498,7 @@ Functions
       :rtype: list(dict)
 
 
-   .. method:: collection_builder(self, **kwargs: dict)
-
+   .. method:: collection_builder(self, **kwargs: dict) -> pine.client.models.CollectionBuilder
 
       Makes and returns a new :py:class:`.models.CollectionBuilder` with the logged in user.
 
@@ -516,8 +509,7 @@ Functions
       :rtype: models.CollectionBuilder
 
 
-   .. method:: create_collection(self, builder: models.CollectionBuilder)
-
+   .. method:: create_collection(self, builder: pine.client.models.CollectionBuilder) -> str
 
       Creates a collection using the current value of the given builder and returns its ID.
 
@@ -532,8 +524,18 @@ Functions
       :rtype: str
 
 
-   .. method:: get_collection_documents(self, collection_id: str, truncate: bool, truncate_length: int = 30)
+   .. method:: get_collection_permissions(self, collection_id: str) -> pine.client.models.CollectionUserPermissions
 
+      Returns collection permissions for the logged in user.
+
+      :param collection_id: the ID of the collection
+      :type collection_id: str
+
+      :returns: the collection permissions
+      :rtype: models.CollectionUserPermissions
+
+
+   .. method:: get_collection_documents(self, collection_id: str, truncate: bool, truncate_length: int = 30) -> List[dict]
 
       Returns all the documents in the given collection.
 
@@ -548,8 +550,7 @@ Functions
       :rtype: list(dict)
 
 
-   .. method:: add_document(self, document: dict = {}, creator_id: str = None, collection_id: str = None, overlap: int = None, text: str = None, metadata: dict = None)
-
+   .. method:: add_document(self, document: dict = {}, creator_id: str = None, collection_id: str = None, overlap: int = None, text: str = None, metadata: dict = None) -> str
 
       Adds a new document to a collection and returns its ID.
 
@@ -578,8 +579,7 @@ Functions
       :rtype: str
 
 
-   .. method:: add_documents(self, documents: typing.List[dict], creator_id: str = None, collection_id: str = None)
-
+   .. method:: add_documents(self, documents: List[dict], creator_id: str = None, collection_id: str = None) -> List[str]
 
       Adds multiple documents at once and returns their IDs.
 
@@ -600,8 +600,7 @@ Functions
       :rtype: list(str)
 
 
-   .. method:: annotate_document(self, document_id: str, doc_annotations: typing.List[str], ner_annotations: typing.List[typing.Union[dict, list, tuple]])
-
+   .. method:: annotate_document(self, document_id: str, doc_annotations: List[str], ner_annotations: List[Union[dict, list, tuple]]) -> str
 
       Annotates the given document with the given values.
 
@@ -620,8 +619,7 @@ Functions
       :rtype: str
 
 
-   .. method:: annotate_collection_documents(self, collection_id: str, document_annotations: dict, skip_document_updates=False)
-
+   .. method:: annotate_collection_documents(self, collection_id: str, document_annotations: dict, skip_document_updates=False) -> List[str]
 
       Annotates documents in a collection.
 
@@ -642,8 +640,7 @@ Functions
       :rtype: list(str)
 
 
-   .. method:: list_collections(self, include_archived: bool = False)
-
+   .. method:: list_collections(self, include_archived: bool = False) -> List[dict]
 
       Returns a list of user's collections.
 
@@ -658,7 +655,6 @@ Functions
 
 
    .. method:: download_collection_data(self, collection_id: str, include_collection_metadata: bool = True, include_document_metadata: bool = True, include_document_text: bool = True, include_annotations: bool = True, include_annotation_latest_version_only: bool = True)
-
 
       Downloads collection data.
 
@@ -686,11 +682,12 @@ Functions
 
 
 
-.. py:class:: LocalPineClient(backend_base_uri: str, eve_base_uri: str, mongo_base_uri: str = None, mongo_dbname: str = EveClient.DEFAULT_DBNAME)
+.. class:: LocalPineClient(backend_base_uri: str, eve_base_uri: str, mongo_base_uri: str = None, mongo_dbname: str = EveClient.DEFAULT_DBNAME, verify_ssl: bool = True)
+
 
    Bases: :class:`pine.client.client.PineClient`
 
-   A client for a local PINE instance, including an :py:class<.EveClient>.
+   A client for a local PINE instance, including an :py:class:`EveClient`.
        
 
    Constructor.
@@ -703,6 +700,9 @@ Functions
    :type mongo_base_uri: str, optional
    :param mongo_dbname: the DB name that PINE uses, defaults to ``"pmap_nlp"``
    :type mongo_dbname: str, optional
+   :param verify_ssl: whether to verify SSL/HTTPs calls; do not turn this off unless you
+                      are fully aware of the security consequences
+   :type verify_ssl: bool, optional
 
    .. attribute:: eve
       :annotation: :EveClient
@@ -712,8 +712,7 @@ Functions
       :type: EveClient
 
 
-   .. method:: is_valid(self)
-
+   .. method:: is_valid(self) -> bool
 
       Returns whether this client and its connection(s) are valid.
 
