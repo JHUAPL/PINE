@@ -43,9 +43,8 @@ Functions
 
    
 
-.. py:class:: Document(txt, doc_id)
+.. class:: Document(txt, doc_id)
 
-   Initialize self.  See help(type(self)) for accurate signature.
 
    .. attribute:: __slots__
       :annotation: = ['ann_files', 'txt', 'doc_id']
@@ -59,59 +58,48 @@ Functions
 .. function:: compute_f1(tp, fp, fn)
 
 
-.. py:class:: F1Agreement(annotators, documents, labels, eval_func=exact_match_instance_evaluation, token_func=None)
+.. class:: F1Agreement(annotators, documents, labels, eval_func=exact_match_instance_evaluation, token_func=None)
 
-   Initialize self.  See help(type(self)) for accurate signature.
 
    .. method:: annotators(self)
       :property:
-
 
 
    .. method:: documents(self)
       :property:
 
 
-
    .. method:: labels(self)
       :property:
-
 
 
    .. method:: _compute_tp_fp_fn(self, documents)
 
 
-
    .. method:: _increment_counts(self, annotations, pair, doc, kind)
 
 
-
    .. method:: mean_sd_per_label(self)
-
 
       Mean and standard deviation of all annotator combinations' F1 scores by label.
 
 
    .. method:: mean_sd_per_document(self)
 
-
       Mean and standard deviation of all annotator combinations' F1 scores per document.
 
 
    .. method:: mean_sd_total(self)
-
 
       Mean and standard deviation of all annotator cominations' F1 scores.
 
 
    .. method:: mean_sd_per_label_one_vs_rest(self, annotator)
 
-
       Mean and standard deviation of all annotator combinations' F1 scores involving given annotator per label.
 
 
    .. method:: mean_sd_total_one_vs_rest(self, annotator)
-
 
       Mean and standard deviation of all annotator combinations' F1 scores involving given annotator.
 
@@ -119,10 +107,8 @@ Functions
    .. method:: _pairs_involving(self, annotator)
 
 
-
    .. method:: _mean_sd(f1_pairs)
       :staticmethod:
-
 
       Mean and standard deviation along first axis.
 
@@ -131,9 +117,7 @@ Functions
       :staticmethod:
 
 
-
    .. method:: compute_total_f1_matrix(self)
-
 
       Returns (n x n) matrix, where n is the number of annotators, containing
       pair-wise total F1 scores between all annotators.
@@ -142,7 +126,6 @@ Functions
 
 
    .. method:: draw_heatmap(self, out_path)
-
 
       Draws heatmap based on square matrix of F1 scores.
 

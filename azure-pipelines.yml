@@ -8,7 +8,6 @@ trigger:
   branches:
     include:
       - master
-      #- release/*
       - develop
 
 ## Reference to repository containing common templates and variables
@@ -88,7 +87,7 @@ stages:
           inputs:
             command: buildAndPush
             repository: $(pipelineImageName)
-            dockerfile: pipelines/docker/Dockerfile
+            dockerfile: pipelines/Dockerfile
             buildContext: pipelines/
             containerRegistry: $(containerRegistry)
             tags: |
@@ -104,12 +103,12 @@ stages:
     condition: and(succeeded(), eq(variables['build.sourceBranch'], 'refs/heads/develop'))
     dependsOn: build_test
     jobs:
-      - template: azure-pipeline-templates/deploy.yml  # Template reference
+      - template: azure-pipeline-templates/deploy-v2.yml  # Template reference
         parameters:
           appReleaseName: $(appReleaseName)
           appUrl: "dev-nlpannotator.pm.jh.edu"
-          deployEnvironment: $(devEnvironment)
-          kubeServiceConnection: $(devEnvironment)
+          deployEnvironment: $(devEnvironmentV2)
+          kubeServiceConnection: $(devEnvironmentV2)
           namespace: $(devNamespace)
           imageTag: $(Build.BuildId)
           redisImageName: $(redisImageName)
@@ -117,7 +116,6 @@ stages:
           backendImageName: $(backendImageName)
           frontendImageName: $(frontendImageName)
           pipelineImageName: $(pipelineImageName)
-          backendStorageShareName: "pine-files-dev"
           secrets:
             backend:
               VEGAS_CLIENT_SECRET: $(vegas-client-secret-dev)
@@ -144,7 +142,6 @@ stages:
           backendImageName: $(backendImageName)
           frontendImageName: $(frontendImageName)
           pipelineImageName: $(pipelineImageName)
-          backendStorageShareName: "pine-files-prod"
           secrets:
             backend:
               VEGAS_CLIENT_SECRET: $(vegas-client-secret-prod)

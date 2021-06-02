@@ -10,13 +10,17 @@ set -ex
 
 mkdir -p ${DB_DIR} ${LOG_DIR}
 
-# use a port separate from the system-wide mongo port, if it's running as a service
-export MONGO_PORT=${MONGO_PORT:-27018}
-mkdir -p logs/ db/
-mongod --dbpath ${DB_DIR} \
-       --port ${MONGO_PORT} \
-       --logpath ${LOG_DIR}/mongod.log \
-       --logRotate reopen --logappend &
+if [[ -z ${MONGO_URI} ]]; then
+    # use a port separate from the system-wide mongo port, if it's running as a service
+    export MONGO_PORT=${MONGO_PORT:-27018}
+    mkdir -p logs/ db/
+    mongod --dbpath ${DB_DIR} \
+           --port ${MONGO_PORT} \
+           --logpath ${LOG_DIR}/mongod.log \
+           --logRotate reopen --logappend &
+else
+    export MONGO_URI
+fi
 
 export FLASK_PORT=${FLASK_PORT:-5001}
 export FLASK_ENV="development"

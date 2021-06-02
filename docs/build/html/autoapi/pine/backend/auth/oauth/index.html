@@ -5,23 +5,22 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>pine.backend.auth.oauth &#8212; pine  documentation</title>
-    <link rel="stylesheet" href="../../../../../_static/bizstyle.css" type="text/css" />
     <link rel="stylesheet" href="../../../../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../../_static/bizstyle.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../../../../../_static/graphviz.css" />
     
     <script id="documentation_options" data-url_root="../../../../../" src="../../../../../_static/documentation_options.js"></script>
     <script src="../../../../../_static/jquery.js"></script>
     <script src="../../../../../_static/underscore.js"></script>
     <script src="../../../../../_static/doctools.js"></script>
-    <script src="../../../../../_static/language_data.js"></script>
     <script src="../../../../../_static/bizstyle.js"></script>
     <link rel="index" title="Index" href="../../../../../genindex.html" />
     <link rel="search" title="Search" href="../../../../../search.html" />
     <link rel="next" title="pine.backend.auth.password" href="../password/index.html" />
     <link rel="prev" title="pine.backend.auth.eve" href="../eve/index.html" />
-    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
     <!--[if lt IE 9]>
     <script src="_static/css3-mediaqueries.js"></script>
     <![endif]-->
@@ -67,78 +66,77 @@
 <col style="width: 90%" />
 </colgroup>
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#pine.backend.auth.oauth.OAuthUser" title="pine.backend.auth.oauth.OAuthUser"><code class="xref py py-obj docutils literal notranslate"><span class="pre">OAuthUser</span></code></a>(data)</p></td>
-<td><p>Initialize self.  See help(type(self)) for accurate signature.</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pine.backend.auth.oauth.OAuthUser" title="pine.backend.auth.oauth.OAuthUser"><code class="xref py py-obj docutils literal notranslate"><span class="pre">OAuthUser</span></code></a></p></td>
+<td><p></p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#pine.backend.auth.oauth.OAuthModule" title="pine.backend.auth.oauth.OAuthModule"><code class="xref py py-obj docutils literal notranslate"><span class="pre">OAuthModule</span></code></a>(app, bp)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#pine.backend.auth.oauth.OAuthModule" title="pine.backend.auth.oauth.OAuthModule"><code class="xref py py-obj docutils literal notranslate"><span class="pre">OAuthModule</span></code></a></p></td>
 <td><p></p></td>
 </tr>
 </tbody>
 </table>
 <dl class="py class">
 <dt id="pine.backend.auth.oauth.OAuthUser">
-<em class="property">class </em><code class="sig-prename descclassname">pine.backend.auth.oauth.</code><code class="sig-name descname">OAuthUser</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">data</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.auth.oauth.OAuthUser" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">pine.backend.auth.oauth.</span></code><code class="sig-name descname"><span class="pre">OAuthUser</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.auth.oauth.OAuthUser" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="../../models/index.html#pine.backend.models.AuthUser" title="pine.backend.models.AuthUser"><code class="xref py py-class docutils literal notranslate"><span class="pre">pine.backend.models.AuthUser</span></code></a></p>
-<p>Initialize self.  See help(type(self)) for accurate signature.</p>
 <dl class="py method">
 <dt id="pine.backend.auth.oauth.OAuthUser.id">
-<em class="property">property </em><code class="sig-name descname">id</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.auth.oauth.OAuthUser.id" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">property</span> </em><code class="sig-name descname"><span class="pre">id</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.auth.oauth.OAuthUser.id" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt id="pine.backend.auth.oauth.OAuthUser.username">
-<em class="property">property </em><code class="sig-name descname">username</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.auth.oauth.OAuthUser.username" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">property</span> </em><code class="sig-name descname"><span class="pre">username</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.auth.oauth.OAuthUser.username" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt id="pine.backend.auth.oauth.OAuthUser.display_name">
-<em class="property">property </em><code class="sig-name descname">display_name</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.auth.oauth.OAuthUser.display_name" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">property</span> </em><code class="sig-name descname"><span class="pre">display_name</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.auth.oauth.OAuthUser.display_name" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt id="pine.backend.auth.oauth.OAuthUser.is_admin">
-<em class="property">property </em><code class="sig-name descname">is_admin</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.auth.oauth.OAuthUser.is_admin" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">property</span> </em><code class="sig-name descname"><span class="pre">is_admin</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.auth.oauth.OAuthUser.is_admin" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
 
 <dl class="py class">
 <dt id="pine.backend.auth.oauth.OAuthModule">
-<em class="property">class </em><code class="sig-prename descclassname">pine.backend.auth.oauth.</code><code class="sig-name descname">OAuthModule</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">app</span></em>, <em class="sig-param"><span class="n">bp</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.auth.oauth.OAuthModule" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">pine.backend.auth.oauth.</span></code><code class="sig-name descname"><span class="pre">OAuthModule</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">app</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bp</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.auth.oauth.OAuthModule" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="../bp/index.html#pine.backend.auth.bp.AuthModule" title="pine.backend.auth.bp.AuthModule"><code class="xref py py-class docutils literal notranslate"><span class="pre">pine.backend.auth.bp.AuthModule</span></code></a></p>
 <dl class="py method">
 <dt id="pine.backend.auth.oauth.OAuthModule.register_oauth">
-<em class="property">abstract </em><code class="sig-name descname">register_oauth</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="n">oauth</span></em>, <em class="sig-param"><span class="n">app</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.auth.oauth.OAuthModule.register_oauth" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">abstract</span> </em><code class="sig-name descname"><span class="pre">register_oauth</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">oauth</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">app</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.auth.oauth.OAuthModule.register_oauth" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt id="pine.backend.auth.oauth.OAuthModule.get_login_form_button_text">
-<em class="property">abstract </em><code class="sig-name descname">get_login_form_button_text</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.auth.oauth.OAuthModule.get_login_form_button_text" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">abstract</span> </em><code class="sig-name descname"><span class="pre">get_login_form_button_text</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.auth.oauth.OAuthModule.get_login_form_button_text" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt id="pine.backend.auth.oauth.OAuthModule.is_flat">
-<code class="sig-name descname">is_flat</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.auth.oauth.OAuthModule.is_flat" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">is_flat</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><span class="pre">bool</span></a><a class="headerlink" href="#pine.backend.auth.oauth.OAuthModule.is_flat" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt id="pine.backend.auth.oauth.OAuthModule.can_manage_users">
-<code class="sig-name descname">can_manage_users</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.auth.oauth.OAuthModule.can_manage_users" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">can_manage_users</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><span class="pre">bool</span></a><a class="headerlink" href="#pine.backend.auth.oauth.OAuthModule.can_manage_users" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt id="pine.backend.auth.oauth.OAuthModule.get_login_form">
-<code class="sig-name descname">get_login_form</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.auth.oauth.OAuthModule.get_login_form" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">get_login_form</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference internal" href="../../models/index.html#pine.backend.models.LoginForm" title="pine.backend.models.LoginForm"><span class="pre">pine.backend.models.LoginForm</span></a><a class="headerlink" href="#pine.backend.auth.oauth.OAuthModule.get_login_form" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt id="pine.backend.auth.oauth.OAuthModule.login">
-<code class="sig-name descname">login</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.auth.oauth.OAuthModule.login" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">login</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">flask.Response</span><a class="headerlink" href="#pine.backend.auth.oauth.OAuthModule.login" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt id="pine.backend.auth.oauth.OAuthModule.authorize">
-<code class="sig-name descname">authorize</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.auth.oauth.OAuthModule.authorize" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">authorize</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.auth.oauth.OAuthModule.authorize" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -161,38 +159,18 @@
 <li><a class="reference internal" href="#classes">Classes</a><ul>
 <li><a class="reference internal" href="#pine.backend.auth.oauth.OAuthUser">OAuthUser</a><ul>
 <li><a class="reference internal" href="#pine.backend.auth.oauth.OAuthUser.id">id</a></li>
-</ul>
-<ul>
 <li><a class="reference internal" href="#pine.backend.auth.oauth.OAuthUser.username">username</a></li>
-</ul>
-<ul>
 <li><a class="reference internal" href="#pine.backend.auth.oauth.OAuthUser.display_name">display_name</a></li>
-</ul>
-<ul>
 <li><a class="reference internal" href="#pine.backend.auth.oauth.OAuthUser.is_admin">is_admin</a></li>
 </ul>
 </li>
-</ul>
-<ul>
 <li><a class="reference internal" href="#pine.backend.auth.oauth.OAuthModule">OAuthModule</a><ul>
 <li><a class="reference internal" href="#pine.backend.auth.oauth.OAuthModule.register_oauth">register_oauth</a></li>
-</ul>
-<ul>
 <li><a class="reference internal" href="#pine.backend.auth.oauth.OAuthModule.get_login_form_button_text">get_login_form_button_text</a></li>
-</ul>
-<ul>
 <li><a class="reference internal" href="#pine.backend.auth.oauth.OAuthModule.is_flat">is_flat</a></li>
-</ul>
-<ul>
 <li><a class="reference internal" href="#pine.backend.auth.oauth.OAuthModule.can_manage_users">can_manage_users</a></li>
-</ul>
-<ul>
 <li><a class="reference internal" href="#pine.backend.auth.oauth.OAuthModule.get_login_form">get_login_form</a></li>
-</ul>
-<ul>
 <li><a class="reference internal" href="#pine.backend.auth.oauth.OAuthModule.login">login</a></li>
-</ul>
-<ul>
 <li><a class="reference internal" href="#pine.backend.auth.oauth.OAuthModule.authorize">authorize</a></li>
 </ul>
 </li>
@@ -256,7 +234,7 @@
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright (C) 2019 The Johns Hopkins University Applied Physics Laboratory LLC..
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.1.2.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.5.3.
     </div>
   </body>
 </html>

@@ -1,6 +1,6 @@
 # (C) 2019 The Johns Hopkins University Applied Physics Laboratory LLC.
 {{- $component := .Values.eve }}
-apiVersion: apps/v1beta2
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: {{ template "pine-chart.fullname" . }}-{{ $component.name }}

@@ -25,11 +25,10 @@ Classes
 
 
 
-.. py:class:: spacy_NER(model_path=None)
+.. class:: spacy_NER(model_path=None)
+
 
    Bases: :class:`pine.pipelines.pipeline.Pipeline`
-
-   Initialize self.  See help(type(self)) for accurate signature.
 
    .. attribute:: __nlp
       :annotation: = []
@@ -49,37 +48,28 @@ Classes
    .. method:: fit(self, X, y, params=None)
 
 
-
    .. method:: evaluate(self, X, y, Xid)
-
 
 
    .. method:: predict(self, X, Xid)
 
 
-
    .. method:: predict_proba(self, X, Xid)
-
 
 
    .. method:: next_example(self, X, Xid)
 
 
-
    .. method:: format_data(self, X, y)
-
 
 
    .. method:: add_label(self, entity)
 
 
-
    .. method:: save_model(self, model_path)
 
 
-
    .. method:: load_model(self, model_path)
-
 
 
 

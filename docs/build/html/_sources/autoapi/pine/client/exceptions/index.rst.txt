@@ -12,7 +12,8 @@
 Module Contents
 ---------------
 
-.. py:exception:: PineClientException(message: str, cause: Exception = None)
+.. exception:: PineClientException(message: str, cause: Exception = None)
+
 
    Bases: :class:`Exception`
 
@@ -35,7 +36,8 @@ Module Contents
 
 
 
-.. py:exception:: PineClientHttpException(method: str, path: str, resp: requests.Response)
+.. exception:: PineClientHttpException(method: str, path: str, resp: requests.Response)
+
 
    Bases: :class:`pine.client.exceptions.PineClientException`
 
@@ -52,15 +54,20 @@ Module Contents
    :type resp: requests.Response
 
    .. attribute:: resp
-      
+      :annotation: :requests.Response
 
       The :py:class:`Response <requests.Response>` with the error info
 
       :type: requests.Response
 
 
+   .. method:: status_code(self)
+      :property:
 
-.. py:exception:: PineClientValueException(obj: dict, obj_type: str)
+
+
+.. exception:: PineClientValueException(obj: dict, obj_type: str)
+
 
    Bases: :class:`pine.client.exceptions.PineClientException`
 
@@ -75,7 +82,8 @@ Module Contents
    :type obj_type: str
 
 
-.. py:exception:: PineClientAuthException(message: str, cause: Exception = None)
+.. exception:: PineClientAuthException(message: str, cause: Exception = None)
+
 
    Bases: :class:`pine.client.exceptions.PineClientException`
 

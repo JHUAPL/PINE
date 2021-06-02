@@ -44,22 +44,18 @@ Functions
 
    
 
-.. py:class:: PerformanceHistory
+.. class:: PerformanceHistory
+
 
    Bases: :class:`object`
 
-   Initialize self.  See help(type(self)) for accurate signature.
-
    .. method:: pformat(self, **kwargs)
-
 
 
    .. method:: pprint(self)
 
 
-
    .. method:: add(self, rest_type, path, response)
-
 
 
 

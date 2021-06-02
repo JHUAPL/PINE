@@ -21,11 +21,10 @@ Classes
 
    
 
-.. py:class:: NER(lib=None, **kwargs)
+.. class:: NER(lib=None, **kwargs)
+
 
    Bases: :class:`pine.pipelines.pipeline.Pipeline`
-
-   Initialize self.  See help(type(self)) for accurate signature.
 
    .. attribute:: __lib
       :annotation: = 
@@ -45,33 +44,25 @@ Classes
    .. method:: pipe_init(self, x, **kwargs)
 
 
-
    .. method:: fit(self, X, y, kwargs)
-
 
 
    .. method:: predict(self, X, Xid)
 
 
-
    .. method:: predict_proba(self, X, Xid, **kwargs)
-
 
 
    .. method:: evaluate(self, X, y, Xid, **kwargs)
 
 
-
    .. method:: next_example(self, X, Xid)
-
 
 
    .. method:: save_model(self, model_path)
 
 
-
    .. method:: load_model(self, model_name)
-
 
 
 

@@ -5,23 +5,22 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>pine.pipelines.NERWrapper &#8212; pine  documentation</title>
-    <link rel="stylesheet" href="../../../../_static/bizstyle.css" type="text/css" />
     <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../_static/bizstyle.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../../../../_static/graphviz.css" />
     
     <script id="documentation_options" data-url_root="../../../../" src="../../../../_static/documentation_options.js"></script>
     <script src="../../../../_static/jquery.js"></script>
     <script src="../../../../_static/underscore.js"></script>
     <script src="../../../../_static/doctools.js"></script>
-    <script src="../../../../_static/language_data.js"></script>
     <script src="../../../../_static/bizstyle.js"></script>
     <link rel="index" title="Index" href="../../../../genindex.html" />
     <link rel="search" title="Search" href="../../../../search.html" />
     <link rel="next" title="pine.pipelines.NER_API" href="../NER_API/index.html" />
     <link rel="prev" title="pine.pipelines.EveClient" href="../EveClient/index.html" />
-    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
     <!--[if lt IE 9]>
     <script src="_static/css3-mediaqueries.js"></script>
     <![endif]-->
@@ -66,65 +65,64 @@
 <col style="width: 90%" />
 </colgroup>
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#pine.pipelines.NERWrapper.NERWrapper" title="pine.pipelines.NERWrapper.NERWrapper"><code class="xref py py-obj docutils literal notranslate"><span class="pre">NERWrapper</span></code></a>(classifier_type, model_dir='models', entry_point='localhost:5000')</p></td>
-<td><p>Initialize self.  See help(type(self)) for accurate signature.</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pine.pipelines.NERWrapper.NERWrapper" title="pine.pipelines.NERWrapper.NERWrapper"><code class="xref py py-obj docutils literal notranslate"><span class="pre">NERWrapper</span></code></a></p></td>
+<td><p></p></td>
 </tr>
 </tbody>
 </table>
 <dl class="py class">
 <dt id="pine.pipelines.NERWrapper.NERWrapper">
-<em class="property">class </em><code class="sig-prename descclassname">pine.pipelines.NERWrapper.</code><code class="sig-name descname">NERWrapper</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">classifier_type</span></em>, <em class="sig-param"><span class="n">model_dir</span><span class="o">=</span><span class="default_value">'models'</span></em>, <em class="sig-param"><span class="n">entry_point</span><span class="o">=</span><span class="default_value">'localhost:5000'</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.pipelines.NERWrapper.NERWrapper" title="Permalink to this definition">¶</a></dt>
-<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
-<dl class="py attribute">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">pine.pipelines.NERWrapper.</span></code><code class="sig-name descname"><span class="pre">NERWrapper</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">classifier_type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model_dir</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'models'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">entry_point</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'localhost:5000'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.pipelines.NERWrapper.NERWrapper" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="py attribute">
 <dt id="pine.pipelines.NERWrapper.NERWrapper.eve_headers">
-<code class="sig-name descname">eve_headers</code><a class="headerlink" href="#pine.pipelines.NERWrapper.NERWrapper.eve_headers" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">eve_headers</span></code><a class="headerlink" href="#pine.pipelines.NERWrapper.NERWrapper.eve_headers" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt id="pine.pipelines.NERWrapper.NERWrapper.load_classifier">
-<code class="sig-name descname">load_classifier</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="n">classifier_id</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.pipelines.NERWrapper.NERWrapper.load_classifier" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">load_classifier</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">classifier_id</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.pipelines.NERWrapper.NERWrapper.load_classifier" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt id="pine.pipelines.NERWrapper.NERWrapper.predict">
-<code class="sig-name descname">predict</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="n">classifier_id</span></em>, <em class="sig-param"><span class="n">documents</span></em>, <em class="sig-param"><span class="n">document_ids</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.pipelines.NERWrapper.NERWrapper.predict" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">predict</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">classifier_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">documents</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">document_ids</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.pipelines.NERWrapper.NERWrapper.predict" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt id="pine.pipelines.NERWrapper.NERWrapper.update_model">
-<code class="sig-name descname">update_model</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="n">classifier_id</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.pipelines.NERWrapper.NERWrapper.update_model" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">update_model</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">classifier_id</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.pipelines.NERWrapper.NERWrapper.update_model" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt id="pine.pipelines.NERWrapper.NERWrapper.update">
-<code class="sig-name descname">update</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="n">resource</span></em>, <em class="sig-param"><span class="n">id</span></em>, <em class="sig-param"><span class="n">etag</span></em>, <em class="sig-param"><span class="n">update_obj</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.pipelines.NERWrapper.NERWrapper.update" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">update</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">resource</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">etag</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">update_obj</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.pipelines.NERWrapper.NERWrapper.update" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt id="pine.pipelines.NERWrapper.NERWrapper.get_obj">
-<code class="sig-name descname">get_obj</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="n">resource</span></em>, <em class="sig-param"><span class="n">id</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.pipelines.NERWrapper.NERWrapper.get_obj" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">get_obj</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">resource</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">id</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.pipelines.NERWrapper.NERWrapper.get_obj" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt id="pine.pipelines.NERWrapper.NERWrapper.get_all_items">
-<code class="sig-name descname">get_all_items</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="n">resource</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.pipelines.NERWrapper.NERWrapper.get_all_items" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">get_all_items</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">resource</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.pipelines.NERWrapper.NERWrapper.get_all_items" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt id="pine.pipelines.NERWrapper.NERWrapper.get_all_ids">
-<code class="sig-name descname">get_all_ids</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="n">resource</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.pipelines.NERWrapper.NERWrapper.get_all_ids" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">get_all_ids</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">resource</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.pipelines.NERWrapper.NERWrapper.get_all_ids" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt id="pine.pipelines.NERWrapper.NERWrapper.get_items">
-<code class="sig-name descname">get_items</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">self</span></em>, <em class="sig-param"><span class="n">resource</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.pipelines.NERWrapper.NERWrapper.get_items" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">get_items</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">resource</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.pipelines.NERWrapper.NERWrapper.get_items" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
 
 <dl class="py data">
 <dt id="pine.pipelines.NERWrapper.parser">
-<code class="sig-prename descclassname">pine.pipelines.NERWrapper.</code><code class="sig-name descname">parser</code><a class="headerlink" href="#pine.pipelines.NERWrapper.parser" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname"><span class="pre">pine.pipelines.NERWrapper.</span></code><code class="sig-name descname"><span class="pre">parser</span></code><a class="headerlink" href="#pine.pipelines.NERWrapper.parser" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </div>
@@ -145,34 +143,16 @@
 <li><a class="reference internal" href="#classes">Classes</a><ul>
 <li><a class="reference internal" href="#pine.pipelines.NERWrapper.NERWrapper">NERWrapper</a><ul>
 <li><a class="reference internal" href="#pine.pipelines.NERWrapper.NERWrapper.eve_headers">eve_headers</a></li>
-</ul>
-<ul>
 <li><a class="reference internal" href="#pine.pipelines.NERWrapper.NERWrapper.load_classifier">load_classifier</a></li>
-</ul>
-<ul>
 <li><a class="reference internal" href="#pine.pipelines.NERWrapper.NERWrapper.predict">predict</a></li>
-</ul>
-<ul>
 <li><a class="reference internal" href="#pine.pipelines.NERWrapper.NERWrapper.update_model">update_model</a></li>
-</ul>
-<ul>
 <li><a class="reference internal" href="#pine.pipelines.NERWrapper.NERWrapper.update">update</a></li>
-</ul>
-<ul>
 <li><a class="reference internal" href="#pine.pipelines.NERWrapper.NERWrapper.get_obj">get_obj</a></li>
-</ul>
-<ul>
 <li><a class="reference internal" href="#pine.pipelines.NERWrapper.NERWrapper.get_all_items">get_all_items</a></li>
-</ul>
-<ul>
 <li><a class="reference internal" href="#pine.pipelines.NERWrapper.NERWrapper.get_all_ids">get_all_ids</a></li>
-</ul>
-<ul>
 <li><a class="reference internal" href="#pine.pipelines.NERWrapper.NERWrapper.get_items">get_items</a></li>
 </ul>
 </li>
-</ul>
-<ul>
 <li><a class="reference internal" href="#pine.pipelines.NERWrapper.parser">parser</a></li>
 </ul>
 </li>
@@ -233,7 +213,7 @@
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright (C) 2019 The Johns Hopkins University Applied Physics Laboratory LLC..
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.1.2.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.5.3.
     </div>
   </body>
 </html>

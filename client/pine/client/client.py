@@ -40,13 +40,16 @@ class BaseClient(object):
 
     __metaclass__ = abc.ABCMeta
 
-    def __init__(self, base_uri: str, name: str = None):
+    def __init__(self, base_uri: str, name: str = None, verify_ssl: bool = True):
         """Constructor.
         
         :param base_uri: the base URI for the server, e.g. ``"http://localhost:5000"``
         :type base_uri: str
         :param name: optional human-readable name for the server, defaults to None
         :type name: str, optional
+        :param verify_ssl: whether to verify SSL/HTTPs calls; do not turn this off unless you
+                           are fully aware of the security consequences
+        :type verify_ssl: bool, optional
         """
         self.base_uri: str = base_uri.strip("/")
         """The server's base URI.
@@ -59,6 +62,12 @@ class BaseClient(object):
         :type: requests.Session
         """
         self.name: str = name
+        self.verify_ssl: bool = verify_ssl
+        """Whether to verify SSL/HTTPS calls.  If you turn this off you should be fully aware of the
+        security consequences of such.
+        
+        :type: bool
+        """
         self.logger: logging.Logger = logging.getLogger(self.__class__.__name__)
 
     @abc.abstractmethod
@@ -102,6 +111,8 @@ class BaseClient(object):
         """
         uri = self.uri(path, *additional_paths)
         self.logger.debug("{} {}".format(method.upper(), uri))
+        if not self.verify_ssl:
+            kwargs["verify"] = False
         if self.session:
             resp = self.session.request(method, uri, **kwargs)
         else:
@@ -192,7 +203,8 @@ class EveClient(BaseClient):
     :type: str
     """
 
-    def __init__(self, eve_base_uri: str, mongo_base_uri: str = None, mongo_dbname: str = DEFAULT_DBNAME):
+    def __init__(self, eve_base_uri: str, mongo_base_uri: str = None,
+                 mongo_dbname: str = DEFAULT_DBNAME, verify_ssl: bool = True):
         """Constructor.
         
         :param eve_base_uri: the base URI for the eve server, e.g. ``"http://localhost:5001"``
@@ -201,8 +213,11 @@ class EveClient(BaseClient):
         :type mongo_base_uri: str, optional
         :param mongo_dbname: the DB name that PINE uses, defaults to ``"pmap_nlp"``
         :type mongo_dbname: str, optional
+        :param verify_ssl: whether to verify SSL/HTTPs calls; do not turn this off unless you
+                           are fully aware of the security consequences
+        :type verify_ssl: bool, optional
         """
-        super().__init__(eve_base_uri, name="eve")
+        super().__init__(eve_base_uri, name="eve", verify_ssl=verify_ssl)
         self.mongo_base_uri: str = mongo_base_uri
         """The base URI for the MongoDB server.
         
@@ -379,13 +394,16 @@ class PineClient(BaseClient):
     """A client to access PINE (more specifically: the backend).
     """
 
-    def __init__(self, backend_base_uri: str):
+    def __init__(self, backend_base_uri: str, verify_ssl: bool = True):
         """Constructor.
         
         :param backend_base_uri: the base URI for the backend server, e.g. ``"http://localhost:5000"``
         :type backend_base_uri: str
+        :param verify_ssl: whether to verify SSL/HTTPs calls; do not turn this off unless you
+                           are fully aware of the security consequences
+        :type verify_ssl: bool, optional
         """
-        super().__init__(backend_base_uri)
+        super().__init__(backend_base_uri, verify_ssl=verify_ssl)
 
     @overrides
     def is_valid(self) -> bool:
@@ -781,10 +799,11 @@ class PineClient(BaseClient):
 
 
 class LocalPineClient(PineClient):
-    """A client for a local PINE instance, including an :py:class<.EveClient>.
+    """A client for a local PINE instance, including an :py:class:`EveClient`.
     """
 
-    def __init__(self, backend_base_uri: str, eve_base_uri: str, mongo_base_uri: str = None, mongo_dbname: str = EveClient.DEFAULT_DBNAME):
+    def __init__(self, backend_base_uri: str, eve_base_uri: str, mongo_base_uri: str = None,
+                 mongo_dbname: str = EveClient.DEFAULT_DBNAME, verify_ssl: bool = True):
         """Constructor.
         
         :param backend_base_uri: the base URI for the backend server, e.g. ``"http://localhost:5000"``
@@ -795,10 +814,13 @@ class LocalPineClient(PineClient):
         :type mongo_base_uri: str, optional
         :param mongo_dbname: the DB name that PINE uses, defaults to ``"pmap_nlp"``
         :type mongo_dbname: str, optional
+        :param verify_ssl: whether to verify SSL/HTTPs calls; do not turn this off unless you
+                           are fully aware of the security consequences
+        :type verify_ssl: bool, optional
         """
         
-        super().__init__(backend_base_uri)
-        self.eve: EveClient = EveClient(eve_base_uri, mongo_base_uri, mongo_dbname=mongo_dbname)
+        super().__init__(backend_base_uri, verify_ssl=verify_ssl)
+        self.eve: EveClient = EveClient(eve_base_uri, mongo_base_uri, mongo_dbname=mongo_dbname, verify_ssl=verify_ssl)
         """The local :py:class:`EveClient` instance.
         
         :type: EveClient

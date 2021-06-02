@@ -16,40 +16,33 @@ Classes
 
 
 
-.. py:class:: Pipeline
+.. class:: Pipeline
+
 
    Bases: :class:`object`
 
-   Initialize self.  See help(type(self)) for accurate signature.
-
    .. method:: fit(self, X, y)
       :abstractmethod:
-
 
 
    .. method:: predict(self, X, Xid)
       :abstractmethod:
 
 
-
    .. method:: predict_proba(self, X, Xid)
       :abstractmethod:
-
 
 
    .. method:: next_example(self, X, Xid)
       :abstractmethod:
 
 
-
    .. method:: save_model(self, model_name)
       :abstractmethod:
 
 
-
    .. method:: load_model(self, model_name)
       :abstractmethod:
-
 
 
 

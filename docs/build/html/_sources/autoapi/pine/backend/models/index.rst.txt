@@ -17,19 +17,17 @@ Classes
    pine.backend.models.LoginForm
    pine.backend.models.AuthUser
    pine.backend.models.UserDetails
+   pine.backend.models.CollectionUserPermissions
 
 
 
-.. py:class:: LoginFormFieldType
+.. class:: LoginFormFieldType
 
    Bases: :class:`enum.Enum`
 
    Generic enumeration.
 
    Derive from this class to define new enumerations.
-
-
-   Create and return a new object.  See help(type) for accurate signature.
 
    .. attribute:: TEXT
       :annotation: = text
@@ -42,67 +40,135 @@ Classes
       
 
 
-.. py:class:: LoginFormField(name: str, display: str, field_type: LoginFormFieldType)
+.. class:: LoginFormField(name: str, display: str, field_type: pine.backend.models.LoginFormFieldType)
+
 
    Bases: :class:`object`
-
-   Initialize self.  See help(type(self)) for accurate signature.
 
    .. method:: to_dict(self)
 
 
 
+.. class:: LoginForm(fields: list, button_text: str)
 
-.. py:class:: LoginForm(fields: list, button_text: str)
 
    Bases: :class:`object`
-
-   Initialize self.  See help(type(self)) for accurate signature.
 
    .. method:: to_dict(self)
 
 
 
+.. class:: AuthUser
 
-.. py:class:: AuthUser
 
    Bases: :class:`object`
-
-   Initialize self.  See help(type(self)) for accurate signature.
 
    .. method:: id(self)
       :property:
-
 
 
    .. method:: username(self)
       :property:
 
 
-
    .. method:: display_name(self)
       :property:
-
 
 
    .. method:: is_admin(self)
       :property:
 
 
-
    .. method:: to_dict(self)
 
 
 
+.. class:: UserDetails(first_name, last_name, description)
 
-.. py:class:: UserDetails(first_name, last_name, description)
 
    Bases: :class:`object`
 
-   Initialize self.  See help(type(self)) for accurate signature.
-
    .. method:: to_dict(self)
 
+
+
+.. class:: CollectionUserPermissions(view=False, annotate=False, add_documents=False, add_images=False, modify_users=False, modify_labels=False, modify_document_metadata=False, download_data=False, archive=False)
+
+
+   Bases: :class:`object`
+
+   Collection permissions for a user as a dictionary of boolean flags.
+       
+
+   .. attribute:: view
+      :annotation: :bool
+
+      Whether the user can view the collection and documents.
+      :type: bool
+
+
+   .. attribute:: annotate
+      :annotation: :bool
+
+      Whether the user can annotate collection documents.
+      :type: bool
+
+
+   .. attribute:: add_documents
+      :annotation: :bool
+
+      Whether the user can add documents to the collection.
+      :type: bool
+
+
+   .. attribute:: add_images
+      :annotation: :bool
+
+      Whether the user can add images to the collection.
+      :type: bool
+
+
+   .. attribute:: modify_users
+      :annotation: :bool
+
+      Whether the user can modify the list of viewers/annotators for the collection.
+      :type: bool
+
+
+   .. attribute:: modify_labels
+      :annotation: :bool
+
+      Whether the user can modify the list of labels for the collection.
+      :type: bool
+
+
+   .. attribute:: modify_document_metadata
+      :annotation: :bool
+
+      Whether the user can modify document metadata (such as changing the image).
+      :type: bool
+
+
+   .. attribute:: download_data
+      :annotation: :bool
+
+      Whether the user can download the collection data
+      :type: bool
+
+
+   .. attribute:: archive
+      :annotation: :bool
+
+      Whether the user can archive or unarchive the collection.
+      :type: bool
+
+
+   .. method:: to_dict(self) -> dict
+
+      Returns a dict version of this object for conversion to JSON.
+
+      :returns: a dict version of this object for conversion to JSON
+      :rtype: dict
 
 
 

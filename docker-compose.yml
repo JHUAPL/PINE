@@ -79,7 +79,6 @@ services:
     image: al_pipeline
     build:
       context:  ./pipelines/
-      dockerfile: docker/Dockerfile
     environment:
       AL_PIPELINE: opennlp
       AL_REDIS_HOST: redis

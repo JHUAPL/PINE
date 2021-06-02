@@ -26,7 +26,8 @@ Classes
 
    
 
-.. py:class:: ServiceManager(default_handler=None)
+.. class:: ServiceManager(default_handler=None)
+
 
    Bases: :class:`object`
 
@@ -140,7 +141,6 @@ Classes
    .. method:: get_registered_channels(cls, include_ttl=False)
       :classmethod:
 
-
       Get list of registered channels, with registration time if requested.
       :type include_ttl: bool
       :rtype: list[str] | dict[str, datetime]
@@ -148,7 +148,6 @@ Classes
 
    .. method:: get_registered_service_details(cls, service_name=None)
       :classmethod:
-
 
       Get registration details of a service.
       :type service_name: str
@@ -158,7 +157,6 @@ Classes
    .. method:: get_registered_services(cls, include_details=True)
       :classmethod:
 
-
       Get list of registered services and registration body if requested.
       :type include_details: bool
       :rtype: list[str] | list[dict]
@@ -166,7 +164,6 @@ Classes
 
    .. method:: send_service_request(cls, service_name, data, job_id=None, encoder=None)
       :classmethod:
-
 
       Queue's a job for the requested service.
       :type service_name: str
@@ -178,18 +175,15 @@ Classes
 
    .. method:: start_listeners(self)
 
-
       Starts all the workers.
 
 
    .. method:: stop_listeners(self)
 
-
       Stops all the workers.
 
 
    .. method:: _start_registration_listener(self)
-
 
       Starts the registration worker.
       :rtype: bool
@@ -197,13 +191,11 @@ Classes
 
    .. method:: _start_processing_listeners(self)
 
-
       Starts the processing workers.
       :rtype: bool
 
 
    .. method:: _start_channel_watchdog(self)
-
 
       Starts the channel watchdog workers in an asyncio-only thread. It monitors the channel TTL's.
       :rtype: bool
@@ -211,20 +203,17 @@ Classes
 
    .. method:: _stop_channel_watchdog(self)
 
-
       Stops the channel watchdog workers in an asyncio-only thread.
       :rtype: bool
 
 
    .. method:: _registration_listener(self)
 
-
       Registration Listener Implementation.
 
 
    .. method:: _channel_watchdog(self)
       :async:
-
 
       Channel Watchdog Implementation.
       In asyncio, it monitors the channel-ttl keys and the channels SET to expire registered services as needed.
@@ -235,13 +224,10 @@ Classes
       :staticmethod:
 
 
-
    .. method:: _processing_listener_handler_wrapper(self, job_id, job_type, job_queue, job_data)
 
 
-
    .. method:: _processing_listener(self)
-
 
       Processing Listener Implementation.
       Runs a handler when a processing message gets send over an already registered channel.

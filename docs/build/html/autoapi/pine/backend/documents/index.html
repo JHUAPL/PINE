@@ -5,23 +5,22 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>pine.backend.documents &#8212; pine  documentation</title>
-    <link rel="stylesheet" href="../../../../_static/bizstyle.css" type="text/css" />
     <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../_static/bizstyle.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../../../../_static/graphviz.css" />
     
     <script id="documentation_options" data-url_root="../../../../" src="../../../../_static/documentation_options.js"></script>
     <script src="../../../../_static/jquery.js"></script>
     <script src="../../../../_static/underscore.js"></script>
     <script src="../../../../_static/doctools.js"></script>
-    <script src="../../../../_static/language_data.js"></script>
     <script src="../../../../_static/bizstyle.js"></script>
     <link rel="index" title="Index" href="../../../../genindex.html" />
     <link rel="search" title="Search" href="../../../../search.html" />
     <link rel="next" title="pine.backend.documents.bp" href="bp/index.html" />
     <link rel="prev" title="pine.backend.data.users" href="../data/users/index.html" />
-    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
     <!--[if lt IE 9]>
     <script src="_static/css3-mediaqueries.js"></script>
     <![endif]-->
@@ -64,6 +63,52 @@
 </ul>
 </div>
 </div>
+<div class="section" id="package-contents">
+<h2>Package Contents<a class="headerlink" href="#package-contents" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="functions">
+<h3>Functions<a class="headerlink" href="#functions" title="Permalink to this headline">¶</a></h3>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pine.backend.documents.get_collection_ids_for" title="pine.backend.documents.get_collection_ids_for"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_collection_ids_for</span></code></a>(document_ids) → set</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#pine.backend.documents.get_user_permissions" title="pine.backend.documents.get_user_permissions"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_user_permissions</span></code></a>(document: dict) → pine.backend.models.CollectionUserPermissions</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pine.backend.documents.get_user_permissions_by_id" title="pine.backend.documents.get_user_permissions_by_id"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_user_permissions_by_id</span></code></a>(document_id: str) → pine.backend.models.CollectionUserPermissions</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#pine.backend.documents.get_user_permissions_by_ids" title="pine.backend.documents.get_user_permissions_by_ids"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_user_permissions_by_ids</span></code></a>(document_ids: Iterable[str]) → List[models.CollectionUserPermissions]</p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
+<dl class="py function">
+<dt id="pine.backend.documents.get_collection_ids_for">
+<code class="sig-prename descclassname"><span class="pre">pine.backend.documents.</span></code><code class="sig-name descname"><span class="pre">get_collection_ids_for</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">document_ids</span></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#set" title="(in Python v3.9)"><span class="pre">set</span></a><a class="headerlink" href="#pine.backend.documents.get_collection_ids_for" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt id="pine.backend.documents.get_user_permissions">
+<code class="sig-prename descclassname"><span class="pre">pine.backend.documents.</span></code><code class="sig-name descname"><span class="pre">get_user_permissions</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">document</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><span class="pre">dict</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference internal" href="../models/index.html#pine.backend.models.CollectionUserPermissions" title="pine.backend.models.CollectionUserPermissions"><span class="pre">pine.backend.models.CollectionUserPermissions</span></a><a class="headerlink" href="#pine.backend.documents.get_user_permissions" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt id="pine.backend.documents.get_user_permissions_by_id">
+<code class="sig-prename descclassname"><span class="pre">pine.backend.documents.</span></code><code class="sig-name descname"><span class="pre">get_user_permissions_by_id</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">document_id</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference internal" href="../models/index.html#pine.backend.models.CollectionUserPermissions" title="pine.backend.models.CollectionUserPermissions"><span class="pre">pine.backend.models.CollectionUserPermissions</span></a><a class="headerlink" href="#pine.backend.documents.get_user_permissions_by_id" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt id="pine.backend.documents.get_user_permissions_by_ids">
+<code class="sig-prename descclassname"><span class="pre">pine.backend.documents.</span></code><code class="sig-name descname"><span class="pre">get_user_permissions_by_ids</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">document_ids</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Iterable</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">models.CollectionUserPermissions</span><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#pine.backend.documents.get_user_permissions_by_ids" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+</div>
 </div>
 
 
@@ -77,6 +122,16 @@
   <ul>
 <li><a class="reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">pine.backend.documents</span></code></a><ul>
 <li><a class="reference internal" href="#submodules">Submodules</a></li>
+<li><a class="reference internal" href="#package-contents">Package Contents</a><ul>
+<li><a class="reference internal" href="#functions">Functions</a><ul>
+<li><a class="reference internal" href="#pine.backend.documents.get_collection_ids_for">get_collection_ids_for</a></li>
+<li><a class="reference internal" href="#pine.backend.documents.get_user_permissions">get_user_permissions</a></li>
+<li><a class="reference internal" href="#pine.backend.documents.get_user_permissions_by_id">get_user_permissions_by_id</a></li>
+<li><a class="reference internal" href="#pine.backend.documents.get_user_permissions_by_ids">get_user_permissions_by_ids</a></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -132,7 +187,7 @@
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright (C) 2019 The Johns Hopkins University Applied Physics Laboratory LLC..
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.1.2.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.5.3.
     </div>
   </body>
 </html>

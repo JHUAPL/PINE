@@ -1,6 +1,7 @@
 # (C) 2019 The Johns Hopkins University Applied Physics Laboratory LLC.
 # https://docs.microsoft.com/en-us/azure/aks/azure-disks-dynamic-pv
 
+{{- if .Values.redis.persistence.enabled }}
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
@@ -16,3 +17,4 @@ spec:
   resources:
     requests:
       storage: 32Gi # 32Gi is smallest billable size
+{{- end }}

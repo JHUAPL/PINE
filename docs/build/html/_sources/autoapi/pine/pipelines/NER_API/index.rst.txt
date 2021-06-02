@@ -26,34 +26,27 @@ Classes
 
    
 
-.. py:class:: ner_api
+.. class:: ner_api
+
 
    Bases: :class:`object`
 
-   Initialize self.  See help(type(self)) for accurate signature.
-
    .. method:: perform_fold(self, model, train_data, test_data, pipeline_parameters)
-
 
 
    .. method:: perform_five_fold(self, model, documents, annotations, doc_ids, pipeline_parameters)
 
 
-
    .. method:: get_document_ranking(self, model, doc_map, doc_ids)
-
 
 
    .. method:: get_classifier_pipeline_metrics_objs(self, classifier_id)
 
 
-
    .. method:: train_model(self, custom_filename, classifier_id, pipeline_name)
 
 
-
    .. method:: predict(self, classifier_id, pipeline_name, documents, document_ids)
-
 
 
 

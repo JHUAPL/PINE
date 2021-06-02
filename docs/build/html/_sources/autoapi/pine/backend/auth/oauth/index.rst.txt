@@ -17,25 +17,21 @@ Classes
 
 
 
-.. py:class:: OAuthUser(data)
+.. class:: OAuthUser(data)
+
 
    Bases: :class:`pine.backend.models.AuthUser`
 
-   Initialize self.  See help(type(self)) for accurate signature.
-
    .. method:: id(self)
       :property:
-
 
 
    .. method:: username(self)
       :property:
 
 
-
    .. method:: display_name(self)
       :property:
-
 
 
    .. method:: is_admin(self)
@@ -43,8 +39,8 @@ Classes
 
 
 
+.. class:: OAuthModule(app, bp)
 
-.. py:class:: OAuthModule(app, bp)
 
    Bases: :class:`pine.backend.auth.bp.AuthModule`
 
@@ -52,30 +48,23 @@ Classes
       :abstractmethod:
 
 
-
    .. method:: get_login_form_button_text(self)
       :abstractmethod:
 
 
-
-   .. method:: is_flat(self)
-
+   .. method:: is_flat(self) -> bool
 
 
-   .. method:: can_manage_users(self)
+   .. method:: can_manage_users(self) -> bool
 
 
-
-   .. method:: get_login_form(self)
-
+   .. method:: get_login_form(self) -> pine.backend.models.LoginForm
 
 
-   .. method:: login(self)
-
+   .. method:: login(self) -> flask.Response
 
 
    .. method:: authorize(self)
-
 
 
 

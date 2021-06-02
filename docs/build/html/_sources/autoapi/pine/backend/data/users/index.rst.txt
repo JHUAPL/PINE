@@ -16,6 +16,7 @@ Functions
    pine.backend.data.users.get_all_users
    pine.backend.data.users.get_user
    pine.backend.data.users.get_user_by_email
+   pine.backend.data.users.get_user_by_id_or_email
    pine.backend.data.users.get_user_details
    pine.backend.data.users.update_user
    pine.backend.data.users.print_users_command
@@ -34,16 +35,19 @@ Functions
 .. function:: get_user_by_email(email)
 
 
+.. function:: get_user_by_id_or_email(username)
+
+
 .. function:: get_user_details(user_id)
 
 
-.. function:: update_user(user_id: str, details: models.UserDetails)
+.. function:: update_user(user_id: str, details: pine.backend.models.UserDetails)
 
 
 .. function:: print_users_command()
 
 
-.. function:: add_admin_command(username, password)
+.. function:: add_admin_command(user_id, username, password)
 
 
 .. function:: set_user_password_by_id(user_id, password)

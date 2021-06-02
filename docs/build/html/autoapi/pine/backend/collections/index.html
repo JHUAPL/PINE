@@ -5,23 +5,22 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>pine.backend.collections &#8212; pine  documentation</title>
-    <link rel="stylesheet" href="../../../../_static/bizstyle.css" type="text/css" />
     <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../_static/bizstyle.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../../../../_static/graphviz.css" />
     
     <script id="documentation_options" data-url_root="../../../../" src="../../../../_static/documentation_options.js"></script>
     <script src="../../../../_static/jquery.js"></script>
     <script src="../../../../_static/underscore.js"></script>
     <script src="../../../../_static/doctools.js"></script>
-    <script src="../../../../_static/language_data.js"></script>
     <script src="../../../../_static/bizstyle.js"></script>
     <link rel="index" title="Index" href="../../../../genindex.html" />
     <link rel="search" title="Search" href="../../../../search.html" />
     <link rel="next" title="pine.backend.collections.bp" href="bp/index.html" />
     <link rel="prev" title="pine.backend.auth.vegas" href="../auth/vegas/index.html" />
-    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
     <!--[if lt IE 9]>
     <script src="_static/css3-mediaqueries.js"></script>
     <![endif]-->
@@ -56,9 +55,8 @@
             
   <div class="section" id="module-pine.backend.collections">
 <span id="pine-backend-collections"></span><h1><a class="reference internal" href="#module-pine.backend.collections" title="pine.backend.collections"><code class="xref py py-mod docutils literal notranslate"><span class="pre">pine.backend.collections</span></code></a><a class="headerlink" href="#module-pine.backend.collections" title="Permalink to this headline">¶</a></h1>
-<p><p>This module contains the api methods required to interact with, organize, create, and display collections in the
+<p>This module contains the api methods required to interact with, organize, create, and display collections in the
 front-end and store the collections in the backend</p>
-</p>
 <div class="section" id="submodules">
 <h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
 <div class="toctree-wrapper compound">
@@ -77,78 +75,38 @@ front-end and store the collections in the backend</p>
 <col style="width: 90%" />
 </colgroup>
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#pine.backend.collections.user_can_annotate" title="pine.backend.collections.user_can_annotate"><code class="xref py py-obj docutils literal notranslate"><span class="pre">user_can_annotate</span></code></a>(collection)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pine.backend.collections.user_permissions_projection" title="pine.backend.collections.user_permissions_projection"><code class="xref py py-obj docutils literal notranslate"><span class="pre">user_permissions_projection</span></code></a>()</p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#pine.backend.collections.user_can_view" title="pine.backend.collections.user_can_view"><code class="xref py py-obj docutils literal notranslate"><span class="pre">user_can_view</span></code></a>(collection)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#pine.backend.collections.get_user_permissions" title="pine.backend.collections.get_user_permissions"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_user_permissions</span></code></a>(collection: dict) → pine.backend.models.CollectionUserPermissions</p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#pine.backend.collections.user_can_add_documents_or_images" title="pine.backend.collections.user_can_add_documents_or_images"><code class="xref py py-obj docutils literal notranslate"><span class="pre">user_can_add_documents_or_images</span></code></a>(collection)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pine.backend.collections.get_user_permissions_by_id" title="pine.backend.collections.get_user_permissions_by_id"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_user_permissions_by_id</span></code></a>(collection_id: str) → pine.backend.models.CollectionUserPermissions</p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#pine.backend.collections.user_can_modify_document_metadata" title="pine.backend.collections.user_can_modify_document_metadata"><code class="xref py py-obj docutils literal notranslate"><span class="pre">user_can_modify_document_metadata</span></code></a>(collection)</p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#pine.backend.collections.user_can_annotate_by_id" title="pine.backend.collections.user_can_annotate_by_id"><code class="xref py py-obj docutils literal notranslate"><span class="pre">user_can_annotate_by_id</span></code></a>(collection_id)</p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#pine.backend.collections.user_can_annotate_by_ids" title="pine.backend.collections.user_can_annotate_by_ids"><code class="xref py py-obj docutils literal notranslate"><span class="pre">user_can_annotate_by_ids</span></code></a>(collection_ids)</p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#pine.backend.collections.user_can_view_by_id" title="pine.backend.collections.user_can_view_by_id"><code class="xref py py-obj docutils literal notranslate"><span class="pre">user_can_view_by_id</span></code></a>(collection_id)</p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#pine.backend.collections.user_can_add_documents_or_images_by_id" title="pine.backend.collections.user_can_add_documents_or_images_by_id"><code class="xref py py-obj docutils literal notranslate"><span class="pre">user_can_add_documents_or_images_by_id</span></code></a>(collection_id)</p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#pine.backend.collections.user_can_modify_document_metadata_by_id" title="pine.backend.collections.user_can_modify_document_metadata_by_id"><code class="xref py py-obj docutils literal notranslate"><span class="pre">user_can_modify_document_metadata_by_id</span></code></a>(collection_id)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#pine.backend.collections.get_user_permissions_by_ids" title="pine.backend.collections.get_user_permissions_by_ids"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_user_permissions_by_ids</span></code></a>(collection_ids: Iterable[str]) → List[models.CollectionUserPermissions]</p></td>
 <td><p></p></td>
 </tr>
 </tbody>
 </table>
 <dl class="py function">
-<dt id="pine.backend.collections.user_can_annotate">
-<code class="sig-prename descclassname">pine.backend.collections.</code><code class="sig-name descname">user_can_annotate</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">collection</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.collections.user_can_annotate" title="Permalink to this definition">¶</a></dt>
+<dt id="pine.backend.collections.user_permissions_projection">
+<code class="sig-prename descclassname"><span class="pre">pine.backend.collections.</span></code><code class="sig-name descname"><span class="pre">user_permissions_projection</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.collections.user_permissions_projection" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py function">
-<dt id="pine.backend.collections.user_can_view">
-<code class="sig-prename descclassname">pine.backend.collections.</code><code class="sig-name descname">user_can_view</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">collection</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.collections.user_can_view" title="Permalink to this definition">¶</a></dt>
+<dt id="pine.backend.collections.get_user_permissions">
+<code class="sig-prename descclassname"><span class="pre">pine.backend.collections.</span></code><code class="sig-name descname"><span class="pre">get_user_permissions</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">collection</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><span class="pre">dict</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference internal" href="../models/index.html#pine.backend.models.CollectionUserPermissions" title="pine.backend.models.CollectionUserPermissions"><span class="pre">pine.backend.models.CollectionUserPermissions</span></a><a class="headerlink" href="#pine.backend.collections.get_user_permissions" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py function">
-<dt id="pine.backend.collections.user_can_add_documents_or_images">
-<code class="sig-prename descclassname">pine.backend.collections.</code><code class="sig-name descname">user_can_add_documents_or_images</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">collection</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.collections.user_can_add_documents_or_images" title="Permalink to this definition">¶</a></dt>
+<dt id="pine.backend.collections.get_user_permissions_by_id">
+<code class="sig-prename descclassname"><span class="pre">pine.backend.collections.</span></code><code class="sig-name descname"><span class="pre">get_user_permissions_by_id</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">collection_id</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference internal" href="../models/index.html#pine.backend.models.CollectionUserPermissions" title="pine.backend.models.CollectionUserPermissions"><span class="pre">pine.backend.models.CollectionUserPermissions</span></a><a class="headerlink" href="#pine.backend.collections.get_user_permissions_by_id" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py function">
-<dt id="pine.backend.collections.user_can_modify_document_metadata">
-<code class="sig-prename descclassname">pine.backend.collections.</code><code class="sig-name descname">user_can_modify_document_metadata</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">collection</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.collections.user_can_modify_document_metadata" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py function">
-<dt id="pine.backend.collections.user_can_annotate_by_id">
-<code class="sig-prename descclassname">pine.backend.collections.</code><code class="sig-name descname">user_can_annotate_by_id</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">collection_id</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.collections.user_can_annotate_by_id" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py function">
-<dt id="pine.backend.collections.user_can_annotate_by_ids">
-<code class="sig-prename descclassname">pine.backend.collections.</code><code class="sig-name descname">user_can_annotate_by_ids</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">collection_ids</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.collections.user_can_annotate_by_ids" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py function">
-<dt id="pine.backend.collections.user_can_view_by_id">
-<code class="sig-prename descclassname">pine.backend.collections.</code><code class="sig-name descname">user_can_view_by_id</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">collection_id</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.collections.user_can_view_by_id" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py function">
-<dt id="pine.backend.collections.user_can_add_documents_or_images_by_id">
-<code class="sig-prename descclassname">pine.backend.collections.</code><code class="sig-name descname">user_can_add_documents_or_images_by_id</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">collection_id</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.collections.user_can_add_documents_or_images_by_id" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py function">
-<dt id="pine.backend.collections.user_can_modify_document_metadata_by_id">
-<code class="sig-prename descclassname">pine.backend.collections.</code><code class="sig-name descname">user_can_modify_document_metadata_by_id</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">collection_id</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.collections.user_can_modify_document_metadata_by_id" title="Permalink to this definition">¶</a></dt>
+<dt id="pine.backend.collections.get_user_permissions_by_ids">
+<code class="sig-prename descclassname"><span class="pre">pine.backend.collections.</span></code><code class="sig-name descname"><span class="pre">get_user_permissions_by_ids</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">collection_ids</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Iterable</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">models.CollectionUserPermissions</span><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#pine.backend.collections.get_user_permissions_by_ids" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </div>
@@ -168,31 +126,10 @@ front-end and store the collections in the backend</p>
 <li><a class="reference internal" href="#submodules">Submodules</a></li>
 <li><a class="reference internal" href="#package-contents">Package Contents</a><ul>
 <li><a class="reference internal" href="#functions">Functions</a><ul>
-<li><a class="reference internal" href="#pine.backend.collections.user_can_annotate">user_can_annotate</a></li>
-</ul>
-<ul>
-<li><a class="reference internal" href="#pine.backend.collections.user_can_view">user_can_view</a></li>
-</ul>
-<ul>
-<li><a class="reference internal" href="#pine.backend.collections.user_can_add_documents_or_images">user_can_add_documents_or_images</a></li>
-</ul>
-<ul>
-<li><a class="reference internal" href="#pine.backend.collections.user_can_modify_document_metadata">user_can_modify_document_metadata</a></li>
-</ul>
-<ul>
-<li><a class="reference internal" href="#pine.backend.collections.user_can_annotate_by_id">user_can_annotate_by_id</a></li>
-</ul>
-<ul>
-<li><a class="reference internal" href="#pine.backend.collections.user_can_annotate_by_ids">user_can_annotate_by_ids</a></li>
-</ul>
-<ul>
-<li><a class="reference internal" href="#pine.backend.collections.user_can_view_by_id">user_can_view_by_id</a></li>
-</ul>
-<ul>
-<li><a class="reference internal" href="#pine.backend.collections.user_can_add_documents_or_images_by_id">user_can_add_documents_or_images_by_id</a></li>
-</ul>
-<ul>
-<li><a class="reference internal" href="#pine.backend.collections.user_can_modify_document_metadata_by_id">user_can_modify_document_metadata_by_id</a></li>
+<li><a class="reference internal" href="#pine.backend.collections.user_permissions_projection">user_permissions_projection</a></li>
+<li><a class="reference internal" href="#pine.backend.collections.get_user_permissions">get_user_permissions</a></li>
+<li><a class="reference internal" href="#pine.backend.collections.get_user_permissions_by_id">get_user_permissions_by_id</a></li>
+<li><a class="reference internal" href="#pine.backend.collections.get_user_permissions_by_ids">get_user_permissions_by_ids</a></li>
 </ul>
 </li>
 </ul>
@@ -252,7 +189,7 @@ front-end and store the collections in the backend</p>
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright (C) 2019 The Johns Hopkins University Applied Physics Laboratory LLC..
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.1.2.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.5.3.
     </div>
   </body>
 </html>
