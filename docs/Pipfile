@@ -10,6 +10,7 @@ name = "pypi"
 [dev-packages]
 sphinx = "*"
 sphinx-autoapi = "*"
+sphinx-autodoc-typehints = "*"
 
 [scripts]
 doc = "make singlehtml html latexpdf LATEXMKOPTS='-silent'"

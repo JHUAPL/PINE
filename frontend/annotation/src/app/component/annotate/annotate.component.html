@@ -58,7 +58,8 @@
 
                     <div class="doc-label-list" fxLayout="row">
                         <mat-chip-list fxFlex>
-                            <mat-checkbox *ngFor="let annotation of myDocAnnotations;" [(ngModel)]="annotation.checked">
+                            <mat-checkbox *ngFor="let annotation of myDocAnnotations;" [(ngModel)]="annotation.checked"
+                            style="padding-right: 30px">
                                 <mat-chip [style.background-color]="annotation.label.color"
                                     class="shadowed cursor-pointer">
                                     {{annotation.label.name}}</mat-chip>

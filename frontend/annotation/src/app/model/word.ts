@@ -10,8 +10,8 @@ export class Word {
     public elem: HTMLElement = undefined;
 
     constructor(public start: number, public text: string, public index: number) {
-        this.id = "word_" + this.start + "_" + this.end;
         this.end = start + text.length;
+        this.id = "word_" + this.start + "_" + this.end;
     }
 
     public static parseWords(input: string): Observable<string> {

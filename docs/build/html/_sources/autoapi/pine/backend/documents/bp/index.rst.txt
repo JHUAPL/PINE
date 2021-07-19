@@ -23,9 +23,14 @@ Functions
    pine.backend.documents.bp.get_all_documents_in_collection
    pine.backend.documents.bp.get_paginated_documents_in_collection
    pine.backend.documents.bp._check_documents
+   pine.backend.documents.bp._get_collection_classifiers
+   pine.backend.documents.bp._get_classifier_next_instances
    pine.backend.documents.bp.add_document
    pine.backend.documents.bp.endpoint_get_user_permissions
    pine.backend.documents.bp.update_metadata
+   pine.backend.documents.bp._delete_documents_by_id
+   pine.backend.documents.bp.delete_document
+   pine.backend.documents.bp.delete_documents
    pine.backend.documents.bp.init_app
 
 
@@ -37,7 +42,7 @@ Functions
 .. function:: _document_user_can_projection()
 
 
-.. function:: get_collection_ids_for(document_ids) -> set
+.. function:: get_collection_ids_for(document_ids) -> List[str]
 
 
 .. function:: get_user_permissions(document: dict) -> pine.backend.models.CollectionUserPermissions
@@ -64,6 +69,12 @@ Functions
 .. function:: _check_documents(documents) -> dict
 
 
+.. function:: _get_collection_classifiers(collection_ids)
+
+
+.. function:: _get_classifier_next_instances(collection_classifiers: dict)
+
+
 .. function:: add_document()
 
 
@@ -71,6 +82,15 @@ Functions
 
 
 .. function:: update_metadata(doc_id)
+
+
+.. function:: _delete_documents_by_id(doc_ids: List[str]) -> bool
+
+
+.. function:: delete_document(doc_id: str)
+
+
+.. function:: delete_documents()
 
 
 .. function:: init_app(app)

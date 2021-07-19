@@ -6,9 +6,11 @@ parameters:
   azureContainerRegistry: $(azureContainerRegistry)
   azureSubscriptionEndpointForSecrets: $(azureSubscriptionEndpointForSecrets)
   backendStorageMountPath: "/mnt/azure"
+  backendStorageClaimName: ""
   deployEnvironment: $(deployEnvironment)
   deploymentName: "CONTAINER_DEPLOY"
   dockerAuthSecretName: $(dockerAuthSecretName)
+  helmRepoName: $(Pipeline.Workspace) # Default to chart published as artifact and automatically downloaded into workspace
   helmChart: "pine-chart"
   imageTag: $(Build.BuildId)
   ingressClass: "nginx"
@@ -62,6 +64,13 @@ jobs:
               APP_URL: ${{ parameters.appUrl }}
               AZURE_SUBSCRIPTION: ${{ parameters.azureSubscriptionEndpointForSecrets }}
             displayName: Check for required parameters
+          - task: HelmInstaller@1
+            displayName: 'Install Helm 3.5.3'
+            inputs:
+              helmVersionToInstall: 3.5.3
+          - task: KubectlInstaller@0
+            inputs:
+              kubectlVersion: 'latest'
           - task: Kubernetes@1
             displayName: 'kubectl set imagePullSecrets'
             inputs:
@@ -76,26 +85,14 @@ jobs:
               azureContainerRegistry: ${{ parameters.azureContainerRegistry }}
               secretName: '${{ parameters.dockerAuthSecretName }}'
               versionSpec: '1.13.10'
-          - task: HelmInstaller@1
-            displayName: 'Install Helm 2.16.1'
-            inputs:
-              helmVersionToInstall: 2.16.1
-          - task: HelmDeploy@0
-            displayName: 'helm init'
-            inputs:
-              connectionType: None
-              command: init
-              upgradeTiller: false
-              arguments: '-c'
-              tillerNamespace: '${{ parameters.namespace }}'
           - task: Bash@3
             displayName: "set default overrides"
             inputs:
               targetType: 'inline'
               script: |
                 #!/bin/bash
-                echo "Creating pipelineHelmOverrideValues.yml file"
-                cat > pipelineHelmOverrideValues.yml <<- EOM
+                echo "Creating pipelineHelmOverrideValues.yaml file"
+                cat > pipelineHelmOverrideValues.yaml <<- EOM
                 fullnameOverride: ${{ parameters.appReleaseName }}
                 name: ${{ parameters.appReleaseName }}
                 eve:
@@ -132,9 +129,11 @@ jobs:
                     - hosts:
                       - ${{ parameters.appUrl }}
                       secretName: ${{ parameters.appTlsSecretName }}
+                imagePullSecrets:
+                  - ${{ parameters.dockerAuthSecretName }}
                 EOM
                 echo "File created"
-                cat pipelineHelmOverrideValues.yml
+                cat pipelineHelmOverrideValues.yaml
           - ${{ if ne(parameters.secrets, '') }}:
             - task: Bash@3
               displayName: "Add secrets section to overrides"
@@ -142,7 +141,7 @@ jobs:
                 targetType: 'inline'
                 script: |
                   #!/bin/bash
-                  cat >> pipelineHelmOverrideValues.yml <<- EOM
+                  cat >> pipelineHelmOverrideValues.yaml <<- EOM
                   secrets:
                   EOM
                   echo "File updated"
@@ -153,7 +152,7 @@ jobs:
                 targetType: 'inline'
                 script: |
                   #!/bin/bash
-                  cat >> pipelineHelmOverrideValues.yml <<- EOM
+                  cat >> pipelineHelmOverrideValues.yaml <<- EOM
                     ${{ secret.key }}:
                   EOM
                   echo "File updated"
@@ -164,23 +163,17 @@ jobs:
                   targetType: 'inline'
                   script: |
                     #!/bin/bash
-                    cat >> pipelineHelmOverrideValues.yml <<- EOM
+                    cat >> pipelineHelmOverrideValues.yaml <<- EOM
                         ${{ secretData.key }}: ${{ secretData.value }}
                     EOM
-          - task: KubernetesManifest@0
-            displayName: bake
-            name: 'bake'
+          - task: HelmDeploy@0
+            displayName: Helm upgrade
             inputs:
-              action: bake
-              namespace: '${{ parameters.namespace }}'
-              helmChart: '$(Pipeline.Workspace)/${{ parameters.helmChart }}'
-              releaseName: ${{ parameters.appReleaseName }}
-              overrideFiles: 'pipelineHelmOverrideValues.yml'
-            timeoutInMinutes: 900
-          - task: KubernetesManifest@0
-            displayName: deploy
-            inputs:
+              connectionType: 'Kubernetes Service Connection'
               kubernetesServiceConnection: '${{ parameters.kubeServiceConnection }}'
               namespace: '${{ parameters.namespace }}'
-              manifests: $(bake.manifestsBundle)
-              imagePullSecrets: '${{ parameters.dockerAuthSecretName }}'
+              command: 'upgrade'
+              chartType: 'Name'
+              chartName: '${{ parameters.helmRepoName }}/${{ parameters.helmChart }}'
+              releaseName: ${{ parameters.appReleaseName }}
+              valueFile: 'pipelineHelmOverrideValues.yaml'

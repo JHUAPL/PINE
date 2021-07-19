@@ -20,6 +20,8 @@ def setup_logging():
     passed to :py:func:`logging.config.dictConfig`.
     """
     if CONFIG_FILE_ENV not in os.environ:
+        logging.basicConfig()
+        logging.warn("Using basic configuration; set {} environment variable to use file.".format(CONFIG_FILE_ENV))
         return
     file = os.environ[CONFIG_FILE_ENV]
     if os.path.isfile(file):

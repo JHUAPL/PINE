@@ -22,3 +22,18 @@ Submodules
    bp/index.rst
 
 
+Package Contents
+----------------
+
+
+Functions
+~~~~~~~~~
+
+.. autoapisummary::
+
+   pine.backend.pineiaa.update_iaa_report_by_collection_id
+
+
+.. function:: update_iaa_report_by_collection_id(collection_id: str) -> bool
+
+

@@ -3,6 +3,8 @@
 import json
 import logging
 import requests
+import typing
+
 from .shared.config import ConfigBuilder
 
 logger = logging.getLogger(__name__)
@@ -33,7 +35,7 @@ class EveClient(object):
     def get_all_items(self, resource):
         total = []
         while True:
-            items, query = self.get_items(query)
+            items, query = self.get_items(resource)
             total.extend(items)
             if query is None:
                 break
@@ -42,7 +44,7 @@ class EveClient(object):
     def get_all_ids(self, resource):
         total_ids = []
         while True:
-            items, query = self.get_items(query)
+            items, query = self.get_items(resource)
             for item in items:
                 if '_id' in item:
                     total_ids.append(item['_id'])
@@ -51,9 +53,9 @@ class EveClient(object):
 
         return total_ids
 
-    def get_items(self, resource):
+    def get_items(self, resource, params={}):
         url = 'http://%s/%s' % (self.entry_point, resource)
-        response = requests.get(url, headers=self.eve_headers)
+        response = requests.get(url, params=params, headers=self.eve_headers)
         if response.status_code == 200:
             r = response.json()
             if '_items' in r:
@@ -63,18 +65,39 @@ class EveClient(object):
                     return r['_items'], None
         return [], None
 
-    def get_documents(self, collection_id):
-        # get documents
-        query = 'documents?where={"overlap":0,"collection_id":"%s"}' % (collection_id)
+    def _get_documents_map(self, params: dict = {}):
+        params["projection"] = json.dumps({
+            "_id": 1,
+            "text": 1
+        })
         doc_map = {}
         while True:
-            items, query = self.get_items(query)
+            items, query = self.get_items("documents", params=params)
             for d in items:
                 doc_map[d['_id']] = d['text']
             if query is None:
                 break
-
         return doc_map
+
+    def get_documents(self, collection_id: str) -> dict:
+        # get documents
+        params = {
+            "where": json.dumps({
+                "overlap": 0,
+                "collection_id": collection_id
+            })
+        }
+        return self._get_documents_map(params)
+
+    def get_documents_by_id(self, document_ids: typing.List[str]):
+        if len(document_ids) == 0:
+            return {}
+        params = {
+            "where": json.dumps({
+                "_id": {"$in": document_ids}
+            })
+        }
+        return self._get_documents_map(params)
 
     def get_docs_with_annotations(self, collection_id, doc_map):
         doc_ids = list()

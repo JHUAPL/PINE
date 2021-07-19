@@ -17,7 +17,12 @@ Classes
 
 
 
-.. class:: OAuthUser(data)
+.. data:: LOGGER
+   
+
+   
+
+.. class:: OAuthUser(data, id_field, display_field=None)
 
 
    Bases: :class:`pine.backend.models.AuthUser`
@@ -39,7 +44,7 @@ Classes
 
 
 
-.. class:: OAuthModule(app, bp)
+.. class:: OAuthModule(app, bp, secret)
 
 
    Bases: :class:`pine.backend.auth.bp.AuthModule`
@@ -61,10 +66,19 @@ Classes
    .. method:: get_login_form(self) -> pine.backend.models.LoginForm
 
 
+   .. method:: make_user(self, decoded: dict) -> pine.backend.auth.oauth.OAuthUser
+
+
    .. method:: login(self) -> flask.Response
 
 
-   .. method:: authorize(self)
+   .. method:: _authorize(self, authorization_response)
+
+
+   .. method:: authorize_post(self)
+
+
+   .. method:: authorize_get(self)
 
 
 

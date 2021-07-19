@@ -66,7 +66,8 @@ exclude_patterns = ['Thumbs.db', '.DS_Store']
 
 intersphinx_mapping = {'python': ('https://docs.python.org/3', None),
                        'requests': ('https://requests.readthedocs.io/en/master', None),
-                       'pymongo': ('https://pymongo.readthedocs.io/en/stable', None)}
+                       'pymongo': ('https://pymongo.readthedocs.io/en/stable', None),
+                       'flask': ('https://flask.palletsprojects.com/en/1.1.x/', None)}
 if os.path.isdir("/etc/ssl/certs"):
     tls_cacerts = "/etc/ssl/certs/"
 

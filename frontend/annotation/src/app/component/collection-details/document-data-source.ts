@@ -138,13 +138,13 @@ export class DocumentDataSource implements OnDestroy, DataSource<DocumentRow> {
                 this.length = documents.meta.total;
             }
             this.documentSubject.next(documents.documents.map((doc: Document) => {
-                const docReport = this.collectionReport ? this.collectionReport.per_doc_agreement.find((doc: any) => doc.doc_id == doc._id) : null;
+                const docReport = this.collectionReport ? this.collectionReport.per_doc_agreement.find((d: any) => d.doc_id == doc._id) : null;
                 return {
                     id: doc._id,
                     creator: this.auth.getUserDisplayName(doc.creator_id),
                     last_updated: doc._updated,
                     text_start: doc.getTextPreview(this.truncateLength),
-                    annotated: doc.has_annotated && doc.has_annotated[this.auth.loggedInUser.username],
+                    annotated: doc.has_annotated && doc.has_annotated[this.auth.loggedInUser.id],
                     ann_agreement: docReport ? docReport["avg"] : null
                 };
             }));

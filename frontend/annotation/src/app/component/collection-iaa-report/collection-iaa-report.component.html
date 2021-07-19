@@ -44,10 +44,10 @@
         <td>
           {{label.label}}
         </td>
-        <td *ngIf="label.avg != 'null'">
+        <td *ngIf="label.avg != null && label.avg != 'null'">
           {{label.avg | percent:'1.2-2'}}
         </td>
-        <td *ngIf="label.avg == 'null'">
+        <td *ngIf="label.avg == null || label.avg == 'null'">
           Not enough data for label
         </td>
       </tr>

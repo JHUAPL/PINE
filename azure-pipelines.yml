@@ -103,7 +103,7 @@ stages:
     condition: and(succeeded(), eq(variables['build.sourceBranch'], 'refs/heads/develop'))
     dependsOn: build_test
     jobs:
-      - template: azure-pipeline-templates/deploy-v2.yml  # Template reference
+      - template: azure-pipeline-templates/deploy.yml  # Template reference
         parameters:
           appReleaseName: $(appReleaseName)
           appUrl: "dev-nlpannotator.pm.jh.edu"
@@ -118,6 +118,8 @@ stages:
           pipelineImageName: $(pipelineImageName)
           secrets:
             backend:
+              VEGAS_SERVER: https://slife.jh.edu
+              VEGAS_CLIENT_ID: 1976d9d4-be86-44ce-aa0f-c5a4b295c701
               VEGAS_CLIENT_SECRET: $(vegas-client-secret-dev)
             eve:
               MONGO_URI: $(mongo-uri-dev)
@@ -144,6 +146,8 @@ stages:
           pipelineImageName: $(pipelineImageName)
           secrets:
             backend:
+              VEGAS_SERVER: https://my.jh.edu
+              VEGAS_CLIENT_ID: b7590f07-cbd9-48b1-82f4-8aab02470831
               VEGAS_CLIENT_SECRET: $(vegas-client-secret-prod)
             eve:
               MONGO_URI: $(mongo-uri-prod)

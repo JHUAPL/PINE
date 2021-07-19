@@ -917,7 +917,7 @@ class CollectionUserPermissions(object):
     
     def __init__(self, view = False, annotate = False, add_documents = False, add_images = False,
                  modify_users = False, modify_labels = False, modify_document_metadata = False,
-                 download_data = False, archive = False):
+                 download_data = False, archive = False, delete_documents = False):
         self.view: bool = view
         """Whether the user can view the collection and documents.
         :type: bool
@@ -952,6 +952,10 @@ class CollectionUserPermissions(object):
         """
         self.archive: bool = archive
         """Whether the user can archive or unarchive the collection.
+        :type: bool
+        """
+        self.delete_documents: bool = delete_documents
+        """Whether the user can delete documents in the collection.
         :type: bool
         """
 

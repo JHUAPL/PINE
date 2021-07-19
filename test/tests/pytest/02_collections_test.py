@@ -41,12 +41,6 @@ def test_list_collections():
         assert col["archived"] == (not found)
 
 
-def _get_collection_id(collection_title: str, client):
-    for col in client.list_collections():
-        if col["metadata"]["title"] == collection_title:
-            return col["_id"]
-    raise AssertionError("Couldn't find collection with title " + collection_title)
-
 def test_download_collection_data():
     # find a collection that has annotations that the test user has access to
     user = "margaret"
@@ -55,7 +49,7 @@ def test_download_collection_data():
 
     col_data = common.test_collection_data(collection_title)
     assert col_data != None
-    collection_id = _get_collection_id(collection_title, client)
+    collection_id = common.get_collection_id(client, collection_title)
     assert collection_id != None
 
     # start with nothing but IDs
@@ -128,7 +122,7 @@ def test_download_collection_data_errors():
     with pytest.raises(pine.client.exceptions.PineClientValueException):
         client.download_collection_data(None)
 
-    collection_id = _get_collection_id(collection_title, client)
+    collection_id = common.get_collection_id(client, collection_title)
     assert collection_id != None
     with pytest.raises(pine.client.exceptions.PineClientHttpException) as excinfo:
         client.download_collection_data(collection_id)
@@ -138,7 +132,7 @@ def test_download_collection_data_errors():
 def test_collection_user_permissions():
     client = common.login_with_test_user(common.client())
 
-    collection_id = _get_collection_id("NER Test Collection", client)
+    collection_id = common.get_collection_id(client, "NER Test Collection")
     assert collection_id != None
     permissions = client.get_collection_permissions(collection_id)
     assert permissions.to_dict() == {
@@ -150,10 +144,11 @@ def test_collection_user_permissions():
         "modify_labels": False,
         "modify_document_metadata": True,
         "download_data": False,
-        "archive": False
+        "archive": False,
+        "delete_documents": False
     }
 
-    collection_id = _get_collection_id("Trial Collection", client)
+    collection_id = common.get_collection_id(client, "Trial Collection")
     assert collection_id != None
     permissions = client.get_collection_permissions(collection_id)
     assert permissions.to_dict() == {
@@ -165,5 +160,6 @@ def test_collection_user_permissions():
         "modify_labels": True,
         "modify_document_metadata": True,
         "download_data": True,
-        "archive": True
+        "archive": True,
+        "delete_documents": True
     }

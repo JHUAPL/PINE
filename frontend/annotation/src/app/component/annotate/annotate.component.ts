@@ -3,6 +3,9 @@ import { Component, OnInit, AfterViewInit, ViewChild, ViewChildren, ElementRef, 
 import { ActivatedRoute, ParamMap, Router } from "@angular/router";
 import { HttpErrorResponse } from "@angular/common/http";
 import { MatDialog } from "@angular/material";
+import { Observable } from "rxjs";
+import { map } from "rxjs/operators";
+
 import { PanZoomConfig, PanZoomAPI, PanZoomModel } from 'ng2-panzoom';
 
 import { forkJoin } from "rxjs";
@@ -108,7 +111,8 @@ export class AnnotateComponent implements OnInit, AfterViewInit {
 
     public showList: boolean = true;
 
-    public ann_agreement: number
+    public ann_agreement: number;
+    
     @ViewChildren("wordsList")
     public wordsList: QueryList<any>;
 
@@ -155,6 +159,25 @@ export class AnnotateComponent implements OnInit, AfterViewInit {
         }
     }
 
+    private updateDocumentAgreement(): Observable<boolean> {
+        return this.iaa_reporting.getIIAReportByCollection(this.doc.collection_id)
+            .pipe(map((report: IAAReport[]) => {
+                this.ann_agreement = null;
+                console.log(report);
+                if(report && report[0]) {
+                    const doc_agreement = report[0].per_doc_agreement.find((doc) => doc["doc_id"] == this.doc._id);
+                    if(doc_agreement) {
+                        this.ann_agreement = doc_agreement["avg"];
+                        return true;
+                    } else {
+                        return false;
+                    }
+                } else {
+                    return false;
+                }
+            }));
+    }
+
     ngAfterViewInit() {
         this.wordsList.changes.subscribe(t => {
             if (this.wordsList.last) {
@@ -181,9 +204,10 @@ export class AnnotateComponent implements OnInit, AfterViewInit {
                     this.collections.getCollectionDetails(this.doc.collection_id),
                     this.annotations.getMyAnnotationsForDocument(docId),
                     this.annotations.getOthersAnnotationsForDocument(docId),
-                    this.pipelines.getClassifierForCollection(this.doc.collection_id)
-                ).subscribe(([permissions, collection, myAnnotations, othersAnnotations, classifier]:
-                             [CollectionUserPermissions, Collection, Annotation[], Annotation[], Classifier]) => {
+                    this.pipelines.getClassifierForCollection(this.doc.collection_id),
+                    this.updateDocumentAgreement()
+                ).subscribe(([permissions, collection, myAnnotations, othersAnnotations, classifier, ann_updated]:
+                             [CollectionUserPermissions, Collection, Annotation[], Annotation[], Classifier, boolean]) => {
                         this.permissions = permissions;
                         this.collection = collection;
                         this.classifier = classifier;
@@ -212,16 +236,11 @@ export class AnnotateComponent implements OnInit, AfterViewInit {
                         this.others.sort((v1, v2) => this.auth.getUserDisplayName(v1).localeCompare(this.auth.getUserDisplayName(v2)));
 
                         this.loading.loading = false;
-                        this.iaa_reporting.getIIAReportByCollection(this.doc.collection_id).toPromise().then((report: IAAReport[]) => {
-                            if (report[0]) {
-                                this.ann_agreement = report[0].per_doc_agreement[report[0].per_doc_agreement.findIndex((doc) => doc["doc_id"] == this.doc._id)]["avg"]
-                            }
-                        })
                     }, (error: HttpErrorResponse) => {
+                        console.log(error);
                         this.loading.setError(`Error ${error.status}: ${error.error}`);
                         this.loading.loading = false;
-                    }
-                    );
+                    });
             }, (error: HttpErrorResponse) => {
                 if (error.status === 404) {
                     this.loading.setError(`Document with ID "${docId}" not found.`);
@@ -629,15 +648,13 @@ export class AnnotateComponent implements OnInit, AfterViewInit {
             }
         }
         this.clearError();
-        this.annotations.saveAnnotations(this.doc._id, docAnnotations, this.nerData.annotations).subscribe((id: string) => {
+        this.annotations.saveAnnotations(this.doc._id, docAnnotations, this.nerData.annotations, true).subscribe((id: string) => {
             this.myNerAnnotations = this.nerData.annotations;
             this.changed = false;
             this.events.showUserMessage.emit("Document annotations were " + (id ? "" : "NOT ") + "successfully updated.");
             if (id) {
-                this.annotatedService.changeDocumentStatus({ collection_id: this.doc.collection_id, doc_id: this.doc._id })
-                this.iaa_reporting.createIAAReport(this.doc.collection_id).toPromise().then((res) => {
-                    console.log(res);
-                });
+                this.annotatedService.changeDocumentStatus({ collection_id: this.doc.collection_id, doc_id: this.doc._id });
+                this.updateDocumentAgreement().subscribe(() => {}, () => {});
             }
             if (id && andAdvance) {
                 this.advanceToNext();

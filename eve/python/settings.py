@@ -38,7 +38,7 @@ documents = {
         "has_annotated" : {'type' : 'dict'}
     },
     'pagination': True,
-    'item_methods': ['GET', 'PUT', 'PATCH'],
+    'item_methods': ['GET', 'PUT', 'PATCH', 'DELETE'],
     'mongo_indexes': {
         'doc_creator_id': [('creator_id', 1)],
         'doc_collection_id':[('collection_id', 1)],
@@ -73,7 +73,7 @@ annotations = {
         'annotation': {'type': 'list'}
     },
     'mongo_indexes':{'ann_creator_id': [('creator_id', 1)], 'ann_collection_id':[('collection_id', 1)], 'ann_document_id':[('document_id',1)]},
-    'item_methods':['GET', 'PUT', 'PATCH'],
+    'item_methods':['GET', 'PUT', 'PATCH', 'DELETE'],
     'versioning':True
 }
 

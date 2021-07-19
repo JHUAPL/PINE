@@ -6,7 +6,7 @@ import logging
 from flask import abort, Blueprint, jsonify, request
 from werkzeug import exceptions
 
-from .. import auth, collections, documents, log
+from .. import auth, collections, documents, log, pineiaa
 from ..data import service
 
 """This module contains the api methods required to perform and display annotations in the front-end and store the 
@@ -127,116 +127,6 @@ def check_overlapping_annotations(collection, ner_annotations):
             if val[0] < prev[1]:
                 raise exceptions.BadRequest("Collection is configured not to allow overlapping annotations")
 
-# @bp.route("/mine/by_document_id/<doc_id>/ner", methods = ["POST", "PUT"])
-# @auth.login_required
-# def save_ner_annotations(doc_id):
-#     """
-#     Save new NER annotations to the database as an entry for the logged in user, for the document. If there are already
-#     annotations, use a patch request to update with the new annotations. If there are not, use a post request to create
-#     a new entry.
-#     :param doc_id: str
-#     :return: str
-#     """
-#     if not request.is_json:
-#         raise exceptions.BadRequest()
-#     check_document_by_id(doc_id)
-#     document = service.get_item_by_id("documents", doc_id, {
-#         "projection": json.dumps({
-#             "collection_id": 1,
-#             "metadata": 1
-#         })
-#     })
-#     annotations = request.get_json()
-#     user_id = auth.get_logged_in_user()["id"]
-#     annotations = [(ann["start"], ann["end"], ann["label"]) for ann in annotations]
-#     check_overlapping_annotations(document, annotations) 
-#     new_annotation = {
-#         "creator_id": user_id,
-#         "collection_id": document["collection_id"],
-#         "document_id": doc_id,
-#         "annotation": annotations
-#     }
-#     
-#     current_annotation = get_current_annotation(doc_id, user_id)
-#     if current_annotation != None:
-#         if current_annotation["annotation"] == annotations:
-#             return jsonify(True)
-#         headers = {"If-Match": current_annotation["_etag"]}
-#         
-#         # add all the other non-ner labels
-#         for annotation in current_annotation["annotation"]:
-#             if not is_ner_annotation(annotation):
-#                 new_annotation["annotation"].append(annotation)
-# 
-#         resp = service.patch(["annotations", current_annotation["_id"]], json = new_annotation, headers = headers)
-#     else:
-#         resp = service.post("annotations", json = new_annotation)
-#     
-#     if resp.ok:
-#         new_annotation["_id"] = resp.json()["_id"]
-#         log.access_flask_annotate_document(document, new_annotation)
-#         
-#     return jsonify(resp.ok)
-
-# def is_doc_annotation(ann):
-#     """
-#     Verify that an annotation has the correct format (string)
-#     :param ann: Any
-#     :return: Bool
-#     """
-#     return isinstance(ann, str)
-
-# @bp.route("/mine/by_document_id/<doc_id>/doc", methods = ["POST", "PUT"])
-# @auth.login_required
-# def save_doc_labels(doc_id):
-#     """
-#     Save new labels to the database as an entry for the logged in user, for the document. If there are already
-#     annotations/labels, use a patch request to update with the new labels. If there are not, use a post request to
-#     create a new entry.
-#     :param doc_id:
-#     :return:
-#     """
-#     if not request.is_json:
-#         raise exceptions.BadRequest()
-#     check_document_by_id(doc_id)
-#     document = service.get_item_by_id("documents", doc_id, {
-#         "projection": json.dumps({
-#             "collection_id": 1,
-#             "metadata": 1
-#         })
-#     })
-#     
-#     labels = request.get_json()
-#     user_id = auth.get_logged_in_user()["id"]
-#     new_annotation = {
-#         "creator_id": user_id,
-#         "collection_id": document["collection_id"],
-#         "document_id": doc_id,
-#         "annotation": labels
-#     }
-#     
-#     current_annotation = get_current_annotation(doc_id, user_id)
-#     if current_annotation != None:
-#         if current_annotation["annotation"] == labels:
-#             return jsonify(True)
-#         headers = {"If-Match": current_annotation["_etag"]}
-#         
-#         # add all the other non-doc labels
-#         for annotation in current_annotation["annotation"]:
-#             if not is_doc_annotation(annotation):
-#                 new_annotation["annotation"].append(annotation)
-#         
-#         resp = service.patch(["annotations", current_annotation["_id"]], json = new_annotation, headers = headers)
-#     else:
-#         resp = service.post("annotations", json = new_annotation)
-# 
-#     if resp.ok:
-#         new_annotation = resp.json()["_id"]
-#         log.access_flask_annotate_document(document, new_annotation)
-#         
-#     return jsonify(resp.ok)
-
-
 def set_document_to_annotated_by_user(doc_id, user_id):
     """
     Modify the parameter in the database for the document signifying that the given user has annotated the given
@@ -337,6 +227,7 @@ def save_annotations(doc_id):
 
     body = request.get_json()
     (doc_labels, ner_annotations) = _make_annotations(body)
+    update_iaa = json.loads(request.args.get("update_iaa", "true"))
 
     collection = service.get_item_by_id("collections", document["collection_id"], params=service.params({
         "projection": {
@@ -353,7 +244,15 @@ def save_annotations(doc_id):
         "annotation": doc_labels + ner_annotations
     }
 
-    return jsonify(_add_or_update_annotation(new_annotation))
+    resp = _add_or_update_annotation(new_annotation)
+    
+    if update_iaa:
+        logger.info("Updating IAA report for " + document["collection_id"])
+        success = pineiaa.update_iaa_report_by_collection_id(document["collection_id"])
+        if not success:
+            logger.error("Unable to update IAA report but will not return an error")
+    
+    return jsonify(resp)
 
 @bp.route("/mine/by_collection_id/<collection_id>", methods = ["POST", "PUT"])
 def save_collection_annotations(collection_id: str):
@@ -377,6 +276,7 @@ def save_collection_annotations(collection_id: str):
         raise exceptions.BadRequest()
     
     skip_document_updates = json.loads(request.args.get("skip_document_updates", "false"))
+    update_iaa = json.loads(request.args.get("update_iaa", "true"))
     
     # make sure all the documents actually belong to that collection
     collection_ids = list(documents.get_collection_ids_for(doc_annotations.keys()))
@@ -403,6 +303,10 @@ def save_collection_annotations(collection_id: str):
                 set_document_to_annotated_by_user(new_annotations[i]["document_id"],
                                                   new_annotations[i]["creator_id"])
         log.access_flask_annotate_documents(new_annotations)
+        if update_iaa:
+            success = pineiaa.update_iaa_report_by_collection_id(collection_id)
+            if not success:
+                logger.error("Unable to update IAA report but will not return an error")
         return jsonify([annotation["_id"] for annotation in new_annotations])
 
     # fall back on individual mode
@@ -411,6 +315,10 @@ def save_collection_annotations(collection_id: str):
         added_id = _add_or_update_annotation(annotation["document_id"], user_id, annotation)
         if added_id:
             added_ids.append(added_id)
+    if update_iaa:
+        success = pineiaa.update_iaa_report_by_collection_id(collection_id)
+        if not success:
+            logger.error("Unable to update IAA report but will not return an error")
     return jsonify(added_ids)
 
 def init_app(app):

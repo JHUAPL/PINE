@@ -27,4 +27,7 @@ Classes
    .. method:: get_login_form_button_text(self)
 
 
+   .. method:: make_user(self, decoded: dict) -> pine.backend.auth.oauth.OAuthUser
+
+
 

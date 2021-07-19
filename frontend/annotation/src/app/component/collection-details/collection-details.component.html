@@ -224,8 +224,8 @@
                             <th mat-header-cell *matHeaderCellDef> Annotation <br>Agreement </th>
                             <td mat-cell *matCellDef="let document">
                                 <span
-                                    *ngIf="document.ann_agreement != 'null'">{{document.ann_agreement | percent:'1.2-2'}}</span>
-                                <span *ngIf="document.ann_agreement == 'null'">N/A</span>
+                                    *ngIf="document.ann_agreement != null && document.ann_agreement != 'null'">{{document.ann_agreement | percent:'1.2-2'}}</span>
+                                <span *ngIf="!document.ann_agreement == null || document.ann_agreement == 'null'">N/A</span>
                             </td>
                         </ng-container>
 
