@@ -151,6 +151,23 @@ Functions
       :rtype: bool
 
 
+   .. method:: authorize_vegas(self, json_token: dict) -> bool
+
+      Logs in using a VEGAS token, and returns whether it was successful.
+
+      The token should be in the same format as is returned by VEGAS's oauth2/accesstoken
+      endpoint, e.g. containing fields "access_token", "token_type", "expires_in", etc.
+
+      :param json_token: the token returned by VEGAS
+      :type json_token: dict
+
+      :raises exceptions.PineClientAuthException: if auth module is not vegas or authorization was not successful
+      :raises exceptions.PineClientHttpException: if the HTTP request returns an error
+
+      :returns: whether the authorization was successful
+      :rtype: bool
+
+
    .. method:: logout(self)
 
       Logs out the current user.
@@ -271,7 +288,25 @@ Functions
       :rtype: list(str)
 
 
-   .. method:: annotate_document(self, document_id: str, doc_annotations: List[str], ner_annotations: List[Union[dict, list, tuple]]) -> str
+   .. method:: delete_document(self, document_id: str) -> dict
+
+      Deletes the document and associated data with the given ID.
+
+      :param document_id: str: ID of the document to delete
+      :returns: information about deleted objects
+      :rtype: dict
+
+
+   .. method:: delete_documents(self, document_ids: List[str]) -> dict
+
+      Deletes the documents and associated data with the given IDs.
+
+      :param document_ids: list[str]: IDs of the documents to delete
+      :returns: information about deleted objects
+      :rtype: dict
+
+
+   .. method:: annotate_document(self, document_id: str, doc_annotations: List[str], ner_annotations: List[Union[dict, list, tuple]], update_iaa: bool = True) -> str
 
       Annotates the given document with the given values.
 
@@ -281,6 +316,8 @@ Functions
       :type doc_annotations: list(str)
       :param ner_annotations: NER annotations, where each annotation is either a list or a dict
       :type ner_annotations: list
+      :param update_iaa: whether to also update IAA reports related to this document, defaults to `True`
+      :type: update_iaa: bool
 
       :raises exceptions.PineClientValueException: if any of the given annotations are not valid, see :py:func:`.models.is_valid_annotation`
       :raises exceptions.PineClientAuthException: if not logged in
@@ -290,7 +327,7 @@ Functions
       :rtype: str
 
 
-   .. method:: annotate_collection_documents(self, collection_id: str, document_annotations: dict, skip_document_updates=False) -> List[str]
+   .. method:: annotate_collection_documents(self, collection_id: str, document_annotations: dict, skip_document_updates=False, update_iaa=True) -> List[str]
 
       Annotates documents in a collection.
 
@@ -302,6 +339,8 @@ Functions
                                     This should only be ``True`` if you properly set the
                                     "has_annotated" map when you created the document.
       :type skip_document_updates: bool
+      :param update_iaa: whether to also update IAA report for the collection, defaults to ``True``
+      :type update_iaa: bool
 
       :raises exceptions.PineClientValueException: if any of the given annotations are not valid, see :py:func:`.models.is_valid_doc_annotations`
       :raises exceptions.PineClientAuthException: if not logged in
@@ -323,6 +362,17 @@ Functions
 
       :returns: user's collections
       :rtype: list(dict)
+
+
+   .. method:: get_collection_iaa_report(self, collection_id: str) -> dict
+
+      Returns IAA (inter-annotation agreement) report for the given collection.
+
+      :param collection_id: the ID of the collection for which to get report
+      :type: collection_id: str
+
+      :returns: report data
+      :rtype: dict
 
 
    .. method:: download_collection_data(self, collection_id: str, include_collection_metadata: bool = True, include_document_metadata: bool = True, include_document_text: bool = True, include_annotations: bool = True, include_annotation_latest_version_only: bool = True)

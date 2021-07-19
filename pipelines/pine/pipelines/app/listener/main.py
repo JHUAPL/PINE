@@ -21,6 +21,7 @@ def backoff_hdlr(details):
     print ("Backing off {wait:0.1f} seconds afters {tries} tries "
            "calling function {target} with args {args} and kwargs "
            "{kwargs}".format(**details))
+    logging.exception("Exception calling run function")
     sys.stdout.flush()
 
 def setup_logging():
@@ -28,6 +29,9 @@ def setup_logging():
         with open(os.environ["PINE_LOGGING_CONFIG_FILE"], "r") as f:
             logging.config.dictConfig(json.load(f))
         logging.getLogger(__name__).info("Set logging configuration from file {}".format(os.environ["PINE_LOGGING_CONFIG_FILE"]))
+    else:
+        logging.basicConfig()
+        logging.warn("Using basic configuration; set {} environment variable to use file.".format("PINE_LOGGING_CONFIG_FILE"))
 
 # ----------------------------------------------------------------------
 # Setup Redis Listeners

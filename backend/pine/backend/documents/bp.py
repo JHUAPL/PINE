@@ -18,17 +18,17 @@ def _document_user_can_projection():
         "collection_id": 1
     }})
 
-def get_collection_ids_for(document_ids) -> set:
+def get_collection_ids_for(document_ids) -> typing.List[str]:
     if isinstance(document_ids, str):
         document_ids = [document_ids]
     # ideally we would use some "unique" or "distinct" feature here but eve doesn't seem to have it
-    return set(item["collection_id"] for item in service.get_all_items("documents", params=service.params({
+    return list(set(item["collection_id"] for item in service.get_all_items("documents", params=service.params({
         "where": {
             "_id": {"$in": list(document_ids)}
         }, "projection": {
             "collection_id": 1
         }
-    }))) 
+    }))))
 
 def get_user_permissions(document: dict) -> models.CollectionUserPermissions:
     return collections.get_user_permissions_by_id(document["collection_id"])
@@ -179,22 +179,13 @@ def _check_documents(documents) -> dict:
         collections_by_id[collection_id] = collection
     return collections_by_id
 
-@bp.route("/", strict_slashes = False, methods = ["POST"])
-@auth.login_required
-def add_document():
-    docs = request.get_json()
-    if not docs or (not isinstance(docs, dict) and not isinstance(docs, list) and not isinstance(docs, tuple)):
-        raise exceptions.BadRequest()
-    collections_by_id = _check_documents(docs if isinstance(docs, list) else [docs])
-
-    # Get overlap information stored in related classifier db object, and assign overlap for added document
+def _get_collection_classifiers(collection_ids):
     collection_classifiers = {}
-    for doc in (docs if isinstance(docs, list) else [docs]):
-        # get classifier overlaps
-        if doc["collection_id"] not in collection_classifiers:
+    for collection_id in collection_ids:
+        if collection_id not in collection_classifiers:
             params = service.params({
                 "where": {
-                    "collection_id": doc["collection_id"]
+                    "collection_id": collection_id
                 }, "projection": {
                     "overlap": 1
                 }
@@ -205,38 +196,14 @@ def add_document():
             classifier_obj = resp.json()["_items"]
             if len(classifier_obj) != 1:
                 raise exceptions.BadRequest()
-            collection_classifiers[doc["collection_id"]] = classifier_obj[0]
+            collection_classifiers[collection_id] = classifier_obj[0]
+    return collection_classifiers
 
-        classifier = collection_classifiers[doc["collection_id"]]
-        overlap = classifier["overlap"]
-        doc["overlap"] = 1 if random.random() < overlap else 0
-
-        # initialize has_annotated dict
-        if "has_annotated" not in doc:
-            doc["has_annotated"] = {user_id: False for user_id in collections_by_id[doc["collection_id"]]["annotators"]}
-
-    # Add document(s) to database
-    doc_resp = service.post("documents", json=docs)
-    if doc_resp.ok:
-        if isinstance(docs, dict):
-            log.access_flask_add_document(doc_resp.json())
-        else:
-            log.access_flask_add_documents(doc_resp.json()["_items"])
-    else:
-        abort(doc_resp.status_code)
-
-    if isinstance(docs, dict):
-        docs = [docs]
-        doc_ids = [doc_resp.json()["_id"]]
-    else:
-        doc_ids = [d["_id"] for d in doc_resp.json()["_items"]]
-    
-    # Update next instances for added documents
+def _get_classifier_next_instances(collection_classifiers: dict):
+    # documents objects must have _id and collection_id
     classifier_next_instances = {}
-    for (i, document) in enumerate(docs):
-        doc_id = doc_ids[i]
-
-        classifier = collection_classifiers[document["collection_id"]]
+    for collection_id in collection_classifiers:
+        classifier = collection_classifiers[collection_id]
         classifier_id = classifier["_id"]
         
         if classifier_id not in classifier_next_instances:
@@ -256,7 +223,53 @@ def add_document():
             if len(next_instances_obj) != 1:
                 raise exceptions.BadRequest()
             classifier_next_instances[classifier_id] = next_instances_obj[0]
+    return classifier_next_instances
 
+@bp.route("/", strict_slashes = False, methods = ["POST"])
+@auth.login_required
+def add_document():
+    docs = request.get_json()
+    if not docs or (not isinstance(docs, dict) and not isinstance(docs, list) and not isinstance(docs, tuple)):
+        raise exceptions.BadRequest()
+    if not isinstance(docs, list):
+        docs = [docs]
+    for doc in docs:
+        if not doc: # check for empty/null documents
+            raise exceptions.BadRequest()
+    collections_by_id = _check_documents(docs)
+
+    # Get overlap information stored in related classifier db object, and assign overlap for added document
+    collection_classifiers = _get_collection_classifiers([doc["collection_id"] for doc in docs])
+    for doc in (docs if isinstance(docs, list) else [docs]):
+        # get classifier overlaps
+        classifier = collection_classifiers[doc["collection_id"]]
+        overlap = classifier["overlap"]
+        doc["overlap"] = 1 if random.random() < overlap else 0
+
+        # initialize has_annotated dict
+        if "has_annotated" not in doc:
+            doc["has_annotated"] = {user_id: False for user_id in collections_by_id[doc["collection_id"]]["annotators"]}
+
+    # Add document(s) to database
+    doc_resp = service.post("documents", json=docs)
+    if not doc_resp.ok:
+        abort(doc_resp.status_code)
+    
+    doc_resp_json = doc_resp.json()
+    if "_items" in doc_resp_json:
+        log.access_flask_add_documents(doc_resp_json["_items"])
+        doc_ids = [d["_id"] for d in doc_resp_json["_items"]]
+    else:
+        log.access_flask_add_document(doc_resp_json)
+        doc_ids = [doc_resp_json["_id"]]
+
+    # Update next instances for added documents
+    classifier_next_instances = _get_classifier_next_instances(collection_classifiers)
+    for (i, document) in enumerate(docs):
+        doc_id = doc_ids[i]
+
+        classifier = collection_classifiers[document["collection_id"]]
+        classifier_id = classifier["_id"]
         next_instances = classifier_next_instances[classifier_id]
 
         if document["overlap"] == 1:
@@ -283,6 +296,7 @@ def endpoint_get_user_permissions(doc_id):
     return jsonify(get_user_permissions_by_id(doc_id).to_dict())
 
 @bp.route("/metadata/<doc_id>", methods = ["PUT"])
+@auth.login_required
 def update_metadata(doc_id):
     metadata = request.get_json()
     if not metadata:
@@ -308,6 +322,119 @@ def update_metadata(doc_id):
     service.remove_nonupdatable_fields(document)
     return service.convert_response(
         service.patch(["documents", doc_id], json = document, headers = headers))
+
+def _delete_documents_by_id(doc_ids: typing.List[str]) -> bool:
+    for perm in get_user_permissions_by_ids(doc_ids):
+        if not perm.delete_documents:
+            raise exceptions.Unauthorized()
+    
+    documents = []
+    for doc_id in doc_ids:
+        doc_resp = service.get(["documents", doc_id], params=service.params({
+            "projection": {
+                "_id": 1,
+                "collection_id": 1
+            }
+        }))
+        if not doc_resp.ok:
+            abort(doc_resp.status_code)
+        documents.append(doc_resp.json())
+
+    changed_objects = {
+        "next_instances": {
+            "updated": []
+        },
+        "annotations": {
+            "deleted": []
+        },
+        "documents": {
+            "deleted": []
+        }
+    }
+    
+    # iaa_reports will get updated on the next annotation call
+    # metrics will get updated on the next train call
+    
+    # next_instances
+    collection_classifiers = _get_collection_classifiers([doc["collection_id"] for doc in documents])
+    classifier_next_instances = _get_classifier_next_instances(collection_classifiers)
+    for classifier_id in classifier_next_instances:
+        next_instances = classifier_next_instances[classifier_id]
+        
+        original_overlap_count = sum([len([next_instances["overlap_document_ids"][ann] for ann in next_instances["overlap_document_ids"]])])
+        for annotator in next_instances["overlap_document_ids"]:
+            next_instances["overlap_document_ids"][annotator] = [doc_id for doc_id in next_instances["overlap_document_ids"][annotator] if doc_id not in doc_ids]
+        modified_overlap_count = sum([len([next_instances["overlap_document_ids"][ann] for ann in next_instances["overlap_document_ids"]])])
+        
+        original_document_count = len(next_instances["document_ids"])
+        next_instances["document_ids"] = [doc_id for doc_id in next_instances["document_ids"] if doc_id not in doc_ids]
+        modified_document_count = len(next_instances["document_ids"])
+    
+        if original_overlap_count != modified_overlap_count or original_document_count != modified_document_count:
+            next_instance_id = next_instances["_id"]
+            headers = {"If-Match": next_instances["_etag"]}
+            service.remove_nonupdatable_fields(next_instances)
+            resp = service.patch(["next_instances", next_instance_id], json=next_instances, headers=headers)
+            if resp.ok:
+                changed_objects["next_instances"]["updated"].append(next_instance_id)
+            else:
+                raise exceptions.InternalServerError()
+    
+    # annotations
+    for doc_id in doc_ids:
+        annotations = service.get_all_items("annotations", params = service.params({
+            "where": {
+                "document_id": doc_id
+            }, "projection": {
+                "_id": 1
+            }
+        }))
+        for annotation in annotations:
+            annotation_id = annotation["_id"]
+            headers = {"If-Match": annotation["_etag"]}
+            service.remove_nonupdatable_fields(annotation)
+            resp = service.delete(["annotations", annotation_id], headers=headers)
+            if resp.ok:
+                changed_objects["annotations"]["deleted"].append(annotation_id)
+            else:
+                raise exceptions.InternalServerError()
+    
+    # delete actual documents
+    for doc in documents:
+        doc_id = doc["_id"]
+        headers = {"If-Match": doc["_etag"]}
+        service.remove_nonupdatable_fields(doc)
+        resp = service.delete(["documents", doc_id], headers=headers)
+        if resp.ok:
+            changed_objects["documents"]["deleted"].append(doc_id)
+        else:
+            raise exceptions.InternalServerError()
+    
+    return (True, changed_objects)
+
+# note: this will not retrain any models that had used this document
+# will not reduce classifiers.annotated_document_count
+@bp.route("/by_id/<doc_id>", methods = ["DELETE"])
+@auth.login_required
+def delete_document(doc_id: str):
+    (success, changed_objs) = _delete_documents_by_id([doc_id])
+    return jsonify({
+        "success": success,
+        "changed_objs": changed_objs
+    })
+
+# note: this will not retrain any models that had used these documents
+@bp.route("/by_ids", methods = ["DELETE"])
+@auth.login_required
+def delete_documents():
+    doc_ids = request.args.get("ids", "").split(",")
+    if not doc_ids:
+        raise exceptions.BadRequest()
+    (success, changed_objs) = _delete_documents_by_id(doc_ids)
+    return jsonify({
+        "success": success,
+        "changed_objs": changed_objs
+    })
 
 def init_app(app):
     app.register_blueprint(bp)

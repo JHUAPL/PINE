@@ -86,6 +86,7 @@ export interface CollectionUserPermissions {
     modify_document_metadata: boolean;
     download_data: boolean;
     archive: boolean;
+    delete_documents: boolean;
 }
 
 export function newPermissions(): CollectionUserPermissions {
@@ -98,7 +99,8 @@ export function newPermissions(): CollectionUserPermissions {
         modify_labels: false,
         modify_document_metadata: false,
         download_data: false,
-        archive: false
+        archive: false,
+        delete_documents: false
     };
 }
 
@@ -111,7 +113,8 @@ export const PERMISSION_TITLES = {
     modify_labels: "Modify Collection Labels",
     modify_document_metadata: "Modify Document Metadata",
     download_data: "Download Collection Data",
-    archive: "Archive/Unarchive Collection"
+    archive: "Archive/Unarchive Collection",
+    delete_documents: "Delete Documents"
 };
 
 export interface DownloadCollectionData {

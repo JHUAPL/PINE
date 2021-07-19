@@ -135,6 +135,7 @@ class TestDataImporter(object):
                 if doc_annotations and doc_annotations[i]:
                     doc["has_annotated"][doc_annotations[i]["creator_id"]] = True
             skip_document_updates = True
+            update_iaa = True
 
             doc_ids = client.add_documents(docs)
             self._update_ids(docs, doc_ids)
@@ -154,7 +155,10 @@ class TestDataImporter(object):
                 annotation_ids = []
                 for user_id in user_annotations:
                     if user_annotations[user_id]:
-                        added_annotation_ids = client.annotate_collection_documents(collection_id, user_annotations[user_id],skip_document_updates=skip_document_updates)
+                        added_annotation_ids = client.annotate_collection_documents(
+                            collection_id, user_annotations[user_id],
+                            skip_document_updates=skip_document_updates,
+                            update_iaa=update_iaa)
                         self.logger.info("\tAdded {} annotations created by {}".format(len(added_annotation_ids), user_id))
                         annotation_ids += added_annotation_ids
 
@@ -260,7 +264,7 @@ def load_nlp_annotations(csv_file, num_docs, sentences_per_doc = 10):
                    doc_text = ''
                    anns.append(doc_anns)
                    doc_anns = []
-                   if len(docs) > num_docs-2:
+                   if len(docs) >= num_docs:
                        break
             token = line[1]
             # add token to text and record start/end char
@@ -282,9 +286,10 @@ def load_nlp_annotations(csv_file, num_docs, sentences_per_doc = 10):
                     del doc_anns[-2]
             line_count += 1
             # add remaining sentence
-        docs.append(doc_text)
+        if doc_text:
+            docs.append(doc_text)
+            anns.append(doc_anns)
         doc_text = ''
-        anns.append(doc_anns)
         doc_anns = []
     return docs, anns, stats
 

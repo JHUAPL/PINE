@@ -192,6 +192,23 @@ class BaseClient(object):
         """
         return self._req("POST", path, *additional_paths, **kwargs)
 
+    def delete(self, path: str, *additional_paths: typing.List[str], **kwargs) -> requests.Response:
+        r"""Makes a :py:mod:`requests` ``DELETE`` call, checks for errors, and returns the response.
+        
+        :param path: relative path, e.g. ``"users"``
+        :type path: str
+        :param \*additional_paths: any additional path components
+        :type \*additional_paths: list(str), optional
+        :param \**kwargs: any additional kwargs to send to :py:mod:`requests`
+        :type \**kwargs: dict
+        
+        :raises exceptions.PineClientHttpException: if the HTTP request returns an error
+        
+        :return: the :py:mod:`requests` :py:class:`Response <requests.Response>` object
+        :rtype: requests.Response
+        """
+        return self._req("DELETE", path, *additional_paths, **kwargs)
+
 
 class EveClient(BaseClient):
     """A client to access Eve and, optionally, its underlying MongoDB instance.
@@ -516,6 +533,37 @@ class PineClient(BaseClient):
             else:
                 raise e
 
+    def authorize_vegas(self, json_token: dict) -> bool:
+        """Logs in using a VEGAS token, and returns whether it was successful.
+        
+        The token should be in the same format as is returned by VEGAS's oauth2/accesstoken
+        endpoint, e.g. containing fields "access_token", "token_type", "expires_in", etc.
+        
+        :param json_token: the token returned by VEGAS
+        :type json_token: dict
+        
+        :raises exceptions.PineClientAuthException: if auth module is not vegas or authorization was not successful
+        :raises exceptions.PineClientHttpException: if the HTTP request returns an error
+        
+        :returns: whether the authorization was successful
+        :rtype: bool
+        """
+        if self.get_auth_module() != "vegas":
+            raise exceptions.PineClientAuthException("Auth module is not vegas.")
+        if self.session:
+            self.logout()
+        self.session = requests.Session()
+        try:
+            self.post(["auth", "authorize"], json=json_token)
+            return True
+        except exceptions.PineClientHttpException as e:
+            self.session.close()
+            self.session = None
+            if e.resp.status_code == 401:
+                raise exceptions.PineClientAuthException("Authorize failed", cause=e)
+            else:
+                raise e
+
     def logout(self):
         """Logs out the current user.
         
@@ -683,7 +731,29 @@ class PineClient(BaseClient):
                 raise exceptions.PineClientValueException(document, "documents")
         return [doc["_id"] for doc in self.post("documents", json=documents).json()[models.ITEMS_FIELD]]
 
-    def annotate_document(self, document_id: str, doc_annotations: typing.List[str], ner_annotations: typing.List[typing.Union[dict, list, tuple]]) -> str:
+    def delete_document(self, document_id: str) -> dict:
+        """Deletes the document and associated data with the given ID.
+        
+        :param document_id: str: ID of the document to delete
+        :returns: information about deleted objects
+        :rtype: dict
+        """
+        self._check_login()
+        return self.delete(["documents", "by_id", document_id]).json()
+
+    def delete_documents(self, document_ids: typing.List[str]) -> dict:
+        """Deletes the documents and associated data with the given IDs.
+        
+        :param document_ids: list[str]: IDs of the documents to delete
+        :returns: information about deleted objects
+        :rtype: dict
+        """
+        self._check_login()
+        return self.delete(["documents", "by_ids"], params={"ids": ",".join(document_ids)}).json()
+
+    def annotate_document(self, document_id: str, doc_annotations: typing.List[str],
+                          ner_annotations: typing.List[typing.Union[dict, list, tuple]],
+                          update_iaa: bool = True) -> str:
         """Annotates the given document with the given values.
         
         :param document_id: the document ID to annotate
@@ -692,6 +762,8 @@ class PineClient(BaseClient):
         :type doc_annotations: list(str)
         :param ner_annotations: NER annotations, where each annotation is either a list or a dict
         :type ner_annotations: list
+        :param update_iaa: whether to also update IAA reports related to this document, defaults to `True`
+        :type: update_iaa: bool
         
         :raises exceptions.PineClientValueException: if any of the given annotations are not valid, see :py:func:`.models.is_valid_annotation`
         :raises exceptions.PineClientAuthException: if not logged in
@@ -705,14 +777,17 @@ class PineClient(BaseClient):
             raise exceptions.PineClientValueException(document_id, "str")
         body = {
             "doc": doc_annotations,
-            "ner": ner_annotations
+            "ner": ner_annotations,
+            "update_iaa": update_iaa
         }
         if not models.is_valid_annotation(body, self.logger.warn):
             raise exceptions.PineClientValueException(body, "annotation")
 
         return self.post(["annotations", "mine", "by_document_id", document_id], json=body).json()
 
-    def annotate_collection_documents(self, collection_id: str, document_annotations: dict, skip_document_updates=False) -> typing.List[str]:
+    def annotate_collection_documents(self, collection_id: str, document_annotations: dict,
+                                      skip_document_updates=False,
+                                      update_iaa=True) -> typing.List[str]:
         """Annotates documents in a collection.
         
         :param collection_id: the ID of the collection containing the documents to annotate
@@ -723,6 +798,8 @@ class PineClient(BaseClient):
                                       This should only be ``True`` if you properly set the
                                       "has_annotated" map when you created the document.
         :type skip_document_updates: bool
+        :param update_iaa: whether to also update IAA report for the collection, defaults to ``True``
+        :type update_iaa: bool
         
         :raises exceptions.PineClientValueException: if any of the given annotations are not valid, see :py:func:`.models.is_valid_doc_annotations`
         :raises exceptions.PineClientAuthException: if not logged in
@@ -736,7 +813,10 @@ class PineClient(BaseClient):
             raise exceptions.PineClientValueException(document_annotations, "document_annotations")
         return self.post(["annotations", "mine", "by_collection_id", collection_id],
                          json=document_annotations,
-                         params={"skip_document_updates":json.dumps(skip_document_updates)}).json()
+                         params={
+                             "skip_document_updates": json.dumps(skip_document_updates),
+                             "update_iaa": json.dumps(update_iaa)
+                         }).json()
 
     def list_collections(self, include_archived: bool = False) -> typing.List[dict]:
         """Returns a list of user's collections.
@@ -757,6 +837,20 @@ class PineClient(BaseClient):
         for col in cols:
             models.remove_eve_fields(col, remove_timestamps=False)
         return cols
+
+    def get_collection_iaa_report(self, collection_id: str) -> dict:
+        """Returns IAA (inter-annotation agreement) report for the given collection.
+        
+        :param collection_id: the ID of the collection for which to get report
+        :type: collection_id: str
+        
+        :returns: report data
+        :rtype: dict
+        """
+        self._check_login()
+        if not collection_id:
+            raise exceptions.PineClientValueException(collection_id, "str")
+        return self.get(["iaa_reports", "by_collection_id", collection_id]).json()
 
     def download_collection_data(self, collection_id: str, include_collection_metadata: bool = True,
                                  include_document_metadata: bool = True, include_document_text: bool = True,

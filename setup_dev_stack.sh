@@ -21,7 +21,7 @@ pushd frontend/annotation &> /dev/null
 npm install
 popd &> /dev/null
 
-pushd pipelines/JavaNER/pmap_api &> /dev/null
+pushd pipelines &> /dev/null
 sudo apt-get install -y default-jdk
 pipenv install --dev
 popd &> /dev/null

@@ -271,6 +271,31 @@ are fully aware of the security consequences</p></li>
 </dd></dl>
 
 <dl class="py method">
+<dt id="pine.client.PineClient.authorize_vegas">
+<code class="sig-name descname"><span class="pre">authorize_vegas</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">json_token</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><span class="pre">dict</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><span class="pre">bool</span></a><a class="headerlink" href="#pine.client.PineClient.authorize_vegas" title="Permalink to this definition">¶</a></dt>
+<dd><p>Logs in using a VEGAS token, and returns whether it was successful.</p>
+<p>The token should be in the same format as is returned by VEGAS’s oauth2/accesstoken
+endpoint, e.g. containing fields “access_token”, “token_type”, “expires_in”, etc.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>json_token</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><em>dict</em></a>) – the token returned by VEGAS</p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><a class="reference internal" href="exceptions/index.html#pine.client.exceptions.PineClientAuthException" title="pine.client.exceptions.PineClientAuthException"><strong>exceptions.PineClientAuthException</strong></a> – if auth module is not vegas or authorization was not successful</p></li>
+<li><p><a class="reference internal" href="exceptions/index.html#pine.client.exceptions.PineClientHttpException" title="pine.client.exceptions.PineClientHttpException"><strong>exceptions.PineClientHttpException</strong></a> – if the HTTP request returns an error</p></li>
+</ul>
+</dd>
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>whether the authorization was successful</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)">bool</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
 <dt id="pine.client.PineClient.logout">
 <code class="sig-name descname"><span class="pre">logout</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.client.PineClient.logout" title="Permalink to this definition">¶</a></dt>
 <dd><p>Logs out the current user.</p>
@@ -444,8 +469,42 @@ kwargs in order to make a valid document.</p>
 </dd></dl>
 
 <dl class="py method">
+<dt id="pine.client.PineClient.delete_document">
+<code class="sig-name descname"><span class="pre">delete_document</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">document_id</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><span class="pre">dict</span></a><a class="headerlink" href="#pine.client.PineClient.delete_document" title="Permalink to this definition">¶</a></dt>
+<dd><p>Deletes the document and associated data with the given ID.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>document_id</strong> – str: ID of the document to delete</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>information about deleted objects</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)">dict</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pine.client.PineClient.delete_documents">
+<code class="sig-name descname"><span class="pre">delete_documents</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">document_ids</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><span class="pre">dict</span></a><a class="headerlink" href="#pine.client.PineClient.delete_documents" title="Permalink to this definition">¶</a></dt>
+<dd><p>Deletes the documents and associated data with the given IDs.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>document_ids</strong> – list[str]: IDs of the documents to delete</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>information about deleted objects</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)">dict</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
 <dt id="pine.client.PineClient.annotate_document">
-<code class="sig-name descname"><span class="pre">annotate_document</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">document_id</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">doc_annotations</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ner_annotations</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><span class="pre">dict</span></a><span class="p"><span class="pre">,</span> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)"><span class="pre">list</span></a><span class="p"><span class="pre">,</span> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.9)"><span class="pre">tuple</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a><a class="headerlink" href="#pine.client.PineClient.annotate_document" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">annotate_document</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">document_id</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">doc_annotations</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ner_annotations</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><span class="pre">dict</span></a><span class="p"><span class="pre">,</span> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)"><span class="pre">list</span></a><span class="p"><span class="pre">,</span> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.9)"><span class="pre">tuple</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">update_iaa</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><span class="pre">bool</span></a></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a><a class="headerlink" href="#pine.client.PineClient.annotate_document" title="Permalink to this definition">¶</a></dt>
 <dd><p>Annotates the given document with the given values.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -453,27 +512,31 @@ kwargs in order to make a valid document.</p>
 <li><p><strong>document_id</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – the document ID to annotate</p></li>
 <li><p><strong>doc_annotations</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)"><em>list</em></a><em>(</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a><em>)</em>) – document annotations/labels</p></li>
 <li><p><strong>ner_annotations</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)"><em>list</em></a>) – NER annotations, where each annotation is either a list or a dict</p></li>
+<li><p><strong>update_iaa</strong> – whether to also update IAA reports related to this document, defaults to <cite>True</cite></p></li>
 </ul>
 </dd>
-<dt class="field-even">Raises</dt>
-<dd class="field-even"><ul class="simple">
+<dt class="field-even">Type</dt>
+<dd class="field-even"><p>update_iaa: bool</p>
+</dd>
+<dt class="field-odd">Raises</dt>
+<dd class="field-odd"><ul class="simple">
 <li><p><a class="reference internal" href="exceptions/index.html#pine.client.exceptions.PineClientValueException" title="pine.client.exceptions.PineClientValueException"><strong>exceptions.PineClientValueException</strong></a> – if any of the given annotations are not valid, see <a class="reference internal" href="models/index.html#pine.client.models.is_valid_annotation" title="pine.client.models.is_valid_annotation"><code class="xref py py-func docutils literal notranslate"><span class="pre">models.is_valid_annotation()</span></code></a></p></li>
 <li><p><a class="reference internal" href="exceptions/index.html#pine.client.exceptions.PineClientAuthException" title="pine.client.exceptions.PineClientAuthException"><strong>exceptions.PineClientAuthException</strong></a> – if not logged in</p></li>
 <li><p><a class="reference internal" href="exceptions/index.html#pine.client.exceptions.PineClientHttpException" title="pine.client.exceptions.PineClientHttpException"><strong>exceptions.PineClientHttpException</strong></a> – if the HTTP request returns an error</p></li>
 </ul>
 </dd>
-<dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p>the annotation ID</p>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>the annotation ID</p>
 </dd>
-<dt class="field-even">Return type</dt>
-<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a></p>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a></p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py method">
 <dt id="pine.client.PineClient.annotate_collection_documents">
-<code class="sig-name descname"><span class="pre">annotate_collection_documents</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">collection_id</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">document_annotations</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><span class="pre">dict</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">skip_document_updates</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#pine.client.PineClient.annotate_collection_documents" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">annotate_collection_documents</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">collection_id</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">document_annotations</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><span class="pre">dict</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">skip_document_updates</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">update_iaa</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#pine.client.PineClient.annotate_collection_documents" title="Permalink to this definition">¶</a></dt>
 <dd><p>Annotates documents in a collection.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -483,6 +546,7 @@ kwargs in order to make a valid document.</p>
 <li><p><strong>skip_document_updates</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><em>bool</em></a>) – whether to skip updating the document “has_annotated” map, defaults to <code class="docutils literal notranslate"><span class="pre">False</span></code>.
 This should only be <code class="docutils literal notranslate"><span class="pre">True</span></code> if you properly set the
 “has_annotated” map when you created the document.</p></li>
+<li><p><strong>update_iaa</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><em>bool</em></a>) – whether to also update IAA report for the collection, defaults to <code class="docutils literal notranslate"><span class="pre">True</span></code></p></li>
 </ul>
 </dd>
 <dt class="field-even">Raises</dt>
@@ -520,6 +584,26 @@ This should only be <code class="docutils literal notranslate"><span class="pre"
 </dd>
 <dt class="field-even">Return type</dt>
 <dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)">list</a>(<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)">dict</a>)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pine.client.PineClient.get_collection_iaa_report">
+<code class="sig-name descname"><span class="pre">get_collection_iaa_report</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">collection_id</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><span class="pre">dict</span></a><a class="headerlink" href="#pine.client.PineClient.get_collection_iaa_report" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns IAA (inter-annotation agreement) report for the given collection.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>collection_id</strong> – the ID of the collection for which to get report</p>
+</dd>
+<dt class="field-even">Type</dt>
+<dd class="field-even"><p>collection_id: str</p>
+</dd>
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>report data</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)">dict</a></p>
 </dd>
 </dl>
 </dd></dl>
@@ -971,6 +1055,7 @@ defaults to <code class="docutils literal notranslate"><span class="pre">None</s
 <li><a class="reference internal" href="#pine.client.PineClient._check_login">_check_login</a></li>
 <li><a class="reference internal" href="#pine.client.PineClient.get_auth_module">get_auth_module</a></li>
 <li><a class="reference internal" href="#pine.client.PineClient.login_eve">login_eve</a></li>
+<li><a class="reference internal" href="#pine.client.PineClient.authorize_vegas">authorize_vegas</a></li>
 <li><a class="reference internal" href="#pine.client.PineClient.logout">logout</a></li>
 <li><a class="reference internal" href="#pine.client.PineClient.get_pipelines">get_pipelines</a></li>
 <li><a class="reference internal" href="#pine.client.PineClient.collection_builder">collection_builder</a></li>
@@ -979,9 +1064,12 @@ defaults to <code class="docutils literal notranslate"><span class="pre">None</s
 <li><a class="reference internal" href="#pine.client.PineClient.get_collection_documents">get_collection_documents</a></li>
 <li><a class="reference internal" href="#pine.client.PineClient.add_document">add_document</a></li>
 <li><a class="reference internal" href="#pine.client.PineClient.add_documents">add_documents</a></li>
+<li><a class="reference internal" href="#pine.client.PineClient.delete_document">delete_document</a></li>
+<li><a class="reference internal" href="#pine.client.PineClient.delete_documents">delete_documents</a></li>
 <li><a class="reference internal" href="#pine.client.PineClient.annotate_document">annotate_document</a></li>
 <li><a class="reference internal" href="#pine.client.PineClient.annotate_collection_documents">annotate_collection_documents</a></li>
 <li><a class="reference internal" href="#pine.client.PineClient.list_collections">list_collections</a></li>
+<li><a class="reference internal" href="#pine.client.PineClient.get_collection_iaa_report">get_collection_iaa_report</a></li>
 <li><a class="reference internal" href="#pine.client.PineClient.download_collection_data">download_collection_data</a></li>
 </ul>
 </li>

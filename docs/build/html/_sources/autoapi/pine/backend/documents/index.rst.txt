@@ -28,7 +28,7 @@ Functions
    pine.backend.documents.get_user_permissions_by_ids
 
 
-.. function:: get_collection_ids_for(document_ids) -> set
+.. function:: get_collection_ids_for(document_ids) -> List[str]
 
 
 .. function:: get_user_permissions(document: dict) -> pine.backend.models.CollectionUserPermissions

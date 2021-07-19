@@ -27,7 +27,6 @@ Functions
    pine.backend.collections.bp.unarchive_collection
    pine.backend.collections.bp.get_collection
    pine.backend.collections.bp.download_collection
-   pine.backend.collections.bp.get_doc_and_overlap_ids
    pine.backend.collections.bp.add_annotator_to_collection
    pine.backend.collections.bp.add_viewer_to_collection
    pine.backend.collections.bp.add_label_to_collection
@@ -142,14 +141,6 @@ Functions
 
 
 .. function:: download_collection(collection_id)
-
-
-.. function:: get_doc_and_overlap_ids(collection_id)
-
-   Return lists of ids for overlapping and non-overlapping documents for the collection matching the provided
-   collection id.
-   :param collection_id: str
-   :return: tuple
 
 
 .. function:: add_annotator_to_collection(collection_id)

@@ -60,7 +60,7 @@ def get_doc_annotations(collection_id, exclude=None):
 
 def fix_num_for_json(number):
     if np.isnan(number):
-        return "null"
+        return None
     else:
         return number
 

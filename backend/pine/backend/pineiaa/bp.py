@@ -36,20 +36,23 @@ def get_iia_report_by_collection_id(collection_id):
         abort(resp.status_code)
     return service.convert_response(resp)
 
-
-@bp.route("/by_collection_id/<collection_id>", methods=["POST"])
-@auth.login_required
-def create_iaa_report_by_collection_id(collection_id):
+def update_iaa_report_by_collection_id(collection_id: str) -> bool:
+    logger.info("Updating IAA report for collection " + collection_id)
     new_report = iaa_service.getIAAReportForCollection(collection_id)
     if new_report:
         current_report = get_current_report(collection_id)
         if current_report != None:
             headers = {"If-Match": current_report["_etag"]}
-            return jsonify(service.patch(["iaa_reports", current_report["_id"]], json = new_report, headers = headers).ok)
+            return service.patch(["iaa_reports", current_report["_id"]], json = new_report, headers = headers).ok
         else:
-            return jsonify(service.post("iaa_reports", json = new_report).ok)
+            return service.post("iaa_reports", json = new_report).ok
     else:
-        return jsonify("ok")
+        return False
+
+@bp.route("/by_collection_id/<collection_id>", methods=["POST"])
+@auth.login_required
+def create_iaa_report_by_collection_id(collection_id):
+    return jsonify(update_iaa_report_by_collection_id(collection_id))
 
 
 def init_app(app):

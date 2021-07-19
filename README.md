@@ -113,13 +113,20 @@ See [Docker Environments](#docker-environments).
 
 ## Development Environment
 
-First, refer to the various README files in the subproject directories for dependencies.
-Alternatively, a convenience script is provided:
-```bash
-./setup_dev_stack.sh
-```
+First, refer to the various README files in the subproject directories for dependencies.  On a clean
+install of Ubuntu 18.04, this included:
+1. `sudo apt install git python3.6-dev python3-pip curl make gcc`.  Note that on later versions of
+   Ubuntu, you'll need to install Python 3.6 using something like pyenv.
+2. `sudo pip3 install pipenv`
+3. Install Node.JS V14.  One way to do this may be found here:
+   https://github.com/nodesource/distributions/blob/master/README.md#deb  An IMPORTANT note here is
+   that Node.JS V16 does not currently work with our npm dependencies.  This is due to an issue with
+   the version of node-sass that the frontend is currently using
+   (https://github.com/sass/node-sass/issues/3077).
+4. `./setup_dev_stack.sh` is a convenience script to install various dependencies via apt, npm, and
+   pipenv.
 
-Then a dev stack can be run with:
+At this point, you should be able to run a dev stack can be run with:
 ```bash
 ./run_dev_stack.py
 ```

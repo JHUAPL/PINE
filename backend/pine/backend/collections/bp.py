@@ -55,7 +55,8 @@ def get_user_permissions(collection: dict) -> models.CollectionUserPermissions:
         modify_labels = is_creator,
         modify_document_metadata = can_view,
         download_data = is_creator,
-        archive = auth.is_flat() or is_creator)
+        archive = auth.is_flat() or is_creator,
+        delete_documents = is_creator)
 
 def get_user_permissions_by_id(collection_id: str) -> models.CollectionUserPermissions:
     collection = service.get_item_by_id("/collections", collection_id, service.params({
@@ -592,7 +593,13 @@ def create_collection():
                         doc_ids_overlap_1.append(doc_id)
                 docs = []
         if len(docs) > 0:
-            doc_ids += _upload_documents(collection, docs)
+            transaction_doc_ids = _upload_documents(collection, docs)
+            doc_ids += transaction_doc_ids
+            for (i, doc_id) in enumerate(transaction_doc_ids):
+                if docs[i]["overlap"] == 0:
+                    doc_ids_overlap_0.append(doc_id)
+                else:
+                    doc_ids_overlap_1.append(doc_id)
             docs = []
 
     # create next ids

@@ -46,6 +46,9 @@ def setup_logging():
         with open(os.environ["PINE_LOGGING_CONFIG_FILE"], "r") as f:
             logging.config.dictConfig(json.load(f))
         logging.getLogger(__name__).info("Set logging configuration from file {}".format(os.environ["PINE_LOGGING_CONFIG_FILE"]))
+    else:
+        logging.basicConfig()
+        logging.warn("Using basic configuration; set {} environment variable to use file.".format("PINE_LOGGING_CONFIG_FILE"))
 
 def create_app():
     setup_logging()

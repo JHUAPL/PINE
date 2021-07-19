@@ -15,7 +15,7 @@ export class AppConfig {
 
     public appName = "PINE";
 
-    public appLongName = "PMed Interface for NLP Experimentation";
+    public appLongName = "PMAP Interface for NLP Experimentation";
 
     public appLogoAsset = "tree_icon_sketch.png";
 

@@ -69,7 +69,7 @@
 <tr class="row-odd"><td><p><a class="reference internal" href="#pine.backend.documents.bp._document_user_can_projection" title="pine.backend.documents.bp._document_user_can_projection"><code class="xref py py-obj docutils literal notranslate"><span class="pre">_document_user_can_projection</span></code></a>()</p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#pine.backend.documents.bp.get_collection_ids_for" title="pine.backend.documents.bp.get_collection_ids_for"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_collection_ids_for</span></code></a>(document_ids) → set</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#pine.backend.documents.bp.get_collection_ids_for" title="pine.backend.documents.bp.get_collection_ids_for"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_collection_ids_for</span></code></a>(document_ids) → List[str]</p></td>
 <td><p></p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#pine.backend.documents.bp.get_user_permissions" title="pine.backend.documents.bp.get_user_permissions"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_user_permissions</span></code></a>(document: dict) → pine.backend.models.CollectionUserPermissions</p></td>
@@ -96,6 +96,12 @@
 <tr class="row-even"><td><p><a class="reference internal" href="#pine.backend.documents.bp._check_documents" title="pine.backend.documents.bp._check_documents"><code class="xref py py-obj docutils literal notranslate"><span class="pre">_check_documents</span></code></a>(documents) → dict</p></td>
 <td><p></p></td>
 </tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pine.backend.documents.bp._get_collection_classifiers" title="pine.backend.documents.bp._get_collection_classifiers"><code class="xref py py-obj docutils literal notranslate"><span class="pre">_get_collection_classifiers</span></code></a>(collection_ids)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#pine.backend.documents.bp._get_classifier_next_instances" title="pine.backend.documents.bp._get_classifier_next_instances"><code class="xref py py-obj docutils literal notranslate"><span class="pre">_get_classifier_next_instances</span></code></a>(collection_classifiers: dict)</p></td>
+<td><p></p></td>
+</tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#pine.backend.documents.bp.add_document" title="pine.backend.documents.bp.add_document"><code class="xref py py-obj docutils literal notranslate"><span class="pre">add_document</span></code></a>()</p></td>
 <td><p></p></td>
 </tr>
@@ -105,7 +111,16 @@
 <tr class="row-odd"><td><p><a class="reference internal" href="#pine.backend.documents.bp.update_metadata" title="pine.backend.documents.bp.update_metadata"><code class="xref py py-obj docutils literal notranslate"><span class="pre">update_metadata</span></code></a>(doc_id)</p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#pine.backend.documents.bp.init_app" title="pine.backend.documents.bp.init_app"><code class="xref py py-obj docutils literal notranslate"><span class="pre">init_app</span></code></a>(app)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#pine.backend.documents.bp._delete_documents_by_id" title="pine.backend.documents.bp._delete_documents_by_id"><code class="xref py py-obj docutils literal notranslate"><span class="pre">_delete_documents_by_id</span></code></a>(doc_ids: List[str]) → bool</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pine.backend.documents.bp.delete_document" title="pine.backend.documents.bp.delete_document"><code class="xref py py-obj docutils literal notranslate"><span class="pre">delete_document</span></code></a>(doc_id: str)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#pine.backend.documents.bp.delete_documents" title="pine.backend.documents.bp.delete_documents"><code class="xref py py-obj docutils literal notranslate"><span class="pre">delete_documents</span></code></a>()</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pine.backend.documents.bp.init_app" title="pine.backend.documents.bp.init_app"><code class="xref py py-obj docutils literal notranslate"><span class="pre">init_app</span></code></a>(app)</p></td>
 <td><p></p></td>
 </tr>
 </tbody>
@@ -122,7 +137,7 @@
 
 <dl class="py function">
 <dt id="pine.backend.documents.bp.get_collection_ids_for">
-<code class="sig-prename descclassname"><span class="pre">pine.backend.documents.bp.</span></code><code class="sig-name descname"><span class="pre">get_collection_ids_for</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">document_ids</span></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#set" title="(in Python v3.9)"><span class="pre">set</span></a><a class="headerlink" href="#pine.backend.documents.bp.get_collection_ids_for" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname"><span class="pre">pine.backend.documents.bp.</span></code><code class="sig-name descname"><span class="pre">get_collection_ids_for</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">document_ids</span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#pine.backend.documents.bp.get_collection_ids_for" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py function">
@@ -166,6 +181,16 @@
 <dd></dd></dl>
 
 <dl class="py function">
+<dt id="pine.backend.documents.bp._get_collection_classifiers">
+<code class="sig-prename descclassname"><span class="pre">pine.backend.documents.bp.</span></code><code class="sig-name descname"><span class="pre">_get_collection_classifiers</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">collection_ids</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.documents.bp._get_collection_classifiers" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt id="pine.backend.documents.bp._get_classifier_next_instances">
+<code class="sig-prename descclassname"><span class="pre">pine.backend.documents.bp.</span></code><code class="sig-name descname"><span class="pre">_get_classifier_next_instances</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">collection_classifiers</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><span class="pre">dict</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.documents.bp._get_classifier_next_instances" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
 <dt id="pine.backend.documents.bp.add_document">
 <code class="sig-prename descclassname"><span class="pre">pine.backend.documents.bp.</span></code><code class="sig-name descname"><span class="pre">add_document</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.documents.bp.add_document" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
@@ -178,6 +203,21 @@
 <dl class="py function">
 <dt id="pine.backend.documents.bp.update_metadata">
 <code class="sig-prename descclassname"><span class="pre">pine.backend.documents.bp.</span></code><code class="sig-name descname"><span class="pre">update_metadata</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">doc_id</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.documents.bp.update_metadata" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt id="pine.backend.documents.bp._delete_documents_by_id">
+<code class="sig-prename descclassname"><span class="pre">pine.backend.documents.bp.</span></code><code class="sig-name descname"><span class="pre">_delete_documents_by_id</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">doc_ids</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><span class="pre">bool</span></a><a class="headerlink" href="#pine.backend.documents.bp._delete_documents_by_id" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt id="pine.backend.documents.bp.delete_document">
+<code class="sig-prename descclassname"><span class="pre">pine.backend.documents.bp.</span></code><code class="sig-name descname"><span class="pre">delete_document</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">doc_id</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.documents.bp.delete_document" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt id="pine.backend.documents.bp.delete_documents">
+<code class="sig-prename descclassname"><span class="pre">pine.backend.documents.bp.</span></code><code class="sig-name descname"><span class="pre">delete_documents</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.documents.bp.delete_documents" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py function">
@@ -212,9 +252,14 @@
 <li><a class="reference internal" href="#pine.backend.documents.bp.get_all_documents_in_collection">get_all_documents_in_collection</a></li>
 <li><a class="reference internal" href="#pine.backend.documents.bp.get_paginated_documents_in_collection">get_paginated_documents_in_collection</a></li>
 <li><a class="reference internal" href="#pine.backend.documents.bp._check_documents">_check_documents</a></li>
+<li><a class="reference internal" href="#pine.backend.documents.bp._get_collection_classifiers">_get_collection_classifiers</a></li>
+<li><a class="reference internal" href="#pine.backend.documents.bp._get_classifier_next_instances">_get_classifier_next_instances</a></li>
 <li><a class="reference internal" href="#pine.backend.documents.bp.add_document">add_document</a></li>
 <li><a class="reference internal" href="#pine.backend.documents.bp.endpoint_get_user_permissions">endpoint_get_user_permissions</a></li>
 <li><a class="reference internal" href="#pine.backend.documents.bp.update_metadata">update_metadata</a></li>
+<li><a class="reference internal" href="#pine.backend.documents.bp._delete_documents_by_id">_delete_documents_by_id</a></li>
+<li><a class="reference internal" href="#pine.backend.documents.bp.delete_document">delete_document</a></li>
+<li><a class="reference internal" href="#pine.backend.documents.bp.delete_documents">delete_documents</a></li>
 <li><a class="reference internal" href="#pine.backend.documents.bp.init_app">init_app</a></li>
 </ul>
 </li>

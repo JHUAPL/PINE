@@ -44,6 +44,13 @@ Functions
 
    
 
+.. data:: PATH_TYPE
+   
+
+   Type for paths that can be passed into these messages.  Either a single string, or a list-like
+   type of strings that is combined with a '/'.
+
+
 .. class:: PerformanceHistory
 
 
@@ -55,7 +62,7 @@ Functions
    .. method:: pprint(self)
 
 
-   .. method:: add(self, rest_type, path, response)
+   .. method:: add(self, rest_type: str, path: str, response)
 
 
 
@@ -64,121 +71,162 @@ Functions
 
    
 
-.. function:: _standardize_path(path, *additional_paths)
+.. function:: _standardize_path(path: PATH_TYPE, *additional_paths: List[str]) -> List[str]
 
 
-.. function:: url(path, *additional_paths)
+.. function:: url(path: PATH_TYPE, *additional_paths: List[str]) -> str
 
    Returns a complete URL for the given eve-relative path(s).
 
    :param path: str: eve-relative path (e.g. "collections" or ["collections", id])
    :param additional_paths: str[]: any additional paths to append
-   :return: str url
+   :return: url
+   :rtype: str
 
 
-.. function:: where_params(where)
+.. function:: where_params(where: dict) -> dict
 
    Returns a "where" parameters object that can be passed to eve.
 
    Eve requires that dict parameters be serialized as JSON.
 
    :param where: dict: dictionary of "where" params to pass to eve
-   :return: dict "where" params
+   :return: "where" params in eve-appropriate format
+   :rtype: dict
 
 
-.. function:: params(params)
+.. function:: params(params: dict) -> dict
 
    Returns a parameters object that can be passed to eve.
 
    Eve requires that dict parameters be serialized as JSON.
 
    :param where: dict: dictionary of "where" params to pass to eve
-   :return: dict "where" params
+   :return: params in eve-appropriate format
+   :rtype: dict
 
 
-.. function:: get(path, **kwargs)
+.. function:: get(path: PATH_TYPE, **kwargs: dict) -> requests.Response
 
    Wraps requests.get for the given eve-relative path.
 
-   :param path: str: eve-relative path (e.g. "collections" or ["collections", id])
+   :param path: list[str]|str: eve-relative path (e.g. ["collections", id] or "/collections")
    :param **kwargs: dict: any additional arguments to pass to requests.get
-   :return: requests.Response
+   :return: server response
+   :rtype: requests.Response
 
 
-.. function:: post(path, **kwargs)
+.. function:: post(path: PATH_TYPE, **kwargs: dict) -> requests.Response
 
    Wraps requests.post for the given eve-relative path.
 
-   :param path: str: eve-relative path (e.g. "collections" or ["collections", id])
+   :param path: list[str]|str: eve-relative path (e.g. ["collections", id] or "/collections")
    :param **kwargs: dict: any additional arguments to pass to requests.post
-   :return: requests.Response
+   :return: server response
+   :rtype: requests.Response
 
 
-.. function:: put(path, **kwargs)
+.. function:: put(path: PATH_TYPE, **kwargs: dict) -> requests.Response
 
    Wraps requests.put for the given eve-relative path.
 
-   :param path: str: eve-relative path (e.g. "collections" or ["collections", id])
+   :param path: list[str]|str: eve-relative path (e.g. ["collections", id] or "/collections")
    :param **kwargs: dict: any additional arguments to pass to requests.put
-   :return: requests.Response
+   :return: server response
+   :rtype: requests.Response
 
 
-.. function:: delete(path, **kwargs)
+.. function:: delete(path: PATH_TYPE, **kwargs: dict) -> requests.Response
 
    Wraps requests.delete for the given eve-relative path.
 
-   :param path: str: eve-relative path (e.g. "collections" or ["collections", id])
+   :param path: list[str]|str: eve-relative path (e.g. ["collections", id] or "/collections")
    :param **kwargs: dict: any additional arguments to pass to requests.delete
-   :return: requests.Response
+   :return: server response
+   :rtype: requests.Response
 
 
-.. function:: patch(path, **kwargs)
+.. function:: patch(path: PATH_TYPE, **kwargs: dict) -> requests.Response
 
    Wraps requests.patch for the given eve-relative path.
 
-   :param path: str: eve-relative path (e.g. "collections" or ["collections", id])
+   :param path: list[str]|str: eve-relative path (e.g. ["collections", id] or "/collections")
    :param **kwargs: dict: any additional arguments to pass to requests.patch
-   :return: requests.Response
+   :return: server response
+   :rtype: requests.Response
 
 
-.. function:: get_item_by_id(path, item_id, params={})
+.. function:: get_item_by_id(path: PATH_TYPE, item_id: str, params: dict = {}) -> dict
 
    Gets a single item by the given ID.
 
-   :param path: str: eve-relative path (e.g. "collections")
+   :param path: list[str]|str: eve-relative path (e.g. ["collections", id] or "/collections")
    :param item_id: str: item ID
    :param params: dict: optional additional parameters to send in with GET
    :return: the item as a dict
+   :rtype: dict
 
 
-.. function:: get_all_versions_of_item_by_id(path, item_id, params={})
+.. function:: get_all_versions_of_item_by_id(path: PATH_TYPE, item_id: str, params: dict = {}) -> List[dict]
+
+   Gets all versions of an item by the given ID.
+
+   :param path: list[str]|str: eve-relative path (e.g. ["collections", id] or "/collections")
+   :param item_id: str: item ID
+   :param params: dict: optional additional arguments to send in with GET
+   :return: the items as a list of dicts
+   :rtype: list[dict]
 
 
-.. function:: get_all(path, params={})
+.. function:: get_all(path: PATH_TYPE, params={}) -> dict
 
    Returns ALL database items, using pagination if needed.  This returns the "normal" eve
    JSON with "_items", "_meta", etc.
 
-   :param path: str: eve-relative path (e.g. "collections")
+   :param path: list[str]|str: eve-relative path (e.g. ["collections", id] or "/collections")
    :param params: dict: optional additional parameters to send in with GET
    :return: an eve collections dict with, e.g., _items
+   :rtype: dict
 
 
-.. function:: get_all_items(path, params={})
+.. function:: get_all_items(path: PATH_TYPE, params={}) -> List[dict]
 
    Returns ALL database items, using pagination if needed.
 
-   :param path: str: eve-relative path (e.g. "collections")
+   :param path: list[str]|str: eve-relative path (e.g. ["collections", id] or "/collections")
    :param params: dict: optional additional parameters to send in with GET
    :return: the items as a list of dicts
+   :rtype: list[dict]
 
 
-.. function:: convert_response(requests_response)
+.. function:: convert_response(requests_response: requests.Response) -> flask.Response
+
+   Converts a requests response to a flask response.
+
+   :param requests_response: requests.Response: response from requests library
+   :returns: a flask response
+   :rtype: flask.Response
 
 
-.. function:: remove_eve_fields(obj, remove_timestamps=True, remove_versions=True)
+.. function:: remove_eve_fields(obj: dict, remove_timestamps: bool = True, remove_versions: bool = True) -> None
+
+   Removes the fields that eve adds that aren't necessarily relevant to the data.  The object
+   that is passed in is modified in-place.
+
+   This currently includes: `_etag`, `_links`, `_created` (if `remove_timestamps`), `_updated` (if
+   `remove_timestamps`), `_version` (if `remove_versions`), and `_latest_version` (if
+   `remove_versions`).
+
+   :param obj: dict: the object to modify
+   :param remove_timestamps: bool: whether to remove timestamp fields (defaults to `True`)
+   :param remove_versions: bool: whether to remove version fields (defaults to `True`)
 
 
-.. function:: remove_nonupdatable_fields(obj)
+.. function:: remove_nonupdatable_fields(obj: dict) -> None
+
+   Removes the non-updatable fields in the given eve object.  This is currently equivalent to
+   calling ... with all the default options.
+
+   :param obj: dict: the object to modify
 
 

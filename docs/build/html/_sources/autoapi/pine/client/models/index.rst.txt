@@ -646,7 +646,7 @@ Functions
 
 
 
-.. class:: CollectionUserPermissions(view=False, annotate=False, add_documents=False, add_images=False, modify_users=False, modify_labels=False, modify_document_metadata=False, download_data=False, archive=False)
+.. class:: CollectionUserPermissions(view=False, annotate=False, add_documents=False, add_images=False, modify_users=False, modify_labels=False, modify_document_metadata=False, download_data=False, archive=False, delete_documents=False)
 
 
    Bases: :class:`object`
@@ -714,6 +714,13 @@ Functions
       :annotation: :bool
 
       Whether the user can archive or unarchive the collection.
+      :type: bool
+
+
+   .. attribute:: delete_documents
+      :annotation: :bool
+
+      Whether the user can delete documents in the collection.
       :type: bool
 
 

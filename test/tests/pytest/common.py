@@ -57,3 +57,9 @@ def login_with_user(user_id_or_email: str, client: pine.client.LocalPineClient) 
 
 def login_with_test_user(client: pine.client.LocalPineClient) -> pine.client.LocalPineClient:
     return login_with_user(TEST_USER, client)
+
+def get_collection_id(client, collection_title: str) -> str:
+    for col in client.list_collections():
+        if col["metadata"]["title"] == collection_title:
+            return col["_id"]
+    raise AssertionError("Couldn't find collection with title " + collection_title)
