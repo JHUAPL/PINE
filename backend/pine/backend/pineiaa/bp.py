@@ -1,13 +1,10 @@
 # (C) 2019 The Johns Hopkins University Applied Physics Laboratory LLC.
-import json
+
 import logging
 
-from flask import abort, Blueprint, jsonify, request
-import requests
-from werkzeug import exceptions
+from flask import abort, Blueprint, jsonify
 
 from .. import auth
-from ..data import bp as data
 from ..data import service
 from ..pineiaa.bratiaa import iaa_service
 
@@ -47,7 +44,7 @@ def update_iaa_report_by_collection_id(collection_id: str) -> bool:
         else:
             return service.post("iaa_reports", json = new_report).ok
     else:
-        return False
+        return jsonify(False)
 
 @bp.route("/by_collection_id/<collection_id>", methods=["POST"])
 @auth.login_required

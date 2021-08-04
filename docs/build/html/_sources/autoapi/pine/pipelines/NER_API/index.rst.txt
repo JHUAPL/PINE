@@ -31,13 +31,28 @@ Classes
 
    Bases: :class:`object`
 
-   .. method:: perform_fold(self, model, train_data, test_data, pipeline_parameters)
+   .. method:: status(self, classifier_id: str, pipeline_name: str) -> dict
 
 
-   .. method:: perform_five_fold(self, model, documents, annotations, doc_ids, pipeline_parameters)
+   .. method:: perform_fold(self, model: pine.pipelines.pmap_ner.NER, train_data, test_data, **pipeline_parameters)
 
 
-   .. method:: get_document_ranking(self, model, doc_map, doc_ids)
+   .. method:: perform_five_fold(self, model: pine.pipelines.pmap_ner.NER, documents, annotations, doc_ids, **pipeline_parameters)
+
+
+   .. method:: get_document_ranking(self, model: pine.pipelines.pmap_ner.NER, doc_map: Dict[(str, str)], doc_ids: List[str]) -> List[str]
+
+      Calculates document rankings and returns document IDs sorted by ranking.
+
+      The ranking should be which documents should be evaluated first.  This probably
+      corresponds in some ways to the documents which the model is least confident about.
+
+      :param model: NER model
+      :param doc_map: dict: mapping of document IDs to document text where overlap is 0
+      :param doc_ids: list: IDs of documents where ???
+
+      :returns: sorted document IDs
+      :rtype: list
 
 
    .. method:: get_classifier_pipeline_metrics_objs(self, classifier_id)
@@ -46,7 +61,7 @@ Classes
    .. method:: train_model(self, custom_filename, classifier_id, pipeline_name)
 
 
-   .. method:: predict(self, classifier_id, pipeline_name, documents, document_ids)
+   .. method:: predict(self, classifier_id: str, pipeline_name: str, document_ids: List[str], texts: List[str])
 
 
 

@@ -23,7 +23,12 @@ Functions
    pine.pipelines.RankingFunctions.most_of_least_popular
 
 
-.. function:: rank(results, metric)
+.. data:: logger
+   
+
+   
+
+.. function:: rank(document_ids: List[str], results: List[DocumentPredictionProbabilities], metric: str) -> List[Tuple[str, float]]
 
    if metric == 'lc': return least_confidence(results)
    if metric == 'ma': return largest_margin(results)
@@ -37,24 +42,24 @@ Functions
    #Dictionary method is inefficient as it runs every method before returning one
 
 
-.. function:: least_confidence(results)
+.. function:: least_confidence(document_ids: List[str], results: List[DocumentPredictionProbabilities]) -> List[Tuple[str, float]]
 
 
-.. function:: least_confidence_squared(results)
+.. function:: least_confidence_squared(document_ids: List[str], results: List[DocumentPredictionProbabilities]) -> List[Tuple[str, float]]
 
 
-.. function:: least_confidence_squared_by_entity(results)
+.. function:: least_confidence_squared_by_entity(document_ids: List[str], results: List[DocumentPredictionProbabilities]) -> List[Tuple[str, float]]
 
 
-.. function:: largest_margin(results)
+.. function:: largest_margin(document_ids: List[str], results: List[DocumentPredictionProbabilities]) -> List[Tuple[str, float]]
 
 
-.. function:: entropy_rank(results, N=None)
+.. function:: entropy_rank(document_ids: List[str], results: List[DocumentPredictionProbabilities], N=None) -> List[Tuple[str, float]]
 
 
-.. function:: random_rank(results)
+.. function:: random_rank(document_ids: List[str], results: List[DocumentPredictionProbabilities]) -> List[Tuple[str, float]]
 
 
-.. function:: most_of_least_popular(results)
+.. function:: most_of_least_popular(document_ids: List[str], results: List[DocumentPredictionProbabilities]) -> List[Tuple[str, float]]
 
 

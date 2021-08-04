@@ -19,4 +19,4 @@ done
 sleep 5
 
 cd tests/
-pytest pytest/ $@
+pytest pytest/ --verbose $@

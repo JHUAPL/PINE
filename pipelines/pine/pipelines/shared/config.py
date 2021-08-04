@@ -56,6 +56,7 @@ class BaseConfig(object):
     REDIS_DBNUM = 0  # Redis DB Number (0-5)
     REDIS_PREFIX = "AL:"  # Note: Must be used manually
     REDIS_EXPIRE = 3600
+    REDIS_MAX_PROCESSES = 10
 
     # Scheduler
     SCHEDULER_REGISTRATION_TIMEOUT = int(timedelta(minutes=10).total_seconds())  # how long something will be registered as a service
@@ -74,7 +75,7 @@ class BaseConfig(object):
             channel="service_corenlp",
             service=dict(
                 framework="corenlp",
-                types=["fit", "predict"]
+                types=["fit", "predict", "status"]
             )
         ),
         dict(
@@ -83,7 +84,7 @@ class BaseConfig(object):
             channel="service_opennlp",
             service=dict(
                 framework="opennlp",
-                types=["fit", "predict"]
+                types=["fit", "predict", "status"]
             )
         ),
         dict(
@@ -92,7 +93,7 @@ class BaseConfig(object):
             channel="service_spacy",
             service=dict(
                 framework="spacy",
-                types=["fit", "predict"]
+                types=["fit", "predict", "status"]
             )
         )
     ]

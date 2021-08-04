@@ -32,6 +32,7 @@ Functions
    pine.backend.collections.get_user_permissions
    pine.backend.collections.get_user_permissions_by_id
    pine.backend.collections.get_user_permissions_by_ids
+   pine.backend.collections.get_overlap_ids
 
 
 .. function:: user_permissions_projection()
@@ -44,5 +45,12 @@ Functions
 
 
 .. function:: get_user_permissions_by_ids(collection_ids: Iterable[str]) -> List[models.CollectionUserPermissions]
+
+
+.. function:: get_overlap_ids(collection_id: str)
+
+   Return the list of ids for overlapping documents for the collection matching the provided collection id.
+   :param collection_id: str
+   :return: tuple
 
 

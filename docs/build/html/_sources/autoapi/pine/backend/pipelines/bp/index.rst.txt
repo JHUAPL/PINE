@@ -13,19 +13,29 @@ Functions
 
 .. autoapisummary::
 
+   pine.backend.pipelines.bp._get_classifier
+   pine.backend.pipelines.bp._clear_classifier
+   pine.backend.pipelines.bp._get_classifier_pipeline
+   pine.backend.pipelines.bp._check_permissions
+   pine.backend.pipelines.bp._get_pipeline_status
+   pine.backend.pipelines.bp._get_pipeline_running_jobs
+   pine.backend.pipelines.bp._train_pipeline
+   pine.backend.pipelines.bp._predict_pipeline
    pine.backend.pipelines.bp.get_pipelines
    pine.backend.pipelines.bp.get_pipeline_by_id
+   pine.backend.pipelines.bp.get_pipeline_status
+   pine.backend.pipelines.bp._get_classifier_metrics
+   pine.backend.pipelines.bp.get_classifier_metrics
    pine.backend.pipelines.bp._get_collection_classifier
    pine.backend.pipelines.bp.get_collection_classifier
-   pine.backend.pipelines.bp._get_classifier_metrics
-   pine.backend.pipelines.bp.get_metrics
-   pine.backend.pipelines.bp.get_classifier_metrics
-   pine.backend.pipelines.bp._get_classifier
+   pine.backend.pipelines.bp.get_classifier_status
+   pine.backend.pipelines.bp.get_running_jobs
+   pine.backend.pipelines.bp.train
+   pine.backend.pipelines.bp.predict
    pine.backend.pipelines.bp._get_next_instance
+   pine.backend.pipelines.bp._check_instance_overlap
    pine.backend.pipelines.bp.get_next_by_classifier
    pine.backend.pipelines.bp.advance_to_next_document_by_classifier
-   pine.backend.pipelines.bp.predict
-   pine.backend.pipelines.bp.test_redis
    pine.backend.pipelines.bp.init_app
 
 
@@ -44,53 +54,83 @@ Functions
 
    
 
-.. data:: classifier_dict
+.. data:: _cached_classifiers
    
 
    
 
-.. data:: classifier_pipelines
+.. data:: _cached_classifier_pipelines
    
 
    
+
+.. function:: _get_classifier(classifier_id: str) -> dict
+
+
+.. function:: _clear_classifier(classifier_id: str)
+
+
+.. function:: _get_classifier_pipeline(classifier_id: str) -> dict
+
+
+.. function:: _check_permissions(classifier: dict)
+
+
+.. function:: _get_pipeline_status(pipeline: str, classifier_id: str) -> dict
+
+
+.. function:: _get_pipeline_running_jobs(pipeline: str, classifier_id: str) -> List[str]
+
+
+.. function:: _train_pipeline(pipeline: str, classifier_id: str, model_name: str) -> dict
+
+
+.. function:: _predict_pipeline(pipeline: str, classifier_id: str, document_ids: List[str], texts: List[str], timeout_in_s: int) -> dict
+
 
 .. function:: get_pipelines()
 
 
-.. function:: get_pipeline_by_id(pipeline_id)
+.. function:: get_pipeline_by_id(pipeline_id: str)
 
 
-.. function:: _get_collection_classifier(collection_id)
+.. function:: get_pipeline_status(pipeline_id: str) -> flask.Response
 
 
-.. function:: get_collection_classifier(collection_id)
+.. function:: _get_classifier_metrics(classifier_id: str)
 
 
-.. function:: _get_classifier_metrics(classifier_id)
+.. function:: get_classifier_metrics(classifier_id: str)
 
 
-.. function:: get_metrics()
+.. function:: _get_collection_classifier(collection_id: str) -> dict
 
 
-.. function:: get_classifier_metrics(classifier_id)
+.. function:: get_collection_classifier(collection_id: str)
 
 
-.. function:: _get_classifier(classifier_id)
+.. function:: get_classifier_status(classifier_id: str)
 
 
-.. function:: _get_next_instance(classifier_id)
+.. function:: get_running_jobs(classifier_id: str)
 
 
-.. function:: get_next_by_classifier(classifier_id)
+.. function:: train(classifier_id: str)
 
 
-.. function:: advance_to_next_document_by_classifier(classifier_id, document_id)
+.. function:: predict(classifier_id: str)
 
 
-.. function:: predict()
+.. function:: _get_next_instance(classifier_id: str)
 
 
-.. function:: test_redis()
+.. function:: _check_instance_overlap(classifier: dict, instance: dict, user_id: str)
+
+
+.. function:: get_next_by_classifier(classifier_id: str)
+
+
+.. function:: advance_to_next_document_by_classifier(classifier_id: str, document_id: str)
 
 
 .. function:: init_app(app)

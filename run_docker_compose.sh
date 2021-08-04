@@ -5,7 +5,7 @@ usage() {
     set +x
     echo "Usage: $0 [--build|--build-with-cert <cert file>|--up|--up-test]"
     echo "       --build will build the docker stack"
-    echo "       --build-with-certs <crt file> will build the docker stack using the given SSL certificate file"
+    echo "       --build-with-cert <crt file> will build the docker stack using the given SSL certificate file"
     echo "       --up will bring up the docker stack"
     echo "       --up-test will bring up the docker stack with the testing ports exposed"
     echo "       --down will bring down the docker stack"

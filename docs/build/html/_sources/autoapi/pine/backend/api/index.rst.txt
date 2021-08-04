@@ -1,0 +1,21 @@
+:mod:`pine.backend.api`
+=======================
+
+.. py:module:: pine.backend.api
+
+.. autoapi-nested-parse::
+
+   This module implements all methods required for SwaggerUI to run on the
+   backend of PINE.
+
+
+
+Submodules
+----------
+.. toctree::
+   :titlesonly:
+   :maxdepth: 1
+
+   bp/index.rst
+
+

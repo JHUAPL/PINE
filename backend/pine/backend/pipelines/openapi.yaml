@@ -1,0 +1,541 @@
+# (C) 2021 The Johns Hopkins University Applied Physics Laboratory LLC.
+
+openapi: "3.0.2"
+
+security:
+  - cookieAuth: []
+
+tags:
+  - name: pipelines
+    description: Operations in the "pipelines" blueprint.
+
+components:
+
+  schemas:
+
+    Classifier:
+      allOf:
+        - $ref: "../api/components.yaml#/schemas/EveBaseWithVersion"
+        - type: object
+          properties:
+            _id:
+              type: string
+            _created:
+              type: string
+              format: date-time
+            _updated:
+              type: string
+              format: date-time
+            annotated_document_count:
+              type: integer
+            collection_id:
+              type: string
+            labels:
+              type: array
+              items:
+                type: string
+            overlap:
+              type: number
+              format: double
+            parameters:
+              type: object
+              additionalProperties: {}
+            pipeline_id:
+              type: string
+            train_every:
+              type: integer
+
+    PipelineJobRequest:
+      description: The job request data submitted to pipelines.
+      type: object
+      properties:
+        job_id:
+          description: The ID of this pipeline job.
+          type: string
+          format: uuid
+        job_queue:
+          type: string
+        job_type:
+          type: string
+        job_data:
+          type: object
+          properties:
+            framework:
+              type: string
+            type:
+              description: The type of job.
+              type: string
+            classifier_id:
+              type: string
+              nullable: true
+          additionalProperties:
+            description: Any additional job parameters.
+
+    PipelineOrClassifierStatus:
+      type: object
+      properties:
+        service_details:
+          description: Information about the pipeline service.
+          type: object
+          properties:
+            channel:
+              type: string
+            framework:
+              type: string
+            framework_types:
+              type: array
+              items:
+                type: string
+            name:
+              type: string
+            version:
+              type: string
+              format: version
+        job_id:
+          description: The ID of this pipeline job.
+          type: string
+          format: uuid
+        job_request:
+          $ref: "#/components/schemas/PipelineJobRequest"
+        job_response:
+          description: The job request data received from pipelines.
+          type: object
+          properties:
+            pipeline_name:
+              type: string
+            eve_entry_point:
+              type: string
+            model_dir:
+              type: string
+              format: path
+            classifier:
+              description: Status of the classifier.
+              type: object
+            has_trained:
+              description: Whether the classifier has trained.
+              type: boolean
+            classifier_id:
+              description: Will not be present for pipeline status.
+              type: string
+              nullable: true
+            classifier_class:
+              description: Python class for this classifier.
+              type: string
+
+    PipelinePredictParameters:
+      description: Either document_ids or texts must be given and non-empty.
+      type: object
+      properties:
+        document_ids:
+          description: IDs of documents to predict annotations for.
+          type: array
+          items:
+            type: string
+          default: []
+        texts:
+          description: Text of documents to predict annotations for.
+          type: array
+          items:
+            type: string
+          default: []
+        timeout_in_s:
+          description: If provided, will wait this long before timing out on the job.
+          type: integer
+          default: 36000
+
+    PipelineDocumentPredictions:
+      type: object
+      properties:
+        doc:
+          description: Document-level annotations.
+          type: array
+          items:
+            description: Annotation label.
+            type: string
+          example: [label1, label2]
+        ner:
+          description: NER annotations. [startIndex, endIndex, label].
+          type: array
+          items:
+            type: array
+            items:
+              oneOf:
+                - type: string
+                - type: integer
+          example: [5, 10, label1]
+
+    PipelinePredictions:
+      description: Pipeline predictions and other job information.
+      type: object
+      properties:
+        job_id:
+          type: string
+          format: uuid
+        job_request:
+          $ref: "#/components/schemas/PipelineJobRequest"
+        job_response:
+          type: object
+          properties:
+            documents_by_id:
+              description: Predictions in a mapping from document ID to annotations.
+              type: object
+              additionalProperties:
+                $ref: "#/components/schemas/PipelineDocumentPredictions"
+            texts:
+              description: Predictions for manual texts in the same order as they were in the input.
+              type: array
+              items:
+                $ref: "#/components/schemas/PipelineDocumentPredictions"
+
+paths:
+
+  /pipelines:
+    get:
+      summary: Get Pipelines
+      description: |
+        Get all pipelines.
+        
+        Example: `curl -X GET http://localhost:5000/pipelines/ --cookie ~/session.cookie`
+      operationId: pipelines_get_all
+      tags: [pipelines]
+      responses:
+        "200":
+          description: Successfully got pipelines.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  _items:
+                    type: array
+                    items:
+                      $ref: "../api/components.yaml#/schemas/Pipeline"
+                  _links:
+                    $ref: "../api/components.yaml#/schemas/EveLinks"
+        "401":
+          $ref: "../api/components.yaml#/responses/NotAuthorized"
+        default:
+          $ref: "../api/components.yaml#/responses/UnexpectedServerError"
+
+  /pipelines/by_id/{pipeline_id}:
+    get:
+      summary: Get Pipeline
+      description: |
+        Get the pipeline with the given ID.
+        
+        Example: `curl -X GET http://localhost:5000/pipelines/by_id/5babb6ee4eb7dd2c39b9671f --cookie ~/session.cookie -v`
+      operationId: pipelines_get
+      tags: [pipelines]
+      parameters:
+        - $ref: "../api/components.yaml#/parameters/pipelineIdParam"
+      responses:
+        "200":
+          description: Successfully got specified pipeline.
+          content:
+            application/json:
+              schema:
+                $ref: "../api/components.yaml#/schemas/Pipeline"
+        "401":
+          $ref: "../api/components.yaml#/responses/NotAuthorized"
+        "404":
+          $ref: "../api/components.yaml#/responses/PipelineNotFound"
+        default:
+          $ref: "../api/components.yaml#/responses/UnexpectedServerError"
+
+  /pipelines/classifiers/by_collection_id/{collection_id}:
+    get:
+      summary: Get Collection Classifier
+      description: |
+        Get the classifier information for a collection.
+        
+        Example: `curl -X GET http://localhost:5000/pipelines/classifiers/by_collection_id/60db2cacdbfddb3ca87c845d --cookie ~/session.cookie`
+      operationId: pipelines_get_collection_classifier
+      tags: [pipelines]
+      parameters:
+        - $ref: "../api/components.yaml#/parameters/collectionIdParam"
+      responses:
+        "200":
+          description: Successfully found collection and got information.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Classifier"
+        "401":
+          $ref: "../api/components.yaml#/responses/NotAuthorized"
+        "404":
+          $ref: "../api/components.yaml#/responses/CollectionNotFound"
+        default:
+          $ref: "../api/components.yaml#/responses/UnexpectedServerError"
+
+  /pipelines/metrics:
+    get:
+      summary: Get Collection Metrics
+      description: |
+        Get metrics for all available collections.
+        
+        Example: `curl -X GET http://localhost:5000/pipelines/metrics --cookie ~/session.cookie`
+      operationId: pipelines_get_metrics
+      tags: [pipelines]
+      responses:
+        "200":
+          description: Successfully got metrics.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  _items:
+                    type: array
+                    items:
+                      $ref: "../api/components.yaml#/schemas/CollectionMetric"
+                  _links:
+                    $ref: "../api/components.yaml#/schemas/EveLinks"
+        "401":
+          $ref: "../api/components.yaml#/responses/NotAuthorized"
+        default:
+          $ref: "../api/components.yaml#/responses/UnexpectedServerError"
+
+  /pipelines/metrics/by_classifier_id/{classifier_id}:
+    get:
+      summary: Get Classifier Metrics
+      description: |
+        Get metric by classifier id.
+        
+        Example: `curl -X GET http://localhost:5000/pipelines/metrics/by_classifier_id/60df138b3f8fa7b2e1445bd8 --cookie ~/session.cookie`
+      operationId: pipelines_get_classifier_metrics
+      tags: [pipelines]
+      parameters:
+        - $ref: "../api/components.yaml#/parameters/classifierIdParam"
+      responses:
+        "200":
+          description: Successfully got metric(s).
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  _items:
+                    type: array
+                    items:
+                      $ref: "../api/components.yaml#/schemas/CollectionMetric"
+                  _links:
+                    $ref: "../api/components.yaml#/schemas/EveLinks"
+        "401":
+          $ref: "../api/components.yaml#/responses/NotAuthorized"
+        "404":
+          $ref: "../api/components.yaml#/responses/ClassifierNotFound"
+        default:
+          $ref: "../api/components.yaml#/responses/UnexpectedServerError"
+
+  /pipelines/next_document/by_classifier_id/{classifier_id}:
+    get:
+      summary: Get Next Document to Annotate
+      description: |
+        Get the next document id to annotate based on classifier id (or null if no un-annotated
+        documents).
+        
+        Example: `curl -X GET http://localhost:5000/pipelines/next_document/by_classifier_id/60df138b3f8fa7b2e1445bd8 --cookie ~/session.cookie`
+      operationId: pipelines_get_next_document
+      tags: [pipelines]
+      parameters:
+        - $ref: "../api/components.yaml#/parameters/classifierIdParam"
+      responses:
+        "200":
+          description: Got ID of next document to annotate, or null if all are complete.
+          content:
+            application/json:
+              schema:
+                type: string
+                nullable: true
+        "401":
+          $ref: "../api/components.yaml#/responses/NotAuthorized"
+        "404":
+          $ref: "../api/components.yaml#/responses/ClassifierNotFound"
+        default:
+          $ref: "../api/components.yaml#/responses/UnexpectedServerError"
+
+  /pipelines/next_document/by_classifier_id/{classifier_id}/{doc_id}:
+    post:
+      summary: Advance Next Document
+      description: |
+        Advance to next document by marking the given one as annotated.
+        
+        Example: `curl -X POST http://localhost:5000/pipelines/next_document/by_classifier_id/60df138b3f8fa7b2e1445bd8/60df13d73f8fa7b2e1445bdd --cookie ~/session.cookie`
+      
+        This will still give you a valid response with an invalid document ID.
+      operationId: pipelines_advance_next_document
+      tags: [pipelines]
+      parameters:
+        - $ref: "../api/components.yaml#/parameters/classifierIdParam"
+        - $ref: "../api/components.yaml#/parameters/docIdParam"
+      responses:
+        "200":
+          description: Complete annotations on document.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  body:
+                    type: object
+                    nullable: true
+                  success:
+                    type: boolean
+                  trained:
+                    type: boolean
+        "401":
+          $ref: "../api/components.yaml#/responses/NotAuthorized"
+        "404":
+          $ref: "../api/components.yaml#/responses/ClassifierNotFound"
+        default:
+          $ref: "../api/components.yaml#/responses/UnexpectedServerError"
+
+  /pipelines/status/{pipeline_id}:
+    get:
+      summary: Get Pipeline Status
+      description: |
+        Get the status of the pipeline with the given ID.
+        
+        Example: `curl -X GET http://localhost:5000/pipelines/status/60df138b3f8fa7b2e1445bd8 --cookie ~/session.cookie`
+      operationId: pipelines_get_status
+      tags: [pipelines]
+      parameters:
+        - $ref: "../api/components.yaml#/parameters/pipelineIdParam"
+      responses:
+        "200":
+          description: Returns the status for the given pipeline.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PipelineOrClassifierStatus"
+        "401":
+          $ref: "../api/components.yaml#/responses/NotAuthorized"
+        "404":
+          $ref: "../api/components.yaml#/responses/PipelineNotFound"
+        default:
+          $ref: "../api/components.yaml#/responses/UnexpectedServerError"
+
+  /pipelines/classifiers/status/{classifier_id}:
+    get:
+      summary: Get Classifier Status
+      description: |
+        Get the status of the classifier with the given ID.
+        
+        Example: `curl -X GET http://localhost:5000/pipelines/classifiers/status/60df138b3f8fa7b2e1445bd8 --cookie ~/session.cookie`
+      operationId: pipelines_get_classifier_status
+      tags: [pipelines]
+      parameters:
+        - $ref: "../api/components.yaml#/parameters/classifierIdParam"
+      responses:
+        "200":
+          description: Returns the status for the given classifier.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PipelineOrClassifierStatus"
+        "401":
+          $ref: "../api/components.yaml#/responses/NotAuthorized"
+        "404":
+          $ref: "../api/components.yaml#/responses/ClassifierNotFound"
+        default:
+          $ref: "../api/components.yaml#/responses/UnexpectedServerError"
+
+  /pipelines/running_jobs/{classifier_id}:
+    get:
+      summary: Get Classifier Running Jobs
+      description: |
+        Get any currently running jobs of the classifier with the given ID.
+        
+        Example: `curl -X GET http://localhost:5000/pipelines/running_jobs/60df138b3f8fa7b2e1445bd8 --cookie ~/session.cookie`
+      operationId: pipelines_get_running_jobs
+      tags: [pipelines]
+      parameters:
+        - $ref: "../api/components.yaml#/parameters/classifierIdParam"
+      responses:
+        "200":
+          description: Returns the all currently running jobs for the classifier.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: string
+                  format: uuid
+        "401":
+          $ref: "../api/components.yaml#/responses/NotAuthorized"
+        "404":
+          $ref: "../api/components.yaml#/responses/ClassifierNotFound"
+        default:
+          $ref: "../api/components.yaml#/responses/UnexpectedServerError"
+
+  /pipelines/train/{classifier_id}:
+    post:
+      summary: Train Classifier
+      description: |
+        Trains the classifier based on currently annotated documents in the collection.
+        
+        This endpoint is _ASYNCHRONOUS_ in that it will return information about the submitted job
+        rather than any results from the job.
+        
+        Example: `curl -X POST http://localhost:5000/pipelines/train/60df138b3f8fa7b2e1445bd8 --cookie session.cookie`
+      operationId: pipelines_train
+      tags: [pipelines]
+      parameters:
+        - $ref: "../api/components.yaml#/parameters/classifierIdParam"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                model_name:
+                  description: Optional name to save the model for future reference.
+                  type: string
+      responses:
+        "200":
+          description: Returns the all currently running jobs for the classifier.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  request:
+                    $ref: "#/components/schemas/PipelineJobRequest"
+        "401":
+          $ref: "../api/components.yaml#/responses/NotAuthorized"
+        "404":
+          $ref: "../api/components.yaml#/responses/ClassifierNotFound"
+        default:
+          $ref: "../api/components.yaml#/responses/UnexpectedServerError"
+
+  /pipelines/predict/{classifier_id}:
+    post:
+      summary: Predict Using Classifier
+      description: |
+        Uses the given classifier to predict annotations for the given document(s).
+        
+        Example: `curl -X POST http://localhost:5000/pipelines/predict/60df138b3f8fa7b2e1445bd8 --cookie session.cookie`
+      operationId: pipelines_predict
+      tags: [pipelines]
+      parameters:
+        - $ref: "../api/components.yaml#/parameters/classifierIdParam"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/PipelinePredictParameters"
+      responses:
+        "200":
+          description: Returns the predictions and other job information.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PipelinePredictions"
+        "400":
+          $ref: "../api/components.yaml#/responses/InvalidInputParameters"
+        "401":
+          $ref: "../api/components.yaml#/responses/NotAuthorized"
+        "404":
+          $ref: "../api/components.yaml#/responses/ClassifierNotFound"
+        default:
+          $ref: "../api/components.yaml#/responses/UnexpectedServerError"

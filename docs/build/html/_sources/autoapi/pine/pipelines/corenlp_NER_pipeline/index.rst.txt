@@ -71,18 +71,35 @@ Classes
 
       
 
+   .. attribute:: __is_setup
+      :annotation: = False
+
+      
+
    .. attribute:: __id
       
 
       
 
-   .. method:: fit(self, X, y, params=None)
+   .. attribute:: __default_fit_params
+      
+
+      
+
+   .. method:: setup(cls, java_dir=None, ner_path=None)
+      :classmethod:
 
 
-   .. method:: predict(self, X, Xid)
+   .. method:: status(self) -> dict
 
 
-   .. method:: predict_proba(self, X, Xid, get_all_labels=False, include_other=False)
+   .. method:: fit(self, X, y, **params)
+
+
+   .. method:: predict(self, X: Iterable[str]) -> List[DocumentPredictions]
+
+
+   .. method:: predict_proba(self, X: Iterable[str], get_all_labels=False, include_other=False, **kwargs) -> List[DocumentPredictionProbabilities]
 
 
    .. method:: next_example(self, X, Xid)

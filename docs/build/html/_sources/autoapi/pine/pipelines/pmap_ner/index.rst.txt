@@ -44,13 +44,20 @@ Classes
    .. method:: pipe_init(self, x, **kwargs)
 
 
-   .. method:: fit(self, X, y, kwargs)
+   .. method:: pipeline_class(self)
+      :property:
 
 
-   .. method:: predict(self, X, Xid)
+   .. method:: status(self) -> dict
 
 
-   .. method:: predict_proba(self, X, Xid, **kwargs)
+   .. method:: fit(self, X, y, **kwargs)
+
+
+   .. method:: predict(self, X: Iterable[str]) -> List[DocumentPredictions]
+
+
+   .. method:: predict_proba(self, X: Iterable[str], **kwargs) -> List[DocumentPredictionProbabilities]
 
 
    .. method:: evaluate(self, X, y, Xid, **kwargs)
@@ -59,7 +66,7 @@ Classes
    .. method:: next_example(self, X, Xid)
 
 
-   .. method:: save_model(self, model_path)
+   .. method:: save_model(self, model_name)
 
 
    .. method:: load_model(self, model_name)

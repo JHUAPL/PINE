@@ -152,7 +152,7 @@ Functions
 .. function:: add_label_to_collection(collection_id)
 
 
-.. function:: get_overlap_ids(collection_id)
+.. function:: get_overlap_ids(collection_id: str)
 
    Return the list of ids for overlapping documents for the collection matching the provided collection id.
    :param collection_id: str

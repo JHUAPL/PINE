@@ -128,6 +128,11 @@ Classes
 
       
 
+   .. attribute:: REDIS_MAX_PROCESSES
+      :annotation: = 10
+
+      
+
    .. attribute:: SCHEDULER_REGISTRATION_TIMEOUT
       
 

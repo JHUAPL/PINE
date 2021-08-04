@@ -25,10 +25,20 @@ Classes
 
 
 
+.. data:: logger
+   
+
+   
+
 .. class:: spacy_NER(model_path=None)
 
 
    Bases: :class:`pine.pipelines.pipeline.Pipeline`
+
+   .. attribute:: __model
+      
+
+      
 
    .. attribute:: __nlp
       :annotation: = []
@@ -45,16 +55,27 @@ Classes
 
       
 
-   .. method:: fit(self, X, y, params=None)
+   .. attribute:: __default_fit_params
+      
+
+      
+
+   .. method:: _load_model(self, model_path=None)
+
+
+   .. method:: status(self) -> dict
+
+
+   .. method:: fit(self, X, y, **params)
 
 
    .. method:: evaluate(self, X, y, Xid)
 
 
-   .. method:: predict(self, X, Xid)
+   .. method:: predict(self, X: Iterable[str]) -> List[DocumentPredictions]
 
 
-   .. method:: predict_proba(self, X, Xid)
+   .. method:: predict_proba(self, X: Iterable[str], **kwargs) -> List[DocumentPredictionProbabilities]
 
 
    .. method:: next_example(self, X, Xid)
@@ -66,10 +87,10 @@ Classes
    .. method:: add_label(self, entity)
 
 
-   .. method:: save_model(self, model_path)
+   .. method:: save_model(self, model_name)
 
 
-   .. method:: load_model(self, model_path)
+   .. method:: load_model(self, model_name)
 
 
 

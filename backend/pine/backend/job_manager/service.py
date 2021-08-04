@@ -18,6 +18,7 @@ import os
 import platform
 import secrets
 import time
+import typing
 import uuid
 from concurrent.futures import ThreadPoolExecutor
 from datetime import datetime, timedelta
@@ -34,6 +35,22 @@ config = ConfigBuilder.get_config()
 logger = logging.getLogger(__name__)
 
 
+class ServiceJob(object):
+    """
+    Data class for a service job.
+    """
+
+    def __init__(self, job_id: str, request_body: dict, request_response: dict):
+        """"Constructor.
+        
+        :param job_id: str: job ID
+        :param request_body: dict: job request body
+        :param request_response: dict: job request response
+        """
+        self.job_id: str = job_id
+        self.request_body: dict = request_body
+        self.request_response: dict = request_response
+
 class ServiceManager(object):
     # Redis Client
     logger.info("Using redis host {}:{}".format(config.REDIS_HOST, config.REDIS_PORT))
@@ -48,6 +65,14 @@ class ServiceManager(object):
     redis_work_queue_key_prefix = redis_key_prefix + "work-queue:"
     redis_work_mutex_key_prefix = redis_key_prefix + "work-mutex:"
     redis_handler_mutex_key_prefix = redis_key_prefix + "handler-mutex:"
+    
+    @classmethod
+    def get_results_key(cls, service_name: str, job_id: str) -> str:
+        return "{}{}:work-results:{}".format(config.REDIS_PREFIX, service_name, job_id)
+
+    @classmethod
+    def get_running_jobs_key(cls, service_name: str) -> str:
+        return "{}{}:running-jobs".format(config.REDIS_PREFIX, service_name)
 
     # Redis Key TTL (Used by Expire Calls)
 
@@ -160,7 +185,38 @@ class ServiceManager(object):
         return final_values
 
     @classmethod
-    def send_service_request(cls, service_name, data, job_id=None, encoder=None):
+    def _get_service_details(cls, service_name: str, retry_count = 10) -> dict:
+        registered_services = cls.get_registered_services(include_details=False)
+        retries = 1
+        while service_name not in set(registered_services) and retries <= retry_count:
+            logger.warning("Unable to retrieve service; sleeping 2s and trying again.")
+            time.sleep(2)
+            registered_services = cls.get_registered_services(include_details=False)
+            retries += 1
+        if service_name not in set(registered_services):
+            raise Exception("Unable to retrieve service for " + service_name)
+        service_details = cls.r_conn.get(cls.redis_reg_key_prefix + service_name)
+        if not service_details:
+            raise Exception("Unable to retrieve service details for " + service_name)
+        try:
+            service_details = json.loads(service_details)
+        except (json.JSONDecodeError, TypeError):
+            raise Exception("Unable to retrieve service details for " + service_name)
+        return service_details
+
+    @classmethod
+    def _get_service_channel(cls, service_name: str) -> str:
+        service_details = cls._get_service_details(service_name)
+        if service_details == None:
+            return None
+        service_channel = pydash.get(service_details, "channel", None)
+        if not isinstance(service_channel, str):
+            logger.warning("Unable to load service details.")
+            return None
+        return service_channel
+
+    @classmethod
+    def send_service_request(cls, service_name: str, data, job_id=None, encoder=None):
         """
         Queue's a job for the requested service.
         :type service_name: str
@@ -169,22 +225,8 @@ class ServiceManager(object):
         :type encoder: json.JSONEncoder
         :rtype: None | dict
         """
-        registered_services = cls.get_registered_services(include_details=False)
-        if service_name not in set(registered_services):
-            logger.warning("Unable to retrieve service.")
-            return None
-        service_details = cls.r_conn.get(cls.redis_reg_key_prefix + service_name)
-        if not service_details:
-            logger.warning("Unable to retrieve service details.")
-            return None
-        try:
-            service_details = json.loads(service_details)
-        except (json.JSONDecodeError, TypeError):
-            logger.warning("Unable to load service details.")
-            return None
-        service_channel = pydash.get(service_details, "channel", None)
-        if not isinstance(service_channel, str):
-            logger.warning("Unable to load service details.")
+        service_channel = cls._get_service_channel(service_name)
+        if service_name == None:
             return None
         redis_queue_key = cls.redis_work_queue_key_prefix + service_name
         job_id_to_use = job_id if isinstance(job_id, str) else uuid.uuid4().hex
@@ -196,6 +238,7 @@ class ServiceManager(object):
         except (json.JSONDecodeError, TypeError):
             logger.warning("Unable to encode data.")
             return None
+        cls.r_conn.sadd(cls.get_running_jobs_key(service_name), job_id_to_use)
         with cls.r_conn.pipeline() as pipe:
             pipe.rpush(redis_queue_key, request_body_queue)
             # if nothing is processed in "redis_queue_key_ttl" minutes since last insert, the queue will be deleted
@@ -210,6 +253,53 @@ class ServiceManager(object):
             cls.r_conn.rpop(redis_queue_key)
             return None
         return request_body
+
+    @classmethod
+    def get_job_response(cls, service_name: str, job_id: str, timeout_in_s: int):
+        """
+        Waits for a response for the given job and returns it.
+        :param service_name: str: service name
+        :param job_id: str: job ID
+        :param timeout_in_s: int: wait timeout in seconds
+        :rtype None | dict
+        """
+        redis_queue_key = cls.get_results_key(service_name, job_id)
+        logger.info("Waiting for {} seconds for a response on {}".format(timeout_in_s, redis_queue_key))
+        response = cls.r_conn.blpop(redis_queue_key, timeout_in_s)
+        if response:
+            response = json.loads(response[1])
+        return response
+
+    @classmethod
+    def send_service_request_and_get_response(cls, service_name: str, data, timeout_in_s: int,
+                                              job_id=None, encoder=None) -> ServiceJob:
+        """
+        Sends a service requests, waits for a response, and returns job data.
+        :param service_name: str: service name
+        :param data: job data
+        :param timeout_in_s: int: wait timeout in seconds
+        :param job_id: str: optional job ID (or None to auto-generate one)
+        :param encoder: optional JSON encoder for job data
+        :rtype None | ServiceJob
+        """
+        request_body = cls.send_service_request(service_name, data, job_id=job_id, encoder=encoder)
+        if request_body == None:
+            return ServiceJob(job_id=job_id,
+                              request_body=None,
+                              request_response=None)
+        actual_job_id = request_body["job_id"]
+        request_response = cls.get_job_response(service_name, actual_job_id, timeout_in_s)
+        return ServiceJob(job_id=actual_job_id,
+                          request_body=request_body,
+                          request_response=request_response)
+
+    @classmethod
+    def get_running_jobs(cls, service_name: str) -> typing.List[str]:
+        """Returns running jobs.
+        :param service_name: str: service name
+        :rtype list[str]
+        """
+        return list(cls.r_conn.smembers(cls.get_running_jobs_key(service_name)))
 
     def start_listeners(self):
         """

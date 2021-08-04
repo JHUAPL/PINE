@@ -31,7 +31,7 @@ Classes
 
    Bases: :class:`pine.pipelines.pipeline.Pipeline`
 
-   .. attribute:: __jar
+   .. attribute:: __ner_path
       :annotation: = 
 
       
@@ -71,13 +71,25 @@ Classes
 
       
 
-   .. method:: fit(self, X, y, params)
+   .. attribute:: __is_setup
+      :annotation: = False
+
+      
+
+   .. method:: setup(cls, java_dir=None, ner_path=None)
+      :classmethod:
 
 
-   .. method:: predict(self, X, Xid)
+   .. method:: status(self) -> dict
 
 
-   .. method:: predict_proba(self, X, Xid, get_all_labels=False, include_other=False)
+   .. method:: fit(self, X, y, **params)
+
+
+   .. method:: predict(self, X: Iterable[str]) -> List[DocumentPredictions]
+
+
+   .. method:: predict_proba(self, X: Iterable[str], **kwargs) -> List[DocumentPredictionProbabilities]
 
 
    .. method:: next_example(self, X, Xid)
@@ -101,7 +113,7 @@ Classes
    .. method:: format_data(self, X, y)
 
 
-   .. method:: convert_ann_collection_to_per_token(self, annotations, tokens)
+   .. method:: convert_ann_collection_to_per_token(self, annotations: List[Union[NerPrediction, typing.Tuple[int, int, str]]], tokens)
 
 
    .. method:: evaluate(self, X, y, Xid)

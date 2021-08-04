@@ -85,19 +85,42 @@
 <em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">pine.pipelines.NER_API.</span></code><code class="sig-name descname"><span class="pre">ner_api</span></code><a class="headerlink" href="#pine.pipelines.NER_API.ner_api" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
 <dl class="py method">
+<dt id="pine.pipelines.NER_API.ner_api.status">
+<code class="sig-name descname"><span class="pre">status</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">classifier_id</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">pipeline_name</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><span class="pre">dict</span></a><a class="headerlink" href="#pine.pipelines.NER_API.ner_api.status" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
 <dt id="pine.pipelines.NER_API.ner_api.perform_fold">
-<code class="sig-name descname"><span class="pre">perform_fold</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">train_data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">test_data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pipeline_parameters</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.pipelines.NER_API.ner_api.perform_fold" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">perform_fold</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="../pmap_ner/index.html#pine.pipelines.pmap_ner.NER" title="pine.pipelines.pmap_ner.NER"><span class="pre">pine.pipelines.pmap_ner.NER</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">train_data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">test_data</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">pipeline_parameters</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.pipelines.NER_API.ner_api.perform_fold" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt id="pine.pipelines.NER_API.ner_api.perform_five_fold">
-<code class="sig-name descname"><span class="pre">perform_five_fold</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">documents</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">annotations</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">doc_ids</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pipeline_parameters</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.pipelines.NER_API.ner_api.perform_five_fold" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">perform_five_fold</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="../pmap_ner/index.html#pine.pipelines.pmap_ner.NER" title="pine.pipelines.pmap_ner.NER"><span class="pre">pine.pipelines.pmap_ner.NER</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">documents</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">annotations</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">doc_ids</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">pipeline_parameters</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.pipelines.NER_API.ner_api.perform_five_fold" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt id="pine.pipelines.NER_API.ner_api.get_document_ranking">
-<code class="sig-name descname"><span class="pre">get_document_ranking</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">doc_map</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">doc_ids</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.pipelines.NER_API.ner_api.get_document_ranking" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<code class="sig-name descname"><span class="pre">get_document_ranking</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="../pmap_ner/index.html#pine.pipelines.pmap_ner.NER" title="pine.pipelines.pmap_ner.NER"><span class="pre">pine.pipelines.pmap_ner.NER</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">doc_map</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a><span class="p"><span class="pre">,</span> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">doc_ids</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#pine.pipelines.NER_API.ner_api.get_document_ranking" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculates document rankings and returns document IDs sorted by ranking.</p>
+<p>The ranking should be which documents should be evaluated first.  This probably
+corresponds in some ways to the documents which the model is least confident about.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>model</strong> – NER model</p></li>
+<li><p><strong>doc_map</strong> – dict: mapping of document IDs to document text where overlap is 0</p></li>
+<li><p><strong>doc_ids</strong> – list: IDs of documents where ???</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>sorted document IDs</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)">list</a></p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt id="pine.pipelines.NER_API.ner_api.get_classifier_pipeline_metrics_objs">
@@ -111,7 +134,7 @@
 
 <dl class="py method">
 <dt id="pine.pipelines.NER_API.ner_api.predict">
-<code class="sig-name descname"><span class="pre">predict</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">classifier_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pipeline_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">documents</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">document_ids</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.pipelines.NER_API.ner_api.predict" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">predict</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">classifier_id</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">pipeline_name</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">document_ids</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">texts</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.pipelines.NER_API.ner_api.predict" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -135,6 +158,7 @@
 <li><a class="reference internal" href="#pine.pipelines.NER_API.logger">logger</a></li>
 <li><a class="reference internal" href="#pine.pipelines.NER_API.config">config</a></li>
 <li><a class="reference internal" href="#pine.pipelines.NER_API.ner_api">ner_api</a><ul>
+<li><a class="reference internal" href="#pine.pipelines.NER_API.ner_api.status">status</a></li>
 <li><a class="reference internal" href="#pine.pipelines.NER_API.ner_api.perform_fold">perform_fold</a></li>
 <li><a class="reference internal" href="#pine.pipelines.NER_API.ner_api.perform_five_fold">perform_five_fold</a></li>
 <li><a class="reference internal" href="#pine.pipelines.NER_API.ner_api.get_document_ranking">get_document_ranking</a></li>

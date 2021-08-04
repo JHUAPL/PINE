@@ -117,7 +117,7 @@
 <tr class="row-odd"><td><p><a class="reference internal" href="#pine.backend.collections.bp.add_label_to_collection" title="pine.backend.collections.bp.add_label_to_collection"><code class="xref py py-obj docutils literal notranslate"><span class="pre">add_label_to_collection</span></code></a>(collection_id)</p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#pine.backend.collections.bp.get_overlap_ids" title="pine.backend.collections.bp.get_overlap_ids"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_overlap_ids</span></code></a>(collection_id)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#pine.backend.collections.bp.get_overlap_ids" title="pine.backend.collections.bp.get_overlap_ids"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_overlap_ids</span></code></a>(collection_id: str)</p></td>
 <td><p>Return the list of ids for overlapping documents for the collection matching the provided collection id.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#pine.backend.collections.bp._upload_documents" title="pine.backend.collections.bp._upload_documents"><code class="xref py py-obj docutils literal notranslate"><span class="pre">_upload_documents</span></code></a>(collection, docs)</p></td>
@@ -296,7 +296,7 @@ pages.
 
 <dl class="py function">
 <dt id="pine.backend.collections.bp.get_overlap_ids">
-<code class="sig-prename descclassname"><span class="pre">pine.backend.collections.bp.</span></code><code class="sig-name descname"><span class="pre">get_overlap_ids</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">collection_id</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.collections.bp.get_overlap_ids" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname"><span class="pre">pine.backend.collections.bp.</span></code><code class="sig-name descname"><span class="pre">get_overlap_ids</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">collection_id</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.collections.bp.get_overlap_ids" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return the list of ids for overlapping documents for the collection matching the provided collection id.
 :param collection_id: str
 :return: tuple</p>

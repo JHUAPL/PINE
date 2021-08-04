@@ -1,4 +1,5 @@
 # (C) 2019 The Johns Hopkins University Applied Physics Laboratory LLC.
+
 [[source]]
 name = "pypi"
 url = "https://pypi.org/simple"
@@ -19,6 +20,7 @@ spacy = "*"
 sklearn = "*"
 scikit-multilearn = "*"
 python-json-logger = "*"
+overrides = "*"
 
 [requires]
 python_version = "3.6"

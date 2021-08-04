@@ -3,8 +3,11 @@
 import importlib
 import logging
 import os
+import typing
 
-from .pipeline import Pipeline
+from .pipeline import Pipeline, DocumentPredictions, DocumentPredictionProbabilities
+
+from overrides import overrides
 
 logger = logging.getLogger(__name__)
 
@@ -42,24 +45,28 @@ class NER(Pipeline):
             self.pipeline = self.pipe_init('spacy', **kwargs)
             self.__lib = 'spacy'
 
-        
-    #fit(X, y)
-    #returns nothing
+    @property
+    def pipeline_class(self):
+        return self.pipeline.__class__.__module__ + "." + self.pipeline.__class__.__name__
+
+    @overrides
+    def status(self) -> dict:
+        return self.pipeline.status()
+
     #internal state is changed
     #kwargs varies between pipelines, see individual pipeline for extra arguments
-    def fit(self, X, y, kwargs):
-        return self.pipeline.fit(X, y, kwargs)
+    @overrides
+    def fit(self, X, y, **kwargs):
+        return self.pipeline.fit(X, y, **kwargs)
 
-    #predict(X)
-    #returns {doc_id:[(offset_start, offset_end, label), ... ()]}
-    def predict(self, X, Xid):
-        return self.pipeline.predict(X, Xid)
+    @overrides
+    def predict(self, X: typing.Iterable[str]) -> typing.List[DocumentPredictions]:
+        return self.pipeline.predict(X)
 
-    #predict_proba(X)
-    #returns {doc_id:[(offset_start, offset_end, label, confidence), ... ()]}
     #kwargs varies between pipelines, see individual pipeline for extra arguments
-    def predict_proba(self, X, Xid, **kwargs):
-        return self.pipeline.predict_proba(X, Xid, **kwargs)
+    @overrides
+    def predict_proba(self, X: typing.Iterable[str], **kwargs) -> typing.List[DocumentPredictionProbabilities]:
+        return self.pipeline.predict_proba(X, **kwargs)
 
     # evaluate(X, y, Xid)
     # returns stats
@@ -68,22 +75,20 @@ class NER(Pipeline):
 
     #next_example(Xid)
     #Given model's current state evaluate the input (id, String) pairs and return a rank ordering of lowest->highest scores for instances (will need to discuss specifics of ranking)
+    @overrides
     def next_example(self, X, Xid):
         #may want to program it here instead of one level down, as the ranking function might not change with the pipeline used
         return self.pipeline.next_example(X, Xid)
 
-    #saves model so that it can be loaded again later
-    #models must be saved with extension ".ser.gz"
-    # save_model(path)
-    def save_model(self, model_path):
-        directory = os.path.dirname(model_path)
+    @overrides
+    def save_model(self, model_name):
+        directory = os.path.dirname(model_name)
         # if directories in path dont exists create them
         if not os.path.exists(directory):
             os.makedirs(directory)
 
-        return self.pipeline.save_model(model_path)
+        return self.pipeline.save_model(model_name)
 
-    #loads a previously saved model
-    #properties can be exported/imported during train
+    @overrides
     def load_model(self, model_name):
         self.pipeline.load_model(model_name)

@@ -71,7 +71,7 @@ class BaseConfig(object):
             channel="service_corenlp",
             service=dict(
                 framework="corenlp",
-                types=["fit", "predict"]
+                types=["fit", "predict", "status"]
             )
         ),
         dict(
@@ -80,7 +80,7 @@ class BaseConfig(object):
             channel="service_opennlp",
             service=dict(
                 framework="opennlp",
-                types=["fit", "predict"]
+                types=["fit", "predict", "status"]
             )
         ),
         dict(
@@ -89,7 +89,7 @@ class BaseConfig(object):
             channel="service_spacy",
             service=dict(
                 framework="spacy",
-                types=["fit", "predict"]
+                types=["fit", "predict", "status"]
             )
         )
     ]

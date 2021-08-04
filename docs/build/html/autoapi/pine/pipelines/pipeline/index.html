@@ -65,28 +65,99 @@
 <col style="width: 90%" />
 </colgroup>
 <tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pine.pipelines.pipeline.NerPrediction" title="pine.pipelines.pipeline.NerPrediction"><code class="xref py py-obj docutils literal notranslate"><span class="pre">NerPrediction</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#pine.pipelines.pipeline.DocumentPredictions" title="pine.pipelines.pipeline.DocumentPredictions"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DocumentPredictions</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pine.pipelines.pipeline.NerPredictionProbabilities" title="pine.pipelines.pipeline.NerPredictionProbabilities"><code class="xref py py-obj docutils literal notranslate"><span class="pre">NerPredictionProbabilities</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#pine.pipelines.pipeline.DocumentPredictionProbabilities" title="pine.pipelines.pipeline.DocumentPredictionProbabilities"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DocumentPredictionProbabilities</span></code></a></p></td>
+<td><p></p></td>
+</tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#pine.pipelines.pipeline.Pipeline" title="pine.pipelines.pipeline.Pipeline"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Pipeline</span></code></a></p></td>
 <td><p></p></td>
 </tr>
 </tbody>
 </table>
 <dl class="py class">
+<dt id="pine.pipelines.pipeline.NerPrediction">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">pine.pipelines.pipeline.</span></code><code class="sig-name descname"><span class="pre">NerPrediction</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">offset_start</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">offset_end</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">label</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.pipelines.pipeline.NerPrediction" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<dl class="py method">
+<dt id="pine.pipelines.pipeline.NerPrediction.serialize">
+<code class="sig-name descname"><span class="pre">serialize</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><span class="pre">int</span></a><span class="p"><span class="pre">,</span> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><span class="pre">int</span></a><span class="p"><span class="pre">,</span> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#pine.pipelines.pipeline.NerPrediction.serialize" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="pine.pipelines.pipeline.DocumentPredictions">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">pine.pipelines.pipeline.</span></code><code class="sig-name descname"><span class="pre">DocumentPredictions</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ner</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#pine.pipelines.pipeline.NerPrediction" title="pine.pipelines.pipeline.NerPrediction"><span class="pre">NerPrediction</span></a><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">doc</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">extra_data</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Any</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.pipelines.pipeline.DocumentPredictions" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<dl class="py method">
+<dt id="pine.pipelines.pipeline.DocumentPredictions.serialize">
+<code class="sig-name descname"><span class="pre">serialize</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><span class="pre">dict</span></a><a class="headerlink" href="#pine.pipelines.pipeline.DocumentPredictions.serialize" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="pine.pipelines.pipeline.NerPredictionProbabilities">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">pine.pipelines.pipeline.</span></code><code class="sig-name descname"><span class="pre">NerPredictionProbabilities</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">offset_start</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">offset_end</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">predictions</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a><span class="p"><span class="pre">,</span> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><span class="pre">float</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.pipelines.pipeline.NerPredictionProbabilities" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<dl class="py method">
+<dt id="pine.pipelines.pipeline.NerPredictionProbabilities.get_highest_prediction">
+<code class="sig-name descname"><span class="pre">get_highest_prediction</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a><span class="p"><span class="pre">,</span> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><span class="pre">float</span></a><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#pine.pipelines.pipeline.NerPredictionProbabilities.get_highest_prediction" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="pine.pipelines.pipeline.NerPredictionProbabilities.get_predictions_from_highest_to_lowest">
+<code class="sig-name descname"><span class="pre">get_predictions_from_highest_to_lowest</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a><span class="p"><span class="pre">,</span> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><span class="pre">float</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#pine.pipelines.pipeline.NerPredictionProbabilities.get_predictions_from_highest_to_lowest" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="pine.pipelines.pipeline.NerPredictionProbabilities.serialize">
+<code class="sig-name descname"><span class="pre">serialize</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><span class="pre">int</span></a><span class="p"><span class="pre">,</span> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><span class="pre">int</span></a><span class="p"><span class="pre">,</span> </span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.9)"><span class="pre">typing.List</span></a><span class="p"><span class="pre">[</span></span><span class="pre">typing.Tuple</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a><span class="p"><span class="pre">,</span> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><span class="pre">float</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#pine.pipelines.pipeline.NerPredictionProbabilities.serialize" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="pine.pipelines.pipeline.DocumentPredictionProbabilities">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">pine.pipelines.pipeline.</span></code><code class="sig-name descname"><span class="pre">DocumentPredictionProbabilities</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ner</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#pine.pipelines.pipeline.NerPredictionProbabilities" title="pine.pipelines.pipeline.NerPredictionProbabilities"><span class="pre">NerPredictionProbabilities</span></a><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">doc</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a><span class="p"><span class="pre">,</span> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><span class="pre">float</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.pipelines.pipeline.DocumentPredictionProbabilities" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<dl class="py method">
+<dt id="pine.pipelines.pipeline.DocumentPredictionProbabilities.serialize">
+<code class="sig-name descname"><span class="pre">serialize</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><span class="pre">dict</span></a><a class="headerlink" href="#pine.pipelines.pipeline.DocumentPredictionProbabilities.serialize" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
 <dt id="pine.pipelines.pipeline.Pipeline">
 <em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">pine.pipelines.pipeline.</span></code><code class="sig-name descname"><span class="pre">Pipeline</span></code><a class="headerlink" href="#pine.pipelines.pipeline.Pipeline" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
 <dl class="py method">
+<dt id="pine.pipelines.pipeline.Pipeline.status">
+<em class="property"><span class="pre">abstract</span> </em><code class="sig-name descname"><span class="pre">status</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><span class="pre">dict</span></a><a class="headerlink" href="#pine.pipelines.pipeline.Pipeline.status" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
 <dt id="pine.pipelines.pipeline.Pipeline.fit">
-<em class="property"><span class="pre">abstract</span> </em><code class="sig-name descname"><span class="pre">fit</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.pipelines.pipeline.Pipeline.fit" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">abstract</span> </em><code class="sig-name descname"><span class="pre">fit</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">params</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.pipelines.pipeline.Pipeline.fit" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt id="pine.pipelines.pipeline.Pipeline.predict">
-<em class="property"><span class="pre">abstract</span> </em><code class="sig-name descname"><span class="pre">predict</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Xid</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.pipelines.pipeline.Pipeline.predict" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">abstract</span> </em><code class="sig-name descname"><span class="pre">predict</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">X</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Iterable</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#pine.pipelines.pipeline.DocumentPredictions" title="pine.pipelines.pipeline.DocumentPredictions"><span class="pre">DocumentPredictions</span></a><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#pine.pipelines.pipeline.Pipeline.predict" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt id="pine.pipelines.pipeline.Pipeline.predict_proba">
-<em class="property"><span class="pre">abstract</span> </em><code class="sig-name descname"><span class="pre">predict_proba</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Xid</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.pipelines.pipeline.Pipeline.predict_proba" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">abstract</span> </em><code class="sig-name descname"><span class="pre">predict_proba</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">X</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Iterable</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#pine.pipelines.pipeline.DocumentPredictionProbabilities" title="pine.pipelines.pipeline.DocumentPredictionProbabilities"><span class="pre">DocumentPredictionProbabilities</span></a><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#pine.pipelines.pipeline.Pipeline.predict_proba" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -122,7 +193,26 @@
 <li><a class="reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">pine.pipelines.pipeline</span></code></a><ul>
 <li><a class="reference internal" href="#module-contents">Module Contents</a><ul>
 <li><a class="reference internal" href="#classes">Classes</a><ul>
+<li><a class="reference internal" href="#pine.pipelines.pipeline.NerPrediction">NerPrediction</a><ul>
+<li><a class="reference internal" href="#pine.pipelines.pipeline.NerPrediction.serialize">serialize</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#pine.pipelines.pipeline.DocumentPredictions">DocumentPredictions</a><ul>
+<li><a class="reference internal" href="#pine.pipelines.pipeline.DocumentPredictions.serialize">serialize</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#pine.pipelines.pipeline.NerPredictionProbabilities">NerPredictionProbabilities</a><ul>
+<li><a class="reference internal" href="#pine.pipelines.pipeline.NerPredictionProbabilities.get_highest_prediction">get_highest_prediction</a></li>
+<li><a class="reference internal" href="#pine.pipelines.pipeline.NerPredictionProbabilities.get_predictions_from_highest_to_lowest">get_predictions_from_highest_to_lowest</a></li>
+<li><a class="reference internal" href="#pine.pipelines.pipeline.NerPredictionProbabilities.serialize">serialize</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#pine.pipelines.pipeline.DocumentPredictionProbabilities">DocumentPredictionProbabilities</a><ul>
+<li><a class="reference internal" href="#pine.pipelines.pipeline.DocumentPredictionProbabilities.serialize">serialize</a></li>
+</ul>
+</li>
 <li><a class="reference internal" href="#pine.pipelines.pipeline.Pipeline">Pipeline</a><ul>
+<li><a class="reference internal" href="#pine.pipelines.pipeline.Pipeline.status">status</a></li>
 <li><a class="reference internal" href="#pine.pipelines.pipeline.Pipeline.fit">fit</a></li>
 <li><a class="reference internal" href="#pine.pipelines.pipeline.Pipeline.predict">predict</a></li>
 <li><a class="reference internal" href="#pine.pipelines.pipeline.Pipeline.predict_proba">predict_proba</a></li>

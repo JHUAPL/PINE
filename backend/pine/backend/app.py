@@ -105,4 +105,7 @@ def create_app(test_config = None):
     from .pineiaa import bp as iaabp
     iaabp.init_app(app)
 
+    from .api import bp as apibp
+    apibp.init_app(app)
+
     return app

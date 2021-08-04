@@ -1,0 +1,410 @@
+# (C) 2021 The Johns Hopkins University Applied Physics Laboratory LLC.
+
+openapi: "3.0.2"
+
+tags:
+  - name: auth
+    description: Operations in the "auth" blueprint.
+  - name: auth_eve
+    description: These operations are only available if using "eve" auth module.
+  - name: auth_vegas
+    description: These operations are only available if using "vegas" auth module.
+
+components:
+
+  schemas:
+
+    LoginForm:
+      description: Information needed to display a login form.
+      type: object
+      properties:
+        button_text:
+          description: Text to set in the login button.
+          type: string
+        fields:
+          description: Form fields to use.
+          type: array
+          items:
+            type: object
+            properties:
+              display:
+                description: Display name.
+                type: string
+              name:
+                description: Form name.
+                type: string
+              type:
+                description: Form type.
+                type: string
+      example:
+        button_text: Login
+        fields:
+          - display: Username or email
+            name: username
+            type: text
+          - display: Password
+            name: password
+            type: password
+
+    EveLogin:
+      description: Only for eve login.
+      type: object
+      properties:
+        username:
+          type: string
+        password:
+          type: string
+
+    EvePasswordChange:
+      type: object
+      properties:
+        current_password:
+          type: string
+        new_password:
+          type: string
+
+    VegasAuthToken:
+      description: An auth token obtained by Vegas out-of-band from PINE.
+      type: object
+      properties:
+        auth_token:
+          type: string
+        token_type:
+          type: string
+      additionalProperties: {}
+
+paths:
+
+  # Endpoints available for all auth modules.
+
+  /auth/module:
+    get:
+      summary: Get Auth Module
+      description: |
+        Get the current auth module being used (vegas or eve).
+        
+        Example: `curl -X GET http://localhost:5000/auth/module`
+      operationId: auth_get_module
+      tags: [auth]
+      responses:
+        "200":
+          description: Successfully got the auth module.
+          content:
+            application/json:
+              schema:
+                type: string
+                enum: [eve, vegas]
+
+  /auth/flat:
+    get:
+      summary: Get Auth Is Flat
+      description: |
+        Return true if the current auth module is flat.
+        
+        "Flat" auth means, generally, there are no administrators and permissions are generally on
+        the same "level".  Collection-level permissions for viewing/annotating still apply, however.
+        
+        Example: `curl -X GET http://localhost:5000/auth/flat`
+      operationId: auth_get_flat
+      tags: [auth]
+      responses:
+        "200":
+          description: Successfully return a boolean if the auth module was flat.
+          content:
+            application/json:
+              schema:
+                type: boolean
+
+  /auth/can_manage_users:
+    get:
+      summary: Get Auth Can Manage Users
+      description: |
+        Return true if the current auth module supports managing users.
+        
+        If `true`, the auth module can change, add, and delete users.  If `false`, users are managed
+        by an external system.
+        
+        Example: `curl -X GET http://localhost:5000/auth/flat`
+      operationId: auth_get_manage
+      tags: [auth]
+      responses:
+        "200":
+          description: Successfully return a boolean if the auth module supports managing users.
+          content:
+            application/json:
+              schema:
+                type: boolean
+
+  /auth/logged_in_user:
+    get:
+      summary: Get Logged In User
+      description: |
+        Get the currently logged in user (checks based on the session - need the session cookie sent).
+        If there is no user logged, in `null` is returned.
+        
+        Example: `curl -X GET http://localhost:5000/auth/logged_in_user --cookie session.cookie`
+      operationId: auth_logged_in_user
+      tags: [auth]
+      responses:
+        "200":
+          description: Successfully returned the logged in user (or null if no session cookie).
+          content:
+            application/json:
+              schema:
+                oneOf:
+                  - type: string
+                    nullable: true
+                    default: null
+                  - $ref: "../api/components.yaml#/schemas/AuthUser"
+
+  /auth/logged_in_user_details:
+    get:
+      summary: Get Logged In User Details
+      description: |
+        Get the currently logged in user's details.
+        
+        Example: `curl -X GET http://localhost:5000/auth/logged_in_user_details --cookie session.cookie`
+      operationId: auth_user_details
+      security:
+        - cookieAuth: []
+      tags: [auth]
+      responses:
+        "200":
+          description: Successfully returned the logged in user details.
+          content:
+            application/json:
+              schema:
+                $ref: "../api/components.yaml#/schemas/AuthUserDetails"
+        "401":
+          $ref: "../api/components.yaml#/responses/NotAuthorized"
+
+    # Eve-specific post.
+    post:
+      summary: Update Logged In User Details with Eve
+      description: |
+        Updates the user details for the logged in user.
+        
+        _Note_: this endpoint is only exposed if using "eve" auth module.
+      operationId: auth_eve_update_user_details
+      security:
+        - cookieAuth: []
+      tags: [auth_eve]
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "../api/components.yaml#/schemas/AuthUserDetails"
+      responses:
+        "200":
+          description: Successfully updated user details.
+          content:
+            application/json:
+              schema:
+                type: boolean
+        "400":
+          $ref: "../api/components.yaml#/responses/InvalidInputParameters"
+        "401":
+          $ref: "../api/components.yaml#/responses/NotAuthorized"
+
+  /auth/login_form:
+    get:
+      summary: Get the login form.
+      description: |
+        For auth modules that use a form to login, this endpoint will return the information needed
+        to present that form to the user and send back the necessary info in a subsequent login
+        call.
+        
+        Example: `curl -X GET http://localhost:5000/auth/login_form`
+      operationId: auth_login_form
+      tags: [auth]
+      responses:
+        "200":
+          description: Successfully returned the login form.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/LoginForm"
+
+  /auth/logout:
+    post:
+      summary: Logout
+      description: |
+        Logout of the current session.
+        
+        Example: `curl -X POST http://localhost:5000/auth/logout --cookie session.cookie`
+      operationId: auth_logout
+      tags: [auth]
+      security:
+        - cookieAuth: []
+      responses:
+        "200":
+          description: Successfully logged out.
+        "401":
+          $ref: "../api/components.yaml#/responses/NotAuthorized"
+  
+  /auth/login:
+    post:
+      summary: Login User
+      description: |
+        Logs in user.  How this works depends on the auth module used.
+        
+        For eve: this takes a request body consisting of the login form data.
+        
+        For vegas: this takes in no parameters and returns the URL the caller should redirect to.
+      operationId: auth_login
+      tags: [auth_eve, auth_vegas]
+      parameters:
+        - name: return_to
+          in: query
+          required: false
+          description: For vegas auth only, a URL to return to after auth flow.
+          schema:
+            type: string
+            format: url
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/EveLogin"
+      responses:
+        "200":
+          description: |
+            For eve: successfully logged in, returns user information.
+            
+            For vegas: starts auth flow and returns the URL that the caller should redirect to.
+          content:
+            application/json:
+              schema:
+                oneOf:
+                - $ref: "../api/components.yaml#/schemas/AuthUser"
+                - type: string
+                  format: url
+        "400":
+          $ref: "../api/components.yaml#/responses/InvalidInputParameters"
+        "401":
+          description: Given user doesn't exist, password isn't set, or password doesn't match.
+          content:
+            application/json:
+              schema:
+                $ref: "../api/components.yaml#/schemas/ErrorResponse"
+
+  # Eve-specific endpoints.
+
+  /auth/users:
+    get:
+      summary: Get Eve Users
+      description: |
+        Gets all users that are registered with eve.
+        
+        _Note_: this endpoint is only exposed if using "eve" auth module.
+      operationId: auth_eve_users
+      tags: [auth_eve]
+      security:
+        - cookieAuth: []
+      responses:
+        "200":
+          description: Returns all users.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "../api/components.yaml#/schemas/AuthUser"
+        "401":
+          $ref: "../api/components.yaml#/responses/NotAuthorized"
+
+  /auth/logged_in_user_password:
+    post:
+      summary: Update Eve User Password
+      description: |
+        Updates the password of the currently logged in eve user.
+        
+        _Note_: this endpoint is only exposed if using "eve" auth module.
+      operationId: auth_eve_update_password
+      tags: [auth_eve]
+      security:
+        - cookieAuth: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/EvePasswordChange"
+      responses:
+        "200":
+          description: Successfully changed password.
+          content:
+            application/json:
+              schema:
+                type: boolean
+        "400":
+          $ref: "../api/components.yaml#/responses/InvalidInputParameters"
+        "401":
+          description: Not logged in, or current password doesn't match.
+          content:
+            application/json:
+              schema:
+                $ref: "../api/components.yaml#/schemas/ErrorResponse"
+
+  # Vegas-specific endpoints.
+
+  /auth/authorize:
+    get:
+      summary: Authorize From Fragment
+      description: |
+        Part of the OAuth flow, this will authorize based on passed-in query parameters.
+        
+        _Note_: this endpoint is only exposed if using "vegas" auth module.
+      operationId: auth_vegas_authorize_get
+      tags: [auth_vegas]
+      parameters:
+        - name: fragment
+          in: query
+          required: true
+          description: OAuth flow fragment.
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Successfully logged in, returns user information.
+          content:
+            application/json:
+              schema:
+                $ref: "../api/components.yaml#/schemas/AuthUser"
+        "400":
+          description: Fragment is not valid, or parsed token is not valid.
+          content:
+            application/json:
+              schema:
+                $ref: "../api/components.yaml#/schemas/ErrorResponse"
+    
+    post:
+      summary: Authorize From Token
+      description: |
+        Authorize diretly based on an obtained vegas token, outside the normal OAuth flow.
+        This is meant to make it easy to authenticate using vegas and then use this API outside of
+        the web UI.
+        
+        _Note_: this endpoint is only exposed if using "vegas" auth module.
+      operationId: auth_vegas_authorize_post
+      tags: [auth_vegas]
+      requestBody:
+        description: Token obtained from Vegas.
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/VegasAuthToken"
+      responses:
+        "200":
+          description: Successfully logged in, returns user information.
+          content:
+            application/json:
+              schema:
+                $ref: "../api/components.yaml#/schemas/AuthUser"
+        "400":
+          description: Token is not valid.
+          content:
+            application/json:
+              schema:
+                $ref: "../api/components.yaml#/schemas/ErrorResponse"

@@ -12,6 +12,7 @@ Classes
 
 .. autoapisummary::
 
+   pine.backend.job_manager.service.ServiceJob
    pine.backend.job_manager.service.ServiceManager
 
 
@@ -25,6 +26,20 @@ Classes
    
 
    
+
+.. class:: ServiceJob(job_id: str, request_body: dict, request_response: dict)
+
+
+   Bases: :class:`object`
+
+   Data class for a service job.
+
+   "Constructor.
+
+   :param job_id: str: job ID
+   :param request_body: dict: job request body
+   :param request_response: dict: job request response
+
 
 .. class:: ServiceManager(default_handler=None)
 
@@ -138,6 +153,14 @@ Classes
 
       
 
+   .. method:: get_results_key(cls, service_name: str, job_id: str) -> str
+      :classmethod:
+
+
+   .. method:: get_running_jobs_key(cls, service_name: str) -> str
+      :classmethod:
+
+
    .. method:: get_registered_channels(cls, include_ttl=False)
       :classmethod:
 
@@ -162,7 +185,15 @@ Classes
       :rtype: list[str] | list[dict]
 
 
-   .. method:: send_service_request(cls, service_name, data, job_id=None, encoder=None)
+   .. method:: _get_service_details(cls, service_name: str, retry_count=10) -> dict
+      :classmethod:
+
+
+   .. method:: _get_service_channel(cls, service_name: str) -> str
+      :classmethod:
+
+
+   .. method:: send_service_request(cls, service_name: str, data, job_id=None, encoder=None)
       :classmethod:
 
       Queue's a job for the requested service.
@@ -171,6 +202,36 @@ Classes
       :type job_id: str
       :type encoder: json.JSONEncoder
       :rtype: None | dict
+
+
+   .. method:: get_job_response(cls, service_name: str, job_id: str, timeout_in_s: int)
+      :classmethod:
+
+      Waits for a response for the given job and returns it.
+      :param service_name: str: service name
+      :param job_id: str: job ID
+      :param timeout_in_s: int: wait timeout in seconds
+      :rtype None | dict
+
+
+   .. method:: send_service_request_and_get_response(cls, service_name: str, data, timeout_in_s: int, job_id=None, encoder=None) -> pine.backend.job_manager.service.ServiceJob
+      :classmethod:
+
+      Sends a service requests, waits for a response, and returns job data.
+      :param service_name: str: service name
+      :param data: job data
+      :param timeout_in_s: int: wait timeout in seconds
+      :param job_id: str: optional job ID (or None to auto-generate one)
+      :param encoder: optional JSON encoder for job data
+      :rtype None | ServiceJob
+
+
+   .. method:: get_running_jobs(cls, service_name: str) -> List[str]
+      :classmethod:
+
+      Returns running jobs.
+      :param service_name: str: service name
+      :rtype list[str]
 
 
    .. method:: start_listeners(self)

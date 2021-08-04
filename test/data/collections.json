@@ -33,6 +33,66 @@
     },
     {
         "collection": {
+            "creator_id": "ada",
+            "annotators": ["ada"],
+            "viewers": ["ada"],
+            "labels": ["geo", "gpe", "per", "org", "tim", "art"],
+            "metadata": {
+                "title": "Small Collection",
+                "description": "This is a small collection"
+            },
+            "archived": false,
+            "configuration": {
+                "allow_overlapping_ner_annotations": true
+            }
+        }, "classifier": {
+            "pipelineId": "5babb6ee4eb7dd2c39b9671d",
+            "overlap": 0,
+            "train_every": 5,
+            "classifierParameters": {
+                "cutoff": 1,
+                "iterations": 5
+            }
+        }, "documents": {
+            "ner_annotations": {
+                "csv_file": "./ner_dataset.csv",
+                "sentences_per_doc": 10
+            },
+            "num_docs": 10
+        }
+    },
+    {
+        "collection": {
+            "creator_id": "ada",
+            "annotators": ["ada"],
+            "viewers": ["ada"],
+            "labels": ["geo", "gpe", "per", "org", "tim", "art"],
+            "metadata": {
+                "title": "Small Collection OpenNLP",
+                "description": "This is a small collection using OpenNLP pipeline"
+            },
+            "archived": false,
+            "configuration": {
+                "allow_overlapping_ner_annotations": true
+            }
+        }, "classifier": {
+            "pipelineId": "5babb6ee4eb7dd2c39b9671c",
+            "overlap": 0,
+            "train_every": 5,
+            "classifierParameters": {
+                "cutoff": 1,
+                "iterations": 5
+            }
+        }, "documents": {
+            "ner_annotations": {
+                "csv_file": "./ner_dataset.csv",
+                "sentences_per_doc": 10
+            },
+            "num_docs": 10
+        }
+    },
+    {
+        "collection": {
             "creator_id": "margaret",
             "annotators": ["ada", "margaret", "katherine", "admin"],
             "viewers": ["ada", "margaret", "katherine", "admin"],

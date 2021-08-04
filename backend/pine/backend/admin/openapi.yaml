@@ -1,0 +1,361 @@
+# (C) 2021 The Johns Hopkins University Applied Physics Laboratory LLC.
+
+openapi: "3.0.2"
+
+security:
+  - cookieAuth: []
+
+tags:
+  - name: admin
+    description: >
+      Operations in the "admin" blueprint.  These operations are generally only available when the
+      "eve" auth module is running and are only accessible to logged-in users that are
+      administrators.
+
+components:
+
+  schemas:
+
+    UserRoles:
+      description: The role (for permissions) of the user.
+      type: array
+      items:
+        type: string
+        enum: [administrator, user]
+
+    NewUserData:
+      type: object
+      properties:
+        id:
+          type: string
+        email:
+          type: string
+        passwd:
+          type: string
+        description:
+          type: string
+        firstname:
+          type: string
+        lastname:
+          type: string
+        role:
+          $ref: "#/components/schemas/UserRoles"
+      required:
+        - id
+        - email
+        - passwd
+        - firstname
+        - lastname
+        - roles
+
+    UpdateUserData:
+      type: object
+      properties:
+        _id:
+          type: string
+        _etag:
+          type: string
+        description:
+          type: string
+        firstname:
+          type: string
+        lastname:
+          type: string
+        email:
+          type: string
+          description: If this is not included, you wont be able to log in.
+        passwdhash:
+          type: string
+          description: Setting this manually might break the password.
+        role:
+          $ref: "#/components/schemas/UserRoles"
+      required:
+        - _id
+        - _etag
+        - firstname
+        - lastname
+        - passwdhash
+        - role
+
+paths:
+
+  /admin/users:
+    get:
+      summary: Get All User Information
+      description: |
+        Get a list of all users (and details: id, email, password hash).
+        
+        Example: `curl -X GET http://localhost:5000/admin/users --cookie admin.cookie`
+        
+        _Note_: this endpoint requires the logged in user to be an admin and is only relevant if
+        the auth module supports it.
+      operationId: admin_get_users
+      tags: [admin]
+      responses:
+        "200":
+          description: Returned list of user details.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "../api/components.yaml#/schemas/UserInfo"
+        "401":
+          $ref: "../api/components.yaml#/responses/NotAuthorizedOrNotAdmin"
+        default:
+          $ref: "../api/components.yaml#/responses/UnexpectedServerError"
+
+    post:
+      summary: Create New User
+      description: |
+        Create a new user.
+        
+        Example: `curl -X Post http://localhost:5000/admin/users -d '{"id":"joe", "passwd":"mypass", "email":"joe@pine.jhuapl.edu", "description": "", "firstname":"joe", "lastname":"jones"}' -H "Content-type:application/json" --cookie admin.cookie`
+        
+        _Note_: this endpoint requires the logged in user to be an admin and is only relevant if
+        the auth module supports it.
+      operationId: admin_add_user
+      tags: [admin]
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/NewUserData"
+      responses:
+        "200":
+          description: Return id info of newly created user.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "../api/components.yaml#/schemas/IDInfo"
+        "400":
+          $ref: "../api/components.yaml#/responses/InvalidInputParameters"
+        "401":
+          $ref: "../api/components.yaml#/responses/NotAuthorizedOrNotAdmin"
+        "409":
+          description: User with that ID/email already exists.
+          content: {application/json: {schema: {$ref: "../api/components.yaml#/schemas/ErrorResponse"}}}
+        default:
+          $ref: "../api/components.yaml#/responses/UnexpectedServerError"
+
+  /admin/users/{user_id}:
+    get:
+      summary: Get User Details
+      description: |
+        Get details (id, email, password hash...) of a certain user.
+        
+        Example: `curl -X GET http://localhost:5000/admin/users/ada --cookie admin.cookie`
+        
+        _Note_: this endpoint requires the logged in user to be an admin and is only relevant if
+        the auth module supports it.
+      operationId: admin_get_user
+      tags: [admin]
+      parameters:
+        - $ref: "../api/components.yaml#/parameters/userIdParam"
+      responses:
+        "200":
+          description: Successfully found the user and returned their details.
+          content:
+            application/json:
+              schema:
+                $ref: "../api/components.yaml#/schemas/UserInfo"
+        "401":
+          $ref: "../api/components.yaml#/responses/NotAuthorizedOrNotAdmin"
+        "404":
+          description: No user found with that ID.
+        default:
+          $ref: "../api/components.yaml#/responses/UnexpectedServerError"
+
+    put:
+      summary: Update user details.
+      description: |
+        Update user details.
+        
+        Example: `curl -X PUT http://localhost:5000/admin/users/ada -d '{"_id":"ada","description":"newdesc", "firstname":"newada", "lastname":"adalast", "_etag":"1c12354ee74f5d5732231ac5034f7915fb167244", "email":"ada@pine.jhuapl.edu"}' -H "Content-type:application/json" --cookie admin.cookie`
+        
+        _Note_: this endpoint requires the logged in user to be an admin and is only relevant if
+        the auth module supports it.
+      operationId: admin_update_user
+      tags: [admin]
+      parameters:
+        - $ref: "../api/components.yaml#/parameters/userIdParam"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UpdateUserData"
+      responses:
+        "200":
+          description: Successfully changed user information
+          content:
+            application/json:
+              schema:
+                $ref: "../api/components.yaml#/schemas/IDInfo"
+        "401":
+          $ref: "../api/components.yaml#/responses/NotAuthorizedOrNotAdmin"
+        "404":
+          description: No user found with that ID.
+        "412":
+          $ref: "../api/components.yaml#/responses/MismatchedEtag"
+        "422":
+          $ref: "../api/components.yaml#/responses/InvalidInputParameters"
+        default:
+          $ref: "../api/components.yaml#/responses/UnexpectedServerError"
+
+    delete:
+      summary: Delete User
+      description: |
+        Delete a user.
+        
+        _Note_: this endpoint requires the logged in user to be an admin and is only relevant if
+        the auth module supports it.
+      operationId: admin_delete_user
+      tags: [admin]
+      parameters:
+        - $ref: "../api/components.yaml#/parameters/userIdParam"
+      responses:
+        "204":
+          description: Successfully deleted user.
+        "401":
+          $ref: "../api/components.yaml#/responses/NotAuthorizedOrNotAdmin"
+        "404":
+          description: No user found with that ID.
+        default:
+          $ref: "../api/components.yaml#/responses/UnexpectedServerError"
+
+  /admin/users/{user_id}/password:
+    put:
+      summary: Update User Password
+      description: |
+        Update the password of a user.
+        
+        Example: `curl -X post http://localhost:5000/admin/users/ada/password -d '{"passwd":"newpass"}' -H "Content-type:application/json" --cookie admin.cookie`
+        
+        _Note_: this endpoint requires the logged in user to be an admin and is only relevant if
+        the auth module supports it.
+      operationId: admin_update_user_password
+      tags: [admin]
+      parameters:
+        - $ref: "../api/components.yaml#/parameters/userIdParam"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                passwd:
+                  type: string
+              required:
+                - passwd
+      responses:
+        "200":
+          description: "Successfully changed user password"
+          content:
+            application/json:
+              schema:
+                $ref: "../api/components.yaml#/schemas/IDInfo"
+        "401":
+          $ref: "../api/components.yaml#/responses/NotAuthorizedOrNotAdmin"
+        "404":
+          description: No user found with that ID.
+        default:
+          $ref: "../api/components.yaml#/responses/UnexpectedServerError"
+
+  /admin/system/export:
+    get:
+      summary: Export Database
+      description: |
+        Export the database to a zip file.
+        
+        Example: `curl -X GET http://localhost:5000/admin/system/export --cookie admin.cookie -v --output out.zip`
+        
+        _Note_: this endpoint requires the logged in user to be an admin and is only relevant if
+        the auth module supports it.
+      operationId: admin_system_export
+      tags: [admin]
+      responses:
+        "200":
+          description: "Successfully exported database"
+          content:
+            application/gzip: {}
+        "401":
+          $ref: "../api/components.yaml#/responses/NotAuthorizedOrNotAdmin"
+        default:
+          $ref: "../api/components.yaml#/responses/UnexpectedServerError"
+
+  /admin/system/import:
+    put:
+      summary: Import Database (Update)
+      description: |
+        Import the database given in request body.  This will _update_ and not _replace_ the
+        database.
+        
+        Example: `curl -X PUT http://localhost:5000/admin/system/import --cookie admin.cookie -F "file=@/home/pine/out.zip"`
+        
+        _Note_: this endpoint requires the logged in user to be an admin and is only relevant if
+        the auth module supports it.
+      operationId: admin_system_import_put
+      tags: [admin]
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                file:
+                  type: string
+                  format: binary
+              required:
+                - file
+      responses:
+        "200":
+          $ref: "../api/components.yaml#/responses/Success"
+        "400":
+          description: The loading of data was wrong. Should be a gz, like what is exported.
+          content: {application/json: {schema: {$ref: "../api/components.yaml#/schemas/ErrorResponse"}}}
+        "401":
+          $ref: "../api/components.yaml#/responses/NotAuthorizedOrNotAdmin"
+        "422":
+          description: The file argument was not present.
+          content: {application/json: {schema: {$ref: "../api/components.yaml#/schemas/ErrorResponse"}}}
+        default:
+          $ref: "../api/components.yaml#/responses/UnexpectedServerError"
+
+    post:
+      summary: Import Database (Replace)
+      description: |
+        Import the database given in request body.  This will _replace_ and not _update_ the
+        database.
+        
+        Example: `curl -X POST http://localhost:5000/admin/system/import --cookie admin.cookie -F "file=@/home/pine/out.zip"`
+        
+        _Note_: this endpoint requires the logged in user to be an admin and is only relevant if
+        the auth module supports it.
+      operationId: admin_system_import_post
+      tags: [admin]
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                file:
+                  type: string
+                  format: binary
+              required:
+                - file
+      responses:
+        "200":
+          $ref: "../api/components.yaml#/responses/Success"
+        "400":
+          description: The loading of data was wrong. Should be a gz, like what is exported.
+          content: {application/json: {schema: {$ref: "../api/components.yaml#/schemas/ErrorResponse"}}}
+        "401":
+          $ref: "../api/components.yaml#/responses/NotAuthorizedOrNotAdmin"
+        "422":
+          description: The file argument was not present.
+          content: {application/json: {schema: {$ref: "../api/components.yaml#/schemas/ErrorResponse"}}}
+        default:
+          $ref: "../api/components.yaml#/responses/UnexpectedServerError"

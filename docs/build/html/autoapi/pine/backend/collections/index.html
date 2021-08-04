@@ -87,6 +87,9 @@ front-end and store the collections in the backend</p>
 <tr class="row-even"><td><p><a class="reference internal" href="#pine.backend.collections.get_user_permissions_by_ids" title="pine.backend.collections.get_user_permissions_by_ids"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_user_permissions_by_ids</span></code></a>(collection_ids: Iterable[str]) → List[models.CollectionUserPermissions]</p></td>
 <td><p></p></td>
 </tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pine.backend.collections.get_overlap_ids" title="pine.backend.collections.get_overlap_ids"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_overlap_ids</span></code></a>(collection_id: str)</p></td>
+<td><p>Return the list of ids for overlapping documents for the collection matching the provided collection id.</p></td>
+</tr>
 </tbody>
 </table>
 <dl class="py function">
@@ -109,6 +112,14 @@ front-end and store the collections in the backend</p>
 <code class="sig-prename descclassname"><span class="pre">pine.backend.collections.</span></code><code class="sig-name descname"><span class="pre">get_user_permissions_by_ids</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">collection_ids</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Iterable</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">models.CollectionUserPermissions</span><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#pine.backend.collections.get_user_permissions_by_ids" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
+<dl class="py function">
+<dt id="pine.backend.collections.get_overlap_ids">
+<code class="sig-prename descclassname"><span class="pre">pine.backend.collections.</span></code><code class="sig-name descname"><span class="pre">get_overlap_ids</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">collection_id</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.collections.get_overlap_ids" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the list of ids for overlapping documents for the collection matching the provided collection id.
+:param collection_id: str
+:return: tuple</p>
+</dd></dl>
+
 </div>
 </div>
 </div>
@@ -130,6 +141,7 @@ front-end and store the collections in the backend</p>
 <li><a class="reference internal" href="#pine.backend.collections.get_user_permissions">get_user_permissions</a></li>
 <li><a class="reference internal" href="#pine.backend.collections.get_user_permissions_by_id">get_user_permissions_by_id</a></li>
 <li><a class="reference internal" href="#pine.backend.collections.get_user_permissions_by_ids">get_user_permissions_by_ids</a></li>
+<li><a class="reference internal" href="#pine.backend.collections.get_overlap_ids">get_overlap_ids</a></li>
 </ul>
 </li>
 </ul>

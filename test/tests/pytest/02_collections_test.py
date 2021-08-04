@@ -163,3 +163,47 @@ def test_collection_user_permissions():
         "archive": True,
         "delete_documents": True
     }
+
+def test_collection_creation_and_get_and_archive():
+    client = common.login_with_test_user(common.client())
+    pipeline_id = [p for p in client.get_pipelines() if p["name"].lower() == "spacy"][0]["_id"]
+    assert pipeline_id is not None
+    my_id = client.get_my_user_id()
+    assert my_id is not None
+    
+    collection_builder = client.collection_builder() \
+        .viewer(my_id) \
+        .annotator(my_id) \
+        .label("label") \
+        .title("Collection to Test Creation") \
+        .description("This is a collection for pytest to test creation.") \
+        .classifier(pipeline_id, train_every=100)
+    collection_id = client.create_collection(collection_builder)
+    assert type(collection_id) is str
+    
+    try:
+        collection = client.get_collection(collection_id)
+        assert type(collection) is dict
+        
+        assert collection["_id"] == collection_id
+        assert collection["creator_id"] == my_id
+        assert collection["annotators"] == [my_id]
+        assert collection["viewers"] == [my_id]
+        assert collection["archived"] == False
+        assert collection["labels"] == ["label"]
+        assert collection["metadata"] == {
+            "title": "Collection to Test Creation",
+            "description": "This is a collection for pytest to test creation."
+        }
+        
+        updated_collection = client.archive_collection(collection_id, True)
+        assert type(updated_collection) is dict
+        assert updated_collection["_id"] == collection_id
+        assert updated_collection["archived"] == True
+        
+        updated_collection = client.archive_collection(collection_id, False)
+        assert type(updated_collection) is dict
+        assert updated_collection["_id"] == collection_id
+        assert updated_collection["archived"] == False
+    finally:
+        client.archive_collection(collection_id, True)

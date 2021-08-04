@@ -13,6 +13,7 @@ overrides = "*"
 python-json-logger = "*"
 bcrypt = "*"
 pytest = "*"
+pytest-rerunfailures = "*"
 
 [requires]
 python_version = "3.6"

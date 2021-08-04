@@ -11,6 +11,8 @@ import uuid
 from .pmap_ner import NER
 from . import RankingFunctions as rank
 
+# IMPORTANT: This class probably no longer works, but it doesn't seem to be used anywhere.
+
 class NERWrapper:
     eve_headers = {'Content-Type': 'application/json'}
 

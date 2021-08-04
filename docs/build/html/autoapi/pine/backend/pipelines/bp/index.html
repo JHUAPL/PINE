@@ -66,43 +66,73 @@
 <col style="width: 90%" />
 </colgroup>
 <tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pine.backend.pipelines.bp._get_classifier" title="pine.backend.pipelines.bp._get_classifier"><code class="xref py py-obj docutils literal notranslate"><span class="pre">_get_classifier</span></code></a>(classifier_id: str) → dict</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#pine.backend.pipelines.bp._clear_classifier" title="pine.backend.pipelines.bp._clear_classifier"><code class="xref py py-obj docutils literal notranslate"><span class="pre">_clear_classifier</span></code></a>(classifier_id: str)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pine.backend.pipelines.bp._get_classifier_pipeline" title="pine.backend.pipelines.bp._get_classifier_pipeline"><code class="xref py py-obj docutils literal notranslate"><span class="pre">_get_classifier_pipeline</span></code></a>(classifier_id: str) → dict</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#pine.backend.pipelines.bp._check_permissions" title="pine.backend.pipelines.bp._check_permissions"><code class="xref py py-obj docutils literal notranslate"><span class="pre">_check_permissions</span></code></a>(classifier: dict)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pine.backend.pipelines.bp._get_pipeline_status" title="pine.backend.pipelines.bp._get_pipeline_status"><code class="xref py py-obj docutils literal notranslate"><span class="pre">_get_pipeline_status</span></code></a>(pipeline: str, classifier_id: str) → dict</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#pine.backend.pipelines.bp._get_pipeline_running_jobs" title="pine.backend.pipelines.bp._get_pipeline_running_jobs"><code class="xref py py-obj docutils literal notranslate"><span class="pre">_get_pipeline_running_jobs</span></code></a>(pipeline: str, classifier_id: str) → List[str]</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pine.backend.pipelines.bp._train_pipeline" title="pine.backend.pipelines.bp._train_pipeline"><code class="xref py py-obj docutils literal notranslate"><span class="pre">_train_pipeline</span></code></a>(pipeline: str, classifier_id: str, model_name: str) → dict</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#pine.backend.pipelines.bp._predict_pipeline" title="pine.backend.pipelines.bp._predict_pipeline"><code class="xref py py-obj docutils literal notranslate"><span class="pre">_predict_pipeline</span></code></a>(pipeline: str, classifier_id: str, document_ids: List[str], texts: List[str], timeout_in_s: int) → dict</p></td>
+<td><p></p></td>
+</tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#pine.backend.pipelines.bp.get_pipelines" title="pine.backend.pipelines.bp.get_pipelines"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_pipelines</span></code></a>()</p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#pine.backend.pipelines.bp.get_pipeline_by_id" title="pine.backend.pipelines.bp.get_pipeline_by_id"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_pipeline_by_id</span></code></a>(pipeline_id)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#pine.backend.pipelines.bp.get_pipeline_by_id" title="pine.backend.pipelines.bp.get_pipeline_by_id"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_pipeline_by_id</span></code></a>(pipeline_id: str)</p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#pine.backend.pipelines.bp._get_collection_classifier" title="pine.backend.pipelines.bp._get_collection_classifier"><code class="xref py py-obj docutils literal notranslate"><span class="pre">_get_collection_classifier</span></code></a>(collection_id)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pine.backend.pipelines.bp.get_pipeline_status" title="pine.backend.pipelines.bp.get_pipeline_status"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_pipeline_status</span></code></a>(pipeline_id: str) → flask.Response</p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#pine.backend.pipelines.bp.get_collection_classifier" title="pine.backend.pipelines.bp.get_collection_classifier"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_collection_classifier</span></code></a>(collection_id)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#pine.backend.pipelines.bp._get_classifier_metrics" title="pine.backend.pipelines.bp._get_classifier_metrics"><code class="xref py py-obj docutils literal notranslate"><span class="pre">_get_classifier_metrics</span></code></a>(classifier_id: str)</p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#pine.backend.pipelines.bp._get_classifier_metrics" title="pine.backend.pipelines.bp._get_classifier_metrics"><code class="xref py py-obj docutils literal notranslate"><span class="pre">_get_classifier_metrics</span></code></a>(classifier_id)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pine.backend.pipelines.bp.get_classifier_metrics" title="pine.backend.pipelines.bp.get_classifier_metrics"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_classifier_metrics</span></code></a>(classifier_id: str)</p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#pine.backend.pipelines.bp.get_metrics" title="pine.backend.pipelines.bp.get_metrics"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_metrics</span></code></a>()</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#pine.backend.pipelines.bp._get_collection_classifier" title="pine.backend.pipelines.bp._get_collection_classifier"><code class="xref py py-obj docutils literal notranslate"><span class="pre">_get_collection_classifier</span></code></a>(collection_id: str) → dict</p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#pine.backend.pipelines.bp.get_classifier_metrics" title="pine.backend.pipelines.bp.get_classifier_metrics"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_classifier_metrics</span></code></a>(classifier_id)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pine.backend.pipelines.bp.get_collection_classifier" title="pine.backend.pipelines.bp.get_collection_classifier"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_collection_classifier</span></code></a>(collection_id: str)</p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#pine.backend.pipelines.bp._get_classifier" title="pine.backend.pipelines.bp._get_classifier"><code class="xref py py-obj docutils literal notranslate"><span class="pre">_get_classifier</span></code></a>(classifier_id)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#pine.backend.pipelines.bp.get_classifier_status" title="pine.backend.pipelines.bp.get_classifier_status"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_classifier_status</span></code></a>(classifier_id: str)</p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#pine.backend.pipelines.bp._get_next_instance" title="pine.backend.pipelines.bp._get_next_instance"><code class="xref py py-obj docutils literal notranslate"><span class="pre">_get_next_instance</span></code></a>(classifier_id)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pine.backend.pipelines.bp.get_running_jobs" title="pine.backend.pipelines.bp.get_running_jobs"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_running_jobs</span></code></a>(classifier_id: str)</p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#pine.backend.pipelines.bp.get_next_by_classifier" title="pine.backend.pipelines.bp.get_next_by_classifier"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_next_by_classifier</span></code></a>(classifier_id)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#pine.backend.pipelines.bp.train" title="pine.backend.pipelines.bp.train"><code class="xref py py-obj docutils literal notranslate"><span class="pre">train</span></code></a>(classifier_id: str)</p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#pine.backend.pipelines.bp.advance_to_next_document_by_classifier" title="pine.backend.pipelines.bp.advance_to_next_document_by_classifier"><code class="xref py py-obj docutils literal notranslate"><span class="pre">advance_to_next_document_by_classifier</span></code></a>(classifier_id, document_id)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pine.backend.pipelines.bp.predict" title="pine.backend.pipelines.bp.predict"><code class="xref py py-obj docutils literal notranslate"><span class="pre">predict</span></code></a>(classifier_id: str)</p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#pine.backend.pipelines.bp.predict" title="pine.backend.pipelines.bp.predict"><code class="xref py py-obj docutils literal notranslate"><span class="pre">predict</span></code></a>()</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#pine.backend.pipelines.bp._get_next_instance" title="pine.backend.pipelines.bp._get_next_instance"><code class="xref py py-obj docutils literal notranslate"><span class="pre">_get_next_instance</span></code></a>(classifier_id: str)</p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#pine.backend.pipelines.bp.test_redis" title="pine.backend.pipelines.bp.test_redis"><code class="xref py py-obj docutils literal notranslate"><span class="pre">test_redis</span></code></a>()</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pine.backend.pipelines.bp._check_instance_overlap" title="pine.backend.pipelines.bp._check_instance_overlap"><code class="xref py py-obj docutils literal notranslate"><span class="pre">_check_instance_overlap</span></code></a>(classifier: dict, instance: dict, user_id: str)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#pine.backend.pipelines.bp.get_next_by_classifier" title="pine.backend.pipelines.bp.get_next_by_classifier"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_next_by_classifier</span></code></a>(classifier_id: str)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pine.backend.pipelines.bp.advance_to_next_document_by_classifier" title="pine.backend.pipelines.bp.advance_to_next_document_by_classifier"><code class="xref py py-obj docutils literal notranslate"><span class="pre">advance_to_next_document_by_classifier</span></code></a>(classifier_id: str, document_id: str)</p></td>
 <td><p></p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#pine.backend.pipelines.bp.init_app" title="pine.backend.pipelines.bp.init_app"><code class="xref py py-obj docutils literal notranslate"><span class="pre">init_app</span></code></a>(app)</p></td>
@@ -126,13 +156,53 @@
 <dd></dd></dl>
 
 <dl class="py data">
-<dt id="pine.backend.pipelines.bp.classifier_dict">
-<code class="sig-prename descclassname"><span class="pre">pine.backend.pipelines.bp.</span></code><code class="sig-name descname"><span class="pre">classifier_dict</span></code><a class="headerlink" href="#pine.backend.pipelines.bp.classifier_dict" title="Permalink to this definition">¶</a></dt>
+<dt id="pine.backend.pipelines.bp._cached_classifiers">
+<code class="sig-prename descclassname"><span class="pre">pine.backend.pipelines.bp.</span></code><code class="sig-name descname"><span class="pre">_cached_classifiers</span></code><a class="headerlink" href="#pine.backend.pipelines.bp._cached_classifiers" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py data">
-<dt id="pine.backend.pipelines.bp.classifier_pipelines">
-<code class="sig-prename descclassname"><span class="pre">pine.backend.pipelines.bp.</span></code><code class="sig-name descname"><span class="pre">classifier_pipelines</span></code><a class="headerlink" href="#pine.backend.pipelines.bp.classifier_pipelines" title="Permalink to this definition">¶</a></dt>
+<dt id="pine.backend.pipelines.bp._cached_classifier_pipelines">
+<code class="sig-prename descclassname"><span class="pre">pine.backend.pipelines.bp.</span></code><code class="sig-name descname"><span class="pre">_cached_classifier_pipelines</span></code><a class="headerlink" href="#pine.backend.pipelines.bp._cached_classifier_pipelines" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt id="pine.backend.pipelines.bp._get_classifier">
+<code class="sig-prename descclassname"><span class="pre">pine.backend.pipelines.bp.</span></code><code class="sig-name descname"><span class="pre">_get_classifier</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">classifier_id</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><span class="pre">dict</span></a><a class="headerlink" href="#pine.backend.pipelines.bp._get_classifier" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt id="pine.backend.pipelines.bp._clear_classifier">
+<code class="sig-prename descclassname"><span class="pre">pine.backend.pipelines.bp.</span></code><code class="sig-name descname"><span class="pre">_clear_classifier</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">classifier_id</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.pipelines.bp._clear_classifier" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt id="pine.backend.pipelines.bp._get_classifier_pipeline">
+<code class="sig-prename descclassname"><span class="pre">pine.backend.pipelines.bp.</span></code><code class="sig-name descname"><span class="pre">_get_classifier_pipeline</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">classifier_id</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><span class="pre">dict</span></a><a class="headerlink" href="#pine.backend.pipelines.bp._get_classifier_pipeline" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt id="pine.backend.pipelines.bp._check_permissions">
+<code class="sig-prename descclassname"><span class="pre">pine.backend.pipelines.bp.</span></code><code class="sig-name descname"><span class="pre">_check_permissions</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">classifier</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><span class="pre">dict</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.pipelines.bp._check_permissions" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt id="pine.backend.pipelines.bp._get_pipeline_status">
+<code class="sig-prename descclassname"><span class="pre">pine.backend.pipelines.bp.</span></code><code class="sig-name descname"><span class="pre">_get_pipeline_status</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pipeline</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">classifier_id</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><span class="pre">dict</span></a><a class="headerlink" href="#pine.backend.pipelines.bp._get_pipeline_status" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt id="pine.backend.pipelines.bp._get_pipeline_running_jobs">
+<code class="sig-prename descclassname"><span class="pre">pine.backend.pipelines.bp.</span></code><code class="sig-name descname"><span class="pre">_get_pipeline_running_jobs</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pipeline</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">classifier_id</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#pine.backend.pipelines.bp._get_pipeline_running_jobs" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt id="pine.backend.pipelines.bp._train_pipeline">
+<code class="sig-prename descclassname"><span class="pre">pine.backend.pipelines.bp.</span></code><code class="sig-name descname"><span class="pre">_train_pipeline</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pipeline</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">classifier_id</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">model_name</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><span class="pre">dict</span></a><a class="headerlink" href="#pine.backend.pipelines.bp._train_pipeline" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt id="pine.backend.pipelines.bp._predict_pipeline">
+<code class="sig-prename descclassname"><span class="pre">pine.backend.pipelines.bp.</span></code><code class="sig-name descname"><span class="pre">_predict_pipeline</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pipeline</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">classifier_id</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">document_ids</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">texts</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeout_in_s</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><span class="pre">dict</span></a><a class="headerlink" href="#pine.backend.pipelines.bp._predict_pipeline" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py function">
@@ -142,62 +212,72 @@
 
 <dl class="py function">
 <dt id="pine.backend.pipelines.bp.get_pipeline_by_id">
-<code class="sig-prename descclassname"><span class="pre">pine.backend.pipelines.bp.</span></code><code class="sig-name descname"><span class="pre">get_pipeline_by_id</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pipeline_id</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.pipelines.bp.get_pipeline_by_id" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname"><span class="pre">pine.backend.pipelines.bp.</span></code><code class="sig-name descname"><span class="pre">get_pipeline_by_id</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pipeline_id</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.pipelines.bp.get_pipeline_by_id" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py function">
-<dt id="pine.backend.pipelines.bp._get_collection_classifier">
-<code class="sig-prename descclassname"><span class="pre">pine.backend.pipelines.bp.</span></code><code class="sig-name descname"><span class="pre">_get_collection_classifier</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">collection_id</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.pipelines.bp._get_collection_classifier" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py function">
-<dt id="pine.backend.pipelines.bp.get_collection_classifier">
-<code class="sig-prename descclassname"><span class="pre">pine.backend.pipelines.bp.</span></code><code class="sig-name descname"><span class="pre">get_collection_classifier</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">collection_id</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.pipelines.bp.get_collection_classifier" title="Permalink to this definition">¶</a></dt>
+<dt id="pine.backend.pipelines.bp.get_pipeline_status">
+<code class="sig-prename descclassname"><span class="pre">pine.backend.pipelines.bp.</span></code><code class="sig-name descname"><span class="pre">get_pipeline_status</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pipeline_id</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://flask.palletsprojects.com/en/1.1.x/api/#flask.Response" title="(in Flask v1.1.x)"><span class="pre">flask.Response</span></a><a class="headerlink" href="#pine.backend.pipelines.bp.get_pipeline_status" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py function">
 <dt id="pine.backend.pipelines.bp._get_classifier_metrics">
-<code class="sig-prename descclassname"><span class="pre">pine.backend.pipelines.bp.</span></code><code class="sig-name descname"><span class="pre">_get_classifier_metrics</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">classifier_id</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.pipelines.bp._get_classifier_metrics" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py function">
-<dt id="pine.backend.pipelines.bp.get_metrics">
-<code class="sig-prename descclassname"><span class="pre">pine.backend.pipelines.bp.</span></code><code class="sig-name descname"><span class="pre">get_metrics</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.pipelines.bp.get_metrics" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname"><span class="pre">pine.backend.pipelines.bp.</span></code><code class="sig-name descname"><span class="pre">_get_classifier_metrics</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">classifier_id</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.pipelines.bp._get_classifier_metrics" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py function">
 <dt id="pine.backend.pipelines.bp.get_classifier_metrics">
-<code class="sig-prename descclassname"><span class="pre">pine.backend.pipelines.bp.</span></code><code class="sig-name descname"><span class="pre">get_classifier_metrics</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">classifier_id</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.pipelines.bp.get_classifier_metrics" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname"><span class="pre">pine.backend.pipelines.bp.</span></code><code class="sig-name descname"><span class="pre">get_classifier_metrics</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">classifier_id</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.pipelines.bp.get_classifier_metrics" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py function">
-<dt id="pine.backend.pipelines.bp._get_classifier">
-<code class="sig-prename descclassname"><span class="pre">pine.backend.pipelines.bp.</span></code><code class="sig-name descname"><span class="pre">_get_classifier</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">classifier_id</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.pipelines.bp._get_classifier" title="Permalink to this definition">¶</a></dt>
+<dt id="pine.backend.pipelines.bp._get_collection_classifier">
+<code class="sig-prename descclassname"><span class="pre">pine.backend.pipelines.bp.</span></code><code class="sig-name descname"><span class="pre">_get_collection_classifier</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">collection_id</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><span class="pre">dict</span></a><a class="headerlink" href="#pine.backend.pipelines.bp._get_collection_classifier" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py function">
-<dt id="pine.backend.pipelines.bp._get_next_instance">
-<code class="sig-prename descclassname"><span class="pre">pine.backend.pipelines.bp.</span></code><code class="sig-name descname"><span class="pre">_get_next_instance</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">classifier_id</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.pipelines.bp._get_next_instance" title="Permalink to this definition">¶</a></dt>
+<dt id="pine.backend.pipelines.bp.get_collection_classifier">
+<code class="sig-prename descclassname"><span class="pre">pine.backend.pipelines.bp.</span></code><code class="sig-name descname"><span class="pre">get_collection_classifier</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">collection_id</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.pipelines.bp.get_collection_classifier" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py function">
-<dt id="pine.backend.pipelines.bp.get_next_by_classifier">
-<code class="sig-prename descclassname"><span class="pre">pine.backend.pipelines.bp.</span></code><code class="sig-name descname"><span class="pre">get_next_by_classifier</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">classifier_id</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.pipelines.bp.get_next_by_classifier" title="Permalink to this definition">¶</a></dt>
+<dt id="pine.backend.pipelines.bp.get_classifier_status">
+<code class="sig-prename descclassname"><span class="pre">pine.backend.pipelines.bp.</span></code><code class="sig-name descname"><span class="pre">get_classifier_status</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">classifier_id</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.pipelines.bp.get_classifier_status" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py function">
-<dt id="pine.backend.pipelines.bp.advance_to_next_document_by_classifier">
-<code class="sig-prename descclassname"><span class="pre">pine.backend.pipelines.bp.</span></code><code class="sig-name descname"><span class="pre">advance_to_next_document_by_classifier</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">classifier_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">document_id</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.pipelines.bp.advance_to_next_document_by_classifier" title="Permalink to this definition">¶</a></dt>
+<dt id="pine.backend.pipelines.bp.get_running_jobs">
+<code class="sig-prename descclassname"><span class="pre">pine.backend.pipelines.bp.</span></code><code class="sig-name descname"><span class="pre">get_running_jobs</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">classifier_id</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.pipelines.bp.get_running_jobs" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt id="pine.backend.pipelines.bp.train">
+<code class="sig-prename descclassname"><span class="pre">pine.backend.pipelines.bp.</span></code><code class="sig-name descname"><span class="pre">train</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">classifier_id</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.pipelines.bp.train" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py function">
 <dt id="pine.backend.pipelines.bp.predict">
-<code class="sig-prename descclassname"><span class="pre">pine.backend.pipelines.bp.</span></code><code class="sig-name descname"><span class="pre">predict</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.pipelines.bp.predict" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname"><span class="pre">pine.backend.pipelines.bp.</span></code><code class="sig-name descname"><span class="pre">predict</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">classifier_id</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.pipelines.bp.predict" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py function">
-<dt id="pine.backend.pipelines.bp.test_redis">
-<code class="sig-prename descclassname"><span class="pre">pine.backend.pipelines.bp.</span></code><code class="sig-name descname"><span class="pre">test_redis</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.pipelines.bp.test_redis" title="Permalink to this definition">¶</a></dt>
+<dt id="pine.backend.pipelines.bp._get_next_instance">
+<code class="sig-prename descclassname"><span class="pre">pine.backend.pipelines.bp.</span></code><code class="sig-name descname"><span class="pre">_get_next_instance</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">classifier_id</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.pipelines.bp._get_next_instance" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt id="pine.backend.pipelines.bp._check_instance_overlap">
+<code class="sig-prename descclassname"><span class="pre">pine.backend.pipelines.bp.</span></code><code class="sig-name descname"><span class="pre">_check_instance_overlap</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">classifier</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><span class="pre">dict</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">instance</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><span class="pre">dict</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">user_id</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.pipelines.bp._check_instance_overlap" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt id="pine.backend.pipelines.bp.get_next_by_classifier">
+<code class="sig-prename descclassname"><span class="pre">pine.backend.pipelines.bp.</span></code><code class="sig-name descname"><span class="pre">get_next_by_classifier</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">classifier_id</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.pipelines.bp.get_next_by_classifier" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt id="pine.backend.pipelines.bp.advance_to_next_document_by_classifier">
+<code class="sig-prename descclassname"><span class="pre">pine.backend.pipelines.bp.</span></code><code class="sig-name descname"><span class="pre">advance_to_next_document_by_classifier</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">classifier_id</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">document_id</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.pipelines.bp.advance_to_next_document_by_classifier" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py function">
@@ -224,21 +304,31 @@
 <li><a class="reference internal" href="#pine.backend.pipelines.bp.logger">logger</a></li>
 <li><a class="reference internal" href="#pine.backend.pipelines.bp.service_manager">service_manager</a></li>
 <li><a class="reference internal" href="#pine.backend.pipelines.bp.bp">bp</a></li>
-<li><a class="reference internal" href="#pine.backend.pipelines.bp.classifier_dict">classifier_dict</a></li>
-<li><a class="reference internal" href="#pine.backend.pipelines.bp.classifier_pipelines">classifier_pipelines</a></li>
+<li><a class="reference internal" href="#pine.backend.pipelines.bp._cached_classifiers">_cached_classifiers</a></li>
+<li><a class="reference internal" href="#pine.backend.pipelines.bp._cached_classifier_pipelines">_cached_classifier_pipelines</a></li>
+<li><a class="reference internal" href="#pine.backend.pipelines.bp._get_classifier">_get_classifier</a></li>
+<li><a class="reference internal" href="#pine.backend.pipelines.bp._clear_classifier">_clear_classifier</a></li>
+<li><a class="reference internal" href="#pine.backend.pipelines.bp._get_classifier_pipeline">_get_classifier_pipeline</a></li>
+<li><a class="reference internal" href="#pine.backend.pipelines.bp._check_permissions">_check_permissions</a></li>
+<li><a class="reference internal" href="#pine.backend.pipelines.bp._get_pipeline_status">_get_pipeline_status</a></li>
+<li><a class="reference internal" href="#pine.backend.pipelines.bp._get_pipeline_running_jobs">_get_pipeline_running_jobs</a></li>
+<li><a class="reference internal" href="#pine.backend.pipelines.bp._train_pipeline">_train_pipeline</a></li>
+<li><a class="reference internal" href="#pine.backend.pipelines.bp._predict_pipeline">_predict_pipeline</a></li>
 <li><a class="reference internal" href="#pine.backend.pipelines.bp.get_pipelines">get_pipelines</a></li>
 <li><a class="reference internal" href="#pine.backend.pipelines.bp.get_pipeline_by_id">get_pipeline_by_id</a></li>
+<li><a class="reference internal" href="#pine.backend.pipelines.bp.get_pipeline_status">get_pipeline_status</a></li>
+<li><a class="reference internal" href="#pine.backend.pipelines.bp._get_classifier_metrics">_get_classifier_metrics</a></li>
+<li><a class="reference internal" href="#pine.backend.pipelines.bp.get_classifier_metrics">get_classifier_metrics</a></li>
 <li><a class="reference internal" href="#pine.backend.pipelines.bp._get_collection_classifier">_get_collection_classifier</a></li>
 <li><a class="reference internal" href="#pine.backend.pipelines.bp.get_collection_classifier">get_collection_classifier</a></li>
-<li><a class="reference internal" href="#pine.backend.pipelines.bp._get_classifier_metrics">_get_classifier_metrics</a></li>
-<li><a class="reference internal" href="#pine.backend.pipelines.bp.get_metrics">get_metrics</a></li>
-<li><a class="reference internal" href="#pine.backend.pipelines.bp.get_classifier_metrics">get_classifier_metrics</a></li>
-<li><a class="reference internal" href="#pine.backend.pipelines.bp._get_classifier">_get_classifier</a></li>
+<li><a class="reference internal" href="#pine.backend.pipelines.bp.get_classifier_status">get_classifier_status</a></li>
+<li><a class="reference internal" href="#pine.backend.pipelines.bp.get_running_jobs">get_running_jobs</a></li>
+<li><a class="reference internal" href="#pine.backend.pipelines.bp.train">train</a></li>
+<li><a class="reference internal" href="#pine.backend.pipelines.bp.predict">predict</a></li>
 <li><a class="reference internal" href="#pine.backend.pipelines.bp._get_next_instance">_get_next_instance</a></li>
+<li><a class="reference internal" href="#pine.backend.pipelines.bp._check_instance_overlap">_check_instance_overlap</a></li>
 <li><a class="reference internal" href="#pine.backend.pipelines.bp.get_next_by_classifier">get_next_by_classifier</a></li>
 <li><a class="reference internal" href="#pine.backend.pipelines.bp.advance_to_next_document_by_classifier">advance_to_next_document_by_classifier</a></li>
-<li><a class="reference internal" href="#pine.backend.pipelines.bp.predict">predict</a></li>
-<li><a class="reference internal" href="#pine.backend.pipelines.bp.test_redis">test_redis</a></li>
 <li><a class="reference internal" href="#pine.backend.pipelines.bp.init_app">init_app</a></li>
 </ul>
 </li>

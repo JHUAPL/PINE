@@ -1,0 +1,611 @@
+# (C) 2021 The Johns Hopkins University Applied Physics Laboratory LLC.
+
+securitySchemes:
+
+  cookieAuth:
+    description: |
+      This an example command to provision and print the session key using eve:
+      
+      `curl -X POST -H "Content-Type:application/json" -d '{"username":"ada@pine.jhuapl.edu","password":"ada@pine.jhuapl.edu"}' http://localhost:5000/auth/login --cookie-jar - --output /dev/null --silent | grep -o -P "session\s.+" | sed -e 's/session\s/session=/' -`
+    type: apiKey
+    in: cookie
+    name: session
+
+parameters:
+
+  userIdParam:
+    name: user_id
+    in: path
+    required: true
+    description: ID of the user on which to operate.
+    schema:
+      type: string
+
+  docIdParam:
+    name: doc_id
+    in: path
+    required: true
+    description: The id of the document on which to operate.
+    schema:
+      type: string
+    
+  collectionIdParam:
+    name: collection_id
+    in: path
+    required: true
+    description: The id of the collection on which to operate.
+    schema:
+      type: string
+
+  pipelineIdParam:
+    name: pipeline_id
+    in: path
+    required: true
+    description: The id of the pipeline on which to operate.
+    schema:
+      type: string
+
+  classifierIdParam:
+    name: classifier_id
+    in: path
+    required: true
+    description: The id of the classifier on which to operate.
+    schema:
+      type: string
+
+schemas:
+
+  DocumentAnnotations:
+    type: object
+    properties:
+      doc:
+        description: Document-level annotations.
+        type: array
+        items:
+          description: Annotation label.
+          type: string
+      ner:
+        description: NER annotations.
+        type: array
+        items:
+          type: object
+          properties:
+            start:
+              description: Start index, inclusive.
+              type: integer
+            end:
+              description: End index, exclusive.
+              type: integer
+            label:
+              description: Annotation label.
+              type: string
+    example:
+      doc: ["label1", "label2"]
+      ner: [{"start":0, "end":10, "label":"in-text-label"}]
+
+  AuthUser:
+    type: object
+    properties:
+      display_name:
+        type: string
+      id:
+        type: string
+      is_admin:
+        type: boolean
+      username:
+        type: string
+    example:
+      display_name: Ada Lovelace
+      id: ada
+      is_admin: false
+      username: ada@pine.jhuapl.edu
+
+  AuthUserDetails:
+    type: object
+    properties:
+      description:
+        type: string
+      first_name:
+        type: string
+      last_name:
+        type: string
+    example:
+      first_name: Ada
+      last_name: Lovelace
+      description: The first computer programmer.
+
+  EveLinks:
+    type: object
+    properties:
+      parent:
+        type: object
+        properties:
+          title:
+            type: string
+          href:
+            type: string
+      self:
+        type: object
+        properties:
+          title:
+            type: string
+          href:
+            type: string
+
+  EveBase:
+    type: object
+    properties:
+      _etag:
+        type: string
+
+  EveBaseWithVersion:
+    allOf:
+    - $ref: "#/schemas/EveBase"
+    - type: object
+      properties:
+        _version:
+          type: integer
+        _latest_version:
+          type: integer
+
+  Document:
+    type: object
+    properties:
+      _id:
+        type: string
+      creator_id:
+        type: string
+      collection_id:
+        type: string
+      overlap:
+        type: integer
+        format: int64
+      metadata:
+        type: object
+        # This means accept any type for key/val
+        additionalProperties: {}
+      text:
+        type: string
+      has_annotated:
+        type: object
+        additionalProperties:
+          type: boolean
+  
+  DocumentDeletionResponse:
+    type: object
+    properties:
+      success:
+        type: boolean
+        description: Whether the operation was successful.
+      changed_objs:
+        type: object
+        description: What database objects were changed during operation.
+        properties:
+          next_instances:
+            type: object
+            properties:
+              updated:
+                description: IDs of next_instance objects that were updated.
+                type: array
+                items:
+                  type: string
+          annotations:
+            type: object
+            properties:
+              deleted:
+                description: IDs of annotation objects that were deleted.
+                type: array
+                items:
+                  type: string
+          documents:
+            type: object
+            properties:
+              deleted:
+                description: IDs of document objects that were deleted.
+                type: array
+                items:
+                  type: string
+  
+  UserDocumentAnnotation:
+    description: >
+      This is the log of annotations by a specific user.  A document might have 0, 1, or multiple of
+      these based on how many users annotated.
+    allOf:
+      - $ref: "#/schemas/EveBaseWithVersion"
+      - type: object
+        properties:
+          _id:
+            type: string
+          creator_id:
+            type: string
+          collection_id:
+            type: string
+          document_id:
+            type: string
+          annotation:
+            type: array
+            items:
+              anyOf:
+                - type: string
+                  example: documentlabel
+                  description: String for labels on the entire document.
+                - type: array
+                  items:
+                    anyOf:
+                      - type: string
+                      - type: integer
+                  example:
+                    [1, 2, "textlabel"]
+                  description: Array for individual annotations [start_index, end_index, label]
+
+  Collection:
+    type: object
+    properties:
+      _id:
+        type: string
+      creator_id:
+        type: string
+      metadata:
+        type: object
+        additionalProperties: {}
+      configuration:
+        type: object
+        additionalProperties: {}
+      labels:
+        type: array
+        items:
+          type: string
+      viewers:
+        type: array
+        items:
+          type: string
+      annotators:
+        type: array
+        items:
+          type: string
+      archived:
+        type: boolean
+  
+  CollectionDownload:
+    description: Collection download is Collection with a list of all docs inside (and no eve info)
+    type: object
+    properties:
+      _id:
+        type: string
+      creator_id:
+        type: string
+      metadata:
+        type: object
+        additionalProperties: {}
+      configuration:
+        type: object
+        additionalProperties: {}
+      labels:
+        type: array
+        items:
+          type: string
+      viewers:
+        type: array
+        items:
+          type: string
+      annotators:
+        type: array
+        items:
+          type: string
+      archived:
+        type: boolean
+      documents:
+        type: array
+        items:
+          $ref: '#/components/schemas/Document'
+  
+  UserPermissions:
+    type: object
+    properties:
+      add_documents:
+        type: boolean
+      add_images:
+        type: boolean
+      annotate:
+        type: boolean
+      archive:
+        type: boolean
+      download_data:
+        type: boolean
+      modify_document_metadata:
+        type: boolean
+      modify_labels:
+        type: boolean
+      modify_users:
+        type: boolean
+      view:
+        type: boolean
+  
+  UserInfo:
+    type: object
+    properties:
+      _id:
+        type: string
+      _created:
+        type: string
+      description:
+        type: string
+      email:
+        type: string
+      firstname:
+        type: string
+      lastname:
+        type: string
+      passwdhash:
+        type: string
+      role:
+        type: array
+        items:
+          type: string
+
+  IDInfo:
+    description: >
+      This object is returned when doing actions like modifying a document or collection.  It
+      contains the ID of the object and some other information from the database.
+    allOf:
+      - $ref: "#/schemas/EveBase"
+      - type: object
+        properties:
+          _status:
+            type: string
+          _id:
+            type: string
+          _updated:
+            type: string
+            format: date-time
+          _created:
+            type: string
+            format: date-time
+          _links:
+            $ref: "#/schemas/EveLinks"
+
+  ErrorResponse:
+    description: Error message from the server.
+    type: string
+    example: Error message from the server.
+  
+  Pipeline:
+    allOf:
+      - $ref: "#/schemas/EveBase"
+      - type: object
+        properties:
+          _id:
+            type: string
+          title:
+            type: string
+          description:
+            type: string
+          name:
+            type: string
+          parameters:
+            type: object
+            additionalProperties: {}
+            example:
+              cutoff: "integer"
+              iterations: " integer"
+              n_iter: "integer"
+              dropout: "float"
+              max_left: "integer"
+              use_class_feature: [true, false]
+              use_word: [true, false]
+              use_ngrams: [true, false]
+              no_mid_ngrams: [true, false]
+              max_ngram_length: "integer"
+              use_prev: [true, false]
+              use_next: [true, false]
+              use_disjunctive: [true, false]
+              use_sequences: [true, false]
+              use_prev_sequences: [true, false]
+              use_type_seqs: [true, false]
+              use_type_seqs2: [true, false]
+              use_type_y_sequences: [true, false]
+          _updated:
+            type: string
+            format: date-time
+          _created:
+            type: string
+            format: date-time
+  
+  CollectionMetric:
+    type: object
+    properties:
+      _id:
+        type: string
+      collection_id:
+        type: string
+      classifier_id:
+        type: string
+      # Not positive what elements can be in these array so leaving blank
+      documents:
+        type: array
+        items: {}
+      annotations:
+        type: array
+        items: {}
+      folds:
+        type: array
+        items: {}
+      metrics:
+        type: array
+        items: {}
+      _updated:
+        type: string
+      _created:
+        type: string
+      _version:
+        type: integer
+      _etag:
+        type: string
+      _links:
+        type: object
+        properties:
+          self:
+            type: object
+            properties:
+              title:
+                type: string
+              href:
+                type: string
+  
+  InterAnnotatorAgreement:
+    allOf:
+    - $ref: "#/schemas/EveBaseWithVersion"
+    - type: object
+      properties:
+        _id:
+          type: string
+        collection_id:
+          type: string
+        num_of_annotators:
+          type: integer
+        num_of_agreement_docs:
+          type: integer
+        num_of_labels:
+          type: integer
+        per_doc_agreement:
+          type: object
+          properties:
+            doc_id:
+              type: string
+            avg:
+              type: number
+              format: double
+            stddev:
+              type: integer
+        per_label_agreement:
+          type: array
+          items:
+            type: object
+            properties:
+              label:
+                type: string
+              avg:
+                type: number
+                format: double
+              stddev:
+                type: integer
+        overall_agreement:
+          type: object
+          properties:
+            mean:
+              type: number
+              format: double
+            sd:
+              type: integer
+            heatmap_data:
+              type: object
+              properties:
+                matrix:
+                  type: array
+                  items:
+                    type: array
+                    items:
+                      type: number
+                      format: float
+                    minItems: 2
+                    maxItems: 2
+                  example:
+                    [1, .666666]
+                annotators:
+                  type: array
+                  items:
+                    type: string
+                  example:
+                    ["ada", "margaret"]
+        labels_per_annotator:
+          # Dictionary of dictionaries per annotator
+          type: object
+          additionalProperties:
+            # Dictionary of number of each label
+            type: object
+            additionalProperties:
+              type: integer
+          example:
+            {"ada": {"label1": 1, "label2": 4}, "margaret": {"label1": 3, "label2": 2}}
+        _updated:
+          type: string
+          format: date-time
+        _created:
+          type: string
+          format: date-time
+
+responses:
+  
+  Success:
+    description: Whether the operation succeeded or failed.
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            success:
+              type: boolean
+  
+  NotAuthorized:
+    description: >
+      Authentication failed: not logged in or user doesn't have the permissions for this operation.
+    content:
+      application/json:
+        schema:
+          $ref: "#/schemas/ErrorResponse"
+  
+  NotAuthorizedOrNotAdmin:
+    description: Authentication failed, not logged in or not an admin.
+    content:
+      application/json:
+        schema:
+          $ref: "#/schemas/ErrorResponse"
+
+  InvalidInputParameters:
+    description: Input parameters are missing/invalid.
+    content:
+      application/json:
+        schema:
+          $ref: "#/schemas/ErrorResponse"
+
+  DocumentNotFound:
+    description: Document with given ID was not found.
+    content:
+      application/json:
+        schema:
+          $ref: "#/schemas/ErrorResponse"
+
+  CollectionNotFound:
+    description: Collection with given ID was not found.
+    content:
+      application/json:
+        schema:
+          $ref: "#/schemas/ErrorResponse"
+
+  PipelineNotFound:
+    description: Pipeline with given ID was not found.
+    content:
+      application/json:
+        schema:
+          $ref: "#/schemas/ErrorResponse"
+
+  ClassifierNotFound:
+    description: Classifier with given ID was not found.
+    content:
+      application/json:
+        schema:
+          $ref: "#/schemas/ErrorResponse"
+
+  MismatchedEtag:
+    description: Given etag did not match the most updated stored one.
+    content:
+      application/json:
+        schema:
+          $ref: "#/schemas/ErrorResponse"
+
+  UnexpectedServerError:
+    description: Unexpected error, check server logs.
+    content:
+      application/json:
+        schema:
+          $ref: "#/schemas/ErrorResponse"
