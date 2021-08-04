@@ -4,13 +4,16 @@
 
 import logging
 import os
-from os.path import isfile, isdir, exists, join
-import pydash
+from os.path import abspath, isfile, isdir, exists, join
 import uuid
 import sys
 import traceback
+import typing
 
-from .pipeline import Pipeline
+import pydash
+from overrides import overrides
+
+from .pipeline import Pipeline, NerPrediction, DocumentPredictions, NerPredictionProbabilities, DocumentPredictionProbabilities
 from .shared.config import ConfigBuilder
 
 config = ConfigBuilder.get_config()
@@ -20,7 +23,7 @@ logger = logging.getLogger(__name__)
 
 class opennlp_NER(Pipeline):
     #Path variables
-    __jar = '' 
+    __ner_path = '' 
     __jdk_dir = ''
     __temp_dir = None
     __train_file = ''
@@ -32,13 +35,94 @@ class opennlp_NER(Pipeline):
 
     #Class variables
     __id = None
+    __is_setup = False
+    
+    @classmethod
+    def setup(cls, java_dir=None, ner_path=None):
+        if cls.__is_setup:
+            logger.info("Java is already set up.")
+            return
+        
+        logger.info("Setting up Java.")
+        #TODO: set defaults for the following
+        #TODO: Point to location of JAVA installation
+        if java_dir != None:
+            cls.__jdk_dir = java_dir
+        else:
+            cls.__jdk_dir = '/usr/lib/jvm/java-1.8.0-openjdk-amd64'
+        if isdir(cls.__jdk_dir):
+            os.environ['JAVA_HOME'] = cls.__jdk_dir
+        else:
+            raise ImportError("ERROR: JAVA installation not found")
 
+        #Point to Location of OpenNLP Library Directory
+        if ner_path != None:
+            cls.__ner_path = ner_path
+        else:
+            #self.__jar = 'resources/apache-opennlp-1.9.0/lib/'
+            cls.__ner_path= 'resources/apache-opennlp-1.9.0'
+        if exists(cls.__ner_path):
+            os.environ['CLASSPATH'] = os.path.join(cls.__ner_path, 'lib', '*')
+        else:
+            cls.__ner_path = 'pine/pipelines/resources/apache-opennlp-1.9.0'
+            if exists(cls.__ner_path):
+                os.environ['CLASSPATH'] = os.path.join(cls.__ner_path, 'lib', '*')
+            else:
+                raise ImportError("ERROR: OpenNLP Library not found")
+
+        #if you get to this point, java and opennlp library should be located
+        import jnius_config
+        if not jnius_config.vm_running:
+            logger.info('Configured JVM')
+            jnius_config.add_options('-Xmx8g') #allocate enough memory to the JVM heap to run the classifier
+        else:
+            raise RuntimeWarning('WARNING: JVM already running. Cannot run open nlp')
+
+        #import pyjnius to import required classes from JAVA/opennlp
+        from jnius import autoclass
+
+        #General
+        cls.__java_String = autoclass("java.lang.String")
+        cls.__java_File = autoclass("java.io.File")
+
+        #TOKENIZING
+        cls.__java_SentenceModel = autoclass("opennlp.tools.sentdetect.SentenceModel")
+        cls.__java_SentenceDetectorME = autoclass("opennlp.tools.sentdetect.SentenceDetectorME")
+        cls.__java_TokenizerModel = autoclass("opennlp.tools.tokenize.TokenizerModel")
+        cls.__java_TokenizerME = autoclass("opennlp.tools.tokenize.TokenizerME")
+
+        #self.__sentenceDetector = self.__java_SentenceDetectorME(self.__java_SentenceModel(self.__java_File(self.__java_String("pipelines/resources/apache-opennlp-1.9.0/en-sent.bin"))))
+        #self.__tokenizer = self.__java_TokenizerME(self.__java_TokenizerModel(self.__java_File(self.__java_String("pipelines/resources/apache-opennlp-1.9.0/en-token.bin"))))
+        cls.__sentenceDetector = cls.__java_SentenceDetectorME(cls.__java_SentenceModel(cls.__java_File(cls.__java_String(os.path.join(cls.__ner_path, 'en-sent.bin')))))
+        cls.__tokenizer = cls.__java_TokenizerME(cls.__java_TokenizerModel(cls.__java_File(cls.__java_String(os.path.join(cls.__ner_path, 'en-token.bin')))))
+
+        #TRAINING
+        cls.__java_PlainTextByLineStream = autoclass("opennlp.tools.util.PlainTextByLineStream")
+        cls.__java_NameSampleDataStream = autoclass("opennlp.tools.namefind.NameSampleDataStream")
+        cls.__java_NameFinderME = autoclass("opennlp.tools.namefind.NameFinderME")
+        cls.__java_TrainingParameters = autoclass("opennlp.tools.util.TrainingParameters")
+        cls.__java_TokenNameFinderFactory = autoclass("opennlp.tools.namefind.TokenNameFinderFactory")
+        cls.__java_MarkableFileInputStreamFactory = autoclass("opennlp.tools.util.MarkableFileInputStreamFactory")
+
+        #SAVING/LOADING MODEL
+        cls.__java_TokenNameFinderModel = autoclass("opennlp.tools.namefind.TokenNameFinderModel")
+
+        #EVALUATION
+        cls.__java_TokenNameFinderEvaluator = autoclass("opennlp.tools.namefind.TokenNameFinderEvaluator")
+
+        #MISC
+        cls.__java_WindowFeatureGenerator = autoclass("opennlp.tools.util.featuregen.WindowFeatureGenerator")
+        cls.__java_AdditionalContextFeatureGenerator = autoclass("opennlp.tools.util.featuregen.AdditionalContextFeatureGenerator")
+        cls.__java_Array = autoclass("java.lang.reflect.Array")
+        
+        cls.__is_setup = True
 
     #init()
     #set tunable parameters
     #TODO: Should probably make this more robust by inserting try/catch
     def __init__(self, java_dir=None, ner_path=None, tmp_dir=None):
-
+        opennlp_NER.setup(java_dir=java_dir, ner_path=ner_path)
+        
         self.__id = uuid.uuid4()
 
         if tmp_dir != None:
@@ -55,81 +139,16 @@ class opennlp_NER(Pipeline):
         self.__train_file = join(self.__temp_dir, 'opennlp_ner.train')
         self.__test_file = join(self.__temp_dir, 'opennlp_ner.test')
 
-        #TODO: set defaults for the following
-        #TODO: Point to location of JAVA installation
-        if java_dir != None:
-            self.__jdk_dir = java_dir
-        else:
-            self.__jdk_dir = '/usr/lib/jvm/java-1.8.0-openjdk-amd64'
-        if isdir(self.__jdk_dir):
-            os.environ['JAVA_HOME'] = self.__jdk_dir
-        else:
-            raise ImportError("ERROR: JAVA installation not found")
+    @overrides
+    def status(self) -> dict:
+        return {
+            "temp_dir": abspath(self.__temp_dir),
+            "jdk_dir": abspath(self.__jdk_dir),
+            "ner_path": abspath(self.__ner_path)
+        }
 
-        #Point to Location of OpenNLP Library Directory
-        if ner_path != None:
-            self.__ner_path = ner_path
-        else:
-            #self.__jar = 'resources/apache-opennlp-1.9.0/lib/'
-            self.__ner_path= 'resources/apache-opennlp-1.9.0'
-        if exists(self.__ner_path):
-            os.environ['CLASSPATH'] = os.path.join(self.__ner_path, 'lib', '*')
-        else:
-            self.__ner_path = 'pine/pipelines/resources/apache-opennlp-1.9.0'
-            if exists(self.__ner_path):
-                os.environ['CLASSPATH'] = os.path.join(self.__ner_path, 'lib', '*')
-            else:
-                raise ImportError("ERROR: OpenNLP Library not found")
-
-
-        #if you get to this point, java and opennlp library should be located
-        import jnius_config
-        if not jnius_config.vm_running:
-            logger.info('Configured JVM')
-            jnius_config.add_options('-Xmx8g') #allocate enough memory to the JVM heap to run the classifier
-        else:
-            raise RuntimeWarning('WARNING: JVM already running. Cannot run open nlp')
-
-        #import pyjnius to import required classes from JAVA/opennlp
-        from jnius import autoclass
-
-        #General
-        self.__java_String = autoclass("java.lang.String")
-        self.__java_File = autoclass("java.io.File")
-
-        #TOKENIZING
-        self.__java_SentenceModel = autoclass("opennlp.tools.sentdetect.SentenceModel")
-        self.__java_SentenceDetectorME = autoclass("opennlp.tools.sentdetect.SentenceDetectorME")
-        self.__java_TokenizerModel = autoclass("opennlp.tools.tokenize.TokenizerModel")
-        self.__java_TokenizerME = autoclass("opennlp.tools.tokenize.TokenizerME")
-
-        #self.__sentenceDetector = self.__java_SentenceDetectorME(self.__java_SentenceModel(self.__java_File(self.__java_String("pipelines/resources/apache-opennlp-1.9.0/en-sent.bin"))))
-        #self.__tokenizer = self.__java_TokenizerME(self.__java_TokenizerModel(self.__java_File(self.__java_String("pipelines/resources/apache-opennlp-1.9.0/en-token.bin"))))
-        self.__sentenceDetector = self.__java_SentenceDetectorME(self.__java_SentenceModel(self.__java_File(self.__java_String(os.path.join(self.__ner_path, 'en-sent.bin')))))
-        self.__tokenizer = self.__java_TokenizerME(self.__java_TokenizerModel(self.__java_File(self.__java_String(os.path.join(self.__ner_path, 'en-token.bin')))))
-
-        #TRAINING
-        self.__java_PlainTextByLineStream = autoclass("opennlp.tools.util.PlainTextByLineStream")
-        self.__java_NameSampleDataStream = autoclass("opennlp.tools.namefind.NameSampleDataStream")
-        self.__java_NameFinderME = autoclass("opennlp.tools.namefind.NameFinderME")
-        self.__java_TrainingParameters = autoclass("opennlp.tools.util.TrainingParameters")
-        self.__java_TokenNameFinderFactory = autoclass("opennlp.tools.namefind.TokenNameFinderFactory")
-        self.__java_MarkableFileInputStreamFactory = autoclass("opennlp.tools.util.MarkableFileInputStreamFactory")
-
-        #SAVING/LOADING MODEL
-        self.__java_TokenNameFinderModel = autoclass("opennlp.tools.namefind.TokenNameFinderModel")
-
-        #EVALUATION
-        self.__java_TokenNameFinderEvaluator = autoclass("opennlp.tools.namefind.TokenNameFinderEvaluator")
-
-        #MISC
-        self.__java_WindowFeatureGenerator = autoclass("opennlp.tools.util.featuregen.WindowFeatureGenerator")
-        self.__java_AdditionalContextFeatureGenerator = autoclass("opennlp.tools.util.featuregen.AdditionalContextFeatureGenerator")
-        self.__java_Array = autoclass("java.lang.reflect.Array")
-
-    #fit(X, y)
-    #internal state is changed
-    def fit(self, X, y, params):
+    @overrides
+    def fit(self, X, y, **params):
         try:
             data = self.format_data(X, y)
             if len(data)==0 or data is None:
@@ -168,13 +187,13 @@ class opennlp_NER(Pipeline):
         self.__nameFinder = self.__java_NameFinderME(self.__model)
         os.remove(self.__train_file)
 
-    #predict(X, Xid)
-    #returns {text_id: [[offset_start, offset_end, label], ... []], ...}
-    def predict(self, X, Xid):
-        out = {}
+    @overrides
+    def predict(self, X: typing.Iterable[str]) -> typing.List[DocumentPredictions]:
+        out = []
         #self.find_all_init()
-        for doc, doc_id in zip(X, Xid):
-            doc_ents = []
+        for doc in X:
+            ner_preds = []
+            doc_tokens = []
             sentences = self.__sentenceDetector.sentPosDetect(self.__java_String(str(doc).encode('utf-8')))
             for s in sentences:
                 s_start = s.getStart()
@@ -182,36 +201,30 @@ class opennlp_NER(Pipeline):
                 sent = self.__java_String(str(doc[s_start:s_end]).encode('utf-8'))
                 tokens = self.__tokenizer.tokenizePos(sent)
                 tok_string = []
-                doc_tokens = []
                 for t in tokens:
-
                     t_start = t.getStart() + s_start
                     t_end = t.getEnd() + s_start
 
-                    doc_tokens.append((t_start, t_end))
+                    doc_tokens.append([t_start, t_end])
                     tok_string.append(self.__java_String(str(doc[t_start:t_end]).encode('utf-8')))
                 ents = self.__nameFinder.find(tok_string)
                 # ents = self.find_all(tok_string)
                 for e in ents:
                     start_token = tokens[e.getStart()]
                     end_token = tokens[e.getEnd() - 1]
-                    doc_ents.append((start_token.getStart() + s_start, end_token.getEnd() + s_start, e.getType()))
+                    ner_preds.append(NerPrediction(start_token.getStart() + s_start, end_token.getEnd() + s_start, e.getType()))
                 # sequenceFinder = self.__model.getNameFinderSequenceModel()
                 # print(str(len(ents)) + ',' + str(len(tok_string)) + str(sequenceFinder.getOutcomes()))
-            #print(doc_id)
-            #print(doc_ents)
-            out[doc_id] = (doc_ents, doc_tokens)
+            out.append(DocumentPredictions(ner_preds, [], extra_data=doc_tokens))
             self.__nameFinder.clearAdaptiveData()
         return out
 
-    # predict_proba(X, Xid)
-    # returns {text_id: [(offset_start, offset_end, label, score), ... (), ...}
+    @overrides
     # TODO: figure out how to retrieve confidences for all labels instead of just most confident
-    # Right now get_all_labels and include_other do nothing
-    def predict_proba(self, X, Xid, get_all_labels=False, include_other=False):
-        out = {}
-        for doc, doc_id in zip(X, Xid):
-            doc_ents = []
+    def predict_proba(self, X: typing.Iterable[str], **kwargs) -> typing.List[DocumentPredictionProbabilities]:
+        out = []
+        for doc in X:
+            ner_probs = []
             sentences = self.__sentenceDetector.sentPosDetect(self.__java_String(str(doc).encode('utf-8')))
             for s in sentences:
                 s_start = s.getStart()
@@ -227,20 +240,19 @@ class opennlp_NER(Pipeline):
                 for e in ents:
                     start_token = tokens[e.getStart()]
                     end_token = tokens[e.getEnd() - 1]
-                    doc_ents.append((start_token.getStart() + s_start, end_token.getEnd() + s_start, e.getType(), e.getProb()))
-            out[doc_id] = doc_ents
+                    ner_probs.append(NerPredictionProbabilities(start_token.getStart() + s_start, end_token.getEnd() + s_start, [(e.getType(), e.getProb())]))
+            out.append(DocumentPredictionProbabilities(ner_probs, []))
             self.__nameFinder.clearAdaptiveData()
         return out
 
-    # TODO: next_example(X, Xid)
-    # Given model's current state evaluate the input (id, String) pairs and return a rank ordering of lowest->highest scores for instances (will need to discuss specifics of ranking)
-    # Discussing rank is now a major project - see notes
+    @overrides
+    # TODO
     def next_example(self, X, Xid):
         return
 
 # EXTRA METHODS TO HELP WITH THE opennlp PIPELINE ##
 
-    # Save a model to be used again later
+    @overrides
     # models must be saved and loaded with extension ".bin"
     def save_model(self, model_name):
         if not model_name.endswith(".bin"):
@@ -251,8 +263,7 @@ class opennlp_NER(Pipeline):
         return model_name
 
 
-
-    #loads a model from file
+    @overrides
     def load_model(self, model_name):
         if not model_name.endswith(".bin"):
             logger.warning('WARNING: model_name must end with .bin, adding...')
@@ -328,12 +339,7 @@ class opennlp_NER(Pipeline):
                                 in_ann = True
 
                             out += doc[start:end] + ' '
-                        except:
-                            exec_type, value, tb = sys.exc_info()
-                            print(traceback.format_tb(tb))
-                            print(value)
 
-                        try:
                             if cur_ann[1] <= end and not doc_done:
                                 if in_ann:
                                     out += '<END> '
@@ -343,9 +349,7 @@ class opennlp_NER(Pipeline):
                                 else:
                                     doc_done = True
                         except:
-                            exec_type, value, tb = sys.exc_info()
-                            print(traceback.format_tb(tb))
-                            print(value)
+                            logger.exception("Error getting annotations")
 
                     if not in_ann: out += '\n' #fixes times where sentence detector would cut off in the middle of a label
                 out += '\n'
@@ -353,38 +357,39 @@ class opennlp_NER(Pipeline):
             logger.warning(e)
         return out
 
-    def convert_ann_collection_to_per_token(self, annotations, tokens):
+    def convert_ann_collection_to_per_token(self, annotations: typing.List[typing.Union[NerPrediction, typing.Tuple[int, int, str]]], tokens):
         labels_per_token = []
         for tok in tokens:
             labels = []
             for ann in annotations:
-                if ann[0] <= tok[0] and ann[1] >= tok[1]:
-                    labels.append(ann[2])
+                if isinstance(ann, NerPrediction):
+                    if ann.offset_start <= tok[0] and ann.offset_end >= tok[1]:
+                        labels.append(ann.label)
+                else:
+                    if ann[0] <= tok[0] and ann[1] >= tok[1]:
+                        labels.append(ann[2])
             labels_per_token.append(labels)
         return labels_per_token
 
     def evaluate(self, X, y, Xid):
-        predictions = self.predict(X, Xid)
+        predictions = self.predict(X)
         stats = {'Totals': [0, 0, 0, 0]}
 
-
-        for doc_id in predictions:
-            guess = predictions[doc_id][0]
+        for (doc_id, prediction) in zip(Xid, predictions):
+            guesses: typing.List[NerPrediction] = prediction.ner
             gold = y[Xid.index(doc_id)]
 
-            all_tokens = predictions[doc_id][1]
+            all_tokens = prediction.extra_data
 
-
-            reformat_gold = [tuple(pydash.flatten(go)) for go in gold]
-            gold = reformat_gold
+            gold = [tuple(pydash.flatten(go)) for go in gold]
 
             labels_in_gold = self.convert_ann_collection_to_per_token(gold, all_tokens)
-            labels_in_guess = self.convert_ann_collection_to_per_token(guess, all_tokens)
+            labels_in_guess = self.convert_ann_collection_to_per_token(guesses, all_tokens)
 
             all_known_labels = set()
 
-            for ann in guess:
-                all_known_labels.add(ann[2])
+            for ann in guesses:
+                all_known_labels.add(ann.label)
 
             for ann in gold:
                 all_known_labels.add(ann[2])
@@ -465,6 +470,6 @@ class opennlp_NER(Pipeline):
         evaluator.evaluate(sampleStream)
 
         result = evaluator.getFMeasure()
-        print(result.toString())
+        logger.info(result.toString())
         return (result.getPrecisionScore(), result.getRecallScore(), result.getFMeasure())
     

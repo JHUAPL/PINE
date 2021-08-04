@@ -4,11 +4,14 @@
 
 import logging
 import os
-from os.path import isfile, isdir, join
+from os.path import abspath, isfile, isdir, join
 import textwrap
+import typing
 import uuid
 
-from .pipeline import Pipeline
+from overrides import overrides
+
+from .pipeline import Pipeline, NerPrediction, DocumentPredictions, NerPredictionProbabilities, DocumentPredictionProbabilities
 from .shared.config import ConfigBuilder
 
 config = ConfigBuilder.get_config()
@@ -36,61 +39,46 @@ class corenlp_NER(Pipeline):
     __props = None
 
     #class variables
+    __is_setup = False
     __id = None
+    __default_fit_params = None
 
-    #init()
-    #set tunable parameters
-    #TODO: Should probably make this more robust by inserting try/catch
-    def __init__(self, java_dir=None, ner_path=None, load_model=None, tmp_dir=None):
-
-        self.__id = uuid.uuid4()
-
-        if tmp_dir != None:
-            self.__temp_dir = tmp_dir
-            #can choose to dictate where the model will store files so that it doesn't overwrite any,
-            #otherwise it will write to a new directory within the resources folder
-        else:
-            self.__temp_dir = config.ROOT_DIR + '/tmp/' + str(self.__id)
-
-        if not isdir(self.__temp_dir):
-            os.makedirs(self.__temp_dir)
-        logger.info("Using temp dir {}".format(self.__temp_dir))
-
-        self.__train_file = join(self.__temp_dir, 'corenlp_training.tsv')
-        self.__test_file = join(self.__temp_dir, 'corenlp_test_gold.tsv')
-        self.__model = join(self.__temp_dir, 'corenlp-ner-model.ser.gz')
-
-
+    @classmethod
+    def setup(cls, java_dir=None, ner_path=None):
+        if cls.__is_setup:
+            logger.info("Java is already set up.")
+            return
+        
+        logger.info("Setting up Java.")
         #TODO: set defaults for the following.
         #Point to location of JAVA installation
         if java_dir != None:
-            self.__jdk_dir = java_dir
+            cls.__jdk_dir = java_dir
         else:
-            self.__jdk_dir = '/usr/lib/jvm/java-1.8.0-openjdk-amd64' # self.__jdk_dir = '/usr/lib/jvm/java-8-oracle'
-        if isdir(self.__jdk_dir):
-            os.environ['JAVA_HOME'] = self.__jdk_dir
+            cls.__jdk_dir = '/usr/lib/jvm/java-1.8.0-openjdk-amd64' # self.__jdk_dir = '/usr/lib/jvm/java-8-oracle'
+        if isdir(cls.__jdk_dir):
+            os.environ['JAVA_HOME'] = cls.__jdk_dir
         else:
             raise ImportError("ERROR: JAVA installation not found")
-
-
+        
         #Point to Location of Stanford NER Library
         if ner_path != None:
-            self.__jar = ner_path
+            cls.__jar = ner_path
         else:
-            self.__jar = './resources/stanford-corenlp-full-2018-02-27/stanford-corenlp-3.9.1.jar'
-        if isfile(self.__jar):
-            os.environ['CLASSPATH'] = self.__jar
+            cls.__jar = './resources/stanford-corenlp-full-2018-02-27/stanford-corenlp-3.9.1.jar'
+        if isfile(cls.__jar):
+            os.environ['CLASSPATH'] = cls.__jar
         else:
-            self.__jar = 'pine/pipelines/resources/stanford-corenlp-full-2018-02-27/stanford-corenlp-3.9.1.jar'
-            if isfile(self.__jar):
-                os.environ['CLASSPATH'] = self.__jar
+            cls.__jar = 'pine/pipelines/resources/stanford-corenlp-full-2018-02-27/stanford-corenlp-3.9.1.jar'
+            if isfile(cls.__jar):
+                os.environ['CLASSPATH'] = cls.__jar
             else:
                 raise ImportError("ERROR: Stanford NER Library not found")
-
+        
         #if you get to this point, java and stanford ner library should be located
         import jnius_config
         if not jnius_config.vm_running:
-            print('Configured JVM')
+            logger.info('Configured JVM')
             jnius_config.add_options('-Xmx32g') #allocate enough memory to the JVM heap to run the classifier
         else:
             raise RuntimeWarning('WARNING: JVM already running. Cannot run core nlp')
@@ -99,32 +87,22 @@ class corenlp_NER(Pipeline):
         from jnius import autoclass
 
         #General
-        self.__java_String = autoclass("java.lang.String")
+        cls.__java_String = autoclass("java.lang.String")
 
         #TOKENIZING
-        self.__java_StringReader = autoclass("java.io.StringReader")
-        self.__java_Tokenizer = autoclass("edu.stanford.nlp.process.PTBTokenizer")
+        cls.__java_StringReader = autoclass("java.io.StringReader")
+        cls.__java_Tokenizer = autoclass("edu.stanford.nlp.process.PTBTokenizer")
 
         #TRAINING AND TESTING CRFCLASSIFIER
-        self.__java_CRFClassifier = autoclass("edu.stanford.nlp.ie.crf.CRFClassifier")
-        self.__java_Properties = autoclass("java.util.Properties")
-        self.__java_AA = autoclass("edu.stanford.nlp.ling.CoreAnnotations$AnswerAnnotation")
+        cls.__java_CRFClassifier = autoclass("edu.stanford.nlp.ie.crf.CRFClassifier")
+        cls.__java_Properties = autoclass("java.util.Properties")
+        cls.__java_AA = autoclass("edu.stanford.nlp.ling.CoreAnnotations$AnswerAnnotation")
 
         #GETTING CONFIDENCES
-        self.__java_CRFCliqueTree = autoclass("edu.stanford.nlp.ie.crf.CRFCliqueTree")
-
-        if load_model != None:
-            self.__crf = self.__java_CRFClassifier.getClassifier(self.__java_String(load_model))
-            self.__model = load_model
-
-        self.__SCNLP = autoclass("edu.stanford.nlp.pipeline.StanfordCoreNLP")
-
-
-    #fit(X, y)
-    #internal state is changed
-    def fit(self, X, y, params=None):
-
-        default_params = {
+        cls.__java_CRFCliqueTree = autoclass("edu.stanford.nlp.ie.crf.CRFCliqueTree")
+        
+        cls.__SCNLP = autoclass("edu.stanford.nlp.pipeline.StanfordCoreNLP")
+        cls.__default_fit_params = {
             'import_prop_file': None,
             'export_prop_file': None,
             'max_left': 1,
@@ -143,6 +121,48 @@ class corenlp_NER(Pipeline):
             'use_type_y_sequences': True,
             'word_shape': "chris2useLC"
         }
+        
+        cls.__is_setup = True
+
+    #init()
+    #set tunable parameters
+    #TODO: Should probably make this more robust by inserting try/catch
+    def __init__(self, java_dir=None, ner_path=None, load_model=None, tmp_dir=None):
+        corenlp_NER.setup(java_dir=java_dir, ner_path=ner_path)
+        
+        self.__id = uuid.uuid4()
+
+        if tmp_dir != None:
+            self.__temp_dir = tmp_dir
+            #can choose to dictate where the model will store files so that it doesn't overwrite any,
+            #otherwise it will write to a new directory within the resources folder
+        else:
+            self.__temp_dir = config.ROOT_DIR + '/tmp/' + str(self.__id)
+
+        if not isdir(self.__temp_dir):
+            os.makedirs(self.__temp_dir)
+        logger.info("Using temp dir {}".format(self.__temp_dir))
+
+        self.__train_file = join(self.__temp_dir, 'corenlp_training.tsv')
+        self.__test_file = join(self.__temp_dir, 'corenlp_test_gold.tsv')
+        self.__model = join(self.__temp_dir, 'corenlp-ner-model.ser.gz')
+
+        if load_model != None:
+            self.__crf = self.__java_CRFClassifier.getClassifier(self.__java_String(load_model))
+            self.__model = load_model
+
+    @overrides
+    def status(self) -> dict:
+        return {
+            "temp_dir": abspath(self.__temp_dir),
+            "jdk_dir": abspath(self.__jdk_dir),
+            "jar": abspath(self.__jar),
+            "default_fit_params": self.__default_fit_params
+        }
+
+    @overrides
+    def fit(self, X, y, **params):
+        default_params = self.__default_fit_params.copy()
         #format input data into tsv file for ner to train on
         try:
             train_data = self.format_data(X, y)
@@ -223,13 +243,11 @@ wordShape=""" + default_params["word_shape"] + """
         os.remove(self.__train_file)
 
 
-
-    #predict(X, Xid)
-    #returns {text_id: [[offset_start, offset_end, label], ... []], ...}
-    def predict(self, X, Xid):
-        out = {}
-        for doc, doc_id in zip(X, Xid):
-            doc_ents = []
+    @overrides
+    def predict(self, X: typing.Iterable[str]) -> typing.List[DocumentPredictions]:
+        out = []
+        for doc in X:
+            ner_preds = []
             test_text = self.__java_String(doc)
             results = self.__crf.classify(test_text)
 
@@ -241,18 +259,16 @@ wordShape=""" + default_params["word_shape"] + """
                     label = word.get(self.__java_AA)
                     #print(str(start_char) + '-' + str(end_char) + ': ' + word.word() + '/' + label)
                     if label != 'O':
-                        doc_ents.append((start_char, end_char, label))
-            out[doc_id] = doc_ents
+                        ner_preds.append(NerPrediction(start_char, end_char, label))
+            out.append(DocumentPredictions(ner_preds, []))
         return out
 
-    #predict_proba(X, Xid)
-    #returns {text_id: [(offset_start, offset_end, label, score), ... []], ...}
-    #can also return scores for all labels if get_all is True
-    def predict_proba(self, X, Xid, get_all_labels=False, include_other=False):
-        out = {}
+    @overrides
+    def predict_proba(self, X: typing.Iterable[str], get_all_labels=False, include_other=False, **kwargs) -> typing.List[DocumentPredictionProbabilities]:
+        out = []
         # Score is confidence of classifier for this prediction
-        for doc, doc_id in zip(X, Xid):
-            doc_ents = []
+        for doc in X:
+            ner_probs = []
             test_text = self.__java_String(doc)
             results = self.__crf.classify(test_text)
 
@@ -269,7 +285,7 @@ wordShape=""" + default_params["word_shape"] + """
                             index = self.__crf.classIndex.indexOf(self.__java_String(label))
                             prob = cliqueTree.prob(w, index)
                             #print(str(start_char) + '-' + str(end_char) + ': ' + word.word() + '/' + label)
-                            doc_ents.append((start_char, end_char, label, prob))
+                            ner_probs.append(NerPredictionProbabilities(start_char, end_char, [(label, prob)]))
                         else:
                             itr = self.__crf.classIndex.iterator()
                             all_probs = []
@@ -278,15 +294,14 @@ wordShape=""" + default_params["word_shape"] + """
                                 index = self.__crf.classIndex.indexOf(self.__java_String(label))
                                 prob = cliqueTree.prob(w, index)
                                 all_probs.append((label, prob))
-                            doc_ents.append((start_char, end_char, all_probs))
+                            ner_probs.append(NerPredictionProbabilities(start_char, end_char, all_probs))
 
-            out[doc_id] = doc_ents
+            out.append(DocumentPredictions(ner_probs, []))
         return out
 
 
-    #TODO: next_example(X, Xid)
-    #Given model's current state evaluate the input (id, String) pairs and return a rank ordering of lowest->highest scores for instances (will need to discuss specifics of ranking)
-    #Discussing rank is now a major project - see notes
+    @overrides
+    #TODO
     def next_example(self, X, Xid):
         return
 
@@ -334,23 +349,23 @@ wordShape=""" + default_params["word_shape"] + """
             out.append(ent_extract)
         return out
 
-    #saves model so that it can be loaded again later
+    @overrides
     #models must be saved with extension ".ser.gz"
     def save_model(self, model_name):
         if not model_name.endswith(".ser.gz"):
-            print('WARNING: model_name must end in .ser.gz, adding...')
+            logger.warn('WARNING: model_name must end in .ser.gz, adding...')
             model_name = model_name + ".ser.gz"
         self.__crf.serializeClassifier(self.__java_String(model_name))
-        print('Saved model to ' + model_name)
+        logger.info('Saved model to ' + model_name)
         return model_name
 
 
-    #loads a previously saved model
+    @overrides
     #properties can be exported/imported during train
     def load_model(self, model_name):
         #TODO: what to do if model doesn't exist?
         if not model_name.endswith(".ser.gz"):
-            print('WARNING: model_name must end in .ser.gz, adding...')
+            logger.warn('WARNING: model_name must end in .ser.gz, adding...')
             model_name = model_name + ".ser.gz"
         self.__crf = self.__java_CRFClassifier.getClassifier(self.__java_String(model_name))
         self.__model = model_name
@@ -411,10 +426,10 @@ wordShape=""" + default_params["word_shape"] + """
                 #Find corresponding token in gold and predicted
                 word = answer[0]
                 gold = answer[1]
-                if verbose: print('GOLD: ' + word + ',' + gold)
+                if verbose: logger.trace('GOLD: ' + word + ',' + gold)
 
                 if word == '<xn>':
-                    if verbose: print('SKIP')
+                    if verbose: logger.trace('SKIP')
                     continue
 
                 if next_guess != None:
@@ -452,7 +467,7 @@ wordShape=""" + default_params["word_shape"] + """
                         next_guess = None
                         a = 1
                         votes = {guess[1]: 1} #reset votes when concatenation is discarded
-                    if verbose: print(guess)
+                    if verbose: logger.trace(guess)
 
                     #check what the next gold token is, if it matches with the current guess then just move on
                     #(likely the current answer token doesn't exactly match the guess token, see `` vs '')
@@ -466,7 +481,7 @@ wordShape=""" + default_params["word_shape"] + """
                 if word != guess[0]: continue
 
                 #if the code gets to here we are pretty confident the tokens match
-                if verbose: print('GUESS: ' + str(guess))
+                if verbose: logger.trace('GUESS: ' + str(guess))
 
                 pred = guess[1]
 

@@ -3,6 +3,7 @@
 import json
 import os
 import sys
+import time
 import typing
 
 DIR = os.path.dirname(os.path.realpath(__file__))
@@ -47,6 +48,16 @@ def test_collection_data(title: str = None) -> typing.Union[dict, typing.List[di
     else:
         return collections
 
+def test_pipeline_data(id_or_name: str = None) -> typing.Union[dict, typing.List[dict]]:
+    with open(os.path.join(TEST_DATA_DIR, "pipelines.json"), "r") as f:
+        pipelines = json.load(f)
+    if id_or_name:
+        for pipeline in pipelines:
+            if pipeline["_id"] == id_or_name or pipeline["name"].lower() == id_or_name.lower():
+                return pipeline
+    else:
+        return pipelines
+
 def login_with_user(user_id_or_email: str, client: pine.client.LocalPineClient) -> pine.client.LocalPineClient:
     user = test_user_data(user_id_or_email)
     assert client.is_logged_in() == False
@@ -58,8 +69,21 @@ def login_with_user(user_id_or_email: str, client: pine.client.LocalPineClient) 
 def login_with_test_user(client: pine.client.LocalPineClient) -> pine.client.LocalPineClient:
     return login_with_user(TEST_USER, client)
 
-def get_collection_id(client, collection_title: str) -> str:
+def get_collection(client, collection_title: str) -> dict:
     for col in client.list_collections():
         if col["metadata"]["title"] == collection_title:
-            return col["_id"]
+            return col
     raise AssertionError("Couldn't find collection with title " + collection_title)
+
+def get_collection_id(client, collection_title: str) -> str:
+    return get_collection(client, collection_title)["_id"]
+
+def wait_for_job_to_finish(client: pine.client.LocalPineClient, classifier_id: str, job_id: str, max_wait_seconds = 60):
+    retry_sleep_s = 5
+    slept_seconds = 0
+    running_jobs = client.get_classifier_running_jobs(classifier_id)
+    while job_id in running_jobs and slept_seconds < max_wait_seconds:
+        time.sleep(retry_sleep_s)
+        slept_seconds += retry_sleep_s
+        running_jobs = client.get_classifier_running_jobs(classifier_id)
+    assert job_id not in running_jobs # timeout

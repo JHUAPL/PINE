@@ -1,0 +1,211 @@
+# (C) 2021 The Johns Hopkins University Applied Physics Laboratory LLC.
+
+openapi: "3.0.2"
+
+security:
+  - cookieAuth: []
+
+tags:
+  - name: annotations
+    description: Operations in the "annotations" blueprint.
+
+components:
+
+  schemas:
+
+    WrappedAnnotations:
+      type: object
+      properties:
+        _items:
+          type: array
+          items:
+            $ref: "../api/components.yaml#/schemas/UserDocumentAnnotation"
+        _links:
+          $ref: "../api/components.yaml#/schemas/EveLinks"
+
+paths:
+
+  /annotations/mine/by_document_id/{doc_id}:
+    get:
+      summary: Get My Document Annotations
+      description: |
+        Get a list of annotations done by the logged in user on a document.
+        
+        Example: `curl -X GET http://localhost:5000/annotations/mine/by_document_id/60d08052f2cb44c51e0af0f1 --cookie session.cookie`
+      operationId: annotations_get_mine
+      tags: [annotations]
+      parameters:
+        - $ref: "../api/components.yaml#/parameters/docIdParam"
+      responses:
+        "200":
+          description: Successfully found document and got annotations.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/WrappedAnnotations"
+        "401":
+          $ref: "../api/components.yaml#/responses/NotAuthorized"
+        "404":
+          $ref: "../api/components.yaml#/responses/DocumentNotFound"
+        default:
+          $ref: "../api/components.yaml#/responses/UnexpectedServerError"
+
+    post:
+      summary: Save My Annotations
+      description: |
+        Change annotations of a document.
+        
+        Example: `curl -X PUT http://localhost:5000/annotations/mine/by_document_id/60d08052f2cb44c51e0af0f1 --cookie session.cookie -H "Content-type: application/json" -d '{"doc":["sci.crypt", "talk.politics.misc"],"ner":[{"end":365,"start":346, "label":"sci.med"}, {"start":475, "end":530, "label":"alt.atheism"}]}'`
+        
+        _Note_: start or end indices in the middle of words might make the UI not show the label.
+        Also, invalid labels are not checked and might cause the UI to freeze.
+      operationId: annotations_save_mine
+      tags: [annotations]
+      parameters:
+        - $ref: "../api/components.yaml#/parameters/docIdParam"
+        - name: update_iaa
+          in: query
+          required: false
+          description: Whether to also update IAA reports.
+          schema:
+            type: boolean
+            default: true
+      requestBody:
+        description: The labels to add to the document.
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "../api/components.yaml#/schemas/DocumentAnnotations"
+      responses:
+        "200":
+          description: Successfully found document and changed annotations (returns doc_id).
+          content:
+            application/json:
+              schema:
+                type: string
+        "400":
+          $ref: "../api/components.yaml#/responses/InvalidInputParameters"
+        "401":
+          $ref: "../api/components.yaml#/responses/NotAuthorized"
+        "404":
+          $ref: "../api/components.yaml#/responses/DocumentNotFound"
+        default:
+          $ref: "../api/components.yaml#/responses/UnexpectedServerError"
+
+  /annotations/mine/by_collection_id/{collection_id}:
+    post:
+      summary: Set Collection Annotations
+      description: |
+        Modify annotations of certain documents in a given collection.
+        
+        Example: `curl -X POST http://localhost:5000/annotations/mine/by_collection_id/60d32ba28d34cf656fed503f --cookie session.cookie -H "Content-type: application/json" -d '{"60d32ba48d34cf656fed504b": {"doc":["sci.crypt", "talk.politics.misc"],"ner":[[0,4,"sci.med"], [0,4,"alt.atheism"]]}, "60d32ba48d34cf656fed504c": {"doc":[], "ner":[[0,4,"sci.med"]]}}'`
+      operationId: annotations_collection
+      tags: [annotations]
+      parameters:
+        - $ref: "../api/components.yaml#/parameters/collectionIdParam"
+        - name: batch_mode
+          required: true
+          description: |
+            Whether or not to send all annotations to the database as one batch or individually.
+            
+            _Note_: Batch mode should ONLY be used if all of the documents have not already been annotated.
+            
+            The versioning of eve will be messed up if batch mode annotates a document with pre-existing annotations (even if old).
+            
+            To be clear, even if a document had annotations that were deleted, using batch mode on that document will cause problems.
+            
+            Conversely, using individual mode (batch_mode = False) can always be done, but will be slower.
+            
+            Another issue with individual mode is with many documents, there will be many backend queries, possibly getting rate limited.
+          schema:
+            type: boolean
+            default: true
+          in: query
+        - name: update_iaa
+          in: query
+          required: false
+          description: Whether to also update IAA reports.
+          schema:
+            type: boolean
+            default: true
+      requestBody:
+        description: The labels to add to the document.
+        required: true
+        content:
+          application/json:
+            schema:
+              description: Mapping from document ID to annotations object.
+              type: object
+              additionalProperties:
+                $ref: "../api/components.yaml#/schemas/DocumentAnnotations"
+              example:
+                {"60d47b4bdbfddb3ca87c7971": {"doc": ["label1", "label2"],
+                 "ner": [[0, 10, "label1"], [15, 18, "label2"]]}}
+      responses:
+        "200":
+          description: Successfully found document and changed annotations (returns annotation ids).
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: string
+        "400":
+          $ref: "../api/components.yaml#/responses/InvalidInputParameters"
+        "401":
+          $ref: "../api/components.yaml#/responses/NotAuthorized"
+        "404":
+          $ref: "../api/components.yaml#/responses/CollectionNotFound"
+        default:
+          $ref: "../api/components.yaml#/responses/UnexpectedServerError"
+
+  /annotations/others/by_document_id/{doc_id}:
+    get:
+      summary: Get Others' Document Annotations
+      description: |
+        Get a list of annotations done by everyone but me on a document.
+        
+        Example: `curl -X GET http://localhost:5000/annotations/others/by_document_id/60d08052f2cb44c51e0af0f1 --cookie session.cookie`
+      operationId: annotations_others
+      tags: [annotations]
+      parameters:
+        - $ref: "../api/components.yaml#/parameters/docIdParam"
+      responses:
+        "200":
+          description: Successfully found document and got annotations.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/WrappedAnnotations"
+        "401":
+          $ref: "../api/components.yaml#/responses/NotAuthorized"
+        "404":
+          $ref: "../api/components.yaml#/responses/DocumentNotFound"
+        default:
+          $ref: "../api/components.yaml#/responses/UnexpectedServerError"
+
+  /annotations/by_document_id/{doc_id}:
+    get:
+      summary: Get All Document Annotations
+      description: |
+        Get a list of annotations done by everyone on a document.
+        
+        Example: `curl -X GET http://localhost:5000/annotations/by_document_id/60d08052f2cb44c51e0af0f1 --cookie session.cookie`
+      operationId: annotations_all
+      tags: [annotations]
+      parameters:
+        - $ref: "../api/components.yaml#/parameters/docIdParam"
+      responses:
+        "200":
+          description: Successfully found document and got annotations.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/WrappedAnnotations"
+        "401":
+          $ref: "../api/components.yaml#/responses/NotAuthorized"
+        "404":
+          $ref: "../api/components.yaml#/responses/DocumentNotFound"
+        default:
+          $ref: "../api/components.yaml#/responses/UnexpectedServerError"

@@ -5,7 +5,6 @@ import { map } from "rxjs/operators";
 import { AuthService } from "../auth/auth.service";
 import { BackendService } from "../backend/backend.service";
 
-import { DBClassifier, Classifier } from "../../model/classifier";
 import { DBMetric, DBMetrics, Metric } from "../../model/metrics";
 
 @Injectable({
@@ -15,9 +14,9 @@ export class MetricsService {
 
     constructor(private backend: BackendService, private auth: AuthService) { }
 
-    public getAllMetrics(): Observable<Metric[]> {
-        return this.backend.get<DBMetrics>("/pipelines/metrics").pipe(map(Metric.fromDBItems));
-    }
+//     public getAllMetrics(): Observable<Metric[]> {
+//         return this.backend.get<DBMetrics>("/pipelines/metrics").pipe(map(Metric.fromDBItems));
+//     }
 
     public getMetric(metric_id: string): Observable<Metric> {
         return this.backend.get<DBMetric>(`/pipelines/metrics/by_id/${metric_id}`).pipe(map(Metric.fromDB));

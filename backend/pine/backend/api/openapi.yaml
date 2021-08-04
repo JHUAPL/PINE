@@ -1,0 +1,4325 @@
+# (C) 2021 The Johns Hopkins University Applied Physics Laboratory LLC.
+
+openapi: 3.0.2
+info:
+  title: PINE
+  description: >
+    PINE: Pmap Interface for Nlp Experimentation
+
+
+    PINE is a Natural Language Processing (NLP) tool designed for integration
+    with the
+
+    Precision Medicine Analytics Platform (PMAP), developed at the Johns Hopkins
+    University Applied
+
+    Physics Laboratory (JHU/APL).
+
+
+    PINE consists of a web UI along with backing services.
+  version: 1.0.1
+  contact:
+    name: Michael Harrity
+    email: Michael.Harrity@jhuapl.edu
+  license:
+    name: AGPL-3.0
+    url: 'https://github.com/JHUAPL/PINE/blob/master/LICENSE'
+servers:
+  - url: 'http://localhost:5000'
+  - url: 'https://localhost:8888/api'
+  - url: 'https://dev-nlpannotator.pm.jh.edu/api'
+paths:
+  /admin/users:
+    get:
+      summary: Get All User Information
+      description: >
+        Get a list of all users (and details: id, email, password hash).
+
+
+        Example: `curl -X GET http://localhost:5000/admin/users --cookie
+        admin.cookie`
+
+
+        _Note_: this endpoint requires the logged in user to be an admin and is
+        only relevant if
+
+        the auth module supports it.
+      operationId: admin_get_users
+      tags:
+        - admin
+      responses:
+        '200':
+          description: Returned list of user details.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties: &ref_2
+                    _id:
+                      type: string
+                    _created:
+                      type: string
+                    description:
+                      type: string
+                    email:
+                      type: string
+                    firstname:
+                      type: string
+                    lastname:
+                      type: string
+                    passwdhash:
+                      type: string
+                    role:
+                      type: array
+                      items:
+                        type: string
+        '401':
+          description: 'Authentication failed, not logged in or not an admin.'
+          content: &ref_0
+            application/json:
+              schema:
+                description: Error message from the server.
+                type: string
+                example: Error message from the server.
+        default:
+          description: 'Unexpected error, check server logs.'
+          content: &ref_1
+            application/json:
+              schema:
+                description: Error message from the server.
+                type: string
+                example: Error message from the server.
+      security:
+        - cookieAuth: []
+    post:
+      summary: Create New User
+      description: >
+        Create a new user.
+
+
+        Example: `curl -X Post http://localhost:5000/admin/users -d
+        '{"id":"joe", "passwd":"mypass", "email":"joe@pine.jhuapl.edu",
+        "description": "", "firstname":"joe", "lastname":"jones"}' -H
+        "Content-type:application/json" --cookie admin.cookie`
+
+
+        _Note_: this endpoint requires the logged in user to be an admin and is
+        only relevant if
+
+        the auth module supports it.
+      operationId: admin_add_user
+      tags:
+        - admin
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties: &ref_40
+                id:
+                  type: string
+                email:
+                  type: string
+                passwd:
+                  type: string
+                description:
+                  type: string
+                firstname:
+                  type: string
+                lastname:
+                  type: string
+                role:
+                  description: The role (for permissions) of the user.
+                  type: array
+                  items: &ref_4
+                    type: string
+                    enum:
+                      - administrator
+                      - user
+              required: &ref_41
+                - id
+                - email
+                - passwd
+                - firstname
+                - lastname
+                - roles
+      responses:
+        '200':
+          description: Return id info of newly created user.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  description: >
+                    This object is returned when doing actions like modifying a
+                    document or collection.  It contains the ID of the object
+                    and some other information from the database.
+                  allOf: &ref_5
+                    - type: object
+                      properties: &ref_8
+                        _etag:
+                          type: string
+                    - type: object
+                      properties:
+                        _status:
+                          type: string
+                        _id:
+                          type: string
+                        _updated:
+                          type: string
+                          format: date-time
+                        _created:
+                          type: string
+                          format: date-time
+                        _links:
+                          type: object
+                          properties: &ref_9
+                            parent:
+                              type: object
+                              properties:
+                                title:
+                                  type: string
+                                href:
+                                  type: string
+                            self:
+                              type: object
+                              properties:
+                                title:
+                                  type: string
+                                href:
+                                  type: string
+        '400':
+          description: Input parameters are missing/invalid.
+          content: &ref_6
+            application/json:
+              schema:
+                description: Error message from the server.
+                type: string
+                example: Error message from the server.
+        '401':
+          description: 'Authentication failed, not logged in or not an admin.'
+          content: *ref_0
+        '409':
+          description: User with that ID/email already exists.
+          content:
+            application/json:
+              schema:
+                description: Error message from the server.
+                type: string
+                example: Error message from the server.
+        default:
+          description: 'Unexpected error, check server logs.'
+          content: *ref_1
+      security:
+        - cookieAuth: []
+  '/admin/users/{user_id}':
+    get:
+      summary: Get User Details
+      description: >
+        Get details (id, email, password hash...) of a certain user.
+
+
+        Example: `curl -X GET http://localhost:5000/admin/users/ada --cookie
+        admin.cookie`
+
+
+        _Note_: this endpoint requires the logged in user to be an admin and is
+        only relevant if
+
+        the auth module supports it.
+      operationId: admin_get_user
+      tags:
+        - admin
+      parameters:
+        - name: user_id
+          in: path
+          required: true
+          description: ID of the user on which to operate.
+          schema: &ref_3
+            type: string
+      responses:
+        '200':
+          description: Successfully found the user and returned their details.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: *ref_2
+        '401':
+          description: 'Authentication failed, not logged in or not an admin.'
+          content: *ref_0
+        '404':
+          description: No user found with that ID.
+        default:
+          description: 'Unexpected error, check server logs.'
+          content: *ref_1
+      security:
+        - cookieAuth: []
+    put:
+      summary: Update user details.
+      description: >
+        Update user details.
+
+
+        Example: `curl -X PUT http://localhost:5000/admin/users/ada -d
+        '{"_id":"ada","description":"newdesc", "firstname":"newada",
+        "lastname":"adalast",
+        "_etag":"1c12354ee74f5d5732231ac5034f7915fb167244",
+        "email":"ada@pine.jhuapl.edu"}' -H "Content-type:application/json"
+        --cookie admin.cookie`
+
+
+        _Note_: this endpoint requires the logged in user to be an admin and is
+        only relevant if
+
+        the auth module supports it.
+      operationId: admin_update_user
+      tags:
+        - admin
+      parameters:
+        - name: user_id
+          in: path
+          required: true
+          description: ID of the user on which to operate.
+          schema: *ref_3
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties: &ref_42
+                _id:
+                  type: string
+                _etag:
+                  type: string
+                description:
+                  type: string
+                firstname:
+                  type: string
+                lastname:
+                  type: string
+                email:
+                  type: string
+                  description: 'If this is not included, you wont be able to log in.'
+                passwdhash:
+                  type: string
+                  description: Setting this manually might break the password.
+                role:
+                  description: The role (for permissions) of the user.
+                  type: array
+                  items: *ref_4
+              required: &ref_43
+                - _id
+                - _etag
+                - firstname
+                - lastname
+                - passwdhash
+                - role
+      responses:
+        '200':
+          description: Successfully changed user information
+          content:
+            application/json:
+              schema:
+                description: >
+                  This object is returned when doing actions like modifying a
+                  document or collection.  It contains the ID of the object and
+                  some other information from the database.
+                allOf: *ref_5
+        '401':
+          description: 'Authentication failed, not logged in or not an admin.'
+          content: *ref_0
+        '404':
+          description: No user found with that ID.
+        '412':
+          description: Given etag did not match the most updated stored one.
+          content: &ref_57
+            application/json:
+              schema:
+                description: Error message from the server.
+                type: string
+                example: Error message from the server.
+        '422':
+          description: Input parameters are missing/invalid.
+          content: *ref_6
+        default:
+          description: 'Unexpected error, check server logs.'
+          content: *ref_1
+      security:
+        - cookieAuth: []
+    delete:
+      summary: Delete User
+      description: >
+        Delete a user.
+
+
+        _Note_: this endpoint requires the logged in user to be an admin and is
+        only relevant if
+
+        the auth module supports it.
+      operationId: admin_delete_user
+      tags:
+        - admin
+      parameters:
+        - name: user_id
+          in: path
+          required: true
+          description: ID of the user on which to operate.
+          schema: *ref_3
+      responses:
+        '204':
+          description: Successfully deleted user.
+        '401':
+          description: 'Authentication failed, not logged in or not an admin.'
+          content: *ref_0
+        '404':
+          description: No user found with that ID.
+        default:
+          description: 'Unexpected error, check server logs.'
+          content: *ref_1
+      security:
+        - cookieAuth: []
+  '/admin/users/{user_id}/password':
+    put:
+      summary: Update User Password
+      description: >
+        Update the password of a user.
+
+
+        Example: `curl -X post http://localhost:5000/admin/users/ada/password -d
+        '{"passwd":"newpass"}' -H "Content-type:application/json" --cookie
+        admin.cookie`
+
+
+        _Note_: this endpoint requires the logged in user to be an admin and is
+        only relevant if
+
+        the auth module supports it.
+      operationId: admin_update_user_password
+      tags:
+        - admin
+      parameters:
+        - name: user_id
+          in: path
+          required: true
+          description: ID of the user on which to operate.
+          schema: *ref_3
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                passwd:
+                  type: string
+              required:
+                - passwd
+      responses:
+        '200':
+          description: Successfully changed user password
+          content:
+            application/json:
+              schema:
+                description: >
+                  This object is returned when doing actions like modifying a
+                  document or collection.  It contains the ID of the object and
+                  some other information from the database.
+                allOf: *ref_5
+        '401':
+          description: 'Authentication failed, not logged in or not an admin.'
+          content: *ref_0
+        '404':
+          description: No user found with that ID.
+        default:
+          description: 'Unexpected error, check server logs.'
+          content: *ref_1
+      security:
+        - cookieAuth: []
+  /admin/system/export:
+    get:
+      summary: Export Database
+      description: >
+        Export the database to a zip file.
+
+
+        Example: `curl -X GET http://localhost:5000/admin/system/export --cookie
+        admin.cookie -v --output out.zip`
+
+
+        _Note_: this endpoint requires the logged in user to be an admin and is
+        only relevant if
+
+        the auth module supports it.
+      operationId: admin_system_export
+      tags:
+        - admin
+      responses:
+        '200':
+          description: Successfully exported database
+          content:
+            application/gzip: {}
+        '401':
+          description: 'Authentication failed, not logged in or not an admin.'
+          content: *ref_0
+        default:
+          description: 'Unexpected error, check server logs.'
+          content: *ref_1
+      security:
+        - cookieAuth: []
+  /admin/system/import:
+    put:
+      summary: Import Database (Update)
+      description: >
+        Import the database given in request body.  This will _update_ and not
+        _replace_ the
+
+        database.
+
+
+        Example: `curl -X PUT http://localhost:5000/admin/system/import --cookie
+        admin.cookie -F "file=@/home/pine/out.zip"`
+
+
+        _Note_: this endpoint requires the logged in user to be an admin and is
+        only relevant if
+
+        the auth module supports it.
+      operationId: admin_system_import_put
+      tags:
+        - admin
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                file:
+                  type: string
+                  format: binary
+              required:
+                - file
+      responses:
+        '200':
+          description: Whether the operation succeeded or failed.
+          content: &ref_7
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+        '400':
+          description: >-
+            The loading of data was wrong. Should be a gz, like what is
+            exported.
+          content:
+            application/json:
+              schema:
+                description: Error message from the server.
+                type: string
+                example: Error message from the server.
+        '401':
+          description: 'Authentication failed, not logged in or not an admin.'
+          content: *ref_0
+        '422':
+          description: The file argument was not present.
+          content:
+            application/json:
+              schema:
+                description: Error message from the server.
+                type: string
+                example: Error message from the server.
+        default:
+          description: 'Unexpected error, check server logs.'
+          content: *ref_1
+      security:
+        - cookieAuth: []
+    post:
+      summary: Import Database (Replace)
+      description: >
+        Import the database given in request body.  This will _replace_ and not
+        _update_ the
+
+        database.
+
+
+        Example: `curl -X POST http://localhost:5000/admin/system/import
+        --cookie admin.cookie -F "file=@/home/pine/out.zip"`
+
+
+        _Note_: this endpoint requires the logged in user to be an admin and is
+        only relevant if
+
+        the auth module supports it.
+      operationId: admin_system_import_post
+      tags:
+        - admin
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                file:
+                  type: string
+                  format: binary
+              required:
+                - file
+      responses:
+        '200':
+          description: Whether the operation succeeded or failed.
+          content: *ref_7
+        '400':
+          description: >-
+            The loading of data was wrong. Should be a gz, like what is
+            exported.
+          content:
+            application/json:
+              schema:
+                description: Error message from the server.
+                type: string
+                example: Error message from the server.
+        '401':
+          description: 'Authentication failed, not logged in or not an admin.'
+          content: *ref_0
+        '422':
+          description: The file argument was not present.
+          content:
+            application/json:
+              schema:
+                description: Error message from the server.
+                type: string
+                example: Error message from the server.
+        default:
+          description: 'Unexpected error, check server logs.'
+          content: *ref_1
+      security:
+        - cookieAuth: []
+  '/annotations/mine/by_document_id/{doc_id}':
+    get:
+      summary: Get My Document Annotations
+      description: >
+        Get a list of annotations done by the logged in user on a document.
+
+
+        Example: `curl -X GET
+        http://localhost:5000/annotations/mine/by_document_id/60d08052f2cb44c51e0af0f1
+        --cookie session.cookie`
+      operationId: annotations_get_mine
+      tags:
+        - annotations
+      parameters:
+        - name: doc_id
+          in: path
+          required: true
+          description: The id of the document on which to operate.
+          schema: &ref_10
+            type: string
+      responses:
+        '200':
+          description: Successfully found document and got annotations.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: &ref_15
+                  _items:
+                    type: array
+                    items:
+                      description: >
+                        This is the log of annotations by a specific user.  A
+                        document might have 0, 1, or multiple of these based on
+                        how many users annotated.
+                      allOf: &ref_55
+                        - allOf: &ref_30
+                            - type: object
+                              properties: *ref_8
+                            - type: object
+                              properties:
+                                _version:
+                                  type: integer
+                                _latest_version:
+                                  type: integer
+                        - type: object
+                          properties:
+                            _id:
+                              type: string
+                            creator_id:
+                              type: string
+                            collection_id:
+                              type: string
+                            document_id:
+                              type: string
+                            annotation:
+                              type: array
+                              items:
+                                anyOf:
+                                  - type: string
+                                    example: documentlabel
+                                    description: String for labels on the entire document.
+                                  - type: array
+                                    items:
+                                      anyOf:
+                                        - type: string
+                                        - type: integer
+                                    example:
+                                      - 1
+                                      - 2
+                                      - textlabel
+                                    description: >-
+                                      Array for individual annotations
+                                      [start_index, end_index, label]
+                  _links:
+                    type: object
+                    properties: *ref_9
+        '401':
+          description: >
+            Authentication failed: not logged in or user doesn't have the
+            permissions for this operation.
+          content: &ref_11
+            application/json:
+              schema:
+                description: Error message from the server.
+                type: string
+                example: Error message from the server.
+        '404':
+          description: Document with given ID was not found.
+          content: &ref_12
+            application/json:
+              schema:
+                description: Error message from the server.
+                type: string
+                example: Error message from the server.
+        default:
+          description: 'Unexpected error, check server logs.'
+          content: *ref_1
+      security:
+        - cookieAuth: []
+    post:
+      summary: Save My Annotations
+      description: >
+        Change annotations of a document.
+
+
+        Example: `curl -X PUT
+        http://localhost:5000/annotations/mine/by_document_id/60d08052f2cb44c51e0af0f1
+        --cookie session.cookie -H "Content-type: application/json" -d
+        '{"doc":["sci.crypt",
+        "talk.politics.misc"],"ner":[{"end":365,"start":346, "label":"sci.med"},
+        {"start":475, "end":530, "label":"alt.atheism"}]}'`
+
+
+        _Note_: start or end indices in the middle of words might make the UI
+        not show the label.
+
+        Also, invalid labels are not checked and might cause the UI to freeze.
+      operationId: annotations_save_mine
+      tags:
+        - annotations
+      parameters:
+        - name: doc_id
+          in: path
+          required: true
+          description: The id of the document on which to operate.
+          schema: *ref_10
+        - name: update_iaa
+          in: query
+          required: false
+          description: Whether to also update IAA reports.
+          schema:
+            type: boolean
+            default: true
+      requestBody:
+        description: The labels to add to the document.
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties: &ref_13
+                doc:
+                  description: Document-level annotations.
+                  type: array
+                  items:
+                    description: Annotation label.
+                    type: string
+                ner:
+                  description: NER annotations.
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      start:
+                        description: 'Start index, inclusive.'
+                        type: integer
+                      end:
+                        description: 'End index, exclusive.'
+                        type: integer
+                      label:
+                        description: Annotation label.
+                        type: string
+              example: &ref_14
+                doc:
+                  - label1
+                  - label2
+                ner:
+                  - start: 0
+                    end: 10
+                    label: in-text-label
+      responses:
+        '200':
+          description: >-
+            Successfully found document and changed annotations (returns
+            doc_id).
+          content:
+            application/json:
+              schema:
+                type: string
+        '400':
+          description: Input parameters are missing/invalid.
+          content: *ref_6
+        '401':
+          description: >
+            Authentication failed: not logged in or user doesn't have the
+            permissions for this operation.
+          content: *ref_11
+        '404':
+          description: Document with given ID was not found.
+          content: *ref_12
+        default:
+          description: 'Unexpected error, check server logs.'
+          content: *ref_1
+      security:
+        - cookieAuth: []
+  '/annotations/mine/by_collection_id/{collection_id}':
+    post:
+      summary: Set Collection Annotations
+      description: >
+        Modify annotations of certain documents in a given collection.
+
+
+        Example: `curl -X POST
+        http://localhost:5000/annotations/mine/by_collection_id/60d32ba28d34cf656fed503f
+        --cookie session.cookie -H "Content-type: application/json" -d
+        '{"60d32ba48d34cf656fed504b": {"doc":["sci.crypt",
+        "talk.politics.misc"],"ner":[[0,4,"sci.med"], [0,4,"alt.atheism"]]},
+        "60d32ba48d34cf656fed504c": {"doc":[], "ner":[[0,4,"sci.med"]]}}'`
+      operationId: annotations_collection
+      tags:
+        - annotations
+      parameters:
+        - name: collection_id
+          in: path
+          required: true
+          description: The id of the collection on which to operate.
+          schema: &ref_21
+            type: string
+        - name: batch_mode
+          required: true
+          description: >
+            Whether or not to send all annotations to the database as one batch
+            or individually.
+
+
+            _Note_: Batch mode should ONLY be used if all of the documents have
+            not already been annotated.
+
+
+            The versioning of eve will be messed up if batch mode annotates a
+            document with pre-existing annotations (even if old).
+
+
+            To be clear, even if a document had annotations that were deleted,
+            using batch mode on that document will cause problems.
+
+
+            Conversely, using individual mode (batch_mode = False) can always be
+            done, but will be slower.
+
+
+            Another issue with individual mode is with many documents, there
+            will be many backend queries, possibly getting rate limited.
+          schema:
+            type: boolean
+            default: true
+          in: query
+        - name: update_iaa
+          in: query
+          required: false
+          description: Whether to also update IAA reports.
+          schema:
+            type: boolean
+            default: true
+      requestBody:
+        description: The labels to add to the document.
+        required: true
+        content:
+          application/json:
+            schema:
+              description: Mapping from document ID to annotations object.
+              type: object
+              additionalProperties:
+                type: object
+                properties: *ref_13
+                example: *ref_14
+              example:
+                60d47b4bdbfddb3ca87c7971:
+                  doc:
+                    - label1
+                    - label2
+                  ner:
+                    - - 0
+                      - 10
+                      - label1
+                    - - 15
+                      - 18
+                      - label2
+      responses:
+        '200':
+          description: >-
+            Successfully found document and changed annotations (returns
+            annotation ids).
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: string
+        '400':
+          description: Input parameters are missing/invalid.
+          content: *ref_6
+        '401':
+          description: >
+            Authentication failed: not logged in or user doesn't have the
+            permissions for this operation.
+          content: *ref_11
+        '404':
+          description: Collection with given ID was not found.
+          content: &ref_23
+            application/json:
+              schema:
+                description: Error message from the server.
+                type: string
+                example: Error message from the server.
+        default:
+          description: 'Unexpected error, check server logs.'
+          content: *ref_1
+      security:
+        - cookieAuth: []
+  '/annotations/others/by_document_id/{doc_id}':
+    get:
+      summary: Get Others' Document Annotations
+      description: >
+        Get a list of annotations done by everyone but me on a document.
+
+
+        Example: `curl -X GET
+        http://localhost:5000/annotations/others/by_document_id/60d08052f2cb44c51e0af0f1
+        --cookie session.cookie`
+      operationId: annotations_others
+      tags:
+        - annotations
+      parameters:
+        - name: doc_id
+          in: path
+          required: true
+          description: The id of the document on which to operate.
+          schema: *ref_10
+      responses:
+        '200':
+          description: Successfully found document and got annotations.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: *ref_15
+        '401':
+          description: >
+            Authentication failed: not logged in or user doesn't have the
+            permissions for this operation.
+          content: *ref_11
+        '404':
+          description: Document with given ID was not found.
+          content: *ref_12
+        default:
+          description: 'Unexpected error, check server logs.'
+          content: *ref_1
+      security:
+        - cookieAuth: []
+  '/annotations/by_document_id/{doc_id}':
+    get:
+      summary: Get All Document Annotations
+      description: >
+        Get a list of annotations done by everyone on a document.
+
+
+        Example: `curl -X GET
+        http://localhost:5000/annotations/by_document_id/60d08052f2cb44c51e0af0f1
+        --cookie session.cookie`
+      operationId: annotations_all
+      tags:
+        - annotations
+      parameters:
+        - name: doc_id
+          in: path
+          required: true
+          description: The id of the document on which to operate.
+          schema: *ref_10
+      responses:
+        '200':
+          description: Successfully found document and got annotations.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: *ref_15
+        '401':
+          description: >
+            Authentication failed: not logged in or user doesn't have the
+            permissions for this operation.
+          content: *ref_11
+        '404':
+          description: Document with given ID was not found.
+          content: *ref_12
+        default:
+          description: 'Unexpected error, check server logs.'
+          content: *ref_1
+      security:
+        - cookieAuth: []
+  /auth/module:
+    get:
+      summary: Get Auth Module
+      description: |
+        Get the current auth module being used (vegas or eve).
+
+        Example: `curl -X GET http://localhost:5000/auth/module`
+      operationId: auth_get_module
+      tags:
+        - auth
+      responses:
+        '200':
+          description: Successfully got the auth module.
+          content:
+            application/json:
+              schema:
+                type: string
+                enum:
+                  - eve
+                  - vegas
+  /auth/flat:
+    get:
+      summary: Get Auth Is Flat
+      description: >
+        Return true if the current auth module is flat.
+
+
+        "Flat" auth means, generally, there are no administrators and
+        permissions are generally on
+
+        the same "level".  Collection-level permissions for viewing/annotating
+        still apply, however.
+
+
+        Example: `curl -X GET http://localhost:5000/auth/flat`
+      operationId: auth_get_flat
+      tags:
+        - auth
+      responses:
+        '200':
+          description: Successfully return a boolean if the auth module was flat.
+          content:
+            application/json:
+              schema:
+                type: boolean
+  /auth/can_manage_users:
+    get:
+      summary: Get Auth Can Manage Users
+      description: >
+        Return true if the current auth module supports managing users.
+
+
+        If `true`, the auth module can change, add, and delete users.  If
+        `false`, users are managed
+
+        by an external system.
+
+
+        Example: `curl -X GET http://localhost:5000/auth/flat`
+      operationId: auth_get_manage
+      tags:
+        - auth
+      responses:
+        '200':
+          description: >-
+            Successfully return a boolean if the auth module supports managing
+            users.
+          content:
+            application/json:
+              schema:
+                type: boolean
+  /auth/logged_in_user:
+    get:
+      summary: Get Logged In User
+      description: >
+        Get the currently logged in user (checks based on the session - need the
+        session cookie sent).
+
+        If there is no user logged, in `null` is returned.
+
+
+        Example: `curl -X GET http://localhost:5000/auth/logged_in_user --cookie
+        session.cookie`
+      operationId: auth_logged_in_user
+      tags:
+        - auth
+      responses:
+        '200':
+          description: >-
+            Successfully returned the logged in user (or null if no session
+            cookie).
+          content:
+            application/json:
+              schema:
+                oneOf:
+                  - type: string
+                    nullable: true
+                    default: null
+                  - type: object
+                    properties: &ref_18
+                      display_name:
+                        type: string
+                      id:
+                        type: string
+                      is_admin:
+                        type: boolean
+                      username:
+                        type: string
+                    example: &ref_19
+                      display_name: Ada Lovelace
+                      id: ada
+                      is_admin: false
+                      username: ada@pine.jhuapl.edu
+  /auth/logged_in_user_details:
+    get:
+      summary: Get Logged In User Details
+      description: >
+        Get the currently logged in user's details.
+
+
+        Example: `curl -X GET http://localhost:5000/auth/logged_in_user_details
+        --cookie session.cookie`
+      operationId: auth_user_details
+      security:
+        - cookieAuth: []
+      tags:
+        - auth
+      responses:
+        '200':
+          description: Successfully returned the logged in user details.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: &ref_16
+                  description:
+                    type: string
+                  first_name:
+                    type: string
+                  last_name:
+                    type: string
+                example: &ref_17
+                  first_name: Ada
+                  last_name: Lovelace
+                  description: The first computer programmer.
+        '401':
+          description: >
+            Authentication failed: not logged in or user doesn't have the
+            permissions for this operation.
+          content: *ref_11
+    post:
+      summary: Update Logged In User Details with Eve
+      description: |
+        Updates the user details for the logged in user.
+
+        _Note_: this endpoint is only exposed if using "eve" auth module.
+      operationId: auth_eve_update_user_details
+      security:
+        - cookieAuth: []
+      tags:
+        - auth_eve
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties: *ref_16
+              example: *ref_17
+      responses:
+        '200':
+          description: Successfully updated user details.
+          content:
+            application/json:
+              schema:
+                type: boolean
+        '400':
+          description: Input parameters are missing/invalid.
+          content: *ref_6
+        '401':
+          description: >
+            Authentication failed: not logged in or user doesn't have the
+            permissions for this operation.
+          content: *ref_11
+  /auth/login_form:
+    get:
+      summary: Get the login form.
+      description: >
+        For auth modules that use a form to login, this endpoint will return the
+        information needed
+
+        to present that form to the user and send back the necessary info in a
+        subsequent login
+
+        call.
+
+
+        Example: `curl -X GET http://localhost:5000/auth/login_form`
+      operationId: auth_login_form
+      tags:
+        - auth
+      responses:
+        '200':
+          description: Successfully returned the login form.
+          content:
+            application/json:
+              schema:
+                description: Information needed to display a login form.
+                type: object
+                properties: &ref_44
+                  button_text:
+                    description: Text to set in the login button.
+                    type: string
+                  fields:
+                    description: Form fields to use.
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        display:
+                          description: Display name.
+                          type: string
+                        name:
+                          description: Form name.
+                          type: string
+                        type:
+                          description: Form type.
+                          type: string
+                example: &ref_45
+                  button_text: Login
+                  fields:
+                    - display: Username or email
+                      name: username
+                      type: text
+                    - display: Password
+                      name: password
+                      type: password
+  /auth/logout:
+    post:
+      summary: Logout
+      description: >
+        Logout of the current session.
+
+
+        Example: `curl -X POST http://localhost:5000/auth/logout --cookie
+        session.cookie`
+      operationId: auth_logout
+      tags:
+        - auth
+      security:
+        - cookieAuth: []
+      responses:
+        '200':
+          description: Successfully logged out.
+        '401':
+          description: >
+            Authentication failed: not logged in or user doesn't have the
+            permissions for this operation.
+          content: *ref_11
+  /auth/login:
+    post:
+      summary: Login User
+      description: >
+        Logs in user.  How this works depends on the auth module used.
+
+
+        For eve: this takes a request body consisting of the login form data.
+
+
+        For vegas: this takes in no parameters and returns the URL the caller
+        should redirect to.
+      operationId: auth_login
+      tags:
+        - auth_eve
+        - auth_vegas
+      parameters:
+        - name: return_to
+          in: query
+          required: false
+          description: 'For vegas auth only, a URL to return to after auth flow.'
+          schema:
+            type: string
+            format: url
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              description: Only for eve login.
+              type: object
+              properties: &ref_46
+                username:
+                  type: string
+                password:
+                  type: string
+      responses:
+        '200':
+          description: >
+            For eve: successfully logged in, returns user information.
+
+
+            For vegas: starts auth flow and returns the URL that the caller
+            should redirect to.
+          content:
+            application/json:
+              schema:
+                oneOf:
+                  - type: object
+                    properties: *ref_18
+                    example: *ref_19
+                  - type: string
+                    format: url
+        '400':
+          description: Input parameters are missing/invalid.
+          content: *ref_6
+        '401':
+          description: >-
+            Given user doesn't exist, password isn't set, or password doesn't
+            match.
+          content:
+            application/json:
+              schema:
+                description: Error message from the server.
+                type: string
+                example: Error message from the server.
+  /auth/users:
+    get:
+      summary: Get Eve Users
+      description: |
+        Gets all users that are registered with eve.
+
+        _Note_: this endpoint is only exposed if using "eve" auth module.
+      operationId: auth_eve_users
+      tags:
+        - auth_eve
+      security:
+        - cookieAuth: []
+      responses:
+        '200':
+          description: Returns all users.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties: *ref_18
+                  example: *ref_19
+        '401':
+          description: >
+            Authentication failed: not logged in or user doesn't have the
+            permissions for this operation.
+          content: *ref_11
+  /auth/logged_in_user_password:
+    post:
+      summary: Update Eve User Password
+      description: |
+        Updates the password of the currently logged in eve user.
+
+        _Note_: this endpoint is only exposed if using "eve" auth module.
+      operationId: auth_eve_update_password
+      tags:
+        - auth_eve
+      security:
+        - cookieAuth: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties: &ref_47
+                current_password:
+                  type: string
+                new_password:
+                  type: string
+      responses:
+        '200':
+          description: Successfully changed password.
+          content:
+            application/json:
+              schema:
+                type: boolean
+        '400':
+          description: Input parameters are missing/invalid.
+          content: *ref_6
+        '401':
+          description: 'Not logged in, or current password doesn''t match.'
+          content:
+            application/json:
+              schema:
+                description: Error message from the server.
+                type: string
+                example: Error message from the server.
+  /auth/authorize:
+    get:
+      summary: Authorize From Fragment
+      description: >
+        Part of the OAuth flow, this will authorize based on passed-in query
+        parameters.
+
+
+        _Note_: this endpoint is only exposed if using "vegas" auth module.
+      operationId: auth_vegas_authorize_get
+      tags:
+        - auth_vegas
+      parameters:
+        - name: fragment
+          in: query
+          required: true
+          description: OAuth flow fragment.
+          schema:
+            type: string
+      responses:
+        '200':
+          description: 'Successfully logged in, returns user information.'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: *ref_18
+                example: *ref_19
+        '400':
+          description: 'Fragment is not valid, or parsed token is not valid.'
+          content:
+            application/json:
+              schema:
+                description: Error message from the server.
+                type: string
+                example: Error message from the server.
+    post:
+      summary: Authorize From Token
+      description: >
+        Authorize diretly based on an obtained vegas token, outside the normal
+        OAuth flow.
+
+        This is meant to make it easy to authenticate using vegas and then use
+        this API outside of
+
+        the web UI.
+
+
+        _Note_: this endpoint is only exposed if using "vegas" auth module.
+      operationId: auth_vegas_authorize_post
+      tags:
+        - auth_vegas
+      requestBody:
+        description: Token obtained from Vegas.
+        required: true
+        content:
+          application/json:
+            schema:
+              description: An auth token obtained by Vegas out-of-band from PINE.
+              type: object
+              properties: &ref_48
+                auth_token:
+                  type: string
+                token_type:
+                  type: string
+              additionalProperties: &ref_49 {}
+      responses:
+        '200':
+          description: 'Successfully logged in, returns user information.'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: *ref_18
+                example: *ref_19
+        '400':
+          description: Token is not valid.
+          content:
+            application/json:
+              schema:
+                description: Error message from the server.
+                type: string
+                example: Error message from the server.
+  /collections/unarchived:
+    get:
+      summary: Get Unarchived Collections
+      description: >
+        Get all unarchived collections for logged in user.
+
+
+        Example: `curl http://localhost:5000/collections/unarchived --cookie
+        session.cookie`
+      operationId: collections_get_unarchived_all
+      tags:
+        - collections
+      responses:
+        '200':
+          description: Successfully retrieved relevant collections.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: &ref_20
+                  _items:
+                    type: array
+                    items:
+                      type: object
+                      properties: &ref_22
+                        _id:
+                          type: string
+                        creator_id:
+                          type: string
+                        metadata:
+                          type: object
+                          additionalProperties: {}
+                        configuration:
+                          type: object
+                          additionalProperties: {}
+                        labels:
+                          type: array
+                          items:
+                            type: string
+                        viewers:
+                          type: array
+                          items:
+                            type: string
+                        annotators:
+                          type: array
+                          items:
+                            type: string
+                        archived:
+                          type: boolean
+        '401':
+          description: >
+            Authentication failed: not logged in or user doesn't have the
+            permissions for this operation.
+          content: *ref_11
+        default:
+          description: 'Unexpected error, check server logs.'
+          content: *ref_1
+      security:
+        - cookieAuth: []
+  '/collections/unarchived/{page}':
+    get:
+      summary: Get Paginated Unarchived Collections
+      description: >
+        Get unarchived user collections (either all or a certain page).
+
+
+        Example: `curl http://localhost:5000/collections/unarchived --cookie
+        session.cookie`
+      operationId: collections_get_unarchived_paginated
+      tags:
+        - collections
+      parameters:
+        - name: page
+          in: path
+          required: true
+          description: >
+            Optional page number for specifying which collections.  "all" for
+            all pages or a page number.
+          schema:
+            oneOf:
+              - type: string
+                default: all
+              - type: integer
+      responses:
+        '200':
+          description: Successfully retrieved relevant collections.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: *ref_20
+        '401':
+          description: >
+            Authentication failed: not logged in or user doesn't have the
+            permissions for this operation.
+          content: *ref_11
+        default:
+          description: 'Unexpected error, check server logs.'
+          content: *ref_1
+      security:
+        - cookieAuth: []
+  /collections/archived:
+    get:
+      summary: Get Archived Collections
+      description: >
+        Get all archived user collections.
+
+
+        Example: `curl http://localhost:5000/collections/archived --cookie
+        session.cookie`
+      operationId: collections_get_archived_all
+      tags:
+        - collections
+      responses:
+        '200':
+          description: Successfully retrieved relevant collections.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: *ref_20
+        '401':
+          description: >
+            Authentication failed: not logged in or user doesn't have the
+            permissions for this operation.
+          content: *ref_11
+        default:
+          description: 'Unexpected error, check server logs.'
+          content: *ref_1
+      security:
+        - cookieAuth: []
+  '/collections/archived/{page}':
+    get:
+      summary: Get Paginated Archived Collections
+      description: >
+        Get archived user collections (either all or a certain page).
+
+
+        Example: `curl http://localhost:5000/collections/archived --cookie
+        session.cookie`
+      operationId: collections_get_archived_paginated
+      tags:
+        - collections
+      parameters:
+        - name: page
+          in: path
+          required: true
+          description: >
+            Optional page number for specifying which collections.  "all" for
+            all pages or a page number.
+          schema:
+            oneOf:
+              - type: string
+                default: all
+              - type: integer
+      responses:
+        '200':
+          description: Successfully retrieved relevant collections.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: *ref_20
+        '401':
+          description: >
+            Authentication failed: not logged in or user doesn't have the
+            permissions for this operation.
+          content: *ref_11
+        default:
+          description: 'Unexpected error, check server logs.'
+          content: *ref_1
+      security:
+        - cookieAuth: []
+  '/collections/archive/{collection_id}':
+    put:
+      summary: Archive Collection
+      description: >
+        Archive a collection with a certain ID.
+
+
+        Example: `curl -X PUT
+        http://localhost:5000/collections/archive/60c7b7375b72bf4ed6523bf0
+        --cookie session.cookie`
+      operationId: collections_archive
+      tags:
+        - collections
+      parameters:
+        - name: collection_id
+          in: path
+          required: true
+          description: The id of the collection on which to operate.
+          schema: *ref_21
+      responses:
+        '200':
+          description: Successfully archived the chosen collection.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: *ref_22
+        '401':
+          description: >
+            Authentication failed: not logged in or user doesn't have the
+            permissions for this operation.
+          content: *ref_11
+        '404':
+          description: Collection with given ID was not found.
+          content: *ref_23
+        default:
+          description: 'Unexpected error, check server logs.'
+          content: *ref_1
+      security:
+        - cookieAuth: []
+  '/collections/unarchive/{collection_id}':
+    put:
+      summary: Unarchive Collection
+      description: >
+        Unarchive a collection with a certain ID.
+
+
+        Example: `curl -X PUT
+        http://localhost:5000/collections/unarchive/60c7b7375b72bf4ed6523bf0
+        --cookie session.cookie`
+      operationId: collections_unarchive
+      tags:
+        - collections
+      parameters:
+        - name: collection_id
+          in: path
+          required: true
+          description: The id of the collection on which to operate.
+          schema: *ref_21
+      responses:
+        '200':
+          description: Successfully unarchived the chosen collection.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: *ref_22
+        '401':
+          description: >
+            Authentication failed: not logged in or user doesn't have the
+            permissions for this operation.
+          content: *ref_11
+        '404':
+          description: Collection with given ID was not found.
+          content: *ref_23
+        default:
+          description: 'Unexpected error, check server logs.'
+          content: *ref_1
+      security:
+        - cookieAuth: []
+  '/collections/by_id/{collection_id}':
+    get:
+      summary: Get Collection
+      description: >
+        Retrieve a collection by its ID.
+
+
+        Example: `curl -X GET
+        http://localhost:5000/collections/by_id/60c7b7375b72bf4ed6523bf0
+        --cookie session.cookie`
+      operationId: collections_get
+      tags:
+        - collections
+      parameters:
+        - name: collection_id
+          in: path
+          required: true
+          description: The id of the collection on which to operate.
+          schema: *ref_21
+      responses:
+        '200':
+          description: Successfully found and rerieved the chosen collection.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: *ref_22
+        '401':
+          description: >
+            Authentication failed: not logged in or user doesn't have the
+            permissions for this operation.
+          content: *ref_11
+        '404':
+          description: Collection with given ID was not found.
+          content: *ref_23
+        default:
+          description: 'Unexpected error, check server logs.'
+          content: *ref_1
+      security:
+        - cookieAuth: []
+  '/collections/by_id/{collection_id}/download':
+    get:
+      summary: Download Collection Data
+      description: >
+        Download a collection's data by its ID.
+
+
+        Example: `curl -X GET
+        http://localhost:5000/collections/by_id/60c7b7375b72bf4ed6523bf0/download
+        --cookie session.cookie`
+      operationId: collections_download
+      tags:
+        - collections
+      parameters:
+        - name: collection_id
+          in: path
+          required: true
+          description: The id of the collection on which to operate.
+          schema: *ref_21
+      responses:
+        '200':
+          description: Successfully found and downloaded the chosen collection.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: *ref_22
+        '401':
+          description: >
+            Authentication failed: not logged in or user doesn't have the
+            permissions for this operation.
+          content: *ref_11
+        '404':
+          description: Collection with given ID was not found.
+          content: *ref_23
+        default:
+          description: 'Unexpected error, check server logs.'
+          content: *ref_1
+      security:
+        - cookieAuth: []
+  '/collections/add_annotator/{collection_id}':
+    post:
+      summary: Add Collection Annotator
+      description: >
+        Add an annotator by user_id to a specific collection.
+
+
+        Example: `curl --cookie session.cookie  -X POST
+        "http://localhost:5000/collections/add_annotator/60c7453d5b72bf4ed65239e9"
+        -F 'user_id="\"bob\""'`
+
+
+        Notice the quotes around the user_id value, NEEDS to be like that to
+        include the "" in the
+
+        request session.cookie is a file containing: "Set-cookie:
+        session=.eJy...(rest of cookie)".
+      operationId: collections_add_annotator
+      tags:
+        - collections
+      parameters:
+        - name: collection_id
+          in: path
+          required: true
+          description: The id of the collection on which to operate.
+          schema: *ref_21
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                user_id:
+                  type: string
+                  description: >
+                    Note: You must put double quotation marks (`""`) around the
+                    user_id for the backend to parse it correctly as it is a
+                    JSON string.  For example, enter `"ada"` instead of just
+                    `ada`.
+              required:
+                - user_id
+      responses:
+        '200':
+          description: Successfully added the user as an annotator to the collection.
+          content:
+            application/json:
+              schema:
+                description: >
+                  This object is returned when doing actions like modifying a
+                  document or collection.  It contains the ID of the object and
+                  some other information from the database.
+                allOf: *ref_5
+        '400':
+          description: 'Request malformed, probably missisng user_id arg.'
+          content:
+            application/json:
+              schema:
+                description: Error message from the server.
+                type: string
+                example: Error message from the server.
+        '401':
+          description: >
+            Authentication failed: not logged in or user doesn't have the
+            permissions for this operation.
+          content: *ref_11
+        '404':
+          description: Collection with given ID was not found.
+          content: *ref_23
+        '409':
+          description: Specified user is already an annotator.
+          content:
+            application/json:
+              schema:
+                description: Error message from the server.
+                type: string
+                example: Error message from the server.
+        '500':
+          description: Internal server error - the form data was probably malformed.
+          content:
+            application/json:
+              schema:
+                description: Error message from the server.
+                type: string
+                example: Error message from the server.
+      security:
+        - cookieAuth: []
+  '/collections/add_viewer/{collection_id}':
+    post:
+      summary: Add Collection Viewer
+      description: >
+        Add a viewer by user_id to a specific collection.
+
+
+        Example: `curl --cookie session.cookie  -X POST
+        "http://localhost:5000/collections/add_viewer/60c7453d5b72bf4ed65239e9"
+        -F 'user_id="\"bob\""'`
+
+
+        Notice the quotes around the user_id value, NEEDS to be like that to
+        include the "" in the
+
+        request. session.cookie is a file containing: "Set-cookie:
+        session=.eJy...(rest of cookie)"
+      operationId: addViewerToCollection
+      tags:
+        - collections
+      parameters:
+        - name: collection_id
+          in: path
+          required: true
+          description: The id of the collection on which to operate.
+          schema: *ref_21
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                user_id:
+                  type: string
+                  description: >-
+                    Note: You must put double quotation marks ("") around the
+                    user_id for the backend to parse it correctly. 
+
+
+                    Ex: enter "ada" instead of just ada
+              required:
+                - user_id
+      responses:
+        '200':
+          description: Successfully added the user as a viewer to the collection.
+          content:
+            application/json:
+              schema:
+                description: >
+                  This object is returned when doing actions like modifying a
+                  document or collection.  It contains the ID of the object and
+                  some other information from the database.
+                allOf: *ref_5
+        '400':
+          description: 'Request malformed, probably missisng user_id arg.'
+          content:
+            application/json:
+              schema:
+                description: Error message from the server.
+                type: string
+                example: Error message from the server.
+        '401':
+          description: >
+            Authentication failed: not logged in or user doesn't have the
+            permissions for this operation.
+          content: *ref_11
+        '404':
+          description: Collection with given ID was not found.
+          content: *ref_23
+        '409':
+          description: Specified user is already an viewer.
+          content:
+            application/json:
+              schema:
+                description: Error message from the server.
+                type: string
+                example: Error message from the server.
+        '500':
+          description: Internal server error - the form data was probably malformed.
+          content:
+            application/json:
+              schema:
+                description: Error message from the server.
+                type: string
+                example: Error message from the server.
+      security:
+        - cookieAuth: []
+  '/collections/add_label/{collection_id}':
+    post:
+      summary: Add Collection Label
+      description: >
+        Add a label to a specific collection.
+
+
+        Example: `curl --cookie session.cookie  -X POST
+        "http://localhost:5000/collections/add_label/60c7453d5b72bf4ed65239e9"
+        -F 'new_label="\"testlabel\""'`
+
+
+        Notice the quotes around the new_label value, NEEDS to be like that to
+        include the "" in the
+
+        request.  session.cookie is a file containing: "Set-cookie:
+        session=.eJy...(rest of cookie)"
+      operationId: collections_add_label
+      tags:
+        - collections
+      parameters:
+        - name: collection_id
+          in: path
+          required: true
+          description: The id of the collection on which to operate.
+          schema: *ref_21
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                new_label:
+                  type: string
+                  description: >
+                    Note: You must put double quotation marks (`""`) around the
+                    new_label for the backend to parse it correctly.  Ex: enter
+                    `"MyLabel"` instead of just `MyLabel`
+              required:
+                - new_label
+      responses:
+        '200':
+          description: Successfully added the label to the collection.
+          content:
+            application/json:
+              schema:
+                description: >
+                  This object is returned when doing actions like modifying a
+                  document or collection.  It contains the ID of the object and
+                  some other information from the database.
+                allOf: *ref_5
+        '400':
+          description: 'Request malformed, probably missisng new_label arg.'
+          content:
+            application/json:
+              schema:
+                description: Error message from the server.
+                type: string
+                example: Error message from the server.
+        '401':
+          description: >
+            Authentication failed: not logged in or user doesn't have the
+            permissions for this operation.
+          content: *ref_11
+        '404':
+          description: Collection with given ID was not found.
+          content: *ref_23
+        '409':
+          description: Specified label is already in collection.
+          content:
+            application/json:
+              schema:
+                description: Error message from the server.
+                type: string
+                example: Error message from the server.
+        '500':
+          description: Internal server error - the form data was probably malformed.
+          content:
+            application/json:
+              schema:
+                description: Error message from the server.
+                type: string
+                example: Error message from the server.
+      security:
+        - cookieAuth: []
+  /collections:
+    post:
+      summary: Create Collection
+      description: >
+        Create a new collection.
+
+
+        Example: `curl --cookie session.cookie  -X POST
+        "http://localhost:5000/collections" -F 'collection={"creator_id":"ada",
+        "annotators":["ada"], "labels":["label1",
+        "labellll"],"metadata":{"title":"newcoll11","subject":null,"description":"describe
+        blahblah"}}' -F 'overlap="\".9\""' -F 'train_every="\"100\""' -F
+        'pipelineId="\"5babb6ee4eb7dd2c39b9671d\""'`
+
+
+        Notice the quotes around some value, NEEDS to be like that to include
+        the "" in the request
+
+        to be parsed as a JSON string.  session.cookie is a file containing:
+
+        "Set-cookie: session=.eJy...(rest of cookie)"
+      operationId: collections_create
+      tags:
+        - collections
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties: &ref_50
+                collection:
+                  description: >-
+                    At minimum, this must include creator_id, annotators,
+                    viewers and labels. All other args or sub-args should be
+                    deleted or set to null value.
+
+
+                    creator_id MUST be a valid user, otherwise 500 Error will
+                    occur.
+                  type: object
+                  properties:
+                    creator_id:
+                      type: string
+                    annotators:
+                      type: array
+                      items:
+                        type: string
+                    viewers:
+                      type: array
+                      items:
+                        type: string
+                    labels:
+                      type: array
+                      items:
+                        type: string
+                    archived:
+                      type: boolean
+                      default: false
+                    metadata:
+                      type: object
+                      properties:
+                        title:
+                          type: string
+                        subject:
+                          type: string
+                        description:
+                          type: string
+                        publisher:
+                          type: string
+                        contributor:
+                          type: string
+                        date:
+                          type: string
+                        type:
+                          type: string
+                        format:
+                          type: string
+                        identifier:
+                          type: string
+                        source:
+                          type: string
+                        language:
+                          type: string
+                        relation:
+                          type: string
+                        coverage:
+                          type: string
+                        rights:
+                          type: string
+                    configuration:
+                      type: object
+                      properties:
+                        allow_overlapping_ner_annotations:
+                          type: boolean
+                          default: true
+                  example:
+                    creator_id: ada
+                    annotators:
+                      - ada
+                    viewers:
+                      - ada
+                      - margaret
+                    labels:
+                      - label1
+                      - label2
+                    archived: false
+                    metadata:
+                      title: Test
+                      subject: testcoll
+                      description: test collection
+                      publisher: ada
+                      contributor: ada
+                      date: 1/1/21
+                      type: sometype
+                      format: HTML
+                      identifier: ABCD
+                      source: apl
+                      language: english
+                      relation: family
+                      coverage: some
+                      rights: all of them
+                    configuration:
+                      allow_overlapping_ner_annotations: true
+                train_every:
+                  description: Should be an integer >= 5.
+                  type: integer
+                  minimum: 5
+                overlap:
+                  description: >
+                    Should be a float between 0 and 1.
+
+
+                    WARNING: You MUST put double quotation marks (`""`) around
+                    the number for the backend to
+
+                    parse it correctly.
+
+
+                    Ex: enter `".5"` instead of just `.5`
+                  type: number
+                  format: float
+                  minimum: 0
+                  maximum: 1
+                pipelineId:
+                  type: string
+                  description: >
+                    WARNING: You MUST put double quotation marks (`""`) around
+                    the id for the backend to
+
+                    parse it correctly.
+
+
+                    Ex: enter `"123abc..."` instead of just `123abc...`
+                classifierParameters:
+                  type: string
+                  format: object
+                  default: null
+              required: &ref_51
+                - collection
+                - train_every
+                - overlap
+                - pipelineId
+      responses:
+        '201':
+          description: Successfully created the collection.
+          content:
+            application/json:
+              schema:
+                description: >
+                  This object is returned when doing actions like modifying a
+                  document or collection.  It contains the ID of the object and
+                  some other information from the database.
+                allOf: *ref_5
+        '400':
+          description: Request malformed.
+          content:
+            application/json:
+              schema:
+                description: Error message from the server.
+                type: string
+                example: Error message from the server.
+        '401':
+          description: 'Authentication failed, not logged in.'
+          content:
+            application/json:
+              schema:
+                description: Error message from the server.
+                type: string
+                example: Error message from the server.
+        '500':
+          description: Error in syntax of the request - OR Wekzeug Authentication Failure.
+          content:
+            application/json:
+              schema:
+                description: Error message from the server.
+                type: string
+                example: Error message from the server.
+      security:
+        - cookieAuth: []
+  '/collections/static_images/{collection_id}':
+    get:
+      summary: Get Collection Static Images
+      description: >
+        Retrieve all static images used in a collection.
+
+
+        Example: `curl --cookie session.cookie  -X GET
+        "http://localhost:5000/collections/static_images/60c745395b72bf4ed6523821"`
+      operationId: collections_get_static_images
+      tags:
+        - collections
+      parameters:
+        - name: collection_id
+          in: path
+          required: true
+          description: The id of the collection on which to operate.
+          schema: *ref_21
+      responses:
+        '200':
+          description: >-
+            Successfully found the collection and got any relevant static
+            images.
+          content:
+            application/json:
+              schema:
+                type: array
+                description: An array of static image paths.
+                items:
+                  type: string
+        '401':
+          description: >
+            Authentication failed: not logged in or user doesn't have the
+            permissions for this operation.
+          content: *ref_11
+        '404':
+          description: Collection with given ID was not found.
+          content: *ref_23
+        default:
+          description: 'Unexpected error, check server logs.'
+          content: *ref_1
+      security:
+        - cookieAuth: []
+  '/collections/images/{collection_id}':
+    get:
+      summary: Get Collection Images
+      description: >
+        Retrieve all (non-static) images used in a collection.
+
+
+        Example: `curl --cookie session.cookie  -X GET
+        "http://localhost:5000/collections/images/60c745395b72bf4ed6523821"`
+      operationId: collections_get_images
+      tags:
+        - collections
+      parameters:
+        - name: collection_id
+          in: path
+          required: true
+          description: The id of the collection on which to operate.
+          schema: *ref_21
+      responses:
+        '200':
+          description: Successfully found the collection and got any relevant images.
+          content:
+            application/json:
+              schema:
+                type: array
+                description: An array of image paths.
+                items:
+                  type: string
+        '401':
+          description: >
+            Authentication failed: not logged in or user doesn't have the
+            permissions for this operation.
+          content: *ref_11
+        '404':
+          description: Collection with given ID was not found.
+          content: *ref_23
+        default:
+          description: 'Unexpected error, check server logs.'
+          content: *ref_1
+      security:
+        - cookieAuth: []
+  '/collections/image_exists/{collection_id}/{path}':
+    get:
+      summary: Check Collection Image
+      description: >
+        Checks whether the given image exists in the given collection.
+
+
+        Example: `curl -X GET
+        "http://localhost:5000/collections/image_exists/60c745395b72bf4ed6523821/static%2Fapl.png"
+        -H  "accept: application/json" --cookie session.cookie`
+      operationId: collections_image_exists
+      tags:
+        - collections
+      parameters:
+        - name: collection_id
+          in: path
+          required: true
+          description: The id of the collection on which to operate.
+          schema: *ref_21
+        - name: path
+          in: path
+          required: true
+          description: >-
+            Path of the image to check (same as returned from
+            images/static_images).
+          schema:
+            type: string
+          example: static/apl.jpg
+      responses:
+        '200':
+          description: Returns whether the collection holds the image.
+          content:
+            application/json:
+              schema:
+                type: boolean
+        '401':
+          description: >
+            Authentication failed: not logged in or user doesn't have the
+            permissions for this operation.
+          content: *ref_11
+        '404':
+          description: Collection with given ID was not found.
+          content: *ref_23
+        default:
+          description: 'Unexpected error, check server logs.'
+          content: *ref_1
+      security:
+        - cookieAuth: []
+  '/collections/image/{collection_id}/{path}':
+    get:
+      summary: Get Collection Image
+      description: >
+        Download an image from a collection.
+
+
+        Example: `curl --cookie session.cookie  -X GET
+        "http://localhost:5000/collections/image/60c745395b72bf4ed6523821/static/apl.png"
+        -v --output - > apl.png`
+      operationId: collections_image
+      tags:
+        - collections
+      parameters:
+        - name: collection_id
+          in: path
+          required: true
+          description: The id of the collection on which to operate.
+          schema: *ref_21
+        - name: path
+          in: path
+          required: true
+          description: >-
+            Path of the image to download (same as returned from
+            images/static_images).
+          schema:
+            type: string
+          example: static/apl.jpg
+      responses:
+        '200':
+          description: Successfully found the collection and returns image data.
+          content:
+            image/*:
+              schema:
+                type: string
+                format: binary
+        '401':
+          description: >
+            Authentication failed: not logged in or user doesn't have the
+            permissions for this operation.
+          content: *ref_11
+        '404':
+          description: Collection with given ID was not found.
+          content: *ref_23
+        default:
+          description: 'Unexpected error, check server logs.'
+          content: *ref_1
+      security:
+        - cookieAuth: []
+    post:
+      summary: Upload Collection Image
+      description: >
+        Upload an image to a collection.
+
+
+        Example: `curl --cookie session.cookie  -X POST
+        "http://localhost:5000/collections/image/60c745395b72bf4ed6523821/static/dog.jpeg"
+        -F 'file=@/home/pine/Downloads/dog.jpeg'`
+      operationId: collections_image_upload
+      tags:
+        - collections
+      parameters:
+        - name: collection_id
+          in: path
+          required: true
+          description: The id of the collection on which to operate.
+          schema: *ref_21
+        - name: path
+          in: path
+          required: true
+          description: >
+            Path to place the image at.
+
+
+            Note: This path piece should NOT start with / (Ex: static/dog.jpg,
+            not /static/dog.jpg).
+          schema:
+            type: string
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                file:
+                  type: string
+                  format: binary
+              required:
+                - file
+      responses:
+        '100':
+          description: 'Couldn''t read the image, probably bad permissions or bad path.'
+          content:
+            application/json:
+              schema:
+                description: Error message from the server.
+                type: string
+                example: Error message from the server.
+        '200':
+          description: Successfully uploaded image (Will return the path).
+          content:
+            application/json:
+              schema:
+                type: string
+        '400':
+          description: Did not include the image in the request form.
+          content:
+            application/json:
+              schema:
+                description: Error message from the server.
+                type: string
+                example: Error message from the server.
+        '401':
+          description: >
+            Authentication failed: not logged in or user doesn't have the
+            permissions for this operation.
+          content: *ref_11
+        '404':
+          description: Collection with given ID was not found.
+          content: *ref_23
+        default:
+          description: 'Unexpected error, check server logs.'
+          content: *ref_1
+      security:
+        - cookieAuth: []
+  '/collections/user_permissions/{collection_id}':
+    get:
+      summary: Get Collection User Permissions
+      description: >
+        Get the current user permissions of a collection.
+
+
+        Example: `curl --cookie session.cookie -X GET
+        "http://localhost:5000/collections/user_permissions/60c745395b72bf4ed6523821"
+        -v`
+      operationId: collections_permissions
+      tags:
+        - collections
+      parameters:
+        - name: collection_id
+          in: path
+          required: true
+          description: The id of the collection on which to operate.
+          schema: *ref_21
+      responses:
+        '200':
+          description: Returns collection permissions for logged in user.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: &ref_27
+                  add_documents:
+                    type: boolean
+                  add_images:
+                    type: boolean
+                  annotate:
+                    type: boolean
+                  archive:
+                    type: boolean
+                  download_data:
+                    type: boolean
+                  modify_document_metadata:
+                    type: boolean
+                  modify_labels:
+                    type: boolean
+                  modify_users:
+                    type: boolean
+                  view:
+                    type: boolean
+        '401':
+          description: >
+            Authentication failed: not logged in or user doesn't have the
+            permissions for this operation.
+          content: *ref_11
+        '404':
+          description: Collection with given ID was not found.
+          content: *ref_23
+        default:
+          description: 'Unexpected error, check server logs.'
+          content: *ref_1
+      security:
+        - cookieAuth: []
+  '/documents/by_id/{doc_id}':
+    get:
+      summary: Get Document
+      description: >
+        Retrieve a document based on its ID.
+
+
+        Example: `curl
+        http://localhost:5000/documents/by_id/60c7453f5b72bf4ed65239ee --cookie
+        session.cookie`
+      operationId: documents_get
+      tags:
+        - documents
+      parameters:
+        - name: doc_id
+          in: path
+          required: true
+          description: The id of the document on which to operate.
+          schema: *ref_10
+      responses:
+        '200':
+          description: Successfully found the document based on the ID.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: &ref_25
+                  _id:
+                    type: string
+                  creator_id:
+                    type: string
+                  collection_id:
+                    type: string
+                  overlap:
+                    type: integer
+                    format: int64
+                  metadata:
+                    type: object
+                    additionalProperties: {}
+                  text:
+                    type: string
+                  has_annotated:
+                    type: object
+                    additionalProperties:
+                      type: boolean
+        '401':
+          description: >
+            Authentication failed: not logged in or user doesn't have the
+            permissions for this operation.
+          content: *ref_11
+        '404':
+          description: Document with given ID was not found.
+          content: *ref_12
+        '500':
+          description: 'Unexpected error, check server logs.'
+          content: *ref_1
+      security:
+        - cookieAuth: []
+    delete:
+      summary: Delete Document
+      description: >
+        Delete a document based on its ID.
+
+
+        This endpoint deletes a document and any annotations.  It also updates
+        any next_instances so
+
+        that the document will not be returned for annotation in any "get next
+        instance" calls in
+
+        the future.  It does NOT delete document data from any pipeline models
+        or update any IAA
+
+        reports or pipeline metrics.  These will be updated next time they are
+        requested.
+
+
+        Example: `curl -X DELETE
+        http://localhost:5000/documents/by_id/60c7453f5b72bf4ed65239ee --cookie
+        session.cookie`
+      operationId: documents_delete
+      tags:
+        - documents
+      parameters:
+        - name: doc_id
+          in: path
+          required: true
+          description: The id of the document on which to operate.
+          schema: *ref_10
+      responses:
+        '200':
+          description: 'Deletion successful, response has IDs of changed objects.'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: &ref_24
+                  success:
+                    type: boolean
+                    description: Whether the operation was successful.
+                  changed_objs:
+                    type: object
+                    description: What database objects were changed during operation.
+                    properties:
+                      next_instances:
+                        type: object
+                        properties:
+                          updated:
+                            description: IDs of next_instance objects that were updated.
+                            type: array
+                            items:
+                              type: string
+                      annotations:
+                        type: object
+                        properties:
+                          deleted:
+                            description: IDs of annotation objects that were deleted.
+                            type: array
+                            items:
+                              type: string
+                      documents:
+                        type: object
+                        properties:
+                          deleted:
+                            description: IDs of document objects that were deleted.
+                            type: array
+                            items:
+                              type: string
+        '401':
+          description: >
+            Authentication failed: not logged in or user doesn't have the
+            permissions for this operation.
+          content: *ref_11
+        '404':
+          description: Document with given ID was not found.
+          content: *ref_12
+        '500':
+          description: 'Unexpected error, check server logs.'
+          content: *ref_1
+      security:
+        - cookieAuth: []
+  /documents/by_ids:
+    delete:
+      summary: Delete Documents
+      description: >
+        Delete documents based on their IDs.
+
+
+        This endpoint deletes documents and any associated annotations.  It also
+        updates any next_instances so
+
+        that the documents will not be returned for annotation in any "get next
+        instance" calls in
+
+        the future.  It does NOT delete document data from any pipeline models
+        or update any IAA
+
+        reports or pipeline metrics.  These will be updated next time they are
+        requested.
+
+
+        Example: `curl -X DELETE
+        http://localhost:5000/documents/by_ids?ids=60c7453f5b72bf4ed65239ee,60c7453f5b72bf4ed65239ef
+        --cookie session.cookie`
+      operationId: documents_delete_multiple
+      tags:
+        - documents
+      parameters:
+        - name: ids
+          in: query
+          required: true
+          description: 'The IDs of the document to delete, comma-separated.'
+          schema:
+            type: string
+          example: '60c7453f5b72bf4ed65239ee,60c7453f5b72bf4ed65239ef'
+      responses:
+        '200':
+          description: 'Deletion successful, response has IDs of changed objects.'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: *ref_24
+        '401':
+          description: >
+            Authentication failed: not logged in or user doesn't have the
+            permissions for this operation.
+          content: *ref_11
+        '404':
+          description: Document with given ID was not found.
+          content: *ref_12
+        '500':
+          description: 'Unexpected error, check server logs.'
+          content: *ref_1
+      security:
+        - cookieAuth: []
+  '/documents/count_by_collection_id/{collection_id}':
+    get:
+      summary: Get Collection Document Count
+      description: >
+        Count the number of documents in a collection.
+
+
+        Example: `curl
+        http://localhost:5000/documents/count_by_collection_id/60c7453d5b72bf4ed65239e9
+        --cookie session.cookie`
+      operationId: documents_count_by_collection
+      tags:
+        - documents
+      parameters:
+        - name: collection_id
+          in: path
+          required: true
+          description: The id of the collection on which to operate.
+          schema: *ref_21
+      responses:
+        '200':
+          description: >-
+            Successfully found collection and counted number of documents
+            inside.
+          content:
+            application/json:
+              schema:
+                type: integer
+        '401':
+          description: >
+            Authentication failed: not logged in or user doesn't have the
+            permissions for this operation.
+          content: *ref_11
+        '404':
+          description: Collection with given ID was not found.
+          content: *ref_23
+        default:
+          description: 'Unexpected error, check server logs.'
+          content: *ref_1
+      security:
+        - cookieAuth: []
+  '/documents/by_collection_id_all/{collection_id}':
+    get:
+      summary: Get All Collection Documents
+      description: >
+        Get all documents that are in a collection with a given collection id.
+
+
+        Example: `curl
+        http://localhost:5000/documents/by_collection_id_all/60c7453d5b72bf4ed65239e9
+        --cookie session.cookie`
+      operationId: documents_get_by_collection
+      tags:
+        - documents
+      parameters:
+        - name: collection_id
+          in: path
+          required: true
+          description: The id of the collection on which to operate.
+          schema: *ref_21
+      responses:
+        '200':
+          description: Successfully found collection and retrieved all related documents.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: &ref_26
+                  _items:
+                    type: array
+                    items:
+                      type: object
+                      properties: *ref_25
+        '401':
+          description: >
+            Authentication failed: not logged in or user doesn't have the
+            permissions for this operation.
+          content: *ref_11
+        '404':
+          description: Collection with given ID was not found.
+          content: *ref_23
+        default:
+          description: 'Unexpected error, check server logs.'
+          content: *ref_1
+      security:
+        - cookieAuth: []
+  '/documents/by_collection_id_paginated/{collection_id}':
+    get:
+      summary: Get Paginated Collection Documents
+      description: >
+        Get a variable page of variable size of documents.
+
+
+        Example: `curl
+        "http://localhost:5000/documents/by_collection_id_paginated/60c7453d5b72bf4ed65239e9?page=1&pageSize=5"
+        --cookie session.cookie`
+      operationId: documents_get_by_collection_paginated
+      tags:
+        - documents
+      parameters:
+        - name: collection_id
+          in: path
+          required: true
+          description: The id of the collection on which to operate.
+          schema: *ref_21
+        - name: page
+          in: query
+          required: true
+          description: >
+            The page number to get by 0 indexing (Will have documents
+            page_num*pageSize -> page_num*pageSize+pageSize-1 in the collection
+            if there are any.)
+          schema:
+            type: integer
+        - name: pageSize
+          in: query
+          required: true
+          description: The number of documents to put in each page.
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: >
+            Successfully found collection and retrieved any (if any) associated
+            documents (Could return no documents if page number too high).
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: *ref_26
+        '400':
+          description: Input parameters are missing/invalid.
+          content: *ref_6
+        '401':
+          description: >
+            Authentication failed: not logged in or user doesn't have the
+            permissions for this operation.
+          content: *ref_11
+        '404':
+          description: Collection with given ID was not found.
+          content: *ref_23
+        default:
+          description: 'Unexpected error, check server logs.'
+          content: *ref_1
+      security:
+        - cookieAuth: []
+  '/documents/user_permissions/{doc_id}':
+    get:
+      summary: Get User Document Permissions
+      description: >
+        Get the permission that the logged in user has for this document.
+
+
+        Example: `curl
+        http://localhost:5000/documents/user_permissions/60c7453f5b72bf4ed65239ee
+        --cookie session.cookie`
+      operationId: documents_permissions
+      tags:
+        - documents
+      parameters:
+        - name: doc_id
+          in: path
+          required: true
+          description: The id of the document on which to operate.
+          schema: *ref_10
+      responses:
+        '200':
+          description: Successfully found document and retrieved user permissions.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: *ref_27
+        '401':
+          description: >
+            Authentication failed: not logged in or user doesn't have the
+            permissions for this operation.
+          content: *ref_11
+        '404':
+          description: Document with given ID was not found.
+          content: *ref_12
+        default:
+          description: 'Unexpected error, check server logs.'
+          content: *ref_1
+      security:
+        - cookieAuth: []
+  '/documents/metadata/{doc_id}':
+    put:
+      summary: Update Document Metadata
+      description: >
+        Change/Replace the metadata of a certain document (does not add).
+
+
+        Example: `curl -X PUT
+        http://localhost:5000/documents/metadata/60c7453f5b72bf4ed65239ee -d
+        '{"test":"this"}' --cookie session.cookie -H
+        Content-Type:application/json`
+
+
+        Note: you need the content type header to specify json.
+      operationId: documents_update_metadata
+      tags:
+        - documents
+      parameters:
+        - name: doc_id
+          in: path
+          required: true
+          description: The id of the document on which to operate.
+          schema: *ref_10
+      requestBody:
+        description: The metadata in json form in the body.
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: {}
+      responses:
+        '200':
+          description: Successfully found document and changed the metadata.
+          content:
+            application/json:
+              schema:
+                description: >
+                  This object is returned when doing actions like modifying a
+                  document or collection.  It contains the ID of the object and
+                  some other information from the database.
+                allOf: *ref_5
+        '400':
+          description: Input parameters are missing/invalid.
+          content: *ref_6
+        '401':
+          description: >
+            Authentication failed: not logged in or user doesn't have the
+            permissions for this operation.
+          content: *ref_11
+        '404':
+          description: Document with given ID was not found.
+          content: *ref_12
+        default:
+          description: 'Unexpected error, check server logs.'
+          content: *ref_1
+      security:
+        - cookieAuth: []
+  /documents:
+    post:
+      summary: Create Document
+      description: >
+        Create a new document in a collection.
+
+
+        Example: `curl -X POST http://localhost:5000/documents/ -d
+        '{"collection_id":"6ada", "text":"blah"}' --cookie session.cookie -H
+        Content-Type:application/json`
+      operationId: documents_create
+      tags:
+        - documents
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              oneOf:
+                - description: >-
+                    Arguments for the new document (at least collection_id,
+                    creator_id, text).
+                  type: object
+                  properties: &ref_28
+                    collection_id:
+                      type: string
+                    creator_id:
+                      type: string
+                    text:
+                      type: string
+                    overlap:
+                      type: number
+                      format: double
+                    metadata:
+                      type: object
+                      additionalProperties: {}
+                    has_annotated:
+                      type: object
+                      additionalProperties:
+                        type: boolean
+                  required: &ref_29
+                    - collection_id
+                    - creator_id
+                    - text
+                - type: array
+                  items:
+                    description: >-
+                      Arguments for the new document (at least collection_id,
+                      creator_id, text).
+                    type: object
+                    properties: *ref_28
+                    required: *ref_29
+      responses:
+        '200':
+          description: Successfully created the new document in the collection.
+          content:
+            application/json:
+              schema:
+                description: >
+                  This object is returned when doing actions like modifying a
+                  document or collection.  It contains the ID of the object and
+                  some other information from the database.
+                allOf: *ref_5
+        '400':
+          description: Input parameters are missing/invalid.
+          content: *ref_6
+        '401':
+          description: >
+            Authentication failed: not logged in or user doesn't have the
+            permissions for this operation.
+          content: *ref_11
+        '404':
+          description: Collection with given ID was not found.
+          content: *ref_23
+        default:
+          description: 'Unexpected error, check server logs.'
+          content: *ref_1
+      security:
+        - cookieAuth: []
+  '/iaa_reports/by_collection_id/{collection_id}':
+    get:
+      summary: Get IAA Report for Collection
+      description: >
+        Get the Inter-Annotator Agreement for a specified collection.
+
+
+        Note: This will not error with an invalid collection ID, it will give no
+        items.
+
+
+        Example: `curl -X GET
+        http://localhost:5000/iaa_reports/by_collection_id/60df138b3f8fa7b2e1445bd7
+        --cookie ~/session.cookie -v`
+      operationId: iaa_get
+      tags:
+        - iaa_reports
+      parameters:
+        - name: collection_id
+          in: path
+          required: true
+          description: The id of the collection on which to operate.
+          schema: *ref_21
+      responses:
+        '200':
+          description: Successfully got collection's IAA.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  _items:
+                    type: array
+                    items:
+                      allOf: &ref_56
+                        - allOf: *ref_30
+                        - type: object
+                          properties:
+                            _id:
+                              type: string
+                            collection_id:
+                              type: string
+                            num_of_annotators:
+                              type: integer
+                            num_of_agreement_docs:
+                              type: integer
+                            num_of_labels:
+                              type: integer
+                            per_doc_agreement:
+                              type: object
+                              properties:
+                                doc_id:
+                                  type: string
+                                avg:
+                                  type: number
+                                  format: double
+                                stddev:
+                                  type: integer
+                            per_label_agreement:
+                              type: array
+                              items:
+                                type: object
+                                properties:
+                                  label:
+                                    type: string
+                                  avg:
+                                    type: number
+                                    format: double
+                                  stddev:
+                                    type: integer
+                            overall_agreement:
+                              type: object
+                              properties:
+                                mean:
+                                  type: number
+                                  format: double
+                                sd:
+                                  type: integer
+                                heatmap_data:
+                                  type: object
+                                  properties:
+                                    matrix:
+                                      type: array
+                                      items:
+                                        type: array
+                                        items:
+                                          type: number
+                                          format: float
+                                        minItems: 2
+                                        maxItems: 2
+                                      example:
+                                        - 1
+                                        - 0.666666
+                                    annotators:
+                                      type: array
+                                      items:
+                                        type: string
+                                      example:
+                                        - ada
+                                        - margaret
+                            labels_per_annotator:
+                              type: object
+                              additionalProperties:
+                                type: object
+                                additionalProperties:
+                                  type: integer
+                              example:
+                                ada:
+                                  label1: 1
+                                  label2: 4
+                                margaret:
+                                  label1: 3
+                                  label2: 2
+                            _updated:
+                              type: string
+                              format: date-time
+                            _created:
+                              type: string
+                              format: date-time
+                  _links:
+                    type: object
+                    properties: *ref_9
+        '401':
+          description: >
+            Authentication failed: not logged in or user doesn't have the
+            permissions for this operation.
+          content: *ref_11
+        default:
+          description: 'Unexpected error, check server logs.'
+          content: *ref_1
+      security:
+        - cookieAuth: []
+    post:
+      summary: Create IAA Report for Collection
+      description: >
+        Create an Inter-Annotator-Agreement for a collection.
+
+
+        Note: This will not error with an invalid collection ID (or not enough
+        annotators), it will
+
+        return false.
+
+
+        Example: `curl -X POST
+        http://localhost:5000/iaa_reports/by_collection_id/60df138b3f8fa7b2e1445bd7
+        --cookie ~/session.cookie -v`
+      operationId: iaa_create
+      tags:
+        - iaa_reports
+      parameters:
+        - name: collection_id
+          in: path
+          required: true
+          description: The id of the collection on which to operate.
+          schema: *ref_21
+      responses:
+        '200':
+          description: |
+            Tried to create the IAA (success or fail).
+
+            False means invalid collection ID or not enough annotators.
+          content:
+            application/json:
+              schema:
+                type: boolean
+        '401':
+          description: >
+            Authentication failed: not logged in or user doesn't have the
+            permissions for this operation.
+          content: *ref_11
+        default:
+          description: 'Unexpected error, check server logs.'
+          content: *ref_1
+      security:
+        - cookieAuth: []
+  /pipelines:
+    get:
+      summary: Get Pipelines
+      description: >
+        Get all pipelines.
+
+
+        Example: `curl -X GET http://localhost:5000/pipelines/ --cookie
+        ~/session.cookie`
+      operationId: pipelines_get_all
+      tags:
+        - pipelines
+      responses:
+        '200':
+          description: Successfully got pipelines.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  _items:
+                    type: array
+                    items:
+                      allOf: &ref_31
+                        - type: object
+                          properties: *ref_8
+                        - type: object
+                          properties:
+                            _id:
+                              type: string
+                            title:
+                              type: string
+                            description:
+                              type: string
+                            name:
+                              type: string
+                            parameters:
+                              type: object
+                              additionalProperties: {}
+                              example:
+                                cutoff: integer
+                                iterations: ' integer'
+                                n_iter: integer
+                                dropout: float
+                                max_left: integer
+                                use_class_feature:
+                                  - true
+                                  - false
+                                use_word:
+                                  - true
+                                  - false
+                                use_ngrams:
+                                  - true
+                                  - false
+                                no_mid_ngrams:
+                                  - true
+                                  - false
+                                max_ngram_length: integer
+                                use_prev:
+                                  - true
+                                  - false
+                                use_next:
+                                  - true
+                                  - false
+                                use_disjunctive:
+                                  - true
+                                  - false
+                                use_sequences:
+                                  - true
+                                  - false
+                                use_prev_sequences:
+                                  - true
+                                  - false
+                                use_type_seqs:
+                                  - true
+                                  - false
+                                use_type_seqs2:
+                                  - true
+                                  - false
+                                use_type_y_sequences:
+                                  - true
+                                  - false
+                            _updated:
+                              type: string
+                              format: date-time
+                            _created:
+                              type: string
+                              format: date-time
+                  _links:
+                    type: object
+                    properties: *ref_9
+        '401':
+          description: >
+            Authentication failed: not logged in or user doesn't have the
+            permissions for this operation.
+          content: *ref_11
+        default:
+          description: 'Unexpected error, check server logs.'
+          content: *ref_1
+      security:
+        - cookieAuth: []
+  '/pipelines/by_id/{pipeline_id}':
+    get:
+      summary: Get Pipeline
+      description: >
+        Get the pipeline with the given ID.
+
+
+        Example: `curl -X GET
+        http://localhost:5000/pipelines/by_id/5babb6ee4eb7dd2c39b9671f --cookie
+        ~/session.cookie -v`
+      operationId: pipelines_get
+      tags:
+        - pipelines
+      parameters:
+        - name: pipeline_id
+          in: path
+          required: true
+          description: The id of the pipeline on which to operate.
+          schema: &ref_35
+            type: string
+      responses:
+        '200':
+          description: Successfully got specified pipeline.
+          content:
+            application/json:
+              schema:
+                allOf: *ref_31
+        '401':
+          description: >
+            Authentication failed: not logged in or user doesn't have the
+            permissions for this operation.
+          content: *ref_11
+        '404':
+          description: Pipeline with given ID was not found.
+          content: &ref_36
+            application/json:
+              schema:
+                description: Error message from the server.
+                type: string
+                example: Error message from the server.
+        default:
+          description: 'Unexpected error, check server logs.'
+          content: *ref_1
+      security:
+        - cookieAuth: []
+  '/pipelines/classifiers/by_collection_id/{collection_id}':
+    get:
+      summary: Get Collection Classifier
+      description: >
+        Get the classifier information for a collection.
+
+
+        Example: `curl -X GET
+        http://localhost:5000/pipelines/classifiers/by_collection_id/60db2cacdbfddb3ca87c845d
+        --cookie ~/session.cookie`
+      operationId: pipelines_get_collection_classifier
+      tags:
+        - pipelines
+      parameters:
+        - name: collection_id
+          in: path
+          required: true
+          description: The id of the collection on which to operate.
+          schema: *ref_21
+      responses:
+        '200':
+          description: Successfully found collection and got information.
+          content:
+            application/json:
+              schema:
+                allOf: &ref_52
+                  - allOf: *ref_30
+                  - type: object
+                    properties:
+                      _id:
+                        type: string
+                      _created:
+                        type: string
+                        format: date-time
+                      _updated:
+                        type: string
+                        format: date-time
+                      annotated_document_count:
+                        type: integer
+                      collection_id:
+                        type: string
+                      labels:
+                        type: array
+                        items:
+                          type: string
+                      overlap:
+                        type: number
+                        format: double
+                      parameters:
+                        type: object
+                        additionalProperties: {}
+                      pipeline_id:
+                        type: string
+                      train_every:
+                        type: integer
+        '401':
+          description: >
+            Authentication failed: not logged in or user doesn't have the
+            permissions for this operation.
+          content: *ref_11
+        '404':
+          description: Collection with given ID was not found.
+          content: *ref_23
+        default:
+          description: 'Unexpected error, check server logs.'
+          content: *ref_1
+      security:
+        - cookieAuth: []
+  /pipelines/metrics:
+    get:
+      summary: Get Collection Metrics
+      description: >
+        Get metrics for all available collections.
+
+
+        Example: `curl -X GET http://localhost:5000/pipelines/metrics --cookie
+        ~/session.cookie`
+      operationId: pipelines_get_metrics
+      tags:
+        - pipelines
+      responses:
+        '200':
+          description: Successfully got metrics.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  _items:
+                    type: array
+                    items:
+                      type: object
+                      properties: &ref_32
+                        _id:
+                          type: string
+                        collection_id:
+                          type: string
+                        classifier_id:
+                          type: string
+                        documents:
+                          type: array
+                          items: {}
+                        annotations:
+                          type: array
+                          items: {}
+                        folds:
+                          type: array
+                          items: {}
+                        metrics:
+                          type: array
+                          items: {}
+                        _updated:
+                          type: string
+                        _created:
+                          type: string
+                        _version:
+                          type: integer
+                        _etag:
+                          type: string
+                        _links:
+                          type: object
+                          properties:
+                            self:
+                              type: object
+                              properties:
+                                title:
+                                  type: string
+                                href:
+                                  type: string
+                  _links:
+                    type: object
+                    properties: *ref_9
+        '401':
+          description: >
+            Authentication failed: not logged in or user doesn't have the
+            permissions for this operation.
+          content: *ref_11
+        default:
+          description: 'Unexpected error, check server logs.'
+          content: *ref_1
+      security:
+        - cookieAuth: []
+  '/pipelines/metrics/by_classifier_id/{classifier_id}':
+    get:
+      summary: Get Classifier Metrics
+      description: >
+        Get metric by classifier id.
+
+
+        Example: `curl -X GET
+        http://localhost:5000/pipelines/metrics/by_classifier_id/60df138b3f8fa7b2e1445bd8
+        --cookie ~/session.cookie`
+      operationId: pipelines_get_classifier_metrics
+      tags:
+        - pipelines
+      parameters:
+        - name: classifier_id
+          in: path
+          required: true
+          description: The id of the classifier on which to operate.
+          schema: &ref_33
+            type: string
+      responses:
+        '200':
+          description: Successfully got metric(s).
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  _items:
+                    type: array
+                    items:
+                      type: object
+                      properties: *ref_32
+                  _links:
+                    type: object
+                    properties: *ref_9
+        '401':
+          description: >
+            Authentication failed: not logged in or user doesn't have the
+            permissions for this operation.
+          content: *ref_11
+        '404':
+          description: Classifier with given ID was not found.
+          content: &ref_34
+            application/json:
+              schema:
+                description: Error message from the server.
+                type: string
+                example: Error message from the server.
+        default:
+          description: 'Unexpected error, check server logs.'
+          content: *ref_1
+      security:
+        - cookieAuth: []
+  '/pipelines/next_document/by_classifier_id/{classifier_id}':
+    get:
+      summary: Get Next Document to Annotate
+      description: >
+        Get the next document id to annotate based on classifier id (or null if
+        no un-annotated
+
+        documents).
+
+
+        Example: `curl -X GET
+        http://localhost:5000/pipelines/next_document/by_classifier_id/60df138b3f8fa7b2e1445bd8
+        --cookie ~/session.cookie`
+      operationId: pipelines_get_next_document
+      tags:
+        - pipelines
+      parameters:
+        - name: classifier_id
+          in: path
+          required: true
+          description: The id of the classifier on which to operate.
+          schema: *ref_33
+      responses:
+        '200':
+          description: 'Got ID of next document to annotate, or null if all are complete.'
+          content:
+            application/json:
+              schema:
+                type: string
+                nullable: true
+        '401':
+          description: >
+            Authentication failed: not logged in or user doesn't have the
+            permissions for this operation.
+          content: *ref_11
+        '404':
+          description: Classifier with given ID was not found.
+          content: *ref_34
+        default:
+          description: 'Unexpected error, check server logs.'
+          content: *ref_1
+      security:
+        - cookieAuth: []
+  '/pipelines/next_document/by_classifier_id/{classifier_id}/{doc_id}':
+    post:
+      summary: Advance Next Document
+      description: >
+        Advance to next document by marking the given one as annotated.
+
+
+        Example: `curl -X POST
+        http://localhost:5000/pipelines/next_document/by_classifier_id/60df138b3f8fa7b2e1445bd8/60df13d73f8fa7b2e1445bdd
+        --cookie ~/session.cookie`
+
+
+        This will still give you a valid response with an invalid document ID.
+      operationId: pipelines_advance_next_document
+      tags:
+        - pipelines
+      parameters:
+        - name: classifier_id
+          in: path
+          required: true
+          description: The id of the classifier on which to operate.
+          schema: *ref_33
+        - name: doc_id
+          in: path
+          required: true
+          description: The id of the document on which to operate.
+          schema: *ref_10
+      responses:
+        '200':
+          description: Complete annotations on document.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  body:
+                    type: object
+                    nullable: true
+                  success:
+                    type: boolean
+                  trained:
+                    type: boolean
+        '401':
+          description: >
+            Authentication failed: not logged in or user doesn't have the
+            permissions for this operation.
+          content: *ref_11
+        '404':
+          description: Classifier with given ID was not found.
+          content: *ref_34
+        default:
+          description: 'Unexpected error, check server logs.'
+          content: *ref_1
+      security:
+        - cookieAuth: []
+  '/pipelines/status/{pipeline_id}':
+    get:
+      summary: Get Pipeline Status
+      description: >
+        Get the status of the pipeline with the given ID.
+
+
+        Example: `curl -X GET
+        http://localhost:5000/pipelines/status/60df138b3f8fa7b2e1445bd8 --cookie
+        ~/session.cookie`
+      operationId: pipelines_get_status
+      tags:
+        - pipelines
+      parameters:
+        - name: pipeline_id
+          in: path
+          required: true
+          description: The id of the pipeline on which to operate.
+          schema: *ref_35
+      responses:
+        '200':
+          description: Returns the status for the given pipeline.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: &ref_37
+                  service_details:
+                    description: Information about the pipeline service.
+                    type: object
+                    properties:
+                      channel:
+                        type: string
+                      framework:
+                        type: string
+                      framework_types:
+                        type: array
+                        items:
+                          type: string
+                      name:
+                        type: string
+                      version:
+                        type: string
+                        format: version
+                  job_id:
+                    description: The ID of this pipeline job.
+                    type: string
+                    format: uuid
+                  job_request:
+                    description: The job request data submitted to pipelines.
+                    type: object
+                    properties: &ref_38
+                      job_id:
+                        description: The ID of this pipeline job.
+                        type: string
+                        format: uuid
+                      job_queue:
+                        type: string
+                      job_type:
+                        type: string
+                      job_data:
+                        type: object
+                        properties:
+                          framework:
+                            type: string
+                          type:
+                            description: The type of job.
+                            type: string
+                          classifier_id:
+                            type: string
+                            nullable: true
+                        additionalProperties:
+                          description: Any additional job parameters.
+                  job_response:
+                    description: The job request data received from pipelines.
+                    type: object
+                    properties:
+                      pipeline_name:
+                        type: string
+                      eve_entry_point:
+                        type: string
+                      model_dir:
+                        type: string
+                        format: path
+                      classifier:
+                        description: Status of the classifier.
+                        type: object
+                      has_trained:
+                        description: Whether the classifier has trained.
+                        type: boolean
+                      classifier_id:
+                        description: Will not be present for pipeline status.
+                        type: string
+                        nullable: true
+                      classifier_class:
+                        description: Python class for this classifier.
+                        type: string
+        '401':
+          description: >
+            Authentication failed: not logged in or user doesn't have the
+            permissions for this operation.
+          content: *ref_11
+        '404':
+          description: Pipeline with given ID was not found.
+          content: *ref_36
+        default:
+          description: 'Unexpected error, check server logs.'
+          content: *ref_1
+      security:
+        - cookieAuth: []
+  '/pipelines/classifiers/status/{classifier_id}':
+    get:
+      summary: Get Classifier Status
+      description: >
+        Get the status of the classifier with the given ID.
+
+
+        Example: `curl -X GET
+        http://localhost:5000/pipelines/classifiers/status/60df138b3f8fa7b2e1445bd8
+        --cookie ~/session.cookie`
+      operationId: pipelines_get_classifier_status
+      tags:
+        - pipelines
+      parameters:
+        - name: classifier_id
+          in: path
+          required: true
+          description: The id of the classifier on which to operate.
+          schema: *ref_33
+      responses:
+        '200':
+          description: Returns the status for the given classifier.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: *ref_37
+        '401':
+          description: >
+            Authentication failed: not logged in or user doesn't have the
+            permissions for this operation.
+          content: *ref_11
+        '404':
+          description: Classifier with given ID was not found.
+          content: *ref_34
+        default:
+          description: 'Unexpected error, check server logs.'
+          content: *ref_1
+      security:
+        - cookieAuth: []
+  '/pipelines/running_jobs/{classifier_id}':
+    get:
+      summary: Get Classifier Running Jobs
+      description: >
+        Get any currently running jobs of the classifier with the given ID.
+
+
+        Example: `curl -X GET
+        http://localhost:5000/pipelines/running_jobs/60df138b3f8fa7b2e1445bd8
+        --cookie ~/session.cookie`
+      operationId: pipelines_get_running_jobs
+      tags:
+        - pipelines
+      parameters:
+        - name: classifier_id
+          in: path
+          required: true
+          description: The id of the classifier on which to operate.
+          schema: *ref_33
+      responses:
+        '200':
+          description: Returns the all currently running jobs for the classifier.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: string
+                  format: uuid
+        '401':
+          description: >
+            Authentication failed: not logged in or user doesn't have the
+            permissions for this operation.
+          content: *ref_11
+        '404':
+          description: Classifier with given ID was not found.
+          content: *ref_34
+        default:
+          description: 'Unexpected error, check server logs.'
+          content: *ref_1
+      security:
+        - cookieAuth: []
+  '/pipelines/train/{classifier_id}':
+    post:
+      summary: Train Classifier
+      description: >
+        Trains the classifier based on currently annotated documents in the
+        collection.
+
+
+        This endpoint is _ASYNCHRONOUS_ in that it will return information about
+        the submitted job
+
+        rather than any results from the job.
+
+
+        Example: `curl -X POST
+        http://localhost:5000/pipelines/train/60df138b3f8fa7b2e1445bd8 --cookie
+        session.cookie`
+      operationId: pipelines_train
+      tags:
+        - pipelines
+      parameters:
+        - name: classifier_id
+          in: path
+          required: true
+          description: The id of the classifier on which to operate.
+          schema: *ref_33
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                model_name:
+                  description: Optional name to save the model for future reference.
+                  type: string
+      responses:
+        '200':
+          description: Returns the all currently running jobs for the classifier.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  request:
+                    description: The job request data submitted to pipelines.
+                    type: object
+                    properties: *ref_38
+        '401':
+          description: >
+            Authentication failed: not logged in or user doesn't have the
+            permissions for this operation.
+          content: *ref_11
+        '404':
+          description: Classifier with given ID was not found.
+          content: *ref_34
+        default:
+          description: 'Unexpected error, check server logs.'
+          content: *ref_1
+      security:
+        - cookieAuth: []
+  '/pipelines/predict/{classifier_id}':
+    post:
+      summary: Predict Using Classifier
+      description: >
+        Uses the given classifier to predict annotations for the given
+        document(s).
+
+
+        Example: `curl -X POST
+        http://localhost:5000/pipelines/predict/60df138b3f8fa7b2e1445bd8
+        --cookie session.cookie`
+      operationId: pipelines_predict
+      tags:
+        - pipelines
+      parameters:
+        - name: classifier_id
+          in: path
+          required: true
+          description: The id of the classifier on which to operate.
+          schema: *ref_33
+      requestBody:
+        content:
+          application/json:
+            schema:
+              description: Either document_ids or texts must be given and non-empty.
+              type: object
+              properties: &ref_53
+                document_ids:
+                  description: IDs of documents to predict annotations for.
+                  type: array
+                  items:
+                    type: string
+                  default: []
+                texts:
+                  description: Text of documents to predict annotations for.
+                  type: array
+                  items:
+                    type: string
+                  default: []
+                timeout_in_s:
+                  description: >-
+                    If provided, will wait this long before timing out on the
+                    job.
+                  type: integer
+                  default: 36000
+      responses:
+        '200':
+          description: Returns the predictions and other job information.
+          content:
+            application/json:
+              schema:
+                description: Pipeline predictions and other job information.
+                type: object
+                properties: &ref_54
+                  job_id:
+                    type: string
+                    format: uuid
+                  job_request:
+                    description: The job request data submitted to pipelines.
+                    type: object
+                    properties: *ref_38
+                  job_response:
+                    type: object
+                    properties:
+                      documents_by_id:
+                        description: >-
+                          Predictions in a mapping from document ID to
+                          annotations.
+                        type: object
+                        additionalProperties:
+                          type: object
+                          properties: &ref_39
+                            doc:
+                              description: Document-level annotations.
+                              type: array
+                              items:
+                                description: Annotation label.
+                                type: string
+                              example:
+                                - label1
+                                - label2
+                            ner:
+                              description: 'NER annotations. [startIndex, endIndex, label].'
+                              type: array
+                              items:
+                                type: array
+                                items:
+                                  oneOf:
+                                    - type: string
+                                    - type: integer
+                              example:
+                                - 5
+                                - 10
+                                - label1
+                      texts:
+                        description: >-
+                          Predictions for manual texts in the same order as they
+                          were in the input.
+                        type: array
+                        items:
+                          type: object
+                          properties: *ref_39
+        '400':
+          description: Input parameters are missing/invalid.
+          content: *ref_6
+        '401':
+          description: >
+            Authentication failed: not logged in or user doesn't have the
+            permissions for this operation.
+          content: *ref_11
+        '404':
+          description: Classifier with given ID was not found.
+          content: *ref_34
+        default:
+          description: 'Unexpected error, check server logs.'
+          content: *ref_1
+      security:
+        - cookieAuth: []
+components:
+  securitySchemes:
+    cookieAuth:
+      description: >
+        This an example command to provision and print the session key using
+        eve:
+
+
+        `curl -X POST -H "Content-Type:application/json" -d
+        '{"username":"ada@pine.jhuapl.edu","password":"ada@pine.jhuapl.edu"}'
+        http://localhost:5000/auth/login --cookie-jar - --output /dev/null
+        --silent | grep -o -P "session\s.+" | sed -e 's/session\s/session=/' -`
+      type: apiKey
+      in: cookie
+      name: session
+  schemas:
+    UserRoles:
+      description: The role (for permissions) of the user.
+      type: array
+      items: *ref_4
+    NewUserData:
+      type: object
+      properties: *ref_40
+      required: *ref_41
+    UpdateUserData:
+      type: object
+      properties: *ref_42
+      required: *ref_43
+    WrappedAnnotations:
+      type: object
+      properties: *ref_15
+    LoginForm:
+      description: Information needed to display a login form.
+      type: object
+      properties: *ref_44
+      example: *ref_45
+    EveLogin:
+      description: Only for eve login.
+      type: object
+      properties: *ref_46
+    EvePasswordChange:
+      type: object
+      properties: *ref_47
+    VegasAuthToken:
+      description: An auth token obtained by Vegas out-of-band from PINE.
+      type: object
+      properties: *ref_48
+      additionalProperties: *ref_49
+    WrappedCollections:
+      type: object
+      properties: *ref_20
+    NewCollection:
+      type: object
+      properties: *ref_50
+      required: *ref_51
+    WrappedDocuments:
+      type: object
+      properties: *ref_26
+    NewDocument:
+      description: >-
+        Arguments for the new document (at least collection_id, creator_id,
+        text).
+      type: object
+      properties: *ref_28
+      required: *ref_29
+    Classifier:
+      allOf: *ref_52
+    PipelineJobRequest:
+      description: The job request data submitted to pipelines.
+      type: object
+      properties: *ref_38
+    PipelineOrClassifierStatus:
+      type: object
+      properties: *ref_37
+    PipelinePredictParameters:
+      description: Either document_ids or texts must be given and non-empty.
+      type: object
+      properties: *ref_53
+    PipelineDocumentPredictions:
+      type: object
+      properties: *ref_39
+    PipelinePredictions:
+      description: Pipeline predictions and other job information.
+      type: object
+      properties: *ref_54
+    ErrorResponse:
+      description: Error message from the server.
+      type: string
+      example: Error message from the server.
+    UserInfo:
+      type: object
+      properties: *ref_2
+    EveBase:
+      type: object
+      properties: *ref_8
+    EveLinks:
+      type: object
+      properties: *ref_9
+    IDInfo:
+      description: >
+        This object is returned when doing actions like modifying a document or
+        collection.  It contains the ID of the object and some other information
+        from the database.
+      allOf: *ref_5
+    EveBaseWithVersion:
+      allOf: *ref_30
+    UserDocumentAnnotation:
+      description: >
+        This is the log of annotations by a specific user.  A document might
+        have 0, 1, or multiple of these based on how many users annotated.
+      allOf: *ref_55
+    DocumentAnnotations:
+      type: object
+      properties: *ref_13
+      example: *ref_14
+    AuthUser:
+      type: object
+      properties: *ref_18
+      example: *ref_19
+    AuthUserDetails:
+      type: object
+      properties: *ref_16
+      example: *ref_17
+    Collection:
+      type: object
+      properties: *ref_22
+    UserPermissions:
+      type: object
+      properties: *ref_27
+    Document:
+      type: object
+      properties: *ref_25
+    DocumentDeletionResponse:
+      type: object
+      properties: *ref_24
+    InterAnnotatorAgreement:
+      allOf: *ref_56
+    Pipeline:
+      allOf: *ref_31
+    CollectionMetric:
+      type: object
+      properties: *ref_32
+  responses:
+    UnexpectedServerError:
+      description: 'Unexpected error, check server logs.'
+      content: *ref_1
+    NotAuthorizedOrNotAdmin:
+      description: 'Authentication failed, not logged in or not an admin.'
+      content: *ref_0
+    InvalidInputParameters:
+      description: Input parameters are missing/invalid.
+      content: *ref_6
+    MismatchedEtag:
+      description: Given etag did not match the most updated stored one.
+      content: *ref_57
+    Success:
+      description: Whether the operation succeeded or failed.
+      content: *ref_7
+    NotAuthorized:
+      description: >
+        Authentication failed: not logged in or user doesn't have the
+        permissions for this operation.
+      content: *ref_11
+    DocumentNotFound:
+      description: Document with given ID was not found.
+      content: *ref_12
+    CollectionNotFound:
+      description: Collection with given ID was not found.
+      content: *ref_23
+    PipelineNotFound:
+      description: Pipeline with given ID was not found.
+      content: *ref_36
+    ClassifierNotFound:
+      description: Classifier with given ID was not found.
+      content: *ref_34
+  parameters:
+    userIdParam:
+      name: user_id
+      in: path
+      required: true
+      description: ID of the user on which to operate.
+      schema: *ref_3
+    docIdParam:
+      name: doc_id
+      in: path
+      required: true
+      description: The id of the document on which to operate.
+      schema: *ref_10
+    collectionIdParam:
+      name: collection_id
+      in: path
+      required: true
+      description: The id of the collection on which to operate.
+      schema: *ref_21
+    pipelineIdParam:
+      name: pipeline_id
+      in: path
+      required: true
+      description: The id of the pipeline on which to operate.
+      schema: *ref_35
+    classifierIdParam:
+      name: classifier_id
+      in: path
+      required: true
+      description: The id of the classifier on which to operate.
+      schema: *ref_33
+tags:
+  - name: admin
+    description: >
+      Operations in the "admin" blueprint.  These operations are generally only
+      available when the "eve" auth module is running and are only accessible to
+      logged-in users that are administrators.
+    x-displayName: admin
+  - name: annotations
+    description: Operations in the "annotations" blueprint.
+    x-displayName: annotations
+  - name: auth
+    description: Operations in the "auth" blueprint.
+    x-displayName: auth
+  - name: auth_eve
+    description: These operations are only available if using "eve" auth module.
+    x-displayName: auth_eve
+  - name: auth_vegas
+    description: These operations are only available if using "vegas" auth module.
+    x-displayName: auth_vegas
+  - name: collections
+    description: Operations in the "collections" blueprint.
+    x-displayName: collections
+  - name: documents
+    description: Operations in the "documents" blueprint.
+    x-displayName: documents
+  - name: iaa_reports
+    description: Operations in the "iaa_reports" blueprint.
+    x-displayName: iaa_reports
+  - name: pipelines
+    description: Operations in the "pipelines" blueprint.
+    x-displayName: pipelines
+x-tagGroups:
+  - name: openapi
+    tags:
+      - admin
+      - annotations
+      - auth
+      - auth_eve
+      - auth_vegas
+      - collections
+      - documents
+      - iaa_reports
+      - pipelines

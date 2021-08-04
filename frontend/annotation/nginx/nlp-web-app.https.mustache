@@ -20,8 +20,10 @@ server {
 
     location /api {
         include proxy_params;
+        proxy_set_header X-Forwarded-Prefix /api;
         rewrite ^/api(.*) $1 break;
         proxy_pass ${BACKEND_SERVER};
+        proxy_redirect http://$http_host/ https://$http_host/;
     }
 }
 

@@ -59,6 +59,7 @@ def flask_get_logged_in_user() -> Response:
     return jsonify(module.get_logged_in_user())
 
 @bp.route("/logged_in_user_details", methods = ["GET"])
+@login_required
 def flask_get_logged_in_user_details() -> Response:
     return jsonify(module.get_logged_in_user_details().to_dict())
 
@@ -67,10 +68,9 @@ def flask_get_login_form() -> Response:
     return jsonify(module.get_login_form().to_dict())
 
 @bp.route("/logout", methods = ["POST"])
+@login_required
 def flask_post_logout() -> Response:
     user = module.get_logged_in_user()
-    if user == None:
-        raise exceptions.BadRequest()
     module.logout()
     log.access_flask_logout(user)
     return Response(status = 200)

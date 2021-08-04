@@ -2,9 +2,12 @@
 
 import logging
 import os
+import typing
 import uuid
+
 import numpy as np
 import pydash
+
 from skmultilearn.model_selection import IterativeStratification
 from sklearn.preprocessing import MultiLabelBinarizer
 from itertools import chain
@@ -25,13 +28,28 @@ class ner_api(object):
         logger.info("Saving models to {}".format(self.model_dir))
         self.eve_client = EveClient()
 
-    def perform_fold(self, model, train_data, test_data, pipeline_parameters):
-        model.fit(train_data[0], train_data[1], pipeline_parameters)
+    def status(self, classifier_id: str, pipeline_name: str) -> dict:
+        classifier = NER(pipeline_name)
+        status = {
+            "pipeline_name": pipeline_name,
+            "classifier_id": classifier_id,
+            "model_dir": self.model_dir,
+            "eve_entry_point": self.eve_client.entry_point,
+            "classifier_class": classifier.pipeline_class,
+            "classifier": classifier.status()
+        }
+        if classifier_id:
+            classifier_obj, pipeline_obj, metrics_obj = self.get_classifier_pipeline_metrics_objs(classifier_id)
+            status["has_trained"] = "filename" in classifier_obj
+        return status
+
+    def perform_fold(self, model: NER, train_data, test_data, **pipeline_parameters):
+        model.fit(train_data[0], train_data[1], **pipeline_parameters)
         results = model.evaluate(test_data[0], test_data[1], range(0, len(test_data[0])))
 
         return results
 
-    def perform_five_fold(self, model, documents, annotations, doc_ids, pipeline_parameters):
+    def perform_five_fold(self, model: NER, documents, annotations, doc_ids, **pipeline_parameters):
         metrics = list()
         # store list of documents ids per fold
         folds = list()
@@ -67,7 +85,7 @@ class ner_api(object):
             test_documents = documents_np_array[test_index]
 
             fold_metrics = self.perform_fold(model, [train_documents.tolist(), train_annotations.tolist()],
-                                             [test_documents.tolist(), test_annotations.tolist()], pipeline_parameters)
+                                             [test_documents.tolist(), test_annotations.tolist()], **pipeline_parameters)
 
             # saving docs used to train fold
             fold_doc_ids = doc_ids_np_array[train_index]
@@ -112,18 +130,30 @@ class ner_api(object):
 
         return metrics, folds, average_metrics
 
-    def get_document_ranking(self, model, doc_map, doc_ids):
+    def get_document_ranking(self, model: NER, doc_map: typing.Dict[str, str], doc_ids: typing.List[str]) -> typing.List[str]:
+        """Calculates document rankings and returns document IDs sorted by ranking.
+        
+        The ranking should be which documents should be evaluated first.  This probably
+        corresponds in some ways to the documents which the model is least confident about.
+        
+        :param model: NER model
+        :param doc_map: dict: mapping of document IDs to document text where overlap is 0
+        :param doc_ids: list: IDs of documents where ???
+        
+        :returns: sorted document IDs
+        :rtype: list
+        """
         # re rank documents
         documents_no_anns = []
         ids_no_anns = list(set(doc_map.keys()).difference(set(doc_ids)))
-        for id in ids_no_anns:
-            documents_no_anns.append(doc_map[id])
+        for doc_id in ids_no_anns:
+            documents_no_anns.append(doc_map[doc_id])
 
         # classifier.load_model(os.path.join(self.model_dir, filename))
         # ranks = classifier.next_example(documents_no_anns, ids_no_anns)
-        results = model.predict_proba(documents_no_anns, ids_no_anns)
-        ranks = rank.least_confidence_squared(results)
-        return ranks
+        results = model.predict_proba(documents_no_anns)
+        ranks = rank.least_confidence_squared(ids_no_anns, results)
+        return [r[0] for r in ranks]
 
     def get_classifier_pipeline_metrics_objs(self, classifier_id):
         classifier_obj = self.eve_client.get_obj('classifiers', classifier_id)
@@ -143,28 +173,32 @@ class ner_api(object):
         return classifier_obj, pipeline_obj, metrics_obj
 
     def train_model(self, custom_filename, classifier_id, pipeline_name):
+        logger.info("train_model called with custom_filename='{}' classifier_id='{}' pipeline_name='{}'".format(
+            custom_filename, classifier_id, pipeline_name))
 
         # get classifier object
         classifier_obj, pipeline_obj, metrics_obj = self.get_classifier_pipeline_metrics_objs(classifier_id)
         collection_id = pydash.get(classifier_obj, 'collection_id', None)
         pipeline_parameters = pydash.get(classifier_obj, 'parameters', None)
+        logger.info("train_model collection_id='{}' pipeline_parameters='{}'".format(
+            collection_id, pipeline_parameters))
 
         #get pipeline name
         # pipeline_name = pipeline_obj["name"]
 
-        # get documents
+        # get documents where overlap is 0
         doc_map = self.eve_client.get_documents(collection_id)
-        # get documents with its annotations
+        # get documents with its annotations where overlap is 0
         documents, labels, doc_ids, ann_ids = self.eve_client.get_docs_with_annotations(collection_id, doc_map)
 
         # instantiate model
         classifier = NER(pipeline_name)
 
         # get folds information
-        metrics, folds, averages = self.perform_five_fold(classifier, documents, labels, doc_ids, pipeline_parameters)
+        metrics, folds, averages = self.perform_five_fold(classifier, documents, labels, doc_ids, **pipeline_parameters)
 
         logger.info("Starting to train classifier for {} pipeline".format(pipeline_name))
-        classifier.fit(documents, labels, pipeline_parameters)
+        classifier.fit(documents, labels, **pipeline_parameters)
 
         logger.info("Trained classifier for {} pipeline".format(pipeline_name))
 
@@ -203,8 +237,7 @@ class ner_api(object):
         logger.info("Updating next instances entry for current classifier")
         return self.eve_client.update('next_instances', id, etag, {'document_ids': ranks})
 
-    def predict(self, classifier_id, pipeline_name, documents, document_ids):
-
+    def predict(self, classifier_id: str, pipeline_name: str, document_ids: typing.List[str], texts: typing.List[str]):
         classifier_obj, pipeline_obj, metrics_obj = self.get_classifier_pipeline_metrics_objs(classifier_id)
 
         if classifier_obj is None:
@@ -212,17 +245,36 @@ class ner_api(object):
         if 'filename' not in classifier_obj:
             raise Exception('No filename in classifier obj')
 
+        if document_ids == None:
+            document_ids = []
+        if texts == None:
+            texts = []
+
         # pipeline_name=pipeline_obj["name"]
+        
+        # load documents
+        doc_map = self.eve_client.get_documents_by_id(document_ids)
+        documents = []
+        for document_id in document_ids:
+            if document_id not in doc_map:
+                raise Exception("Unable to find document with ID {}".format(document_id))
+            documents.append(doc_map[document_id])
 
         filename = os.path.join(self.model_dir, pipeline_name, classifier_obj['filename'])
 
         if not os.path.exists(filename):
-             raise FileNotFoundError("No model with {} filename has been created".format(filename))
+            raise FileNotFoundError("No model with {} filename has been created".format(filename))
         classifier = NER(pipeline_name)
         classifier.load_model(filename)
         logger.info("Loaded classifier {}".format(classifier))
 
-        if len(documents) == len(document_ids):
-            return classifier.predict(documents, document_ids)
-        else:
-            return None
+        predicted_documents = classifier.predict(documents)
+        predicted_documents_by_id = {}
+        for i, doc_id in enumerate(document_ids):
+            predicted_documents_by_id[doc_id] = predicted_documents[i].serialize()
+        predicted_texts = [p.serialize() for p in classifier.predict(texts)]
+        return {
+            "documents_by_id": predicted_documents_by_id,
+            "texts": predicted_texts
+        }
+        return classifier.predict(documents, document_ids)

@@ -85,8 +85,8 @@
 <em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">pine.pipelines.opennlp_NER_pipeline.</span></code><code class="sig-name descname"><span class="pre">opennlp_NER</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">java_dir</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ner_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tmp_dir</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.pipelines.opennlp_NER_pipeline.opennlp_NER" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="../pipeline/index.html#pine.pipelines.pipeline.Pipeline" title="pine.pipelines.pipeline.Pipeline"><code class="xref py py-class docutils literal notranslate"><span class="pre">pine.pipelines.pipeline.Pipeline</span></code></a></p>
 <dl class="py attribute">
-<dt id="pine.pipelines.opennlp_NER_pipeline.opennlp_NER.__jar">
-<code class="sig-name descname"><span class="pre">__jar</span></code><em class="property"> <span class="pre">=</span></em><a class="headerlink" href="#pine.pipelines.opennlp_NER_pipeline.opennlp_NER.__jar" title="Permalink to this definition">¶</a></dt>
+<dt id="pine.pipelines.opennlp_NER_pipeline.opennlp_NER.__ner_path">
+<code class="sig-name descname"><span class="pre">__ner_path</span></code><em class="property"> <span class="pre">=</span></em><a class="headerlink" href="#pine.pipelines.opennlp_NER_pipeline.opennlp_NER.__ner_path" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
@@ -124,19 +124,34 @@
 <code class="sig-name descname"><span class="pre">__id</span></code><a class="headerlink" href="#pine.pipelines.opennlp_NER_pipeline.opennlp_NER.__id" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
+<dl class="py attribute">
+<dt id="pine.pipelines.opennlp_NER_pipeline.opennlp_NER.__is_setup">
+<code class="sig-name descname"><span class="pre">__is_setup</span></code><em class="property"> <span class="pre">=</span> <span class="pre">False</span></em><a class="headerlink" href="#pine.pipelines.opennlp_NER_pipeline.opennlp_NER.__is_setup" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="pine.pipelines.opennlp_NER_pipeline.opennlp_NER.setup">
+<em class="property"><span class="pre">classmethod</span> </em><code class="sig-name descname"><span class="pre">setup</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cls</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">java_dir</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ner_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.pipelines.opennlp_NER_pipeline.opennlp_NER.setup" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="pine.pipelines.opennlp_NER_pipeline.opennlp_NER.status">
+<code class="sig-name descname"><span class="pre">status</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><span class="pre">dict</span></a><a class="headerlink" href="#pine.pipelines.opennlp_NER_pipeline.opennlp_NER.status" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
 <dl class="py method">
 <dt id="pine.pipelines.opennlp_NER_pipeline.opennlp_NER.fit">
-<code class="sig-name descname"><span class="pre">fit</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">params</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.pipelines.opennlp_NER_pipeline.opennlp_NER.fit" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">fit</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">params</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.pipelines.opennlp_NER_pipeline.opennlp_NER.fit" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt id="pine.pipelines.opennlp_NER_pipeline.opennlp_NER.predict">
-<code class="sig-name descname"><span class="pre">predict</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Xid</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.pipelines.opennlp_NER_pipeline.opennlp_NER.predict" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">predict</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">X</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Iterable</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">DocumentPredictions</span><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#pine.pipelines.opennlp_NER_pipeline.opennlp_NER.predict" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt id="pine.pipelines.opennlp_NER_pipeline.opennlp_NER.predict_proba">
-<code class="sig-name descname"><span class="pre">predict_proba</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Xid</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">get_all_labels</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">include_other</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.pipelines.opennlp_NER_pipeline.opennlp_NER.predict_proba" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">predict_proba</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">X</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Iterable</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">DocumentPredictionProbabilities</span><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#pine.pipelines.opennlp_NER_pipeline.opennlp_NER.predict_proba" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -176,7 +191,7 @@
 
 <dl class="py method">
 <dt id="pine.pipelines.opennlp_NER_pipeline.opennlp_NER.convert_ann_collection_to_per_token">
-<code class="sig-name descname"><span class="pre">convert_ann_collection_to_per_token</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">annotations</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tokens</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.pipelines.opennlp_NER_pipeline.opennlp_NER.convert_ann_collection_to_per_token" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">convert_ann_collection_to_per_token</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">annotations</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">Union</span><span class="p"><span class="pre">[</span></span><span class="pre">NerPrediction</span><span class="p"><span class="pre">,</span> </span><span class="pre">typing.Tuple</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><span class="pre">int</span></a><span class="p"><span class="pre">,</span> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><span class="pre">int</span></a><span class="p"><span class="pre">,</span> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tokens</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.pipelines.opennlp_NER_pipeline.opennlp_NER.convert_ann_collection_to_per_token" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -210,7 +225,7 @@
 <li><a class="reference internal" href="#pine.pipelines.opennlp_NER_pipeline.config">config</a></li>
 <li><a class="reference internal" href="#pine.pipelines.opennlp_NER_pipeline.logger">logger</a></li>
 <li><a class="reference internal" href="#pine.pipelines.opennlp_NER_pipeline.opennlp_NER">opennlp_NER</a><ul>
-<li><a class="reference internal" href="#pine.pipelines.opennlp_NER_pipeline.opennlp_NER.__jar">__jar</a></li>
+<li><a class="reference internal" href="#pine.pipelines.opennlp_NER_pipeline.opennlp_NER.__ner_path">__ner_path</a></li>
 <li><a class="reference internal" href="#pine.pipelines.opennlp_NER_pipeline.opennlp_NER.__jdk_dir">__jdk_dir</a></li>
 <li><a class="reference internal" href="#pine.pipelines.opennlp_NER_pipeline.opennlp_NER.__temp_dir">__temp_dir</a></li>
 <li><a class="reference internal" href="#pine.pipelines.opennlp_NER_pipeline.opennlp_NER.__train_file">__train_file</a></li>
@@ -218,6 +233,9 @@
 <li><a class="reference internal" href="#pine.pipelines.opennlp_NER_pipeline.opennlp_NER.__model">__model</a></li>
 <li><a class="reference internal" href="#pine.pipelines.opennlp_NER_pipeline.opennlp_NER.__nameFinder">__nameFinder</a></li>
 <li><a class="reference internal" href="#pine.pipelines.opennlp_NER_pipeline.opennlp_NER.__id">__id</a></li>
+<li><a class="reference internal" href="#pine.pipelines.opennlp_NER_pipeline.opennlp_NER.__is_setup">__is_setup</a></li>
+<li><a class="reference internal" href="#pine.pipelines.opennlp_NER_pipeline.opennlp_NER.setup">setup</a></li>
+<li><a class="reference internal" href="#pine.pipelines.opennlp_NER_pipeline.opennlp_NER.status">status</a></li>
 <li><a class="reference internal" href="#pine.pipelines.opennlp_NER_pipeline.opennlp_NER.fit">fit</a></li>
 <li><a class="reference internal" href="#pine.pipelines.opennlp_NER_pipeline.opennlp_NER.predict">predict</a></li>
 <li><a class="reference internal" href="#pine.pipelines.opennlp_NER_pipeline.opennlp_NER.predict_proba">predict_proba</a></li>

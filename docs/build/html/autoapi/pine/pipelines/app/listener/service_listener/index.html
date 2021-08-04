@@ -153,6 +153,26 @@
 <dd></dd></dl>
 
 <dl class="py attribute">
+<dt id="pine.pipelines.app.listener.service_listener.ServiceListener.results_queue_key">
+<code class="sig-name descname"><span class="pre">results_queue_key</span></code><a class="headerlink" href="#pine.pipelines.app.listener.service_listener.ServiceListener.results_queue_key" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="pine.pipelines.app.listener.service_listener.ServiceListener.results_queue_key_timeout">
+<code class="sig-name descname"><span class="pre">results_queue_key_timeout</span></code><a class="headerlink" href="#pine.pipelines.app.listener.service_listener.ServiceListener.results_queue_key_timeout" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="pine.pipelines.app.listener.service_listener.ServiceListener.running_jobs_key">
+<code class="sig-name descname"><span class="pre">running_jobs_key</span></code><a class="headerlink" href="#pine.pipelines.app.listener.service_listener.ServiceListener.running_jobs_key" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="pine.pipelines.app.listener.service_listener.ServiceListener.classifiers_training_key">
+<code class="sig-name descname"><span class="pre">classifiers_training_key</span></code><a class="headerlink" href="#pine.pipelines.app.listener.service_listener.ServiceListener.classifiers_training_key" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
 <dt id="pine.pipelines.app.listener.service_listener.ServiceListener.processing_lock_key">
 <code class="sig-name descname"><span class="pre">processing_lock_key</span></code><a class="headerlink" href="#pine.pipelines.app.listener.service_listener.ServiceListener.processing_lock_key" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
@@ -188,16 +208,6 @@
 <dd></dd></dl>
 
 <dl class="py method">
-<dt id="pine.pipelines.app.listener.service_listener.ServiceListener.publish_response">
-<em class="property"><span class="pre">classmethod</span> </em><code class="sig-name descname"><span class="pre">publish_response</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cls</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">channel</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.pipelines.app.listener.service_listener.ServiceListener.publish_response" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="field-list simple">
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)">bool</a></p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
 <dt id="pine.pipelines.app.listener.service_listener.ServiceListener.start_workers">
 <code class="sig-name descname"><span class="pre">start_workers</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.pipelines.app.listener.service_listener.ServiceListener.start_workers" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
@@ -218,8 +228,28 @@
 </dd></dl>
 
 <dl class="py method">
+<dt id="pine.pipelines.app.listener.service_listener.ServiceListener.do_with_redis">
+<em class="property"><span class="pre">static</span> </em><code class="sig-name descname"><span class="pre">do_with_redis</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">callback</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Callable</span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">[</span></span><span class="pre">redis.StrictRedis</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span> </span><span class="pre">typing.Any</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.pipelines.app.listener.service_listener.ServiceListener.do_with_redis" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="pine.pipelines.app.listener.service_listener.ServiceListener.push_results">
+<em class="property"><span class="pre">static</span> </em><code class="sig-name descname"><span class="pre">push_results</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">job_id</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">response</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.pipelines.app.listener.service_listener.ServiceListener.push_results" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="pine.pipelines.app.listener.service_listener.ServiceListener.wait_until_classifier_isnt_training">
+<em class="property"><span class="pre">static</span> </em><code class="sig-name descname"><span class="pre">wait_until_classifier_isnt_training</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">classifier_id</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">job_id</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.pipelines.app.listener.service_listener.ServiceListener.wait_until_classifier_isnt_training" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="pine.pipelines.app.listener.service_listener.ServiceListener.classifier_is_done_training">
+<em class="property"><span class="pre">static</span> </em><code class="sig-name descname"><span class="pre">classifier_is_done_training</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">classifier_id</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.pipelines.app.listener.service_listener.ServiceListener.classifier_is_done_training" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
 <dt id="pine.pipelines.app.listener.service_listener.ServiceListener.process_message">
-<em class="property"><span class="pre">static</span> </em><code class="sig-name descname"><span class="pre">process_message</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">job_details</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.pipelines.app.listener.service_listener.ServiceListener.process_message" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">static</span> </em><code class="sig-name descname"><span class="pre">process_message</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">job_id</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">job_details</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.pipelines.app.listener.service_listener.ServiceListener.process_message" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -276,6 +306,10 @@
 <li><a class="reference internal" href="#pine.pipelines.app.listener.service_listener.ServiceListener.processing_limit">processing_limit</a></li>
 <li><a class="reference internal" href="#pine.pipelines.app.listener.service_listener.ServiceListener.processing_queue_key">processing_queue_key</a></li>
 <li><a class="reference internal" href="#pine.pipelines.app.listener.service_listener.ServiceListener.processing_queue_key_timeout">processing_queue_key_timeout</a></li>
+<li><a class="reference internal" href="#pine.pipelines.app.listener.service_listener.ServiceListener.results_queue_key">results_queue_key</a></li>
+<li><a class="reference internal" href="#pine.pipelines.app.listener.service_listener.ServiceListener.results_queue_key_timeout">results_queue_key_timeout</a></li>
+<li><a class="reference internal" href="#pine.pipelines.app.listener.service_listener.ServiceListener.running_jobs_key">running_jobs_key</a></li>
+<li><a class="reference internal" href="#pine.pipelines.app.listener.service_listener.ServiceListener.classifiers_training_key">classifiers_training_key</a></li>
 <li><a class="reference internal" href="#pine.pipelines.app.listener.service_listener.ServiceListener.processing_lock_key">processing_lock_key</a></li>
 <li><a class="reference internal" href="#pine.pipelines.app.listener.service_listener.ServiceListener.processing_lock_key_timeout">processing_lock_key_timeout</a></li>
 <li><a class="reference internal" href="#pine.pipelines.app.listener.service_listener.ServiceListener.preprocessing_lock_key">preprocessing_lock_key</a></li>
@@ -283,10 +317,13 @@
 <li><a class="reference internal" href="#pine.pipelines.app.listener.service_listener.ServiceListener.preprocessing_worker_lock_key">preprocessing_worker_lock_key</a></li>
 <li><a class="reference internal" href="#pine.pipelines.app.listener.service_listener.ServiceListener.preprocessing_worker_lock_key_timeout">preprocessing_worker_lock_key_timeout</a></li>
 <li><a class="reference internal" href="#pine.pipelines.app.listener.service_listener.ServiceListener.registration_channel">registration_channel</a></li>
-<li><a class="reference internal" href="#pine.pipelines.app.listener.service_listener.ServiceListener.publish_response">publish_response</a></li>
 <li><a class="reference internal" href="#pine.pipelines.app.listener.service_listener.ServiceListener.start_workers">start_workers</a></li>
 <li><a class="reference internal" href="#pine.pipelines.app.listener.service_listener.ServiceListener.stop_workers">stop_workers</a></li>
 <li><a class="reference internal" href="#pine.pipelines.app.listener.service_listener.ServiceListener.pre_process_message">pre_process_message</a></li>
+<li><a class="reference internal" href="#pine.pipelines.app.listener.service_listener.ServiceListener.do_with_redis">do_with_redis</a></li>
+<li><a class="reference internal" href="#pine.pipelines.app.listener.service_listener.ServiceListener.push_results">push_results</a></li>
+<li><a class="reference internal" href="#pine.pipelines.app.listener.service_listener.ServiceListener.wait_until_classifier_isnt_training">wait_until_classifier_isnt_training</a></li>
+<li><a class="reference internal" href="#pine.pipelines.app.listener.service_listener.ServiceListener.classifier_is_done_training">classifier_is_done_training</a></li>
 <li><a class="reference internal" href="#pine.pipelines.app.listener.service_listener.ServiceListener.process_message">process_message</a></li>
 <li><a class="reference internal" href="#pine.pipelines.app.listener.service_listener.ServiceListener._start_registration_task">_start_registration_task</a></li>
 <li><a class="reference internal" href="#pine.pipelines.app.listener.service_listener.ServiceListener._start_channel_task">_start_channel_task</a></li>

@@ -1,0 +1,34 @@
+# (C) 2021 The Johns Hopkins University Applied Physics Laboratory LLC.
+
+openapi: "3.0.2"
+
+info:
+  title: "PINE"
+  description: |
+    PINE: Pmap Interface for Nlp Experimentation
+    
+    PINE is a Natural Language Processing (NLP) tool designed for integration with the
+    Precision Medicine Analytics Platform (PMAP), developed at the Johns Hopkins University Applied
+    Physics Laboratory (JHU/APL).
+    
+    PINE consists of a web UI along with backing services.
+  version: "1.0.1"
+  contact:
+    name: "Michael Harrity"
+    email: "Michael.Harrity@jhuapl.edu"
+  license:
+    name: "AGPL-3.0"
+    url: https://github.com/JHUAPL/PINE/blob/master/LICENSE
+
+servers:
+  - url: http://localhost:5000
+  - url: https://localhost:8888/api
+  - url: https://dev-nlpannotator.pm.jh.edu/api
+
+paths: {}
+
+components:
+  securitySchemes:
+    cookieAuth:
+      $ref: "./components.yaml#/securitySchemes/cookieAuth"
+  schemas: {}

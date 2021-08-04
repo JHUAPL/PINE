@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
+
 # **********************************************************************
 # Copyright (C) 2018 Johns Hopkins University Applied Physics Laboratory
 #
@@ -9,17 +10,21 @@
 # clause 52.227-14 or DFARS clauses 252.227-7013/7014.
 # For any other permission, please contact the Legal Office at JHU/APL.
 # **********************************************************************
+
 import atexit
 import json
 import logging
 import threading
+import traceback
+import typing
+import uuid
 from datetime import timedelta
 
 import pebble
 import pydash
 import redis
 import time
-from pebble import concurrent
+from pebble import concurrent, ProcessPool
 
 from ...shared.config import ConfigBuilder
 from ...NER_API import ner_api
@@ -73,6 +78,10 @@ class ServiceListener(object):
     # Scheduled Keys
     processing_queue_key = config.REDIS_PREFIX + config.PIPELINE + "work-queue"
     processing_queue_key_timeout = timedelta(seconds=config.SERVICE_HANDLER_TIMEOUT * 2)  # Timeout for queueing processing a job...
+    results_queue_key = config.REDIS_PREFIX + config.PIPELINE + ":work-results"
+    results_queue_key_timeout = timedelta(seconds=config.SERVICE_HANDLER_TIMEOUT * 2)
+    running_jobs_key = config.REDIS_PREFIX + config.PIPELINE + ":running-jobs"
+    classifiers_training_key = config.REDIS_PREFIX + config.PIPELINE + ":classifiers-training"
 
     # Mutexes Keys
     processing_lock_key = config.REDIS_PREFIX + "locks:processing"
@@ -102,15 +111,6 @@ class ServiceListener(object):
         self.services = services if isinstance(services, list) else list()
         # make sure things are stopped properly
         atexit.register(self.stop_workers)
-
-    @classmethod
-    def publish_response(cls, channel, data):
-        """
-        :type channel: str
-        :type data: dict
-        :rtype: bool
-        """
-        pass
 
     def start_workers(self):
         is_registration_thread_alive = isinstance(self.registration_thread, threading.Thread) and self.registration_thread.is_alive()
@@ -230,47 +230,106 @@ class ServiceListener(object):
         return job_data
 
     @staticmethod
-    @concurrent.process(timeout=processing_limit.seconds)
-    def process_message(job_details):
+    def do_with_redis(callback: typing.Callable[[redis.StrictRedis], typing.Any]):
         local_redis = redis.StrictRedis(host=config.REDIS_HOST, port=config.REDIS_PORT, charset="utf-8", decode_responses=True)
         time_to_spend_trying_to_acquire_lock = max(1, ServiceListener.processing_lock_key_timeout.total_seconds() // 2)
+        max_retries = 10
+        retry = 0
+        last_exception = None
+        while retry < max_retries:
+            try:
+                with local_redis.lock(ServiceListener.processing_lock_key,
+                                      timeout=ServiceListener.processing_lock_key_timeout.total_seconds(),
+                                      blocking_timeout=time_to_spend_trying_to_acquire_lock):
+                    return callback(local_redis)
+            except redis.exceptions.LockError as e:
+                logger.exception("Unable to acquire lock in time")
+                retry += 1
+                last_exception = e
+        # if we're here, we maxed out the retries
+        logger.error("Maxed out %s retries trying to connect to redis", max_retries)
+        raise last_exception
+
+    @staticmethod
+    def push_results(job_id: str, response):
+        def callback(local_redis: redis.StrictRedis) -> None:
+            response_key = ServiceListener.results_queue_key + ":" + job_id
+            logger.info("Writing status to %s", response_key)
+            local_redis.rpush(response_key, json.dumps(response, separators=(",", ":")))
+            local_redis.expire(response_key, ServiceListener.results_queue_key_timeout)
+        ServiceListener.do_with_redis(callback)
+
+    @staticmethod
+    def wait_until_classifier_isnt_training(classifier_id: str, job_id: str):
+        def callback(local_redis: redis.StrictRedis) -> bool:
+            return local_redis.hexists(ServiceListener.classifiers_training_key, classifier_id)
+        while ServiceListener.do_with_redis(callback):
+            logger.info("classifier %s is already running a training job, sleeping 10 seconds", classifier_id)
+            time.sleep(10)
+        def callback_set(local_redis: redis.StrictRedis) -> None:
+            local_redis.hset(ServiceListener.classifiers_training_key, classifier_id, job_id)
+        ServiceListener.do_with_redis(callback_set)
+
+    @staticmethod
+    def classifier_is_done_training(classifier_id: str):
+        def callback(local_redis: redis.StrictRedis):
+            return local_redis.hdel(ServiceListener.classifiers_training_key, classifier_id)
+        return ServiceListener.do_with_redis(callback)
+
+    @staticmethod
+    def process_message(job_id: str, job_details):
+        logger.info("process_message starting for job %s", job_id)
+        
+        job_type = pydash.get(job_details, "type", None)
+        job_framework = pydash.get(job_details, "framework", None)
+        classifier_id = pydash.get(job_details, "classifier_id", None)
+        model_name = pydash.get(job_details, "model_name", None)
+
         try:
-            with local_redis.lock(ServiceListener.processing_lock_key,
-                                  timeout=ServiceListener.processing_lock_key_timeout.total_seconds(),
-                                  blocking_timeout=time_to_spend_trying_to_acquire_lock):
-                job_type = pydash.get(job_details, "type", None)
-                job_framework = pydash.get(job_details, "framework", None)
-                classifier_id = pydash.get(job_details, "classifier_id", None)
-
-                if job_type == "fit":
-                    model_name = pydash.get(job_details, "model_name", None)
+            if job_type == "fit":
+                if not classifier_id:
+                    raise ValueError("Need classifier_id to train")
+                ServiceListener.wait_until_classifier_isnt_training(classifier_id, job_id)
+                try:
+                    logger.info("fit %s running", job_id)
                     pipeline = ner_api()
-                    try:
-                        pipeline.train_model(model_name, classifier_id, job_framework)
-                    except Exception as e:
-                        logger.error("ERROR: Could not train classifier, error: {}".format(e))
-                        # TODO: return status to the front end, either by adding a redis listener or setting job status
-                        # as failed in the database
-                    logger.info('fit completed')
-
-                elif job_type == "predict":
-                    pipeline = ner_api()
-                    documents = pydash.get(job_details, "documents", [])
-                    doc_ids = pydash.get(job_details, "doc_ids", [])
-                    try:
-                        results = pipeline.predict(classifier_id, job_framework, documents, doc_ids)
-                    except Exception as e:
-                        logger.error("ERROR: Could not predict document annotations, error: {}".format(e))
-                        # TODO: return status, stating that were unable to execute a predict from the given parameters
-
-                    # TODO: return results through redis
-
-                else:
-                    logger.error("Service type, {}, unavailable".format(job_type))
-                    return
-        except redis.exceptions.LockError as e:
-            logger.info("Unable to acquire lock in time, re-scheduling job...")
-            local_redis.rpush(ServiceListener.processing_queue_key, json.dumps(job_details, separators=(",", ":")))
+                    pipeline.train_model(model_name, classifier_id, job_framework)
+                    logger.info("fit %s finished", job_id)
+                finally:
+                    ServiceListener.classifier_is_done_training(classifier_id)
+            
+            elif job_type == "predict":
+                logger.info("predict %s running", job_id)
+                document_ids = pydash.get(job_details, "document_ids", [])
+                texts = pydash.get(job_details, "texts", [])
+                pipeline = ner_api()
+                try:
+                    results = pipeline.predict(classifier_id, job_framework, document_ids, texts)
+                    ServiceListener.push_results(job_id, results)
+                except Exception as e:
+                    results = {
+                        "error": str(e)
+                    }
+                    ServiceListener.push_results(job_id, results)
+                    raise e
+                finally:
+                    logger.info("predict %s finished", job_id)
+            
+            elif job_type == "status":
+                logger.info("status %s running", job_id)
+                pipeline = ner_api()
+                status = pipeline.status(classifier_id, job_framework)
+                logger.info("Received status from job_framework=%s classifier_id=%s: %s",
+                            job_framework, classifier_id, status)
+                ServiceListener.push_results(job_id, status)
+                logger.info("status %s finished", job_id)
+            
+            else:
+                logger.error("Service type, %s, unavailable", job_type)
+                
+        except Exception as e:
+            logger.exception("Exception processing %s job", job_type)
+            raise e
 
     def _start_registration_task(self):
         while not self.registration_exit_event.is_set():
@@ -307,16 +366,31 @@ class ServiceListener(object):
             self.listener_exit_event.wait(self.listener_poll.seconds)
 
     def _start_queue_processor_task(self):
-        while not self.queue_processor_exit_event.is_set():
-            msg_in_queue = self.r_conn.lpop(self.processing_queue_key)
-            if not msg_in_queue:
+        with ProcessPool(max_workers=config.REDIS_MAX_PROCESSES) as pool:
+            self.r_conn.delete(self.running_jobs_key) # clear out running jobs since this is a new startup
+            while not self.queue_processor_exit_event.is_set():
+                msg_in_queue = self.r_conn.lpop(self.processing_queue_key)
+                if not msg_in_queue:
+                    self.queue_processor_exit_event.wait(self.processor_poll.seconds)
+                    continue
+                try:
+                    job_details = json.loads(msg_in_queue)
+                except (json.JSONDecodeError, TypeError):
+                    logger.warning("Invalid Job Details Message")
+                    continue
+                if "job_id" not in job_details:
+                    job_details["job_id"] = str(uuid.uuid4())
+                job_id = pydash.get(job_details, "job_id")
+                try:
+                    logger.info("Received job id/details: %s/%s", job_id, job_details)
+                    self.r_conn.sadd(self.running_jobs_key, job_id)
+                    future = pool.schedule(ServiceListener.process_message, args=(job_id, job_details))
+                    logger.debug("Got future for %s: %s", job_id, future)
+                    def finished(f):
+                        logger.info("Job %s has finished; removing from running jobs list", job_id)
+                        self.r_conn.srem(self.running_jobs_key, job_id)
+                    future.add_done_callback(finished)
+                except Exception:
+                    logger.exception("Exception processing message")
+                    
                 self.queue_processor_exit_event.wait(self.processor_poll.seconds)
-                continue
-            try:
-                job_details = json.loads(msg_in_queue)
-            except (json.JSONDecodeError, TypeError):
-                logger.warning("Invalid Job Details Message")
-                continue
-            # will allow one processor at a time (due to internal locking)
-            self.process_message(job_details)  # type: pebble.ProcessFuture
-            self.queue_processor_exit_event.wait(self.processor_poll.seconds)

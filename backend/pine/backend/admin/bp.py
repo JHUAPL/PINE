@@ -1,6 +1,6 @@
 # (C) 2019 The Johns Hopkins University Applied Physics Laboratory LLC.
 
-from flask import Blueprint, jsonify, request, Response
+from flask import Blueprint, jsonify, request
 import requests
 from werkzeug import exceptions
 
@@ -29,7 +29,7 @@ def get_user(user_id):
     """
     return jsonify(users.get_user(user_id))
 
-@bp.route("/users/<user_id>/password", methods = ["POST", "PUT", "PATCH"])
+@bp.route("/users/<user_id>/password", methods = ["PUT"])
 @auth.admin_required
 def update_user_password(user_id):
     """
@@ -48,7 +48,7 @@ def update_user_password(user_id):
     resp = service.put("users/" + user_id, json = user, headers = {"If-Match": etag})
     return service.convert_response(resp)
 
-@bp.route("/users/<user_id>", methods = ["PUT", "PATCH"])
+@bp.route("/users/<user_id>", methods = ["PUT"])
 @auth.admin_required
 def update_user(user_id):
     """
@@ -98,7 +98,13 @@ def add_user():
     
     body["_id"] = body["id"]
     del body["id"]
-    if body["description"] == None:
+    
+    # check other fields as required by eve schema
+    if not "firstname" in body or not body["firstname"] or "lastname" not in body or not body["lastname"]:
+        raise exceptions.BadRequest(description = "Missing firstname or lastname in body JSON data.")
+    if not "roles" in body or not body["roles"]:
+        raise exceptions.BadRequest(description = "Missing/empty roles in body JSON data.")
+    if "description" in body and body["description"] == None:
         del body["description"]
     
     # post to data server

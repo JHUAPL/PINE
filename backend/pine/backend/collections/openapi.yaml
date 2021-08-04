@@ -1,0 +1,715 @@
+# (C) 2021 The Johns Hopkins University Applied Physics Laboratory LLC.
+
+openapi: "3.0.2"
+
+security:
+  - cookieAuth: []
+
+tags:
+  - name: collections
+    description: Operations in the "collections" blueprint.
+
+components:
+
+  schemas:
+
+    WrappedCollections:
+      type: object
+      properties:
+        _items:
+          type: array
+          items:
+            $ref: "../api/components.yaml#/schemas/Collection"
+
+    NewCollection:
+      type: object
+      properties:
+        collection:
+          description: "At minimum, this must include creator_id, annotators, viewers and labels. All other args or sub-args should be deleted or set to null value.\n\ncreator_id MUST be a valid user, otherwise 500 Error will occur."
+          type: object
+          properties:
+            creator_id:
+              type: string
+            annotators:
+              type: array
+              items:
+                type: string
+            viewers:
+              type: array
+              items:
+                type: string
+            labels:
+              type: array
+              items:
+                type: string
+            archived:
+              type: boolean
+              default: false
+            metadata:
+              type: object
+              properties:
+                title:
+                  type: string
+                subject:
+                  type: string
+                description:
+                  type: string
+                publisher:
+                  type: string
+                contributor:
+                  type: string
+                date:
+                  type: string
+                type:
+                  type: string
+                format:
+                  type: string
+                identifier:
+                  type: string
+                source:
+                  type: string
+                language:
+                  type: string
+                relation:
+                  type: string
+                coverage:
+                  type: string
+                rights:
+                  type: string
+            configuration:
+              type: object
+              properties:
+                allow_overlapping_ner_annotations:
+                  type: boolean
+                  default: true
+          example:
+            {"creator_id": "ada",
+             "annotators": ["ada"],
+             "viewers": ["ada", "margaret"],
+             "labels": ["label1", "label2"],
+             "archived": false,
+             "metadata": {"title": "Test", "subject": "testcoll",
+                          "description": "test collection", "publisher": "ada",
+                          "contributor": "ada", "date": "1/1/21", "type": "sometype",
+                          "format": "HTML", "identifier": "ABCD", "source": "apl",
+                          "language": "english", "relation": "family", "coverage": "some",
+                          "rights": "all of them"},
+              "configuration": {"allow_overlapping_ner_annotations": true}}
+        train_every:
+          description: Should be an integer >= 5.
+          type: integer
+          minimum: 5
+        overlap:
+          description: |
+            Should be a float between 0 and 1.
+            
+            WARNING: You MUST put double quotation marks (`""`) around the number for the backend to
+            parse it correctly.
+            
+            Ex: enter `".5"` instead of just `.5`
+          type: number
+          format: float
+          minimum: 0.0
+          maximum: 1.0
+        pipelineId:
+          type: string
+          description: |
+            WARNING: You MUST put double quotation marks (`""`) around the id for the backend to
+            parse it correctly.
+            
+            Ex: enter `"123abc..."` instead of just `123abc...`
+        classifierParameters:
+          type: string
+          format: object
+          default: null
+      required:
+        - collection
+        - train_every
+        - overlap
+        - pipelineId
+
+paths:
+  
+  /collections/unarchived:
+    get:
+      summary: Get Unarchived Collections
+      description: |
+        Get all unarchived collections for logged in user.
+        
+        Example: `curl http://localhost:5000/collections/unarchived --cookie session.cookie`
+      operationId: collections_get_unarchived_all
+      tags: [collections]
+      responses:
+        "200":
+          description: Successfully retrieved relevant collections.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/WrappedCollections"
+        "401":
+          $ref: "../api/components.yaml#/responses/NotAuthorized"
+        default:
+          $ref: "../api/components.yaml#/responses/UnexpectedServerError"
+          
+  /collections/unarchived/{page}:
+    get:
+      summary: Get Paginated Unarchived Collections
+      description: |
+        Get unarchived user collections (either all or a certain page).
+        
+        Example: `curl http://localhost:5000/collections/unarchived --cookie session.cookie`
+      operationId: collections_get_unarchived_paginated
+      tags: [collections]
+      parameters:
+        - name: page
+          in: path
+          required: true
+          description: >
+            Optional page number for specifying which collections.  "all" for all pages or a page
+            number.
+          schema:
+            oneOf:
+            - type: string
+              default: "all"
+            - type: integer
+      responses:
+        "200":
+          description: Successfully retrieved relevant collections.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/WrappedCollections"
+        "401":
+          $ref: "../api/components.yaml#/responses/NotAuthorized"
+        default:
+          $ref: "../api/components.yaml#/responses/UnexpectedServerError"
+          
+  /collections/archived:
+    get:
+      summary: Get Archived Collections
+      description: |
+        Get all archived user collections.
+        
+        Example: `curl http://localhost:5000/collections/archived --cookie session.cookie`
+      operationId: collections_get_archived_all
+      tags: [collections]
+      responses:
+        "200":
+          description: Successfully retrieved relevant collections.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/WrappedCollections"
+        "401":
+          $ref: "../api/components.yaml#/responses/NotAuthorized"
+        default:
+          $ref: "../api/components.yaml#/responses/UnexpectedServerError"
+          
+  /collections/archived/{page}:
+    get:
+      summary: Get Paginated Archived Collections
+      description: |
+        Get archived user collections (either all or a certain page).
+        
+        Example: `curl http://localhost:5000/collections/archived --cookie session.cookie`
+      operationId: collections_get_archived_paginated
+      tags: [collections]
+      parameters:
+        - name: page
+          in: path
+          required: true
+          description: >
+            Optional page number for specifying which collections.  "all" for all pages or a page
+            number.
+          schema:
+            oneOf:
+            - type: string
+              default: "all"
+            - type: integer
+      responses:
+        "200":
+          description: Successfully retrieved relevant collections.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/WrappedCollections"
+        "401":
+          $ref: "../api/components.yaml#/responses/NotAuthorized"
+        default:
+          $ref: "../api/components.yaml#/responses/UnexpectedServerError"
+          
+  /collections/archive/{collection_id}:
+    put:
+      summary: Archive Collection
+      description: |
+        Archive a collection with a certain ID.
+        
+        Example: `curl -X PUT http://localhost:5000/collections/archive/60c7b7375b72bf4ed6523bf0 --cookie session.cookie`
+      operationId: collections_archive
+      tags: [collections]
+      parameters:
+        - $ref: "../api/components.yaml#/parameters/collectionIdParam"
+      responses:
+        "200":
+          description: Successfully archived the chosen collection.
+          content:
+            application/json:
+              schema:
+                $ref: "../api/components.yaml#/schemas/Collection"
+        "401":
+          $ref: "../api/components.yaml#/responses/NotAuthorized"
+        "404":
+          $ref: "../api/components.yaml#/responses/CollectionNotFound"
+        default:
+          $ref: "../api/components.yaml#/responses/UnexpectedServerError"
+          
+  /collections/unarchive/{collection_id}:
+    put:
+      summary: Unarchive Collection
+      description: |
+        Unarchive a collection with a certain ID.
+        
+        Example: `curl -X PUT http://localhost:5000/collections/unarchive/60c7b7375b72bf4ed6523bf0 --cookie session.cookie`
+      operationId: collections_unarchive
+      tags: [collections]
+      parameters:
+        - $ref: "../api/components.yaml#/parameters/collectionIdParam"
+      responses:
+        "200":
+          description: Successfully unarchived the chosen collection.
+          content:
+            application/json:
+              schema:
+                $ref: "../api/components.yaml#/schemas/Collection"
+        "401":
+          $ref: "../api/components.yaml#/responses/NotAuthorized"
+        "404":
+          $ref: "../api/components.yaml#/responses/CollectionNotFound"
+        default:
+          $ref: "../api/components.yaml#/responses/UnexpectedServerError"
+          
+  /collections/by_id/{collection_id}:
+    get:
+      summary: Get Collection
+      description: |
+        Retrieve a collection by its ID.
+        
+        Example: `curl -X GET http://localhost:5000/collections/by_id/60c7b7375b72bf4ed6523bf0 --cookie session.cookie`
+      operationId: collections_get
+      tags: [collections]
+      parameters:
+        - $ref: "../api/components.yaml#/parameters/collectionIdParam"
+      responses:
+        "200":
+          description: Successfully found and rerieved the chosen collection.
+          content:
+            application/json:
+              schema:
+                $ref: "../api/components.yaml#/schemas/Collection"
+        "401":
+          $ref: "../api/components.yaml#/responses/NotAuthorized"
+        "404":
+          $ref: "../api/components.yaml#/responses/CollectionNotFound"
+        default:
+          $ref: "../api/components.yaml#/responses/UnexpectedServerError"
+          
+  /collections/by_id/{collection_id}/download:
+    get:
+      summary: Download Collection Data
+      description: |
+        Download a collection's data by its ID.
+        
+        Example: `curl -X GET http://localhost:5000/collections/by_id/60c7b7375b72bf4ed6523bf0/download --cookie session.cookie`
+      operationId: collections_download
+      tags: [collections]
+      parameters:
+        - $ref: "../api/components.yaml#/parameters/collectionIdParam"
+      responses:
+        "200":
+          description: Successfully found and downloaded the chosen collection.
+          content:
+            application/json:
+              schema:
+                $ref: "../api/components.yaml#/schemas/Collection"
+        "401":
+          $ref: "../api/components.yaml#/responses/NotAuthorized"
+        "404":
+          $ref: "../api/components.yaml#/responses/CollectionNotFound"
+        default:
+          $ref: "../api/components.yaml#/responses/UnexpectedServerError"
+          
+  /collections/add_annotator/{collection_id}:
+    post:
+      summary: Add Collection Annotator
+      description: |
+        Add an annotator by user_id to a specific collection.
+        
+        Example: `curl --cookie session.cookie  -X POST "http://localhost:5000/collections/add_annotator/60c7453d5b72bf4ed65239e9" -F 'user_id="\"bob\""'`
+        
+        Notice the quotes around the user_id value, NEEDS to be like that to include the "" in the
+        request session.cookie is a file containing: "Set-cookie: session=.eJy...(rest of cookie)".
+      operationId: collections_add_annotator
+      tags: [collections]
+      parameters:
+        - $ref: "../api/components.yaml#/parameters/collectionIdParam"
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                user_id:
+                  type: string
+                  description: >
+                    Note: You must put double quotation marks (`""`) around the user_id for the
+                    backend to parse it correctly as it is a JSON string.  For example, enter
+                    `"ada"` instead of just `ada`.
+              required:
+                - user_id
+      responses:
+        "200":
+          description: Successfully added the user as an annotator to the collection.
+          content:
+            application/json:
+              schema:
+                $ref: "../api/components.yaml#/schemas/IDInfo"
+        "400":
+          description: Request malformed, probably missisng user_id arg.
+          content: {application/json: {schema: {$ref: "../api/components.yaml#/schemas/ErrorResponse"}}}
+        "401":
+          $ref: "../api/components.yaml#/responses/NotAuthorized"
+        "404":
+          $ref: "../api/components.yaml#/responses/CollectionNotFound"
+        "409":
+          description: Specified user is already an annotator.
+          content: {application/json: {schema: {$ref: "../api/components.yaml#/schemas/ErrorResponse"}}}
+        "500":
+          description: Internal server error - the form data was probably malformed.
+          content: {application/json: {schema: {$ref: "../api/components.yaml#/schemas/ErrorResponse"}}}
+          
+  /collections/add_viewer/{collection_id}:
+    post:
+      summary: Add Collection Viewer
+      description: |
+        Add a viewer by user_id to a specific collection.
+        
+        Example: `curl --cookie session.cookie  -X POST "http://localhost:5000/collections/add_viewer/60c7453d5b72bf4ed65239e9" -F 'user_id="\"bob\""'`
+        
+        Notice the quotes around the user_id value, NEEDS to be like that to include the "" in the
+        request. session.cookie is a file containing: "Set-cookie: session=.eJy...(rest of cookie)"
+      operationId: addViewerToCollection
+      tags: [collections]
+      parameters:
+        - $ref: "../api/components.yaml#/parameters/collectionIdParam"
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                user_id:
+                  type: string
+                  description: "Note: You must put double quotation marks (\"\") around the user_id for the backend to parse it correctly.
+                  \n\nEx: enter \"ada\" instead of just ada"
+              required:
+                - user_id
+      responses:
+        "200":
+          description: Successfully added the user as a viewer to the collection.
+          content:
+            application/json:
+              schema:
+                $ref: "../api/components.yaml#/schemas/IDInfo"
+        "400":
+          description: Request malformed, probably missisng user_id arg.
+          content: {application/json: {schema: {$ref: "../api/components.yaml#/schemas/ErrorResponse"}}}
+        "401":
+          $ref: "../api/components.yaml#/responses/NotAuthorized"
+        "404":
+          $ref: "../api/components.yaml#/responses/CollectionNotFound"
+        "409":
+          description: Specified user is already an viewer.
+          content: {application/json: {schema: {$ref: "../api/components.yaml#/schemas/ErrorResponse"}}}
+        "500":
+          description: Internal server error - the form data was probably malformed.
+          content: {application/json: {schema: {$ref: "../api/components.yaml#/schemas/ErrorResponse"}}}
+          
+  /collections/add_label/{collection_id}:
+    post:
+      summary: Add Collection Label
+      description: |
+        Add a label to a specific collection.
+        
+        Example: `curl --cookie session.cookie  -X POST "http://localhost:5000/collections/add_label/60c7453d5b72bf4ed65239e9" -F 'new_label="\"testlabel\""'`
+        
+        Notice the quotes around the new_label value, NEEDS to be like that to include the "" in the
+        request.  session.cookie is a file containing: "Set-cookie: session=.eJy...(rest of cookie)"
+      operationId: collections_add_label
+      tags: [collections]
+      parameters:
+        - $ref: "../api/components.yaml#/parameters/collectionIdParam"
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                new_label:
+                  type: string
+                  description: >
+                    Note: You must put double quotation marks (`""`) around the new_label for the
+                    backend to parse it correctly.  Ex: enter `"MyLabel"` instead of just `MyLabel`
+              required:
+                - new_label
+      responses:
+        "200":
+          description: Successfully added the label to the collection.
+          content:
+            application/json:
+              schema:
+                $ref: "../api/components.yaml#/schemas/IDInfo"
+        "400":
+          description: Request malformed, probably missisng new_label arg.
+          content: {application/json: {schema: {$ref: "../api/components.yaml#/schemas/ErrorResponse"}}}
+        "401":
+          $ref: "../api/components.yaml#/responses/NotAuthorized"
+        "404":
+          $ref: "../api/components.yaml#/responses/CollectionNotFound"
+        "409":
+          description: Specified label is already in collection.
+          content: {application/json: {schema: {$ref: "../api/components.yaml#/schemas/ErrorResponse"}}}
+        "500":
+          description: Internal server error - the form data was probably malformed.
+          content: {application/json: {schema: {$ref: "../api/components.yaml#/schemas/ErrorResponse"}}}
+          
+  /collections:
+    post:
+      summary: Create Collection
+      description: |
+        Create a new collection.
+        
+        Example: `curl --cookie session.cookie  -X POST "http://localhost:5000/collections" -F 'collection={"creator_id":"ada", "annotators":["ada"], "labels":["label1", "labellll"],"metadata":{"title":"newcoll11","subject":null,"description":"describe blahblah"}}' -F 'overlap="\".9\""' -F 'train_every="\"100\""' -F 'pipelineId="\"5babb6ee4eb7dd2c39b9671d\""'`
+        
+        Notice the quotes around some value, NEEDS to be like that to include the "" in the request
+        to be parsed as a JSON string.  session.cookie is a file containing:
+        "Set-cookie: session=.eJy...(rest of cookie)"
+      operationId: collections_create
+      tags: [collections]
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              $ref: "#/components/schemas/NewCollection"
+      responses:
+        "201":
+          description: Successfully created the collection.
+          content:
+            application/json:
+              schema:
+                $ref: "../api/components.yaml#/schemas/IDInfo"
+        "400":
+          description: Request malformed.
+          content: {application/json: {schema: {$ref: "../api/components.yaml#/schemas/ErrorResponse"}}}
+        "401":
+          description: Authentication failed, not logged in.
+          content: {application/json: {schema: {$ref: "../api/components.yaml#/schemas/ErrorResponse"}}}
+        "500":
+          description: Error in syntax of the request - OR Wekzeug Authentication Failure.
+          content: {application/json: {schema: {$ref: "../api/components.yaml#/schemas/ErrorResponse"}}}
+          
+  /collections/static_images/{collection_id}:
+    get:
+      summary: Get Collection Static Images
+      description: |
+        Retrieve all static images used in a collection.
+        
+        Example: `curl --cookie session.cookie  -X GET "http://localhost:5000/collections/static_images/60c745395b72bf4ed6523821"`
+      operationId: collections_get_static_images
+      tags: [collections]
+      parameters:
+        - $ref: "../api/components.yaml#/parameters/collectionIdParam"
+      responses:
+        "200":
+          description: Successfully found the collection and got any relevant static images.
+          content:
+            application/json:
+              schema:
+                type: array
+                description: An array of static image paths.
+                items:
+                  type: string
+        "401":
+          $ref: "../api/components.yaml#/responses/NotAuthorized"
+        "404":
+          $ref: "../api/components.yaml#/responses/CollectionNotFound"
+        default:
+          $ref: "../api/components.yaml#/responses/UnexpectedServerError"
+          
+  /collections/images/{collection_id}:
+    get:
+      summary: Get Collection Images
+      description: |
+        Retrieve all (non-static) images used in a collection.
+        
+        Example: `curl --cookie session.cookie  -X GET "http://localhost:5000/collections/images/60c745395b72bf4ed6523821"`
+      operationId: collections_get_images
+      tags: [collections]
+      parameters:
+        - $ref: "../api/components.yaml#/parameters/collectionIdParam"
+      responses:
+        "200":
+          description: Successfully found the collection and got any relevant images.
+          content:
+            application/json:
+              schema:
+                type: array
+                description: An array of image paths.
+                items:
+                  type: string
+        "401":
+          $ref: "../api/components.yaml#/responses/NotAuthorized"
+        "404":
+          $ref: "../api/components.yaml#/responses/CollectionNotFound"
+        default:
+          $ref: "../api/components.yaml#/responses/UnexpectedServerError"
+          
+  /collections/image_exists/{collection_id}/{path}:
+    get:
+      summary: Check Collection Image
+      description: |
+        Checks whether the given image exists in the given collection.
+        
+        Example: `curl -X GET "http://localhost:5000/collections/image_exists/60c745395b72bf4ed6523821/static%2Fapl.png" -H  "accept: application/json" --cookie session.cookie`
+      operationId: collections_image_exists
+      tags: [collections]
+      parameters:
+        - $ref: "../api/components.yaml#/parameters/collectionIdParam"
+        - name: path
+          in: path
+          required: true
+          description: Path of the image to check (same as returned from images/static_images).
+          schema:
+            type: string
+          example: "static/apl.jpg"
+      responses:
+        "200":
+          description: Returns whether the collection holds the image.
+          content:
+            application/json:
+              schema:
+                type: boolean
+        "401":
+          $ref: "../api/components.yaml#/responses/NotAuthorized"
+        "404":
+          $ref: "../api/components.yaml#/responses/CollectionNotFound"
+        default:
+          $ref: "../api/components.yaml#/responses/UnexpectedServerError"
+          
+  /collections/image/{collection_id}/{path}:
+    get:
+      summary: Get Collection Image
+      description: |
+        Download an image from a collection.
+        
+        Example: `curl --cookie session.cookie  -X GET "http://localhost:5000/collections/image/60c745395b72bf4ed6523821/static/apl.png" -v --output - > apl.png`
+      operationId: collections_image
+      tags: [collections]
+      parameters:
+        - $ref: "../api/components.yaml#/parameters/collectionIdParam"
+        - name: path
+          in: path
+          required: true
+          description: Path of the image to download (same as returned from images/static_images).
+          schema:
+            type: string
+          example: "static/apl.jpg"
+      responses:
+        "200":
+          description: "Successfully found the collection and returns image data."
+          content:
+            image/*:
+              schema:
+                type: string
+                format: binary
+        "401":
+          $ref: "../api/components.yaml#/responses/NotAuthorized"
+        "404":
+          $ref: "../api/components.yaml#/responses/CollectionNotFound"
+        default:
+          $ref: "../api/components.yaml#/responses/UnexpectedServerError"
+
+    post:
+      summary: Upload Collection Image
+      description: |
+        Upload an image to a collection.
+        
+        Example: `curl --cookie session.cookie  -X POST "http://localhost:5000/collections/image/60c745395b72bf4ed6523821/static/dog.jpeg" -F 'file=@/home/pine/Downloads/dog.jpeg'`
+      operationId: collections_image_upload
+      tags: [collections]
+      parameters:
+        - $ref: "../api/components.yaml#/parameters/collectionIdParam"
+        - name: path
+          in: path
+          required: true
+          description: |
+            Path to place the image at.
+          
+            Note: This path piece should NOT start with / (Ex: static/dog.jpg, not /static/dog.jpg).
+          schema:
+            type: string
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                file:
+                  type: string
+                  format: binary
+              required:
+                - file
+      responses:
+        "100":
+          description: Couldn't read the image, probably bad permissions or bad path.
+          content: {application/json: {schema: {$ref: "../api/components.yaml#/schemas/ErrorResponse"}}}
+        "200":
+          description: "Successfully uploaded image (Will return the path)."
+          # This is the same as error response but isn't an error
+          content:
+            application/json:
+              schema:
+                type: string
+        "400":
+          description: Did not include the image in the request form.
+          content: {application/json: {schema: {$ref: "../api/components.yaml#/schemas/ErrorResponse"}}}
+        "401":
+          $ref: "../api/components.yaml#/responses/NotAuthorized"
+        "404":
+          $ref: "../api/components.yaml#/responses/CollectionNotFound"
+        default:
+          $ref: "../api/components.yaml#/responses/UnexpectedServerError"
+          
+  /collections/user_permissions/{collection_id}:
+    get:
+      summary: Get Collection User Permissions
+      description: |
+        Get the current user permissions of a collection.
+        
+        Example: `curl --cookie session.cookie -X GET "http://localhost:5000/collections/user_permissions/60c745395b72bf4ed6523821" -v`
+      operationId: collections_permissions
+      tags: [collections]
+      parameters:
+        - $ref: "../api/components.yaml#/parameters/collectionIdParam"
+      responses:
+        "200":
+          description: Returns collection permissions for logged in user.
+          content:
+            application/json:
+              schema:
+                $ref: "../api/components.yaml#/schemas/UserPermissions"
+        "401":
+          $ref: "../api/components.yaml#/responses/NotAuthorized"
+        "404":
+          $ref: "../api/components.yaml#/responses/CollectionNotFound"
+        default:
+          $ref: "../api/components.yaml#/responses/UnexpectedServerError"

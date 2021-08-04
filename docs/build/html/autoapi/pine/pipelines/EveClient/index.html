@@ -111,18 +111,57 @@
 
 <dl class="py method">
 <dt id="pine.pipelines.EveClient.EveClient.get_items">
-<code class="sig-name descname"><span class="pre">get_items</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">resource</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.pipelines.EveClient.EveClient.get_items" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">get_items</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">resource</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">params</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.pipelines.EveClient.EveClient.get_items" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="pine.pipelines.EveClient.EveClient._get_documents_map">
+<code class="sig-name descname"><span class="pre">_get_documents_map</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">params</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><span class="pre">dict</span></a></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">{}</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.pipelines.EveClient.EveClient._get_documents_map" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt id="pine.pipelines.EveClient.EveClient.get_documents">
-<code class="sig-name descname"><span class="pre">get_documents</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">collection_id</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.pipelines.EveClient.EveClient.get_documents" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">get_documents</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">collection_id</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a><span class="p"><span class="pre">,</span> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#pine.pipelines.EveClient.EveClient.get_documents" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a document map where the document overlap is 0.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>collection_id</strong> – str: the ID of the collection</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>a mapping from document ID to document text for non-overlap documents</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)">dict</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pine.pipelines.EveClient.EveClient.get_documents_by_id">
+<code class="sig-name descname"><span class="pre">get_documents_by_id</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">document_ids</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.pipelines.EveClient.EveClient.get_documents_by_id" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt id="pine.pipelines.EveClient.EveClient.get_docs_with_annotations">
-<code class="sig-name descname"><span class="pre">get_docs_with_annotations</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">collection_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">doc_map</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.pipelines.EveClient.EveClient.get_docs_with_annotations" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<code class="sig-name descname"><span class="pre">get_docs_with_annotations</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">collection_id</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">doc_map</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a><span class="p"><span class="pre">,</span> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.9)"><span class="pre">typing.List</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span> </span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.9)"><span class="pre">typing.List</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span> </span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.9)"><span class="pre">typing.List</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span> </span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.9)"><span class="pre">typing.List</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#pine.pipelines.EveClient.EveClient.get_docs_with_annotations" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets document and annotation data.  Only non-overlapping documents are returned.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>collection_id</strong> – str: the ID of the collection</p></li>
+<li><p><strong>doc_map</strong> – dict[str, str]: map of document IDs to document text</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>(documents, labels, doc_ids, ann_ids) where documents is a list of the texts,
+labels is a list of the annotations, doc_ids is a list of the document IDs, and
+ann_ids is a list of the annotation IDs</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.9)">tuple</a></p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt id="pine.pipelines.EveClient.EveClient.update">
@@ -156,7 +195,9 @@
 <li><a class="reference internal" href="#pine.pipelines.EveClient.EveClient.get_all_items">get_all_items</a></li>
 <li><a class="reference internal" href="#pine.pipelines.EveClient.EveClient.get_all_ids">get_all_ids</a></li>
 <li><a class="reference internal" href="#pine.pipelines.EveClient.EveClient.get_items">get_items</a></li>
+<li><a class="reference internal" href="#pine.pipelines.EveClient.EveClient._get_documents_map">_get_documents_map</a></li>
 <li><a class="reference internal" href="#pine.pipelines.EveClient.EveClient.get_documents">get_documents</a></li>
+<li><a class="reference internal" href="#pine.pipelines.EveClient.EveClient.get_documents_by_id">get_documents_by_id</a></li>
 <li><a class="reference internal" href="#pine.pipelines.EveClient.EveClient.get_docs_with_annotations">get_docs_with_annotations</a></li>
 <li><a class="reference internal" href="#pine.pipelines.EveClient.EveClient.update">update</a></li>
 </ul>

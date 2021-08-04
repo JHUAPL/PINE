@@ -79,8 +79,14 @@ class EveClient(object):
                 break
         return doc_map
 
-    def get_documents(self, collection_id: str) -> dict:
-        # get documents
+    def get_documents(self, collection_id: str) -> typing.Dict[str, str]:
+        """Returns a document map where the document overlap is 0.
+        
+        :param collection_id: str: the ID of the collection
+        
+        :returns: a mapping from document ID to document text for non-overlap documents
+        :rtype: dict
+        """
         params = {
             "where": json.dumps({
                 "overlap": 0,
@@ -99,7 +105,17 @@ class EveClient(object):
         }
         return self._get_documents_map(params)
 
-    def get_docs_with_annotations(self, collection_id, doc_map):
+    def get_docs_with_annotations(self, collection_id: str, doc_map: typing.Dict[str, str]) -> typing.Tuple[typing.List[str], typing.List[str], typing.List[str], typing.List[str]]:
+        """Gets document and annotation data.  Only non-overlapping documents are returned.
+        
+        :param collection_id: str: the ID of the collection
+        :param doc_map: dict[str, str]: map of document IDs to document text
+        
+        :returns: (documents, labels, doc_ids, ann_ids) where documents is a list of the texts,
+                  labels is a list of the annotations, doc_ids is a list of the document IDs, and
+                  ann_ids is a list of the annotation IDs
+        :rtype: tuple
+        """
         doc_ids = list()
         documents = []
         ann_ids = list()

@@ -587,6 +587,16 @@ class PineClient(BaseClient):
         self._check_login()
         return self.get("pipelines").json()[models.ITEMS_FIELD]
 
+    def get_pipeline_status(self, pipeline_id: str) -> dict:
+        """Returns status for the given pipeline.
+        
+        :param pipeline_id: str: pipeline ID
+        :returns: pipeline status
+        :rtype: dict
+        """
+        self._check_login()
+        return self.get(["pipelines", "status", pipeline_id]).json()
+
     def collection_builder(self, **kwargs: dict) -> models.CollectionBuilder:
         r"""Makes and returns a new :py:class:`.models.CollectionBuilder` with the logged in user.
         
@@ -618,6 +628,17 @@ class PineClient(BaseClient):
             raise exceptions.PineClientValueException(builder, "collection")
         return self.post("collections", data=builder.form_json, files=builder.files).json()[models.ID_FIELD]
 
+    def archive_collection(self, collection_id: str, archive: bool = True) -> dict:
+        """Archives or unarchives the given collection.
+        
+        :param collection_id: str: the ID of the collection
+        :param archive: bool: whether to archive (True) or unarchive (False) the collection
+        :returns: updated collection information
+        :rtype: dict
+        """
+        self._check_login()
+        return self.put(["collections", "archive" if archive else "unarchive", collection_id]).json()
+
     def get_collection_permissions(self, collection_id: str) -> models.CollectionUserPermissions:
         """Returns collection permissions for the logged in user.
         
@@ -644,10 +665,53 @@ class PineClient(BaseClient):
         :returns: all the documents in the given collection
         :rtype: list(dict)
         """
+        self._check_login()
         return self.get(["documents", "by_collection_id_all", collection_id], params={
             "truncate": json.dumps(truncate),
             "truncateLength": json.dumps(truncate_length)
         }).json()["_items"]
+
+    def get_collection_classifier(self, collection_id: str) -> dict:
+        """Returns the classifier associated with the given collection.
+        
+        :param collection_id: the ID of the collection
+        :type collection_id: str
+        
+        :returns: the classifier associated with the given collection
+        :rtype: dict
+        """
+        self._check_login()
+        return self.get(["pipelines", "classifiers", "by_collection_id", collection_id]).json()
+
+    def get_next_document(self, classifier_id: str) -> str:
+        """Returns the 'next' document associated with the given classifier.
+        
+        The next document is the one that the model suggests should be annotated by the logged-in
+        user next.
+        
+        :param classifier_id: str: ID of the classifier
+        :returns: the next document ID, or None if there are none left to annotate
+        :rtype: str
+        """
+        self._check_login()
+        return self.get(["pipelines", "next_document", "by_classifier_id", classifier_id]).json()
+
+    def advance_next_document(self, classifier_id: str, document_id: str) -> dict:
+        """Advances the 'next' document associated with the given classifier by marking the
+        given document as annotated.
+        
+        The next document is the one that the model suggests should be annotated by the logged-in
+        user next.
+        
+        :param classifier_id: str: ID of the classifier
+        :param document_id: str: the ID of the document that was annotated
+        :returns: information on the advanced instance
+        :rtype: dict
+        """
+        self._check_login()
+        return self.post([
+            "pipelines", "next_document", "by_classifier_id", classifier_id, document_id
+        ]).json()
 
     def add_document(self, document: dict = {}, creator_id: str = None, collection_id: str = None,
                      overlap: int = None, text: str = None, metadata: dict = None) -> str:
@@ -818,6 +882,42 @@ class PineClient(BaseClient):
                              "update_iaa": json.dumps(update_iaa)
                          }).json()
 
+    def get_my_document_annotations(self, document_id: str) -> typing.List[typing.List[dict]]:
+        """Returns annotations for the given document for the logged in user.
+        
+        :param document_id: the ID of the document to get annotations for
+        :type collection_id: str
+        
+        :raises exceptions.PineClientValueException: if the document ID is not a valid string
+        :raises exceptions.PineClientAuthException: if not logged in
+        :raises exceptions.PineClientHttpException: if the HTTP request returns an error
+        
+        :returns: the annotations for the given document for the logged in user
+        :rtype: list(list(dict))
+        """
+        self._check_login()
+        if not document_id or not isinstance(document_id, str):
+            raise exceptions.PineClientValueException(document_id, "str")
+        return self.get(["annotations", "mine", "by_document_id", document_id]).json()["_items"]
+    
+    def get_others_document_annotations(self, document_id: str) -> typing.List[typing.List]:
+        """Returns annotations for the given document for users other than the logged in user.
+        
+        :param document_id: the ID of the document to get annotations for
+        :type collection_id: str
+        
+        :raises exceptions.PineClientValueException: if the document ID is not a valid string
+        :raises exceptions.PineClientAuthException: if not logged in
+        :raises exceptions.PineClientHttpException: if the HTTP request returns an error
+        
+        :returns: the annotations for the given document for users other than the logged in user
+        :rtype: list(list(dict))
+        """
+        self._check_login()
+        if not document_id or not isinstance(document_id, str):
+            raise exceptions.PineClientValueException(document_id, "str")
+        return self.get(["annotations", "others", "by_document_id", document_id]).json()["_items"]
+
     def list_collections(self, include_archived: bool = False) -> typing.List[dict]:
         """Returns a list of user's collections.
         
@@ -837,6 +937,15 @@ class PineClient(BaseClient):
         for col in cols:
             models.remove_eve_fields(col, remove_timestamps=False)
         return cols
+
+    def get_collection(self, collection_id: str) -> dict:
+        """Returns the collection with the given ID.
+        
+        :param collection_id: str: the ID of the collection
+        :returns: the collection data
+        :rtype: dict
+        """
+        return self.get(["collections", "by_id", collection_id]).json()
 
     def get_collection_iaa_report(self, collection_id: str) -> dict:
         """Returns IAA (inter-annotation agreement) report for the given collection.
@@ -890,6 +999,82 @@ class PineClient(BaseClient):
             "include_annotations": json.dumps(include_annotations),
             "include_annotation_latest_version_only": json.dumps(include_annotation_latest_version_only)
         }).json()
+
+    def get_classifier_status(self, classifier_id: str) -> dict:
+        """Returns the status for the given classifier.
+        
+        :param: classifier_id: str: classifier ID
+        :returns: status for the given classifier
+        :rtype: dict
+        """
+        self._check_login()
+        return self.get(["pipelines", "classifiers", "status", classifier_id]).json()
+
+    def classifier_train(self, classifier_id: str, model_name: str = "auto-trained") -> dict:
+        """Trains the given classifier (using collection documents).
+        
+        Note that training is done asynchronously, so this method should return very quickly.  One
+        of the things returned in the dict will be a job ID.  If you want to know when the training
+        has finished, you can periodically poll :py:func:`get_classifier_running_jobs` and check
+        for that job ID.
+        
+        :param classifier_id: str: classifier ID
+        :param model_name: str: name of model corresponding to filename on disk, defaults to
+                                ``"auto-trained"`` which is the same as the annotation-based
+                                model training
+        :rtype: dict
+        """
+        self._check_login()
+        return self.post(["pipelines", "train", classifier_id], json={"model_name": model_name}).json()
+
+    def classifier_has_trained(self, classifier_id: str) -> bool:
+        """Returns whether the given classifier has been trained or not.
+        
+        If False, future calls to predict will fail.
+        
+        :param: classifier_id: str: classifier ID
+        :rtype: bool
+        """
+        status = self.get_classifier_status(classifier_id)
+        if "job_response" in status and status["job_response"] and "has_trained" in status["job_response"]:
+            return status["job_response"]["has_trained"]
+        else:
+            raise exceptions.PineClientException("Unable to get status for classifier {}".format(classifier_id))
+
+    def classifier_predict(self, classifier_id, document_ids: typing.List[str],
+                           texts: typing.List[str], timeout_in_s: int = 36000) -> dict:
+        """Runs classifier prediction on the given documents.  At least one of document_ids and
+        texts must be non-empty.
+        
+        This prediction uses the last-trained model name for that classifier.  This method will
+        block until the prediction has finished and then return the results.
+        
+        :param classifier_id: str: classifier ID
+        :param document_ids: list[str]: a list of document IDs to run prediction on
+        :param texts: list[str]: a list of direct document texts to run prediction on
+        :param timeout_in_s: int: max timeout in seconds before erroring out and returning, defaults
+                                  to ``36000``
+        :rtype: dict
+        """
+        if not self.classifier_has_trained(classifier_id):
+            raise exceptions.PineClientException("The given classifier has not yet been trained.")
+        self._check_login()
+        params = {
+            "document_ids": document_ids,
+            "texts": texts
+        }
+        if timeout_in_s != None:
+            params["timeout_in_s"] = timeout_in_s
+        return self.post(["pipelines", "predict", classifier_id], json=params).json()
+
+    def get_classifier_running_jobs(self, classifier_id: str) -> typing.List[str]:
+        """Gets the list of running job IDs for the given classifier.
+        
+        :param classifier_id: str: classifier ID
+        :rtype: list[str]
+        """
+        self._check_login()
+        return self.get(["pipelines", "running_jobs", classifier_id]).json()
 
 
 class LocalPineClient(PineClient):

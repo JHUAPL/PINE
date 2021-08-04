@@ -11,6 +11,7 @@
 
 # Python
 **/__pycache__
+**/.pytest_cache
 
 # Logs
 backend/pine/backend/logs

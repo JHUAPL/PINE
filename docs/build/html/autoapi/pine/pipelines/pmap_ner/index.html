@@ -100,18 +100,28 @@
 <dd></dd></dl>
 
 <dl class="py method">
+<dt id="pine.pipelines.pmap_ner.NER.pipeline_class">
+<em class="property"><span class="pre">property</span> </em><code class="sig-name descname"><span class="pre">pipeline_class</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.pipelines.pmap_ner.NER.pipeline_class" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="pine.pipelines.pmap_ner.NER.status">
+<code class="sig-name descname"><span class="pre">status</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><span class="pre">dict</span></a><a class="headerlink" href="#pine.pipelines.pmap_ner.NER.status" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
 <dt id="pine.pipelines.pmap_ner.NER.fit">
-<code class="sig-name descname"><span class="pre">fit</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.pipelines.pmap_ner.NER.fit" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">fit</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.pipelines.pmap_ner.NER.fit" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt id="pine.pipelines.pmap_ner.NER.predict">
-<code class="sig-name descname"><span class="pre">predict</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Xid</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.pipelines.pmap_ner.NER.predict" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">predict</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">X</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Iterable</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">DocumentPredictions</span><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#pine.pipelines.pmap_ner.NER.predict" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt id="pine.pipelines.pmap_ner.NER.predict_proba">
-<code class="sig-name descname"><span class="pre">predict_proba</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Xid</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.pipelines.pmap_ner.NER.predict_proba" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">predict_proba</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">X</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Iterable</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">DocumentPredictionProbabilities</span><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#pine.pipelines.pmap_ner.NER.predict_proba" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -126,7 +136,7 @@
 
 <dl class="py method">
 <dt id="pine.pipelines.pmap_ner.NER.save_model">
-<code class="sig-name descname"><span class="pre">save_model</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model_path</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.pipelines.pmap_ner.NER.save_model" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">save_model</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model_name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.pipelines.pmap_ner.NER.save_model" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -158,6 +168,8 @@
 <li><a class="reference internal" href="#pine.pipelines.pmap_ner.NER.pipeline">pipeline</a></li>
 <li><a class="reference internal" href="#pine.pipelines.pmap_ner.NER.__SUPPORTED_PIPELINES">__SUPPORTED_PIPELINES</a></li>
 <li><a class="reference internal" href="#pine.pipelines.pmap_ner.NER.pipe_init">pipe_init</a></li>
+<li><a class="reference internal" href="#pine.pipelines.pmap_ner.NER.pipeline_class">pipeline_class</a></li>
+<li><a class="reference internal" href="#pine.pipelines.pmap_ner.NER.status">status</a></li>
 <li><a class="reference internal" href="#pine.pipelines.pmap_ner.NER.fit">fit</a></li>
 <li><a class="reference internal" href="#pine.pipelines.pmap_ner.NER.predict">predict</a></li>
 <li><a class="reference internal" href="#pine.pipelines.pmap_ner.NER.predict_proba">predict_proba</a></li>

@@ -204,7 +204,7 @@ def _add_or_update_annotation(new_annotation):
 
     return new_annotation["_id"]
 
-@bp.route("/mine/by_document_id/<doc_id>", methods = ["POST", "PUT"])
+@bp.route("/mine/by_document_id/<doc_id>", methods = ["POST"])
 def save_annotations(doc_id):
     """
     Save new NER annotations and labels to the database as an entry for the logged in user, for the document. If there
@@ -254,7 +254,7 @@ def save_annotations(doc_id):
     
     return jsonify(resp)
 
-@bp.route("/mine/by_collection_id/<collection_id>", methods = ["POST", "PUT"])
+@bp.route("/mine/by_collection_id/<collection_id>", methods = ["POST"])
 def save_collection_annotations(collection_id: str):
     # If you change input or output, update client modules pine.client.models and pine.client.client
     collection = service.get_item_by_id("collections", collection_id, params=service.params({
@@ -277,6 +277,9 @@ def save_collection_annotations(collection_id: str):
     
     skip_document_updates = json.loads(request.args.get("skip_document_updates", "false"))
     update_iaa = json.loads(request.args.get("update_iaa", "true"))
+    # Batch mode should only be used when all documents being annotated haven't been
+    # annotated before, otherwise eve's versioning will be messed up.
+    batch_mode = json.loads(request.args.get("batch_mode", "true"))
     
     # make sure all the documents actually belong to that collection
     collection_ids = list(documents.get_collection_ids_for(doc_annotations.keys()))
@@ -284,7 +287,6 @@ def save_collection_annotations(collection_id: str):
         raise exceptions.Unauthorized()
     user_id = auth.get_logged_in_user()["id"]
 
-    # first try batch mode
     new_annotations = []
     for (doc_id, body) in doc_annotations.items():
         (doc_labels, ner_annotations) = _make_annotations(body)
@@ -295,24 +297,35 @@ def save_collection_annotations(collection_id: str):
             "document_id": doc_id,
             "annotation": doc_labels + ner_annotations
         })
-    resp = service.post("annotations", json=new_annotations)
-    if resp.ok:
-        for (i, created_annotation) in enumerate(resp.json()["_items"]):
-            new_annotations[i]["_id"] = created_annotation["_id"]
-            if not skip_document_updates:
-                set_document_to_annotated_by_user(new_annotations[i]["document_id"],
-                                                  new_annotations[i]["creator_id"])
-        log.access_flask_annotate_documents(new_annotations)
-        if update_iaa:
-            success = pineiaa.update_iaa_report_by_collection_id(collection_id)
-            if not success:
-                logger.error("Unable to update IAA report but will not return an error")
-        return jsonify([annotation["_id"] for annotation in new_annotations])
+
+    if batch_mode:
+        # first try batch mode (should only be done if the document doesn't have annotations already)
+        resp = service.post("annotations", json=new_annotations)
+        if resp.ok:
+            resp_json = resp.json()
+            # Changing a single document will not have _items
+            if "_items" in resp_json:
+                for (i, created_annotation) in enumerate(resp_json["_items"]):
+                    new_annotations[i]["_id"] = created_annotation["_id"]
+                    if not skip_document_updates:
+                        set_document_to_annotated_by_user(new_annotations[i]["document_id"],
+                                                          new_annotations[i]["creator_id"])
+            else:
+                new_annotations[0]["_id"] = resp_json["_id"]
+                if not skip_document_updates:
+                    set_document_to_annotated_by_user(new_annotations[0]["document_id"],
+                                                      new_annotations[0]["creator_id"])
+            log.access_flask_annotate_documents(new_annotations)
+            if update_iaa:
+                success = pineiaa.update_iaa_report_by_collection_id(collection_id)
+                if not success:
+                    logger.error("Unable to update IAA report but will not return an error")
+            return jsonify([annotation["_id"] for annotation in new_annotations])
 
     # fall back on individual mode
     added_ids = []
     for annotation in new_annotations:
-        added_id = _add_or_update_annotation(annotation["document_id"], user_id, annotation)
+        added_id = _add_or_update_annotation(annotation)
         if added_id:
             added_ids.append(added_id)
     if update_iaa:

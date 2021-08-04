@@ -48,13 +48,36 @@ Classes
    .. method:: get_all_ids(self, resource)
 
 
-   .. method:: get_items(self, resource)
+   .. method:: get_items(self, resource, params={})
 
 
-   .. method:: get_documents(self, collection_id)
+   .. method:: _get_documents_map(self, params: dict = {})
 
 
-   .. method:: get_docs_with_annotations(self, collection_id, doc_map)
+   .. method:: get_documents(self, collection_id: str) -> Dict[(str, str)]
+
+      Returns a document map where the document overlap is 0.
+
+      :param collection_id: str: the ID of the collection
+
+      :returns: a mapping from document ID to document text for non-overlap documents
+      :rtype: dict
+
+
+   .. method:: get_documents_by_id(self, document_ids: List[str])
+
+
+   .. method:: get_docs_with_annotations(self, collection_id: str, doc_map: Dict[(str, str)]) -> Tuple[(typing.List[str], typing.List[str], typing.List[str], typing.List[str])]
+
+      Gets document and annotation data.  Only non-overlapping documents are returned.
+
+      :param collection_id: str: the ID of the collection
+      :param doc_map: dict[str, str]: map of document IDs to document text
+
+      :returns: (documents, labels, doc_ids, ann_ids) where documents is a list of the texts,
+                labels is a list of the annotations, doc_ids is a list of the document IDs, and
+                ann_ids is a list of the annotation IDs
+      :rtype: tuple
 
 
    .. method:: update(self, resource, id, etag, update_obj)

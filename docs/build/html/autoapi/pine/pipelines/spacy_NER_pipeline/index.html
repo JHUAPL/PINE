@@ -70,10 +70,20 @@
 </tr>
 </tbody>
 </table>
+<dl class="py data">
+<dt id="pine.pipelines.spacy_NER_pipeline.logger">
+<code class="sig-prename descclassname"><span class="pre">pine.pipelines.spacy_NER_pipeline.</span></code><code class="sig-name descname"><span class="pre">logger</span></code><a class="headerlink" href="#pine.pipelines.spacy_NER_pipeline.logger" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
 <dl class="py class">
 <dt id="pine.pipelines.spacy_NER_pipeline.spacy_NER">
 <em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">pine.pipelines.spacy_NER_pipeline.</span></code><code class="sig-name descname"><span class="pre">spacy_NER</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.pipelines.spacy_NER_pipeline.spacy_NER" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="../pipeline/index.html#pine.pipelines.pipeline.Pipeline" title="pine.pipelines.pipeline.Pipeline"><code class="xref py py-class docutils literal notranslate"><span class="pre">pine.pipelines.pipeline.Pipeline</span></code></a></p>
+<dl class="py attribute">
+<dt id="pine.pipelines.spacy_NER_pipeline.spacy_NER.__model">
+<code class="sig-name descname"><span class="pre">__model</span></code><a class="headerlink" href="#pine.pipelines.spacy_NER_pipeline.spacy_NER.__model" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
 <dl class="py attribute">
 <dt id="pine.pipelines.spacy_NER_pipeline.spacy_NER.__nlp">
 <code class="sig-name descname"><span class="pre">__nlp</span></code><em class="property"> <span class="pre">=</span> <span class="pre">[]</span></em><a class="headerlink" href="#pine.pipelines.spacy_NER_pipeline.spacy_NER.__nlp" title="Permalink to this definition">¶</a></dt>
@@ -89,9 +99,24 @@
 <code class="sig-name descname"><span class="pre">__optimizer</span></code><em class="property"> <span class="pre">=</span> <span class="pre">[]</span></em><a class="headerlink" href="#pine.pipelines.spacy_NER_pipeline.spacy_NER.__optimizer" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
+<dl class="py attribute">
+<dt id="pine.pipelines.spacy_NER_pipeline.spacy_NER.__default_fit_params">
+<code class="sig-name descname"><span class="pre">__default_fit_params</span></code><a class="headerlink" href="#pine.pipelines.spacy_NER_pipeline.spacy_NER.__default_fit_params" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="pine.pipelines.spacy_NER_pipeline.spacy_NER._load_model">
+<code class="sig-name descname"><span class="pre">_load_model</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.pipelines.spacy_NER_pipeline.spacy_NER._load_model" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="pine.pipelines.spacy_NER_pipeline.spacy_NER.status">
+<code class="sig-name descname"><span class="pre">status</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><span class="pre">dict</span></a><a class="headerlink" href="#pine.pipelines.spacy_NER_pipeline.spacy_NER.status" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
 <dl class="py method">
 <dt id="pine.pipelines.spacy_NER_pipeline.spacy_NER.fit">
-<code class="sig-name descname"><span class="pre">fit</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">params</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.pipelines.spacy_NER_pipeline.spacy_NER.fit" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">fit</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">params</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.pipelines.spacy_NER_pipeline.spacy_NER.fit" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -101,12 +126,12 @@
 
 <dl class="py method">
 <dt id="pine.pipelines.spacy_NER_pipeline.spacy_NER.predict">
-<code class="sig-name descname"><span class="pre">predict</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Xid</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.pipelines.spacy_NER_pipeline.spacy_NER.predict" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">predict</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">X</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Iterable</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">DocumentPredictions</span><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#pine.pipelines.spacy_NER_pipeline.spacy_NER.predict" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt id="pine.pipelines.spacy_NER_pipeline.spacy_NER.predict_proba">
-<code class="sig-name descname"><span class="pre">predict_proba</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Xid</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.pipelines.spacy_NER_pipeline.spacy_NER.predict_proba" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">predict_proba</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">X</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Iterable</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">DocumentPredictionProbabilities</span><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#pine.pipelines.spacy_NER_pipeline.spacy_NER.predict_proba" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -126,12 +151,12 @@
 
 <dl class="py method">
 <dt id="pine.pipelines.spacy_NER_pipeline.spacy_NER.save_model">
-<code class="sig-name descname"><span class="pre">save_model</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model_path</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.pipelines.spacy_NER_pipeline.spacy_NER.save_model" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">save_model</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model_name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.pipelines.spacy_NER_pipeline.spacy_NER.save_model" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt id="pine.pipelines.spacy_NER_pipeline.spacy_NER.load_model">
-<code class="sig-name descname"><span class="pre">load_model</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model_path</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.pipelines.spacy_NER_pipeline.spacy_NER.load_model" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">load_model</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model_name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.pipelines.spacy_NER_pipeline.spacy_NER.load_model" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -152,10 +177,15 @@
 <li><a class="reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">pine.pipelines.spacy_NER_pipeline</span></code></a><ul>
 <li><a class="reference internal" href="#module-contents">Module Contents</a><ul>
 <li><a class="reference internal" href="#classes">Classes</a><ul>
+<li><a class="reference internal" href="#pine.pipelines.spacy_NER_pipeline.logger">logger</a></li>
 <li><a class="reference internal" href="#pine.pipelines.spacy_NER_pipeline.spacy_NER">spacy_NER</a><ul>
+<li><a class="reference internal" href="#pine.pipelines.spacy_NER_pipeline.spacy_NER.__model">__model</a></li>
 <li><a class="reference internal" href="#pine.pipelines.spacy_NER_pipeline.spacy_NER.__nlp">__nlp</a></li>
 <li><a class="reference internal" href="#pine.pipelines.spacy_NER_pipeline.spacy_NER.__ner">__ner</a></li>
 <li><a class="reference internal" href="#pine.pipelines.spacy_NER_pipeline.spacy_NER.__optimizer">__optimizer</a></li>
+<li><a class="reference internal" href="#pine.pipelines.spacy_NER_pipeline.spacy_NER.__default_fit_params">__default_fit_params</a></li>
+<li><a class="reference internal" href="#pine.pipelines.spacy_NER_pipeline.spacy_NER._load_model">_load_model</a></li>
+<li><a class="reference internal" href="#pine.pipelines.spacy_NER_pipeline.spacy_NER.status">status</a></li>
 <li><a class="reference internal" href="#pine.pipelines.spacy_NER_pipeline.spacy_NER.fit">fit</a></li>
 <li><a class="reference internal" href="#pine.pipelines.spacy_NER_pipeline.spacy_NER.evaluate">evaluate</a></li>
 <li><a class="reference internal" href="#pine.pipelines.spacy_NER_pipeline.spacy_NER.predict">predict</a></li>

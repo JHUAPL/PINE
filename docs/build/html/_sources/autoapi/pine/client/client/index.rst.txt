@@ -532,6 +532,15 @@ Functions
       :rtype: list(dict)
 
 
+   .. method:: get_pipeline_status(self, pipeline_id: str) -> dict
+
+      Returns status for the given pipeline.
+
+      :param pipeline_id: str: pipeline ID
+      :returns: pipeline status
+      :rtype: dict
+
+
    .. method:: collection_builder(self, **kwargs: dict) -> pine.client.models.CollectionBuilder
 
       Makes and returns a new :py:class:`.models.CollectionBuilder` with the logged in user.
@@ -558,6 +567,16 @@ Functions
       :rtype: str
 
 
+   .. method:: archive_collection(self, collection_id: str, archive: bool = True) -> dict
+
+      Archives or unarchives the given collection.
+
+      :param collection_id: str: the ID of the collection
+      :param archive: bool: whether to archive (True) or unarchive (False) the collection
+      :returns: updated collection information
+      :rtype: dict
+
+
    .. method:: get_collection_permissions(self, collection_id: str) -> pine.client.models.CollectionUserPermissions
 
       Returns collection permissions for the logged in user.
@@ -582,6 +601,43 @@ Functions
 
       :returns: all the documents in the given collection
       :rtype: list(dict)
+
+
+   .. method:: get_collection_classifier(self, collection_id: str) -> dict
+
+      Returns the classifier associated with the given collection.
+
+      :param collection_id: the ID of the collection
+      :type collection_id: str
+
+      :returns: the classifier associated with the given collection
+      :rtype: dict
+
+
+   .. method:: get_next_document(self, classifier_id: str) -> str
+
+      Returns the 'next' document associated with the given classifier.
+
+      The next document is the one that the model suggests should be annotated by the logged-in
+      user next.
+
+      :param classifier_id: str: ID of the classifier
+      :returns: the next document ID, or None if there are none left to annotate
+      :rtype: str
+
+
+   .. method:: advance_next_document(self, classifier_id: str, document_id: str) -> dict
+
+      Advances the 'next' document associated with the given classifier by marking the
+      given document as annotated.
+
+      The next document is the one that the model suggests should be annotated by the logged-in
+      user next.
+
+      :param classifier_id: str: ID of the classifier
+      :param document_id: str: the ID of the document that was annotated
+      :returns: information on the advanced instance
+      :rtype: dict
 
 
    .. method:: add_document(self, document: dict = {}, creator_id: str = None, collection_id: str = None, overlap: int = None, text: str = None, metadata: dict = None) -> str
@@ -696,6 +752,36 @@ Functions
       :rtype: list(str)
 
 
+   .. method:: get_my_document_annotations(self, document_id: str) -> List[List[dict]]
+
+      Returns annotations for the given document for the logged in user.
+
+      :param document_id: the ID of the document to get annotations for
+      :type collection_id: str
+
+      :raises exceptions.PineClientValueException: if the document ID is not a valid string
+      :raises exceptions.PineClientAuthException: if not logged in
+      :raises exceptions.PineClientHttpException: if the HTTP request returns an error
+
+      :returns: the annotations for the given document for the logged in user
+      :rtype: list(list(dict))
+
+
+   .. method:: get_others_document_annotations(self, document_id: str) -> List[List]
+
+      Returns annotations for the given document for users other than the logged in user.
+
+      :param document_id: the ID of the document to get annotations for
+      :type collection_id: str
+
+      :raises exceptions.PineClientValueException: if the document ID is not a valid string
+      :raises exceptions.PineClientAuthException: if not logged in
+      :raises exceptions.PineClientHttpException: if the HTTP request returns an error
+
+      :returns: the annotations for the given document for users other than the logged in user
+      :rtype: list(list(dict))
+
+
    .. method:: list_collections(self, include_archived: bool = False) -> List[dict]
 
       Returns a list of user's collections.
@@ -708,6 +794,15 @@ Functions
 
       :returns: user's collections
       :rtype: list(dict)
+
+
+   .. method:: get_collection(self, collection_id: str) -> dict
+
+      Returns the collection with the given ID.
+
+      :param collection_id: str: the ID of the collection
+      :returns: the collection data
+      :rtype: dict
 
 
    .. method:: get_collection_iaa_report(self, collection_id: str) -> dict
@@ -746,6 +841,65 @@ Functions
 
       :returns: collection data
       :rtype: dict
+
+
+   .. method:: get_classifier_status(self, classifier_id: str) -> dict
+
+      Returns the status for the given classifier.
+
+      :param: classifier_id: str: classifier ID
+      :returns: status for the given classifier
+      :rtype: dict
+
+
+   .. method:: classifier_train(self, classifier_id: str, model_name: str = 'auto-trained') -> dict
+
+      Trains the given classifier (using collection documents).
+
+      Note that training is done asynchronously, so this method should return very quickly.  One
+      of the things returned in the dict will be a job ID.  If you want to know when the training
+      has finished, you can periodically poll :py:func:`get_classifier_running_jobs` and check
+      for that job ID.
+
+      :param classifier_id: str: classifier ID
+      :param model_name: str: name of model corresponding to filename on disk, defaults to
+                              ``"auto-trained"`` which is the same as the annotation-based
+                              model training
+      :rtype: dict
+
+
+   .. method:: classifier_has_trained(self, classifier_id: str) -> bool
+
+      Returns whether the given classifier has been trained or not.
+
+      If False, future calls to predict will fail.
+
+      :param: classifier_id: str: classifier ID
+      :rtype: bool
+
+
+   .. method:: classifier_predict(self, classifier_id, document_ids: List[str], texts: List[str], timeout_in_s: int = 36000) -> dict
+
+      Runs classifier prediction on the given documents.  At least one of document_ids and
+      texts must be non-empty.
+
+      This prediction uses the last-trained model name for that classifier.  This method will
+      block until the prediction has finished and then return the results.
+
+      :param classifier_id: str: classifier ID
+      :param document_ids: list[str]: a list of document IDs to run prediction on
+      :param texts: list[str]: a list of direct document texts to run prediction on
+      :param timeout_in_s: int: max timeout in seconds before erroring out and returning, defaults
+                                to ``36000``
+      :rtype: dict
+
+
+   .. method:: get_classifier_running_jobs(self, classifier_id: str) -> List[str]
+
+      Gets the list of running job IDs for the given classifier.
+
+      :param classifier_id: str: classifier ID
+      :rtype: list[str]
 
 
 

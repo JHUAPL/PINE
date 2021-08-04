@@ -135,12 +135,13 @@ def archive_or_unarchive_collection(collection_id, archive):
     collection = resp.json()
     if not get_user_permissions(collection).archive:
         raise exceptions.Unauthorized()
-    collection["archived"] = archive
-    headers = {"If-Match": collection["_etag"]}
-    service.remove_nonupdatable_fields(collection)
-    resp = service.put(["collections", collection_id], json = collection, headers = headers)
-    if not resp.ok:
-        abort(resp.status_code)
+    if collection["archived"] != archive:
+        collection["archived"] = archive
+        headers = {"If-Match": collection["_etag"]}
+        service.remove_nonupdatable_fields(collection)
+        resp = service.put(["collections", collection_id], json = collection, headers = headers)
+        if not resp.ok:
+            abort(resp.status_code)
     return get_collection(collection_id)
 
 @bp.route("/archive/<collection_id>", methods = ["PUT"])
@@ -368,7 +369,7 @@ def add_viewer_to_collection(collection_id):
             abort(resp.status_code, resp.content)
         return service.convert_response(resp)
     else:
-        abort(409, "Annotator already exists in collection")
+        abort(409, "Viewer already exists in collection")
 
 
 @bp.route("/add_label/<collection_id>", methods=["POST"])
@@ -393,10 +394,10 @@ def add_label_to_collection(collection_id):
             abort(resp.status_code, resp.content)
         return service.convert_response(resp)
     else:
-        abort(409, "Annotator already exists in collection")
+        abort(409, "Label already exists in collection")
 
 
-def get_overlap_ids(collection_id):
+def get_overlap_ids(collection_id: str):
     """
     Return the list of ids for overlapping documents for the collection matching the provided collection id.
     :param collection_id: str
@@ -714,7 +715,7 @@ def _upload_collection_image_file(collection_id, path, image_file):
     image_file.save(image_filename)
     return "/" + path
 
-@bp.route("/image/<collection_id>/<path:path>", methods=["POST", "PUT"])
+@bp.route("/image/<collection_id>/<path:path>", methods=["POST"])
 @auth.login_required
 def post_collection_image(collection_id, path):
     if not is_cached_last_collection(collection_id):

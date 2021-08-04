@@ -66,7 +66,10 @@
 <col style="width: 90%" />
 </colgroup>
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#pine.backend.job_manager.service.ServiceManager" title="pine.backend.job_manager.service.ServiceManager"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ServiceManager</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pine.backend.job_manager.service.ServiceJob" title="pine.backend.job_manager.service.ServiceJob"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ServiceJob</span></code></a></p></td>
+<td><p>Data class for a service job.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#pine.backend.job_manager.service.ServiceManager" title="pine.backend.job_manager.service.ServiceManager"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ServiceManager</span></code></a></p></td>
 <td><p><dl class="field-list simple">
 <dt class="field-odd">type default_handler</dt>
 <dd class="field-odd"><p>callable</p>
@@ -85,6 +88,23 @@
 <dt id="pine.backend.job_manager.service.logger">
 <code class="sig-prename descclassname"><span class="pre">pine.backend.job_manager.service.</span></code><code class="sig-name descname"><span class="pre">logger</span></code><a class="headerlink" href="#pine.backend.job_manager.service.logger" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
+
+<dl class="py class">
+<dt id="pine.backend.job_manager.service.ServiceJob">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">pine.backend.job_manager.service.</span></code><code class="sig-name descname"><span class="pre">ServiceJob</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">job_id</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">request_body</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><span class="pre">dict</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">request_response</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><span class="pre">dict</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.job_manager.service.ServiceJob" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>Data class for a service job.</p>
+<p>“Constructor.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>job_id</strong> – str: job ID</p></li>
+<li><p><strong>request_body</strong> – dict: job request body</p></li>
+<li><p><strong>request_response</strong> – dict: job request response</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py class">
 <dt id="pine.backend.job_manager.service.ServiceManager">
@@ -198,6 +218,16 @@
 <dd></dd></dl>
 
 <dl class="py method">
+<dt id="pine.backend.job_manager.service.ServiceManager.get_results_key">
+<em class="property"><span class="pre">classmethod</span> </em><code class="sig-name descname"><span class="pre">get_results_key</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cls</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">service_name</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">job_id</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a><a class="headerlink" href="#pine.backend.job_manager.service.ServiceManager.get_results_key" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="pine.backend.job_manager.service.ServiceManager.get_running_jobs_key">
+<em class="property"><span class="pre">classmethod</span> </em><code class="sig-name descname"><span class="pre">get_running_jobs_key</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cls</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">service_name</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a><a class="headerlink" href="#pine.backend.job_manager.service.ServiceManager.get_running_jobs_key" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
 <dt id="pine.backend.job_manager.service.ServiceManager.get_registered_channels">
 <em class="property"><span class="pre">classmethod</span> </em><code class="sig-name descname"><span class="pre">get_registered_channels</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cls</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">include_ttl</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.job_manager.service.ServiceManager.get_registered_channels" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get list of registered channels, with registration time if requested.
@@ -222,14 +252,54 @@
 </dd></dl>
 
 <dl class="py method">
+<dt id="pine.backend.job_manager.service.ServiceManager._get_service_details">
+<em class="property"><span class="pre">classmethod</span> </em><code class="sig-name descname"><span class="pre">_get_service_details</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cls</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">service_name</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">retry_count</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><span class="pre">dict</span></a><a class="headerlink" href="#pine.backend.job_manager.service.ServiceManager._get_service_details" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="pine.backend.job_manager.service.ServiceManager._get_service_channel">
+<em class="property"><span class="pre">classmethod</span> </em><code class="sig-name descname"><span class="pre">_get_service_channel</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cls</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">service_name</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a><a class="headerlink" href="#pine.backend.job_manager.service.ServiceManager._get_service_channel" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
 <dt id="pine.backend.job_manager.service.ServiceManager.send_service_request">
-<em class="property"><span class="pre">classmethod</span> </em><code class="sig-name descname"><span class="pre">send_service_request</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cls</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">service_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">job_id</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">encoder</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.job_manager.service.ServiceManager.send_service_request" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">classmethod</span> </em><code class="sig-name descname"><span class="pre">send_service_request</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cls</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">service_name</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">job_id</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">encoder</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.job_manager.service.ServiceManager.send_service_request" title="Permalink to this definition">¶</a></dt>
 <dd><p>Queue’s a job for the requested service.
 :type service_name: str
 :type data: dict
 :type job_id: str
 :type encoder: json.JSONEncoder
 :rtype: None | dict</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pine.backend.job_manager.service.ServiceManager.get_job_response">
+<em class="property"><span class="pre">classmethod</span> </em><code class="sig-name descname"><span class="pre">get_job_response</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cls</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">service_name</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">job_id</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeout_in_s</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.job_manager.service.ServiceManager.get_job_response" title="Permalink to this definition">¶</a></dt>
+<dd><p>Waits for a response for the given job and returns it.
+:param service_name: str: service name
+:param job_id: str: job ID
+:param timeout_in_s: int: wait timeout in seconds
+:rtype None | dict</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pine.backend.job_manager.service.ServiceManager.send_service_request_and_get_response">
+<em class="property"><span class="pre">classmethod</span> </em><code class="sig-name descname"><span class="pre">send_service_request_and_get_response</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cls</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">service_name</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeout_in_s</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">job_id</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">encoder</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference internal" href="#pine.backend.job_manager.service.ServiceJob" title="pine.backend.job_manager.service.ServiceJob"><span class="pre">pine.backend.job_manager.service.ServiceJob</span></a><a class="headerlink" href="#pine.backend.job_manager.service.ServiceManager.send_service_request_and_get_response" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sends a service requests, waits for a response, and returns job data.
+:param service_name: str: service name
+:param data: job data
+:param timeout_in_s: int: wait timeout in seconds
+:param job_id: str: optional job ID (or None to auto-generate one)
+:param encoder: optional JSON encoder for job data
+:rtype None | ServiceJob</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pine.backend.job_manager.service.ServiceManager.get_running_jobs">
+<em class="property"><span class="pre">classmethod</span> </em><code class="sig-name descname"><span class="pre">get_running_jobs</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cls</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">service_name</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#pine.backend.job_manager.service.ServiceManager.get_running_jobs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns running jobs.
+:param service_name: str: service name
+:rtype list[str]</p>
 </dd></dl>
 
 <dl class="py method">
@@ -328,6 +398,7 @@ Runs a handler when a processing message gets send over an already registered ch
 <li><a class="reference internal" href="#classes">Classes</a><ul>
 <li><a class="reference internal" href="#pine.backend.job_manager.service.config">config</a></li>
 <li><a class="reference internal" href="#pine.backend.job_manager.service.logger">logger</a></li>
+<li><a class="reference internal" href="#pine.backend.job_manager.service.ServiceJob">ServiceJob</a></li>
 <li><a class="reference internal" href="#pine.backend.job_manager.service.ServiceManager">ServiceManager</a><ul>
 <li><a class="reference internal" href="#pine.backend.job_manager.service.ServiceManager.r_pool">r_pool</a></li>
 <li><a class="reference internal" href="#pine.backend.job_manager.service.ServiceManager.r_conn">r_conn</a></li>
@@ -350,10 +421,17 @@ Runs a handler when a processing message gets send over an already registered ch
 <li><a class="reference internal" href="#pine.backend.job_manager.service.ServiceManager.shutdown_channel">shutdown_channel</a></li>
 <li><a class="reference internal" href="#pine.backend.job_manager.service.ServiceManager.registration_channel">registration_channel</a></li>
 <li><a class="reference internal" href="#pine.backend.job_manager.service.ServiceManager.reserved_channels">reserved_channels</a></li>
+<li><a class="reference internal" href="#pine.backend.job_manager.service.ServiceManager.get_results_key">get_results_key</a></li>
+<li><a class="reference internal" href="#pine.backend.job_manager.service.ServiceManager.get_running_jobs_key">get_running_jobs_key</a></li>
 <li><a class="reference internal" href="#pine.backend.job_manager.service.ServiceManager.get_registered_channels">get_registered_channels</a></li>
 <li><a class="reference internal" href="#pine.backend.job_manager.service.ServiceManager.get_registered_service_details">get_registered_service_details</a></li>
 <li><a class="reference internal" href="#pine.backend.job_manager.service.ServiceManager.get_registered_services">get_registered_services</a></li>
+<li><a class="reference internal" href="#pine.backend.job_manager.service.ServiceManager._get_service_details">_get_service_details</a></li>
+<li><a class="reference internal" href="#pine.backend.job_manager.service.ServiceManager._get_service_channel">_get_service_channel</a></li>
 <li><a class="reference internal" href="#pine.backend.job_manager.service.ServiceManager.send_service_request">send_service_request</a></li>
+<li><a class="reference internal" href="#pine.backend.job_manager.service.ServiceManager.get_job_response">get_job_response</a></li>
+<li><a class="reference internal" href="#pine.backend.job_manager.service.ServiceManager.send_service_request_and_get_response">send_service_request_and_get_response</a></li>
+<li><a class="reference internal" href="#pine.backend.job_manager.service.ServiceManager.get_running_jobs">get_running_jobs</a></li>
 <li><a class="reference internal" href="#pine.backend.job_manager.service.ServiceManager.start_listeners">start_listeners</a></li>
 <li><a class="reference internal" href="#pine.backend.job_manager.service.ServiceManager.stop_listeners">stop_listeners</a></li>
 <li><a class="reference internal" href="#pine.backend.job_manager.service.ServiceManager._start_registration_listener">_start_registration_listener</a></li>

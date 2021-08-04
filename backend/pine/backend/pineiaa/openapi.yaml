@@ -1,0 +1,72 @@
+# (C) 2021 The Johns Hopkins University Applied Physics Laboratory LLC.
+
+openapi: "3.0.2"
+
+security:
+  - cookieAuth: []
+
+tags:
+  - name: iaa_reports
+    description: Operations in the "iaa_reports" blueprint.
+
+paths:
+
+  /iaa_reports/by_collection_id/{collection_id}:
+    get:
+      summary: Get IAA Report for Collection
+      description: |
+        Get the Inter-Annotator Agreement for a specified collection.
+        
+        Note: This will not error with an invalid collection ID, it will give no items.
+        
+        Example: `curl -X GET http://localhost:5000/iaa_reports/by_collection_id/60df138b3f8fa7b2e1445bd7 --cookie ~/session.cookie -v`
+      operationId: iaa_get
+      tags: [iaa_reports]
+      parameters:
+        - $ref: "../api/components.yaml#/parameters/collectionIdParam"
+      responses:
+        "200":
+          description: Successfully got collection's IAA.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  _items:
+                    type: array
+                    items:
+                      $ref: "../api/components.yaml#/schemas/InterAnnotatorAgreement"
+                  _links:
+                    $ref: "../api/components.yaml#/schemas/EveLinks"
+        "401":
+          $ref: "../api/components.yaml#/responses/NotAuthorized"
+        default:
+          $ref: "../api/components.yaml#/responses/UnexpectedServerError"
+
+    post:
+      summary: Create IAA Report for Collection
+      description: |
+        Create an Inter-Annotator-Agreement for a collection.
+        
+        Note: This will not error with an invalid collection ID (or not enough annotators), it will
+        return false.
+        
+        Example: `curl -X POST http://localhost:5000/iaa_reports/by_collection_id/60df138b3f8fa7b2e1445bd7 --cookie ~/session.cookie -v`
+      operationId: iaa_create
+      tags: [iaa_reports]
+      parameters:
+        - $ref: "../api/components.yaml#/parameters/collectionIdParam"
+      responses:
+        "200":
+          description: |
+            Tried to create the IAA (success or fail).
+            
+            False means invalid collection ID or not enough annotators.
+          content:
+            application/json:
+              schema:
+                type: boolean
+        "401":
+          $ref: "../api/components.yaml#/responses/NotAuthorized"
+        default:
+          $ref: "../api/components.yaml#/responses/UnexpectedServerError"

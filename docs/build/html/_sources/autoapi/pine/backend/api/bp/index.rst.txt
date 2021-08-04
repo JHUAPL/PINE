@@ -1,0 +1,43 @@
+:mod:`pine.backend.api.bp`
+==========================
+
+.. py:module:: pine.backend.api.bp
+
+
+Module Contents
+---------------
+
+
+Functions
+~~~~~~~~~
+
+.. autoapisummary::
+
+   pine.backend.api.bp.openapi_spec
+   pine.backend.api.bp.swagger_ui_index
+   pine.backend.api.bp.swagger_ui
+   pine.backend.api.bp.init_app
+
+
+.. data:: bp
+   
+
+   
+
+.. data:: LOGGER
+   
+
+   
+
+.. function:: openapi_spec()
+
+
+.. function:: swagger_ui_index()
+
+
+.. function:: swagger_ui(file: str)
+
+
+.. function:: init_app(app)
+
+

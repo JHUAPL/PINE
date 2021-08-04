@@ -1,0 +1,329 @@
+# (C) 2021 The Johns Hopkins University Applied Physics Laboratory LLC.
+
+openapi: "3.0.2"
+
+security:
+  - cookieAuth: []
+
+tags:
+  - name: documents
+    description: Operations in the "documents" blueprint.
+
+components:
+
+  schemas:
+
+    WrappedDocuments:
+      type: object
+      properties:
+        _items:
+          type: array
+          items:
+            $ref: "../api/components.yaml#/schemas/Document"
+
+    NewDocument:
+      description: Arguments for the new document (at least collection_id, creator_id, text).
+      type: object
+      properties:
+        collection_id:
+          type: string
+        creator_id:
+          type: string
+        text:
+          type: string
+        overlap:
+          type: number
+          format: double
+        metadata:
+          type: object
+          additionalProperties: {}
+        has_annotated:
+          type: object
+          additionalProperties:
+            type: boolean
+      required:
+        - collection_id
+        - creator_id
+        - text
+
+paths:
+
+  /documents/by_id/{doc_id}:
+    get:
+      summary: Get Document
+      description: |
+        Retrieve a document based on its ID.
+        
+        Example: `curl http://localhost:5000/documents/by_id/60c7453f5b72bf4ed65239ee --cookie session.cookie`
+      operationId: documents_get
+      tags: [documents]
+      parameters:
+        - $ref: "../api/components.yaml#/parameters/docIdParam"
+      responses:
+        "200":
+          description: Successfully found the document based on the ID.
+          content:
+            application/json:
+              schema:
+                $ref: "../api/components.yaml#/schemas/Document"
+        "401":
+          $ref: "../api/components.yaml#/responses/NotAuthorized"
+        "404":
+          $ref: "../api/components.yaml#/responses/DocumentNotFound"
+        "500":
+          $ref: "../api/components.yaml#/responses/UnexpectedServerError"
+
+    delete:
+      summary: Delete Document
+      description: |
+        Delete a document based on its ID.
+        
+        This endpoint deletes a document and any annotations.  It also updates any next_instances so
+        that the document will not be returned for annotation in any "get next instance" calls in
+        the future.  It does NOT delete document data from any pipeline models or update any IAA
+        reports or pipeline metrics.  These will be updated next time they are requested.
+        
+        Example: `curl -X DELETE http://localhost:5000/documents/by_id/60c7453f5b72bf4ed65239ee --cookie session.cookie`
+      operationId: documents_delete
+      tags: [documents]
+      parameters:
+        - $ref: "../api/components.yaml#/parameters/docIdParam"
+      responses:
+        "200":
+          description: Deletion successful, response has IDs of changed objects.
+          content:
+            application/json:
+              schema:
+                $ref: "../api/components.yaml#/schemas/DocumentDeletionResponse"
+        "401":
+          $ref: "../api/components.yaml#/responses/NotAuthorized"
+        "404":
+          $ref: "../api/components.yaml#/responses/DocumentNotFound"
+        "500":
+          $ref: "../api/components.yaml#/responses/UnexpectedServerError"
+
+  /documents/by_ids:
+    delete:
+      summary: Delete Documents
+      description: |
+        Delete documents based on their IDs.
+        
+        This endpoint deletes documents and any associated annotations.  It also updates any next_instances so
+        that the documents will not be returned for annotation in any "get next instance" calls in
+        the future.  It does NOT delete document data from any pipeline models or update any IAA
+        reports or pipeline metrics.  These will be updated next time they are requested.
+        
+        Example: `curl -X DELETE http://localhost:5000/documents/by_ids?ids=60c7453f5b72bf4ed65239ee,60c7453f5b72bf4ed65239ef --cookie session.cookie`
+      operationId: documents_delete_multiple
+      tags: [documents]
+      parameters:
+        - name: ids
+          in: query
+          required: true
+          description: The IDs of the document to delete, comma-separated.
+          schema:
+            type: string
+          example: "60c7453f5b72bf4ed65239ee,60c7453f5b72bf4ed65239ef"
+      responses:
+        "200":
+          description: Deletion successful, response has IDs of changed objects.
+          content:
+            application/json:
+              schema:
+                $ref: "../api/components.yaml#/schemas/DocumentDeletionResponse"
+        "401":
+          $ref: "../api/components.yaml#/responses/NotAuthorized"
+        "404":
+          $ref: "../api/components.yaml#/responses/DocumentNotFound"
+        "500":
+          $ref: "../api/components.yaml#/responses/UnexpectedServerError"
+
+  /documents/count_by_collection_id/{collection_id}:
+    get:
+      summary: Get Collection Document Count
+      description: |
+        Count the number of documents in a collection.
+        
+        Example: `curl http://localhost:5000/documents/count_by_collection_id/60c7453d5b72bf4ed65239e9 --cookie session.cookie`
+      operationId: documents_count_by_collection
+      tags: [documents]
+      parameters:
+        - $ref: "../api/components.yaml#/parameters/collectionIdParam"
+      responses:
+        "200":
+          description: Successfully found collection and counted number of documents inside.
+          content:
+            application/json:
+              schema:
+                type: integer
+        "401":
+          $ref: "../api/components.yaml#/responses/NotAuthorized"
+        "404":
+          $ref: "../api/components.yaml#/responses/CollectionNotFound"
+        default:
+          $ref: "../api/components.yaml#/responses/UnexpectedServerError"
+
+  /documents/by_collection_id_all/{collection_id}:
+    get:
+      summary: Get All Collection Documents
+      description: |
+        Get all documents that are in a collection with a given collection id.
+        
+        Example: `curl http://localhost:5000/documents/by_collection_id_all/60c7453d5b72bf4ed65239e9 --cookie session.cookie`
+      operationId: documents_get_by_collection
+      tags: [documents]
+      parameters:
+        - $ref: "../api/components.yaml#/parameters/collectionIdParam"
+      responses:
+        "200":
+          description: Successfully found collection and retrieved all related documents.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/WrappedDocuments"
+        "401":
+          $ref: "../api/components.yaml#/responses/NotAuthorized"
+        "404":
+          $ref: "../api/components.yaml#/responses/CollectionNotFound"
+        default:
+          $ref: "../api/components.yaml#/responses/UnexpectedServerError"
+
+  /documents/by_collection_id_paginated/{collection_id}:
+    get:
+      summary: Get Paginated Collection Documents
+      description: |
+        Get a variable page of variable size of documents.
+        
+        Example: `curl "http://localhost:5000/documents/by_collection_id_paginated/60c7453d5b72bf4ed65239e9?page=1&pageSize=5" --cookie session.cookie`
+      operationId: documents_get_by_collection_paginated
+      tags: [documents]
+      parameters:
+        - $ref: "../api/components.yaml#/parameters/collectionIdParam"
+        - name: page
+          in: query
+          required: true
+          description: >
+            The page number to get by 0 indexing (Will have documents page_num*pageSize ->
+            page_num*pageSize+pageSize-1 in the collection if there are any.)
+          schema:
+            type: integer
+        - name: pageSize
+          in: query
+          required: true
+          description: The number of documents to put in each page.
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: >
+            Successfully found collection and retrieved any (if any) associated documents (Could
+            return no documents if page number too high).
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/WrappedDocuments"
+        "400":
+          $ref: "../api/components.yaml#/responses/InvalidInputParameters"
+        "401":
+          $ref: "../api/components.yaml#/responses/NotAuthorized"
+        "404":
+          $ref: "../api/components.yaml#/responses/CollectionNotFound"
+        default:
+          $ref: "../api/components.yaml#/responses/UnexpectedServerError"
+
+  /documents/user_permissions/{doc_id}:
+    get:
+      summary: Get User Document Permissions
+      description: |
+        Get the permission that the logged in user has for this document.
+        
+        Example: `curl http://localhost:5000/documents/user_permissions/60c7453f5b72bf4ed65239ee --cookie session.cookie`
+      operationId: documents_permissions
+      tags: [documents]
+      parameters:
+        - $ref: "../api/components.yaml#/parameters/docIdParam"
+      responses:
+        "200":
+          description: Successfully found document and retrieved user permissions.
+          content:
+            application/json:
+              schema:
+                $ref: "../api/components.yaml#/schemas/UserPermissions"
+        "401":
+          $ref: "../api/components.yaml#/responses/NotAuthorized"
+        "404":
+          $ref: "../api/components.yaml#/responses/DocumentNotFound"
+        default:
+          $ref: "../api/components.yaml#/responses/UnexpectedServerError"
+
+  /documents/metadata/{doc_id}:
+    put:
+      summary: Update Document Metadata
+      description: |
+        Change/Replace the metadata of a certain document (does not add).
+        
+        Example: `curl -X PUT http://localhost:5000/documents/metadata/60c7453f5b72bf4ed65239ee -d '{"test":"this"}' --cookie session.cookie -H Content-Type:application/json`
+        
+        Note: you need the content type header to specify json.
+      operationId: documents_update_metadata
+      tags: [documents]
+      parameters:
+        - $ref: "../api/components.yaml#/parameters/docIdParam"
+      requestBody:
+        description: The metadata in json form in the body.
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: {}
+      responses:
+        "200":
+          description: Successfully found document and changed the metadata.
+          content:
+            application/json:
+              schema:
+                $ref: "../api/components.yaml#/schemas/IDInfo"
+        "400":
+          $ref: "../api/components.yaml#/responses/InvalidInputParameters"
+        "401":
+          $ref: "../api/components.yaml#/responses/NotAuthorized"
+        "404":
+          $ref: "../api/components.yaml#/responses/DocumentNotFound"
+        default:
+          $ref: "../api/components.yaml#/responses/UnexpectedServerError"
+
+  /documents:
+    post:
+      summary: Create Document
+      description: |
+        Create a new document in a collection.
+        
+        Example: `curl -X POST http://localhost:5000/documents/ -d '{"collection_id":"6ada", "text":"blah"}' --cookie session.cookie -H Content-Type:application/json`
+      operationId: documents_create
+      tags: [documents]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              oneOf:
+              - $ref: "#/components/schemas/NewDocument"
+              - type: array
+                items:
+                  $ref: "#/components/schemas/NewDocument"
+      responses:
+        "200":
+          description: Successfully created the new document in the collection.
+          content:
+            application/json:
+              schema:
+                $ref: "../api/components.yaml#/schemas/IDInfo"
+        "400":
+          $ref: "../api/components.yaml#/responses/InvalidInputParameters"
+        "401":
+          $ref: "../api/components.yaml#/responses/NotAuthorized"
+        "404":
+          $ref: "../api/components.yaml#/responses/CollectionNotFound"
+        default:
+          $ref: "../api/components.yaml#/responses/UnexpectedServerError"

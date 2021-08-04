@@ -9,60 +9,82 @@ For more details, see the documentation:
 Compatible with: spaCy v2.0.0+
 """
 
+from collections import defaultdict
+import logging
 import random
+import typing
+
 import spacy
 from spacy.scorer import Scorer
 from spacy.gold import GoldParse
-from collections import defaultdict
+from overrides import overrides
 
-from .pipeline import Pipeline
+from .pipeline import Pipeline, NerPrediction, DocumentPredictions, NerPredictionProbabilities, DocumentPredictionProbabilities
 
+logger = logging.getLogger(__name__)
 
 class spacy_NER(Pipeline):
+    __model = None
     __nlp = []
     __ner = []
     __optimizer = []
+    __default_fit_params = None
 
     # init()
     # set tunable parameters
     def __init__(self, model_path=None):
+        self._load_model(model_path)
+        self.__optimizer = self.__nlp.begin_training()
+        self.__default_fit_params = {
+            "iterations": 100,
+            "dropout": 0.5
+        }
+
+    def _load_model(self, model_path=None):
         # Allows user to load their own model if desired
         if model_path != None:
+            self.__model = model_path
             self.__nlp = spacy.load(model_path)
-            print('Loaded model from ' + model_path)
+            logger.info('Loaded model from ' + model_path)
             # checks to see if ner pipeline exists
             if 'ner' not in self.__nlp.pipe_names:
                 self.__ner = self.__nlp.create_pipe('ner')
-                print('Created spaCy NER pipe and added to model')
+                logger.info('Created spaCy NER pipe and added to model')
             else:
                 self.__ner = self.__nlp.get_pipe('ner')
 
         else:
+            self.__model = "en"
             # if user does not specify a model to load, creates a blank one instead
             self.__nlp = spacy.blank('en')
-            print('Created blank EN spaCy model')
+            logger.info('Created blank EN spaCy model')
 
             # create the built-in pipeline components and add them to the pipeline
             # nlp.create_pipe works for built-ins that are registered with spaCy
             self.__ner = self.__nlp.create_pipe('ner')
             self.__nlp.add_pipe(self.__ner, last=True)
-            print('Created spaCy NER pipe')
-        self.__optimizer = self.__nlp.begin_training()
+            logger.info('Created spaCy NER pipe')
 
-    # fit(X, y)
-    # internal state is changed
-    def fit(self, X, y, params=None):
-        #setting up params
-        default_params = {
-            "n_iter":100,
-            "dropout":0.5
+    @overrides
+    def status(self) -> dict:
+        # TODO more status
+        return {
+            "model": self.__model,
+            "default_fit_params": self.__default_fit_params
         }
+
+    @overrides
+    def fit(self, X, y, **params):
+        #setting up params
+        default_params = self.__default_fit_params.copy()
         if params is not None:
             for key in default_params.keys():
                 if key in params:
                     default_params[key]= params[key]
+        logger.info("Training with parameters: {}".format(default_params))
 
         train_data = self.format_data(X, y)
+        logger.info("Training data of length {} has been prepared".format(len(train_data)))
 
         # add labels
         for _, annotations in train_data:
@@ -71,21 +93,30 @@ class spacy_NER(Pipeline):
 
         # get names of other pipes to disable them during training (only needed if user loads own model as we aren't sure what's in it)
         other_pipes = [pipe for pipe in self.__nlp.pipe_names if pipe != 'ner']
+        all_losses = []
         with self.__nlp.disable_pipes(*other_pipes):  # only train NER
             self.__optimizer = self.__nlp.entity.create_optimizer()
             # begin_training() zeros out existing entity types so we just create another optimizer instead to account for training new entity types
             # NOTE: be sure to include examples of both existing and new entity types when fitting otherwise spacy will overfit to the new data
-            for itn in range(default_params["n_iter"]):
+            for itn in range(default_params["iterations"]):
                 random.shuffle(train_data)
                 losses = {}
                 for text, annotations in train_data:
+                    if not text:
+                        continue
+                    logger.debug("text len={} annotations len={}".format(len(text), len(annotations["entities"])))
                     self.__nlp.update(
                         [text],  # batch of texts
                         [annotations],  # batch of annotations
                         drop=default_params["dropout"],  # dropout - make it harder to memorise data
                         sgd=self.__optimizer,  # callable to update weights
                         losses=losses)
-                print(losses)
+                logger.info("[{}/{}] completed: losses={}".format((itn + 1), default_params["iterations"], losses))
+                all_losses.append(losses)
+        return {
+            "iterations": default_params["iterations"],
+            "losses": all_losses
+        }
 
     def evaluate(self, X, y, Xid):
         train_data = self.format_data(X, y)
@@ -193,25 +224,25 @@ class spacy_NER(Pipeline):
         #                 if label in ent:
         #                     text_entities.append(ent)
         #             doc_gold_text = self.__nlp.make_doc(text)
-        #             print(str(doc_gold_text.is_nered))
+        #             logger.info(str(doc_gold_text.is_nered))
         #
         #             gold = GoldParse(doc_gold_text, entities=text_entities)
         #
         #             pred_value = self.__nlp(text)
         #             for token in pred_value:
-        #                 print(token)
-        #                 print(token.ent_type)
-        #                 print(token.ent_type_)
-        #             print(str(pred_value.is_nered))
-        #             print(pred_value)
+        #                 logger.info(token)
+        #                 logger.info(token.ent_type)
+        #                 logger.info(token.ent_type_)
+        #             logger.info(str(pred_value.is_nered))
+        #             logger.info(pred_value)
         #             scorer.score(pred_value, gold)
         #     except Exception as e:
         #         raise e
         #     scores = scorer.scores
-        #     print(scores)
+        #     logger.info(scores)
         #
         #     metrics[label] = {'precision': scores["ents_p"], 'recall': scores["ents_r"], 'f1': scores["ents_f"], 'TP': scorer.ner.tp, 'FP': scorer.ner.fp, 'FN': scorer.ner.fn}
-        #     print(metrics[label])
+        #     logger.info(metrics[label])
 
         #Calculate totals
         # TP = 0
@@ -238,18 +269,19 @@ class spacy_NER(Pipeline):
         #
         # return metrics
 
-    def predict(self, X, Xid):
-        out = {}
-        for text, text_id in zip(X, Xid):
+    @overrides
+    def predict(self, X: typing.Iterable[str]) -> typing.List[DocumentPredictions]:
+        out = []
+        for text in X:
             pred = self.__nlp(text)
-            print('Entities', [(ent.start_char, ent.end_char, ent.label_, ent.text) for ent in pred.ents])
-            out[text_id] = [(ent.start_char, ent.end_char, ent.label_) for ent in pred.ents]
+            if logger.isEnabledFor(logging.DEBUG):
+                logger.debug('Entities', [(ent.start_char, ent.end_char, ent.label_, ent.text) for ent in pred.ents])
+            out.append(DocumentPredictions([NerPrediction(ent.start_char, ent.end_char, ent.label_) for ent in pred.ents], []))
         return out
 
-    # predict_proba(X, Xid)
-    # returns {text_id: [[offset_start, offset_end, label, score], ... []], ...}
-    def predict_proba(self, X, Xid):
-        out = {}
+    @overrides
+    def predict_proba(self, X: typing.Iterable[str], **kwargs) -> typing.List[DocumentPredictionProbabilities]:
+        out = []
         # Score is confidence of classifier for this prediction, though this implementation is weird/potentially unreliable
         # since spacy does not directly supply the NER confidence data
 
@@ -259,9 +291,9 @@ class spacy_NER(Pipeline):
         # This clips solutions at each step. We multiply the score of the top-ranked action by this value, and use the result as a threshold. This prevents the parser from exploring options that look very unlikely, saving a bit of efficiency. Accuracy may also improve, because we've trained on greedy objective.
         beam_density = 0.0001
 
-        for text, text_id in zip(X, Xid):
+        for text in X:
             doc = self.__nlp(text)
-            # print('TEXT: ' + text)
+            # logger.info('TEXT: ' + text)
             """
             print ('--- Tokens ---')
             #DEBUGGING: Print all tokens present in text
@@ -270,14 +302,14 @@ class spacy_NER(Pipeline):
             print ('')
             """
             # DEBUGGING: Print entities detected with NER (denoted by start/end char)
-            print('--- Entities (detected with standard NER) ---')
+            logger.info('--- Entities (detected with standard NER) ---')
             # Store detected entities in dict
             ner_selected_entity_scores = defaultdict(float)
 
             for ent in doc.ents:
-                print('%d to %d: %s (%s)' % (ent.start_char, ent.end_char, ent.label_, ent.text))
+                logger.debug('%d to %d: %s (%s)' % (ent.start_char, ent.end_char, ent.label_, ent.text))
                 ner_selected_entity_scores[(ent.start_char, ent.end_char, ent.label_)] = 0.0
-            print('')
+            logger.debug('')
             # Begin beam search for confidences
             # notice these 2 lines - if they're not here, standard NER
             # will be used and all scores will be 1.0
@@ -301,30 +333,29 @@ class spacy_NER(Pipeline):
                             ner_selected_entity_scores[(start_char, end_char, label)] += score
             # DEBUGGING: print scores for entities whose keys match those found from the original NER
             # WARNING: this is due to the scores requiring beam search, if beam search doesn't find the same ones some scores could be 0
-            print('--- Relevant Entities and scores (detected with beam search) ---')
-            for key in ner_selected_entity_scores:
-                start, end, label = key
-                print('%d to %d: %s (%f)' % (start, end, label, ner_selected_entity_scores[key]))
-
-            print('')
-            """
-            #DEBUGGING: print all scores for all possible entities found by beam search
-            print ('--- All Entities and scores ---')
-            for key in all_entity_scores:
-                start, end, label = key
-                print ('%d to %d: %s (%f)' % (start, end, label, all_entity_scores[key]))
-            print('')
-            """
+            if logger.isEnabledFor(logging.DEBUG):
+                logger.debug('--- Relevant Entities and scores (detected with beam search) ---')
+                for key in ner_selected_entity_scores:
+                    start, end, label = key
+                    logger.debug('%d to %d: %s (%f)' % (start, end, label, ner_selected_entity_scores[key]))
+                logger.debug('')
+                """
+                #DEBUGGING: print all scores for all possible entities found by beam search
+                print ('--- All Entities and scores ---')
+                for key in all_entity_scores:
+                    start, end, label = key
+                    print ('%d to %d: %s (%f)' % (start, end, label, all_entity_scores[key]))
+                print('')
+                """
             # output directly from NER pipe
             # out[(text_id, text)] =  [(ent.start_char, ent.end_char, ent.label_) for ent in doc.ents]
             # output from NER score dictionary
-            out[text_id] = [(key[0], key[1], key[2], ner_selected_entity_scores[key]) for key in
-                            ner_selected_entity_scores]
+            out.append(DocumentPredictions([NerPrediction(key[0], key[1], [(key[2], ner_selected_entity_scores[key])]) for key in
+                            ner_selected_entity_scores], []))
         return out
 
-    # TODO: next_example(X, Xid)
-    # Given model's current state evaluate the input (id, String) pairs and return a rank ordering of lowest->highest scores for instances (will need to discuss specifics of ranking)
-    # Discussing rank is now a major project - see notes
+    @overrides
+    # TODO
     def next_example(self, X, Xid):
         return
 
@@ -342,12 +373,12 @@ class spacy_NER(Pipeline):
     def add_label(self, entity):
         self.__ner.add_label(entity)
 
-    # saves model so that it can be loaded again later
-    def save_model(self, model_path):
-        self.__nlp.to_disk(model_path)
-        print('Saved model to ' + model_path)
-        return model_path
+    @overrides
+    def save_model(self, model_name):
+        self.__nlp.to_disk(model_name)
+        logger.info('Saved model to ' + model_name)
+        return model_name
 
-    # load model
-    def load_model(self, model_path):
-        self.__init__(model_path=model_path)
+    @overrides
+    def load_model(self, model_name):
+        self._load_model(model_path=model_name)

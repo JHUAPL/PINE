@@ -12,6 +12,7 @@ Subpackages
 
    admin/index.rst
    annotations/index.rst
+   api/index.rst
    auth/index.rst
    collections/index.rst
    data/index.rst

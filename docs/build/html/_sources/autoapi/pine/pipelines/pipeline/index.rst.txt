@@ -12,7 +12,53 @@ Classes
 
 .. autoapisummary::
 
+   pine.pipelines.pipeline.NerPrediction
+   pine.pipelines.pipeline.DocumentPredictions
+   pine.pipelines.pipeline.NerPredictionProbabilities
+   pine.pipelines.pipeline.DocumentPredictionProbabilities
    pine.pipelines.pipeline.Pipeline
+
+
+
+.. class:: NerPrediction(offset_start: int, offset_end: int, label: str)
+
+
+   Bases: :class:`object`
+
+   .. method:: serialize(self) -> Tuple[(int, int, str)]
+
+
+
+.. class:: DocumentPredictions(ner: List[NerPrediction], doc: List[str], extra_data: Any = None)
+
+
+   Bases: :class:`object`
+
+   .. method:: serialize(self) -> dict
+
+
+
+.. class:: NerPredictionProbabilities(offset_start: int, offset_end: int, predictions: List[Tuple[str, float]])
+
+
+   Bases: :class:`object`
+
+   .. method:: get_highest_prediction(self) -> Tuple[(str, float)]
+
+
+   .. method:: get_predictions_from_highest_to_lowest(self) -> List[Tuple[str, float]]
+
+
+   .. method:: serialize(self) -> Tuple[(int, int, typing.List[typing.Tuple[str, float]])]
+
+
+
+.. class:: DocumentPredictionProbabilities(ner: List[NerPredictionProbabilities], doc: List[Tuple[str, float]])
+
+
+   Bases: :class:`object`
+
+   .. method:: serialize(self) -> dict
 
 
 
@@ -21,15 +67,19 @@ Classes
 
    Bases: :class:`object`
 
-   .. method:: fit(self, X, y)
+   .. method:: status(self) -> dict
       :abstractmethod:
 
 
-   .. method:: predict(self, X, Xid)
+   .. method:: fit(self, X, y, **params)
       :abstractmethod:
 
 
-   .. method:: predict_proba(self, X, Xid)
+   .. method:: predict(self, X: Iterable[str]) -> List[DocumentPredictions]
+      :abstractmethod:
+
+
+   .. method:: predict_proba(self, X: Iterable[str], **kwargs) -> List[DocumentPredictionProbabilities]
       :abstractmethod:
 
 

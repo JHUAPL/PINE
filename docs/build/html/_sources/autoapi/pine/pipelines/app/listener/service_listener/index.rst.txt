@@ -87,6 +87,26 @@ Classes
 
       
 
+   .. attribute:: results_queue_key
+      
+
+      
+
+   .. attribute:: results_queue_key_timeout
+      
+
+      
+
+   .. attribute:: running_jobs_key
+      
+
+      
+
+   .. attribute:: classifiers_training_key
+      
+
+      
+
    .. attribute:: processing_lock_key
       
 
@@ -122,14 +142,6 @@ Classes
 
       
 
-   .. method:: publish_response(cls, channel, data)
-      :classmethod:
-
-      :type channel: str
-      :type data: dict
-      :rtype: bool
-
-
    .. method:: start_workers(self)
 
 
@@ -143,7 +155,23 @@ Classes
       :rtype: bool | dict
 
 
-   .. method:: process_message(job_details)
+   .. method:: do_with_redis(callback: Callable[([redis.StrictRedis], typing.Any)])
+      :staticmethod:
+
+
+   .. method:: push_results(job_id: str, response)
+      :staticmethod:
+
+
+   .. method:: wait_until_classifier_isnt_training(classifier_id: str, job_id: str)
+      :staticmethod:
+
+
+   .. method:: classifier_is_done_training(classifier_id: str)
+      :staticmethod:
+
+
+   .. method:: process_message(job_id: str, job_details)
       :staticmethod:
 
 
