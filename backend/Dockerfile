@@ -1,6 +1,6 @@
 # (C) 2019 The Johns Hopkins University Applied Physics Laboratory LLC.
 
-FROM ubuntu:18.04
+FROM ubuntu:20.04
 
 ENV LC_ALL C.UTF-8
 ENV LANG C.UTF-8
@@ -36,7 +36,7 @@ ADD Pipfile $ROOT_DIR
 ADD Pipfile.lock $ROOT_DIR
 
 WORKDIR $ROOT_DIR
-RUN REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt pipenv install --system --deploy
+RUN REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt pipenv install --dev --system --deploy
 
 ADD pine/ $ROOT_DIR/pine/
 ADD scripts/ $ROOT_DIR/scripts/

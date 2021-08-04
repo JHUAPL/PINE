@@ -1,5 +1,5 @@
-:mod:`pine.backend.shared`
-==========================
+:py:mod:`pine.backend.shared`
+=============================
 
 .. py:module:: pine.backend.shared
 

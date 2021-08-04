@@ -1,5 +1,5 @@
-:mod:`pine.backend.data.service`
-================================
+:py:mod:`pine.backend.data.service`
+===================================
 
 .. py:module:: pine.backend.data.service
 
@@ -39,42 +39,52 @@ Functions
    pine.backend.data.service.remove_nonupdatable_fields
 
 
-.. data:: logger
+
+Attributes
+~~~~~~~~~~
+
+.. autoapisummary::
+
+   pine.backend.data.service.logger
+   pine.backend.data.service.PATH_TYPE
+   pine.backend.data.service.PERFORMANCE_HISTORY
+
+
+.. py:data:: logger
    
 
    
 
-.. data:: PATH_TYPE
+.. py:data:: PATH_TYPE
    
 
    Type for paths that can be passed into these messages.  Either a single string, or a list-like
    type of strings that is combined with a '/'.
 
 
-.. class:: PerformanceHistory
+.. py:class:: PerformanceHistory
+
+   Bases: :py:obj:`object`
+
+   .. py:method:: pformat(self, **kwargs)
 
 
-   Bases: :class:`object`
-
-   .. method:: pformat(self, **kwargs)
+   .. py:method:: pprint(self)
 
 
-   .. method:: pprint(self)
-
-
-   .. method:: add(self, rest_type: str, path: str, response)
+   .. py:method:: add(self, rest_type: str, path: str, response)
 
 
 
-.. data:: PERFORMANCE_HISTORY
+.. py:data:: PERFORMANCE_HISTORY
    
 
    
 
-.. function:: _standardize_path(path: PATH_TYPE, *additional_paths: List[str]) -> List[str]
+.. py:function:: _standardize_path(path: PATH_TYPE, *additional_paths: List[str]) -> List[str]
 
 
-.. function:: url(path: PATH_TYPE, *additional_paths: List[str]) -> str
+.. py:function:: url(path: PATH_TYPE, *additional_paths: List[str]) -> str
 
    Returns a complete URL for the given eve-relative path(s).
 
@@ -84,7 +94,7 @@ Functions
    :rtype: str
 
 
-.. function:: where_params(where: dict) -> dict
+.. py:function:: where_params(where: dict) -> dict
 
    Returns a "where" parameters object that can be passed to eve.
 
@@ -95,7 +105,7 @@ Functions
    :rtype: dict
 
 
-.. function:: params(params: dict) -> dict
+.. py:function:: params(params: dict) -> dict
 
    Returns a parameters object that can be passed to eve.
 
@@ -106,7 +116,7 @@ Functions
    :rtype: dict
 
 
-.. function:: get(path: PATH_TYPE, **kwargs: dict) -> requests.Response
+.. py:function:: get(path: PATH_TYPE, **kwargs: dict) -> requests.Response
 
    Wraps requests.get for the given eve-relative path.
 
@@ -116,7 +126,7 @@ Functions
    :rtype: requests.Response
 
 
-.. function:: post(path: PATH_TYPE, **kwargs: dict) -> requests.Response
+.. py:function:: post(path: PATH_TYPE, **kwargs: dict) -> requests.Response
 
    Wraps requests.post for the given eve-relative path.
 
@@ -126,7 +136,7 @@ Functions
    :rtype: requests.Response
 
 
-.. function:: put(path: PATH_TYPE, **kwargs: dict) -> requests.Response
+.. py:function:: put(path: PATH_TYPE, **kwargs: dict) -> requests.Response
 
    Wraps requests.put for the given eve-relative path.
 
@@ -136,7 +146,7 @@ Functions
    :rtype: requests.Response
 
 
-.. function:: delete(path: PATH_TYPE, **kwargs: dict) -> requests.Response
+.. py:function:: delete(path: PATH_TYPE, **kwargs: dict) -> requests.Response
 
    Wraps requests.delete for the given eve-relative path.
 
@@ -146,7 +156,7 @@ Functions
    :rtype: requests.Response
 
 
-.. function:: patch(path: PATH_TYPE, **kwargs: dict) -> requests.Response
+.. py:function:: patch(path: PATH_TYPE, **kwargs: dict) -> requests.Response
 
    Wraps requests.patch for the given eve-relative path.
 
@@ -156,7 +166,7 @@ Functions
    :rtype: requests.Response
 
 
-.. function:: get_item_by_id(path: PATH_TYPE, item_id: str, params: dict = {}) -> dict
+.. py:function:: get_item_by_id(path: PATH_TYPE, item_id: str, params: dict = {}) -> dict
 
    Gets a single item by the given ID.
 
@@ -167,7 +177,7 @@ Functions
    :rtype: dict
 
 
-.. function:: get_all_versions_of_item_by_id(path: PATH_TYPE, item_id: str, params: dict = {}) -> List[dict]
+.. py:function:: get_all_versions_of_item_by_id(path: PATH_TYPE, item_id: str, params: dict = {}) -> List[dict]
 
    Gets all versions of an item by the given ID.
 
@@ -178,7 +188,7 @@ Functions
    :rtype: list[dict]
 
 
-.. function:: get_all(path: PATH_TYPE, params={}) -> dict
+.. py:function:: get_all(path: PATH_TYPE, params={}) -> dict
 
    Returns ALL database items, using pagination if needed.  This returns the "normal" eve
    JSON with "_items", "_meta", etc.
@@ -189,7 +199,7 @@ Functions
    :rtype: dict
 
 
-.. function:: get_all_items(path: PATH_TYPE, params={}) -> List[dict]
+.. py:function:: get_all_items(path: PATH_TYPE, params={}) -> List[dict]
 
    Returns ALL database items, using pagination if needed.
 
@@ -199,7 +209,7 @@ Functions
    :rtype: list[dict]
 
 
-.. function:: convert_response(requests_response: requests.Response) -> flask.Response
+.. py:function:: convert_response(requests_response: requests.Response) -> flask.Response
 
    Converts a requests response to a flask response.
 
@@ -208,7 +218,7 @@ Functions
    :rtype: flask.Response
 
 
-.. function:: remove_eve_fields(obj: dict, remove_timestamps: bool = True, remove_versions: bool = True) -> None
+.. py:function:: remove_eve_fields(obj: dict, remove_timestamps: bool = True, remove_versions: bool = True) -> None
 
    Removes the fields that eve adds that aren't necessarily relevant to the data.  The object
    that is passed in is modified in-place.
@@ -222,7 +232,7 @@ Functions
    :param remove_versions: bool: whether to remove version fields (defaults to `True`)
 
 
-.. function:: remove_nonupdatable_fields(obj: dict) -> None
+.. py:function:: remove_nonupdatable_fields(obj: dict) -> None
 
    Removes the non-updatable fields in the given eve object.  This is currently equivalent to
    calling ... with all the default options.

@@ -5,13 +5,14 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>pine.pipelines.corenlp_NER_pipeline &#8212; pine  documentation</title>
-    <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../../../../_static/bizstyle.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/bizstyle.css" />
     <link rel="stylesheet" type="text/css" href="../../../../_static/graphviz.css" />
     
-    <script id="documentation_options" data-url_root="../../../../" src="../../../../_static/documentation_options.js"></script>
+    <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
     <script src="../../../../_static/jquery.js"></script>
     <script src="../../../../_static/underscore.js"></script>
     <script src="../../../../_static/doctools.js"></script>
@@ -53,11 +54,11 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="module-pine.pipelines.corenlp_NER_pipeline">
+  <section id="module-pine.pipelines.corenlp_NER_pipeline">
 <span id="pine-pipelines-corenlp-ner-pipeline"></span><h1><a class="reference internal" href="#module-pine.pipelines.corenlp_NER_pipeline" title="pine.pipelines.corenlp_NER_pipeline"><code class="xref py py-mod docutils literal notranslate"><span class="pre">pine.pipelines.corenlp_NER_pipeline</span></code></a><a class="headerlink" href="#module-pine.pipelines.corenlp_NER_pipeline" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="module-contents">
+<section id="module-contents">
 <h2>Module Contents<a class="headerlink" href="#module-contents" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="classes">
+<section id="classes">
 <h3>Classes<a class="headerlink" href="#classes" title="Permalink to this headline">¶</a></h3>
 <table class="longtable docutils align-default">
 <colgroup>
@@ -70,145 +71,162 @@
 </tr>
 </tbody>
 </table>
+</section>
+<section id="attributes">
+<h3>Attributes<a class="headerlink" href="#attributes" title="Permalink to this headline">¶</a></h3>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pine.pipelines.corenlp_NER_pipeline.config" title="pine.pipelines.corenlp_NER_pipeline.config"><code class="xref py py-obj docutils literal notranslate"><span class="pre">config</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#pine.pipelines.corenlp_NER_pipeline.logger" title="pine.pipelines.corenlp_NER_pipeline.logger"><code class="xref py py-obj docutils literal notranslate"><span class="pre">logger</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
 <dl class="py data">
-<dt id="pine.pipelines.corenlp_NER_pipeline.config">
-<code class="sig-prename descclassname"><span class="pre">pine.pipelines.corenlp_NER_pipeline.</span></code><code class="sig-name descname"><span class="pre">config</span></code><a class="headerlink" href="#pine.pipelines.corenlp_NER_pipeline.config" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="pine.pipelines.corenlp_NER_pipeline.config">
+<span class="sig-prename descclassname"><span class="pre">pine.pipelines.corenlp_NER_pipeline.</span></span><span class="sig-name descname"><span class="pre">config</span></span><a class="headerlink" href="#pine.pipelines.corenlp_NER_pipeline.config" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py data">
-<dt id="pine.pipelines.corenlp_NER_pipeline.logger">
-<code class="sig-prename descclassname"><span class="pre">pine.pipelines.corenlp_NER_pipeline.</span></code><code class="sig-name descname"><span class="pre">logger</span></code><a class="headerlink" href="#pine.pipelines.corenlp_NER_pipeline.logger" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="pine.pipelines.corenlp_NER_pipeline.logger">
+<span class="sig-prename descclassname"><span class="pre">pine.pipelines.corenlp_NER_pipeline.</span></span><span class="sig-name descname"><span class="pre">logger</span></span><a class="headerlink" href="#pine.pipelines.corenlp_NER_pipeline.logger" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py class">
-<dt id="pine.pipelines.corenlp_NER_pipeline.corenlp_NER">
-<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">pine.pipelines.corenlp_NER_pipeline.</span></code><code class="sig-name descname"><span class="pre">corenlp_NER</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">java_dir</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ner_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">load_model</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tmp_dir</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.pipelines.corenlp_NER_pipeline.corenlp_NER" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="../pipeline/index.html#pine.pipelines.pipeline.Pipeline" title="pine.pipelines.pipeline.Pipeline"><code class="xref py py-class docutils literal notranslate"><span class="pre">pine.pipelines.pipeline.Pipeline</span></code></a></p>
+<dt class="sig sig-object py" id="pine.pipelines.corenlp_NER_pipeline.corenlp_NER">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">pine.pipelines.corenlp_NER_pipeline.</span></span><span class="sig-name descname"><span class="pre">corenlp_NER</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">java_dir</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ner_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">load_model</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tmp_dir</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.pipelines.corenlp_NER_pipeline.corenlp_NER" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="../pipeline/index.html#pine.pipelines.pipeline.Pipeline" title="pine.pipelines.pipeline.Pipeline"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pine.pipelines.pipeline.Pipeline</span></code></a></p>
 <dl class="py attribute">
-<dt id="pine.pipelines.corenlp_NER_pipeline.corenlp_NER.__jar">
-<code class="sig-name descname"><span class="pre">__jar</span></code><em class="property"> <span class="pre">=</span></em><a class="headerlink" href="#pine.pipelines.corenlp_NER_pipeline.corenlp_NER.__jar" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt id="pine.pipelines.corenlp_NER_pipeline.corenlp_NER.__jdk_dir">
-<code class="sig-name descname"><span class="pre">__jdk_dir</span></code><em class="property"> <span class="pre">=</span></em><a class="headerlink" href="#pine.pipelines.corenlp_NER_pipeline.corenlp_NER.__jdk_dir" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="pine.pipelines.corenlp_NER_pipeline.corenlp_NER.__jar">
+<span class="sig-name descname"><span class="pre">__jar</span></span><em class="property"> <span class="pre">=</span></em><a class="headerlink" href="#pine.pipelines.corenlp_NER_pipeline.corenlp_NER.__jar" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
-<dt id="pine.pipelines.corenlp_NER_pipeline.corenlp_NER.__train_file">
-<code class="sig-name descname"><span class="pre">__train_file</span></code><em class="property"> <span class="pre">=</span></em><a class="headerlink" href="#pine.pipelines.corenlp_NER_pipeline.corenlp_NER.__train_file" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="pine.pipelines.corenlp_NER_pipeline.corenlp_NER.__jdk_dir">
+<span class="sig-name descname"><span class="pre">__jdk_dir</span></span><em class="property"> <span class="pre">=</span></em><a class="headerlink" href="#pine.pipelines.corenlp_NER_pipeline.corenlp_NER.__jdk_dir" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
-<dt id="pine.pipelines.corenlp_NER_pipeline.corenlp_NER.__test_file">
-<code class="sig-name descname"><span class="pre">__test_file</span></code><em class="property"> <span class="pre">=</span></em><a class="headerlink" href="#pine.pipelines.corenlp_NER_pipeline.corenlp_NER.__test_file" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="pine.pipelines.corenlp_NER_pipeline.corenlp_NER.__train_file">
+<span class="sig-name descname"><span class="pre">__train_file</span></span><em class="property"> <span class="pre">=</span></em><a class="headerlink" href="#pine.pipelines.corenlp_NER_pipeline.corenlp_NER.__train_file" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
-<dt id="pine.pipelines.corenlp_NER_pipeline.corenlp_NER.__model">
-<code class="sig-name descname"><span class="pre">__model</span></code><em class="property"> <span class="pre">=</span></em><a class="headerlink" href="#pine.pipelines.corenlp_NER_pipeline.corenlp_NER.__model" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="pine.pipelines.corenlp_NER_pipeline.corenlp_NER.__test_file">
+<span class="sig-name descname"><span class="pre">__test_file</span></span><em class="property"> <span class="pre">=</span></em><a class="headerlink" href="#pine.pipelines.corenlp_NER_pipeline.corenlp_NER.__test_file" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
-<dt id="pine.pipelines.corenlp_NER_pipeline.corenlp_NER.__temp_dir">
-<code class="sig-name descname"><span class="pre">__temp_dir</span></code><a class="headerlink" href="#pine.pipelines.corenlp_NER_pipeline.corenlp_NER.__temp_dir" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="pine.pipelines.corenlp_NER_pipeline.corenlp_NER.__model">
+<span class="sig-name descname"><span class="pre">__model</span></span><em class="property"> <span class="pre">=</span></em><a class="headerlink" href="#pine.pipelines.corenlp_NER_pipeline.corenlp_NER.__model" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
-<dt id="pine.pipelines.corenlp_NER_pipeline.corenlp_NER.__crf">
-<code class="sig-name descname"><span class="pre">__crf</span></code><a class="headerlink" href="#pine.pipelines.corenlp_NER_pipeline.corenlp_NER.__crf" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="pine.pipelines.corenlp_NER_pipeline.corenlp_NER.__temp_dir">
+<span class="sig-name descname"><span class="pre">__temp_dir</span></span><a class="headerlink" href="#pine.pipelines.corenlp_NER_pipeline.corenlp_NER.__temp_dir" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
-<dt id="pine.pipelines.corenlp_NER_pipeline.corenlp_NER.__props">
-<code class="sig-name descname"><span class="pre">__props</span></code><a class="headerlink" href="#pine.pipelines.corenlp_NER_pipeline.corenlp_NER.__props" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="pine.pipelines.corenlp_NER_pipeline.corenlp_NER.__crf">
+<span class="sig-name descname"><span class="pre">__crf</span></span><a class="headerlink" href="#pine.pipelines.corenlp_NER_pipeline.corenlp_NER.__crf" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
-<dt id="pine.pipelines.corenlp_NER_pipeline.corenlp_NER.__is_setup">
-<code class="sig-name descname"><span class="pre">__is_setup</span></code><em class="property"> <span class="pre">=</span> <span class="pre">False</span></em><a class="headerlink" href="#pine.pipelines.corenlp_NER_pipeline.corenlp_NER.__is_setup" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="pine.pipelines.corenlp_NER_pipeline.corenlp_NER.__props">
+<span class="sig-name descname"><span class="pre">__props</span></span><a class="headerlink" href="#pine.pipelines.corenlp_NER_pipeline.corenlp_NER.__props" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
-<dt id="pine.pipelines.corenlp_NER_pipeline.corenlp_NER.__id">
-<code class="sig-name descname"><span class="pre">__id</span></code><a class="headerlink" href="#pine.pipelines.corenlp_NER_pipeline.corenlp_NER.__id" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="pine.pipelines.corenlp_NER_pipeline.corenlp_NER.__is_setup">
+<span class="sig-name descname"><span class="pre">__is_setup</span></span><em class="property"> <span class="pre">=</span> <span class="pre">False</span></em><a class="headerlink" href="#pine.pipelines.corenlp_NER_pipeline.corenlp_NER.__is_setup" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
-<dt id="pine.pipelines.corenlp_NER_pipeline.corenlp_NER.__default_fit_params">
-<code class="sig-name descname"><span class="pre">__default_fit_params</span></code><a class="headerlink" href="#pine.pipelines.corenlp_NER_pipeline.corenlp_NER.__default_fit_params" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="pine.pipelines.corenlp_NER_pipeline.corenlp_NER.__id">
+<span class="sig-name descname"><span class="pre">__id</span></span><a class="headerlink" href="#pine.pipelines.corenlp_NER_pipeline.corenlp_NER.__id" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pine.pipelines.corenlp_NER_pipeline.corenlp_NER.__default_fit_params">
+<span class="sig-name descname"><span class="pre">__default_fit_params</span></span><a class="headerlink" href="#pine.pipelines.corenlp_NER_pipeline.corenlp_NER.__default_fit_params" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
-<dt id="pine.pipelines.corenlp_NER_pipeline.corenlp_NER.setup">
-<em class="property"><span class="pre">classmethod</span> </em><code class="sig-name descname"><span class="pre">setup</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cls</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">java_dir</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ner_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.pipelines.corenlp_NER_pipeline.corenlp_NER.setup" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="pine.pipelines.corenlp_NER_pipeline.corenlp_NER.setup">
+<em class="property"><span class="pre">classmethod</span> </em><span class="sig-name descname"><span class="pre">setup</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cls</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">java_dir</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ner_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.pipelines.corenlp_NER_pipeline.corenlp_NER.setup" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
-<dt id="pine.pipelines.corenlp_NER_pipeline.corenlp_NER.status">
-<code class="sig-name descname"><span class="pre">status</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><span class="pre">dict</span></a><a class="headerlink" href="#pine.pipelines.corenlp_NER_pipeline.corenlp_NER.status" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="pine.pipelines.corenlp_NER_pipeline.corenlp_NER.status">
+<span class="sig-name descname"><span class="pre">status</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><span class="pre">dict</span></a></span></span><a class="headerlink" href="#pine.pipelines.corenlp_NER_pipeline.corenlp_NER.status" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
-<dt id="pine.pipelines.corenlp_NER_pipeline.corenlp_NER.fit">
-<code class="sig-name descname"><span class="pre">fit</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">params</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.pipelines.corenlp_NER_pipeline.corenlp_NER.fit" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="pine.pipelines.corenlp_NER_pipeline.corenlp_NER.fit">
+<span class="sig-name descname"><span class="pre">fit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">params</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.pipelines.corenlp_NER_pipeline.corenlp_NER.fit" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
-<dt id="pine.pipelines.corenlp_NER_pipeline.corenlp_NER.predict">
-<code class="sig-name descname"><span class="pre">predict</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">X</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Iterable</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">DocumentPredictions</span><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#pine.pipelines.corenlp_NER_pipeline.corenlp_NER.predict" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="pine.pipelines.corenlp_NER_pipeline.corenlp_NER.predict">
+<span class="sig-name descname"><span class="pre">predict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">X</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Iterable</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../pipeline/index.html#pine.pipelines.pipeline.DocumentPredictions" title="pine.pipelines.pipeline.DocumentPredictions"><span class="pre">pine.pipelines.pipeline.DocumentPredictions</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#pine.pipelines.corenlp_NER_pipeline.corenlp_NER.predict" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
-<dt id="pine.pipelines.corenlp_NER_pipeline.corenlp_NER.predict_proba">
-<code class="sig-name descname"><span class="pre">predict_proba</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">X</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Iterable</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">get_all_labels</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">include_other</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">DocumentPredictionProbabilities</span><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#pine.pipelines.corenlp_NER_pipeline.corenlp_NER.predict_proba" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="pine.pipelines.corenlp_NER_pipeline.corenlp_NER.predict_proba">
+<span class="sig-name descname"><span class="pre">predict_proba</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">X</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Iterable</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">get_all_labels</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">include_other</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../pipeline/index.html#pine.pipelines.pipeline.DocumentPredictionProbabilities" title="pine.pipelines.pipeline.DocumentPredictionProbabilities"><span class="pre">pine.pipelines.pipeline.DocumentPredictionProbabilities</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#pine.pipelines.corenlp_NER_pipeline.corenlp_NER.predict_proba" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
-<dt id="pine.pipelines.corenlp_NER_pipeline.corenlp_NER.next_example">
-<code class="sig-name descname"><span class="pre">next_example</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Xid</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.pipelines.corenlp_NER_pipeline.corenlp_NER.next_example" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="pine.pipelines.corenlp_NER_pipeline.corenlp_NER.next_example">
+<span class="sig-name descname"><span class="pre">next_example</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Xid</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.pipelines.corenlp_NER_pipeline.corenlp_NER.next_example" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
-<dt id="pine.pipelines.corenlp_NER_pipeline.corenlp_NER.get_id">
-<code class="sig-name descname"><span class="pre">get_id</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.pipelines.corenlp_NER_pipeline.corenlp_NER.get_id" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="pine.pipelines.corenlp_NER_pipeline.corenlp_NER.get_id">
+<span class="sig-name descname"><span class="pre">get_id</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.pipelines.corenlp_NER_pipeline.corenlp_NER.get_id" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
-<dt id="pine.pipelines.corenlp_NER_pipeline.corenlp_NER.format_data">
-<code class="sig-name descname"><span class="pre">format_data</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.pipelines.corenlp_NER_pipeline.corenlp_NER.format_data" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="pine.pipelines.corenlp_NER_pipeline.corenlp_NER.format_data">
+<span class="sig-name descname"><span class="pre">format_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.pipelines.corenlp_NER_pipeline.corenlp_NER.format_data" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
-<dt id="pine.pipelines.corenlp_NER_pipeline.corenlp_NER.save_model">
-<code class="sig-name descname"><span class="pre">save_model</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model_name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.pipelines.corenlp_NER_pipeline.corenlp_NER.save_model" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="pine.pipelines.corenlp_NER_pipeline.corenlp_NER.save_model">
+<span class="sig-name descname"><span class="pre">save_model</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model_name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.pipelines.corenlp_NER_pipeline.corenlp_NER.save_model" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
-<dt id="pine.pipelines.corenlp_NER_pipeline.corenlp_NER.load_model">
-<code class="sig-name descname"><span class="pre">load_model</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model_name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.pipelines.corenlp_NER_pipeline.corenlp_NER.load_model" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="pine.pipelines.corenlp_NER_pipeline.corenlp_NER.load_model">
+<span class="sig-name descname"><span class="pre">load_model</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model_name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.pipelines.corenlp_NER_pipeline.corenlp_NER.load_model" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
-<dt id="pine.pipelines.corenlp_NER_pipeline.corenlp_NER.tokenize">
-<code class="sig-name descname"><span class="pre">tokenize</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">input_text</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.pipelines.corenlp_NER_pipeline.corenlp_NER.tokenize" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="pine.pipelines.corenlp_NER_pipeline.corenlp_NER.tokenize">
+<span class="sig-name descname"><span class="pre">tokenize</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">input_text</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.pipelines.corenlp_NER_pipeline.corenlp_NER.tokenize" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
-<dt id="pine.pipelines.corenlp_NER_pipeline.corenlp_NER.evaluate">
-<code class="sig-name descname"><span class="pre">evaluate</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Xid</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.pipelines.corenlp_NER_pipeline.corenlp_NER.evaluate" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="pine.pipelines.corenlp_NER_pipeline.corenlp_NER.evaluate">
+<span class="sig-name descname"><span class="pre">evaluate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Xid</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.pipelines.corenlp_NER_pipeline.corenlp_NER.evaluate" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
-<dt id="pine.pipelines.corenlp_NER_pipeline.corenlp_NER.evaluate_orig">
-<code class="sig-name descname"><span class="pre">evaluate_orig</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Xid</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.pipelines.corenlp_NER_pipeline.corenlp_NER.evaluate_orig" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="pine.pipelines.corenlp_NER_pipeline.corenlp_NER.evaluate_orig">
+<span class="sig-name descname"><span class="pre">evaluate_orig</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Xid</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.pipelines.corenlp_NER_pipeline.corenlp_NER.evaluate_orig" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
 
-</div>
-</div>
-</div>
+</section>
+</section>
+</section>
 
 
             <div class="clearer"></div>
@@ -221,7 +239,8 @@
   <ul>
 <li><a class="reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">pine.pipelines.corenlp_NER_pipeline</span></code></a><ul>
 <li><a class="reference internal" href="#module-contents">Module Contents</a><ul>
-<li><a class="reference internal" href="#classes">Classes</a><ul>
+<li><a class="reference internal" href="#classes">Classes</a></li>
+<li><a class="reference internal" href="#attributes">Attributes</a><ul>
 <li><a class="reference internal" href="#pine.pipelines.corenlp_NER_pipeline.config">config</a></li>
 <li><a class="reference internal" href="#pine.pipelines.corenlp_NER_pipeline.logger">logger</a></li>
 <li><a class="reference internal" href="#pine.pipelines.corenlp_NER_pipeline.corenlp_NER">corenlp_NER</a><ul>
@@ -276,7 +295,7 @@
   <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="../../../../search.html" method="get">
-      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
       <input type="submit" value="Go" />
     </form>
     </div>
@@ -310,7 +329,7 @@
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright (C) 2019 The Johns Hopkins University Applied Physics Laboratory LLC..
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.5.3.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.1.2.
     </div>
   </body>
 </html>

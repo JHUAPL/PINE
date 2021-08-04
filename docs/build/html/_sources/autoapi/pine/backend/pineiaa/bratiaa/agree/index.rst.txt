@@ -1,5 +1,5 @@
-:mod:`pine.backend.pineiaa.bratiaa.agree`
-=========================================
+:py:mod:`pine.backend.pineiaa.bratiaa.agree`
+============================================
 
 .. py:module:: pine.backend.pineiaa.bratiaa.agree
 
@@ -28,96 +28,105 @@ Functions
    pine.backend.pineiaa.bratiaa.agree.iaa_report
 
 
-.. data:: Annotation
+
+Attributes
+~~~~~~~~~~
+
+.. autoapisummary::
+
+   pine.backend.pineiaa.bratiaa.agree.Annotation
+   pine.backend.pineiaa.bratiaa.agree.AnnFile
+   pine.backend.pineiaa.bratiaa.agree.LOGGER
+
+
+.. py:data:: Annotation
    
 
    
 
-.. data:: AnnFile
+.. py:data:: AnnFile
    
 
    
 
-.. data:: LOGGER
+.. py:data:: LOGGER
    
 
    
 
-.. class:: Document(txt, doc_id)
+.. py:class:: Document(txt, doc_id)
 
-
-   .. attribute:: __slots__
+   .. py:attribute:: __slots__
       :annotation: = ['ann_files', 'txt', 'doc_id']
 
       
 
 
-.. function:: input_generator(json_list)
+.. py:function:: input_generator(json_list)
 
 
-.. function:: compute_f1(tp, fp, fn)
+.. py:function:: compute_f1(tp, fp, fn)
 
 
-.. class:: F1Agreement(annotators, documents, labels, eval_func=exact_match_instance_evaluation, token_func=None)
+.. py:class:: F1Agreement(annotators, documents, labels, eval_func=exact_match_instance_evaluation, token_func=None)
 
-
-   .. method:: annotators(self)
+   .. py:method:: annotators(self)
       :property:
 
 
-   .. method:: documents(self)
+   .. py:method:: documents(self)
       :property:
 
 
-   .. method:: labels(self)
+   .. py:method:: labels(self)
       :property:
 
 
-   .. method:: _compute_tp_fp_fn(self, documents)
+   .. py:method:: _compute_tp_fp_fn(self, documents)
 
 
-   .. method:: _increment_counts(self, annotations, pair, doc, kind)
+   .. py:method:: _increment_counts(self, annotations, pair, doc, kind)
 
 
-   .. method:: mean_sd_per_label(self)
+   .. py:method:: mean_sd_per_label(self)
 
       Mean and standard deviation of all annotator combinations' F1 scores by label.
 
 
-   .. method:: mean_sd_per_document(self)
+   .. py:method:: mean_sd_per_document(self)
 
       Mean and standard deviation of all annotator combinations' F1 scores per document.
 
 
-   .. method:: mean_sd_total(self)
+   .. py:method:: mean_sd_total(self)
 
       Mean and standard deviation of all annotator cominations' F1 scores.
 
 
-   .. method:: mean_sd_per_label_one_vs_rest(self, annotator)
+   .. py:method:: mean_sd_per_label_one_vs_rest(self, annotator)
 
       Mean and standard deviation of all annotator combinations' F1 scores involving given annotator per label.
 
 
-   .. method:: mean_sd_total_one_vs_rest(self, annotator)
+   .. py:method:: mean_sd_total_one_vs_rest(self, annotator)
 
       Mean and standard deviation of all annotator combinations' F1 scores involving given annotator.
 
 
-   .. method:: _pairs_involving(self, annotator)
+   .. py:method:: _pairs_involving(self, annotator)
 
 
-   .. method:: _mean_sd(f1_pairs)
+   .. py:method:: _mean_sd(f1_pairs)
       :staticmethod:
 
       Mean and standard deviation along first axis.
 
 
-   .. method:: print_table(row_label_header, row_labels, avg, stddev, precision=3)
+   .. py:method:: print_table(row_label_header, row_labels, avg, stddev, precision=3)
       :staticmethod:
 
 
-   .. method:: compute_total_f1_matrix(self)
+   .. py:method:: compute_total_f1_matrix(self)
 
       Returns (n x n) matrix, where n is the number of annotators, containing
       pair-wise total F1 scores between all annotators.
@@ -125,15 +134,15 @@ Functions
       By definition, the matrix is symmetric and F1 = 1 on the main diagonal.
 
 
-   .. method:: draw_heatmap(self, out_path)
+   .. py:method:: draw_heatmap(self, out_path)
 
       Draws heatmap based on square matrix of F1 scores.
 
 
 
-.. function:: compute_f1_agreement(annotators, documents, labels, token_func=None, eval_func=None)
+.. py:function:: compute_f1_agreement(annotators, documents, labels, token_func=None, eval_func=None)
 
 
-.. function:: iaa_report(f1_agreement, precision=3)
+.. py:function:: iaa_report(f1_agreement, precision=3)
 
 

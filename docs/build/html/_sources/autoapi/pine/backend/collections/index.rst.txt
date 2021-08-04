@@ -1,5 +1,5 @@
-:mod:`pine.backend.collections`
-===============================
+:py:mod:`pine.backend.collections`
+==================================
 
 .. py:module:: pine.backend.collections
 
@@ -35,19 +35,20 @@ Functions
    pine.backend.collections.get_overlap_ids
 
 
-.. function:: user_permissions_projection()
+
+.. py:function:: user_permissions_projection()
 
 
-.. function:: get_user_permissions(collection: dict) -> pine.backend.models.CollectionUserPermissions
+.. py:function:: get_user_permissions(collection: dict) -> pine.backend.models.CollectionUserPermissions
 
 
-.. function:: get_user_permissions_by_id(collection_id: str) -> pine.backend.models.CollectionUserPermissions
+.. py:function:: get_user_permissions_by_id(collection_id: str) -> pine.backend.models.CollectionUserPermissions
 
 
-.. function:: get_user_permissions_by_ids(collection_ids: Iterable[str]) -> List[models.CollectionUserPermissions]
+.. py:function:: get_user_permissions_by_ids(collection_ids: Iterable[str]) -> List[pine.backend.models.CollectionUserPermissions]
 
 
-.. function:: get_overlap_ids(collection_id: str)
+.. py:function:: get_overlap_ids(collection_id: str)
 
    Return the list of ids for overlapping documents for the collection matching the provided collection id.
    :param collection_id: str

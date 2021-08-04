@@ -1,5 +1,5 @@
-:mod:`pine.pipelines.run_service`
-=================================
+:py:mod:`pine.pipelines.run_service`
+====================================
 
 .. py:module:: pine.pipelines.run_service
 

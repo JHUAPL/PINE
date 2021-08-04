@@ -1,5 +1,5 @@
-:mod:`pine.backend.admin`
-=========================
+:py:mod:`pine.backend.admin`
+============================
 
 .. py:module:: pine.backend.admin
 

@@ -7,7 +7,7 @@
         },
         "json": {
             "class": "pythonjsonlogger.jsonlogger.JsonFormatter",
-            "format": "(asctime)",
+            "format": "%(asctime)s",
             "datefmt": "%Y-%m-%d %H:%M:%S"
         }
     },

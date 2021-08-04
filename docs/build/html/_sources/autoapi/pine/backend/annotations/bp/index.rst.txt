@@ -1,5 +1,5 @@
-:mod:`pine.backend.annotations.bp`
-==================================
+:py:mod:`pine.backend.annotations.bp`
+=====================================
 
 .. py:module:: pine.backend.annotations.bp
 
@@ -29,22 +29,33 @@ Functions
    pine.backend.annotations.bp.init_app
 
 
-.. data:: logger
+
+Attributes
+~~~~~~~~~~
+
+.. autoapisummary::
+
+   pine.backend.annotations.bp.logger
+   pine.backend.annotations.bp.CONFIG_ALLOW_OVERLAPPING_NER_ANNOTATIONS
+   pine.backend.annotations.bp.bp
+
+
+.. py:data:: logger
    
 
    
 
-.. data:: CONFIG_ALLOW_OVERLAPPING_NER_ANNOTATIONS
+.. py:data:: CONFIG_ALLOW_OVERLAPPING_NER_ANNOTATIONS
    :annotation: = allow_overlapping_ner_annotations
 
    
 
-.. data:: bp
+.. py:data:: bp
    
 
    
 
-.. function:: check_document_view_by_id(doc_id: str)
+.. py:function:: check_document_view_by_id(doc_id: str)
 
    Verify that a document with the given doc_id exists and that the logged in user has permissions to access the
    document
@@ -52,13 +63,13 @@ Functions
    :return: dict
 
 
-.. function:: check_document_view(doc: dict)
+.. py:function:: check_document_view(doc: dict)
 
 
-.. function:: check_document_annotate(doc: dict)
+.. py:function:: check_document_annotate(doc: dict)
 
 
-.. function:: get_my_annotations_for_document(doc_id)
+.. py:function:: get_my_annotations_for_document(doc_id)
 
    Get the list of annotations (key, start_index, end_index) produced by the logged in user for the document matching
    the provided doc_id.
@@ -66,7 +77,7 @@ Functions
    :return: Response
 
 
-.. function:: get_others_annotations_for_document(doc_id)
+.. py:function:: get_others_annotations_for_document(doc_id)
 
    Get the list of annotations (key, start_index, end_index) produced by all other users, not including the logged in
    user for the document matching the provided doc_id.
@@ -74,7 +85,7 @@ Functions
    :return: str
 
 
-.. function:: get_annotations_for_document(doc_id)
+.. py:function:: get_annotations_for_document(doc_id)
 
    Get the list of annotations (key, start_index, end_index) produced by all users for the document matching the
    provided doc_id.
@@ -82,7 +93,7 @@ Functions
    :return: str
 
 
-.. function:: get_current_annotation(doc_id, user_id)
+.. py:function:: get_current_annotation(doc_id, user_id)
 
    Get all annotations of the provided document created by the given user.
    :param doc_id: str
@@ -90,10 +101,10 @@ Functions
    :return: List
 
 
-.. function:: check_overlapping_annotations(collection, ner_annotations)
+.. py:function:: check_overlapping_annotations(collection, ner_annotations)
 
 
-.. function:: set_document_to_annotated_by_user(doc_id, user_id)
+.. py:function:: set_document_to_annotated_by_user(doc_id, user_id)
 
    Modify the parameter in the database for the document signifying that the given user has annotated the given
    document
@@ -103,13 +114,13 @@ Functions
    :rtype: bool
 
 
-.. function:: _make_annotations(body)
+.. py:function:: _make_annotations(body)
 
 
-.. function:: _add_or_update_annotation(new_annotation)
+.. py:function:: _add_or_update_annotation(new_annotation)
 
 
-.. function:: save_annotations(doc_id)
+.. py:function:: save_annotations(doc_id)
 
    Save new NER annotations and labels to the database as an entry for the logged in user, for the document. If there
    are already annotations, use a patch request to update with the new annotations. If there are not, use a post
@@ -118,9 +129,9 @@ Functions
    :return: bool
 
 
-.. function:: save_collection_annotations(collection_id: str)
+.. py:function:: save_collection_annotations(collection_id: str)
 
 
-.. function:: init_app(app)
+.. py:function:: init_app(app)
 
 

@@ -1,5 +1,5 @@
-:mod:`pine.backend.app`
-=======================
+:py:mod:`pine.backend.app`
+==========================
 
 .. py:module:: pine.backend.app
 
@@ -18,22 +18,32 @@ Functions
    pine.backend.app.create_app
 
 
-.. data:: VERSION
+
+Attributes
+~~~~~~~~~~
+
+.. autoapisummary::
+
+   pine.backend.app.VERSION
+   pine.backend.app.LOGGER
+
+
+.. py:data:: VERSION
    
 
    
 
-.. data:: LOGGER
+.. py:data:: LOGGER
    
 
    
 
-.. function:: handle_error(e)
+.. py:function:: handle_error(e)
 
 
-.. function:: handle_uncaught_exception(e)
+.. py:function:: handle_uncaught_exception(e)
 
 
-.. function:: create_app(test_config=None)
+.. py:function:: create_app(test_config=None)
 
 

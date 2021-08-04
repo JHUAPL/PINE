@@ -1,5 +1,5 @@
-:mod:`pine.client`
-==================
+:py:mod:`pine.client`
+=====================
 
 .. py:module:: pine.client
 
@@ -44,10 +44,10 @@ Functions
    pine.client.setup_logging
 
 
-.. class:: PineClient(backend_base_uri: str, verify_ssl: bool = True)
 
+.. py:class:: PineClient(backend_base_uri: str, verify_ssl: bool = True)
 
-   Bases: :class:`pine.client.client.BaseClient`
+   Bases: :py:obj:`BaseClient`
 
    A client to access PINE (more specifically: the backend).
        
@@ -60,7 +60,7 @@ Functions
                       are fully aware of the security consequences
    :type verify_ssl: bool, optional
 
-   .. method:: is_valid(self) -> bool
+   .. py:method:: is_valid(self) -> bool
 
       Returns whether this client and its connection(s) are valid.
 
@@ -68,7 +68,7 @@ Functions
       :rtype: bool
 
 
-   .. method:: ping(self) -> Any
+   .. py:method:: ping(self) -> Any
 
       Pings the backend server and returns the result.
 
@@ -77,7 +77,7 @@ Functions
       :returns: the JSON response from the server (probably ``"pong"``)
 
 
-   .. method:: about(self) -> dict
+   .. py:method:: about(self) -> dict
 
       Returns the 'about' dict from the server.
 
@@ -87,7 +87,7 @@ Functions
       :rtype: dict
 
 
-   .. method:: get_logged_in_user(self) -> dict
+   .. py:method:: get_logged_in_user(self) -> dict
 
       Returns the currently logged in user, or None if not logged in.
 
@@ -97,7 +97,7 @@ Functions
       :rtype: dict
 
 
-   .. method:: get_my_user_id(self) -> str
+   .. py:method:: get_my_user_id(self) -> str
 
       Returns the ID of the logged in user, or None if not logged in.
 
@@ -107,7 +107,7 @@ Functions
       :rtype: str
 
 
-   .. method:: is_logged_in(self) -> bool
+   .. py:method:: is_logged_in(self) -> bool
 
       Returns whether the user is currently logged in or not.
 
@@ -117,7 +117,7 @@ Functions
       :rtype: bool
 
 
-   .. method:: _check_login(self)
+   .. py:method:: _check_login(self)
 
       Checks whether user is logged in and raises an :py:class:`.exceptions.PineClientAuthException` if not.
 
@@ -125,7 +125,7 @@ Functions
       :raises exceptions.PineClientHttpException: if the HTTP request returns an error
 
 
-   .. method:: get_auth_module(self) -> str
+   .. py:method:: get_auth_module(self) -> str
 
       Returns the PINE authentication module, e.g. ``"eve"``.
 
@@ -135,7 +135,7 @@ Functions
       :rtype: str
 
 
-   .. method:: login_eve(self, username: str, password: str) -> bool
+   .. py:method:: login_eve(self, username: str, password: str) -> bool
 
       Logs in using eve credentials, and returns whether it was successful.
 
@@ -151,7 +151,7 @@ Functions
       :rtype: bool
 
 
-   .. method:: authorize_vegas(self, json_token: dict) -> bool
+   .. py:method:: authorize_vegas(self, json_token: dict) -> bool
 
       Logs in using a VEGAS token, and returns whether it was successful.
 
@@ -168,14 +168,14 @@ Functions
       :rtype: bool
 
 
-   .. method:: logout(self)
+   .. py:method:: logout(self)
 
       Logs out the current user.
 
       :raises exceptions.PineClientHttpException: if the HTTP request returns an error
 
 
-   .. method:: get_pipelines(self) -> List[dict]
+   .. py:method:: get_pipelines(self) -> List[dict]
 
       Returns all pipelines accessible to logged in user.
 
@@ -186,7 +186,7 @@ Functions
       :rtype: list(dict)
 
 
-   .. method:: get_pipeline_status(self, pipeline_id: str) -> dict
+   .. py:method:: get_pipeline_status(self, pipeline_id: str) -> dict
 
       Returns status for the given pipeline.
 
@@ -195,7 +195,7 @@ Functions
       :rtype: dict
 
 
-   .. method:: collection_builder(self, **kwargs: dict) -> pine.client.models.CollectionBuilder
+   .. py:method:: collection_builder(self, **kwargs: dict) -> pine.client.models.CollectionBuilder
 
       Makes and returns a new :py:class:`.models.CollectionBuilder` with the logged in user.
 
@@ -206,7 +206,7 @@ Functions
       :rtype: models.CollectionBuilder
 
 
-   .. method:: create_collection(self, builder: pine.client.models.CollectionBuilder) -> str
+   .. py:method:: create_collection(self, builder: pine.client.models.CollectionBuilder) -> str
 
       Creates a collection using the current value of the given builder and returns its ID.
 
@@ -221,7 +221,7 @@ Functions
       :rtype: str
 
 
-   .. method:: archive_collection(self, collection_id: str, archive: bool = True) -> dict
+   .. py:method:: archive_collection(self, collection_id: str, archive: bool = True) -> dict
 
       Archives or unarchives the given collection.
 
@@ -231,7 +231,7 @@ Functions
       :rtype: dict
 
 
-   .. method:: get_collection_permissions(self, collection_id: str) -> pine.client.models.CollectionUserPermissions
+   .. py:method:: get_collection_permissions(self, collection_id: str) -> pine.client.models.CollectionUserPermissions
 
       Returns collection permissions for the logged in user.
 
@@ -242,7 +242,7 @@ Functions
       :rtype: models.CollectionUserPermissions
 
 
-   .. method:: get_collection_documents(self, collection_id: str, truncate: bool, truncate_length: int = 30) -> List[dict]
+   .. py:method:: get_collection_documents(self, collection_id: str, truncate: bool, truncate_length: int = 30) -> List[dict]
 
       Returns all the documents in the given collection.
 
@@ -257,7 +257,7 @@ Functions
       :rtype: list(dict)
 
 
-   .. method:: get_collection_classifier(self, collection_id: str) -> dict
+   .. py:method:: get_collection_classifier(self, collection_id: str) -> dict
 
       Returns the classifier associated with the given collection.
 
@@ -268,7 +268,7 @@ Functions
       :rtype: dict
 
 
-   .. method:: get_next_document(self, classifier_id: str) -> str
+   .. py:method:: get_next_document(self, classifier_id: str) -> str
 
       Returns the 'next' document associated with the given classifier.
 
@@ -280,7 +280,7 @@ Functions
       :rtype: str
 
 
-   .. method:: advance_next_document(self, classifier_id: str, document_id: str) -> dict
+   .. py:method:: advance_next_document(self, classifier_id: str, document_id: str) -> dict
 
       Advances the 'next' document associated with the given classifier by marking the
       given document as annotated.
@@ -294,7 +294,7 @@ Functions
       :rtype: dict
 
 
-   .. method:: add_document(self, document: dict = {}, creator_id: str = None, collection_id: str = None, overlap: int = None, text: str = None, metadata: dict = None) -> str
+   .. py:method:: add_document(self, document: dict = {}, creator_id: str = None, collection_id: str = None, overlap: int = None, text: str = None, metadata: dict = None) -> str
 
       Adds a new document to a collection and returns its ID.
 
@@ -323,7 +323,7 @@ Functions
       :rtype: str
 
 
-   .. method:: add_documents(self, documents: List[dict], creator_id: str = None, collection_id: str = None) -> List[str]
+   .. py:method:: add_documents(self, documents: List[dict], creator_id: str = None, collection_id: str = None) -> List[str]
 
       Adds multiple documents at once and returns their IDs.
 
@@ -344,7 +344,7 @@ Functions
       :rtype: list(str)
 
 
-   .. method:: delete_document(self, document_id: str) -> dict
+   .. py:method:: delete_document(self, document_id: str) -> dict
 
       Deletes the document and associated data with the given ID.
 
@@ -353,7 +353,7 @@ Functions
       :rtype: dict
 
 
-   .. method:: delete_documents(self, document_ids: List[str]) -> dict
+   .. py:method:: delete_documents(self, document_ids: List[str]) -> dict
 
       Deletes the documents and associated data with the given IDs.
 
@@ -362,7 +362,7 @@ Functions
       :rtype: dict
 
 
-   .. method:: annotate_document(self, document_id: str, doc_annotations: List[str], ner_annotations: List[Union[dict, list, tuple]], update_iaa: bool = True) -> str
+   .. py:method:: annotate_document(self, document_id: str, doc_annotations: List[str], ner_annotations: List[Union[dict, list, tuple]], update_iaa: bool = True) -> str
 
       Annotates the given document with the given values.
 
@@ -383,7 +383,7 @@ Functions
       :rtype: str
 
 
-   .. method:: annotate_collection_documents(self, collection_id: str, document_annotations: dict, skip_document_updates=False, update_iaa=True) -> List[str]
+   .. py:method:: annotate_collection_documents(self, collection_id: str, document_annotations: dict, skip_document_updates=False, update_iaa=True) -> List[str]
 
       Annotates documents in a collection.
 
@@ -406,7 +406,7 @@ Functions
       :rtype: list(str)
 
 
-   .. method:: get_my_document_annotations(self, document_id: str) -> List[List[dict]]
+   .. py:method:: get_my_document_annotations(self, document_id: str) -> List[List[dict]]
 
       Returns annotations for the given document for the logged in user.
 
@@ -421,7 +421,7 @@ Functions
       :rtype: list(list(dict))
 
 
-   .. method:: get_others_document_annotations(self, document_id: str) -> List[List]
+   .. py:method:: get_others_document_annotations(self, document_id: str) -> List[List]
 
       Returns annotations for the given document for users other than the logged in user.
 
@@ -436,7 +436,7 @@ Functions
       :rtype: list(list(dict))
 
 
-   .. method:: list_collections(self, include_archived: bool = False) -> List[dict]
+   .. py:method:: list_collections(self, include_archived: bool = False) -> List[dict]
 
       Returns a list of user's collections.
 
@@ -450,7 +450,7 @@ Functions
       :rtype: list(dict)
 
 
-   .. method:: get_collection(self, collection_id: str) -> dict
+   .. py:method:: get_collection(self, collection_id: str) -> dict
 
       Returns the collection with the given ID.
 
@@ -459,7 +459,7 @@ Functions
       :rtype: dict
 
 
-   .. method:: get_collection_iaa_report(self, collection_id: str) -> dict
+   .. py:method:: get_collection_iaa_report(self, collection_id: str) -> dict
 
       Returns IAA (inter-annotation agreement) report for the given collection.
 
@@ -470,7 +470,7 @@ Functions
       :rtype: dict
 
 
-   .. method:: download_collection_data(self, collection_id: str, include_collection_metadata: bool = True, include_document_metadata: bool = True, include_document_text: bool = True, include_annotations: bool = True, include_annotation_latest_version_only: bool = True)
+   .. py:method:: download_collection_data(self, collection_id: str, include_collection_metadata: bool = True, include_document_metadata: bool = True, include_document_text: bool = True, include_annotations: bool = True, include_annotation_latest_version_only: bool = True)
 
       Downloads collection data.
 
@@ -497,7 +497,7 @@ Functions
       :rtype: dict
 
 
-   .. method:: get_classifier_status(self, classifier_id: str) -> dict
+   .. py:method:: get_classifier_status(self, classifier_id: str) -> dict
 
       Returns the status for the given classifier.
 
@@ -506,7 +506,7 @@ Functions
       :rtype: dict
 
 
-   .. method:: classifier_train(self, classifier_id: str, model_name: str = 'auto-trained') -> dict
+   .. py:method:: classifier_train(self, classifier_id: str, model_name: str = 'auto-trained') -> dict
 
       Trains the given classifier (using collection documents).
 
@@ -522,7 +522,7 @@ Functions
       :rtype: dict
 
 
-   .. method:: classifier_has_trained(self, classifier_id: str) -> bool
+   .. py:method:: classifier_has_trained(self, classifier_id: str) -> bool
 
       Returns whether the given classifier has been trained or not.
 
@@ -532,7 +532,7 @@ Functions
       :rtype: bool
 
 
-   .. method:: classifier_predict(self, classifier_id, document_ids: List[str], texts: List[str], timeout_in_s: int = 36000) -> dict
+   .. py:method:: classifier_predict(self, classifier_id, document_ids: List[str], texts: List[str], timeout_in_s: int = 36000) -> dict
 
       Runs classifier prediction on the given documents.  At least one of document_ids and
       texts must be non-empty.
@@ -548,7 +548,7 @@ Functions
       :rtype: dict
 
 
-   .. method:: get_classifier_running_jobs(self, classifier_id: str) -> List[str]
+   .. py:method:: get_classifier_running_jobs(self, classifier_id: str) -> List[str]
 
       Gets the list of running job IDs for the given classifier.
 
@@ -557,10 +557,9 @@ Functions
 
 
 
-.. class:: LocalPineClient(backend_base_uri: str, eve_base_uri: str, mongo_base_uri: str = None, mongo_dbname: str = EveClient.DEFAULT_DBNAME, verify_ssl: bool = True)
+.. py:class:: LocalPineClient(backend_base_uri: str, eve_base_uri: str, mongo_base_uri: str = None, mongo_dbname: str = EveClient.DEFAULT_DBNAME, verify_ssl: bool = True)
 
-
-   Bases: :class:`pine.client.client.PineClient`
+   Bases: :py:obj:`PineClient`
 
    A client for a local PINE instance, including an :py:class:`EveClient`.
        
@@ -579,7 +578,7 @@ Functions
                       are fully aware of the security consequences
    :type verify_ssl: bool, optional
 
-   .. attribute:: eve
+   .. py:attribute:: eve
       :annotation: :EveClient
 
       The local :py:class:`EveClient` instance.
@@ -587,7 +586,7 @@ Functions
       :type: EveClient
 
 
-   .. method:: is_valid(self) -> bool
+   .. py:method:: is_valid(self) -> bool
 
       Returns whether this client and its connection(s) are valid.
 
@@ -596,7 +595,7 @@ Functions
 
 
 
-.. function:: setup_logging()
+.. py:function:: setup_logging()
 
    Sets up logging, if configured to do so.
 
@@ -604,10 +603,9 @@ Functions
    passed to :py:func:`logging.config.dictConfig`.
 
 
-.. class:: CollectionBuilder(collection: dict = None, creator_id: str = None, viewers: List[str] = None, annotators: List[str] = None, labels: List[str] = None, title: str = None, description: str = None, allow_overlapping_ner_annotations: bool = None, pipelineId: str = None, overlap: float = None, train_every: int = None, classifierParameters: dict = None, document_csv_file: str = None, document_csv_file_has_header: bool = None, document_csv_file_text_column: int = None, image_files: List[str] = None)
+.. py:class:: CollectionBuilder(collection: dict = None, creator_id: str = None, viewers: List[str] = None, annotators: List[str] = None, labels: List[str] = None, title: str = None, description: str = None, allow_overlapping_ner_annotations: bool = None, pipelineId: str = None, overlap: float = None, train_every: int = None, classifierParameters: dict = None, document_csv_file: str = None, document_csv_file_has_header: bool = None, document_csv_file_text_column: int = None, image_files: List[str] = None)
 
-
-   Bases: :class:`object`
+   Bases: :py:obj:`object`
 
    A class that can build the form and files fields that are necessary to create a collection.
        
@@ -658,7 +656,7 @@ Functions
                        defaults to ``None`` (not set)
    :type image_files: list(str)
 
-   .. attribute:: form
+   .. py:attribute:: form
       
 
       The form data.
@@ -666,7 +664,7 @@ Functions
       :type: dict
 
 
-   .. attribute:: files
+   .. py:attribute:: files
       
 
       The files data.
@@ -674,7 +672,7 @@ Functions
       :type: dict
 
 
-   .. method:: collection(self) -> dict
+   .. py:method:: collection(self) -> dict
       :property:
 
       Returns the collection information from the form.
@@ -683,7 +681,7 @@ Functions
       :rtype: dict
 
 
-   .. method:: form_json(self) -> dict
+   .. py:method:: form_json(self) -> dict
       :property:
 
       Returns the form where the values have been JSON-encoded.
@@ -692,7 +690,7 @@ Functions
       :rtype: dict
 
 
-   .. method:: creator_id(self, user_id: str) -> pine.client.models.CollectionBuilder
+   .. py:method:: creator_id(self, user_id: str) -> CollectionBuilder
 
       Sets the creator_id to the given, and adds to viewers and annotators.
 
@@ -703,7 +701,7 @@ Functions
       :rtype: models.CollectionBuilder
 
 
-   .. method:: viewer(self, user_id: str) -> pine.client.models.CollectionBuilder
+   .. py:method:: viewer(self, user_id: str) -> CollectionBuilder
 
       Adds the given user to the list of viewers.
 
@@ -714,7 +712,7 @@ Functions
       :rtype: models.CollectionBuilder
 
 
-   .. method:: annotator(self, user_id: str) -> pine.client.models.CollectionBuilder
+   .. py:method:: annotator(self, user_id: str) -> CollectionBuilder
 
       Adds the given user to the list of annotators.
 
@@ -725,7 +723,7 @@ Functions
       :rtype: models.CollectionBuilder
 
 
-   .. method:: label(self, label: str) -> pine.client.models.CollectionBuilder
+   .. py:method:: label(self, label: str) -> CollectionBuilder
 
       Adds the given label to the collection.
 
@@ -736,7 +734,7 @@ Functions
       :rtype: models.CollectionBuilder
 
 
-   .. method:: metadata(self, key: str, value: Any) -> pine.client.models.CollectionBuilder
+   .. py:method:: metadata(self, key: str, value: Any) -> CollectionBuilder
 
       Adds the given metadata key/value to the collection.
 
@@ -748,7 +746,7 @@ Functions
       :rtype: models.CollectionBuilder
 
 
-   .. method:: title(self, title: str) -> pine.client.models.CollectionBuilder
+   .. py:method:: title(self, title: str) -> CollectionBuilder
 
       Sets the metadata title to the given.
 
@@ -759,7 +757,7 @@ Functions
       :rtype: models.CollectionBuilder
 
 
-   .. method:: description(self, description: str) -> pine.client.models.CollectionBuilder
+   .. py:method:: description(self, description: str) -> CollectionBuilder
 
       Sets the metadata description to the given.
 
@@ -770,7 +768,7 @@ Functions
       :rtype: models.CollectionBuilder
 
 
-   .. method:: configuration(self, key: str, value: Any) -> pine.client.models.CollectionBuilder
+   .. py:method:: configuration(self, key: str, value: Any) -> CollectionBuilder
 
       Adds the given configuration key/value to the collection.
 
@@ -782,7 +780,7 @@ Functions
       :rtype: models.CollectionBuilder
 
 
-   .. method:: allow_overlapping_ner_annotations(self, allow_overlapping_ner_annotations: bool)
+   .. py:method:: allow_overlapping_ner_annotations(self, allow_overlapping_ner_annotations: bool)
 
       Sets the configuration value for allow_overlapping_ner_annotations to the given.
 
@@ -793,7 +791,7 @@ Functions
       :rtype: models.CollectionBuilder
 
 
-   .. method:: classifier(self, pipelineId: str, overlap: float = 0, train_every: int = 100, classifierParameters: dict = {}) -> pine.client.models.CollectionBuilder
+   .. py:method:: classifier(self, pipelineId: str, overlap: float = 0, train_every: int = 100, classifierParameters: dict = {}) -> CollectionBuilder
 
       Sets classifier information for the created collection.
 
@@ -810,7 +808,7 @@ Functions
       :rtype: models.CollectionBuilder
 
 
-   .. method:: document_csv_file(self, csv_filename: str, has_header: bool, text_column: int) -> pine.client.models.CollectionBuilder
+   .. py:method:: document_csv_file(self, csv_filename: str, has_header: bool, text_column: int) -> CollectionBuilder
 
       Sets the CSV file used to create documents to the given.
 
@@ -828,7 +826,7 @@ Functions
       :rtype: models.CollectionBuilder
 
 
-   .. method:: image_file(self, image_filename: str) -> pine.client.models.CollectionBuilder
+   .. py:method:: image_file(self, image_filename: str) -> CollectionBuilder
 
       Adds the given image file to the collection.
 
@@ -841,7 +839,7 @@ Functions
       :rtype: models.CollectionBuilder
 
 
-   .. method:: is_valid(self, error_callback: Callable[([str], None)] = None)
+   .. py:method:: is_valid(self, error_callback: Callable[[str], None] = None)
 
       Checks whether the currently set values are valid or not.
 

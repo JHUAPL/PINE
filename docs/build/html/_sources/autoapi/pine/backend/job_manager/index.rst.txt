@@ -1,5 +1,5 @@
-:mod:`pine.backend.job_manager`
-===============================
+:py:mod:`pine.backend.job_manager`
+==================================
 
 .. py:module:: pine.backend.job_manager
 

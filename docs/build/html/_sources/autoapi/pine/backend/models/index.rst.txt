@@ -1,5 +1,5 @@
-:mod:`pine.backend.models`
-==========================
+:py:mod:`pine.backend.models`
+=============================
 
 .. py:module:: pine.backend.models
 
@@ -21,156 +21,152 @@ Classes
 
 
 
-.. class:: LoginFormFieldType
 
-   Bases: :class:`enum.Enum`
+.. py:class:: LoginFormFieldType
+
+   Bases: :py:obj:`enum.Enum`
 
    Generic enumeration.
 
    Derive from this class to define new enumerations.
 
-   .. attribute:: TEXT
+   .. py:attribute:: TEXT
       :annotation: = text
 
       
 
-   .. attribute:: PASSWORD
+   .. py:attribute:: PASSWORD
       :annotation: = password
 
       
 
 
-.. class:: LoginFormField(name: str, display: str, field_type: pine.backend.models.LoginFormFieldType)
+.. py:class:: LoginFormField(name: str, display: str, field_type: LoginFormFieldType)
 
+   Bases: :py:obj:`object`
 
-   Bases: :class:`object`
-
-   .. method:: to_dict(self)
-
-
-
-.. class:: LoginForm(fields: list, button_text: str)
-
-
-   Bases: :class:`object`
-
-   .. method:: to_dict(self)
+   .. py:method:: to_dict(self)
 
 
 
-.. class:: AuthUser
+.. py:class:: LoginForm(fields: list, button_text: str)
+
+   Bases: :py:obj:`object`
+
+   .. py:method:: to_dict(self)
 
 
-   Bases: :class:`object`
 
-   .. method:: id(self)
+.. py:class:: AuthUser
+
+   Bases: :py:obj:`object`
+
+   .. py:method:: id(self)
       :property:
 
 
-   .. method:: username(self)
+   .. py:method:: username(self)
       :property:
 
 
-   .. method:: display_name(self)
+   .. py:method:: display_name(self)
       :property:
 
 
-   .. method:: is_admin(self)
+   .. py:method:: is_admin(self)
       :property:
 
 
-   .. method:: to_dict(self)
+   .. py:method:: to_dict(self)
 
 
 
-.. class:: UserDetails(first_name, last_name, description)
+.. py:class:: UserDetails(first_name, last_name, description)
+
+   Bases: :py:obj:`object`
+
+   .. py:method:: to_dict(self)
 
 
-   Bases: :class:`object`
 
-   .. method:: to_dict(self)
+.. py:class:: CollectionUserPermissions(view=False, annotate=False, add_documents=False, add_images=False, modify_users=False, modify_labels=False, modify_document_metadata=False, download_data=False, archive=False, delete_documents=False)
 
-
-
-.. class:: CollectionUserPermissions(view=False, annotate=False, add_documents=False, add_images=False, modify_users=False, modify_labels=False, modify_document_metadata=False, download_data=False, archive=False, delete_documents=False)
-
-
-   Bases: :class:`object`
+   Bases: :py:obj:`object`
 
    Collection permissions for a user as a dictionary of boolean flags.
        
 
-   .. attribute:: view
+   .. py:attribute:: view
       :annotation: :bool
 
       Whether the user can view the collection and documents.
       :type: bool
 
 
-   .. attribute:: annotate
+   .. py:attribute:: annotate
       :annotation: :bool
 
       Whether the user can annotate collection documents.
       :type: bool
 
 
-   .. attribute:: add_documents
+   .. py:attribute:: add_documents
       :annotation: :bool
 
       Whether the user can add documents to the collection.
       :type: bool
 
 
-   .. attribute:: add_images
+   .. py:attribute:: add_images
       :annotation: :bool
 
       Whether the user can add images to the collection.
       :type: bool
 
 
-   .. attribute:: modify_users
+   .. py:attribute:: modify_users
       :annotation: :bool
 
       Whether the user can modify the list of viewers/annotators for the collection.
       :type: bool
 
 
-   .. attribute:: modify_labels
+   .. py:attribute:: modify_labels
       :annotation: :bool
 
       Whether the user can modify the list of labels for the collection.
       :type: bool
 
 
-   .. attribute:: modify_document_metadata
+   .. py:attribute:: modify_document_metadata
       :annotation: :bool
 
       Whether the user can modify document metadata (such as changing the image).
       :type: bool
 
 
-   .. attribute:: download_data
+   .. py:attribute:: download_data
       :annotation: :bool
 
       Whether the user can download the collection data
       :type: bool
 
 
-   .. attribute:: archive
+   .. py:attribute:: archive
       :annotation: :bool
 
       Whether the user can archive or unarchive the collection.
       :type: bool
 
 
-   .. attribute:: delete_documents
+   .. py:attribute:: delete_documents
       :annotation: :bool
 
       Whether the user can delete documents in the collection.
       :type: bool
 
 
-   .. method:: to_dict(self) -> dict
+   .. py:method:: to_dict(self) -> dict
 
       Returns a dict version of this object for conversion to JSON.
 

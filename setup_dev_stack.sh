@@ -38,7 +38,7 @@ pushd test &> /dev/null
 pipenv install --dev
 popd &> /dev/null
 
-pushd test/pine &> /dev/null
+pushd test/tests &> /dev/null
 npm install
 popd &> /dev/null
 

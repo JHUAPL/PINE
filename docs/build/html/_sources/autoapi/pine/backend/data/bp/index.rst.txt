@@ -1,5 +1,5 @@
-:mod:`pine.backend.data.bp`
-===========================
+:py:mod:`pine.backend.data.bp`
+==============================
 
 .. py:module:: pine.backend.data.bp
 
@@ -16,6 +16,7 @@ Functions
    pine.backend.data.bp.init_app
 
 
-.. function:: init_app(app)
+
+.. py:function:: init_app(app)
 
 

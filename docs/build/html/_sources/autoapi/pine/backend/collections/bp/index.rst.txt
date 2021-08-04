@@ -1,5 +1,5 @@
-:mod:`pine.backend.collections.bp`
-==================================
+:py:mod:`pine.backend.collections.bp`
+=====================================
 
 .. py:module:: pine.backend.collections.bp
 
@@ -46,45 +46,57 @@ Functions
    pine.backend.collections.bp.init_app
 
 
-.. data:: bp
+
+Attributes
+~~~~~~~~~~
+
+.. autoapisummary::
+
+   pine.backend.collections.bp.bp
+   pine.backend.collections.bp.LOGGER
+   pine.backend.collections.bp.DOCUMENTS_PER_TRANSACTION
+   pine.backend.collections.bp.LAST_COLLECTION_FOR_IMAGE
+
+
+.. py:data:: bp
    
 
    
 
-.. data:: LOGGER
+.. py:data:: LOGGER
    
 
    
 
-.. data:: DOCUMENTS_PER_TRANSACTION
+.. py:data:: DOCUMENTS_PER_TRANSACTION
    :annotation: = 500
 
    
 
-.. data:: LAST_COLLECTION_FOR_IMAGE
+.. py:data:: LAST_COLLECTION_FOR_IMAGE
    
 
    
 
-.. function:: is_cached_last_collection(collection_id)
+.. py:function:: is_cached_last_collection(collection_id)
 
 
-.. function:: update_cached_last_collection(collection_id)
+.. py:function:: update_cached_last_collection(collection_id)
 
 
-.. function:: user_permissions_projection()
+.. py:function:: user_permissions_projection()
 
 
-.. function:: get_user_permissions(collection: dict) -> pine.backend.models.CollectionUserPermissions
+.. py:function:: get_user_permissions(collection: dict) -> pine.backend.models.CollectionUserPermissions
 
 
-.. function:: get_user_permissions_by_id(collection_id: str) -> pine.backend.models.CollectionUserPermissions
+.. py:function:: get_user_permissions_by_id(collection_id: str) -> pine.backend.models.CollectionUserPermissions
 
 
-.. function:: get_user_permissions_by_ids(collection_ids: Iterable[str]) -> List[models.CollectionUserPermissions]
+.. py:function:: get_user_permissions_by_ids(collection_ids: Iterable[str]) -> List[pine.backend.models.CollectionUserPermissions]
 
 
-.. function:: get_user_collections(archived, page)
+.. py:function:: get_user_collections(archived, page)
 
    Return collections for the logged in user using pagination. Returns all collections if parameter "page" is "all",
    or the collections associated with the given page. Can return archived or un-archived collections based upon the
@@ -94,7 +106,7 @@ Functions
    :return: Response
 
 
-.. function:: get_unarchived_user_collections(page)
+.. py:function:: get_unarchived_user_collections(page)
 
    Return unarchived user collections for the corresponding page value. Default value returns collections for all
    pages.
@@ -102,7 +114,7 @@ Functions
    :return: Response
 
 
-.. function:: get_archived_user_collections(page)
+.. py:function:: get_archived_user_collections(page)
 
    Return archived user collections for the corresponding page value. Default value returns collections for all
    pages.
@@ -110,7 +122,7 @@ Functions
    :return: Response
 
 
-.. function:: archive_or_unarchive_collection(collection_id, archive)
+.. py:function:: archive_or_unarchive_collection(collection_id, archive)
 
    Set the "archived" boolean flag for the collection matching the provided collection_id.
    :param collection_id: str
@@ -118,21 +130,21 @@ Functions
    :return: Response
 
 
-.. function:: archive_collection(collection_id)
+.. py:function:: archive_collection(collection_id)
 
    Archive the collection matching the provided collection id
    :param collection_id: str
    :return: Response
 
 
-.. function:: unarchive_collection(collection_id)
+.. py:function:: unarchive_collection(collection_id)
 
    Unarchive the collection matching the provided collection id
    :param collection_id: str
    :return: Response
 
 
-.. function:: get_collection(collection_id)
+.. py:function:: get_collection(collection_id)
 
    Return the collection object for the collection matching the provided collection id. This object has the fields:
    'creator_id', 'annotators', 'viewers', 'labels', 'metadata', 'archived', and 'configuration'.
@@ -140,29 +152,29 @@ Functions
    :return: Response
 
 
-.. function:: download_collection(collection_id)
+.. py:function:: download_collection(collection_id)
 
 
-.. function:: add_annotator_to_collection(collection_id)
+.. py:function:: add_annotator_to_collection(collection_id)
 
 
-.. function:: add_viewer_to_collection(collection_id)
+.. py:function:: add_viewer_to_collection(collection_id)
 
 
-.. function:: add_label_to_collection(collection_id)
+.. py:function:: add_label_to_collection(collection_id)
 
 
-.. function:: get_overlap_ids(collection_id: str)
+.. py:function:: get_overlap_ids(collection_id: str)
 
    Return the list of ids for overlapping documents for the collection matching the provided collection id.
    :param collection_id: str
    :return: tuple
 
 
-.. function:: _upload_documents(collection, docs)
+.. py:function:: _upload_documents(collection, docs)
 
 
-.. function:: create_collection()
+.. py:function:: create_collection()
 
    Create a new collection based upon the entries provided in the POST request's associated form fields.
    These fields include:
@@ -182,36 +194,36 @@ Functions
    :return: information about the created collection
 
 
-.. function:: _check_collection_and_get_image_dir(collection_id, path)
+.. py:function:: _check_collection_and_get_image_dir(collection_id, path)
 
 
-.. function:: get_static_collection_images(collection_id)
+.. py:function:: get_static_collection_images(collection_id)
 
 
-.. function:: get_collection_images(collection_id)
+.. py:function:: get_collection_images(collection_id)
 
 
-.. function:: get_collection_image(collection_id, path)
+.. py:function:: get_collection_image(collection_id, path)
 
 
-.. function:: get_collection_image_exists(collection_id, path)
+.. py:function:: get_collection_image_exists(collection_id, path)
 
 
-.. function:: _path_split(path)
+.. py:function:: _path_split(path)
 
 
-.. function:: _safe_path(path)
+.. py:function:: _safe_path(path)
 
 
-.. function:: endpoint_get_user_permissions(collection_id)
+.. py:function:: endpoint_get_user_permissions(collection_id)
 
 
-.. function:: _upload_collection_image_file(collection_id, path, image_file)
+.. py:function:: _upload_collection_image_file(collection_id, path, image_file)
 
 
-.. function:: post_collection_image(collection_id, path)
+.. py:function:: post_collection_image(collection_id, path)
 
 
-.. function:: init_app(app)
+.. py:function:: init_app(app)
 
 

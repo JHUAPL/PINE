@@ -1,6 +1,6 @@
 # (C) 2019 The Johns Hopkins University Applied Physics Laboratory LLC.
 
-FROM ubuntu:18.04
+FROM ubuntu:20.04
 
 ENV LC_ALL C.UTF-8
 ENV LANG C.UTF-8
@@ -53,7 +53,7 @@ RUN if [ -n "${DB_DIR}" ] ; then \
 # Install python packages
 WORKDIR $ROOT_DIR
 ADD Pipfile Pipfile.lock ./
-RUN REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt pipenv install --system --deploy
+RUN REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt pipenv install --dev --system --deploy
 
 # Add eve and code
 ADD docker/wsgi.py $ROOT_DIR

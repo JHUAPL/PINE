@@ -1,5 +1,5 @@
-:mod:`pine.pipelines.app.listener`
-==================================
+:py:mod:`pine.pipelines.app.listener`
+=====================================
 
 .. py:module:: pine.pipelines.app.listener
 

@@ -4,6 +4,11 @@
 \ifdefined\pdfpxdimen
    \let\sphinxpxdimen\pdfpxdimen\else\newdimen\sphinxpxdimen
 \fi \sphinxpxdimen=.75bp\relax
+\ifdefined\pdfimageresolution
+    \pdfimageresolution= \numexpr \dimexpr1in\relax/\sphinxpxdimen\relax
+\fi
+%% let collapsable pdf bookmarks panel have high depth per default
+\PassOptionsToPackage{bookmarksdepth=5}{hyperref}
 
 \PassOptionsToPackage{warn}{textcomp}
 \usepackage[utf8]{inputenc}
@@ -28,34 +33,16 @@
 
 
 
-\usepackage{times}
-\expandafter\ifx\csname T@LGR\endcsname\relax
-\else
-% LGR was declared as font encoding
-  \substitutefont{LGR}{\rmdefault}{cmr}
-  \substitutefont{LGR}{\sfdefault}{cmss}
-  \substitutefont{LGR}{\ttdefault}{cmtt}
-\fi
-\expandafter\ifx\csname T@X2\endcsname\relax
-  \expandafter\ifx\csname T@T2A\endcsname\relax
-  \else
-  % T2A was declared as font encoding
-    \substitutefont{T2A}{\rmdefault}{cmr}
-    \substitutefont{T2A}{\sfdefault}{cmss}
-    \substitutefont{T2A}{\ttdefault}{cmtt}
-  \fi
-\else
-% X2 was declared as font encoding
-  \substitutefont{X2}{\rmdefault}{cmr}
-  \substitutefont{X2}{\sfdefault}{cmss}
-  \substitutefont{X2}{\ttdefault}{cmtt}
-\fi
+\usepackage{tgtermes}
+\usepackage{tgheros}
+\renewcommand{\ttdefault}{txtt}
+
 
 
 \usepackage[Bjarne]{fncychap}
 \usepackage{sphinx}
 
-\fvset{fontsize=\small}
+\fvset{fontsize=auto}
 \usepackage{geometry}
 
 
@@ -207,6 +194,36 @@ Import the contents of the data provided in the request body to the database
 \hline
 \sphinxAtStartPar
 {\hyperref[\detokenize{autoapi/pine/backend/admin/bp/index:pine.backend.admin.bp.init_app}]{\sphinxcrossref{\sphinxcode{\sphinxupquote{init\_app}}}}}(app)
+&
+\sphinxAtStartPar
+
+\\
+\hline
+\end{longtable}\sphinxatlongtableend\end{savenotes}
+
+
+\subparagraph{Attributes}
+\label{\detokenize{autoapi/pine/backend/admin/bp/index:attributes}}
+
+\begin{savenotes}\sphinxatlongtablestart\begin{longtable}[c]{\X{1}{2}\X{1}{2}}
+\hline
+
+\endfirsthead
+
+\multicolumn{2}{c}%
+{\makebox[0pt]{\sphinxtablecontinued{\tablename\ \thetable{} \textendash{} continued from previous page}}}\\
+\hline
+
+\endhead
+
+\hline
+\multicolumn{2}{r}{\makebox[0pt][r]{\sphinxtablecontinued{continues on next page}}}\\
+\endfoot
+
+\endlastfoot
+
+\sphinxAtStartPar
+{\hyperref[\detokenize{autoapi/pine/backend/admin/bp/index:pine.backend.admin.bp.bp}]{\sphinxcrossref{\sphinxcode{\sphinxupquote{bp}}}}}
 &
 \sphinxAtStartPar
 
@@ -448,6 +465,50 @@ Save new NER annotations and labels to the database as an entry for the logged i
 \\
 \hline
 \end{longtable}\sphinxatlongtableend\end{savenotes}
+
+
+\subparagraph{Attributes}
+\label{\detokenize{autoapi/pine/backend/annotations/bp/index:attributes}}
+
+\begin{savenotes}\sphinxatlongtablestart\begin{longtable}[c]{\X{1}{2}\X{1}{2}}
+\hline
+
+\endfirsthead
+
+\multicolumn{2}{c}%
+{\makebox[0pt]{\sphinxtablecontinued{\tablename\ \thetable{} \textendash{} continued from previous page}}}\\
+\hline
+
+\endhead
+
+\hline
+\multicolumn{2}{r}{\makebox[0pt][r]{\sphinxtablecontinued{continues on next page}}}\\
+\endfoot
+
+\endlastfoot
+
+\sphinxAtStartPar
+{\hyperref[\detokenize{autoapi/pine/backend/annotations/bp/index:pine.backend.annotations.bp.logger}]{\sphinxcrossref{\sphinxcode{\sphinxupquote{logger}}}}}
+&
+\sphinxAtStartPar
+
+\\
+\hline
+\sphinxAtStartPar
+{\hyperref[\detokenize{autoapi/pine/backend/annotations/bp/index:pine.backend.annotations.bp.CONFIG_ALLOW_OVERLAPPING_NER_ANNOTATIONS}]{\sphinxcrossref{\sphinxcode{\sphinxupquote{CONFIG\_ALLOW\_OVERLAPPING\_NER\_ANNOTATIONS}}}}}
+&
+\sphinxAtStartPar
+
+\\
+\hline
+\sphinxAtStartPar
+{\hyperref[\detokenize{autoapi/pine/backend/annotations/bp/index:pine.backend.annotations.bp.bp}]{\sphinxcrossref{\sphinxcode{\sphinxupquote{bp}}}}}
+&
+\sphinxAtStartPar
+
+\\
+\hline
+\end{longtable}\sphinxatlongtableend\end{savenotes}
 \index{logger (in module pine.backend.annotations.bp)@\spxentry{logger}\spxextra{in module pine.backend.annotations.bp}}
 
 \begin{fulllineitems}
@@ -662,6 +723,43 @@ backend of PINE.
 \\
 \hline
 \end{longtable}\sphinxatlongtableend\end{savenotes}
+
+
+\subparagraph{Attributes}
+\label{\detokenize{autoapi/pine/backend/api/bp/index:attributes}}
+
+\begin{savenotes}\sphinxatlongtablestart\begin{longtable}[c]{\X{1}{2}\X{1}{2}}
+\hline
+
+\endfirsthead
+
+\multicolumn{2}{c}%
+{\makebox[0pt]{\sphinxtablecontinued{\tablename\ \thetable{} \textendash{} continued from previous page}}}\\
+\hline
+
+\endhead
+
+\hline
+\multicolumn{2}{r}{\makebox[0pt][r]{\sphinxtablecontinued{continues on next page}}}\\
+\endfoot
+
+\endlastfoot
+
+\sphinxAtStartPar
+{\hyperref[\detokenize{autoapi/pine/backend/api/bp/index:pine.backend.api.bp.bp}]{\sphinxcrossref{\sphinxcode{\sphinxupquote{bp}}}}}
+&
+\sphinxAtStartPar
+
+\\
+\hline
+\sphinxAtStartPar
+{\hyperref[\detokenize{autoapi/pine/backend/api/bp/index:pine.backend.api.bp.LOGGER}]{\sphinxcrossref{\sphinxcode{\sphinxupquote{LOGGER}}}}}
+&
+\sphinxAtStartPar
+
+\\
+\hline
+\end{longtable}\sphinxatlongtableend\end{savenotes}
 \index{bp (in module pine.backend.api.bp)@\spxentry{bp}\spxextra{in module pine.backend.api.bp}}
 
 \begin{fulllineitems}
@@ -841,6 +939,50 @@ backend of PINE.
 \hline
 \sphinxAtStartPar
 {\hyperref[\detokenize{autoapi/pine/backend/auth/bp/index:pine.backend.auth.bp.init_app}]{\sphinxcrossref{\sphinxcode{\sphinxupquote{init\_app}}}}}(app)
+&
+\sphinxAtStartPar
+
+\\
+\hline
+\end{longtable}\sphinxatlongtableend\end{savenotes}
+
+
+\subparagraph{Attributes}
+\label{\detokenize{autoapi/pine/backend/auth/bp/index:attributes}}
+
+\begin{savenotes}\sphinxatlongtablestart\begin{longtable}[c]{\X{1}{2}\X{1}{2}}
+\hline
+
+\endfirsthead
+
+\multicolumn{2}{c}%
+{\makebox[0pt]{\sphinxtablecontinued{\tablename\ \thetable{} \textendash{} continued from previous page}}}\\
+\hline
+
+\endhead
+
+\hline
+\multicolumn{2}{r}{\makebox[0pt][r]{\sphinxtablecontinued{continues on next page}}}\\
+\endfoot
+
+\endlastfoot
+
+\sphinxAtStartPar
+{\hyperref[\detokenize{autoapi/pine/backend/auth/bp/index:pine.backend.auth.bp.CONFIG_AUTH_MODULE_KEY}]{\sphinxcrossref{\sphinxcode{\sphinxupquote{CONFIG\_AUTH\_MODULE\_KEY}}}}}
+&
+\sphinxAtStartPar
+
+\\
+\hline
+\sphinxAtStartPar
+{\hyperref[\detokenize{autoapi/pine/backend/auth/bp/index:pine.backend.auth.bp.bp}]{\sphinxcrossref{\sphinxcode{\sphinxupquote{bp}}}}}
+&
+\sphinxAtStartPar
+
+\\
+\hline
+\sphinxAtStartPar
+{\hyperref[\detokenize{autoapi/pine/backend/auth/bp/index:pine.backend.auth.bp.module}]{\sphinxcrossref{\sphinxcode{\sphinxupquote{module}}}}}
 &
 \sphinxAtStartPar
 
@@ -1170,6 +1312,36 @@ Bases: {\hyperref[\detokenize{autoapi/pine/backend/auth/bp/index:pine.backend.au
 \\
 \hline
 \end{longtable}\sphinxatlongtableend\end{savenotes}
+
+
+\subparagraph{Attributes}
+\label{\detokenize{autoapi/pine/backend/auth/oauth/index:attributes}}
+
+\begin{savenotes}\sphinxatlongtablestart\begin{longtable}[c]{\X{1}{2}\X{1}{2}}
+\hline
+
+\endfirsthead
+
+\multicolumn{2}{c}%
+{\makebox[0pt]{\sphinxtablecontinued{\tablename\ \thetable{} \textendash{} continued from previous page}}}\\
+\hline
+
+\endhead
+
+\hline
+\multicolumn{2}{r}{\makebox[0pt][r]{\sphinxtablecontinued{continues on next page}}}\\
+\endfoot
+
+\endlastfoot
+
+\sphinxAtStartPar
+{\hyperref[\detokenize{autoapi/pine/backend/auth/oauth/index:pine.backend.auth.oauth.LOGGER}]{\sphinxcrossref{\sphinxcode{\sphinxupquote{LOGGER}}}}}
+&
+\sphinxAtStartPar
+
+\\
+\hline
+\end{longtable}\sphinxatlongtableend\end{savenotes}
 \index{LOGGER (in module pine.backend.auth.oauth)@\spxentry{LOGGER}\spxextra{in module pine.backend.auth.oauth}}
 
 \begin{fulllineitems}
@@ -1248,7 +1420,7 @@ Bases: {\hyperref[\detokenize{autoapi/pine/backend/auth/bp/index:pine.backend.au
 \index{make\_user() (pine.backend.auth.oauth.OAuthModule method)@\spxentry{make\_user()}\spxextra{pine.backend.auth.oauth.OAuthModule method}}
 
 \begin{fulllineitems}
-\phantomsection\label{\detokenize{autoapi/pine/backend/auth/oauth/index:pine.backend.auth.oauth.OAuthModule.make_user}}\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{make\_user}}}{\emph{\DUrole{n}{self}}, \emph{\DUrole{n}{decoded}\DUrole{p}{:} \DUrole{n}{\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#dict}{dict}}}}{{ $\rightarrow$ {\hyperref[\detokenize{autoapi/pine/backend/auth/oauth/index:pine.backend.auth.oauth.OAuthUser}]{\sphinxcrossref{pine.backend.auth.oauth.OAuthUser}}}}}
+\phantomsection\label{\detokenize{autoapi/pine/backend/auth/oauth/index:pine.backend.auth.oauth.OAuthModule.make_user}}\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{make\_user}}}{\emph{\DUrole{n}{self}}, \emph{\DUrole{n}{decoded}\DUrole{p}{:} \DUrole{n}{\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#dict}{dict}}}}{{ $\rightarrow$ {\hyperref[\detokenize{autoapi/pine/backend/auth/oauth/index:pine.backend.auth.oauth.OAuthUser}]{\sphinxcrossref{OAuthUser}}}}}
 \end{fulllineitems}
 
 \index{login() (pine.backend.auth.oauth.OAuthModule method)@\spxentry{login()}\spxextra{pine.backend.auth.oauth.OAuthModule method}}
@@ -1450,6 +1622,36 @@ Bases: {\hyperref[\detokenize{autoapi/pine/backend/auth/oauth/index:pine.backend
 \\
 \hline
 \end{longtable}\sphinxatlongtableend\end{savenotes}
+
+
+\subparagraph{Attributes}
+\label{\detokenize{autoapi/pine/backend/auth/index:attributes}}
+
+\begin{savenotes}\sphinxatlongtablestart\begin{longtable}[c]{\X{1}{2}\X{1}{2}}
+\hline
+
+\endfirsthead
+
+\multicolumn{2}{c}%
+{\makebox[0pt]{\sphinxtablecontinued{\tablename\ \thetable{} \textendash{} continued from previous page}}}\\
+\hline
+
+\endhead
+
+\hline
+\multicolumn{2}{r}{\makebox[0pt][r]{\sphinxtablecontinued{continues on next page}}}\\
+\endfoot
+
+\endlastfoot
+
+\sphinxAtStartPar
+{\hyperref[\detokenize{autoapi/pine/backend/auth/index:pine.backend.auth.module}]{\sphinxcrossref{\sphinxcode{\sphinxupquote{module}}}}}
+&
+\sphinxAtStartPar
+
+\\
+\hline
+\end{longtable}\sphinxatlongtableend\end{savenotes}
 \index{login\_required() (in module pine.backend.auth)@\spxentry{login\_required()}\spxextra{in module pine.backend.auth}}
 
 \begin{fulllineitems}
@@ -1554,7 +1756,7 @@ front\sphinxhyphen{}end and store the collections in the backend
 \\
 \hline
 \sphinxAtStartPar
-{\hyperref[\detokenize{autoapi/pine/backend/collections/bp/index:pine.backend.collections.bp.get_user_permissions_by_ids}]{\sphinxcrossref{\sphinxcode{\sphinxupquote{get\_user\_permissions\_by\_ids}}}}}(collection\_ids: Iterable{[}str{]}) \(\rightarrow\) List{[}models.CollectionUserPermissions{]}
+{\hyperref[\detokenize{autoapi/pine/backend/collections/bp/index:pine.backend.collections.bp.get_user_permissions_by_ids}]{\sphinxcrossref{\sphinxcode{\sphinxupquote{get\_user\_permissions\_by\_ids}}}}}(collection\_ids: Iterable{[}str{]}) \(\rightarrow\) List{[}pine.backend.models.CollectionUserPermissions{]}
 &
 \sphinxAtStartPar
 
@@ -1736,6 +1938,57 @@ Create a new collection based upon the entries provided in the POST request’s 
 \\
 \hline
 \end{longtable}\sphinxatlongtableend\end{savenotes}
+
+
+\subparagraph{Attributes}
+\label{\detokenize{autoapi/pine/backend/collections/bp/index:attributes}}
+
+\begin{savenotes}\sphinxatlongtablestart\begin{longtable}[c]{\X{1}{2}\X{1}{2}}
+\hline
+
+\endfirsthead
+
+\multicolumn{2}{c}%
+{\makebox[0pt]{\sphinxtablecontinued{\tablename\ \thetable{} \textendash{} continued from previous page}}}\\
+\hline
+
+\endhead
+
+\hline
+\multicolumn{2}{r}{\makebox[0pt][r]{\sphinxtablecontinued{continues on next page}}}\\
+\endfoot
+
+\endlastfoot
+
+\sphinxAtStartPar
+{\hyperref[\detokenize{autoapi/pine/backend/collections/bp/index:pine.backend.collections.bp.bp}]{\sphinxcrossref{\sphinxcode{\sphinxupquote{bp}}}}}
+&
+\sphinxAtStartPar
+
+\\
+\hline
+\sphinxAtStartPar
+{\hyperref[\detokenize{autoapi/pine/backend/collections/bp/index:pine.backend.collections.bp.LOGGER}]{\sphinxcrossref{\sphinxcode{\sphinxupquote{LOGGER}}}}}
+&
+\sphinxAtStartPar
+
+\\
+\hline
+\sphinxAtStartPar
+{\hyperref[\detokenize{autoapi/pine/backend/collections/bp/index:pine.backend.collections.bp.DOCUMENTS_PER_TRANSACTION}]{\sphinxcrossref{\sphinxcode{\sphinxupquote{DOCUMENTS\_PER\_TRANSACTION}}}}}
+&
+\sphinxAtStartPar
+
+\\
+\hline
+\sphinxAtStartPar
+{\hyperref[\detokenize{autoapi/pine/backend/collections/bp/index:pine.backend.collections.bp.LAST_COLLECTION_FOR_IMAGE}]{\sphinxcrossref{\sphinxcode{\sphinxupquote{LAST\_COLLECTION\_FOR\_IMAGE}}}}}
+&
+\sphinxAtStartPar
+
+\\
+\hline
+\end{longtable}\sphinxatlongtableend\end{savenotes}
 \index{bp (in module pine.backend.collections.bp)@\spxentry{bp}\spxextra{in module pine.backend.collections.bp}}
 
 \begin{fulllineitems}
@@ -1793,7 +2046,7 @@ Create a new collection based upon the entries provided in the POST request’s 
 \index{get\_user\_permissions\_by\_ids() (in module pine.backend.collections.bp)@\spxentry{get\_user\_permissions\_by\_ids()}\spxextra{in module pine.backend.collections.bp}}
 
 \begin{fulllineitems}
-\phantomsection\label{\detokenize{autoapi/pine/backend/collections/bp/index:pine.backend.collections.bp.get_user_permissions_by_ids}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{pine.backend.collections.bp.}}\sphinxbfcode{\sphinxupquote{get\_user\_permissions\_by\_ids}}}{\emph{\DUrole{n}{collection\_ids}\DUrole{p}{:} \DUrole{n}{Iterable\DUrole{p}{{[}}\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#str}{str}\DUrole{p}{{]}}}}}{{ $\rightarrow$ List\DUrole{p}{{[}}models.CollectionUserPermissions\DUrole{p}{{]}}}}
+\phantomsection\label{\detokenize{autoapi/pine/backend/collections/bp/index:pine.backend.collections.bp.get_user_permissions_by_ids}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{pine.backend.collections.bp.}}\sphinxbfcode{\sphinxupquote{get\_user\_permissions\_by\_ids}}}{\emph{\DUrole{n}{collection\_ids}\DUrole{p}{:} \DUrole{n}{Iterable\DUrole{p}{{[}}\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#str}{str}\DUrole{p}{{]}}}}}{{ $\rightarrow$ List\DUrole{p}{{[}}{\hyperref[\detokenize{autoapi/pine/backend/models/index:pine.backend.models.CollectionUserPermissions}]{\sphinxcrossref{pine.backend.models.CollectionUserPermissions}}}\DUrole{p}{{]}}}}
 \end{fulllineitems}
 
 \index{get\_user\_collections() (in module pine.backend.collections.bp)@\spxentry{get\_user\_collections()}\spxextra{in module pine.backend.collections.bp}}
@@ -2070,7 +2323,7 @@ A collection can also be created with a number of images through FILES fields �
 \\
 \hline
 \sphinxAtStartPar
-{\hyperref[\detokenize{autoapi/pine/backend/collections/index:pine.backend.collections.get_user_permissions_by_ids}]{\sphinxcrossref{\sphinxcode{\sphinxupquote{get\_user\_permissions\_by\_ids}}}}}(collection\_ids: Iterable{[}str{]}) \(\rightarrow\) List{[}models.CollectionUserPermissions{]}
+{\hyperref[\detokenize{autoapi/pine/backend/collections/index:pine.backend.collections.get_user_permissions_by_ids}]{\sphinxcrossref{\sphinxcode{\sphinxupquote{get\_user\_permissions\_by\_ids}}}}}(collection\_ids: Iterable{[}str{]}) \(\rightarrow\) List{[}pine.backend.models.CollectionUserPermissions{]}
 &
 \sphinxAtStartPar
 
@@ -2105,7 +2358,7 @@ Return the list of ids for overlapping documents for the collection matching the
 \index{get\_user\_permissions\_by\_ids() (in module pine.backend.collections)@\spxentry{get\_user\_permissions\_by\_ids()}\spxextra{in module pine.backend.collections}}
 
 \begin{fulllineitems}
-\phantomsection\label{\detokenize{autoapi/pine/backend/collections/index:pine.backend.collections.get_user_permissions_by_ids}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{pine.backend.collections.}}\sphinxbfcode{\sphinxupquote{get\_user\_permissions\_by\_ids}}}{\emph{\DUrole{n}{collection\_ids}\DUrole{p}{:} \DUrole{n}{Iterable\DUrole{p}{{[}}\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#str}{str}\DUrole{p}{{]}}}}}{{ $\rightarrow$ List\DUrole{p}{{[}}models.CollectionUserPermissions\DUrole{p}{{]}}}}
+\phantomsection\label{\detokenize{autoapi/pine/backend/collections/index:pine.backend.collections.get_user_permissions_by_ids}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{pine.backend.collections.}}\sphinxbfcode{\sphinxupquote{get\_user\_permissions\_by\_ids}}}{\emph{\DUrole{n}{collection\_ids}\DUrole{p}{:} \DUrole{n}{Iterable\DUrole{p}{{[}}\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#str}{str}\DUrole{p}{{]}}}}}{{ $\rightarrow$ List\DUrole{p}{{[}}{\hyperref[\detokenize{autoapi/pine/backend/models/index:pine.backend.models.CollectionUserPermissions}]{\sphinxcrossref{pine.backend.models.CollectionUserPermissions}}}\DUrole{p}{{]}}}}
 \end{fulllineitems}
 
 \index{get\_overlap\_ids() (in module pine.backend.collections)@\spxentry{get\_overlap\_ids()}\spxextra{in module pine.backend.collections}}
@@ -2335,6 +2588,50 @@ Removes the fields that eve adds that aren’t necessarily relevant to the data.
 &
 \sphinxAtStartPar
 Removes the non\sphinxhyphen{}updatable fields in the given eve object.  This is currently equivalent to
+\\
+\hline
+\end{longtable}\sphinxatlongtableend\end{savenotes}
+
+
+\subparagraph{Attributes}
+\label{\detokenize{autoapi/pine/backend/data/service/index:attributes}}
+
+\begin{savenotes}\sphinxatlongtablestart\begin{longtable}[c]{\X{1}{2}\X{1}{2}}
+\hline
+
+\endfirsthead
+
+\multicolumn{2}{c}%
+{\makebox[0pt]{\sphinxtablecontinued{\tablename\ \thetable{} \textendash{} continued from previous page}}}\\
+\hline
+
+\endhead
+
+\hline
+\multicolumn{2}{r}{\makebox[0pt][r]{\sphinxtablecontinued{continues on next page}}}\\
+\endfoot
+
+\endlastfoot
+
+\sphinxAtStartPar
+{\hyperref[\detokenize{autoapi/pine/backend/data/service/index:pine.backend.data.service.logger}]{\sphinxcrossref{\sphinxcode{\sphinxupquote{logger}}}}}
+&
+\sphinxAtStartPar
+
+\\
+\hline
+\sphinxAtStartPar
+{\hyperref[\detokenize{autoapi/pine/backend/data/service/index:pine.backend.data.service.PATH_TYPE}]{\sphinxcrossref{\sphinxcode{\sphinxupquote{PATH\_TYPE}}}}}
+&
+\sphinxAtStartPar
+Type for paths that can be passed into these messages.  Either a single string, or a list\sphinxhyphen{}like
+\\
+\hline
+\sphinxAtStartPar
+{\hyperref[\detokenize{autoapi/pine/backend/data/service/index:pine.backend.data.service.PERFORMANCE_HISTORY}]{\sphinxcrossref{\sphinxcode{\sphinxupquote{PERFORMANCE\_HISTORY}}}}}
+&
+\sphinxAtStartPar
+
 \\
 \hline
 \end{longtable}\sphinxatlongtableend\end{savenotes}
@@ -3075,7 +3372,7 @@ calling … with all the default options.
 \\
 \hline
 \sphinxAtStartPar
-{\hyperref[\detokenize{autoapi/pine/backend/documents/bp/index:pine.backend.documents.bp.get_user_permissions_by_ids}]{\sphinxcrossref{\sphinxcode{\sphinxupquote{get\_user\_permissions\_by\_ids}}}}}(document\_ids: Iterable{[}str{]}) \(\rightarrow\) List{[}models.CollectionUserPermissions{]}
+{\hyperref[\detokenize{autoapi/pine/backend/documents/bp/index:pine.backend.documents.bp.get_user_permissions_by_ids}]{\sphinxcrossref{\sphinxcode{\sphinxupquote{get\_user\_permissions\_by\_ids}}}}}(document\_ids: Iterable{[}str{]}) \(\rightarrow\) List{[}pine.backend.models.CollectionUserPermissions{]}
 &
 \sphinxAtStartPar
 
@@ -3180,6 +3477,36 @@ calling … with all the default options.
 \\
 \hline
 \end{longtable}\sphinxatlongtableend\end{savenotes}
+
+
+\subparagraph{Attributes}
+\label{\detokenize{autoapi/pine/backend/documents/bp/index:attributes}}
+
+\begin{savenotes}\sphinxatlongtablestart\begin{longtable}[c]{\X{1}{2}\X{1}{2}}
+\hline
+
+\endfirsthead
+
+\multicolumn{2}{c}%
+{\makebox[0pt]{\sphinxtablecontinued{\tablename\ \thetable{} \textendash{} continued from previous page}}}\\
+\hline
+
+\endhead
+
+\hline
+\multicolumn{2}{r}{\makebox[0pt][r]{\sphinxtablecontinued{continues on next page}}}\\
+\endfoot
+
+\endlastfoot
+
+\sphinxAtStartPar
+{\hyperref[\detokenize{autoapi/pine/backend/documents/bp/index:pine.backend.documents.bp.bp}]{\sphinxcrossref{\sphinxcode{\sphinxupquote{bp}}}}}
+&
+\sphinxAtStartPar
+
+\\
+\hline
+\end{longtable}\sphinxatlongtableend\end{savenotes}
 \index{bp (in module pine.backend.documents.bp)@\spxentry{bp}\spxextra{in module pine.backend.documents.bp}}
 
 \begin{fulllineitems}
@@ -3213,7 +3540,7 @@ calling … with all the default options.
 \index{get\_user\_permissions\_by\_ids() (in module pine.backend.documents.bp)@\spxentry{get\_user\_permissions\_by\_ids()}\spxextra{in module pine.backend.documents.bp}}
 
 \begin{fulllineitems}
-\phantomsection\label{\detokenize{autoapi/pine/backend/documents/bp/index:pine.backend.documents.bp.get_user_permissions_by_ids}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{pine.backend.documents.bp.}}\sphinxbfcode{\sphinxupquote{get\_user\_permissions\_by\_ids}}}{\emph{\DUrole{n}{document\_ids}\DUrole{p}{:} \DUrole{n}{Iterable\DUrole{p}{{[}}\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#str}{str}\DUrole{p}{{]}}}}}{{ $\rightarrow$ List\DUrole{p}{{[}}models.CollectionUserPermissions\DUrole{p}{{]}}}}
+\phantomsection\label{\detokenize{autoapi/pine/backend/documents/bp/index:pine.backend.documents.bp.get_user_permissions_by_ids}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{pine.backend.documents.bp.}}\sphinxbfcode{\sphinxupquote{get\_user\_permissions\_by\_ids}}}{\emph{\DUrole{n}{document\_ids}\DUrole{p}{:} \DUrole{n}{Iterable\DUrole{p}{{[}}\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#str}{str}\DUrole{p}{{]}}}}}{{ $\rightarrow$ List\DUrole{p}{{[}}{\hyperref[\detokenize{autoapi/pine/backend/models/index:pine.backend.models.CollectionUserPermissions}]{\sphinxcrossref{pine.backend.models.CollectionUserPermissions}}}\DUrole{p}{{]}}}}
 \end{fulllineitems}
 
 \index{get\_document() (in module pine.backend.documents.bp)@\spxentry{get\_document()}\spxextra{in module pine.backend.documents.bp}}
@@ -3347,7 +3674,7 @@ calling … with all the default options.
 \\
 \hline
 \sphinxAtStartPar
-{\hyperref[\detokenize{autoapi/pine/backend/documents/index:pine.backend.documents.get_user_permissions_by_ids}]{\sphinxcrossref{\sphinxcode{\sphinxupquote{get\_user\_permissions\_by\_ids}}}}}(document\_ids: Iterable{[}str{]}) \(\rightarrow\) List{[}models.CollectionUserPermissions{]}
+{\hyperref[\detokenize{autoapi/pine/backend/documents/index:pine.backend.documents.get_user_permissions_by_ids}]{\sphinxcrossref{\sphinxcode{\sphinxupquote{get\_user\_permissions\_by\_ids}}}}}(document\_ids: Iterable{[}str{]}) \(\rightarrow\) List{[}pine.backend.models.CollectionUserPermissions{]}
 &
 \sphinxAtStartPar
 
@@ -3375,7 +3702,7 @@ calling … with all the default options.
 \index{get\_user\_permissions\_by\_ids() (in module pine.backend.documents)@\spxentry{get\_user\_permissions\_by\_ids()}\spxextra{in module pine.backend.documents}}
 
 \begin{fulllineitems}
-\phantomsection\label{\detokenize{autoapi/pine/backend/documents/index:pine.backend.documents.get_user_permissions_by_ids}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{pine.backend.documents.}}\sphinxbfcode{\sphinxupquote{get\_user\_permissions\_by\_ids}}}{\emph{\DUrole{n}{document\_ids}\DUrole{p}{:} \DUrole{n}{Iterable\DUrole{p}{{[}}\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#str}{str}\DUrole{p}{{]}}}}}{{ $\rightarrow$ List\DUrole{p}{{[}}models.CollectionUserPermissions\DUrole{p}{{]}}}}
+\phantomsection\label{\detokenize{autoapi/pine/backend/documents/index:pine.backend.documents.get_user_permissions_by_ids}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{pine.backend.documents.}}\sphinxbfcode{\sphinxupquote{get\_user\_permissions\_by\_ids}}}{\emph{\DUrole{n}{document\_ids}\DUrole{p}{:} \DUrole{n}{Iterable\DUrole{p}{{[}}\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#str}{str}\DUrole{p}{{]}}}}}{{ $\rightarrow$ List\DUrole{p}{{[}}{\hyperref[\detokenize{autoapi/pine/backend/models/index:pine.backend.models.CollectionUserPermissions}]{\sphinxcrossref{pine.backend.models.CollectionUserPermissions}}}\DUrole{p}{{]}}}}
 \end{fulllineitems}
 
 
@@ -3429,6 +3756,50 @@ Data class for a service job.
 callable
 
 \end{description}\end{quote}
+
+\\
+\hline
+\end{longtable}\sphinxatlongtableend\end{savenotes}
+
+
+\subparagraph{Attributes}
+\label{\detokenize{autoapi/pine/backend/job_manager/service/index:attributes}}
+
+\begin{savenotes}\sphinxatlongtablestart\begin{longtable}[c]{\X{1}{2}\X{1}{2}}
+\hline
+
+\endfirsthead
+
+\multicolumn{2}{c}%
+{\makebox[0pt]{\sphinxtablecontinued{\tablename\ \thetable{} \textendash{} continued from previous page}}}\\
+\hline
+
+\endhead
+
+\hline
+\multicolumn{2}{r}{\makebox[0pt][r]{\sphinxtablecontinued{continues on next page}}}\\
+\endfoot
+
+\endlastfoot
+
+\sphinxAtStartPar
+{\hyperref[\detokenize{autoapi/pine/backend/job_manager/service/index:pine.backend.job_manager.service.config}]{\sphinxcrossref{\sphinxcode{\sphinxupquote{config}}}}}
+&
+\sphinxAtStartPar
+
+\\
+\hline
+\sphinxAtStartPar
+{\hyperref[\detokenize{autoapi/pine/backend/job_manager/service/index:pine.backend.job_manager.service.logger}]{\sphinxcrossref{\sphinxcode{\sphinxupquote{logger}}}}}
+&
+\sphinxAtStartPar
+
+\\
+\hline
+\sphinxAtStartPar
+{\hyperref[\detokenize{autoapi/pine/backend/job_manager/service/index:pine.backend.job_manager.service.sm}]{\sphinxcrossref{\sphinxcode{\sphinxupquote{sm}}}}}
+&
+\sphinxAtStartPar
 
 \\
 \hline
@@ -3698,7 +4069,7 @@ Waits for a response for the given job and returns it.
 \index{send\_service\_request\_and\_get\_response() (pine.backend.job\_manager.service.ServiceManager class method)@\spxentry{send\_service\_request\_and\_get\_response()}\spxextra{pine.backend.job\_manager.service.ServiceManager class method}}
 
 \begin{fulllineitems}
-\phantomsection\label{\detokenize{autoapi/pine/backend/job_manager/service/index:pine.backend.job_manager.service.ServiceManager.send_service_request_and_get_response}}\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{classmethod }}\sphinxbfcode{\sphinxupquote{send\_service\_request\_and\_get\_response}}}{\emph{\DUrole{n}{cls}}, \emph{\DUrole{n}{service\_name}\DUrole{p}{:} \DUrole{n}{\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#str}{str}}}, \emph{\DUrole{n}{data}}, \emph{\DUrole{n}{timeout\_in\_s}\DUrole{p}{:} \DUrole{n}{\sphinxhref{https://docs.python.org/3/library/functions.html\#int}{int}}}, \emph{\DUrole{n}{job\_id}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{encoder}\DUrole{o}{=}\DUrole{default_value}{None}}}{{ $\rightarrow$ {\hyperref[\detokenize{autoapi/pine/backend/job_manager/service/index:pine.backend.job_manager.service.ServiceJob}]{\sphinxcrossref{pine.backend.job\_manager.service.ServiceJob}}}}}
+\phantomsection\label{\detokenize{autoapi/pine/backend/job_manager/service/index:pine.backend.job_manager.service.ServiceManager.send_service_request_and_get_response}}\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{classmethod }}\sphinxbfcode{\sphinxupquote{send\_service\_request\_and\_get\_response}}}{\emph{\DUrole{n}{cls}}, \emph{\DUrole{n}{service\_name}\DUrole{p}{:} \DUrole{n}{\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#str}{str}}}, \emph{\DUrole{n}{data}}, \emph{\DUrole{n}{timeout\_in\_s}\DUrole{p}{:} \DUrole{n}{\sphinxhref{https://docs.python.org/3/library/functions.html\#int}{int}}}, \emph{\DUrole{n}{job\_id}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{encoder}\DUrole{o}{=}\DUrole{default_value}{None}}}{{ $\rightarrow$ {\hyperref[\detokenize{autoapi/pine/backend/job_manager/service/index:pine.backend.job_manager.service.ServiceJob}]{\sphinxcrossref{ServiceJob}}}}}
 \sphinxAtStartPar
 Sends a service requests, waits for a response, and returns job data.
 :param service\_name: str: service name
@@ -3930,6 +4301,50 @@ Runs a handler when a processing message gets send over an already registered ch
 \hline
 \sphinxAtStartPar
 {\hyperref[\detokenize{autoapi/pine/backend/pineiaa/bratiaa/agree/index:pine.backend.pineiaa.bratiaa.agree.iaa_report}]{\sphinxcrossref{\sphinxcode{\sphinxupquote{iaa\_report}}}}}(f1\_agreement, precision=3)
+&
+\sphinxAtStartPar
+
+\\
+\hline
+\end{longtable}\sphinxatlongtableend\end{savenotes}
+
+
+\subparagraph{Attributes}
+\label{\detokenize{autoapi/pine/backend/pineiaa/bratiaa/agree/index:attributes}}
+
+\begin{savenotes}\sphinxatlongtablestart\begin{longtable}[c]{\X{1}{2}\X{1}{2}}
+\hline
+
+\endfirsthead
+
+\multicolumn{2}{c}%
+{\makebox[0pt]{\sphinxtablecontinued{\tablename\ \thetable{} \textendash{} continued from previous page}}}\\
+\hline
+
+\endhead
+
+\hline
+\multicolumn{2}{r}{\makebox[0pt][r]{\sphinxtablecontinued{continues on next page}}}\\
+\endfoot
+
+\endlastfoot
+
+\sphinxAtStartPar
+{\hyperref[\detokenize{autoapi/pine/backend/pineiaa/bratiaa/agree/index:pine.backend.pineiaa.bratiaa.agree.Annotation}]{\sphinxcrossref{\sphinxcode{\sphinxupquote{Annotation}}}}}
+&
+\sphinxAtStartPar
+
+\\
+\hline
+\sphinxAtStartPar
+{\hyperref[\detokenize{autoapi/pine/backend/pineiaa/bratiaa/agree/index:pine.backend.pineiaa.bratiaa.agree.AnnFile}]{\sphinxcrossref{\sphinxcode{\sphinxupquote{AnnFile}}}}}
+&
+\sphinxAtStartPar
+
+\\
+\hline
+\sphinxAtStartPar
+{\hyperref[\detokenize{autoapi/pine/backend/pineiaa/bratiaa/agree/index:pine.backend.pineiaa.bratiaa.agree.LOGGER}]{\sphinxcrossref{\sphinxcode{\sphinxupquote{LOGGER}}}}}
 &
 \sphinxAtStartPar
 
@@ -4229,6 +4644,36 @@ Yields a new annotation for each token overlapping with an annotation. If annota
 \\
 \hline
 \end{longtable}\sphinxatlongtableend\end{savenotes}
+
+
+\subparagraph{Attributes}
+\label{\detokenize{autoapi/pine/backend/pineiaa/bratiaa/evaluation/index:attributes}}
+
+\begin{savenotes}\sphinxatlongtablestart\begin{longtable}[c]{\X{1}{2}\X{1}{2}}
+\hline
+
+\endfirsthead
+
+\multicolumn{2}{c}%
+{\makebox[0pt]{\sphinxtablecontinued{\tablename\ \thetable{} \textendash{} continued from previous page}}}\\
+\hline
+
+\endhead
+
+\hline
+\multicolumn{2}{r}{\makebox[0pt][r]{\sphinxtablecontinued{continues on next page}}}\\
+\endfoot
+
+\endlastfoot
+
+\sphinxAtStartPar
+{\hyperref[\detokenize{autoapi/pine/backend/pineiaa/bratiaa/evaluation/index:pine.backend.pineiaa.bratiaa.evaluation.Annotation}]{\sphinxcrossref{\sphinxcode{\sphinxupquote{Annotation}}}}}
+&
+\sphinxAtStartPar
+
+\\
+\hline
+\end{longtable}\sphinxatlongtableend\end{savenotes}
 \index{Annotation (in module pine.backend.pineiaa.bratiaa.evaluation)@\spxentry{Annotation}\spxextra{in module pine.backend.pineiaa.bratiaa.evaluation}}
 
 \begin{fulllineitems}
@@ -4328,6 +4773,36 @@ there will be multiple annotations for a single token.
 \hline
 \sphinxAtStartPar
 {\hyperref[\detokenize{autoapi/pine/backend/pineiaa/bratiaa/iaa_service/index:pine.backend.pineiaa.bratiaa.iaa_service.getIAAReportForCollection}]{\sphinxcrossref{\sphinxcode{\sphinxupquote{getIAAReportForCollection}}}}}(collection\_id)
+&
+\sphinxAtStartPar
+
+\\
+\hline
+\end{longtable}\sphinxatlongtableend\end{savenotes}
+
+
+\subparagraph{Attributes}
+\label{\detokenize{autoapi/pine/backend/pineiaa/bratiaa/iaa_service/index:attributes}}
+
+\begin{savenotes}\sphinxatlongtablestart\begin{longtable}[c]{\X{1}{2}\X{1}{2}}
+\hline
+
+\endfirsthead
+
+\multicolumn{2}{c}%
+{\makebox[0pt]{\sphinxtablecontinued{\tablename\ \thetable{} \textendash{} continued from previous page}}}\\
+\hline
+
+\endhead
+
+\hline
+\multicolumn{2}{r}{\makebox[0pt][r]{\sphinxtablecontinued{continues on next page}}}\\
+\endfoot
+
+\endlastfoot
+
+\sphinxAtStartPar
+{\hyperref[\detokenize{autoapi/pine/backend/pineiaa/bratiaa/iaa_service/index:pine.backend.pineiaa.bratiaa.iaa_service.EVE_HEADERS}]{\sphinxcrossref{\sphinxcode{\sphinxupquote{EVE\_HEADERS}}}}}
 &
 \sphinxAtStartPar
 
@@ -4437,6 +4912,43 @@ Data structure for quick lookup of tokens overlapping with given span.
 \hline
 \sphinxAtStartPar
 {\hyperref[\detokenize{autoapi/pine/backend/pineiaa/bratiaa/utils/index:pine.backend.pineiaa.bratiaa.utils.read}]{\sphinxcrossref{\sphinxcode{\sphinxupquote{read}}}}}(path, encoding=ENCODING, newline=\textquotesingle{}\textbackslash{}r\textbackslash{}n\textquotesingle{}, mode=\textquotesingle{}r\textquotesingle{})
+&
+\sphinxAtStartPar
+
+\\
+\hline
+\end{longtable}\sphinxatlongtableend\end{savenotes}
+
+
+\subparagraph{Attributes}
+\label{\detokenize{autoapi/pine/backend/pineiaa/bratiaa/utils/index:attributes}}
+
+\begin{savenotes}\sphinxatlongtablestart\begin{longtable}[c]{\X{1}{2}\X{1}{2}}
+\hline
+
+\endfirsthead
+
+\multicolumn{2}{c}%
+{\makebox[0pt]{\sphinxtablecontinued{\tablename\ \thetable{} \textendash{} continued from previous page}}}\\
+\hline
+
+\endhead
+
+\hline
+\multicolumn{2}{r}{\makebox[0pt][r]{\sphinxtablecontinued{continues on next page}}}\\
+\endfoot
+
+\endlastfoot
+
+\sphinxAtStartPar
+{\hyperref[\detokenize{autoapi/pine/backend/pineiaa/bratiaa/utils/index:pine.backend.pineiaa.bratiaa.utils.ENCODING}]{\sphinxcrossref{\sphinxcode{\sphinxupquote{ENCODING}}}}}
+&
+\sphinxAtStartPar
+
+\\
+\hline
+\sphinxAtStartPar
+{\hyperref[\detokenize{autoapi/pine/backend/pineiaa/bratiaa/utils/index:pine.backend.pineiaa.bratiaa.utils.TOKEN}]{\sphinxcrossref{\sphinxcode{\sphinxupquote{TOKEN}}}}}
 &
 \sphinxAtStartPar
 
@@ -4588,6 +5100,43 @@ Annotations are split into token\sphinxhyphen{}sized bits before true positives,
 \hline
 \sphinxAtStartPar
 {\hyperref[\detokenize{autoapi/pine/backend/pineiaa/bratiaa/index:pine.backend.pineiaa.bratiaa.tokenize}]{\sphinxcrossref{\sphinxcode{\sphinxupquote{tokenize}}}}}(text)
+&
+\sphinxAtStartPar
+
+\\
+\hline
+\end{longtable}\sphinxatlongtableend\end{savenotes}
+
+
+\subparagraph{Attributes}
+\label{\detokenize{autoapi/pine/backend/pineiaa/bratiaa/index:attributes}}
+
+\begin{savenotes}\sphinxatlongtablestart\begin{longtable}[c]{\X{1}{2}\X{1}{2}}
+\hline
+
+\endfirsthead
+
+\multicolumn{2}{c}%
+{\makebox[0pt]{\sphinxtablecontinued{\tablename\ \thetable{} \textendash{} continued from previous page}}}\\
+\hline
+
+\endhead
+
+\hline
+\multicolumn{2}{r}{\makebox[0pt][r]{\sphinxtablecontinued{continues on next page}}}\\
+\endfoot
+
+\endlastfoot
+
+\sphinxAtStartPar
+{\hyperref[\detokenize{autoapi/pine/backend/pineiaa/bratiaa/index:pine.backend.pineiaa.bratiaa.AnnFile}]{\sphinxcrossref{\sphinxcode{\sphinxupquote{AnnFile}}}}}
+&
+\sphinxAtStartPar
+
+\\
+\hline
+\sphinxAtStartPar
+{\hyperref[\detokenize{autoapi/pine/backend/pineiaa/bratiaa/index:pine.backend.pineiaa.bratiaa.Annotation}]{\sphinxcrossref{\sphinxcode{\sphinxupquote{Annotation}}}}}
 &
 \sphinxAtStartPar
 
@@ -4846,6 +5395,43 @@ annotations. Boundary errors for adjacent annotations with the same label are ig
 \hline
 \sphinxAtStartPar
 {\hyperref[\detokenize{autoapi/pine/backend/pineiaa/bp/index:pine.backend.pineiaa.bp.init_app}]{\sphinxcrossref{\sphinxcode{\sphinxupquote{init\_app}}}}}(app)
+&
+\sphinxAtStartPar
+
+\\
+\hline
+\end{longtable}\sphinxatlongtableend\end{savenotes}
+
+
+\subparagraph{Attributes}
+\label{\detokenize{autoapi/pine/backend/pineiaa/bp/index:attributes}}
+
+\begin{savenotes}\sphinxatlongtablestart\begin{longtable}[c]{\X{1}{2}\X{1}{2}}
+\hline
+
+\endfirsthead
+
+\multicolumn{2}{c}%
+{\makebox[0pt]{\sphinxtablecontinued{\tablename\ \thetable{} \textendash{} continued from previous page}}}\\
+\hline
+
+\endhead
+
+\hline
+\multicolumn{2}{r}{\makebox[0pt][r]{\sphinxtablecontinued{continues on next page}}}\\
+\endfoot
+
+\endlastfoot
+
+\sphinxAtStartPar
+{\hyperref[\detokenize{autoapi/pine/backend/pineiaa/bp/index:pine.backend.pineiaa.bp.logger}]{\sphinxcrossref{\sphinxcode{\sphinxupquote{logger}}}}}
+&
+\sphinxAtStartPar
+
+\\
+\hline
+\sphinxAtStartPar
+{\hyperref[\detokenize{autoapi/pine/backend/pineiaa/bp/index:pine.backend.pineiaa.bp.bp}]{\sphinxcrossref{\sphinxcode{\sphinxupquote{bp}}}}}
 &
 \sphinxAtStartPar
 
@@ -5136,6 +5722,64 @@ annotations. Boundary errors for adjacent annotations with the same label are ig
 \\
 \hline
 \end{longtable}\sphinxatlongtableend\end{savenotes}
+
+
+\subparagraph{Attributes}
+\label{\detokenize{autoapi/pine/backend/pipelines/bp/index:attributes}}
+
+\begin{savenotes}\sphinxatlongtablestart\begin{longtable}[c]{\X{1}{2}\X{1}{2}}
+\hline
+
+\endfirsthead
+
+\multicolumn{2}{c}%
+{\makebox[0pt]{\sphinxtablecontinued{\tablename\ \thetable{} \textendash{} continued from previous page}}}\\
+\hline
+
+\endhead
+
+\hline
+\multicolumn{2}{r}{\makebox[0pt][r]{\sphinxtablecontinued{continues on next page}}}\\
+\endfoot
+
+\endlastfoot
+
+\sphinxAtStartPar
+{\hyperref[\detokenize{autoapi/pine/backend/pipelines/bp/index:pine.backend.pipelines.bp.logger}]{\sphinxcrossref{\sphinxcode{\sphinxupquote{logger}}}}}
+&
+\sphinxAtStartPar
+
+\\
+\hline
+\sphinxAtStartPar
+{\hyperref[\detokenize{autoapi/pine/backend/pipelines/bp/index:pine.backend.pipelines.bp.service_manager}]{\sphinxcrossref{\sphinxcode{\sphinxupquote{service\_manager}}}}}
+&
+\sphinxAtStartPar
+
+\\
+\hline
+\sphinxAtStartPar
+{\hyperref[\detokenize{autoapi/pine/backend/pipelines/bp/index:pine.backend.pipelines.bp.bp}]{\sphinxcrossref{\sphinxcode{\sphinxupquote{bp}}}}}
+&
+\sphinxAtStartPar
+
+\\
+\hline
+\sphinxAtStartPar
+{\hyperref[\detokenize{autoapi/pine/backend/pipelines/bp/index:pine.backend.pipelines.bp._cached_classifiers}]{\sphinxcrossref{\sphinxcode{\sphinxupquote{\_cached\_classifiers}}}}}
+&
+\sphinxAtStartPar
+
+\\
+\hline
+\sphinxAtStartPar
+{\hyperref[\detokenize{autoapi/pine/backend/pipelines/bp/index:pine.backend.pipelines.bp._cached_classifier_pipelines}]{\sphinxcrossref{\sphinxcode{\sphinxupquote{\_cached\_classifier\_pipelines}}}}}
+&
+\sphinxAtStartPar
+
+\\
+\hline
+\end{longtable}\sphinxatlongtableend\end{savenotes}
 \index{logger (in module pine.backend.pipelines.bp)@\spxentry{logger}\spxextra{in module pine.backend.pipelines.bp}}
 
 \begin{fulllineitems}
@@ -5360,6 +6004,36 @@ annotations. Boundary errors for adjacent annotations with the same label are ig
 \hline
 \sphinxAtStartPar
 {\hyperref[\detokenize{autoapi/pine/backend/shared/config/index:pine.backend.shared.config.ConfigBuilder}]{\sphinxcrossref{\sphinxcode{\sphinxupquote{ConfigBuilder}}}}}
+&
+\sphinxAtStartPar
+
+\\
+\hline
+\end{longtable}\sphinxatlongtableend\end{savenotes}
+
+
+\subparagraph{Attributes}
+\label{\detokenize{autoapi/pine/backend/shared/config/index:attributes}}
+
+\begin{savenotes}\sphinxatlongtablestart\begin{longtable}[c]{\X{1}{2}\X{1}{2}}
+\hline
+
+\endfirsthead
+
+\multicolumn{2}{c}%
+{\makebox[0pt]{\sphinxtablecontinued{\tablename\ \thetable{} \textendash{} continued from previous page}}}\\
+\hline
+
+\endhead
+
+\hline
+\multicolumn{2}{r}{\makebox[0pt][r]{\sphinxtablecontinued{continues on next page}}}\\
+\endfoot
+
+\endlastfoot
+
+\sphinxAtStartPar
+{\hyperref[\detokenize{autoapi/pine/backend/shared/config/index:pine.backend.shared.config.LOGGER}]{\sphinxcrossref{\sphinxcode{\sphinxupquote{LOGGER}}}}}
 &
 \sphinxAtStartPar
 
@@ -5594,7 +6268,7 @@ Bases: \sphinxhref{https://docs.python.org/3/library/functions.html\#object}{\sp
 \phantomsection\label{\detokenize{autoapi/pine/backend/shared/config/index:pine.backend.shared.config.BaseConfig.as_attr_dict}}\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{classmethod }}\sphinxbfcode{\sphinxupquote{as\_attr\_dict}}}{\emph{\DUrole{n}{cls}}}{}~\begin{quote}\begin{description}
 \item[{Return type}] \leavevmode
 \sphinxAtStartPar
-munch.Munch | dict
+munch.Munch | \sphinxhref{https://docs.python.org/3/library/stdtypes.html\#dict}{dict}
 
 \end{description}\end{quote}
 
@@ -5620,7 +6294,7 @@ munch.Munch | dict
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{autoapi/pine/backend/shared/config/index:pine.backend.shared.config.TestConfig}}\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{class }}\sphinxcode{\sphinxupquote{pine.backend.shared.config.}}\sphinxbfcode{\sphinxupquote{TestConfig}}}{\emph{\DUrole{n}{root\_dir}\DUrole{o}{=}\DUrole{default_value}{None}}}{}
 \sphinxAtStartPar
-Bases: {\hyperref[\detokenize{autoapi/pine/backend/shared/config/index:pine.backend.shared.config.BaseConfig}]{\sphinxcrossref{\sphinxcode{\sphinxupquote{pine.backend.shared.config.BaseConfig}}}}}
+Bases: {\hyperref[\detokenize{autoapi/pine/backend/shared/config/index:pine.backend.shared.config.BaseConfig}]{\sphinxcrossref{\sphinxcode{\sphinxupquote{BaseConfig}}}}}
 
 \end{fulllineitems}
 
@@ -5832,6 +6506,43 @@ The prefix can be used to avoid blindy changing values and target a subset of ma
 \hline
 \sphinxAtStartPar
 {\hyperref[\detokenize{autoapi/pine/backend/app/index:pine.backend.app.create_app}]{\sphinxcrossref{\sphinxcode{\sphinxupquote{create\_app}}}}}(test\_config=None)
+&
+\sphinxAtStartPar
+
+\\
+\hline
+\end{longtable}\sphinxatlongtableend\end{savenotes}
+
+
+\subparagraph{Attributes}
+\label{\detokenize{autoapi/pine/backend/app/index:attributes}}
+
+\begin{savenotes}\sphinxatlongtablestart\begin{longtable}[c]{\X{1}{2}\X{1}{2}}
+\hline
+
+\endfirsthead
+
+\multicolumn{2}{c}%
+{\makebox[0pt]{\sphinxtablecontinued{\tablename\ \thetable{} \textendash{} continued from previous page}}}\\
+\hline
+
+\endhead
+
+\hline
+\multicolumn{2}{r}{\makebox[0pt][r]{\sphinxtablecontinued{continues on next page}}}\\
+\endfoot
+
+\endlastfoot
+
+\sphinxAtStartPar
+{\hyperref[\detokenize{autoapi/pine/backend/app/index:pine.backend.app.VERSION}]{\sphinxcrossref{\sphinxcode{\sphinxupquote{VERSION}}}}}
+&
+\sphinxAtStartPar
+
+\\
+\hline
+\sphinxAtStartPar
+{\hyperref[\detokenize{autoapi/pine/backend/app/index:pine.backend.app.LOGGER}]{\sphinxcrossref{\sphinxcode{\sphinxupquote{LOGGER}}}}}
 &
 \sphinxAtStartPar
 
@@ -6138,6 +6849,50 @@ Generic enumeration.
 \\
 \hline
 \end{longtable}\sphinxatlongtableend\end{savenotes}
+
+
+\subparagraph{Attributes}
+\label{\detokenize{autoapi/pine/backend/log/index:attributes}}
+
+\begin{savenotes}\sphinxatlongtablestart\begin{longtable}[c]{\X{1}{2}\X{1}{2}}
+\hline
+
+\endfirsthead
+
+\multicolumn{2}{c}%
+{\makebox[0pt]{\sphinxtablecontinued{\tablename\ \thetable{} \textendash{} continued from previous page}}}\\
+\hline
+
+\endhead
+
+\hline
+\multicolumn{2}{r}{\makebox[0pt][r]{\sphinxtablecontinued{continues on next page}}}\\
+\endfoot
+
+\endlastfoot
+
+\sphinxAtStartPar
+{\hyperref[\detokenize{autoapi/pine/backend/log/index:pine.backend.log.CONFIG_FILE_ENV}]{\sphinxcrossref{\sphinxcode{\sphinxupquote{CONFIG\_FILE\_ENV}}}}}
+&
+\sphinxAtStartPar
+
+\\
+\hline
+\sphinxAtStartPar
+{\hyperref[\detokenize{autoapi/pine/backend/log/index:pine.backend.log.ACCESS_LOGGER_NAME}]{\sphinxcrossref{\sphinxcode{\sphinxupquote{ACCESS\_LOGGER\_NAME}}}}}
+&
+\sphinxAtStartPar
+
+\\
+\hline
+\sphinxAtStartPar
+{\hyperref[\detokenize{autoapi/pine/backend/log/index:pine.backend.log.ACCESS_LOGGER}]{\sphinxcrossref{\sphinxcode{\sphinxupquote{ACCESS\_LOGGER}}}}}
+&
+\sphinxAtStartPar
+
+\\
+\hline
+\end{longtable}\sphinxatlongtableend\end{savenotes}
 \index{CONFIG\_FILE\_ENV (in module pine.backend.log)@\spxentry{CONFIG\_FILE\_ENV}\spxextra{in module pine.backend.log}}
 
 \begin{fulllineitems}
@@ -6392,7 +7147,7 @@ Derive from this class to define new enumerations.
 \index{LoginFormField (class in pine.backend.models)@\spxentry{LoginFormField}\spxextra{class in pine.backend.models}}
 
 \begin{fulllineitems}
-\phantomsection\label{\detokenize{autoapi/pine/backend/models/index:pine.backend.models.LoginFormField}}\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{class }}\sphinxcode{\sphinxupquote{pine.backend.models.}}\sphinxbfcode{\sphinxupquote{LoginFormField}}}{\emph{\DUrole{n}{name}\DUrole{p}{:} \DUrole{n}{\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#str}{str}}}, \emph{\DUrole{n}{display}\DUrole{p}{:} \DUrole{n}{\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#str}{str}}}, \emph{\DUrole{n}{field\_type}\DUrole{p}{:} \DUrole{n}{{\hyperref[\detokenize{autoapi/pine/backend/models/index:pine.backend.models.LoginFormFieldType}]{\sphinxcrossref{pine.backend.models.LoginFormFieldType}}}}}}{}
+\phantomsection\label{\detokenize{autoapi/pine/backend/models/index:pine.backend.models.LoginFormField}}\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{class }}\sphinxcode{\sphinxupquote{pine.backend.models.}}\sphinxbfcode{\sphinxupquote{LoginFormField}}}{\emph{\DUrole{n}{name}\DUrole{p}{:} \DUrole{n}{\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#str}{str}}}, \emph{\DUrole{n}{display}\DUrole{p}{:} \DUrole{n}{\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#str}{str}}}, \emph{\DUrole{n}{field\_type}\DUrole{p}{:} \DUrole{n}{{\hyperref[\detokenize{autoapi/pine/backend/models/index:pine.backend.models.LoginFormFieldType}]{\sphinxcrossref{LoginFormFieldType}}}}}}{}
 \sphinxAtStartPar
 Bases: \sphinxhref{https://docs.python.org/3/library/functions.html\#object}{\sphinxcode{\sphinxupquote{object}}}
 \index{to\_dict() (pine.backend.models.LoginFormField method)@\spxentry{to\_dict()}\spxextra{pine.backend.models.LoginFormField method}}
@@ -6631,6 +7386,43 @@ a dict version of this object for conversion to JSON
 
 \sphinxAtStartPar
 {\hyperref[\detokenize{autoapi/pine/backend/index:pine.backend.create_app}]{\sphinxcrossref{\sphinxcode{\sphinxupquote{create\_app}}}}}(test\_config=None)
+&
+\sphinxAtStartPar
+
+\\
+\hline
+\end{longtable}\sphinxatlongtableend\end{savenotes}
+
+
+\subparagraph{Attributes}
+\label{\detokenize{autoapi/pine/backend/index:attributes}}
+
+\begin{savenotes}\sphinxatlongtablestart\begin{longtable}[c]{\X{1}{2}\X{1}{2}}
+\hline
+
+\endfirsthead
+
+\multicolumn{2}{c}%
+{\makebox[0pt]{\sphinxtablecontinued{\tablename\ \thetable{} \textendash{} continued from previous page}}}\\
+\hline
+
+\endhead
+
+\hline
+\multicolumn{2}{r}{\makebox[0pt][r]{\sphinxtablecontinued{continues on next page}}}\\
+\endfoot
+
+\endlastfoot
+
+\sphinxAtStartPar
+{\hyperref[\detokenize{autoapi/pine/backend/index:pine.backend.VERSION}]{\sphinxcrossref{\sphinxcode{\sphinxupquote{VERSION}}}}}
+&
+\sphinxAtStartPar
+
+\\
+\hline
+\sphinxAtStartPar
+{\hyperref[\detokenize{autoapi/pine/backend/index:pine.backend.__version__}]{\sphinxcrossref{\sphinxcode{\sphinxupquote{\_\_version\_\_}}}}}
 &
 \sphinxAtStartPar
 
@@ -7155,7 +7947,7 @@ the \sphinxhref{https://docs.python-requests.org/en/master/api/\#module-requests
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{autoapi/pine/client/client/index:pine.client.client.EveClient}}\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{class }}\sphinxcode{\sphinxupquote{pine.client.client.}}\sphinxbfcode{\sphinxupquote{EveClient}}}{\emph{\DUrole{n}{eve\_base\_uri}\DUrole{p}{:} \DUrole{n}{\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#str}{str}}}, \emph{\DUrole{n}{mongo\_base\_uri}\DUrole{p}{:} \DUrole{n}{\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#str}{str}} \DUrole{o}{=} \DUrole{default_value}{None}}, \emph{\DUrole{n}{mongo\_dbname}\DUrole{p}{:} \DUrole{n}{\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#str}{str}} \DUrole{o}{=} \DUrole{default_value}{DEFAULT\_DBNAME}}, \emph{\DUrole{n}{verify\_ssl}\DUrole{p}{:} \DUrole{n}{\sphinxhref{https://docs.python.org/3/library/functions.html\#bool}{bool}} \DUrole{o}{=} \DUrole{default_value}{True}}}{}
 \sphinxAtStartPar
-Bases: {\hyperref[\detokenize{autoapi/pine/client/client/index:pine.client.client.BaseClient}]{\sphinxcrossref{\sphinxcode{\sphinxupquote{pine.client.client.BaseClient}}}}}
+Bases: {\hyperref[\detokenize{autoapi/pine/client/client/index:pine.client.client.BaseClient}]{\sphinxcrossref{\sphinxcode{\sphinxupquote{BaseClient}}}}}
 
 \sphinxAtStartPar
 A client to access Eve and, optionally, its underlying MongoDB instance.
@@ -7331,7 +8123,7 @@ the JSON object response from the server
 \index{\_add\_or\_replace\_resource() (pine.client.client.EveClient method)@\spxentry{\_add\_or\_replace\_resource()}\spxextra{pine.client.client.EveClient method}}
 
 \begin{fulllineitems}
-\phantomsection\label{\detokenize{autoapi/pine/client/client/index:pine.client.client.EveClient._add_or_replace_resource}}\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{\_add\_or\_replace\_resource}}}{\emph{\DUrole{n}{self}}, \emph{\DUrole{n}{resource}\DUrole{p}{:} \DUrole{n}{\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#str}{str}}}, \emph{\DUrole{n}{obj}\DUrole{p}{:} \DUrole{n}{\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#dict}{dict}}}, \emph{\DUrole{n}{valid\_fn}\DUrole{p}{:} \DUrole{n}{Callable\DUrole{p}{{[}}\DUrole{p}{{[}}\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#dict}{dict}\DUrole{p}{, }typing.Callable\DUrole{p}{{[}}\DUrole{p}{{[}}\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#str}{str}\DUrole{p}{{]}}\DUrole{p}{, }\sphinxhref{https://docs.python.org/3/library/constants.html\#None}{None}\DUrole{p}{{]}}\DUrole{p}{{]}}\DUrole{p}{, }\sphinxhref{https://docs.python.org/3/library/functions.html\#bool}{bool}\DUrole{p}{{]}}} \DUrole{o}{=} \DUrole{default_value}{None}}}{{ $\rightarrow$ \sphinxhref{https://docs.python.org/3/library/stdtypes.html\#str}{str}}}
+\phantomsection\label{\detokenize{autoapi/pine/client/client/index:pine.client.client.EveClient._add_or_replace_resource}}\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{\_add\_or\_replace\_resource}}}{\emph{\DUrole{n}{self}}, \emph{\DUrole{n}{resource}\DUrole{p}{:} \DUrole{n}{\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#str}{str}}}, \emph{\DUrole{n}{obj}\DUrole{p}{:} \DUrole{n}{\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#dict}{dict}}}, \emph{\DUrole{n}{valid\_fn}\DUrole{p}{:} \DUrole{n}{Callable\DUrole{p}{{[}}\DUrole{p}{{[}}\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#dict}{dict}\DUrole{p}{, }Callable\DUrole{p}{{[}}\DUrole{p}{{[}}\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#str}{str}\DUrole{p}{{]}}\DUrole{p}{, }\sphinxhref{https://docs.python.org/3/library/constants.html\#None}{None}\DUrole{p}{{]}}\DUrole{p}{{]}}\DUrole{p}{, }\sphinxhref{https://docs.python.org/3/library/functions.html\#bool}{bool}\DUrole{p}{{]}}} \DUrole{o}{=} \DUrole{default_value}{None}}}{{ $\rightarrow$ \sphinxhref{https://docs.python.org/3/library/stdtypes.html\#str}{str}}}
 \sphinxAtStartPar
 Adds or replaces the given resource.
 \begin{quote}\begin{description}
@@ -7376,7 +8168,7 @@ the ID of the added/replaced resource
 \index{\_add\_resources() (pine.client.client.EveClient method)@\spxentry{\_add\_resources()}\spxextra{pine.client.client.EveClient method}}
 
 \begin{fulllineitems}
-\phantomsection\label{\detokenize{autoapi/pine/client/client/index:pine.client.client.EveClient._add_resources}}\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{\_add\_resources}}}{\emph{\DUrole{n}{self}}, \emph{\DUrole{n}{resource}\DUrole{p}{:} \DUrole{n}{\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#str}{str}}}, \emph{\DUrole{n}{objs}\DUrole{p}{:} \DUrole{n}{List\DUrole{p}{{[}}\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#dict}{dict}\DUrole{p}{{]}}}}, \emph{\DUrole{n}{valid\_fn}\DUrole{p}{:} \DUrole{n}{Callable\DUrole{p}{{[}}\DUrole{p}{{[}}\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#dict}{dict}\DUrole{p}{, }typing.Callable\DUrole{p}{{[}}\DUrole{p}{{[}}\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#str}{str}\DUrole{p}{{]}}\DUrole{p}{, }\sphinxhref{https://docs.python.org/3/library/constants.html\#None}{None}\DUrole{p}{{]}}\DUrole{p}{{]}}\DUrole{p}{, }\sphinxhref{https://docs.python.org/3/library/functions.html\#bool}{bool}\DUrole{p}{{]}}} \DUrole{o}{=} \DUrole{default_value}{None}}, \emph{\DUrole{n}{replace\_if\_exists}\DUrole{p}{:} \DUrole{n}{\sphinxhref{https://docs.python.org/3/library/functions.html\#bool}{bool}} \DUrole{o}{=} \DUrole{default_value}{False}}}{}
+\phantomsection\label{\detokenize{autoapi/pine/client/client/index:pine.client.client.EveClient._add_resources}}\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{\_add\_resources}}}{\emph{\DUrole{n}{self}}, \emph{\DUrole{n}{resource}\DUrole{p}{:} \DUrole{n}{\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#str}{str}}}, \emph{\DUrole{n}{objs}\DUrole{p}{:} \DUrole{n}{List\DUrole{p}{{[}}\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#dict}{dict}\DUrole{p}{{]}}}}, \emph{\DUrole{n}{valid\_fn}\DUrole{p}{:} \DUrole{n}{Callable\DUrole{p}{{[}}\DUrole{p}{{[}}\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#dict}{dict}\DUrole{p}{, }Callable\DUrole{p}{{[}}\DUrole{p}{{[}}\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#str}{str}\DUrole{p}{{]}}\DUrole{p}{, }\sphinxhref{https://docs.python.org/3/library/constants.html\#None}{None}\DUrole{p}{{]}}\DUrole{p}{{]}}\DUrole{p}{, }\sphinxhref{https://docs.python.org/3/library/functions.html\#bool}{bool}\DUrole{p}{{]}}} \DUrole{o}{=} \DUrole{default_value}{None}}, \emph{\DUrole{n}{replace\_if\_exists}\DUrole{p}{:} \DUrole{n}{\sphinxhref{https://docs.python.org/3/library/functions.html\#bool}{bool}} \DUrole{o}{=} \DUrole{default_value}{False}}}{}
 \sphinxAtStartPar
 Tries to add all the resource objects at once, optionally falling back to individual replacement if that fails.
 \begin{quote}\begin{description}
@@ -7535,7 +8327,7 @@ the IDs of the added pipelines
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{autoapi/pine/client/client/index:pine.client.client.PineClient}}\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{class }}\sphinxcode{\sphinxupquote{pine.client.client.}}\sphinxbfcode{\sphinxupquote{PineClient}}}{\emph{\DUrole{n}{backend\_base\_uri}\DUrole{p}{:} \DUrole{n}{\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#str}{str}}}, \emph{\DUrole{n}{verify\_ssl}\DUrole{p}{:} \DUrole{n}{\sphinxhref{https://docs.python.org/3/library/functions.html\#bool}{bool}} \DUrole{o}{=} \DUrole{default_value}{True}}}{}
 \sphinxAtStartPar
-Bases: {\hyperref[\detokenize{autoapi/pine/client/client/index:pine.client.client.BaseClient}]{\sphinxcrossref{\sphinxcode{\sphinxupquote{pine.client.client.BaseClient}}}}}
+Bases: {\hyperref[\detokenize{autoapi/pine/client/client/index:pine.client.client.BaseClient}]{\sphinxcrossref{\sphinxcode{\sphinxupquote{BaseClient}}}}}
 
 \sphinxAtStartPar
 A client to access PINE (more specifically: the backend).
@@ -8756,7 +9548,7 @@ Gets the list of running job IDs for the given classifier.
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{autoapi/pine/client/client/index:pine.client.client.LocalPineClient}}\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{class }}\sphinxcode{\sphinxupquote{pine.client.client.}}\sphinxbfcode{\sphinxupquote{LocalPineClient}}}{\emph{\DUrole{n}{backend\_base\_uri}\DUrole{p}{:} \DUrole{n}{\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#str}{str}}}, \emph{\DUrole{n}{eve\_base\_uri}\DUrole{p}{:} \DUrole{n}{\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#str}{str}}}, \emph{\DUrole{n}{mongo\_base\_uri}\DUrole{p}{:} \DUrole{n}{\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#str}{str}} \DUrole{o}{=} \DUrole{default_value}{None}}, \emph{\DUrole{n}{mongo\_dbname}\DUrole{p}{:} \DUrole{n}{\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#str}{str}} \DUrole{o}{=} \DUrole{default_value}{EveClient.DEFAULT\_DBNAME}}, \emph{\DUrole{n}{verify\_ssl}\DUrole{p}{:} \DUrole{n}{\sphinxhref{https://docs.python.org/3/library/functions.html\#bool}{bool}} \DUrole{o}{=} \DUrole{default_value}{True}}}{}
 \sphinxAtStartPar
-Bases: {\hyperref[\detokenize{autoapi/pine/client/client/index:pine.client.client.PineClient}]{\sphinxcrossref{\sphinxcode{\sphinxupquote{pine.client.client.PineClient}}}}}
+Bases: {\hyperref[\detokenize{autoapi/pine/client/client/index:pine.client.client.PineClient}]{\sphinxcrossref{\sphinxcode{\sphinxupquote{PineClient}}}}}
 
 \sphinxAtStartPar
 A client for a local PINE instance, including an {\hyperref[\detokenize{autoapi/pine/client/client/index:pine.client.client.EveClient}]{\sphinxcrossref{\sphinxcode{\sphinxupquote{EveClient}}}}}.
@@ -8883,7 +9675,7 @@ The message.
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{autoapi/pine/client/exceptions/index:pine.client.exceptions.PineClientHttpException}}\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{exception }}\sphinxcode{\sphinxupquote{pine.client.exceptions.}}\sphinxbfcode{\sphinxupquote{PineClientHttpException}}}{\emph{\DUrole{n}{method}\DUrole{p}{:} \DUrole{n}{\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#str}{str}}}, \emph{\DUrole{n}{path}\DUrole{p}{:} \DUrole{n}{\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#str}{str}}}, \emph{\DUrole{n}{resp}\DUrole{p}{:} \DUrole{n}{\sphinxhref{https://docs.python-requests.org/en/master/api/\#requests.Response}{requests.Response}}}}{}
 \sphinxAtStartPar
-Bases: {\hyperref[\detokenize{autoapi/pine/client/exceptions/index:pine.client.exceptions.PineClientException}]{\sphinxcrossref{\sphinxcode{\sphinxupquote{pine.client.exceptions.PineClientException}}}}}
+Bases: {\hyperref[\detokenize{autoapi/pine/client/exceptions/index:pine.client.exceptions.PineClientException}]{\sphinxcrossref{\sphinxcode{\sphinxupquote{PineClientException}}}}}
 
 \sphinxAtStartPar
 A PINE client exception caused by an underlying HTTP exception.
@@ -8936,7 +9728,7 @@ The \sphinxhref{https://docs.python-requests.org/en/master/api/\#requests.Respon
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{autoapi/pine/client/exceptions/index:pine.client.exceptions.PineClientValueException}}\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{exception }}\sphinxcode{\sphinxupquote{pine.client.exceptions.}}\sphinxbfcode{\sphinxupquote{PineClientValueException}}}{\emph{\DUrole{n}{obj}\DUrole{p}{:} \DUrole{n}{\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#dict}{dict}}}, \emph{\DUrole{n}{obj\_type}\DUrole{p}{:} \DUrole{n}{\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#str}{str}}}}{}
 \sphinxAtStartPar
-Bases: {\hyperref[\detokenize{autoapi/pine/client/exceptions/index:pine.client.exceptions.PineClientException}]{\sphinxcrossref{\sphinxcode{\sphinxupquote{pine.client.exceptions.PineClientException}}}}}
+Bases: {\hyperref[\detokenize{autoapi/pine/client/exceptions/index:pine.client.exceptions.PineClientException}]{\sphinxcrossref{\sphinxcode{\sphinxupquote{PineClientException}}}}}
 
 \sphinxAtStartPar
 A PINE client exception caused by passing invalid data.
@@ -8964,7 +9756,7 @@ Constructor.
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{autoapi/pine/client/exceptions/index:pine.client.exceptions.PineClientAuthException}}\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{exception }}\sphinxcode{\sphinxupquote{pine.client.exceptions.}}\sphinxbfcode{\sphinxupquote{PineClientAuthException}}}{\emph{\DUrole{n}{message}\DUrole{p}{:} \DUrole{n}{\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#str}{str}}}, \emph{\DUrole{n}{cause}\DUrole{p}{:} \DUrole{n}{\sphinxhref{https://docs.python.org/3/library/exceptions.html\#Exception}{Exception}} \DUrole{o}{=} \DUrole{default_value}{None}}}{}
 \sphinxAtStartPar
-Bases: {\hyperref[\detokenize{autoapi/pine/client/exceptions/index:pine.client.exceptions.PineClientException}]{\sphinxcrossref{\sphinxcode{\sphinxupquote{pine.client.exceptions.PineClientException}}}}}
+Bases: {\hyperref[\detokenize{autoapi/pine/client/exceptions/index:pine.client.exceptions.PineClientException}]{\sphinxcrossref{\sphinxcode{\sphinxupquote{PineClientException}}}}}
 
 \sphinxAtStartPar
 Base class for PINE client exceptions.
@@ -9020,6 +9812,36 @@ Constructor.
 &
 \sphinxAtStartPar
 Sets up logging, if configured to do so.
+\\
+\hline
+\end{longtable}\sphinxatlongtableend\end{savenotes}
+
+
+\subparagraph{Attributes}
+\label{\detokenize{autoapi/pine/client/log/index:attributes}}
+
+\begin{savenotes}\sphinxatlongtablestart\begin{longtable}[c]{\X{1}{2}\X{1}{2}}
+\hline
+
+\endfirsthead
+
+\multicolumn{2}{c}%
+{\makebox[0pt]{\sphinxtablecontinued{\tablename\ \thetable{} \textendash{} continued from previous page}}}\\
+\hline
+
+\endhead
+
+\hline
+\multicolumn{2}{r}{\makebox[0pt][r]{\sphinxtablecontinued{continues on next page}}}\\
+\endfoot
+
+\endlastfoot
+
+\sphinxAtStartPar
+{\hyperref[\detokenize{autoapi/pine/client/log/index:pine.client.log.CONFIG_FILE_ENV}]{\sphinxcrossref{\sphinxcode{\sphinxupquote{CONFIG\_FILE\_ENV}}}}}
+&
+\sphinxAtStartPar
+The environment variable that optionally contains the file to use for logging configuration.
 \\
 \hline
 \end{longtable}\sphinxatlongtableend\end{savenotes}
@@ -9201,63 +10023,63 @@ Checks that if the given field is in the object, that it is a bool.
 \\
 \hline
 \sphinxAtStartPar
-{\hyperref[\detokenize{autoapi/pine/client/models/index:pine.client.models.is_valid_eve_user}]{\sphinxcrossref{\sphinxcode{\sphinxupquote{is\_valid\_eve\_user}}}}}(user: dict, error\_callback: Callable{[}({[}str{]}, None){]} = None) \(\rightarrow\) bool
+{\hyperref[\detokenize{autoapi/pine/client/models/index:pine.client.models.is_valid_eve_user}]{\sphinxcrossref{\sphinxcode{\sphinxupquote{is\_valid\_eve\_user}}}}}(user: dict, error\_callback: Callable{[}{[}str{]}, None{]} = None) \(\rightarrow\) bool
 &
 \sphinxAtStartPar
 Checks whether the given user object is valid.
 \\
 \hline
 \sphinxAtStartPar
-{\hyperref[\detokenize{autoapi/pine/client/models/index:pine.client.models.is_valid_eve_pipeline}]{\sphinxcrossref{\sphinxcode{\sphinxupquote{is\_valid\_eve\_pipeline}}}}}(pipeline: dict, error\_callback: Callable{[}({[}str{]}, None){]} = None) \(\rightarrow\) bool
+{\hyperref[\detokenize{autoapi/pine/client/models/index:pine.client.models.is_valid_eve_pipeline}]{\sphinxcrossref{\sphinxcode{\sphinxupquote{is\_valid\_eve\_pipeline}}}}}(pipeline: dict, error\_callback: Callable{[}{[}str{]}, None{]} = None) \(\rightarrow\) bool
 &
 \sphinxAtStartPar
 Checks whether the given pipeline object is valid.
 \\
 \hline
 \sphinxAtStartPar
-{\hyperref[\detokenize{autoapi/pine/client/models/index:pine.client.models.is_valid_eve_collection}]{\sphinxcrossref{\sphinxcode{\sphinxupquote{is\_valid\_eve\_collection}}}}}(collection: dict, error\_callback: Callable{[}({[}str{]}, None){]} = None) \(\rightarrow\) bool
+{\hyperref[\detokenize{autoapi/pine/client/models/index:pine.client.models.is_valid_eve_collection}]{\sphinxcrossref{\sphinxcode{\sphinxupquote{is\_valid\_eve\_collection}}}}}(collection: dict, error\_callback: Callable{[}{[}str{]}, None{]} = None) \(\rightarrow\) bool
 &
 \sphinxAtStartPar
 Checks whether the given collection object is valid.
 \\
 \hline
 \sphinxAtStartPar
-{\hyperref[\detokenize{autoapi/pine/client/models/index:pine.client.models.is_valid_collection}]{\sphinxcrossref{\sphinxcode{\sphinxupquote{is\_valid\_collection}}}}}(form: dict, files: dict, error\_callback: Callable{[}({[}str{]}, None){]} = None) \(\rightarrow\) bool
+{\hyperref[\detokenize{autoapi/pine/client/models/index:pine.client.models.is_valid_collection}]{\sphinxcrossref{\sphinxcode{\sphinxupquote{is\_valid\_collection}}}}}(form: dict, files: dict, error\_callback: Callable{[}{[}str{]}, None{]} = None) \(\rightarrow\) bool
 &
 \sphinxAtStartPar
 Checks whether the given form and files parameters are valid for creating a collection.
 \\
 \hline
 \sphinxAtStartPar
-{\hyperref[\detokenize{autoapi/pine/client/models/index:pine.client.models.is_valid_eve_document}]{\sphinxcrossref{\sphinxcode{\sphinxupquote{is\_valid\_eve\_document}}}}}(document: dict, error\_callback: Callable{[}({[}str{]}, None){]} = None) \(\rightarrow\) bool
+{\hyperref[\detokenize{autoapi/pine/client/models/index:pine.client.models.is_valid_eve_document}]{\sphinxcrossref{\sphinxcode{\sphinxupquote{is\_valid\_eve\_document}}}}}(document: dict, error\_callback: Callable{[}{[}str{]}, None{]} = None) \(\rightarrow\) bool
 &
 \sphinxAtStartPar
 Checks whether the given document object is valid.
 \\
 \hline
 \sphinxAtStartPar
-{\hyperref[\detokenize{autoapi/pine/client/models/index:pine.client.models.is_valid_doc_annotation}]{\sphinxcrossref{\sphinxcode{\sphinxupquote{is\_valid\_doc\_annotation}}}}}(ann: Any, error\_callback: Callable{[}({[}str{]}, None){]} = None) \(\rightarrow\) bool
+{\hyperref[\detokenize{autoapi/pine/client/models/index:pine.client.models.is_valid_doc_annotation}]{\sphinxcrossref{\sphinxcode{\sphinxupquote{is\_valid\_doc\_annotation}}}}}(ann: Any, error\_callback: Callable{[}{[}str{]}, None{]} = None) \(\rightarrow\) bool
 &
 \sphinxAtStartPar
 Checks whether the given annotation is a valid document label/annotation.
 \\
 \hline
 \sphinxAtStartPar
-{\hyperref[\detokenize{autoapi/pine/client/models/index:pine.client.models.is_valid_ner_annotation}]{\sphinxcrossref{\sphinxcode{\sphinxupquote{is\_valid\_ner\_annotation}}}}}(ann: Any, error\_callback: Callable{[}({[}str{]}, None){]} = None) \(\rightarrow\) bool
+{\hyperref[\detokenize{autoapi/pine/client/models/index:pine.client.models.is_valid_ner_annotation}]{\sphinxcrossref{\sphinxcode{\sphinxupquote{is\_valid\_ner\_annotation}}}}}(ann: Any, error\_callback: Callable{[}{[}str{]}, None{]} = None) \(\rightarrow\) bool
 &
 \sphinxAtStartPar
 Checks whether the given annotation is a valid document NER annotation.
 \\
 \hline
 \sphinxAtStartPar
-{\hyperref[\detokenize{autoapi/pine/client/models/index:pine.client.models.is_valid_annotation}]{\sphinxcrossref{\sphinxcode{\sphinxupquote{is\_valid\_annotation}}}}}(body: dict, error\_callback: Callable{[}({[}str{]}, None){]} = None) \(\rightarrow\) bool
+{\hyperref[\detokenize{autoapi/pine/client/models/index:pine.client.models.is_valid_annotation}]{\sphinxcrossref{\sphinxcode{\sphinxupquote{is\_valid\_annotation}}}}}(body: dict, error\_callback: Callable{[}{[}str{]}, None{]} = None) \(\rightarrow\) bool
 &
 \sphinxAtStartPar
 Checks whether the given body is valid to create an annotation.
 \\
 \hline
 \sphinxAtStartPar
-{\hyperref[\detokenize{autoapi/pine/client/models/index:pine.client.models.is_valid_doc_annotations}]{\sphinxcrossref{\sphinxcode{\sphinxupquote{is\_valid\_doc\_annotations}}}}}(doc\_annotations: dict, error\_callback: Callable{[}({[}str{]}, None){]} = None) \(\rightarrow\) bool
+{\hyperref[\detokenize{autoapi/pine/client/models/index:pine.client.models.is_valid_doc_annotations}]{\sphinxcrossref{\sphinxcode{\sphinxupquote{is\_valid\_doc\_annotations}}}}}(doc\_annotations: dict, error\_callback: Callable{[}{[}str{]}, None{]} = None) \(\rightarrow\) bool
 &
 \sphinxAtStartPar
 Checks whether the given document annotations are valid.
@@ -9275,6 +10097,43 @@ Removes fields inserted by eve from the given object.
 &
 \sphinxAtStartPar
 Removes all non\sphinxhyphen{}updatable fields from the given object.
+\\
+\hline
+\end{longtable}\sphinxatlongtableend\end{savenotes}
+
+
+\subparagraph{Attributes}
+\label{\detokenize{autoapi/pine/client/models/index:attributes}}
+
+\begin{savenotes}\sphinxatlongtablestart\begin{longtable}[c]{\X{1}{2}\X{1}{2}}
+\hline
+
+\endfirsthead
+
+\multicolumn{2}{c}%
+{\makebox[0pt]{\sphinxtablecontinued{\tablename\ \thetable{} \textendash{} continued from previous page}}}\\
+\hline
+
+\endhead
+
+\hline
+\multicolumn{2}{r}{\makebox[0pt][r]{\sphinxtablecontinued{continues on next page}}}\\
+\endfoot
+
+\endlastfoot
+
+\sphinxAtStartPar
+{\hyperref[\detokenize{autoapi/pine/client/models/index:pine.client.models.ID_FIELD}]{\sphinxcrossref{\sphinxcode{\sphinxupquote{ID\_FIELD}}}}}
+&
+\sphinxAtStartPar
+The field used to store database ID.
+\\
+\hline
+\sphinxAtStartPar
+{\hyperref[\detokenize{autoapi/pine/client/models/index:pine.client.models.ITEMS_FIELD}]{\sphinxcrossref{\sphinxcode{\sphinxupquote{ITEMS\_FIELD}}}}}
+&
+\sphinxAtStartPar
+The field used to access the items in a multi\sphinxhyphen{}item database response.
 \\
 \hline
 \end{longtable}\sphinxatlongtableend\end{savenotes}
@@ -10208,7 +11067,7 @@ the form where the values have been JSON\sphinxhyphen{}encoded
 \index{creator\_id() (pine.client.models.CollectionBuilder method)@\spxentry{creator\_id()}\spxextra{pine.client.models.CollectionBuilder method}}
 
 \begin{fulllineitems}
-\phantomsection\label{\detokenize{autoapi/pine/client/models/index:pine.client.models.CollectionBuilder.creator_id}}\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{creator\_id}}}{\emph{\DUrole{n}{self}}, \emph{\DUrole{n}{user\_id}\DUrole{p}{:} \DUrole{n}{\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#str}{str}}}}{{ $\rightarrow$ {\hyperref[\detokenize{autoapi/pine/client/models/index:pine.client.models.CollectionBuilder}]{\sphinxcrossref{pine.client.models.CollectionBuilder}}}}}
+\phantomsection\label{\detokenize{autoapi/pine/client/models/index:pine.client.models.CollectionBuilder.creator_id}}\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{creator\_id}}}{\emph{\DUrole{n}{self}}, \emph{\DUrole{n}{user\_id}\DUrole{p}{:} \DUrole{n}{\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#str}{str}}}}{{ $\rightarrow$ {\hyperref[\detokenize{autoapi/pine/client/models/index:pine.client.models.CollectionBuilder}]{\sphinxcrossref{CollectionBuilder}}}}}
 \sphinxAtStartPar
 Sets the creator\_id to the given, and adds to viewers and annotators.
 \begin{quote}\begin{description}
@@ -10231,7 +11090,7 @@ self
 \index{viewer() (pine.client.models.CollectionBuilder method)@\spxentry{viewer()}\spxextra{pine.client.models.CollectionBuilder method}}
 
 \begin{fulllineitems}
-\phantomsection\label{\detokenize{autoapi/pine/client/models/index:pine.client.models.CollectionBuilder.viewer}}\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{viewer}}}{\emph{\DUrole{n}{self}}, \emph{\DUrole{n}{user\_id}\DUrole{p}{:} \DUrole{n}{\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#str}{str}}}}{{ $\rightarrow$ {\hyperref[\detokenize{autoapi/pine/client/models/index:pine.client.models.CollectionBuilder}]{\sphinxcrossref{pine.client.models.CollectionBuilder}}}}}
+\phantomsection\label{\detokenize{autoapi/pine/client/models/index:pine.client.models.CollectionBuilder.viewer}}\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{viewer}}}{\emph{\DUrole{n}{self}}, \emph{\DUrole{n}{user\_id}\DUrole{p}{:} \DUrole{n}{\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#str}{str}}}}{{ $\rightarrow$ {\hyperref[\detokenize{autoapi/pine/client/models/index:pine.client.models.CollectionBuilder}]{\sphinxcrossref{CollectionBuilder}}}}}
 \sphinxAtStartPar
 Adds the given user to the list of viewers.
 \begin{quote}\begin{description}
@@ -10254,7 +11113,7 @@ self
 \index{annotator() (pine.client.models.CollectionBuilder method)@\spxentry{annotator()}\spxextra{pine.client.models.CollectionBuilder method}}
 
 \begin{fulllineitems}
-\phantomsection\label{\detokenize{autoapi/pine/client/models/index:pine.client.models.CollectionBuilder.annotator}}\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{annotator}}}{\emph{\DUrole{n}{self}}, \emph{\DUrole{n}{user\_id}\DUrole{p}{:} \DUrole{n}{\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#str}{str}}}}{{ $\rightarrow$ {\hyperref[\detokenize{autoapi/pine/client/models/index:pine.client.models.CollectionBuilder}]{\sphinxcrossref{pine.client.models.CollectionBuilder}}}}}
+\phantomsection\label{\detokenize{autoapi/pine/client/models/index:pine.client.models.CollectionBuilder.annotator}}\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{annotator}}}{\emph{\DUrole{n}{self}}, \emph{\DUrole{n}{user\_id}\DUrole{p}{:} \DUrole{n}{\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#str}{str}}}}{{ $\rightarrow$ {\hyperref[\detokenize{autoapi/pine/client/models/index:pine.client.models.CollectionBuilder}]{\sphinxcrossref{CollectionBuilder}}}}}
 \sphinxAtStartPar
 Adds the given user to the list of annotators.
 \begin{quote}\begin{description}
@@ -10277,7 +11136,7 @@ self
 \index{label() (pine.client.models.CollectionBuilder method)@\spxentry{label()}\spxextra{pine.client.models.CollectionBuilder method}}
 
 \begin{fulllineitems}
-\phantomsection\label{\detokenize{autoapi/pine/client/models/index:pine.client.models.CollectionBuilder.label}}\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{label}}}{\emph{\DUrole{n}{self}}, \emph{\DUrole{n}{label}\DUrole{p}{:} \DUrole{n}{\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#str}{str}}}}{{ $\rightarrow$ {\hyperref[\detokenize{autoapi/pine/client/models/index:pine.client.models.CollectionBuilder}]{\sphinxcrossref{pine.client.models.CollectionBuilder}}}}}
+\phantomsection\label{\detokenize{autoapi/pine/client/models/index:pine.client.models.CollectionBuilder.label}}\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{label}}}{\emph{\DUrole{n}{self}}, \emph{\DUrole{n}{label}\DUrole{p}{:} \DUrole{n}{\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#str}{str}}}}{{ $\rightarrow$ {\hyperref[\detokenize{autoapi/pine/client/models/index:pine.client.models.CollectionBuilder}]{\sphinxcrossref{CollectionBuilder}}}}}
 \sphinxAtStartPar
 Adds the given label to the collection.
 \begin{quote}\begin{description}
@@ -10300,7 +11159,7 @@ self
 \index{metadata() (pine.client.models.CollectionBuilder method)@\spxentry{metadata()}\spxextra{pine.client.models.CollectionBuilder method}}
 
 \begin{fulllineitems}
-\phantomsection\label{\detokenize{autoapi/pine/client/models/index:pine.client.models.CollectionBuilder.metadata}}\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{metadata}}}{\emph{\DUrole{n}{self}}, \emph{\DUrole{n}{key}\DUrole{p}{:} \DUrole{n}{\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#str}{str}}}, \emph{\DUrole{n}{value}\DUrole{p}{:} \DUrole{n}{Any}}}{{ $\rightarrow$ {\hyperref[\detokenize{autoapi/pine/client/models/index:pine.client.models.CollectionBuilder}]{\sphinxcrossref{pine.client.models.CollectionBuilder}}}}}
+\phantomsection\label{\detokenize{autoapi/pine/client/models/index:pine.client.models.CollectionBuilder.metadata}}\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{metadata}}}{\emph{\DUrole{n}{self}}, \emph{\DUrole{n}{key}\DUrole{p}{:} \DUrole{n}{\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#str}{str}}}, \emph{\DUrole{n}{value}\DUrole{p}{:} \DUrole{n}{Any}}}{{ $\rightarrow$ {\hyperref[\detokenize{autoapi/pine/client/models/index:pine.client.models.CollectionBuilder}]{\sphinxcrossref{CollectionBuilder}}}}}
 \sphinxAtStartPar
 Adds the given metadata key/value to the collection.
 \begin{quote}\begin{description}
@@ -10330,7 +11189,7 @@ self
 \index{title() (pine.client.models.CollectionBuilder method)@\spxentry{title()}\spxextra{pine.client.models.CollectionBuilder method}}
 
 \begin{fulllineitems}
-\phantomsection\label{\detokenize{autoapi/pine/client/models/index:pine.client.models.CollectionBuilder.title}}\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{title}}}{\emph{\DUrole{n}{self}}, \emph{\DUrole{n}{title}\DUrole{p}{:} \DUrole{n}{\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#str}{str}}}}{{ $\rightarrow$ {\hyperref[\detokenize{autoapi/pine/client/models/index:pine.client.models.CollectionBuilder}]{\sphinxcrossref{pine.client.models.CollectionBuilder}}}}}
+\phantomsection\label{\detokenize{autoapi/pine/client/models/index:pine.client.models.CollectionBuilder.title}}\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{title}}}{\emph{\DUrole{n}{self}}, \emph{\DUrole{n}{title}\DUrole{p}{:} \DUrole{n}{\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#str}{str}}}}{{ $\rightarrow$ {\hyperref[\detokenize{autoapi/pine/client/models/index:pine.client.models.CollectionBuilder}]{\sphinxcrossref{CollectionBuilder}}}}}
 \sphinxAtStartPar
 Sets the metadata title to the given.
 \begin{quote}\begin{description}
@@ -10353,7 +11212,7 @@ self
 \index{description() (pine.client.models.CollectionBuilder method)@\spxentry{description()}\spxextra{pine.client.models.CollectionBuilder method}}
 
 \begin{fulllineitems}
-\phantomsection\label{\detokenize{autoapi/pine/client/models/index:pine.client.models.CollectionBuilder.description}}\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{description}}}{\emph{\DUrole{n}{self}}, \emph{\DUrole{n}{description}\DUrole{p}{:} \DUrole{n}{\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#str}{str}}}}{{ $\rightarrow$ {\hyperref[\detokenize{autoapi/pine/client/models/index:pine.client.models.CollectionBuilder}]{\sphinxcrossref{pine.client.models.CollectionBuilder}}}}}
+\phantomsection\label{\detokenize{autoapi/pine/client/models/index:pine.client.models.CollectionBuilder.description}}\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{description}}}{\emph{\DUrole{n}{self}}, \emph{\DUrole{n}{description}\DUrole{p}{:} \DUrole{n}{\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#str}{str}}}}{{ $\rightarrow$ {\hyperref[\detokenize{autoapi/pine/client/models/index:pine.client.models.CollectionBuilder}]{\sphinxcrossref{CollectionBuilder}}}}}
 \sphinxAtStartPar
 Sets the metadata description to the given.
 \begin{quote}\begin{description}
@@ -10376,7 +11235,7 @@ self
 \index{configuration() (pine.client.models.CollectionBuilder method)@\spxentry{configuration()}\spxextra{pine.client.models.CollectionBuilder method}}
 
 \begin{fulllineitems}
-\phantomsection\label{\detokenize{autoapi/pine/client/models/index:pine.client.models.CollectionBuilder.configuration}}\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{configuration}}}{\emph{\DUrole{n}{self}}, \emph{\DUrole{n}{key}\DUrole{p}{:} \DUrole{n}{\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#str}{str}}}, \emph{\DUrole{n}{value}\DUrole{p}{:} \DUrole{n}{Any}}}{{ $\rightarrow$ {\hyperref[\detokenize{autoapi/pine/client/models/index:pine.client.models.CollectionBuilder}]{\sphinxcrossref{pine.client.models.CollectionBuilder}}}}}
+\phantomsection\label{\detokenize{autoapi/pine/client/models/index:pine.client.models.CollectionBuilder.configuration}}\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{configuration}}}{\emph{\DUrole{n}{self}}, \emph{\DUrole{n}{key}\DUrole{p}{:} \DUrole{n}{\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#str}{str}}}, \emph{\DUrole{n}{value}\DUrole{p}{:} \DUrole{n}{Any}}}{{ $\rightarrow$ {\hyperref[\detokenize{autoapi/pine/client/models/index:pine.client.models.CollectionBuilder}]{\sphinxcrossref{CollectionBuilder}}}}}
 \sphinxAtStartPar
 Adds the given configuration key/value to the collection.
 \begin{quote}\begin{description}
@@ -10429,7 +11288,7 @@ self
 \index{classifier() (pine.client.models.CollectionBuilder method)@\spxentry{classifier()}\spxextra{pine.client.models.CollectionBuilder method}}
 
 \begin{fulllineitems}
-\phantomsection\label{\detokenize{autoapi/pine/client/models/index:pine.client.models.CollectionBuilder.classifier}}\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{classifier}}}{\emph{\DUrole{n}{self}}, \emph{\DUrole{n}{pipelineId}\DUrole{p}{:} \DUrole{n}{\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#str}{str}}}, \emph{\DUrole{n}{overlap}\DUrole{p}{:} \DUrole{n}{\sphinxhref{https://docs.python.org/3/library/functions.html\#float}{float}} \DUrole{o}{=} \DUrole{default_value}{0}}, \emph{\DUrole{n}{train\_every}\DUrole{p}{:} \DUrole{n}{\sphinxhref{https://docs.python.org/3/library/functions.html\#int}{int}} \DUrole{o}{=} \DUrole{default_value}{100}}, \emph{\DUrole{n}{classifierParameters}\DUrole{p}{:} \DUrole{n}{\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#dict}{dict}} \DUrole{o}{=} \DUrole{default_value}{\{\}}}}{{ $\rightarrow$ {\hyperref[\detokenize{autoapi/pine/client/models/index:pine.client.models.CollectionBuilder}]{\sphinxcrossref{pine.client.models.CollectionBuilder}}}}}
+\phantomsection\label{\detokenize{autoapi/pine/client/models/index:pine.client.models.CollectionBuilder.classifier}}\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{classifier}}}{\emph{\DUrole{n}{self}}, \emph{\DUrole{n}{pipelineId}\DUrole{p}{:} \DUrole{n}{\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#str}{str}}}, \emph{\DUrole{n}{overlap}\DUrole{p}{:} \DUrole{n}{\sphinxhref{https://docs.python.org/3/library/functions.html\#float}{float}} \DUrole{o}{=} \DUrole{default_value}{0}}, \emph{\DUrole{n}{train\_every}\DUrole{p}{:} \DUrole{n}{\sphinxhref{https://docs.python.org/3/library/functions.html\#int}{int}} \DUrole{o}{=} \DUrole{default_value}{100}}, \emph{\DUrole{n}{classifierParameters}\DUrole{p}{:} \DUrole{n}{\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#dict}{dict}} \DUrole{o}{=} \DUrole{default_value}{\{\}}}}{{ $\rightarrow$ {\hyperref[\detokenize{autoapi/pine/client/models/index:pine.client.models.CollectionBuilder}]{\sphinxcrossref{CollectionBuilder}}}}}
 \sphinxAtStartPar
 Sets classifier information for the created collection.
 \begin{quote}\begin{description}
@@ -10467,7 +11326,7 @@ self
 \index{document\_csv\_file() (pine.client.models.CollectionBuilder method)@\spxentry{document\_csv\_file()}\spxextra{pine.client.models.CollectionBuilder method}}
 
 \begin{fulllineitems}
-\phantomsection\label{\detokenize{autoapi/pine/client/models/index:pine.client.models.CollectionBuilder.document_csv_file}}\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{document\_csv\_file}}}{\emph{\DUrole{n}{self}}, \emph{\DUrole{n}{csv\_filename}\DUrole{p}{:} \DUrole{n}{\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#str}{str}}}, \emph{\DUrole{n}{has\_header}\DUrole{p}{:} \DUrole{n}{\sphinxhref{https://docs.python.org/3/library/functions.html\#bool}{bool}}}, \emph{\DUrole{n}{text\_column}\DUrole{p}{:} \DUrole{n}{\sphinxhref{https://docs.python.org/3/library/functions.html\#int}{int}}}}{{ $\rightarrow$ {\hyperref[\detokenize{autoapi/pine/client/models/index:pine.client.models.CollectionBuilder}]{\sphinxcrossref{pine.client.models.CollectionBuilder}}}}}
+\phantomsection\label{\detokenize{autoapi/pine/client/models/index:pine.client.models.CollectionBuilder.document_csv_file}}\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{document\_csv\_file}}}{\emph{\DUrole{n}{self}}, \emph{\DUrole{n}{csv\_filename}\DUrole{p}{:} \DUrole{n}{\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#str}{str}}}, \emph{\DUrole{n}{has\_header}\DUrole{p}{:} \DUrole{n}{\sphinxhref{https://docs.python.org/3/library/functions.html\#bool}{bool}}}, \emph{\DUrole{n}{text\_column}\DUrole{p}{:} \DUrole{n}{\sphinxhref{https://docs.python.org/3/library/functions.html\#int}{int}}}}{{ $\rightarrow$ {\hyperref[\detokenize{autoapi/pine/client/models/index:pine.client.models.CollectionBuilder}]{\sphinxcrossref{CollectionBuilder}}}}}
 \sphinxAtStartPar
 Sets the CSV file used to create documents to the given.
 
@@ -10505,7 +11364,7 @@ self
 \index{image\_file() (pine.client.models.CollectionBuilder method)@\spxentry{image\_file()}\spxextra{pine.client.models.CollectionBuilder method}}
 
 \begin{fulllineitems}
-\phantomsection\label{\detokenize{autoapi/pine/client/models/index:pine.client.models.CollectionBuilder.image_file}}\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{image\_file}}}{\emph{\DUrole{n}{self}}, \emph{\DUrole{n}{image\_filename}\DUrole{p}{:} \DUrole{n}{\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#str}{str}}}}{{ $\rightarrow$ {\hyperref[\detokenize{autoapi/pine/client/models/index:pine.client.models.CollectionBuilder}]{\sphinxcrossref{pine.client.models.CollectionBuilder}}}}}
+\phantomsection\label{\detokenize{autoapi/pine/client/models/index:pine.client.models.CollectionBuilder.image_file}}\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{image\_file}}}{\emph{\DUrole{n}{self}}, \emph{\DUrole{n}{image\_filename}\DUrole{p}{:} \DUrole{n}{\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#str}{str}}}}{{ $\rightarrow$ {\hyperref[\detokenize{autoapi/pine/client/models/index:pine.client.models.CollectionBuilder}]{\sphinxcrossref{CollectionBuilder}}}}}
 \sphinxAtStartPar
 Adds the given image file to the collection.
 
@@ -10910,7 +11769,7 @@ Sets up logging, if configured to do so.
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{autoapi/pine/client/index:pine.client.PineClient}}\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{class }}\sphinxcode{\sphinxupquote{pine.client.}}\sphinxbfcode{\sphinxupquote{PineClient}}}{\emph{\DUrole{n}{backend\_base\_uri}\DUrole{p}{:} \DUrole{n}{\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#str}{str}}}, \emph{\DUrole{n}{verify\_ssl}\DUrole{p}{:} \DUrole{n}{\sphinxhref{https://docs.python.org/3/library/functions.html\#bool}{bool}} \DUrole{o}{=} \DUrole{default_value}{True}}}{}
 \sphinxAtStartPar
-Bases: {\hyperref[\detokenize{autoapi/pine/client/client/index:pine.client.client.BaseClient}]{\sphinxcrossref{\sphinxcode{\sphinxupquote{pine.client.client.BaseClient}}}}}
+Bases: \sphinxcode{\sphinxupquote{BaseClient}}
 
 \sphinxAtStartPar
 A client to access PINE (more specifically: the backend).
@@ -12131,7 +12990,7 @@ Gets the list of running job IDs for the given classifier.
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{autoapi/pine/client/index:pine.client.LocalPineClient}}\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{class }}\sphinxcode{\sphinxupquote{pine.client.}}\sphinxbfcode{\sphinxupquote{LocalPineClient}}}{\emph{\DUrole{n}{backend\_base\_uri}\DUrole{p}{:} \DUrole{n}{\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#str}{str}}}, \emph{\DUrole{n}{eve\_base\_uri}\DUrole{p}{:} \DUrole{n}{\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#str}{str}}}, \emph{\DUrole{n}{mongo\_base\_uri}\DUrole{p}{:} \DUrole{n}{\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#str}{str}} \DUrole{o}{=} \DUrole{default_value}{None}}, \emph{\DUrole{n}{mongo\_dbname}\DUrole{p}{:} \DUrole{n}{\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#str}{str}} \DUrole{o}{=} \DUrole{default_value}{EveClient.DEFAULT\_DBNAME}}, \emph{\DUrole{n}{verify\_ssl}\DUrole{p}{:} \DUrole{n}{\sphinxhref{https://docs.python.org/3/library/functions.html\#bool}{bool}} \DUrole{o}{=} \DUrole{default_value}{True}}}{}
 \sphinxAtStartPar
-Bases: {\hyperref[\detokenize{autoapi/pine/client/client/index:pine.client.client.PineClient}]{\sphinxcrossref{\sphinxcode{\sphinxupquote{pine.client.client.PineClient}}}}}
+Bases: {\hyperref[\detokenize{autoapi/pine/client/index:pine.client.PineClient}]{\sphinxcrossref{\sphinxcode{\sphinxupquote{PineClient}}}}}
 
 \sphinxAtStartPar
 A client for a local PINE instance, including an \sphinxcode{\sphinxupquote{EveClient}}.
@@ -12377,7 +13236,7 @@ the form where the values have been JSON\sphinxhyphen{}encoded
 \index{creator\_id() (pine.client.CollectionBuilder method)@\spxentry{creator\_id()}\spxextra{pine.client.CollectionBuilder method}}
 
 \begin{fulllineitems}
-\phantomsection\label{\detokenize{autoapi/pine/client/index:pine.client.CollectionBuilder.creator_id}}\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{creator\_id}}}{\emph{\DUrole{n}{self}}, \emph{\DUrole{n}{user\_id}\DUrole{p}{:} \DUrole{n}{\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#str}{str}}}}{{ $\rightarrow$ {\hyperref[\detokenize{autoapi/pine/client/models/index:pine.client.models.CollectionBuilder}]{\sphinxcrossref{pine.client.models.CollectionBuilder}}}}}
+\phantomsection\label{\detokenize{autoapi/pine/client/index:pine.client.CollectionBuilder.creator_id}}\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{creator\_id}}}{\emph{\DUrole{n}{self}}, \emph{\DUrole{n}{user\_id}\DUrole{p}{:} \DUrole{n}{\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#str}{str}}}}{{ $\rightarrow$ {\hyperref[\detokenize{autoapi/pine/client/index:pine.client.CollectionBuilder}]{\sphinxcrossref{CollectionBuilder}}}}}
 \sphinxAtStartPar
 Sets the creator\_id to the given, and adds to viewers and annotators.
 \begin{quote}\begin{description}
@@ -12400,7 +13259,7 @@ self
 \index{viewer() (pine.client.CollectionBuilder method)@\spxentry{viewer()}\spxextra{pine.client.CollectionBuilder method}}
 
 \begin{fulllineitems}
-\phantomsection\label{\detokenize{autoapi/pine/client/index:pine.client.CollectionBuilder.viewer}}\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{viewer}}}{\emph{\DUrole{n}{self}}, \emph{\DUrole{n}{user\_id}\DUrole{p}{:} \DUrole{n}{\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#str}{str}}}}{{ $\rightarrow$ {\hyperref[\detokenize{autoapi/pine/client/models/index:pine.client.models.CollectionBuilder}]{\sphinxcrossref{pine.client.models.CollectionBuilder}}}}}
+\phantomsection\label{\detokenize{autoapi/pine/client/index:pine.client.CollectionBuilder.viewer}}\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{viewer}}}{\emph{\DUrole{n}{self}}, \emph{\DUrole{n}{user\_id}\DUrole{p}{:} \DUrole{n}{\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#str}{str}}}}{{ $\rightarrow$ {\hyperref[\detokenize{autoapi/pine/client/index:pine.client.CollectionBuilder}]{\sphinxcrossref{CollectionBuilder}}}}}
 \sphinxAtStartPar
 Adds the given user to the list of viewers.
 \begin{quote}\begin{description}
@@ -12423,7 +13282,7 @@ self
 \index{annotator() (pine.client.CollectionBuilder method)@\spxentry{annotator()}\spxextra{pine.client.CollectionBuilder method}}
 
 \begin{fulllineitems}
-\phantomsection\label{\detokenize{autoapi/pine/client/index:pine.client.CollectionBuilder.annotator}}\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{annotator}}}{\emph{\DUrole{n}{self}}, \emph{\DUrole{n}{user\_id}\DUrole{p}{:} \DUrole{n}{\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#str}{str}}}}{{ $\rightarrow$ {\hyperref[\detokenize{autoapi/pine/client/models/index:pine.client.models.CollectionBuilder}]{\sphinxcrossref{pine.client.models.CollectionBuilder}}}}}
+\phantomsection\label{\detokenize{autoapi/pine/client/index:pine.client.CollectionBuilder.annotator}}\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{annotator}}}{\emph{\DUrole{n}{self}}, \emph{\DUrole{n}{user\_id}\DUrole{p}{:} \DUrole{n}{\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#str}{str}}}}{{ $\rightarrow$ {\hyperref[\detokenize{autoapi/pine/client/index:pine.client.CollectionBuilder}]{\sphinxcrossref{CollectionBuilder}}}}}
 \sphinxAtStartPar
 Adds the given user to the list of annotators.
 \begin{quote}\begin{description}
@@ -12446,7 +13305,7 @@ self
 \index{label() (pine.client.CollectionBuilder method)@\spxentry{label()}\spxextra{pine.client.CollectionBuilder method}}
 
 \begin{fulllineitems}
-\phantomsection\label{\detokenize{autoapi/pine/client/index:pine.client.CollectionBuilder.label}}\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{label}}}{\emph{\DUrole{n}{self}}, \emph{\DUrole{n}{label}\DUrole{p}{:} \DUrole{n}{\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#str}{str}}}}{{ $\rightarrow$ {\hyperref[\detokenize{autoapi/pine/client/models/index:pine.client.models.CollectionBuilder}]{\sphinxcrossref{pine.client.models.CollectionBuilder}}}}}
+\phantomsection\label{\detokenize{autoapi/pine/client/index:pine.client.CollectionBuilder.label}}\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{label}}}{\emph{\DUrole{n}{self}}, \emph{\DUrole{n}{label}\DUrole{p}{:} \DUrole{n}{\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#str}{str}}}}{{ $\rightarrow$ {\hyperref[\detokenize{autoapi/pine/client/index:pine.client.CollectionBuilder}]{\sphinxcrossref{CollectionBuilder}}}}}
 \sphinxAtStartPar
 Adds the given label to the collection.
 \begin{quote}\begin{description}
@@ -12469,7 +13328,7 @@ self
 \index{metadata() (pine.client.CollectionBuilder method)@\spxentry{metadata()}\spxextra{pine.client.CollectionBuilder method}}
 
 \begin{fulllineitems}
-\phantomsection\label{\detokenize{autoapi/pine/client/index:pine.client.CollectionBuilder.metadata}}\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{metadata}}}{\emph{\DUrole{n}{self}}, \emph{\DUrole{n}{key}\DUrole{p}{:} \DUrole{n}{\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#str}{str}}}, \emph{\DUrole{n}{value}\DUrole{p}{:} \DUrole{n}{Any}}}{{ $\rightarrow$ {\hyperref[\detokenize{autoapi/pine/client/models/index:pine.client.models.CollectionBuilder}]{\sphinxcrossref{pine.client.models.CollectionBuilder}}}}}
+\phantomsection\label{\detokenize{autoapi/pine/client/index:pine.client.CollectionBuilder.metadata}}\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{metadata}}}{\emph{\DUrole{n}{self}}, \emph{\DUrole{n}{key}\DUrole{p}{:} \DUrole{n}{\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#str}{str}}}, \emph{\DUrole{n}{value}\DUrole{p}{:} \DUrole{n}{Any}}}{{ $\rightarrow$ {\hyperref[\detokenize{autoapi/pine/client/index:pine.client.CollectionBuilder}]{\sphinxcrossref{CollectionBuilder}}}}}
 \sphinxAtStartPar
 Adds the given metadata key/value to the collection.
 \begin{quote}\begin{description}
@@ -12499,7 +13358,7 @@ self
 \index{title() (pine.client.CollectionBuilder method)@\spxentry{title()}\spxextra{pine.client.CollectionBuilder method}}
 
 \begin{fulllineitems}
-\phantomsection\label{\detokenize{autoapi/pine/client/index:pine.client.CollectionBuilder.title}}\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{title}}}{\emph{\DUrole{n}{self}}, \emph{\DUrole{n}{title}\DUrole{p}{:} \DUrole{n}{\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#str}{str}}}}{{ $\rightarrow$ {\hyperref[\detokenize{autoapi/pine/client/models/index:pine.client.models.CollectionBuilder}]{\sphinxcrossref{pine.client.models.CollectionBuilder}}}}}
+\phantomsection\label{\detokenize{autoapi/pine/client/index:pine.client.CollectionBuilder.title}}\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{title}}}{\emph{\DUrole{n}{self}}, \emph{\DUrole{n}{title}\DUrole{p}{:} \DUrole{n}{\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#str}{str}}}}{{ $\rightarrow$ {\hyperref[\detokenize{autoapi/pine/client/index:pine.client.CollectionBuilder}]{\sphinxcrossref{CollectionBuilder}}}}}
 \sphinxAtStartPar
 Sets the metadata title to the given.
 \begin{quote}\begin{description}
@@ -12522,7 +13381,7 @@ self
 \index{description() (pine.client.CollectionBuilder method)@\spxentry{description()}\spxextra{pine.client.CollectionBuilder method}}
 
 \begin{fulllineitems}
-\phantomsection\label{\detokenize{autoapi/pine/client/index:pine.client.CollectionBuilder.description}}\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{description}}}{\emph{\DUrole{n}{self}}, \emph{\DUrole{n}{description}\DUrole{p}{:} \DUrole{n}{\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#str}{str}}}}{{ $\rightarrow$ {\hyperref[\detokenize{autoapi/pine/client/models/index:pine.client.models.CollectionBuilder}]{\sphinxcrossref{pine.client.models.CollectionBuilder}}}}}
+\phantomsection\label{\detokenize{autoapi/pine/client/index:pine.client.CollectionBuilder.description}}\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{description}}}{\emph{\DUrole{n}{self}}, \emph{\DUrole{n}{description}\DUrole{p}{:} \DUrole{n}{\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#str}{str}}}}{{ $\rightarrow$ {\hyperref[\detokenize{autoapi/pine/client/index:pine.client.CollectionBuilder}]{\sphinxcrossref{CollectionBuilder}}}}}
 \sphinxAtStartPar
 Sets the metadata description to the given.
 \begin{quote}\begin{description}
@@ -12545,7 +13404,7 @@ self
 \index{configuration() (pine.client.CollectionBuilder method)@\spxentry{configuration()}\spxextra{pine.client.CollectionBuilder method}}
 
 \begin{fulllineitems}
-\phantomsection\label{\detokenize{autoapi/pine/client/index:pine.client.CollectionBuilder.configuration}}\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{configuration}}}{\emph{\DUrole{n}{self}}, \emph{\DUrole{n}{key}\DUrole{p}{:} \DUrole{n}{\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#str}{str}}}, \emph{\DUrole{n}{value}\DUrole{p}{:} \DUrole{n}{Any}}}{{ $\rightarrow$ {\hyperref[\detokenize{autoapi/pine/client/models/index:pine.client.models.CollectionBuilder}]{\sphinxcrossref{pine.client.models.CollectionBuilder}}}}}
+\phantomsection\label{\detokenize{autoapi/pine/client/index:pine.client.CollectionBuilder.configuration}}\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{configuration}}}{\emph{\DUrole{n}{self}}, \emph{\DUrole{n}{key}\DUrole{p}{:} \DUrole{n}{\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#str}{str}}}, \emph{\DUrole{n}{value}\DUrole{p}{:} \DUrole{n}{Any}}}{{ $\rightarrow$ {\hyperref[\detokenize{autoapi/pine/client/index:pine.client.CollectionBuilder}]{\sphinxcrossref{CollectionBuilder}}}}}
 \sphinxAtStartPar
 Adds the given configuration key/value to the collection.
 \begin{quote}\begin{description}
@@ -12598,7 +13457,7 @@ self
 \index{classifier() (pine.client.CollectionBuilder method)@\spxentry{classifier()}\spxextra{pine.client.CollectionBuilder method}}
 
 \begin{fulllineitems}
-\phantomsection\label{\detokenize{autoapi/pine/client/index:pine.client.CollectionBuilder.classifier}}\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{classifier}}}{\emph{\DUrole{n}{self}}, \emph{\DUrole{n}{pipelineId}\DUrole{p}{:} \DUrole{n}{\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#str}{str}}}, \emph{\DUrole{n}{overlap}\DUrole{p}{:} \DUrole{n}{\sphinxhref{https://docs.python.org/3/library/functions.html\#float}{float}} \DUrole{o}{=} \DUrole{default_value}{0}}, \emph{\DUrole{n}{train\_every}\DUrole{p}{:} \DUrole{n}{\sphinxhref{https://docs.python.org/3/library/functions.html\#int}{int}} \DUrole{o}{=} \DUrole{default_value}{100}}, \emph{\DUrole{n}{classifierParameters}\DUrole{p}{:} \DUrole{n}{\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#dict}{dict}} \DUrole{o}{=} \DUrole{default_value}{\{\}}}}{{ $\rightarrow$ {\hyperref[\detokenize{autoapi/pine/client/models/index:pine.client.models.CollectionBuilder}]{\sphinxcrossref{pine.client.models.CollectionBuilder}}}}}
+\phantomsection\label{\detokenize{autoapi/pine/client/index:pine.client.CollectionBuilder.classifier}}\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{classifier}}}{\emph{\DUrole{n}{self}}, \emph{\DUrole{n}{pipelineId}\DUrole{p}{:} \DUrole{n}{\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#str}{str}}}, \emph{\DUrole{n}{overlap}\DUrole{p}{:} \DUrole{n}{\sphinxhref{https://docs.python.org/3/library/functions.html\#float}{float}} \DUrole{o}{=} \DUrole{default_value}{0}}, \emph{\DUrole{n}{train\_every}\DUrole{p}{:} \DUrole{n}{\sphinxhref{https://docs.python.org/3/library/functions.html\#int}{int}} \DUrole{o}{=} \DUrole{default_value}{100}}, \emph{\DUrole{n}{classifierParameters}\DUrole{p}{:} \DUrole{n}{\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#dict}{dict}} \DUrole{o}{=} \DUrole{default_value}{\{\}}}}{{ $\rightarrow$ {\hyperref[\detokenize{autoapi/pine/client/index:pine.client.CollectionBuilder}]{\sphinxcrossref{CollectionBuilder}}}}}
 \sphinxAtStartPar
 Sets classifier information for the created collection.
 \begin{quote}\begin{description}
@@ -12636,7 +13495,7 @@ self
 \index{document\_csv\_file() (pine.client.CollectionBuilder method)@\spxentry{document\_csv\_file()}\spxextra{pine.client.CollectionBuilder method}}
 
 \begin{fulllineitems}
-\phantomsection\label{\detokenize{autoapi/pine/client/index:pine.client.CollectionBuilder.document_csv_file}}\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{document\_csv\_file}}}{\emph{\DUrole{n}{self}}, \emph{\DUrole{n}{csv\_filename}\DUrole{p}{:} \DUrole{n}{\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#str}{str}}}, \emph{\DUrole{n}{has\_header}\DUrole{p}{:} \DUrole{n}{\sphinxhref{https://docs.python.org/3/library/functions.html\#bool}{bool}}}, \emph{\DUrole{n}{text\_column}\DUrole{p}{:} \DUrole{n}{\sphinxhref{https://docs.python.org/3/library/functions.html\#int}{int}}}}{{ $\rightarrow$ {\hyperref[\detokenize{autoapi/pine/client/models/index:pine.client.models.CollectionBuilder}]{\sphinxcrossref{pine.client.models.CollectionBuilder}}}}}
+\phantomsection\label{\detokenize{autoapi/pine/client/index:pine.client.CollectionBuilder.document_csv_file}}\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{document\_csv\_file}}}{\emph{\DUrole{n}{self}}, \emph{\DUrole{n}{csv\_filename}\DUrole{p}{:} \DUrole{n}{\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#str}{str}}}, \emph{\DUrole{n}{has\_header}\DUrole{p}{:} \DUrole{n}{\sphinxhref{https://docs.python.org/3/library/functions.html\#bool}{bool}}}, \emph{\DUrole{n}{text\_column}\DUrole{p}{:} \DUrole{n}{\sphinxhref{https://docs.python.org/3/library/functions.html\#int}{int}}}}{{ $\rightarrow$ {\hyperref[\detokenize{autoapi/pine/client/index:pine.client.CollectionBuilder}]{\sphinxcrossref{CollectionBuilder}}}}}
 \sphinxAtStartPar
 Sets the CSV file used to create documents to the given.
 
@@ -12674,7 +13533,7 @@ self
 \index{image\_file() (pine.client.CollectionBuilder method)@\spxentry{image\_file()}\spxextra{pine.client.CollectionBuilder method}}
 
 \begin{fulllineitems}
-\phantomsection\label{\detokenize{autoapi/pine/client/index:pine.client.CollectionBuilder.image_file}}\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{image\_file}}}{\emph{\DUrole{n}{self}}, \emph{\DUrole{n}{image\_filename}\DUrole{p}{:} \DUrole{n}{\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#str}{str}}}}{{ $\rightarrow$ {\hyperref[\detokenize{autoapi/pine/client/models/index:pine.client.models.CollectionBuilder}]{\sphinxcrossref{pine.client.models.CollectionBuilder}}}}}
+\phantomsection\label{\detokenize{autoapi/pine/client/index:pine.client.CollectionBuilder.image_file}}\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{image\_file}}}{\emph{\DUrole{n}{self}}, \emph{\DUrole{n}{image\_filename}\DUrole{p}{:} \DUrole{n}{\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#str}{str}}}}{{ $\rightarrow$ {\hyperref[\detokenize{autoapi/pine/client/index:pine.client.CollectionBuilder}]{\sphinxcrossref{CollectionBuilder}}}}}
 \sphinxAtStartPar
 Adds the given image file to the collection.
 
@@ -12861,6 +13720,43 @@ list{[}ServiceRegistration{]}
 \\
 \hline
 \end{longtable}\sphinxatlongtableend\end{savenotes}
+
+
+\subparagraph{Attributes}
+\label{\detokenize{autoapi/pine/pipelines/app/listener/service_listener/index:attributes}}
+
+\begin{savenotes}\sphinxatlongtablestart\begin{longtable}[c]{\X{1}{2}\X{1}{2}}
+\hline
+
+\endfirsthead
+
+\multicolumn{2}{c}%
+{\makebox[0pt]{\sphinxtablecontinued{\tablename\ \thetable{} \textendash{} continued from previous page}}}\\
+\hline
+
+\endhead
+
+\hline
+\multicolumn{2}{r}{\makebox[0pt][r]{\sphinxtablecontinued{continues on next page}}}\\
+\endfoot
+
+\endlastfoot
+
+\sphinxAtStartPar
+{\hyperref[\detokenize{autoapi/pine/pipelines/app/listener/service_listener/index:pine.pipelines.app.listener.service_listener.config}]{\sphinxcrossref{\sphinxcode{\sphinxupquote{config}}}}}
+&
+\sphinxAtStartPar
+
+\\
+\hline
+\sphinxAtStartPar
+{\hyperref[\detokenize{autoapi/pine/pipelines/app/listener/service_listener/index:pine.pipelines.app.listener.service_listener.logger}]{\sphinxcrossref{\sphinxcode{\sphinxupquote{logger}}}}}
+&
+\sphinxAtStartPar
+
+\\
+\hline
+\end{longtable}\sphinxatlongtableend\end{savenotes}
 \index{config (in module pine.pipelines.app.listener.service\_listener)@\spxentry{config}\spxextra{in module pine.pipelines.app.listener.service\_listener}}
 
 \begin{fulllineitems}
@@ -13034,7 +13930,7 @@ Bases: \sphinxhref{https://docs.python.org/3/library/functions.html\#object}{\sp
 \phantomsection\label{\detokenize{autoapi/pine/pipelines/app/listener/service_listener/index:pine.pipelines.app.listener.service_listener.ServiceListener.pre_process_message}}\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{pre\_process\_message}}}{\emph{\DUrole{n}{self}}, \emph{\DUrole{n}{message\_channel}}, \emph{\DUrole{n}{message\_data}}}{}~\begin{quote}\begin{description}
 \item[{Return type}] \leavevmode
 \sphinxAtStartPar
-bool | dict
+\sphinxhref{https://docs.python.org/3/library/functions.html\#bool}{bool} | \sphinxhref{https://docs.python.org/3/library/stdtypes.html\#dict}{dict}
 
 \end{description}\end{quote}
 
@@ -13043,7 +13939,7 @@ bool | dict
 \index{do\_with\_redis() (pine.pipelines.app.listener.service\_listener.ServiceListener static method)@\spxentry{do\_with\_redis()}\spxextra{pine.pipelines.app.listener.service\_listener.ServiceListener static method}}
 
 \begin{fulllineitems}
-\phantomsection\label{\detokenize{autoapi/pine/pipelines/app/listener/service_listener/index:pine.pipelines.app.listener.service_listener.ServiceListener.do_with_redis}}\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{static }}\sphinxbfcode{\sphinxupquote{do\_with\_redis}}}{\emph{\DUrole{n}{callback}\DUrole{p}{:} \DUrole{n}{Callable\DUrole{p}{{[}}\DUrole{p}{{[}}redis.StrictRedis\DUrole{p}{{]}}\DUrole{p}{, }typing.Any\DUrole{p}{{]}}}}}{}
+\phantomsection\label{\detokenize{autoapi/pine/pipelines/app/listener/service_listener/index:pine.pipelines.app.listener.service_listener.ServiceListener.do_with_redis}}\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{static }}\sphinxbfcode{\sphinxupquote{do\_with\_redis}}}{\emph{\DUrole{n}{callback}\DUrole{p}{:} \DUrole{n}{Callable\DUrole{p}{{[}}\DUrole{p}{{[}}redis.StrictRedis\DUrole{p}{{]}}\DUrole{p}{, }Any\DUrole{p}{{]}}}}}{}
 \end{fulllineitems}
 
 \index{push\_results() (pine.pipelines.app.listener.service\_listener.ServiceListener static method)@\spxentry{push\_results()}\spxextra{pine.pipelines.app.listener.service\_listener.ServiceListener static method}}
@@ -13147,6 +14043,36 @@ bool | dict
 \hline
 \sphinxAtStartPar
 {\hyperref[\detokenize{autoapi/pine/pipelines/shared/config/index:pine.pipelines.shared.config.ConfigBuilder}]{\sphinxcrossref{\sphinxcode{\sphinxupquote{ConfigBuilder}}}}}
+&
+\sphinxAtStartPar
+
+\\
+\hline
+\end{longtable}\sphinxatlongtableend\end{savenotes}
+
+
+\subparagraph{Attributes}
+\label{\detokenize{autoapi/pine/pipelines/shared/config/index:attributes}}
+
+\begin{savenotes}\sphinxatlongtablestart\begin{longtable}[c]{\X{1}{2}\X{1}{2}}
+\hline
+
+\endfirsthead
+
+\multicolumn{2}{c}%
+{\makebox[0pt]{\sphinxtablecontinued{\tablename\ \thetable{} \textendash{} continued from previous page}}}\\
+\hline
+
+\endhead
+
+\hline
+\multicolumn{2}{r}{\makebox[0pt][r]{\sphinxtablecontinued{continues on next page}}}\\
+\endfoot
+
+\endlastfoot
+
+\sphinxAtStartPar
+{\hyperref[\detokenize{autoapi/pine/pipelines/shared/config/index:pine.pipelines.shared.config.LOGGER}]{\sphinxcrossref{\sphinxcode{\sphinxupquote{LOGGER}}}}}
 &
 \sphinxAtStartPar
 
@@ -13387,7 +14313,7 @@ Bases: \sphinxhref{https://docs.python.org/3/library/functions.html\#object}{\sp
 \phantomsection\label{\detokenize{autoapi/pine/pipelines/shared/config/index:pine.pipelines.shared.config.BaseConfig.as_attr_dict}}\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{classmethod }}\sphinxbfcode{\sphinxupquote{as\_attr\_dict}}}{\emph{\DUrole{n}{cls}}}{}~\begin{quote}\begin{description}
 \item[{Return type}] \leavevmode
 \sphinxAtStartPar
-munch.Munch | dict
+munch.Munch | \sphinxhref{https://docs.python.org/3/library/stdtypes.html\#dict}{dict}
 
 \end{description}\end{quote}
 
@@ -13413,7 +14339,7 @@ munch.Munch | dict
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{autoapi/pine/pipelines/shared/config/index:pine.pipelines.shared.config.TestConfig}}\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{class }}\sphinxcode{\sphinxupquote{pine.pipelines.shared.config.}}\sphinxbfcode{\sphinxupquote{TestConfig}}}{\emph{\DUrole{n}{root\_dir}\DUrole{o}{=}\DUrole{default_value}{None}}}{}
 \sphinxAtStartPar
-Bases: {\hyperref[\detokenize{autoapi/pine/pipelines/shared/config/index:pine.pipelines.shared.config.BaseConfig}]{\sphinxcrossref{\sphinxcode{\sphinxupquote{pine.pipelines.shared.config.BaseConfig}}}}}
+Bases: {\hyperref[\detokenize{autoapi/pine/pipelines/shared/config/index:pine.pipelines.shared.config.BaseConfig}]{\sphinxcrossref{\sphinxcode{\sphinxupquote{BaseConfig}}}}}
 
 \end{fulllineitems}
 
@@ -13617,6 +14543,43 @@ The prefix can be used to avoid blindy changing values and target a subset of ma
 \\
 \hline
 \end{longtable}\sphinxatlongtableend\end{savenotes}
+
+
+\subparagraph{Attributes}
+\label{\detokenize{autoapi/pine/pipelines/EveClient/index:attributes}}
+
+\begin{savenotes}\sphinxatlongtablestart\begin{longtable}[c]{\X{1}{2}\X{1}{2}}
+\hline
+
+\endfirsthead
+
+\multicolumn{2}{c}%
+{\makebox[0pt]{\sphinxtablecontinued{\tablename\ \thetable{} \textendash{} continued from previous page}}}\\
+\hline
+
+\endhead
+
+\hline
+\multicolumn{2}{r}{\makebox[0pt][r]{\sphinxtablecontinued{continues on next page}}}\\
+\endfoot
+
+\endlastfoot
+
+\sphinxAtStartPar
+{\hyperref[\detokenize{autoapi/pine/pipelines/EveClient/index:pine.pipelines.EveClient.logger}]{\sphinxcrossref{\sphinxcode{\sphinxupquote{logger}}}}}
+&
+\sphinxAtStartPar
+
+\\
+\hline
+\sphinxAtStartPar
+{\hyperref[\detokenize{autoapi/pine/pipelines/EveClient/index:pine.pipelines.EveClient.config}]{\sphinxcrossref{\sphinxcode{\sphinxupquote{config}}}}}
+&
+\sphinxAtStartPar
+
+\\
+\hline
+\end{longtable}\sphinxatlongtableend\end{savenotes}
 \index{logger (in module pine.pipelines.EveClient)@\spxentry{logger}\spxextra{in module pine.pipelines.EveClient}}
 
 \begin{fulllineitems}
@@ -13709,7 +14672,7 @@ a mapping from document ID to document text for non\sphinxhyphen{}overlap docume
 \index{get\_docs\_with\_annotations() (pine.pipelines.EveClient.EveClient method)@\spxentry{get\_docs\_with\_annotations()}\spxextra{pine.pipelines.EveClient.EveClient method}}
 
 \begin{fulllineitems}
-\phantomsection\label{\detokenize{autoapi/pine/pipelines/EveClient/index:pine.pipelines.EveClient.EveClient.get_docs_with_annotations}}\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{get\_docs\_with\_annotations}}}{\emph{\DUrole{n}{self}}, \emph{\DUrole{n}{collection\_id}\DUrole{p}{:} \DUrole{n}{\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#str}{str}}}, \emph{\DUrole{n}{doc\_map}\DUrole{p}{:} \DUrole{n}{Dict\DUrole{p}{{[}}\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#str}{str}\DUrole{p}{, }\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#str}{str}\DUrole{p}{{]}}}}}{{ $\rightarrow$ Tuple\DUrole{p}{{[}}\sphinxhref{https://docs.python.org/3/library/typing.html\#typing.List}{typing.List}\DUrole{p}{{[}}\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#str}{str}\DUrole{p}{{]}}\DUrole{p}{, }\sphinxhref{https://docs.python.org/3/library/typing.html\#typing.List}{typing.List}\DUrole{p}{{[}}\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#str}{str}\DUrole{p}{{]}}\DUrole{p}{, }\sphinxhref{https://docs.python.org/3/library/typing.html\#typing.List}{typing.List}\DUrole{p}{{[}}\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#str}{str}\DUrole{p}{{]}}\DUrole{p}{, }\sphinxhref{https://docs.python.org/3/library/typing.html\#typing.List}{typing.List}\DUrole{p}{{[}}\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#str}{str}\DUrole{p}{{]}}\DUrole{p}{{]}}}}
+\phantomsection\label{\detokenize{autoapi/pine/pipelines/EveClient/index:pine.pipelines.EveClient.EveClient.get_docs_with_annotations}}\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{get\_docs\_with\_annotations}}}{\emph{\DUrole{n}{self}}, \emph{\DUrole{n}{collection\_id}\DUrole{p}{:} \DUrole{n}{\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#str}{str}}}, \emph{\DUrole{n}{doc\_map}\DUrole{p}{:} \DUrole{n}{Dict\DUrole{p}{{[}}\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#str}{str}\DUrole{p}{, }\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#str}{str}\DUrole{p}{{]}}}}}{{ $\rightarrow$ Tuple\DUrole{p}{{[}}List\DUrole{p}{{[}}\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#str}{str}\DUrole{p}{{]}}\DUrole{p}{, }List\DUrole{p}{{[}}\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#str}{str}\DUrole{p}{{]}}\DUrole{p}{, }List\DUrole{p}{{[}}\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#str}{str}\DUrole{p}{{]}}\DUrole{p}{, }List\DUrole{p}{{[}}\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#str}{str}\DUrole{p}{{]}}\DUrole{p}{{]}}}}
 \sphinxAtStartPar
 Gets document and annotation data.  Only non\sphinxhyphen{}overlapping documents are returned.
 \begin{quote}\begin{description}
@@ -13777,6 +14740,36 @@ ann\_ids is a list of the annotation IDs
 
 \sphinxAtStartPar
 {\hyperref[\detokenize{autoapi/pine/pipelines/NERWrapper/index:pine.pipelines.NERWrapper.NERWrapper}]{\sphinxcrossref{\sphinxcode{\sphinxupquote{NERWrapper}}}}}
+&
+\sphinxAtStartPar
+
+\\
+\hline
+\end{longtable}\sphinxatlongtableend\end{savenotes}
+
+
+\subparagraph{Attributes}
+\label{\detokenize{autoapi/pine/pipelines/NERWrapper/index:attributes}}
+
+\begin{savenotes}\sphinxatlongtablestart\begin{longtable}[c]{\X{1}{2}\X{1}{2}}
+\hline
+
+\endfirsthead
+
+\multicolumn{2}{c}%
+{\makebox[0pt]{\sphinxtablecontinued{\tablename\ \thetable{} \textendash{} continued from previous page}}}\\
+\hline
+
+\endhead
+
+\hline
+\multicolumn{2}{r}{\makebox[0pt][r]{\sphinxtablecontinued{continues on next page}}}\\
+\endfoot
+
+\endlastfoot
+
+\sphinxAtStartPar
+{\hyperref[\detokenize{autoapi/pine/pipelines/NERWrapper/index:pine.pipelines.NERWrapper.parser}]{\sphinxcrossref{\sphinxcode{\sphinxupquote{parser}}}}}
 &
 \sphinxAtStartPar
 
@@ -13879,6 +14872,43 @@ ann\_ids is a list of the annotation IDs
 
 \sphinxAtStartPar
 {\hyperref[\detokenize{autoapi/pine/pipelines/NER_API/index:pine.pipelines.NER_API.ner_api}]{\sphinxcrossref{\sphinxcode{\sphinxupquote{ner\_api}}}}}
+&
+\sphinxAtStartPar
+
+\\
+\hline
+\end{longtable}\sphinxatlongtableend\end{savenotes}
+
+
+\subparagraph{Attributes}
+\label{\detokenize{autoapi/pine/pipelines/NER_API/index:attributes}}
+
+\begin{savenotes}\sphinxatlongtablestart\begin{longtable}[c]{\X{1}{2}\X{1}{2}}
+\hline
+
+\endfirsthead
+
+\multicolumn{2}{c}%
+{\makebox[0pt]{\sphinxtablecontinued{\tablename\ \thetable{} \textendash{} continued from previous page}}}\\
+\hline
+
+\endhead
+
+\hline
+\multicolumn{2}{r}{\makebox[0pt][r]{\sphinxtablecontinued{continues on next page}}}\\
+\endfoot
+
+\endlastfoot
+
+\sphinxAtStartPar
+{\hyperref[\detokenize{autoapi/pine/pipelines/NER_API/index:pine.pipelines.NER_API.logger}]{\sphinxcrossref{\sphinxcode{\sphinxupquote{logger}}}}}
+&
+\sphinxAtStartPar
+
+\\
+\hline
+\sphinxAtStartPar
+{\hyperref[\detokenize{autoapi/pine/pipelines/NER_API/index:pine.pipelines.NER_API.config}]{\sphinxcrossref{\sphinxcode{\sphinxupquote{config}}}}}
 &
 \sphinxAtStartPar
 
@@ -14009,56 +15039,86 @@ sorted document IDs
 \endlastfoot
 
 \sphinxAtStartPar
-{\hyperref[\detokenize{autoapi/pine/pipelines/RankingFunctions/index:pine.pipelines.RankingFunctions.rank}]{\sphinxcrossref{\sphinxcode{\sphinxupquote{rank}}}}}(document\_ids: List{[}str{]}, results: List{[}DocumentPredictionProbabilities{]}, metric: str) \(\rightarrow\) List{[}Tuple{[}str, float{]}{]}
+{\hyperref[\detokenize{autoapi/pine/pipelines/RankingFunctions/index:pine.pipelines.RankingFunctions.rank}]{\sphinxcrossref{\sphinxcode{\sphinxupquote{rank}}}}}(document\_ids: List{[}str{]}, results: List{[}pine.pipelines.pipeline.DocumentPredictionProbabilities{]}, metric: str) \(\rightarrow\) List{[}Tuple{[}str, float{]}{]}
 &
 \sphinxAtStartPar
 if metric == ‘lc’: return least\_confidence(results)
 \\
 \hline
 \sphinxAtStartPar
-{\hyperref[\detokenize{autoapi/pine/pipelines/RankingFunctions/index:pine.pipelines.RankingFunctions.least_confidence}]{\sphinxcrossref{\sphinxcode{\sphinxupquote{least\_confidence}}}}}(document\_ids: List{[}str{]}, results: List{[}DocumentPredictionProbabilities{]}) \(\rightarrow\) List{[}Tuple{[}str, float{]}{]}
+{\hyperref[\detokenize{autoapi/pine/pipelines/RankingFunctions/index:pine.pipelines.RankingFunctions.least_confidence}]{\sphinxcrossref{\sphinxcode{\sphinxupquote{least\_confidence}}}}}(document\_ids: List{[}str{]}, results: List{[}pine.pipelines.pipeline.DocumentPredictionProbabilities{]}) \(\rightarrow\) List{[}Tuple{[}str, float{]}{]}
 &
 \sphinxAtStartPar
 
 \\
 \hline
 \sphinxAtStartPar
-{\hyperref[\detokenize{autoapi/pine/pipelines/RankingFunctions/index:pine.pipelines.RankingFunctions.least_confidence_squared}]{\sphinxcrossref{\sphinxcode{\sphinxupquote{least\_confidence\_squared}}}}}(document\_ids: List{[}str{]}, results: List{[}DocumentPredictionProbabilities{]}) \(\rightarrow\) List{[}Tuple{[}str, float{]}{]}
+{\hyperref[\detokenize{autoapi/pine/pipelines/RankingFunctions/index:pine.pipelines.RankingFunctions.least_confidence_squared}]{\sphinxcrossref{\sphinxcode{\sphinxupquote{least\_confidence\_squared}}}}}(document\_ids: List{[}str{]}, results: List{[}pine.pipelines.pipeline.DocumentPredictionProbabilities{]}) \(\rightarrow\) List{[}Tuple{[}str, float{]}{]}
 &
 \sphinxAtStartPar
 
 \\
 \hline
 \sphinxAtStartPar
-{\hyperref[\detokenize{autoapi/pine/pipelines/RankingFunctions/index:pine.pipelines.RankingFunctions.least_confidence_squared_by_entity}]{\sphinxcrossref{\sphinxcode{\sphinxupquote{least\_confidence\_squared\_by\_entity}}}}}(document\_ids: List{[}str{]}, results: List{[}DocumentPredictionProbabilities{]}) \(\rightarrow\) List{[}Tuple{[}str, float{]}{]}
+{\hyperref[\detokenize{autoapi/pine/pipelines/RankingFunctions/index:pine.pipelines.RankingFunctions.least_confidence_squared_by_entity}]{\sphinxcrossref{\sphinxcode{\sphinxupquote{least\_confidence\_squared\_by\_entity}}}}}(document\_ids: List{[}str{]}, results: List{[}pine.pipelines.pipeline.DocumentPredictionProbabilities{]}) \(\rightarrow\) List{[}Tuple{[}str, float{]}{]}
 &
 \sphinxAtStartPar
 
 \\
 \hline
 \sphinxAtStartPar
-{\hyperref[\detokenize{autoapi/pine/pipelines/RankingFunctions/index:pine.pipelines.RankingFunctions.largest_margin}]{\sphinxcrossref{\sphinxcode{\sphinxupquote{largest\_margin}}}}}(document\_ids: List{[}str{]}, results: List{[}DocumentPredictionProbabilities{]}) \(\rightarrow\) List{[}Tuple{[}str, float{]}{]}
+{\hyperref[\detokenize{autoapi/pine/pipelines/RankingFunctions/index:pine.pipelines.RankingFunctions.largest_margin}]{\sphinxcrossref{\sphinxcode{\sphinxupquote{largest\_margin}}}}}(document\_ids: List{[}str{]}, results: List{[}pine.pipelines.pipeline.DocumentPredictionProbabilities{]}) \(\rightarrow\) List{[}Tuple{[}str, float{]}{]}
 &
 \sphinxAtStartPar
 
 \\
 \hline
 \sphinxAtStartPar
-{\hyperref[\detokenize{autoapi/pine/pipelines/RankingFunctions/index:pine.pipelines.RankingFunctions.entropy_rank}]{\sphinxcrossref{\sphinxcode{\sphinxupquote{entropy\_rank}}}}}(document\_ids: List{[}str{]}, results: List{[}DocumentPredictionProbabilities{]}, N=None) \(\rightarrow\) List{[}Tuple{[}str, float{]}{]}
+{\hyperref[\detokenize{autoapi/pine/pipelines/RankingFunctions/index:pine.pipelines.RankingFunctions.entropy_rank}]{\sphinxcrossref{\sphinxcode{\sphinxupquote{entropy\_rank}}}}}(document\_ids: List{[}str{]}, results: List{[}pine.pipelines.pipeline.DocumentPredictionProbabilities{]}, N=None) \(\rightarrow\) List{[}Tuple{[}str, float{]}{]}
 &
 \sphinxAtStartPar
 
 \\
 \hline
 \sphinxAtStartPar
-{\hyperref[\detokenize{autoapi/pine/pipelines/RankingFunctions/index:pine.pipelines.RankingFunctions.random_rank}]{\sphinxcrossref{\sphinxcode{\sphinxupquote{random\_rank}}}}}(document\_ids: List{[}str{]}, results: List{[}DocumentPredictionProbabilities{]}) \(\rightarrow\) List{[}Tuple{[}str, float{]}{]}
+{\hyperref[\detokenize{autoapi/pine/pipelines/RankingFunctions/index:pine.pipelines.RankingFunctions.random_rank}]{\sphinxcrossref{\sphinxcode{\sphinxupquote{random\_rank}}}}}(document\_ids: List{[}str{]}, results: List{[}pine.pipelines.pipeline.DocumentPredictionProbabilities{]}) \(\rightarrow\) List{[}Tuple{[}str, float{]}{]}
 &
 \sphinxAtStartPar
 
 \\
 \hline
 \sphinxAtStartPar
-{\hyperref[\detokenize{autoapi/pine/pipelines/RankingFunctions/index:pine.pipelines.RankingFunctions.most_of_least_popular}]{\sphinxcrossref{\sphinxcode{\sphinxupquote{most\_of\_least\_popular}}}}}(document\_ids: List{[}str{]}, results: List{[}DocumentPredictionProbabilities{]}) \(\rightarrow\) List{[}Tuple{[}str, float{]}{]}
+{\hyperref[\detokenize{autoapi/pine/pipelines/RankingFunctions/index:pine.pipelines.RankingFunctions.most_of_least_popular}]{\sphinxcrossref{\sphinxcode{\sphinxupquote{most\_of\_least\_popular}}}}}(document\_ids: List{[}str{]}, results: List{[}pine.pipelines.pipeline.DocumentPredictionProbabilities{]}) \(\rightarrow\) List{[}Tuple{[}str, float{]}{]}
+&
+\sphinxAtStartPar
+
+\\
+\hline
+\end{longtable}\sphinxatlongtableend\end{savenotes}
+
+
+\subparagraph{Attributes}
+\label{\detokenize{autoapi/pine/pipelines/RankingFunctions/index:attributes}}
+
+\begin{savenotes}\sphinxatlongtablestart\begin{longtable}[c]{\X{1}{2}\X{1}{2}}
+\hline
+
+\endfirsthead
+
+\multicolumn{2}{c}%
+{\makebox[0pt]{\sphinxtablecontinued{\tablename\ \thetable{} \textendash{} continued from previous page}}}\\
+\hline
+
+\endhead
+
+\hline
+\multicolumn{2}{r}{\makebox[0pt][r]{\sphinxtablecontinued{continues on next page}}}\\
+\endfoot
+
+\endlastfoot
+
+\sphinxAtStartPar
+{\hyperref[\detokenize{autoapi/pine/pipelines/RankingFunctions/index:pine.pipelines.RankingFunctions.logger}]{\sphinxcrossref{\sphinxcode{\sphinxupquote{logger}}}}}
 &
 \sphinxAtStartPar
 
@@ -14074,7 +15134,7 @@ if metric == ‘lc’: return least\_confidence(results)
 \index{rank() (in module pine.pipelines.RankingFunctions)@\spxentry{rank()}\spxextra{in module pine.pipelines.RankingFunctions}}
 
 \begin{fulllineitems}
-\phantomsection\label{\detokenize{autoapi/pine/pipelines/RankingFunctions/index:pine.pipelines.RankingFunctions.rank}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{pine.pipelines.RankingFunctions.}}\sphinxbfcode{\sphinxupquote{rank}}}{\emph{\DUrole{n}{document\_ids}\DUrole{p}{:} \DUrole{n}{List\DUrole{p}{{[}}\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#str}{str}\DUrole{p}{{]}}}}, \emph{\DUrole{n}{results}\DUrole{p}{:} \DUrole{n}{List\DUrole{p}{{[}}DocumentPredictionProbabilities\DUrole{p}{{]}}}}, \emph{\DUrole{n}{metric}\DUrole{p}{:} \DUrole{n}{\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#str}{str}}}}{{ $\rightarrow$ List\DUrole{p}{{[}}Tuple\DUrole{p}{{[}}\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#str}{str}\DUrole{p}{, }\sphinxhref{https://docs.python.org/3/library/functions.html\#float}{float}\DUrole{p}{{]}}\DUrole{p}{{]}}}}
+\phantomsection\label{\detokenize{autoapi/pine/pipelines/RankingFunctions/index:pine.pipelines.RankingFunctions.rank}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{pine.pipelines.RankingFunctions.}}\sphinxbfcode{\sphinxupquote{rank}}}{\emph{\DUrole{n}{document\_ids}\DUrole{p}{:} \DUrole{n}{List\DUrole{p}{{[}}\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#str}{str}\DUrole{p}{{]}}}}, \emph{\DUrole{n}{results}\DUrole{p}{:} \DUrole{n}{List\DUrole{p}{{[}}{\hyperref[\detokenize{autoapi/pine/pipelines/pipeline/index:pine.pipelines.pipeline.DocumentPredictionProbabilities}]{\sphinxcrossref{pine.pipelines.pipeline.DocumentPredictionProbabilities}}}\DUrole{p}{{]}}}}, \emph{\DUrole{n}{metric}\DUrole{p}{:} \DUrole{n}{\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#str}{str}}}}{{ $\rightarrow$ List\DUrole{p}{{[}}Tuple\DUrole{p}{{[}}\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#str}{str}\DUrole{p}{, }\sphinxhref{https://docs.python.org/3/library/functions.html\#float}{float}\DUrole{p}{{]}}\DUrole{p}{{]}}}}
 \sphinxAtStartPar
 if metric == ‘lc’: return least\_confidence(results)
 if metric == ‘ma’: return largest\_margin(results)
@@ -14093,43 +15153,43 @@ return \sphinxhyphen{}1
 \index{least\_confidence() (in module pine.pipelines.RankingFunctions)@\spxentry{least\_confidence()}\spxextra{in module pine.pipelines.RankingFunctions}}
 
 \begin{fulllineitems}
-\phantomsection\label{\detokenize{autoapi/pine/pipelines/RankingFunctions/index:pine.pipelines.RankingFunctions.least_confidence}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{pine.pipelines.RankingFunctions.}}\sphinxbfcode{\sphinxupquote{least\_confidence}}}{\emph{\DUrole{n}{document\_ids}\DUrole{p}{:} \DUrole{n}{List\DUrole{p}{{[}}\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#str}{str}\DUrole{p}{{]}}}}, \emph{\DUrole{n}{results}\DUrole{p}{:} \DUrole{n}{List\DUrole{p}{{[}}DocumentPredictionProbabilities\DUrole{p}{{]}}}}}{{ $\rightarrow$ List\DUrole{p}{{[}}Tuple\DUrole{p}{{[}}\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#str}{str}\DUrole{p}{, }\sphinxhref{https://docs.python.org/3/library/functions.html\#float}{float}\DUrole{p}{{]}}\DUrole{p}{{]}}}}
+\phantomsection\label{\detokenize{autoapi/pine/pipelines/RankingFunctions/index:pine.pipelines.RankingFunctions.least_confidence}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{pine.pipelines.RankingFunctions.}}\sphinxbfcode{\sphinxupquote{least\_confidence}}}{\emph{\DUrole{n}{document\_ids}\DUrole{p}{:} \DUrole{n}{List\DUrole{p}{{[}}\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#str}{str}\DUrole{p}{{]}}}}, \emph{\DUrole{n}{results}\DUrole{p}{:} \DUrole{n}{List\DUrole{p}{{[}}{\hyperref[\detokenize{autoapi/pine/pipelines/pipeline/index:pine.pipelines.pipeline.DocumentPredictionProbabilities}]{\sphinxcrossref{pine.pipelines.pipeline.DocumentPredictionProbabilities}}}\DUrole{p}{{]}}}}}{{ $\rightarrow$ List\DUrole{p}{{[}}Tuple\DUrole{p}{{[}}\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#str}{str}\DUrole{p}{, }\sphinxhref{https://docs.python.org/3/library/functions.html\#float}{float}\DUrole{p}{{]}}\DUrole{p}{{]}}}}
 \end{fulllineitems}
 
 \index{least\_confidence\_squared() (in module pine.pipelines.RankingFunctions)@\spxentry{least\_confidence\_squared()}\spxextra{in module pine.pipelines.RankingFunctions}}
 
 \begin{fulllineitems}
-\phantomsection\label{\detokenize{autoapi/pine/pipelines/RankingFunctions/index:pine.pipelines.RankingFunctions.least_confidence_squared}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{pine.pipelines.RankingFunctions.}}\sphinxbfcode{\sphinxupquote{least\_confidence\_squared}}}{\emph{\DUrole{n}{document\_ids}\DUrole{p}{:} \DUrole{n}{List\DUrole{p}{{[}}\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#str}{str}\DUrole{p}{{]}}}}, \emph{\DUrole{n}{results}\DUrole{p}{:} \DUrole{n}{List\DUrole{p}{{[}}DocumentPredictionProbabilities\DUrole{p}{{]}}}}}{{ $\rightarrow$ List\DUrole{p}{{[}}Tuple\DUrole{p}{{[}}\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#str}{str}\DUrole{p}{, }\sphinxhref{https://docs.python.org/3/library/functions.html\#float}{float}\DUrole{p}{{]}}\DUrole{p}{{]}}}}
+\phantomsection\label{\detokenize{autoapi/pine/pipelines/RankingFunctions/index:pine.pipelines.RankingFunctions.least_confidence_squared}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{pine.pipelines.RankingFunctions.}}\sphinxbfcode{\sphinxupquote{least\_confidence\_squared}}}{\emph{\DUrole{n}{document\_ids}\DUrole{p}{:} \DUrole{n}{List\DUrole{p}{{[}}\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#str}{str}\DUrole{p}{{]}}}}, \emph{\DUrole{n}{results}\DUrole{p}{:} \DUrole{n}{List\DUrole{p}{{[}}{\hyperref[\detokenize{autoapi/pine/pipelines/pipeline/index:pine.pipelines.pipeline.DocumentPredictionProbabilities}]{\sphinxcrossref{pine.pipelines.pipeline.DocumentPredictionProbabilities}}}\DUrole{p}{{]}}}}}{{ $\rightarrow$ List\DUrole{p}{{[}}Tuple\DUrole{p}{{[}}\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#str}{str}\DUrole{p}{, }\sphinxhref{https://docs.python.org/3/library/functions.html\#float}{float}\DUrole{p}{{]}}\DUrole{p}{{]}}}}
 \end{fulllineitems}
 
 \index{least\_confidence\_squared\_by\_entity() (in module pine.pipelines.RankingFunctions)@\spxentry{least\_confidence\_squared\_by\_entity()}\spxextra{in module pine.pipelines.RankingFunctions}}
 
 \begin{fulllineitems}
-\phantomsection\label{\detokenize{autoapi/pine/pipelines/RankingFunctions/index:pine.pipelines.RankingFunctions.least_confidence_squared_by_entity}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{pine.pipelines.RankingFunctions.}}\sphinxbfcode{\sphinxupquote{least\_confidence\_squared\_by\_entity}}}{\emph{\DUrole{n}{document\_ids}\DUrole{p}{:} \DUrole{n}{List\DUrole{p}{{[}}\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#str}{str}\DUrole{p}{{]}}}}, \emph{\DUrole{n}{results}\DUrole{p}{:} \DUrole{n}{List\DUrole{p}{{[}}DocumentPredictionProbabilities\DUrole{p}{{]}}}}}{{ $\rightarrow$ List\DUrole{p}{{[}}Tuple\DUrole{p}{{[}}\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#str}{str}\DUrole{p}{, }\sphinxhref{https://docs.python.org/3/library/functions.html\#float}{float}\DUrole{p}{{]}}\DUrole{p}{{]}}}}
+\phantomsection\label{\detokenize{autoapi/pine/pipelines/RankingFunctions/index:pine.pipelines.RankingFunctions.least_confidence_squared_by_entity}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{pine.pipelines.RankingFunctions.}}\sphinxbfcode{\sphinxupquote{least\_confidence\_squared\_by\_entity}}}{\emph{\DUrole{n}{document\_ids}\DUrole{p}{:} \DUrole{n}{List\DUrole{p}{{[}}\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#str}{str}\DUrole{p}{{]}}}}, \emph{\DUrole{n}{results}\DUrole{p}{:} \DUrole{n}{List\DUrole{p}{{[}}{\hyperref[\detokenize{autoapi/pine/pipelines/pipeline/index:pine.pipelines.pipeline.DocumentPredictionProbabilities}]{\sphinxcrossref{pine.pipelines.pipeline.DocumentPredictionProbabilities}}}\DUrole{p}{{]}}}}}{{ $\rightarrow$ List\DUrole{p}{{[}}Tuple\DUrole{p}{{[}}\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#str}{str}\DUrole{p}{, }\sphinxhref{https://docs.python.org/3/library/functions.html\#float}{float}\DUrole{p}{{]}}\DUrole{p}{{]}}}}
 \end{fulllineitems}
 
 \index{largest\_margin() (in module pine.pipelines.RankingFunctions)@\spxentry{largest\_margin()}\spxextra{in module pine.pipelines.RankingFunctions}}
 
 \begin{fulllineitems}
-\phantomsection\label{\detokenize{autoapi/pine/pipelines/RankingFunctions/index:pine.pipelines.RankingFunctions.largest_margin}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{pine.pipelines.RankingFunctions.}}\sphinxbfcode{\sphinxupquote{largest\_margin}}}{\emph{\DUrole{n}{document\_ids}\DUrole{p}{:} \DUrole{n}{List\DUrole{p}{{[}}\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#str}{str}\DUrole{p}{{]}}}}, \emph{\DUrole{n}{results}\DUrole{p}{:} \DUrole{n}{List\DUrole{p}{{[}}DocumentPredictionProbabilities\DUrole{p}{{]}}}}}{{ $\rightarrow$ List\DUrole{p}{{[}}Tuple\DUrole{p}{{[}}\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#str}{str}\DUrole{p}{, }\sphinxhref{https://docs.python.org/3/library/functions.html\#float}{float}\DUrole{p}{{]}}\DUrole{p}{{]}}}}
+\phantomsection\label{\detokenize{autoapi/pine/pipelines/RankingFunctions/index:pine.pipelines.RankingFunctions.largest_margin}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{pine.pipelines.RankingFunctions.}}\sphinxbfcode{\sphinxupquote{largest\_margin}}}{\emph{\DUrole{n}{document\_ids}\DUrole{p}{:} \DUrole{n}{List\DUrole{p}{{[}}\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#str}{str}\DUrole{p}{{]}}}}, \emph{\DUrole{n}{results}\DUrole{p}{:} \DUrole{n}{List\DUrole{p}{{[}}{\hyperref[\detokenize{autoapi/pine/pipelines/pipeline/index:pine.pipelines.pipeline.DocumentPredictionProbabilities}]{\sphinxcrossref{pine.pipelines.pipeline.DocumentPredictionProbabilities}}}\DUrole{p}{{]}}}}}{{ $\rightarrow$ List\DUrole{p}{{[}}Tuple\DUrole{p}{{[}}\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#str}{str}\DUrole{p}{, }\sphinxhref{https://docs.python.org/3/library/functions.html\#float}{float}\DUrole{p}{{]}}\DUrole{p}{{]}}}}
 \end{fulllineitems}
 
 \index{entropy\_rank() (in module pine.pipelines.RankingFunctions)@\spxentry{entropy\_rank()}\spxextra{in module pine.pipelines.RankingFunctions}}
 
 \begin{fulllineitems}
-\phantomsection\label{\detokenize{autoapi/pine/pipelines/RankingFunctions/index:pine.pipelines.RankingFunctions.entropy_rank}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{pine.pipelines.RankingFunctions.}}\sphinxbfcode{\sphinxupquote{entropy\_rank}}}{\emph{\DUrole{n}{document\_ids}\DUrole{p}{:} \DUrole{n}{List\DUrole{p}{{[}}\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#str}{str}\DUrole{p}{{]}}}}, \emph{\DUrole{n}{results}\DUrole{p}{:} \DUrole{n}{List\DUrole{p}{{[}}DocumentPredictionProbabilities\DUrole{p}{{]}}}}, \emph{\DUrole{n}{N}\DUrole{o}{=}\DUrole{default_value}{None}}}{{ $\rightarrow$ List\DUrole{p}{{[}}Tuple\DUrole{p}{{[}}\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#str}{str}\DUrole{p}{, }\sphinxhref{https://docs.python.org/3/library/functions.html\#float}{float}\DUrole{p}{{]}}\DUrole{p}{{]}}}}
+\phantomsection\label{\detokenize{autoapi/pine/pipelines/RankingFunctions/index:pine.pipelines.RankingFunctions.entropy_rank}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{pine.pipelines.RankingFunctions.}}\sphinxbfcode{\sphinxupquote{entropy\_rank}}}{\emph{\DUrole{n}{document\_ids}\DUrole{p}{:} \DUrole{n}{List\DUrole{p}{{[}}\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#str}{str}\DUrole{p}{{]}}}}, \emph{\DUrole{n}{results}\DUrole{p}{:} \DUrole{n}{List\DUrole{p}{{[}}{\hyperref[\detokenize{autoapi/pine/pipelines/pipeline/index:pine.pipelines.pipeline.DocumentPredictionProbabilities}]{\sphinxcrossref{pine.pipelines.pipeline.DocumentPredictionProbabilities}}}\DUrole{p}{{]}}}}, \emph{\DUrole{n}{N}\DUrole{o}{=}\DUrole{default_value}{None}}}{{ $\rightarrow$ List\DUrole{p}{{[}}Tuple\DUrole{p}{{[}}\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#str}{str}\DUrole{p}{, }\sphinxhref{https://docs.python.org/3/library/functions.html\#float}{float}\DUrole{p}{{]}}\DUrole{p}{{]}}}}
 \end{fulllineitems}
 
 \index{random\_rank() (in module pine.pipelines.RankingFunctions)@\spxentry{random\_rank()}\spxextra{in module pine.pipelines.RankingFunctions}}
 
 \begin{fulllineitems}
-\phantomsection\label{\detokenize{autoapi/pine/pipelines/RankingFunctions/index:pine.pipelines.RankingFunctions.random_rank}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{pine.pipelines.RankingFunctions.}}\sphinxbfcode{\sphinxupquote{random\_rank}}}{\emph{\DUrole{n}{document\_ids}\DUrole{p}{:} \DUrole{n}{List\DUrole{p}{{[}}\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#str}{str}\DUrole{p}{{]}}}}, \emph{\DUrole{n}{results}\DUrole{p}{:} \DUrole{n}{List\DUrole{p}{{[}}DocumentPredictionProbabilities\DUrole{p}{{]}}}}}{{ $\rightarrow$ List\DUrole{p}{{[}}Tuple\DUrole{p}{{[}}\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#str}{str}\DUrole{p}{, }\sphinxhref{https://docs.python.org/3/library/functions.html\#float}{float}\DUrole{p}{{]}}\DUrole{p}{{]}}}}
+\phantomsection\label{\detokenize{autoapi/pine/pipelines/RankingFunctions/index:pine.pipelines.RankingFunctions.random_rank}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{pine.pipelines.RankingFunctions.}}\sphinxbfcode{\sphinxupquote{random\_rank}}}{\emph{\DUrole{n}{document\_ids}\DUrole{p}{:} \DUrole{n}{List\DUrole{p}{{[}}\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#str}{str}\DUrole{p}{{]}}}}, \emph{\DUrole{n}{results}\DUrole{p}{:} \DUrole{n}{List\DUrole{p}{{[}}{\hyperref[\detokenize{autoapi/pine/pipelines/pipeline/index:pine.pipelines.pipeline.DocumentPredictionProbabilities}]{\sphinxcrossref{pine.pipelines.pipeline.DocumentPredictionProbabilities}}}\DUrole{p}{{]}}}}}{{ $\rightarrow$ List\DUrole{p}{{[}}Tuple\DUrole{p}{{[}}\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#str}{str}\DUrole{p}{, }\sphinxhref{https://docs.python.org/3/library/functions.html\#float}{float}\DUrole{p}{{]}}\DUrole{p}{{]}}}}
 \end{fulllineitems}
 
 \index{most\_of\_least\_popular() (in module pine.pipelines.RankingFunctions)@\spxentry{most\_of\_least\_popular()}\spxextra{in module pine.pipelines.RankingFunctions}}
 
 \begin{fulllineitems}
-\phantomsection\label{\detokenize{autoapi/pine/pipelines/RankingFunctions/index:pine.pipelines.RankingFunctions.most_of_least_popular}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{pine.pipelines.RankingFunctions.}}\sphinxbfcode{\sphinxupquote{most\_of\_least\_popular}}}{\emph{\DUrole{n}{document\_ids}\DUrole{p}{:} \DUrole{n}{List\DUrole{p}{{[}}\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#str}{str}\DUrole{p}{{]}}}}, \emph{\DUrole{n}{results}\DUrole{p}{:} \DUrole{n}{List\DUrole{p}{{[}}DocumentPredictionProbabilities\DUrole{p}{{]}}}}}{{ $\rightarrow$ List\DUrole{p}{{[}}Tuple\DUrole{p}{{[}}\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#str}{str}\DUrole{p}{, }\sphinxhref{https://docs.python.org/3/library/functions.html\#float}{float}\DUrole{p}{{]}}\DUrole{p}{{]}}}}
+\phantomsection\label{\detokenize{autoapi/pine/pipelines/RankingFunctions/index:pine.pipelines.RankingFunctions.most_of_least_popular}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{pine.pipelines.RankingFunctions.}}\sphinxbfcode{\sphinxupquote{most\_of\_least\_popular}}}{\emph{\DUrole{n}{document\_ids}\DUrole{p}{:} \DUrole{n}{List\DUrole{p}{{[}}\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#str}{str}\DUrole{p}{{]}}}}, \emph{\DUrole{n}{results}\DUrole{p}{:} \DUrole{n}{List\DUrole{p}{{[}}{\hyperref[\detokenize{autoapi/pine/pipelines/pipeline/index:pine.pipelines.pipeline.DocumentPredictionProbabilities}]{\sphinxcrossref{pine.pipelines.pipeline.DocumentPredictionProbabilities}}}\DUrole{p}{{]}}}}}{{ $\rightarrow$ List\DUrole{p}{{[}}Tuple\DUrole{p}{{[}}\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#str}{str}\DUrole{p}{, }\sphinxhref{https://docs.python.org/3/library/functions.html\#float}{float}\DUrole{p}{{]}}\DUrole{p}{{]}}}}
 \end{fulllineitems}
 
 
@@ -14162,6 +15222,43 @@ return \sphinxhyphen{}1
 
 \sphinxAtStartPar
 {\hyperref[\detokenize{autoapi/pine/pipelines/corenlp_NER_pipeline/index:pine.pipelines.corenlp_NER_pipeline.corenlp_NER}]{\sphinxcrossref{\sphinxcode{\sphinxupquote{corenlp\_NER}}}}}
+&
+\sphinxAtStartPar
+
+\\
+\hline
+\end{longtable}\sphinxatlongtableend\end{savenotes}
+
+
+\subparagraph{Attributes}
+\label{\detokenize{autoapi/pine/pipelines/corenlp_NER_pipeline/index:attributes}}
+
+\begin{savenotes}\sphinxatlongtablestart\begin{longtable}[c]{\X{1}{2}\X{1}{2}}
+\hline
+
+\endfirsthead
+
+\multicolumn{2}{c}%
+{\makebox[0pt]{\sphinxtablecontinued{\tablename\ \thetable{} \textendash{} continued from previous page}}}\\
+\hline
+
+\endhead
+
+\hline
+\multicolumn{2}{r}{\makebox[0pt][r]{\sphinxtablecontinued{continues on next page}}}\\
+\endfoot
+
+\endlastfoot
+
+\sphinxAtStartPar
+{\hyperref[\detokenize{autoapi/pine/pipelines/corenlp_NER_pipeline/index:pine.pipelines.corenlp_NER_pipeline.config}]{\sphinxcrossref{\sphinxcode{\sphinxupquote{config}}}}}
+&
+\sphinxAtStartPar
+
+\\
+\hline
+\sphinxAtStartPar
+{\hyperref[\detokenize{autoapi/pine/pipelines/corenlp_NER_pipeline/index:pine.pipelines.corenlp_NER_pipeline.logger}]{\sphinxcrossref{\sphinxcode{\sphinxupquote{logger}}}}}
 &
 \sphinxAtStartPar
 
@@ -14273,13 +15370,13 @@ Bases: {\hyperref[\detokenize{autoapi/pine/pipelines/pipeline/index:pine.pipelin
 \index{predict() (pine.pipelines.corenlp\_NER\_pipeline.corenlp\_NER method)@\spxentry{predict()}\spxextra{pine.pipelines.corenlp\_NER\_pipeline.corenlp\_NER method}}
 
 \begin{fulllineitems}
-\phantomsection\label{\detokenize{autoapi/pine/pipelines/corenlp_NER_pipeline/index:pine.pipelines.corenlp_NER_pipeline.corenlp_NER.predict}}\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{predict}}}{\emph{\DUrole{n}{self}}, \emph{\DUrole{n}{X}\DUrole{p}{:} \DUrole{n}{Iterable\DUrole{p}{{[}}\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#str}{str}\DUrole{p}{{]}}}}}{{ $\rightarrow$ List\DUrole{p}{{[}}DocumentPredictions\DUrole{p}{{]}}}}
+\phantomsection\label{\detokenize{autoapi/pine/pipelines/corenlp_NER_pipeline/index:pine.pipelines.corenlp_NER_pipeline.corenlp_NER.predict}}\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{predict}}}{\emph{\DUrole{n}{self}}, \emph{\DUrole{n}{X}\DUrole{p}{:} \DUrole{n}{Iterable\DUrole{p}{{[}}\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#str}{str}\DUrole{p}{{]}}}}}{{ $\rightarrow$ List\DUrole{p}{{[}}{\hyperref[\detokenize{autoapi/pine/pipelines/pipeline/index:pine.pipelines.pipeline.DocumentPredictions}]{\sphinxcrossref{pine.pipelines.pipeline.DocumentPredictions}}}\DUrole{p}{{]}}}}
 \end{fulllineitems}
 
 \index{predict\_proba() (pine.pipelines.corenlp\_NER\_pipeline.corenlp\_NER method)@\spxentry{predict\_proba()}\spxextra{pine.pipelines.corenlp\_NER\_pipeline.corenlp\_NER method}}
 
 \begin{fulllineitems}
-\phantomsection\label{\detokenize{autoapi/pine/pipelines/corenlp_NER_pipeline/index:pine.pipelines.corenlp_NER_pipeline.corenlp_NER.predict_proba}}\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{predict\_proba}}}{\emph{\DUrole{n}{self}}, \emph{\DUrole{n}{X}\DUrole{p}{:} \DUrole{n}{Iterable\DUrole{p}{{[}}\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#str}{str}\DUrole{p}{{]}}}}, \emph{\DUrole{n}{get\_all\_labels}\DUrole{o}{=}\DUrole{default_value}{False}}, \emph{\DUrole{n}{include\_other}\DUrole{o}{=}\DUrole{default_value}{False}}, \emph{\DUrole{o}{**}\DUrole{n}{kwargs}}}{{ $\rightarrow$ List\DUrole{p}{{[}}DocumentPredictionProbabilities\DUrole{p}{{]}}}}
+\phantomsection\label{\detokenize{autoapi/pine/pipelines/corenlp_NER_pipeline/index:pine.pipelines.corenlp_NER_pipeline.corenlp_NER.predict_proba}}\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{predict\_proba}}}{\emph{\DUrole{n}{self}}, \emph{\DUrole{n}{X}\DUrole{p}{:} \DUrole{n}{Iterable\DUrole{p}{{[}}\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#str}{str}\DUrole{p}{{]}}}}, \emph{\DUrole{n}{get\_all\_labels}\DUrole{o}{=}\DUrole{default_value}{False}}, \emph{\DUrole{n}{include\_other}\DUrole{o}{=}\DUrole{default_value}{False}}, \emph{\DUrole{o}{**}\DUrole{n}{kwargs}}}{{ $\rightarrow$ List\DUrole{p}{{[}}{\hyperref[\detokenize{autoapi/pine/pipelines/pipeline/index:pine.pipelines.pipeline.DocumentPredictionProbabilities}]{\sphinxcrossref{pine.pipelines.pipeline.DocumentPredictionProbabilities}}}\DUrole{p}{{]}}}}
 \end{fulllineitems}
 
 \index{next\_example() (pine.pipelines.corenlp\_NER\_pipeline.corenlp\_NER method)@\spxentry{next\_example()}\spxextra{pine.pipelines.corenlp\_NER\_pipeline.corenlp\_NER method}}
@@ -14363,6 +15460,43 @@ Bases: {\hyperref[\detokenize{autoapi/pine/pipelines/pipeline/index:pine.pipelin
 
 \sphinxAtStartPar
 {\hyperref[\detokenize{autoapi/pine/pipelines/opennlp_NER_pipeline/index:pine.pipelines.opennlp_NER_pipeline.opennlp_NER}]{\sphinxcrossref{\sphinxcode{\sphinxupquote{opennlp\_NER}}}}}
+&
+\sphinxAtStartPar
+
+\\
+\hline
+\end{longtable}\sphinxatlongtableend\end{savenotes}
+
+
+\subparagraph{Attributes}
+\label{\detokenize{autoapi/pine/pipelines/opennlp_NER_pipeline/index:attributes}}
+
+\begin{savenotes}\sphinxatlongtablestart\begin{longtable}[c]{\X{1}{2}\X{1}{2}}
+\hline
+
+\endfirsthead
+
+\multicolumn{2}{c}%
+{\makebox[0pt]{\sphinxtablecontinued{\tablename\ \thetable{} \textendash{} continued from previous page}}}\\
+\hline
+
+\endhead
+
+\hline
+\multicolumn{2}{r}{\makebox[0pt][r]{\sphinxtablecontinued{continues on next page}}}\\
+\endfoot
+
+\endlastfoot
+
+\sphinxAtStartPar
+{\hyperref[\detokenize{autoapi/pine/pipelines/opennlp_NER_pipeline/index:pine.pipelines.opennlp_NER_pipeline.config}]{\sphinxcrossref{\sphinxcode{\sphinxupquote{config}}}}}
+&
+\sphinxAtStartPar
+
+\\
+\hline
+\sphinxAtStartPar
+{\hyperref[\detokenize{autoapi/pine/pipelines/opennlp_NER_pipeline/index:pine.pipelines.opennlp_NER_pipeline.logger}]{\sphinxcrossref{\sphinxcode{\sphinxupquote{logger}}}}}
 &
 \sphinxAtStartPar
 
@@ -14462,13 +15596,13 @@ Bases: {\hyperref[\detokenize{autoapi/pine/pipelines/pipeline/index:pine.pipelin
 \index{predict() (pine.pipelines.opennlp\_NER\_pipeline.opennlp\_NER method)@\spxentry{predict()}\spxextra{pine.pipelines.opennlp\_NER\_pipeline.opennlp\_NER method}}
 
 \begin{fulllineitems}
-\phantomsection\label{\detokenize{autoapi/pine/pipelines/opennlp_NER_pipeline/index:pine.pipelines.opennlp_NER_pipeline.opennlp_NER.predict}}\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{predict}}}{\emph{\DUrole{n}{self}}, \emph{\DUrole{n}{X}\DUrole{p}{:} \DUrole{n}{Iterable\DUrole{p}{{[}}\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#str}{str}\DUrole{p}{{]}}}}}{{ $\rightarrow$ List\DUrole{p}{{[}}DocumentPredictions\DUrole{p}{{]}}}}
+\phantomsection\label{\detokenize{autoapi/pine/pipelines/opennlp_NER_pipeline/index:pine.pipelines.opennlp_NER_pipeline.opennlp_NER.predict}}\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{predict}}}{\emph{\DUrole{n}{self}}, \emph{\DUrole{n}{X}\DUrole{p}{:} \DUrole{n}{Iterable\DUrole{p}{{[}}\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#str}{str}\DUrole{p}{{]}}}}}{{ $\rightarrow$ List\DUrole{p}{{[}}{\hyperref[\detokenize{autoapi/pine/pipelines/pipeline/index:pine.pipelines.pipeline.DocumentPredictions}]{\sphinxcrossref{pine.pipelines.pipeline.DocumentPredictions}}}\DUrole{p}{{]}}}}
 \end{fulllineitems}
 
 \index{predict\_proba() (pine.pipelines.opennlp\_NER\_pipeline.opennlp\_NER method)@\spxentry{predict\_proba()}\spxextra{pine.pipelines.opennlp\_NER\_pipeline.opennlp\_NER method}}
 
 \begin{fulllineitems}
-\phantomsection\label{\detokenize{autoapi/pine/pipelines/opennlp_NER_pipeline/index:pine.pipelines.opennlp_NER_pipeline.opennlp_NER.predict_proba}}\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{predict\_proba}}}{\emph{\DUrole{n}{self}}, \emph{\DUrole{n}{X}\DUrole{p}{:} \DUrole{n}{Iterable\DUrole{p}{{[}}\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#str}{str}\DUrole{p}{{]}}}}, \emph{\DUrole{o}{**}\DUrole{n}{kwargs}}}{{ $\rightarrow$ List\DUrole{p}{{[}}DocumentPredictionProbabilities\DUrole{p}{{]}}}}
+\phantomsection\label{\detokenize{autoapi/pine/pipelines/opennlp_NER_pipeline/index:pine.pipelines.opennlp_NER_pipeline.opennlp_NER.predict_proba}}\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{predict\_proba}}}{\emph{\DUrole{n}{self}}, \emph{\DUrole{n}{X}\DUrole{p}{:} \DUrole{n}{Iterable\DUrole{p}{{[}}\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#str}{str}\DUrole{p}{{]}}}}, \emph{\DUrole{o}{**}\DUrole{n}{kwargs}}}{{ $\rightarrow$ List\DUrole{p}{{[}}{\hyperref[\detokenize{autoapi/pine/pipelines/pipeline/index:pine.pipelines.pipeline.DocumentPredictionProbabilities}]{\sphinxcrossref{pine.pipelines.pipeline.DocumentPredictionProbabilities}}}\DUrole{p}{{]}}}}
 \end{fulllineitems}
 
 \index{next\_example() (pine.pipelines.opennlp\_NER\_pipeline.opennlp\_NER method)@\spxentry{next\_example()}\spxextra{pine.pipelines.opennlp\_NER\_pipeline.opennlp\_NER method}}
@@ -14516,7 +15650,7 @@ Bases: {\hyperref[\detokenize{autoapi/pine/pipelines/pipeline/index:pine.pipelin
 \index{convert\_ann\_collection\_to\_per\_token() (pine.pipelines.opennlp\_NER\_pipeline.opennlp\_NER method)@\spxentry{convert\_ann\_collection\_to\_per\_token()}\spxextra{pine.pipelines.opennlp\_NER\_pipeline.opennlp\_NER method}}
 
 \begin{fulllineitems}
-\phantomsection\label{\detokenize{autoapi/pine/pipelines/opennlp_NER_pipeline/index:pine.pipelines.opennlp_NER_pipeline.opennlp_NER.convert_ann_collection_to_per_token}}\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{convert\_ann\_collection\_to\_per\_token}}}{\emph{\DUrole{n}{self}}, \emph{\DUrole{n}{annotations}\DUrole{p}{:} \DUrole{n}{List\DUrole{p}{{[}}Union\DUrole{p}{{[}}NerPrediction\DUrole{p}{, }typing.Tuple\DUrole{p}{{[}}\sphinxhref{https://docs.python.org/3/library/functions.html\#int}{int}\DUrole{p}{, }\sphinxhref{https://docs.python.org/3/library/functions.html\#int}{int}\DUrole{p}{, }\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#str}{str}\DUrole{p}{{]}}\DUrole{p}{{]}}\DUrole{p}{{]}}}}, \emph{\DUrole{n}{tokens}}}{}
+\phantomsection\label{\detokenize{autoapi/pine/pipelines/opennlp_NER_pipeline/index:pine.pipelines.opennlp_NER_pipeline.opennlp_NER.convert_ann_collection_to_per_token}}\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{convert\_ann\_collection\_to\_per\_token}}}{\emph{\DUrole{n}{self}}, \emph{\DUrole{n}{annotations}\DUrole{p}{:} \DUrole{n}{List\DUrole{p}{{[}}Union\DUrole{p}{{[}}{\hyperref[\detokenize{autoapi/pine/pipelines/pipeline/index:pine.pipelines.pipeline.NerPrediction}]{\sphinxcrossref{pine.pipelines.pipeline.NerPrediction}}}\DUrole{p}{, }Tuple\DUrole{p}{{[}}\sphinxhref{https://docs.python.org/3/library/functions.html\#int}{int}\DUrole{p}{, }\sphinxhref{https://docs.python.org/3/library/functions.html\#int}{int}\DUrole{p}{, }\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#str}{str}\DUrole{p}{{]}}\DUrole{p}{{]}}\DUrole{p}{{]}}}}, \emph{\DUrole{n}{tokens}}}{}
 \end{fulllineitems}
 
 \index{evaluate() (pine.pipelines.opennlp\_NER\_pipeline.opennlp\_NER method)@\spxentry{evaluate()}\spxextra{pine.pipelines.opennlp\_NER\_pipeline.opennlp\_NER method}}
@@ -14649,7 +15783,7 @@ Bases: \sphinxhref{https://docs.python.org/3/library/functions.html\#object}{\sp
 \index{serialize() (pine.pipelines.pipeline.NerPredictionProbabilities method)@\spxentry{serialize()}\spxextra{pine.pipelines.pipeline.NerPredictionProbabilities method}}
 
 \begin{fulllineitems}
-\phantomsection\label{\detokenize{autoapi/pine/pipelines/pipeline/index:pine.pipelines.pipeline.NerPredictionProbabilities.serialize}}\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{serialize}}}{\emph{\DUrole{n}{self}}}{{ $\rightarrow$ Tuple\DUrole{p}{{[}}\sphinxhref{https://docs.python.org/3/library/functions.html\#int}{int}\DUrole{p}{, }\sphinxhref{https://docs.python.org/3/library/functions.html\#int}{int}\DUrole{p}{, }\sphinxhref{https://docs.python.org/3/library/typing.html\#typing.List}{typing.List}\DUrole{p}{{[}}typing.Tuple\DUrole{p}{{[}}\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#str}{str}\DUrole{p}{, }\sphinxhref{https://docs.python.org/3/library/functions.html\#float}{float}\DUrole{p}{{]}}\DUrole{p}{{]}}\DUrole{p}{{]}}}}
+\phantomsection\label{\detokenize{autoapi/pine/pipelines/pipeline/index:pine.pipelines.pipeline.NerPredictionProbabilities.serialize}}\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{serialize}}}{\emph{\DUrole{n}{self}}}{{ $\rightarrow$ Tuple\DUrole{p}{{[}}\sphinxhref{https://docs.python.org/3/library/functions.html\#int}{int}\DUrole{p}{, }\sphinxhref{https://docs.python.org/3/library/functions.html\#int}{int}\DUrole{p}{, }List\DUrole{p}{{[}}Tuple\DUrole{p}{{[}}\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#str}{str}\DUrole{p}{, }\sphinxhref{https://docs.python.org/3/library/functions.html\#float}{float}\DUrole{p}{{]}}\DUrole{p}{{]}}\DUrole{p}{{]}}}}
 \end{fulllineitems}
 
 
@@ -14757,6 +15891,36 @@ Bases: \sphinxhref{https://docs.python.org/3/library/functions.html\#object}{\sp
 \\
 \hline
 \end{longtable}\sphinxatlongtableend\end{savenotes}
+
+
+\subparagraph{Attributes}
+\label{\detokenize{autoapi/pine/pipelines/pmap_ner/index:attributes}}
+
+\begin{savenotes}\sphinxatlongtablestart\begin{longtable}[c]{\X{1}{2}\X{1}{2}}
+\hline
+
+\endfirsthead
+
+\multicolumn{2}{c}%
+{\makebox[0pt]{\sphinxtablecontinued{\tablename\ \thetable{} \textendash{} continued from previous page}}}\\
+\hline
+
+\endhead
+
+\hline
+\multicolumn{2}{r}{\makebox[0pt][r]{\sphinxtablecontinued{continues on next page}}}\\
+\endfoot
+
+\endlastfoot
+
+\sphinxAtStartPar
+{\hyperref[\detokenize{autoapi/pine/pipelines/pmap_ner/index:pine.pipelines.pmap_ner.logger}]{\sphinxcrossref{\sphinxcode{\sphinxupquote{logger}}}}}
+&
+\sphinxAtStartPar
+
+\\
+\hline
+\end{longtable}\sphinxatlongtableend\end{savenotes}
 \index{logger (in module pine.pipelines.pmap\_ner)@\spxentry{logger}\spxextra{in module pine.pipelines.pmap\_ner}}
 
 \begin{fulllineitems}
@@ -14814,13 +15978,13 @@ Bases: {\hyperref[\detokenize{autoapi/pine/pipelines/pipeline/index:pine.pipelin
 \index{predict() (pine.pipelines.pmap\_ner.NER method)@\spxentry{predict()}\spxextra{pine.pipelines.pmap\_ner.NER method}}
 
 \begin{fulllineitems}
-\phantomsection\label{\detokenize{autoapi/pine/pipelines/pmap_ner/index:pine.pipelines.pmap_ner.NER.predict}}\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{predict}}}{\emph{\DUrole{n}{self}}, \emph{\DUrole{n}{X}\DUrole{p}{:} \DUrole{n}{Iterable\DUrole{p}{{[}}\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#str}{str}\DUrole{p}{{]}}}}}{{ $\rightarrow$ List\DUrole{p}{{[}}DocumentPredictions\DUrole{p}{{]}}}}
+\phantomsection\label{\detokenize{autoapi/pine/pipelines/pmap_ner/index:pine.pipelines.pmap_ner.NER.predict}}\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{predict}}}{\emph{\DUrole{n}{self}}, \emph{\DUrole{n}{X}\DUrole{p}{:} \DUrole{n}{Iterable\DUrole{p}{{[}}\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#str}{str}\DUrole{p}{{]}}}}}{{ $\rightarrow$ List\DUrole{p}{{[}}{\hyperref[\detokenize{autoapi/pine/pipelines/pipeline/index:pine.pipelines.pipeline.DocumentPredictions}]{\sphinxcrossref{pine.pipelines.pipeline.DocumentPredictions}}}\DUrole{p}{{]}}}}
 \end{fulllineitems}
 
 \index{predict\_proba() (pine.pipelines.pmap\_ner.NER method)@\spxentry{predict\_proba()}\spxextra{pine.pipelines.pmap\_ner.NER method}}
 
 \begin{fulllineitems}
-\phantomsection\label{\detokenize{autoapi/pine/pipelines/pmap_ner/index:pine.pipelines.pmap_ner.NER.predict_proba}}\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{predict\_proba}}}{\emph{\DUrole{n}{self}}, \emph{\DUrole{n}{X}\DUrole{p}{:} \DUrole{n}{Iterable\DUrole{p}{{[}}\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#str}{str}\DUrole{p}{{]}}}}, \emph{\DUrole{o}{**}\DUrole{n}{kwargs}}}{{ $\rightarrow$ List\DUrole{p}{{[}}DocumentPredictionProbabilities\DUrole{p}{{]}}}}
+\phantomsection\label{\detokenize{autoapi/pine/pipelines/pmap_ner/index:pine.pipelines.pmap_ner.NER.predict_proba}}\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{predict\_proba}}}{\emph{\DUrole{n}{self}}, \emph{\DUrole{n}{X}\DUrole{p}{:} \DUrole{n}{Iterable\DUrole{p}{{[}}\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#str}{str}\DUrole{p}{{]}}}}, \emph{\DUrole{o}{**}\DUrole{n}{kwargs}}}{{ $\rightarrow$ List\DUrole{p}{{[}}{\hyperref[\detokenize{autoapi/pine/pipelines/pipeline/index:pine.pipelines.pipeline.DocumentPredictionProbabilities}]{\sphinxcrossref{pine.pipelines.pipeline.DocumentPredictionProbabilities}}}\DUrole{p}{{]}}}}
 \end{fulllineitems}
 
 \index{evaluate() (pine.pipelines.pmap\_ner.NER method)@\spxentry{evaluate()}\spxextra{pine.pipelines.pmap\_ner.NER method}}
@@ -14897,6 +16061,36 @@ Compatible with: spaCy v2.0.0+
 \\
 \hline
 \end{longtable}\sphinxatlongtableend\end{savenotes}
+
+
+\subparagraph{Attributes}
+\label{\detokenize{autoapi/pine/pipelines/spacy_NER_pipeline/index:attributes}}
+
+\begin{savenotes}\sphinxatlongtablestart\begin{longtable}[c]{\X{1}{2}\X{1}{2}}
+\hline
+
+\endfirsthead
+
+\multicolumn{2}{c}%
+{\makebox[0pt]{\sphinxtablecontinued{\tablename\ \thetable{} \textendash{} continued from previous page}}}\\
+\hline
+
+\endhead
+
+\hline
+\multicolumn{2}{r}{\makebox[0pt][r]{\sphinxtablecontinued{continues on next page}}}\\
+\endfoot
+
+\endlastfoot
+
+\sphinxAtStartPar
+{\hyperref[\detokenize{autoapi/pine/pipelines/spacy_NER_pipeline/index:pine.pipelines.spacy_NER_pipeline.logger}]{\sphinxcrossref{\sphinxcode{\sphinxupquote{logger}}}}}
+&
+\sphinxAtStartPar
+
+\\
+\hline
+\end{longtable}\sphinxatlongtableend\end{savenotes}
 \index{logger (in module pine.pipelines.spacy\_NER\_pipeline)@\spxentry{logger}\spxextra{in module pine.pipelines.spacy\_NER\_pipeline}}
 
 \begin{fulllineitems}
@@ -14966,13 +16160,13 @@ Bases: {\hyperref[\detokenize{autoapi/pine/pipelines/pipeline/index:pine.pipelin
 \index{predict() (pine.pipelines.spacy\_NER\_pipeline.spacy\_NER method)@\spxentry{predict()}\spxextra{pine.pipelines.spacy\_NER\_pipeline.spacy\_NER method}}
 
 \begin{fulllineitems}
-\phantomsection\label{\detokenize{autoapi/pine/pipelines/spacy_NER_pipeline/index:pine.pipelines.spacy_NER_pipeline.spacy_NER.predict}}\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{predict}}}{\emph{\DUrole{n}{self}}, \emph{\DUrole{n}{X}\DUrole{p}{:} \DUrole{n}{Iterable\DUrole{p}{{[}}\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#str}{str}\DUrole{p}{{]}}}}}{{ $\rightarrow$ List\DUrole{p}{{[}}DocumentPredictions\DUrole{p}{{]}}}}
+\phantomsection\label{\detokenize{autoapi/pine/pipelines/spacy_NER_pipeline/index:pine.pipelines.spacy_NER_pipeline.spacy_NER.predict}}\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{predict}}}{\emph{\DUrole{n}{self}}, \emph{\DUrole{n}{X}\DUrole{p}{:} \DUrole{n}{Iterable\DUrole{p}{{[}}\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#str}{str}\DUrole{p}{{]}}}}}{{ $\rightarrow$ List\DUrole{p}{{[}}{\hyperref[\detokenize{autoapi/pine/pipelines/pipeline/index:pine.pipelines.pipeline.DocumentPredictions}]{\sphinxcrossref{pine.pipelines.pipeline.DocumentPredictions}}}\DUrole{p}{{]}}}}
 \end{fulllineitems}
 
 \index{predict\_proba() (pine.pipelines.spacy\_NER\_pipeline.spacy\_NER method)@\spxentry{predict\_proba()}\spxextra{pine.pipelines.spacy\_NER\_pipeline.spacy\_NER method}}
 
 \begin{fulllineitems}
-\phantomsection\label{\detokenize{autoapi/pine/pipelines/spacy_NER_pipeline/index:pine.pipelines.spacy_NER_pipeline.spacy_NER.predict_proba}}\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{predict\_proba}}}{\emph{\DUrole{n}{self}}, \emph{\DUrole{n}{X}\DUrole{p}{:} \DUrole{n}{Iterable\DUrole{p}{{[}}\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#str}{str}\DUrole{p}{{]}}}}, \emph{\DUrole{o}{**}\DUrole{n}{kwargs}}}{{ $\rightarrow$ List\DUrole{p}{{[}}DocumentPredictionProbabilities\DUrole{p}{{]}}}}
+\phantomsection\label{\detokenize{autoapi/pine/pipelines/spacy_NER_pipeline/index:pine.pipelines.spacy_NER_pipeline.spacy_NER.predict_proba}}\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{predict\_proba}}}{\emph{\DUrole{n}{self}}, \emph{\DUrole{n}{X}\DUrole{p}{:} \DUrole{n}{Iterable\DUrole{p}{{[}}\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#str}{str}\DUrole{p}{{]}}}}, \emph{\DUrole{o}{**}\DUrole{n}{kwargs}}}{{ $\rightarrow$ List\DUrole{p}{{[}}{\hyperref[\detokenize{autoapi/pine/pipelines/pipeline/index:pine.pipelines.pipeline.DocumentPredictionProbabilities}]{\sphinxcrossref{pine.pipelines.pipeline.DocumentPredictionProbabilities}}}\DUrole{p}{{]}}}}
 \end{fulllineitems}
 
 \index{next\_example() (pine.pipelines.spacy\_NER\_pipeline.spacy\_NER method)@\spxentry{next\_example()}\spxextra{pine.pipelines.spacy\_NER\_pipeline.spacy\_NER method}}

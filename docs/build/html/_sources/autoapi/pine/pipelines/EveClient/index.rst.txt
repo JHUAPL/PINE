@@ -1,5 +1,5 @@
-:mod:`pine.pipelines.EveClient`
-===============================
+:py:mod:`pine.pipelines.EveClient`
+==================================
 
 .. py:module:: pine.pipelines.EveClient
 
@@ -16,45 +16,54 @@ Classes
 
 
 
-.. data:: logger
+
+Attributes
+~~~~~~~~~~
+
+.. autoapisummary::
+
+   pine.pipelines.EveClient.logger
+   pine.pipelines.EveClient.config
+
+
+.. py:data:: logger
    
 
    
 
-.. data:: config
+.. py:data:: config
    
 
    
 
-.. class:: EveClient(entry_point='{}:{}'.format(config.EVE_HOST, config.EVE_PORT))
+.. py:class:: EveClient(entry_point='{}:{}'.format(config.EVE_HOST, config.EVE_PORT))
 
+   Bases: :py:obj:`object`
 
-   Bases: :class:`object`
-
-   .. attribute:: eve_headers
+   .. py:attribute:: eve_headers
       
 
       
 
-   .. method:: add(self, resource, add_object)
+   .. py:method:: add(self, resource, add_object)
 
 
-   .. method:: get_obj(self, resource, id)
+   .. py:method:: get_obj(self, resource, id)
 
 
-   .. method:: get_all_items(self, resource)
+   .. py:method:: get_all_items(self, resource)
 
 
-   .. method:: get_all_ids(self, resource)
+   .. py:method:: get_all_ids(self, resource)
 
 
-   .. method:: get_items(self, resource, params={})
+   .. py:method:: get_items(self, resource, params={})
 
 
-   .. method:: _get_documents_map(self, params: dict = {})
+   .. py:method:: _get_documents_map(self, params: dict = {})
 
 
-   .. method:: get_documents(self, collection_id: str) -> Dict[(str, str)]
+   .. py:method:: get_documents(self, collection_id: str) -> Dict[str, str]
 
       Returns a document map where the document overlap is 0.
 
@@ -64,10 +73,10 @@ Classes
       :rtype: dict
 
 
-   .. method:: get_documents_by_id(self, document_ids: List[str])
+   .. py:method:: get_documents_by_id(self, document_ids: List[str])
 
 
-   .. method:: get_docs_with_annotations(self, collection_id: str, doc_map: Dict[(str, str)]) -> Tuple[(typing.List[str], typing.List[str], typing.List[str], typing.List[str])]
+   .. py:method:: get_docs_with_annotations(self, collection_id: str, doc_map: Dict[str, str]) -> Tuple[List[str], List[str], List[str], List[str]]
 
       Gets document and annotation data.  Only non-overlapping documents are returned.
 
@@ -80,7 +89,7 @@ Classes
       :rtype: tuple
 
 
-   .. method:: update(self, resource, id, etag, update_obj)
+   .. py:method:: update(self, resource, id, etag, update_obj)
 
 
 

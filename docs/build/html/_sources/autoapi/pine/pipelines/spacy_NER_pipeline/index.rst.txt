@@ -1,5 +1,5 @@
-:mod:`pine.pipelines.spacy_NER_pipeline`
-========================================
+:py:mod:`pine.pipelines.spacy_NER_pipeline`
+===========================================
 
 .. py:module:: pine.pipelines.spacy_NER_pipeline
 
@@ -25,72 +25,80 @@ Classes
 
 
 
-.. data:: logger
+
+Attributes
+~~~~~~~~~~
+
+.. autoapisummary::
+
+   pine.pipelines.spacy_NER_pipeline.logger
+
+
+.. py:data:: logger
    
 
    
 
-.. class:: spacy_NER(model_path=None)
+.. py:class:: spacy_NER(model_path=None)
 
+   Bases: :py:obj:`pine.pipelines.pipeline.Pipeline`
 
-   Bases: :class:`pine.pipelines.pipeline.Pipeline`
-
-   .. attribute:: __model
+   .. py:attribute:: __model
       
 
       
 
-   .. attribute:: __nlp
+   .. py:attribute:: __nlp
       :annotation: = []
 
       
 
-   .. attribute:: __ner
+   .. py:attribute:: __ner
       :annotation: = []
 
       
 
-   .. attribute:: __optimizer
+   .. py:attribute:: __optimizer
       :annotation: = []
 
       
 
-   .. attribute:: __default_fit_params
+   .. py:attribute:: __default_fit_params
       
 
       
 
-   .. method:: _load_model(self, model_path=None)
+   .. py:method:: _load_model(self, model_path=None)
 
 
-   .. method:: status(self) -> dict
+   .. py:method:: status(self) -> dict
 
 
-   .. method:: fit(self, X, y, **params)
+   .. py:method:: fit(self, X, y, **params)
 
 
-   .. method:: evaluate(self, X, y, Xid)
+   .. py:method:: evaluate(self, X, y, Xid)
 
 
-   .. method:: predict(self, X: Iterable[str]) -> List[DocumentPredictions]
+   .. py:method:: predict(self, X: Iterable[str]) -> List[pine.pipelines.pipeline.DocumentPredictions]
 
 
-   .. method:: predict_proba(self, X: Iterable[str], **kwargs) -> List[DocumentPredictionProbabilities]
+   .. py:method:: predict_proba(self, X: Iterable[str], **kwargs) -> List[pine.pipelines.pipeline.DocumentPredictionProbabilities]
 
 
-   .. method:: next_example(self, X, Xid)
+   .. py:method:: next_example(self, X, Xid)
 
 
-   .. method:: format_data(self, X, y)
+   .. py:method:: format_data(self, X, y)
 
 
-   .. method:: add_label(self, entity)
+   .. py:method:: add_label(self, entity)
 
 
-   .. method:: save_model(self, model_name)
+   .. py:method:: save_model(self, model_name)
 
 
-   .. method:: load_model(self, model_name)
+   .. py:method:: load_model(self, model_name)
 
 
 

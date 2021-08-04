@@ -1,5 +1,5 @@
-:mod:`pine.backend.pipelines.bp`
-================================
+:py:mod:`pine.backend.pipelines.bp`
+===================================
 
 .. py:module:: pine.backend.pipelines.bp
 
@@ -39,100 +39,113 @@ Functions
    pine.backend.pipelines.bp.init_app
 
 
-.. data:: logger
+
+Attributes
+~~~~~~~~~~
+
+.. autoapisummary::
+
+   pine.backend.pipelines.bp.logger
+   pine.backend.pipelines.bp.service_manager
+   pine.backend.pipelines.bp.bp
+   pine.backend.pipelines.bp._cached_classifiers
+   pine.backend.pipelines.bp._cached_classifier_pipelines
+
+
+.. py:data:: logger
    
 
    
 
-.. data:: service_manager
+.. py:data:: service_manager
    
 
    
 
-.. data:: bp
+.. py:data:: bp
    
 
    
 
-.. data:: _cached_classifiers
+.. py:data:: _cached_classifiers
    
 
    
 
-.. data:: _cached_classifier_pipelines
+.. py:data:: _cached_classifier_pipelines
    
 
    
 
-.. function:: _get_classifier(classifier_id: str) -> dict
+.. py:function:: _get_classifier(classifier_id: str) -> dict
 
 
-.. function:: _clear_classifier(classifier_id: str)
+.. py:function:: _clear_classifier(classifier_id: str)
 
 
-.. function:: _get_classifier_pipeline(classifier_id: str) -> dict
+.. py:function:: _get_classifier_pipeline(classifier_id: str) -> dict
 
 
-.. function:: _check_permissions(classifier: dict)
+.. py:function:: _check_permissions(classifier: dict)
 
 
-.. function:: _get_pipeline_status(pipeline: str, classifier_id: str) -> dict
+.. py:function:: _get_pipeline_status(pipeline: str, classifier_id: str) -> dict
 
 
-.. function:: _get_pipeline_running_jobs(pipeline: str, classifier_id: str) -> List[str]
+.. py:function:: _get_pipeline_running_jobs(pipeline: str, classifier_id: str) -> List[str]
 
 
-.. function:: _train_pipeline(pipeline: str, classifier_id: str, model_name: str) -> dict
+.. py:function:: _train_pipeline(pipeline: str, classifier_id: str, model_name: str) -> dict
 
 
-.. function:: _predict_pipeline(pipeline: str, classifier_id: str, document_ids: List[str], texts: List[str], timeout_in_s: int) -> dict
+.. py:function:: _predict_pipeline(pipeline: str, classifier_id: str, document_ids: List[str], texts: List[str], timeout_in_s: int) -> dict
 
 
-.. function:: get_pipelines()
+.. py:function:: get_pipelines()
 
 
-.. function:: get_pipeline_by_id(pipeline_id: str)
+.. py:function:: get_pipeline_by_id(pipeline_id: str)
 
 
-.. function:: get_pipeline_status(pipeline_id: str) -> flask.Response
+.. py:function:: get_pipeline_status(pipeline_id: str) -> flask.Response
 
 
-.. function:: _get_classifier_metrics(classifier_id: str)
+.. py:function:: _get_classifier_metrics(classifier_id: str)
 
 
-.. function:: get_classifier_metrics(classifier_id: str)
+.. py:function:: get_classifier_metrics(classifier_id: str)
 
 
-.. function:: _get_collection_classifier(collection_id: str) -> dict
+.. py:function:: _get_collection_classifier(collection_id: str) -> dict
 
 
-.. function:: get_collection_classifier(collection_id: str)
+.. py:function:: get_collection_classifier(collection_id: str)
 
 
-.. function:: get_classifier_status(classifier_id: str)
+.. py:function:: get_classifier_status(classifier_id: str)
 
 
-.. function:: get_running_jobs(classifier_id: str)
+.. py:function:: get_running_jobs(classifier_id: str)
 
 
-.. function:: train(classifier_id: str)
+.. py:function:: train(classifier_id: str)
 
 
-.. function:: predict(classifier_id: str)
+.. py:function:: predict(classifier_id: str)
 
 
-.. function:: _get_next_instance(classifier_id: str)
+.. py:function:: _get_next_instance(classifier_id: str)
 
 
-.. function:: _check_instance_overlap(classifier: dict, instance: dict, user_id: str)
+.. py:function:: _check_instance_overlap(classifier: dict, instance: dict, user_id: str)
 
 
-.. function:: get_next_by_classifier(classifier_id: str)
+.. py:function:: get_next_by_classifier(classifier_id: str)
 
 
-.. function:: advance_to_next_document_by_classifier(classifier_id: str, document_id: str)
+.. py:function:: advance_to_next_document_by_classifier(classifier_id: str, document_id: str)
 
 
-.. function:: init_app(app)
+.. py:function:: init_app(app)
 
 

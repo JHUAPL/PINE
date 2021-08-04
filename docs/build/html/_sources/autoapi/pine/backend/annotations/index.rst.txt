@@ -1,5 +1,5 @@
-:mod:`pine.backend.annotations`
-===============================
+:py:mod:`pine.backend.annotations`
+==================================
 
 .. py:module:: pine.backend.annotations
 

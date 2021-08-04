@@ -55,7 +55,7 @@ class EveModule(bp.AuthModule):
         return True
 
     @overrides
-    def get_logged_in_user_details(self):
+    def get_logged_in_user_details(self) -> models.UserDetails:
         return EveUser(session["auth"]["user_data"]).get_details()
 
     def update_user_details(self):

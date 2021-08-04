@@ -1,6 +1,6 @@
 # (C) 2019 The Johns Hopkins University Applied Physics Laboratory LLC.
 
-FROM ubuntu:18.04
+FROM ubuntu:20.04
 
 ENV LC_ALL C.UTF-8
 ENV LANG C.UTF-8
@@ -8,7 +8,7 @@ ENV DEBIAN_FRONTEND noninteractive
 
 RUN apt-get clean && \
     apt-get -y update && \
-    apt-get -y install software-properties-common
+    apt-get -y install software-properties-common ca-certificates
 
 RUN apt-get -y update && \
     apt-get -y install \
@@ -21,9 +21,9 @@ RUN mkdir -p /nlp_webapp/
 WORKDIR /nlp_webapp/
 
 COPY client/Pipfile* client/
-RUN cd client && pipenv install --deploy --system
+RUN cd client && pipenv install --dev --system --deploy
 COPY test/Pipfile* tests/
-RUN cd tests && pipenv install --deploy --system
+RUN cd tests && pipenv install --dev --system --deploy
 
 COPY client/ ./client/
 COPY test/tests/pytest/ ./tests/pytest/

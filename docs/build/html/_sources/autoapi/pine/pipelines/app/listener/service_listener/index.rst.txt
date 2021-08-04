@@ -1,5 +1,5 @@
-:mod:`pine.pipelines.app.listener.service_listener`
-===================================================
+:py:mod:`pine.pipelines.app.listener.service_listener`
+======================================================
 
 .. py:module:: pine.pipelines.app.listener.service_listener
 
@@ -17,174 +17,183 @@ Classes
 
 
 
-.. data:: config
+
+Attributes
+~~~~~~~~~~
+
+.. autoapisummary::
+
+   pine.pipelines.app.listener.service_listener.config
+   pine.pipelines.app.listener.service_listener.logger
+
+
+.. py:data:: config
    
 
    
 
-.. data:: logger
+.. py:data:: logger
    
 
    
 
-.. class:: ServiceRegistration(name, version, channel, framework, framework_types)
+.. py:class:: ServiceRegistration(name, version, channel, framework, framework_types)
 
+   Bases: :py:obj:`object`
 
-   Bases: :class:`object`
-
-   .. method:: from_registration_format(cls, **kwargs)
+   .. py:method:: from_registration_format(cls, **kwargs)
       :classmethod:
 
 
-   .. method:: to_registration_format(self)
+   .. py:method:: to_registration_format(self)
 
 
 
-.. class:: ServiceListener(services=None)
+.. py:class:: ServiceListener(services=None)
 
+   Bases: :py:obj:`object`
 
-   Bases: :class:`object`
-
+   
    :type services: list[ServiceRegistration]
 
-   .. attribute:: r_pool
+   .. py:attribute:: r_pool
       
 
       
 
-   .. attribute:: r_conn
+   .. py:attribute:: r_conn
       
 
       
 
-   .. attribute:: registration_poll
+   .. py:attribute:: registration_poll
       
 
       
 
-   .. attribute:: listener_poll
+   .. py:attribute:: listener_poll
       
 
       
 
-   .. attribute:: processor_poll
+   .. py:attribute:: processor_poll
       
 
       
 
-   .. attribute:: processing_limit
+   .. py:attribute:: processing_limit
       
 
       
 
-   .. attribute:: processing_queue_key
+   .. py:attribute:: processing_queue_key
       
 
       
 
-   .. attribute:: processing_queue_key_timeout
+   .. py:attribute:: processing_queue_key_timeout
       
 
       
 
-   .. attribute:: results_queue_key
+   .. py:attribute:: results_queue_key
       
 
       
 
-   .. attribute:: results_queue_key_timeout
+   .. py:attribute:: results_queue_key_timeout
       
 
       
 
-   .. attribute:: running_jobs_key
+   .. py:attribute:: running_jobs_key
       
 
       
 
-   .. attribute:: classifiers_training_key
+   .. py:attribute:: classifiers_training_key
       
 
       
 
-   .. attribute:: processing_lock_key
+   .. py:attribute:: processing_lock_key
       
 
       
 
-   .. attribute:: processing_lock_key_timeout
+   .. py:attribute:: processing_lock_key_timeout
       
 
       
 
-   .. attribute:: preprocessing_lock_key
+   .. py:attribute:: preprocessing_lock_key
       
 
       
 
-   .. attribute:: preprocessing_lock_key_timeout
+   .. py:attribute:: preprocessing_lock_key_timeout
       
 
       
 
-   .. attribute:: preprocessing_worker_lock_key
+   .. py:attribute:: preprocessing_worker_lock_key
       
 
       
 
-   .. attribute:: preprocessing_worker_lock_key_timeout
+   .. py:attribute:: preprocessing_worker_lock_key_timeout
       
 
       
 
-   .. attribute:: registration_channel
+   .. py:attribute:: registration_channel
       
 
       
 
-   .. method:: start_workers(self)
+   .. py:method:: start_workers(self)
 
 
-   .. method:: stop_workers(self)
+   .. py:method:: stop_workers(self)
 
 
-   .. method:: pre_process_message(self, message_channel, message_data)
+   .. py:method:: pre_process_message(self, message_channel, message_data)
 
       :type message_channel: str
       :type message_data: str | bytes
       :rtype: bool | dict
 
 
-   .. method:: do_with_redis(callback: Callable[([redis.StrictRedis], typing.Any)])
+   .. py:method:: do_with_redis(callback: Callable[[redis.StrictRedis], Any])
       :staticmethod:
 
 
-   .. method:: push_results(job_id: str, response)
+   .. py:method:: push_results(job_id: str, response)
       :staticmethod:
 
 
-   .. method:: wait_until_classifier_isnt_training(classifier_id: str, job_id: str)
+   .. py:method:: wait_until_classifier_isnt_training(classifier_id: str, job_id: str)
       :staticmethod:
 
 
-   .. method:: classifier_is_done_training(classifier_id: str)
+   .. py:method:: classifier_is_done_training(classifier_id: str)
       :staticmethod:
 
 
-   .. method:: process_message(job_id: str, job_details)
+   .. py:method:: process_message(job_id: str, job_details)
       :staticmethod:
 
 
-   .. method:: _start_registration_task(self)
+   .. py:method:: _start_registration_task(self)
 
 
-   .. method:: _start_channel_task(self)
+   .. py:method:: _start_channel_task(self)
 
 
-   .. method:: _start_listener_task(self)
+   .. py:method:: _start_listener_task(self)
 
 
-   .. method:: _start_queue_processor_task(self)
+   .. py:method:: _start_queue_processor_task(self)
 
 
 

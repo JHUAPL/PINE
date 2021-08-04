@@ -1,5 +1,5 @@
-:mod:`pine.backend.pipelines`
-=============================
+:py:mod:`pine.backend.pipelines`
+================================
 
 .. py:module:: pine.backend.pipelines
 

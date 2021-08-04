@@ -452,6 +452,10 @@ class ServiceManager(object):
                 logger.warning("Unable to register channel.")
                 continue
 
+    async def _create_pool(self):
+        return aioredis.from_url(f"redis://{config.REDIS_HOST}:{config.REDIS_PORT}",
+                                 db=config.REDIS_DBNUM, encoding="UTF-8")
+
     async def _channel_watchdog(self):
         """
         Channel Watchdog Implementation.
@@ -461,17 +465,14 @@ class ServiceManager(object):
         redis_aio_pool = None
         try:
             logger.debug("Starting Channel Watchdog")
-            redis_aio_pool = await aioredis.create_redis_pool(address=(config.REDIS_HOST, config.REDIS_PORT,),
-                                                              db=config.REDIS_DBNUM,
-                                                              encoding="UTF-8",
-                                                              loop=self.aio_loop)
+            redis_aio_pool = await self._create_pool()
             redis_reg_key_ttl_timedelta = timedelta(seconds=self.redis_reg_key_ttl)
             while True:
                 # get list of channels
                 channels = await redis_aio_pool.smembers(self.redis_channels_key)
                 # for each channel, verify when it was added
                 for channel in channels:
-                    channel_ttl = await redis_aio_pool.get(self.redis_channel_ttl_key_prefix + channel)
+                    channel_ttl = await redis_aio_pool.get(self.redis_channel_ttl_key_prefix + str(channel))
                     if not isinstance(channel_ttl, str):
                         continue
                     # parse dates
@@ -500,8 +501,7 @@ class ServiceManager(object):
             logger.error("Redis Error on Channel Watchdog")
         finally:
             if redis_aio_pool:
-                redis_aio_pool.close()
-                await redis_aio_pool.wait_closed()
+                await redis_aio_pool.close()
 
     @staticmethod
     def _thread_killer(thread_id):

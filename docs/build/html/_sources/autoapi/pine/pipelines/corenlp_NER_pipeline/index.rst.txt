@@ -1,5 +1,5 @@
-:mod:`pine.pipelines.corenlp_NER_pipeline`
-==========================================
+:py:mod:`pine.pipelines.corenlp_NER_pipeline`
+=============================================
 
 .. py:module:: pine.pipelines.corenlp_NER_pipeline
 
@@ -16,114 +16,123 @@ Classes
 
 
 
-.. data:: config
+
+Attributes
+~~~~~~~~~~
+
+.. autoapisummary::
+
+   pine.pipelines.corenlp_NER_pipeline.config
+   pine.pipelines.corenlp_NER_pipeline.logger
+
+
+.. py:data:: config
    
 
    
 
-.. data:: logger
+.. py:data:: logger
    
 
    
 
-.. class:: corenlp_NER(java_dir=None, ner_path=None, load_model=None, tmp_dir=None)
+.. py:class:: corenlp_NER(java_dir=None, ner_path=None, load_model=None, tmp_dir=None)
 
+   Bases: :py:obj:`pine.pipelines.pipeline.Pipeline`
 
-   Bases: :class:`pine.pipelines.pipeline.Pipeline`
-
-   .. attribute:: __jar
+   .. py:attribute:: __jar
       :annotation: = 
 
       
 
-   .. attribute:: __jdk_dir
+   .. py:attribute:: __jdk_dir
       :annotation: = 
 
       
 
-   .. attribute:: __train_file
+   .. py:attribute:: __train_file
       :annotation: = 
 
       
 
-   .. attribute:: __test_file
+   .. py:attribute:: __test_file
       :annotation: = 
 
       
 
-   .. attribute:: __model
+   .. py:attribute:: __model
       :annotation: = 
 
       
 
-   .. attribute:: __temp_dir
+   .. py:attribute:: __temp_dir
       
 
       
 
-   .. attribute:: __crf
+   .. py:attribute:: __crf
       
 
       
 
-   .. attribute:: __props
+   .. py:attribute:: __props
       
 
       
 
-   .. attribute:: __is_setup
+   .. py:attribute:: __is_setup
       :annotation: = False
 
       
 
-   .. attribute:: __id
+   .. py:attribute:: __id
       
 
       
 
-   .. attribute:: __default_fit_params
+   .. py:attribute:: __default_fit_params
       
 
       
 
-   .. method:: setup(cls, java_dir=None, ner_path=None)
+   .. py:method:: setup(cls, java_dir=None, ner_path=None)
       :classmethod:
 
 
-   .. method:: status(self) -> dict
+   .. py:method:: status(self) -> dict
 
 
-   .. method:: fit(self, X, y, **params)
+   .. py:method:: fit(self, X, y, **params)
 
 
-   .. method:: predict(self, X: Iterable[str]) -> List[DocumentPredictions]
+   .. py:method:: predict(self, X: Iterable[str]) -> List[pine.pipelines.pipeline.DocumentPredictions]
 
 
-   .. method:: predict_proba(self, X: Iterable[str], get_all_labels=False, include_other=False, **kwargs) -> List[DocumentPredictionProbabilities]
+   .. py:method:: predict_proba(self, X: Iterable[str], get_all_labels=False, include_other=False, **kwargs) -> List[pine.pipelines.pipeline.DocumentPredictionProbabilities]
 
 
-   .. method:: next_example(self, X, Xid)
+   .. py:method:: next_example(self, X, Xid)
 
 
-   .. method:: get_id(self)
+   .. py:method:: get_id(self)
 
 
-   .. method:: format_data(self, X, y)
+   .. py:method:: format_data(self, X, y)
 
 
-   .. method:: save_model(self, model_name)
+   .. py:method:: save_model(self, model_name)
 
 
-   .. method:: load_model(self, model_name)
+   .. py:method:: load_model(self, model_name)
 
 
-   .. method:: tokenize(self, input_text)
+   .. py:method:: tokenize(self, input_text)
 
 
-   .. method:: evaluate(self, X, y, Xid, verbose=False)
+   .. py:method:: evaluate(self, X, y, Xid, verbose=False)
 
 
-   .. method:: evaluate_orig(self, X, y, Xid)
+   .. py:method:: evaluate_orig(self, X, y, Xid)
 
 
 

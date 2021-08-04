@@ -1,5 +1,5 @@
-:mod:`pine.client.models`
-=========================
+:py:mod:`pine.client.models`
+============================
 
 .. py:module:: pine.client.models
 
@@ -47,7 +47,17 @@ Functions
    pine.client.models.remove_nonupdatable_fields
 
 
-.. data:: ID_FIELD
+
+Attributes
+~~~~~~~~~~
+
+.. autoapisummary::
+
+   pine.client.models.ID_FIELD
+   pine.client.models.ITEMS_FIELD
+
+
+.. py:data:: ID_FIELD
    :annotation: :str = _id
 
    The field used to store database ID.
@@ -55,7 +65,7 @@ Functions
    :type: str
 
 
-.. data:: ITEMS_FIELD
+.. py:data:: ITEMS_FIELD
    :annotation: :str = _items
 
    The field used to access the items in a multi-item database response.
@@ -63,7 +73,7 @@ Functions
    :type: str
 
 
-.. function:: _check_field_required_bool(obj: dict, field: str) -> bool
+.. py:function:: _check_field_required_bool(obj: dict, field: str) -> bool
 
    Checks that the given field is in the object and is a bool.
 
@@ -76,7 +86,7 @@ Functions
    :rtype: bool
 
 
-.. function:: _check_field_int(obj: dict, field: str) -> bool
+.. py:function:: _check_field_int(obj: dict, field: str) -> bool
 
    Checks that if the given field is in the object, that it is an int.
 
@@ -89,7 +99,7 @@ Functions
    :rtype: bool
 
 
-.. function:: _check_field_required_int(obj: dict, field: str) -> bool
+.. py:function:: _check_field_required_int(obj: dict, field: str) -> bool
 
    Checks that the given field is in the object and is an int.
 
@@ -102,7 +112,7 @@ Functions
    :rtype: bool
 
 
-.. function:: _check_field_float(obj: dict, field: str) -> bool
+.. py:function:: _check_field_float(obj: dict, field: str) -> bool
 
    Checks that if the given field is in the object, that it is a float.
 
@@ -115,7 +125,7 @@ Functions
    :rtype: bool
 
 
-.. function:: _check_field_required_float(obj: dict, field: str) -> bool
+.. py:function:: _check_field_required_float(obj: dict, field: str) -> bool
 
    Checks that the given field is in the object and is a float.
 
@@ -128,7 +138,7 @@ Functions
    :rtype: bool
 
 
-.. function:: _check_field_string(obj: dict, field: str) -> bool
+.. py:function:: _check_field_string(obj: dict, field: str) -> bool
 
    Checks that if the given field is in the object, that it is a string.
 
@@ -141,7 +151,7 @@ Functions
    :rtype: bool
 
 
-.. function:: _check_field_required_string(obj: dict, field: str) -> bool
+.. py:function:: _check_field_required_string(obj: dict, field: str) -> bool
 
    Checks that the given field is in the object and is a string.
 
@@ -154,7 +164,7 @@ Functions
    :rtype: bool
 
 
-.. function:: _check_field_string_list(obj: dict, field: str, min_length: int = 0) -> bool
+.. py:function:: _check_field_string_list(obj: dict, field: str, min_length: int = 0) -> bool
 
    Checks that if the given field is in the object, that it is a string list.
 
@@ -169,7 +179,7 @@ Functions
    :rtype: bool
 
 
-.. function:: _check_field_required_string_list(obj: dict, field: str, min_length: int = 0) -> bool
+.. py:function:: _check_field_required_string_list(obj: dict, field: str, min_length: int = 0) -> bool
 
    Checks that the given field is in the object and is a string list.
 
@@ -184,7 +194,7 @@ Functions
    :rtype: bool
 
 
-.. function:: _check_field_dict(obj: dict, field: str) -> bool
+.. py:function:: _check_field_dict(obj: dict, field: str) -> bool
 
    Checks that if the given field is in the object, that it is a dict.
 
@@ -197,7 +207,7 @@ Functions
    :rtype: bool
 
 
-.. function:: _check_field_required_dict(obj: dict, field: str) -> bool
+.. py:function:: _check_field_required_dict(obj: dict, field: str) -> bool
 
    Checks that the given field is in the object and is a dict.
 
@@ -210,7 +220,7 @@ Functions
    :rtype: bool
 
 
-.. function:: _check_field_bool(obj: dict, field: str) -> bool
+.. py:function:: _check_field_bool(obj: dict, field: str) -> bool
 
    Checks that if the given field is in the object, that it is a bool.
 
@@ -223,7 +233,7 @@ Functions
    :rtype: bool
 
 
-.. function:: is_valid_eve_user(user: dict, error_callback: Callable[([str], None)] = None) -> bool
+.. py:function:: is_valid_eve_user(user: dict, error_callback: Callable[[str], None] = None) -> bool
 
    Checks whether the given user object is valid.
 
@@ -240,7 +250,7 @@ Functions
    :rtype: bool
 
 
-.. function:: is_valid_eve_pipeline(pipeline: dict, error_callback: Callable[([str], None)] = None) -> bool
+.. py:function:: is_valid_eve_pipeline(pipeline: dict, error_callback: Callable[[str], None] = None) -> bool
 
    Checks whether the given pipeline object is valid.
 
@@ -257,7 +267,7 @@ Functions
    :rtype: bool
 
 
-.. function:: is_valid_eve_collection(collection: dict, error_callback: Callable[([str], None)] = None) -> bool
+.. py:function:: is_valid_eve_collection(collection: dict, error_callback: Callable[[str], None] = None) -> bool
 
    Checks whether the given collection object is valid.
 
@@ -275,7 +285,7 @@ Functions
    :rtype: bool
 
 
-.. function:: is_valid_collection(form: dict, files: dict, error_callback: Callable[([str], None)] = None) -> bool
+.. py:function:: is_valid_collection(form: dict, files: dict, error_callback: Callable[[str], None] = None) -> bool
 
    Checks whether the given form and files parameters are valid for creating a collection.
 
@@ -303,7 +313,7 @@ Functions
    :rtype: bool
 
 
-.. function:: is_valid_eve_document(document: dict, error_callback: Callable[([str], None)] = None) -> bool
+.. py:function:: is_valid_eve_document(document: dict, error_callback: Callable[[str], None] = None) -> bool
 
    Checks whether the given document object is valid.
 
@@ -320,7 +330,7 @@ Functions
    :rtype: bool
 
 
-.. function:: is_valid_doc_annotation(ann: Any, error_callback: Callable[([str], None)] = None) -> bool
+.. py:function:: is_valid_doc_annotation(ann: Any, error_callback: Callable[[str], None] = None) -> bool
 
    Checks whether the given annotation is a valid document label/annotation.
 
@@ -334,7 +344,7 @@ Functions
    :rtype: bool
 
 
-.. function:: is_valid_ner_annotation(ann: Any, error_callback: Callable[([str], None)] = None) -> bool
+.. py:function:: is_valid_ner_annotation(ann: Any, error_callback: Callable[[str], None] = None) -> bool
 
    Checks whether the given annotation is a valid document NER annotation.
 
@@ -361,7 +371,7 @@ Functions
    :rtype: bool
 
 
-.. function:: is_valid_annotation(body: dict, error_callback: Callable[([str], None)] = None) -> bool
+.. py:function:: is_valid_annotation(body: dict, error_callback: Callable[[str], None] = None) -> bool
 
    Checks whether the given body is valid to create an annotation.
 
@@ -379,7 +389,7 @@ Functions
    :rtype: bool
 
 
-.. function:: is_valid_doc_annotations(doc_annotations: dict, error_callback: Callable[([str], None)] = None) -> bool
+.. py:function:: is_valid_doc_annotations(doc_annotations: dict, error_callback: Callable[[str], None] = None) -> bool
 
    Checks whether the given document annotations are valid.
 
@@ -395,10 +405,9 @@ Functions
    :rtype: bool
 
 
-.. class:: CollectionBuilder(collection: dict = None, creator_id: str = None, viewers: List[str] = None, annotators: List[str] = None, labels: List[str] = None, title: str = None, description: str = None, allow_overlapping_ner_annotations: bool = None, pipelineId: str = None, overlap: float = None, train_every: int = None, classifierParameters: dict = None, document_csv_file: str = None, document_csv_file_has_header: bool = None, document_csv_file_text_column: int = None, image_files: List[str] = None)
+.. py:class:: CollectionBuilder(collection: dict = None, creator_id: str = None, viewers: List[str] = None, annotators: List[str] = None, labels: List[str] = None, title: str = None, description: str = None, allow_overlapping_ner_annotations: bool = None, pipelineId: str = None, overlap: float = None, train_every: int = None, classifierParameters: dict = None, document_csv_file: str = None, document_csv_file_has_header: bool = None, document_csv_file_text_column: int = None, image_files: List[str] = None)
 
-
-   Bases: :class:`object`
+   Bases: :py:obj:`object`
 
    A class that can build the form and files fields that are necessary to create a collection.
        
@@ -449,7 +458,7 @@ Functions
                        defaults to ``None`` (not set)
    :type image_files: list(str)
 
-   .. attribute:: form
+   .. py:attribute:: form
       
 
       The form data.
@@ -457,7 +466,7 @@ Functions
       :type: dict
 
 
-   .. attribute:: files
+   .. py:attribute:: files
       
 
       The files data.
@@ -465,7 +474,7 @@ Functions
       :type: dict
 
 
-   .. method:: collection(self) -> dict
+   .. py:method:: collection(self) -> dict
       :property:
 
       Returns the collection information from the form.
@@ -474,7 +483,7 @@ Functions
       :rtype: dict
 
 
-   .. method:: form_json(self) -> dict
+   .. py:method:: form_json(self) -> dict
       :property:
 
       Returns the form where the values have been JSON-encoded.
@@ -483,7 +492,7 @@ Functions
       :rtype: dict
 
 
-   .. method:: creator_id(self, user_id: str) -> pine.client.models.CollectionBuilder
+   .. py:method:: creator_id(self, user_id: str) -> CollectionBuilder
 
       Sets the creator_id to the given, and adds to viewers and annotators.
 
@@ -494,7 +503,7 @@ Functions
       :rtype: models.CollectionBuilder
 
 
-   .. method:: viewer(self, user_id: str) -> pine.client.models.CollectionBuilder
+   .. py:method:: viewer(self, user_id: str) -> CollectionBuilder
 
       Adds the given user to the list of viewers.
 
@@ -505,7 +514,7 @@ Functions
       :rtype: models.CollectionBuilder
 
 
-   .. method:: annotator(self, user_id: str) -> pine.client.models.CollectionBuilder
+   .. py:method:: annotator(self, user_id: str) -> CollectionBuilder
 
       Adds the given user to the list of annotators.
 
@@ -516,7 +525,7 @@ Functions
       :rtype: models.CollectionBuilder
 
 
-   .. method:: label(self, label: str) -> pine.client.models.CollectionBuilder
+   .. py:method:: label(self, label: str) -> CollectionBuilder
 
       Adds the given label to the collection.
 
@@ -527,7 +536,7 @@ Functions
       :rtype: models.CollectionBuilder
 
 
-   .. method:: metadata(self, key: str, value: Any) -> pine.client.models.CollectionBuilder
+   .. py:method:: metadata(self, key: str, value: Any) -> CollectionBuilder
 
       Adds the given metadata key/value to the collection.
 
@@ -539,7 +548,7 @@ Functions
       :rtype: models.CollectionBuilder
 
 
-   .. method:: title(self, title: str) -> pine.client.models.CollectionBuilder
+   .. py:method:: title(self, title: str) -> CollectionBuilder
 
       Sets the metadata title to the given.
 
@@ -550,7 +559,7 @@ Functions
       :rtype: models.CollectionBuilder
 
 
-   .. method:: description(self, description: str) -> pine.client.models.CollectionBuilder
+   .. py:method:: description(self, description: str) -> CollectionBuilder
 
       Sets the metadata description to the given.
 
@@ -561,7 +570,7 @@ Functions
       :rtype: models.CollectionBuilder
 
 
-   .. method:: configuration(self, key: str, value: Any) -> pine.client.models.CollectionBuilder
+   .. py:method:: configuration(self, key: str, value: Any) -> CollectionBuilder
 
       Adds the given configuration key/value to the collection.
 
@@ -573,7 +582,7 @@ Functions
       :rtype: models.CollectionBuilder
 
 
-   .. method:: allow_overlapping_ner_annotations(self, allow_overlapping_ner_annotations: bool)
+   .. py:method:: allow_overlapping_ner_annotations(self, allow_overlapping_ner_annotations: bool)
 
       Sets the configuration value for allow_overlapping_ner_annotations to the given.
 
@@ -584,7 +593,7 @@ Functions
       :rtype: models.CollectionBuilder
 
 
-   .. method:: classifier(self, pipelineId: str, overlap: float = 0, train_every: int = 100, classifierParameters: dict = {}) -> pine.client.models.CollectionBuilder
+   .. py:method:: classifier(self, pipelineId: str, overlap: float = 0, train_every: int = 100, classifierParameters: dict = {}) -> CollectionBuilder
 
       Sets classifier information for the created collection.
 
@@ -601,7 +610,7 @@ Functions
       :rtype: models.CollectionBuilder
 
 
-   .. method:: document_csv_file(self, csv_filename: str, has_header: bool, text_column: int) -> pine.client.models.CollectionBuilder
+   .. py:method:: document_csv_file(self, csv_filename: str, has_header: bool, text_column: int) -> CollectionBuilder
 
       Sets the CSV file used to create documents to the given.
 
@@ -619,7 +628,7 @@ Functions
       :rtype: models.CollectionBuilder
 
 
-   .. method:: image_file(self, image_filename: str) -> pine.client.models.CollectionBuilder
+   .. py:method:: image_file(self, image_filename: str) -> CollectionBuilder
 
       Adds the given image file to the collection.
 
@@ -632,7 +641,7 @@ Functions
       :rtype: models.CollectionBuilder
 
 
-   .. method:: is_valid(self, error_callback: Callable[([str], None)] = None)
+   .. py:method:: is_valid(self, error_callback: Callable[[str], None] = None)
 
       Checks whether the currently set values are valid or not.
 
@@ -646,85 +655,84 @@ Functions
 
 
 
-.. class:: CollectionUserPermissions(view=False, annotate=False, add_documents=False, add_images=False, modify_users=False, modify_labels=False, modify_document_metadata=False, download_data=False, archive=False, delete_documents=False)
+.. py:class:: CollectionUserPermissions(view=False, annotate=False, add_documents=False, add_images=False, modify_users=False, modify_labels=False, modify_document_metadata=False, download_data=False, archive=False, delete_documents=False)
 
-
-   Bases: :class:`object`
+   Bases: :py:obj:`object`
 
    Collection permissions for a user as a dictionary of boolean flags.
        
 
-   .. attribute:: view
+   .. py:attribute:: view
       :annotation: :bool
 
       Whether the user can view the collection and documents.
       :type: bool
 
 
-   .. attribute:: annotate
+   .. py:attribute:: annotate
       :annotation: :bool
 
       Whether the user can annotate collection documents.
       :type: bool
 
 
-   .. attribute:: add_documents
+   .. py:attribute:: add_documents
       :annotation: :bool
 
       Whether the user can add documents to the collection.
       :type: bool
 
 
-   .. attribute:: add_images
+   .. py:attribute:: add_images
       :annotation: :bool
 
       Whether the user can add images to the collection.
       :type: bool
 
 
-   .. attribute:: modify_users
+   .. py:attribute:: modify_users
       :annotation: :bool
 
       Whether the user can modify the list of viewers/annotators for the collection.
       :type: bool
 
 
-   .. attribute:: modify_labels
+   .. py:attribute:: modify_labels
       :annotation: :bool
 
       Whether the user can modify the list of labels for the collection.
       :type: bool
 
 
-   .. attribute:: modify_document_metadata
+   .. py:attribute:: modify_document_metadata
       :annotation: :bool
 
       Whether the user can modify document metadata (such as changing the image).
       :type: bool
 
 
-   .. attribute:: download_data
+   .. py:attribute:: download_data
       :annotation: :bool
 
       Whether the user can download the collection data
       :type: bool
 
 
-   .. attribute:: archive
+   .. py:attribute:: archive
       :annotation: :bool
 
       Whether the user can archive or unarchive the collection.
       :type: bool
 
 
-   .. attribute:: delete_documents
+   .. py:attribute:: delete_documents
       :annotation: :bool
 
       Whether the user can delete documents in the collection.
       :type: bool
 
 
-   .. method:: to_dict(self) -> dict
+   .. py:method:: to_dict(self) -> dict
 
       Returns a dict version of this object for conversion to JSON.
 
@@ -733,7 +741,7 @@ Functions
 
 
 
-.. function:: remove_eve_fields(obj: dict, remove_timestamps: bool = True, remove_versions: bool = True)
+.. py:function:: remove_eve_fields(obj: dict, remove_timestamps: bool = True, remove_versions: bool = True)
 
    Removes fields inserted by eve from the given object.
 
@@ -745,7 +753,7 @@ Functions
    :type remove_versions: bool
 
 
-.. function:: remove_nonupdatable_fields(obj: dict)
+.. py:function:: remove_nonupdatable_fields(obj: dict)
 
    Removes all non-updatable fields from the given object.
 

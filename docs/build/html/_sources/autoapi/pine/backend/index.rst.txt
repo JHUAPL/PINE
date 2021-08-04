@@ -1,5 +1,5 @@
-:mod:`pine.backend`
-===================
+:py:mod:`pine.backend`
+======================
 
 .. py:module:: pine.backend
 
@@ -48,15 +48,25 @@ Functions
    pine.backend.create_app
 
 
-.. function:: create_app(test_config=None)
+
+Attributes
+~~~~~~~~~~
+
+.. autoapisummary::
+
+   pine.backend.VERSION
+   pine.backend.__version__
 
 
-.. data:: VERSION
+.. py:function:: create_app(test_config=None)
+
+
+.. py:data:: VERSION
    
 
    
 
-.. data:: __version__
+.. py:data:: __version__
    
 
    

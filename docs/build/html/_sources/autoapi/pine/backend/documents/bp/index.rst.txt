@@ -1,5 +1,5 @@
-:mod:`pine.backend.documents.bp`
-================================
+:py:mod:`pine.backend.documents.bp`
+===================================
 
 .. py:module:: pine.backend.documents.bp
 
@@ -34,65 +34,74 @@ Functions
    pine.backend.documents.bp.init_app
 
 
-.. data:: bp
+
+Attributes
+~~~~~~~~~~
+
+.. autoapisummary::
+
+   pine.backend.documents.bp.bp
+
+
+.. py:data:: bp
    
 
    
 
-.. function:: _document_user_can_projection()
+.. py:function:: _document_user_can_projection()
 
 
-.. function:: get_collection_ids_for(document_ids) -> List[str]
+.. py:function:: get_collection_ids_for(document_ids) -> List[str]
 
 
-.. function:: get_user_permissions(document: dict) -> pine.backend.models.CollectionUserPermissions
+.. py:function:: get_user_permissions(document: dict) -> pine.backend.models.CollectionUserPermissions
 
 
-.. function:: get_user_permissions_by_id(document_id: str) -> pine.backend.models.CollectionUserPermissions
+.. py:function:: get_user_permissions_by_id(document_id: str) -> pine.backend.models.CollectionUserPermissions
 
 
-.. function:: get_user_permissions_by_ids(document_ids: Iterable[str]) -> List[models.CollectionUserPermissions]
+.. py:function:: get_user_permissions_by_ids(document_ids: Iterable[str]) -> List[pine.backend.models.CollectionUserPermissions]
 
 
-.. function:: get_document(doc_id)
+.. py:function:: get_document(doc_id)
 
 
-.. function:: count_documents_in_collection(col_id)
+.. py:function:: count_documents_in_collection(col_id)
 
 
-.. function:: get_all_documents_in_collection(col_id)
+.. py:function:: get_all_documents_in_collection(col_id)
 
 
-.. function:: get_paginated_documents_in_collection(collection_id)
+.. py:function:: get_paginated_documents_in_collection(collection_id)
 
 
-.. function:: _check_documents(documents) -> dict
+.. py:function:: _check_documents(documents) -> dict
 
 
-.. function:: _get_collection_classifiers(collection_ids)
+.. py:function:: _get_collection_classifiers(collection_ids)
 
 
-.. function:: _get_classifier_next_instances(collection_classifiers: dict)
+.. py:function:: _get_classifier_next_instances(collection_classifiers: dict)
 
 
-.. function:: add_document()
+.. py:function:: add_document()
 
 
-.. function:: endpoint_get_user_permissions(doc_id)
+.. py:function:: endpoint_get_user_permissions(doc_id)
 
 
-.. function:: update_metadata(doc_id)
+.. py:function:: update_metadata(doc_id)
 
 
-.. function:: _delete_documents_by_id(doc_ids: List[str]) -> bool
+.. py:function:: _delete_documents_by_id(doc_ids: List[str]) -> bool
 
 
-.. function:: delete_document(doc_id: str)
+.. py:function:: delete_document(doc_id: str)
 
 
-.. function:: delete_documents()
+.. py:function:: delete_documents()
 
 
-.. function:: init_app(app)
+.. py:function:: init_app(app)
 
 

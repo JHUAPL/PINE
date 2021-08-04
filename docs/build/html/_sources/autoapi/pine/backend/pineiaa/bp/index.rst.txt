@@ -1,5 +1,5 @@
-:mod:`pine.backend.pineiaa.bp`
-==============================
+:py:mod:`pine.backend.pineiaa.bp`
+=================================
 
 .. py:module:: pine.backend.pineiaa.bp
 
@@ -20,28 +20,38 @@ Functions
    pine.backend.pineiaa.bp.init_app
 
 
-.. data:: logger
+
+Attributes
+~~~~~~~~~~
+
+.. autoapisummary::
+
+   pine.backend.pineiaa.bp.logger
+   pine.backend.pineiaa.bp.bp
+
+
+.. py:data:: logger
    
 
    
 
-.. data:: bp
+.. py:data:: bp
    
 
    
 
-.. function:: get_current_report(collection_id)
+.. py:function:: get_current_report(collection_id)
 
 
-.. function:: get_iia_report_by_collection_id(collection_id)
+.. py:function:: get_iia_report_by_collection_id(collection_id)
 
 
-.. function:: update_iaa_report_by_collection_id(collection_id: str) -> bool
+.. py:function:: update_iaa_report_by_collection_id(collection_id: str) -> bool
 
 
-.. function:: create_iaa_report_by_collection_id(collection_id)
+.. py:function:: create_iaa_report_by_collection_id(collection_id)
 
 
-.. function:: init_app(app)
+.. py:function:: init_app(app)
 
 
