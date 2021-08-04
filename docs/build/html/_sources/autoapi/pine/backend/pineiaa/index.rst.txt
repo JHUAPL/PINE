@@ -1,5 +1,5 @@
-:mod:`pine.backend.pineiaa`
-===========================
+:py:mod:`pine.backend.pineiaa`
+==============================
 
 .. py:module:: pine.backend.pineiaa
 
@@ -34,6 +34,7 @@ Functions
    pine.backend.pineiaa.update_iaa_report_by_collection_id
 
 
-.. function:: update_iaa_report_by_collection_id(collection_id: str) -> bool
+
+.. py:function:: update_iaa_report_by_collection_id(collection_id: str) -> bool
 
 

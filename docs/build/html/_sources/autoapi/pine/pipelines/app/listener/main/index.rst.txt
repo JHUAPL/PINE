@@ -1,5 +1,5 @@
-:mod:`pine.pipelines.app.listener.main`
-=======================================
+:py:mod:`pine.pipelines.app.listener.main`
+==========================================
 
 .. py:module:: pine.pipelines.app.listener.main
 
@@ -18,12 +18,13 @@ Functions
    pine.pipelines.app.listener.main.run
 
 
-.. function:: backoff_hdlr(details)
+
+.. py:function:: backoff_hdlr(details)
 
 
-.. function:: setup_logging()
+.. py:function:: setup_logging()
 
 
-.. function:: run()
+.. py:function:: run()
 
 

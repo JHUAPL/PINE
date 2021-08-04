@@ -1,5 +1,5 @@
-:mod:`pine.backend.config`
-==========================
+:py:mod:`pine.backend.config`
+=============================
 
 .. py:module:: pine.backend.config
 
@@ -7,57 +7,57 @@
 Module Contents
 ---------------
 
-.. data:: SECRET_KEY
+.. py:data:: SECRET_KEY
    :annotation: = Cq13XII=%
 
    
 
-.. data:: DEBUG
+.. py:data:: DEBUG
    :annotation: = True
 
    
 
-.. data:: EVE_SERVER
+.. py:data:: EVE_SERVER
    
 
    
 
-.. data:: REDIS_SERVER
+.. py:data:: REDIS_SERVER
    
 
    
 
-.. data:: REDIS_PORT
+.. py:data:: REDIS_PORT
    
 
    
 
-.. data:: AUTH_MODULE
+.. py:data:: AUTH_MODULE
    
 
    
 
-.. data:: AUTH_MODULE
+.. py:data:: AUTH_MODULE
    :annotation: = vegas
 
    
 
-.. data:: VEGAS_SERVER
+.. py:data:: VEGAS_SERVER
    
 
    
 
-.. data:: VEGAS_CLIENT_ID
+.. py:data:: VEGAS_CLIENT_ID
    
 
    
 
-.. data:: VEGAS_CLIENT_SECRET
+.. py:data:: VEGAS_CLIENT_SECRET
    
 
    
 
-.. data:: DOCUMENT_IMAGE_DIR
+.. py:data:: DOCUMENT_IMAGE_DIR
    
 
    

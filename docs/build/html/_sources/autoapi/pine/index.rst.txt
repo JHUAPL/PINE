@@ -1,5 +1,5 @@
-:mod:`pine`
-===========
+:py:mod:`pine`
+==============
 
 .. py:module:: pine
 

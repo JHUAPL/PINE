@@ -1,5 +1,5 @@
-:mod:`pine.backend.auth.bp`
-===========================
+:py:mod:`pine.backend.auth.bp`
+==============================
 
 .. py:module:: pine.backend.auth.bp
 
@@ -35,86 +35,96 @@ Functions
    pine.backend.auth.bp.init_app
 
 
-.. data:: CONFIG_AUTH_MODULE_KEY
+
+Attributes
+~~~~~~~~~~
+
+.. autoapisummary::
+
+   pine.backend.auth.bp.CONFIG_AUTH_MODULE_KEY
+   pine.backend.auth.bp.bp
+   pine.backend.auth.bp.module
+
+
+.. py:data:: CONFIG_AUTH_MODULE_KEY
    :annotation: = AUTH_MODULE
 
    
 
-.. data:: bp
+.. py:data:: bp
    
 
    
 
-.. data:: module
+.. py:data:: module
    
 
    
 
-.. function:: is_flat()
+.. py:function:: is_flat()
 
 
-.. function:: get_logged_in_user()
+.. py:function:: get_logged_in_user()
 
 
-.. function:: login_required(view)
+.. py:function:: login_required(view)
 
 
-.. function:: admin_required(view)
+.. py:function:: admin_required(view)
 
 
-.. function:: flask_get_module()
+.. py:function:: flask_get_module()
 
 
-.. function:: flask_get_flat() -> flask.Response
+.. py:function:: flask_get_flat() -> flask.Response
 
 
-.. function:: flask_get_can_manage_users() -> flask.Response
+.. py:function:: flask_get_can_manage_users() -> flask.Response
 
 
-.. function:: flask_get_logged_in_user() -> flask.Response
+.. py:function:: flask_get_logged_in_user() -> flask.Response
 
 
-.. function:: flask_get_logged_in_user_details() -> flask.Response
+.. py:function:: flask_get_logged_in_user_details() -> flask.Response
 
 
-.. function:: flask_get_login_form() -> flask.Response
+.. py:function:: flask_get_login_form() -> flask.Response
 
 
-.. function:: flask_post_logout() -> flask.Response
+.. py:function:: flask_post_logout() -> flask.Response
 
 
-.. class:: AuthModule(app, bp)
+.. py:class:: AuthModule(app, bp)
 
+   Bases: :py:obj:`object`
 
-   Bases: :class:`object`
-
-   .. attribute:: __metaclass__
+   .. py:attribute:: __metaclass__
       
 
       
 
-   .. method:: is_flat(self) -> bool
+   .. py:method:: is_flat(self) -> bool
       :abstractmethod:
 
 
-   .. method:: can_manage_users(self) -> bool
+   .. py:method:: can_manage_users(self) -> bool
       :abstractmethod:
 
 
-   .. method:: get_login_form(self) -> pine.backend.models.LoginForm
+   .. py:method:: get_login_form(self) -> pine.backend.models.LoginForm
       :abstractmethod:
 
 
-   .. method:: get_logged_in_user(self)
+   .. py:method:: get_logged_in_user(self)
 
 
-   .. method:: get_logged_in_user_details(self) -> pine.backend.models.UserDetails
+   .. py:method:: get_logged_in_user_details(self) -> pine.backend.models.UserDetails
 
 
-   .. method:: logout(self)
+   .. py:method:: logout(self)
 
 
 
-.. function:: init_app(app)
+.. py:function:: init_app(app)
 
 

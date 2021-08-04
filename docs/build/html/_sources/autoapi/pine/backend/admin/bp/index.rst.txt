@@ -1,5 +1,5 @@
-:mod:`pine.backend.admin.bp`
-============================
+:py:mod:`pine.backend.admin.bp`
+===============================
 
 .. py:module:: pine.backend.admin.bp
 
@@ -24,25 +24,34 @@ Functions
    pine.backend.admin.bp.init_app
 
 
-.. data:: bp
+
+Attributes
+~~~~~~~~~~
+
+.. autoapisummary::
+
+   pine.backend.admin.bp.bp
+
+
+.. py:data:: bp
    
 
    
 
-.. function:: get_users()
+.. py:function:: get_users()
 
    Get the list of all users' details (id, email, and password hash)
    :return: str
 
 
-.. function:: get_user(user_id)
+.. py:function:: get_user(user_id)
 
    Given a user_id, return the user's details (id, email, and password hash)
    :param user_id: str
    :return: str
 
 
-.. function:: update_user_password(user_id)
+.. py:function:: update_user_password(user_id)
 
    Change the password hash stored in the database for the given user to a newly calculated password hash derived from
    the password provided in the json body of this request.
@@ -50,39 +59,39 @@ Functions
    :return: Response
 
 
-.. function:: update_user(user_id)
+.. py:function:: update_user(user_id)
 
    Change the details stored in the database for the given user to those provided in the json body of this request.
    :param user_id: str
    :return: Response
 
 
-.. function:: add_user()
+.. py:function:: add_user()
 
    Add a new user to PINE, with the details provided in the json body of this request (id, email, and password hash).
    This method will calculate and store a password hash based upon the provided password
    :return: Response
 
 
-.. function:: delete_user(user_id)
+.. py:function:: delete_user(user_id)
 
    Delete the user matching the given user_id
    :param user_id: str
    :return: Response
 
 
-.. function:: system_export()
+.. py:function:: system_export()
 
    Export the contents of the database as a zip file
    :return: Response
 
 
-.. function:: system_import()
+.. py:function:: system_import()
 
    Import the contents of the data provided in the request body to the database
    :return: Response
 
 
-.. function:: init_app(app)
+.. py:function:: init_app(app)
 
 

@@ -1,5 +1,5 @@
-:mod:`pine.client.password`
-===========================
+:py:mod:`pine.client.password`
+==============================
 
 .. py:module:: pine.client.password
 
@@ -17,7 +17,8 @@ Functions
    pine.client.password.check_password
 
 
-.. function:: hash_password(password: str) -> str
+
+.. py:function:: hash_password(password: str) -> str
 
    Hashes the given password for use in user object.
 
@@ -28,7 +29,7 @@ Functions
    :rtype: str
 
 
-.. function:: check_password(password: str, hashed_password: str) -> str
+.. py:function:: check_password(password: str, hashed_password: str) -> str
 
    Checks the given password against the given hash.
 

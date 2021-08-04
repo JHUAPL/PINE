@@ -12,6 +12,6 @@ export BACKEND_PORT=${BACKEND_PORT:-5000}
 export PINE_LOGGING_CONFIG_FILE=$(realpath ${DIR}/../shared/logging.python.dev.json)
 
 pushd ${DIR} &>/dev/null
-pipenv install
+pipenv install --dev
 pipenv run python3 ./data/import_test_data.py
 popd &>/dev/null

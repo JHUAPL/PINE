@@ -1,5 +1,5 @@
-:mod:`pine.backend.job_manager.service`
-=======================================
+:py:mod:`pine.backend.job_manager.service`
+==========================================
 
 .. py:module:: pine.backend.job_manager.service
 
@@ -17,20 +17,30 @@ Classes
 
 
 
-.. data:: config
+
+Attributes
+~~~~~~~~~~
+
+.. autoapisummary::
+
+   pine.backend.job_manager.service.config
+   pine.backend.job_manager.service.logger
+   pine.backend.job_manager.service.sm
+
+
+.. py:data:: config
    
 
    
 
-.. data:: logger
+.. py:data:: logger
    
 
    
 
-.. class:: ServiceJob(job_id: str, request_body: dict, request_response: dict)
+.. py:class:: ServiceJob(job_id: str, request_body: dict, request_response: dict)
 
-
-   Bases: :class:`object`
+   Bases: :py:obj:`object`
 
    Data class for a service job.
 
@@ -41,127 +51,127 @@ Classes
    :param request_response: dict: job request response
 
 
-.. class:: ServiceManager(default_handler=None)
+.. py:class:: ServiceManager(default_handler=None)
 
+   Bases: :py:obj:`object`
 
-   Bases: :class:`object`
-
+   
    :type default_handler: callable
 
-   .. attribute:: r_pool
+   .. py:attribute:: r_pool
       
 
       
 
-   .. attribute:: r_conn
+   .. py:attribute:: r_conn
       
 
       
 
-   .. attribute:: redis_key_prefix
+   .. py:attribute:: redis_key_prefix
       
 
       
 
-   .. attribute:: redis_reg_key_prefix
+   .. py:attribute:: redis_reg_key_prefix
       
 
       
 
-   .. attribute:: redis_channels_key
+   .. py:attribute:: redis_channels_key
       
 
       
 
-   .. attribute:: redis_channel_ttl_key_prefix
+   .. py:attribute:: redis_channel_ttl_key_prefix
       
 
       
 
-   .. attribute:: redis_work_queue_key_prefix
+   .. py:attribute:: redis_work_queue_key_prefix
       
 
       
 
-   .. attribute:: redis_work_mutex_key_prefix
+   .. py:attribute:: redis_work_mutex_key_prefix
       
 
       
 
-   .. attribute:: redis_handler_mutex_key_prefix
+   .. py:attribute:: redis_handler_mutex_key_prefix
       
 
       
 
-   .. attribute:: redis_reg_key_ttl
+   .. py:attribute:: redis_reg_key_ttl
       
 
       
 
-   .. attribute:: redis_channels_key_ttl
+   .. py:attribute:: redis_channels_key_ttl
       
 
       
 
-   .. attribute:: redis_work_queue_key_ttl
+   .. py:attribute:: redis_work_queue_key_ttl
       
 
       
 
-   .. attribute:: redis_work_mutex_key_ttl
+   .. py:attribute:: redis_work_mutex_key_ttl
       
 
       
 
-   .. attribute:: redis_handler_mutex_key_ttl
+   .. py:attribute:: redis_handler_mutex_key_ttl
       
 
       
 
-   .. attribute:: handler_timeout
+   .. py:attribute:: handler_timeout
       
 
       
 
-   .. attribute:: registration_worker_name
+   .. py:attribute:: registration_worker_name
       :annotation: = registration_worker
 
       
 
-   .. attribute:: processing_worker_name
+   .. py:attribute:: processing_worker_name
       :annotation: = processing_worker
 
       
 
-   .. attribute:: channel_worker_name
+   .. py:attribute:: channel_worker_name
       :annotation: = channel_worker
 
       
 
-   .. attribute:: shutdown_channel
+   .. py:attribute:: shutdown_channel
       :annotation: = shutdown
 
       
 
-   .. attribute:: registration_channel
+   .. py:attribute:: registration_channel
       :annotation: = registration
 
       
 
-   .. attribute:: reserved_channels
+   .. py:attribute:: reserved_channels
       
 
       
 
-   .. method:: get_results_key(cls, service_name: str, job_id: str) -> str
+   .. py:method:: get_results_key(cls, service_name: str, job_id: str) -> str
       :classmethod:
 
 
-   .. method:: get_running_jobs_key(cls, service_name: str) -> str
+   .. py:method:: get_running_jobs_key(cls, service_name: str) -> str
       :classmethod:
 
 
-   .. method:: get_registered_channels(cls, include_ttl=False)
+   .. py:method:: get_registered_channels(cls, include_ttl=False)
       :classmethod:
 
       Get list of registered channels, with registration time if requested.
@@ -169,7 +179,7 @@ Classes
       :rtype: list[str] | dict[str, datetime]
 
 
-   .. method:: get_registered_service_details(cls, service_name=None)
+   .. py:method:: get_registered_service_details(cls, service_name=None)
       :classmethod:
 
       Get registration details of a service.
@@ -177,7 +187,7 @@ Classes
       :rtype: None | dict
 
 
-   .. method:: get_registered_services(cls, include_details=True)
+   .. py:method:: get_registered_services(cls, include_details=True)
       :classmethod:
 
       Get list of registered services and registration body if requested.
@@ -185,15 +195,15 @@ Classes
       :rtype: list[str] | list[dict]
 
 
-   .. method:: _get_service_details(cls, service_name: str, retry_count=10) -> dict
+   .. py:method:: _get_service_details(cls, service_name: str, retry_count=10) -> dict
       :classmethod:
 
 
-   .. method:: _get_service_channel(cls, service_name: str) -> str
+   .. py:method:: _get_service_channel(cls, service_name: str) -> str
       :classmethod:
 
 
-   .. method:: send_service_request(cls, service_name: str, data, job_id=None, encoder=None)
+   .. py:method:: send_service_request(cls, service_name: str, data, job_id=None, encoder=None)
       :classmethod:
 
       Queue's a job for the requested service.
@@ -204,7 +214,7 @@ Classes
       :rtype: None | dict
 
 
-   .. method:: get_job_response(cls, service_name: str, job_id: str, timeout_in_s: int)
+   .. py:method:: get_job_response(cls, service_name: str, job_id: str, timeout_in_s: int)
       :classmethod:
 
       Waits for a response for the given job and returns it.
@@ -214,7 +224,7 @@ Classes
       :rtype None | dict
 
 
-   .. method:: send_service_request_and_get_response(cls, service_name: str, data, timeout_in_s: int, job_id=None, encoder=None) -> pine.backend.job_manager.service.ServiceJob
+   .. py:method:: send_service_request_and_get_response(cls, service_name: str, data, timeout_in_s: int, job_id=None, encoder=None) -> ServiceJob
       :classmethod:
 
       Sends a service requests, waits for a response, and returns job data.
@@ -226,7 +236,7 @@ Classes
       :rtype None | ServiceJob
 
 
-   .. method:: get_running_jobs(cls, service_name: str) -> List[str]
+   .. py:method:: get_running_jobs(cls, service_name: str) -> List[str]
       :classmethod:
 
       Returns running jobs.
@@ -234,46 +244,46 @@ Classes
       :rtype list[str]
 
 
-   .. method:: start_listeners(self)
+   .. py:method:: start_listeners(self)
 
       Starts all the workers.
 
 
-   .. method:: stop_listeners(self)
+   .. py:method:: stop_listeners(self)
 
       Stops all the workers.
 
 
-   .. method:: _start_registration_listener(self)
+   .. py:method:: _start_registration_listener(self)
 
       Starts the registration worker.
       :rtype: bool
 
 
-   .. method:: _start_processing_listeners(self)
+   .. py:method:: _start_processing_listeners(self)
 
       Starts the processing workers.
       :rtype: bool
 
 
-   .. method:: _start_channel_watchdog(self)
+   .. py:method:: _start_channel_watchdog(self)
 
       Starts the channel watchdog workers in an asyncio-only thread. It monitors the channel TTL's.
       :rtype: bool
 
 
-   .. method:: _stop_channel_watchdog(self)
+   .. py:method:: _stop_channel_watchdog(self)
 
       Stops the channel watchdog workers in an asyncio-only thread.
       :rtype: bool
 
 
-   .. method:: _registration_listener(self)
+   .. py:method:: _registration_listener(self)
 
       Registration Listener Implementation.
 
 
-   .. method:: _channel_watchdog(self)
+   .. py:method:: _channel_watchdog(self)
       :async:
 
       Channel Watchdog Implementation.
@@ -281,21 +291,21 @@ Classes
       The other functionality is to register new channels as they're added to the pubsub in the processing listener.
 
 
-   .. method:: _thread_killer(thread_id)
+   .. py:method:: _thread_killer(thread_id)
       :staticmethod:
 
 
-   .. method:: _processing_listener_handler_wrapper(self, job_id, job_type, job_queue, job_data)
+   .. py:method:: _processing_listener_handler_wrapper(self, job_id, job_type, job_queue, job_data)
 
 
-   .. method:: _processing_listener(self)
+   .. py:method:: _processing_listener(self)
 
       Processing Listener Implementation.
       Runs a handler when a processing message gets send over an already registered channel.
 
 
 
-.. data:: sm
+.. py:data:: sm
    
 
    

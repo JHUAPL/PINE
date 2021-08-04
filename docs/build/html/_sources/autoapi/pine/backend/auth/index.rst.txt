@@ -1,5 +1,5 @@
-:mod:`pine.backend.auth`
-========================
+:py:mod:`pine.backend.auth`
+===========================
 
 .. py:module:: pine.backend.auth
 
@@ -32,20 +32,29 @@ Functions
    pine.backend.auth.is_flat
 
 
-.. function:: login_required(view)
+
+Attributes
+~~~~~~~~~~
+
+.. autoapisummary::
+
+   pine.backend.auth.module
 
 
-.. function:: admin_required(view)
+.. py:function:: login_required(view)
 
 
-.. data:: module
+.. py:function:: admin_required(view)
+
+
+.. py:data:: module
    
 
    
 
-.. function:: get_logged_in_user()
+.. py:function:: get_logged_in_user()
 
 
-.. function:: is_flat()
+.. py:function:: is_flat()
 
 

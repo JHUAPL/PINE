@@ -1,6 +1,6 @@
 {
   "name": "pine_test",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "scripts": {
     "cypress:open": "cypress open",
     "cypress:record": "cypress run --record",
@@ -13,8 +13,8 @@
   },
   "private": true,
   "devDependencies": {
-    "cypress": "^6.8.0",
-    "mocha": "^8.3.2",
+    "cypress": "^8.1.0",
+    "mocha": "^9.0.3",
     "mochawesome": "^6.2.2",
     "mochawesome-merge": "^4.2.0",
     "mochawesome-report-generator": "^5.2.0"

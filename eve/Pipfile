@@ -6,12 +6,12 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-Eve = "*"
-Flask-Cors = "*"
-python-json-logger = "*"
-requests = "*"
+eve = "~=1.1.5"
+requests = "~=2.26.0"
+flask-cors = "~=3.0.10"
+python-json-logger = "~=2.0.2"
 
 [dev-packages]
 
 [requires]
-python_version = "3.6"
+python_version = "3.8"

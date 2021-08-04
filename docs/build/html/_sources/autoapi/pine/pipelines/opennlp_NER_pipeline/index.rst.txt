@@ -1,5 +1,5 @@
-:mod:`pine.pipelines.opennlp_NER_pipeline`
-==========================================
+:py:mod:`pine.pipelines.opennlp_NER_pipeline`
+=============================================
 
 .. py:module:: pine.pipelines.opennlp_NER_pipeline
 
@@ -16,110 +16,119 @@ Classes
 
 
 
-.. data:: config
+
+Attributes
+~~~~~~~~~~
+
+.. autoapisummary::
+
+   pine.pipelines.opennlp_NER_pipeline.config
+   pine.pipelines.opennlp_NER_pipeline.logger
+
+
+.. py:data:: config
    
 
    
 
-.. data:: logger
+.. py:data:: logger
    
 
    
 
-.. class:: opennlp_NER(java_dir=None, ner_path=None, tmp_dir=None)
+.. py:class:: opennlp_NER(java_dir=None, ner_path=None, tmp_dir=None)
 
+   Bases: :py:obj:`pine.pipelines.pipeline.Pipeline`
 
-   Bases: :class:`pine.pipelines.pipeline.Pipeline`
-
-   .. attribute:: __ner_path
+   .. py:attribute:: __ner_path
       :annotation: = 
 
       
 
-   .. attribute:: __jdk_dir
+   .. py:attribute:: __jdk_dir
       :annotation: = 
 
       
 
-   .. attribute:: __temp_dir
+   .. py:attribute:: __temp_dir
       
 
       
 
-   .. attribute:: __train_file
+   .. py:attribute:: __train_file
       :annotation: = 
 
       
 
-   .. attribute:: __test_file
+   .. py:attribute:: __test_file
       :annotation: = 
 
       
 
-   .. attribute:: __model
+   .. py:attribute:: __model
       
 
       
 
-   .. attribute:: __nameFinder
+   .. py:attribute:: __nameFinder
       
 
       
 
-   .. attribute:: __id
+   .. py:attribute:: __id
       
 
       
 
-   .. attribute:: __is_setup
+   .. py:attribute:: __is_setup
       :annotation: = False
 
       
 
-   .. method:: setup(cls, java_dir=None, ner_path=None)
+   .. py:method:: setup(cls, java_dir=None, ner_path=None)
       :classmethod:
 
 
-   .. method:: status(self) -> dict
+   .. py:method:: status(self) -> dict
 
 
-   .. method:: fit(self, X, y, **params)
+   .. py:method:: fit(self, X, y, **params)
 
 
-   .. method:: predict(self, X: Iterable[str]) -> List[DocumentPredictions]
+   .. py:method:: predict(self, X: Iterable[str]) -> List[pine.pipelines.pipeline.DocumentPredictions]
 
 
-   .. method:: predict_proba(self, X: Iterable[str], **kwargs) -> List[DocumentPredictionProbabilities]
+   .. py:method:: predict_proba(self, X: Iterable[str], **kwargs) -> List[pine.pipelines.pipeline.DocumentPredictionProbabilities]
 
 
-   .. method:: next_example(self, X, Xid)
+   .. py:method:: next_example(self, X, Xid)
 
 
-   .. method:: save_model(self, model_name)
+   .. py:method:: save_model(self, model_name)
 
 
-   .. method:: load_model(self, model_name)
+   .. py:method:: load_model(self, model_name)
 
 
-   .. method:: find_all_init(self)
+   .. py:method:: find_all_init(self)
 
 
-   .. method:: find_all(self, tokens)
+   .. py:method:: find_all(self, tokens)
 
 
-   .. method:: get_id(self)
+   .. py:method:: get_id(self)
 
 
-   .. method:: format_data(self, X, y)
+   .. py:method:: format_data(self, X, y)
 
 
-   .. method:: convert_ann_collection_to_per_token(self, annotations: List[Union[NerPrediction, typing.Tuple[int, int, str]]], tokens)
+   .. py:method:: convert_ann_collection_to_per_token(self, annotations: List[Union[pine.pipelines.pipeline.NerPrediction, Tuple[int, int, str]]], tokens)
 
 
-   .. method:: evaluate(self, X, y, Xid)
+   .. py:method:: evaluate(self, X, y, Xid)
 
 
-   .. method:: evaluate_orig(self, X, y, Xid)
+   .. py:method:: evaluate_orig(self, X, y, Xid)
 
 
 

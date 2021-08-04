@@ -3,7 +3,7 @@
 ## Developer Environment
 
 Required packages:
-* python 3.6
+* python 3.8
 * pipenv
 * make
 

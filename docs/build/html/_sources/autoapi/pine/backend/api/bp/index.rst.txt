@@ -1,5 +1,5 @@
-:mod:`pine.backend.api.bp`
-==========================
+:py:mod:`pine.backend.api.bp`
+=============================
 
 .. py:module:: pine.backend.api.bp
 
@@ -19,25 +19,35 @@ Functions
    pine.backend.api.bp.init_app
 
 
-.. data:: bp
+
+Attributes
+~~~~~~~~~~
+
+.. autoapisummary::
+
+   pine.backend.api.bp.bp
+   pine.backend.api.bp.LOGGER
+
+
+.. py:data:: bp
    
 
    
 
-.. data:: LOGGER
+.. py:data:: LOGGER
    
 
    
 
-.. function:: openapi_spec()
+.. py:function:: openapi_spec()
 
 
-.. function:: swagger_ui_index()
+.. py:function:: swagger_ui_index()
 
 
-.. function:: swagger_ui(file: str)
+.. py:function:: swagger_ui(file: str)
 
 
-.. function:: init_app(app)
+.. py:function:: init_app(app)
 
 

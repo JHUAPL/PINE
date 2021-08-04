@@ -1,5 +1,5 @@
-:mod:`pine.pipelines.NER_API`
-=============================
+:py:mod:`pine.pipelines.NER_API`
+================================
 
 .. py:module:: pine.pipelines.NER_API
 
@@ -16,31 +16,40 @@ Classes
 
 
 
-.. data:: logger
+
+Attributes
+~~~~~~~~~~
+
+.. autoapisummary::
+
+   pine.pipelines.NER_API.logger
+   pine.pipelines.NER_API.config
+
+
+.. py:data:: logger
    
 
    
 
-.. data:: config
+.. py:data:: config
    
 
    
 
-.. class:: ner_api
+.. py:class:: ner_api
+
+   Bases: :py:obj:`object`
+
+   .. py:method:: status(self, classifier_id: str, pipeline_name: str) -> dict
 
 
-   Bases: :class:`object`
-
-   .. method:: status(self, classifier_id: str, pipeline_name: str) -> dict
+   .. py:method:: perform_fold(self, model: pine.pipelines.pmap_ner.NER, train_data, test_data, **pipeline_parameters)
 
 
-   .. method:: perform_fold(self, model: pine.pipelines.pmap_ner.NER, train_data, test_data, **pipeline_parameters)
+   .. py:method:: perform_five_fold(self, model: pine.pipelines.pmap_ner.NER, documents, annotations, doc_ids, **pipeline_parameters)
 
 
-   .. method:: perform_five_fold(self, model: pine.pipelines.pmap_ner.NER, documents, annotations, doc_ids, **pipeline_parameters)
-
-
-   .. method:: get_document_ranking(self, model: pine.pipelines.pmap_ner.NER, doc_map: Dict[(str, str)], doc_ids: List[str]) -> List[str]
+   .. py:method:: get_document_ranking(self, model: pine.pipelines.pmap_ner.NER, doc_map: Dict[str, str], doc_ids: List[str]) -> List[str]
 
       Calculates document rankings and returns document IDs sorted by ranking.
 
@@ -55,13 +64,13 @@ Classes
       :rtype: list
 
 
-   .. method:: get_classifier_pipeline_metrics_objs(self, classifier_id)
+   .. py:method:: get_classifier_pipeline_metrics_objs(self, classifier_id)
 
 
-   .. method:: train_model(self, custom_filename, classifier_id, pipeline_name)
+   .. py:method:: train_model(self, custom_filename, classifier_id, pipeline_name)
 
 
-   .. method:: predict(self, classifier_id: str, pipeline_name: str, document_ids: List[str], texts: List[str])
+   .. py:method:: predict(self, classifier_id: str, pipeline_name: str, document_ids: List[str], texts: List[str])
 
 
 

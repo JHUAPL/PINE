@@ -1,5 +1,5 @@
-:mod:`pine.backend.log`
-=======================
+:py:mod:`pine.backend.log`
+==========================
 
 .. py:module:: pine.backend.log
 
@@ -35,103 +35,114 @@ Functions
    pine.backend.log.access
 
 
-.. data:: CONFIG_FILE_ENV
+
+Attributes
+~~~~~~~~~~
+
+.. autoapisummary::
+
+   pine.backend.log.CONFIG_FILE_ENV
+   pine.backend.log.ACCESS_LOGGER_NAME
+   pine.backend.log.ACCESS_LOGGER
+
+
+.. py:data:: CONFIG_FILE_ENV
    :annotation: = PINE_LOGGING_CONFIG_FILE
 
    
 
-.. data:: ACCESS_LOGGER_NAME
+.. py:data:: ACCESS_LOGGER_NAME
    :annotation: = pine.access
 
    
 
-.. data:: ACCESS_LOGGER
+.. py:data:: ACCESS_LOGGER
    
 
    
 
-.. class:: Action
+.. py:class:: Action
 
-   Bases: :class:`enum.Enum`
+   Bases: :py:obj:`enum.Enum`
 
    Generic enumeration.
 
    Derive from this class to define new enumerations.
 
-   .. attribute:: LOGIN
+   .. py:attribute:: LOGIN
       
 
       
 
-   .. attribute:: LOGOUT
+   .. py:attribute:: LOGOUT
       
 
       
 
-   .. attribute:: CREATE_COLLECTION
+   .. py:attribute:: CREATE_COLLECTION
       
 
       
 
-   .. attribute:: VIEW_DOCUMENT
+   .. py:attribute:: VIEW_DOCUMENT
       
 
       
 
-   .. attribute:: ADD_DOCUMENT
+   .. py:attribute:: ADD_DOCUMENT
       
 
       
 
-   .. attribute:: ADD_DOCUMENTS
+   .. py:attribute:: ADD_DOCUMENTS
       
 
       
 
-   .. attribute:: ANNOTATE_DOCUMENT
+   .. py:attribute:: ANNOTATE_DOCUMENT
       
 
       
 
-   .. attribute:: ANNOTATE_DOCUMENTS
+   .. py:attribute:: ANNOTATE_DOCUMENTS
       
 
       
 
 
-.. function:: setup_logging()
+.. py:function:: setup_logging()
 
 
-.. function:: get_flask_request_info()
+.. py:function:: get_flask_request_info()
 
 
-.. function:: get_flask_logged_in_user()
+.. py:function:: get_flask_logged_in_user()
 
 
-.. function:: access_flask_login()
+.. py:function:: access_flask_login()
 
 
-.. function:: access_flask_logout(user: dict)
+.. py:function:: access_flask_logout(user: dict)
 
 
-.. function:: access_flask_add_collection(collection: dict)
+.. py:function:: access_flask_add_collection(collection: dict)
 
 
-.. function:: access_flask_view_document(document: dict)
+.. py:function:: access_flask_view_document(document: dict)
 
 
-.. function:: access_flask_add_document(document: dict)
+.. py:function:: access_flask_add_document(document: dict)
 
 
-.. function:: access_flask_add_documents(documents: List[dict])
+.. py:function:: access_flask_add_documents(documents: List[dict])
 
 
-.. function:: access_flask_annotate_document(annotation)
+.. py:function:: access_flask_annotate_document(annotation)
 
 
-.. function:: access_flask_annotate_documents(annotations: List[dict])
+.. py:function:: access_flask_annotate_documents(annotations: List[dict])
 
 
-.. function:: access(action, user, request_info, message, **extra_info)
+.. py:function:: access(action, user, request_info, message, **extra_info)
 
 

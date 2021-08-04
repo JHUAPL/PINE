@@ -1,5 +1,5 @@
-:mod:`pine.backend.documents`
-=============================
+:py:mod:`pine.backend.documents`
+================================
 
 .. py:module:: pine.backend.documents
 
@@ -28,15 +28,16 @@ Functions
    pine.backend.documents.get_user_permissions_by_ids
 
 
-.. function:: get_collection_ids_for(document_ids) -> List[str]
+
+.. py:function:: get_collection_ids_for(document_ids) -> List[str]
 
 
-.. function:: get_user_permissions(document: dict) -> pine.backend.models.CollectionUserPermissions
+.. py:function:: get_user_permissions(document: dict) -> pine.backend.models.CollectionUserPermissions
 
 
-.. function:: get_user_permissions_by_id(document_id: str) -> pine.backend.models.CollectionUserPermissions
+.. py:function:: get_user_permissions_by_id(document_id: str) -> pine.backend.models.CollectionUserPermissions
 
 
-.. function:: get_user_permissions_by_ids(document_ids: Iterable[str]) -> List[models.CollectionUserPermissions]
+.. py:function:: get_user_permissions_by_ids(document_ids: Iterable[str]) -> List[pine.backend.models.CollectionUserPermissions]
 
 

@@ -1,5 +1,5 @@
-:mod:`pine.backend.auth.eve`
-============================
+:py:mod:`pine.backend.auth.eve`
+===============================
 
 .. py:module:: pine.backend.auth.eve
 
@@ -17,58 +17,57 @@ Classes
 
 
 
-.. class:: EveUser(data)
 
+.. py:class:: EveUser(data)
 
-   Bases: :class:`pine.backend.models.AuthUser`
+   Bases: :py:obj:`pine.backend.models.AuthUser`
 
-   .. method:: id(self)
+   .. py:method:: id(self)
       :property:
 
 
-   .. method:: username(self)
+   .. py:method:: username(self)
       :property:
 
 
-   .. method:: display_name(self)
+   .. py:method:: display_name(self)
       :property:
 
 
-   .. method:: is_admin(self)
+   .. py:method:: is_admin(self)
       :property:
 
 
-   .. method:: get_details(self) -> pine.backend.models.UserDetails
+   .. py:method:: get_details(self) -> pine.backend.models.UserDetails
 
 
 
-.. class:: EveModule(app, bp)
+.. py:class:: EveModule(app, bp)
+
+   Bases: :py:obj:`pine.backend.auth.bp.AuthModule`
+
+   .. py:method:: is_flat(self) -> bool
 
 
-   Bases: :class:`pine.backend.auth.bp.AuthModule`
-
-   .. method:: is_flat(self) -> bool
+   .. py:method:: can_manage_users(self) -> bool
 
 
-   .. method:: can_manage_users(self) -> bool
+   .. py:method:: get_logged_in_user_details(self)
 
 
-   .. method:: get_logged_in_user_details(self)
+   .. py:method:: update_user_details(self)
 
 
-   .. method:: update_user_details(self)
+   .. py:method:: update_user_password(self)
 
 
-   .. method:: update_user_password(self)
+   .. py:method:: get_login_form(self) -> pine.backend.models.LoginForm
 
 
-   .. method:: get_login_form(self) -> pine.backend.models.LoginForm
+   .. py:method:: login(self) -> flask.Response
 
 
-   .. method:: login(self) -> flask.Response
-
-
-   .. method:: get_all_users(self)
+   .. py:method:: get_all_users(self)
 
 
 

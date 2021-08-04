@@ -1,5 +1,5 @@
-:mod:`pine.client.client`
-=========================
+:py:mod:`pine.client.client`
+============================
 
 .. py:module:: pine.client.client
 
@@ -32,7 +32,8 @@ Functions
    pine.client.client._standardize_path
 
 
-.. function:: _standardize_path(path: str, *additional_paths: List[str]) -> List[str]
+
+.. py:function:: _standardize_path(path: str, *additional_paths: List[str]) -> List[str]
 
    Standardize path(s) into a list of path components.
 
@@ -45,10 +46,9 @@ Functions
    :rtype: list(str)
 
 
-.. class:: BaseClient(base_uri: str, name: str = None, verify_ssl: bool = True)
+.. py:class:: BaseClient(base_uri: str, name: str = None, verify_ssl: bool = True)
 
-
-   Bases: :class:`object`
+   Bases: :py:obj:`object`
 
    Base class for a client using a REST interface.
        
@@ -63,12 +63,12 @@ Functions
                       are fully aware of the security consequences
    :type verify_ssl: bool, optional
 
-   .. attribute:: __metaclass__
+   .. py:attribute:: __metaclass__
       
 
       
 
-   .. attribute:: base_uri
+   .. py:attribute:: base_uri
       :annotation: :str
 
       The server's base URI.
@@ -76,7 +76,7 @@ Functions
       :type: str
 
 
-   .. attribute:: session
+   .. py:attribute:: session
       :annotation: :requests.Session
 
       The currently open session, or ``None``.
@@ -84,7 +84,7 @@ Functions
       :type: requests.Session
 
 
-   .. attribute:: verify_ssl
+   .. py:attribute:: verify_ssl
       :annotation: :bool
 
       Whether to verify SSL/HTTPS calls.  If you turn this off you should be fully aware of the
@@ -93,7 +93,7 @@ Functions
       :type: bool
 
 
-   .. method:: is_valid(self) -> bool
+   .. py:method:: is_valid(self) -> bool
       :abstractmethod:
 
       Returns whether this client and its connection(s) are valid.
@@ -102,7 +102,7 @@ Functions
       :rtype: bool
 
 
-   .. method:: uri(self, path: str, *additional_paths: List[str]) -> str
+   .. py:method:: uri(self, path: str, *additional_paths: List[str]) -> str
 
       Makes a complete URI from the given path(s).
 
@@ -115,7 +115,7 @@ Functions
       :rtype: str
 
 
-   .. method:: _req(self, method: str, path: str, *additional_paths: List[str], **kwargs) -> requests.Response
+   .. py:method:: _req(self, method: str, path: str, *additional_paths: List[str], **kwargs) -> requests.Response
 
       Makes a :py:mod:`requests` call, checks for errors, and returns the response.
 
@@ -134,7 +134,7 @@ Functions
       :rtype: requests.Response
 
 
-   .. method:: get(self, path: str, *additional_paths: List[str], **kwargs) -> requests.Response
+   .. py:method:: get(self, path: str, *additional_paths: List[str], **kwargs) -> requests.Response
 
       Makes a :py:mod:`requests` ``GET`` call, checks for errors, and returns the response.
 
@@ -151,7 +151,7 @@ Functions
       :rtype: requests.Response
 
 
-   .. method:: put(self, path: str, *additional_paths: List[str], **kwargs) -> requests.Response
+   .. py:method:: put(self, path: str, *additional_paths: List[str], **kwargs) -> requests.Response
 
       Makes a :py:mod:`requests` ``PUT`` call, checks for errors, and returns the response.
 
@@ -168,7 +168,7 @@ Functions
       :rtype: requests.Response
 
 
-   .. method:: patch(self, path: str, *additional_paths: List[str], **kwargs) -> requests.Response
+   .. py:method:: patch(self, path: str, *additional_paths: List[str], **kwargs) -> requests.Response
 
       Makes a :py:mod:`requests` ``PATCH`` call, checks for errors, and returns the response.
 
@@ -185,7 +185,7 @@ Functions
       :rtype: requests.Response
 
 
-   .. method:: post(self, path: str, *additional_paths: List[str], **kwargs) -> requests.Response
+   .. py:method:: post(self, path: str, *additional_paths: List[str], **kwargs) -> requests.Response
 
       Makes a :py:mod:`requests` ``POST`` call, checks for errors, and returns the response.
 
@@ -202,7 +202,7 @@ Functions
       :rtype: requests.Response
 
 
-   .. method:: delete(self, path: str, *additional_paths: List[str], **kwargs) -> requests.Response
+   .. py:method:: delete(self, path: str, *additional_paths: List[str], **kwargs) -> requests.Response
 
       Makes a :py:mod:`requests` ``DELETE`` call, checks for errors, and returns the response.
 
@@ -220,10 +220,9 @@ Functions
 
 
 
-.. class:: EveClient(eve_base_uri: str, mongo_base_uri: str = None, mongo_dbname: str = DEFAULT_DBNAME, verify_ssl: bool = True)
+.. py:class:: EveClient(eve_base_uri: str, mongo_base_uri: str = None, mongo_dbname: str = DEFAULT_DBNAME, verify_ssl: bool = True)
 
-
-   Bases: :class:`pine.client.client.BaseClient`
+   Bases: :py:obj:`BaseClient`
 
    A client to access Eve and, optionally, its underlying MongoDB instance.
        
@@ -240,7 +239,7 @@ Functions
                       are fully aware of the security consequences
    :type verify_ssl: bool, optional
 
-   .. attribute:: DEFAULT_DBNAME
+   .. py:attribute:: DEFAULT_DBNAME
       :annotation: :str = pmap_nlp
 
       The default DB name used by PINE.
@@ -248,7 +247,7 @@ Functions
       :type: str
 
 
-   .. attribute:: mongo_base_uri
+   .. py:attribute:: mongo_base_uri
       :annotation: :str
 
       The base URI for the MongoDB server.
@@ -256,7 +255,7 @@ Functions
       :type: str
 
 
-   .. attribute:: mongo
+   .. py:attribute:: mongo
       :annotation: :pymongo.MongoClient
 
       The :py:class:`pymongo.mongo_client.MongoClient` instance.
@@ -264,7 +263,7 @@ Functions
       :type: pymongo.mongo_client.MongoClient
 
 
-   .. attribute:: mongo_db
+   .. py:attribute:: mongo_db
       :annotation: :pymongo.database.Database
 
       The :py:class:`pymongo.database.Database` instance.
@@ -272,7 +271,7 @@ Functions
       :type: pymongo.database.Database
 
 
-   .. method:: is_valid(self) -> bool
+   .. py:method:: is_valid(self) -> bool
 
       Returns whether this client and its connection(s) are valid.
 
@@ -280,7 +279,7 @@ Functions
       :rtype: bool
 
 
-   .. method:: ping(self) -> Any
+   .. py:method:: ping(self) -> Any
 
       Pings the eve server and returns the result.
 
@@ -289,7 +288,7 @@ Functions
       :returns: the JSON response from the server (probably ``"pong"``)
 
 
-   .. method:: about(self) -> dict
+   .. py:method:: about(self) -> dict
 
       Returns the 'about' dict from the server.
 
@@ -299,7 +298,7 @@ Functions
       :rtype: dict
 
 
-   .. method:: get_resource(self, resource: str, resource_id: str) -> dict
+   .. py:method:: get_resource(self, resource: str, resource_id: str) -> dict
 
       Gets a resource from eve by its ID.
 
@@ -309,7 +308,7 @@ Functions
       :rtype: dict
 
 
-   .. method:: _add_or_replace_resource(self, resource: str, obj: dict, valid_fn: Callable[([dict, typing.Callable[[str], None]], bool)] = None) -> str
+   .. py:method:: _add_or_replace_resource(self, resource: str, obj: dict, valid_fn: Callable[[dict, Callable[[str], None]], bool] = None) -> str
 
       Adds or replaces the given resource.
 
@@ -327,7 +326,7 @@ Functions
       :rtype: str
 
 
-   .. method:: _add_resources(self, resource: str, objs: List[dict], valid_fn: Callable[([dict, typing.Callable[[str], None]], bool)] = None, replace_if_exists: bool = False)
+   .. py:method:: _add_resources(self, resource: str, objs: List[dict], valid_fn: Callable[[dict, Callable[[str], None]], bool] = None, replace_if_exists: bool = False)
 
       Tries to add all the resource objects at once, optionally falling back to individual replacement if that fails.
 
@@ -347,7 +346,7 @@ Functions
       :rtype: list(str)
 
 
-   .. method:: add_users(self, users: List[dict], replace_if_exists=False) -> List[str]
+   .. py:method:: add_users(self, users: List[dict], replace_if_exists=False) -> List[str]
 
       Adds the given users.
 
@@ -363,7 +362,7 @@ Functions
       :rtype: list(str)
 
 
-   .. method:: get_users(self)
+   .. py:method:: get_users(self)
 
       Gets all users.
 
@@ -373,7 +372,7 @@ Functions
       :rtype: list(dict)
 
 
-   .. method:: add_pipelines(self, pipelines: List[dict], replace_if_exists=False) -> List[str]
+   .. py:method:: add_pipelines(self, pipelines: List[dict], replace_if_exists=False) -> List[str]
 
       Adds the given pipelines.
 
@@ -390,10 +389,9 @@ Functions
 
 
 
-.. class:: PineClient(backend_base_uri: str, verify_ssl: bool = True)
+.. py:class:: PineClient(backend_base_uri: str, verify_ssl: bool = True)
 
-
-   Bases: :class:`pine.client.client.BaseClient`
+   Bases: :py:obj:`BaseClient`
 
    A client to access PINE (more specifically: the backend).
        
@@ -406,7 +404,7 @@ Functions
                       are fully aware of the security consequences
    :type verify_ssl: bool, optional
 
-   .. method:: is_valid(self) -> bool
+   .. py:method:: is_valid(self) -> bool
 
       Returns whether this client and its connection(s) are valid.
 
@@ -414,7 +412,7 @@ Functions
       :rtype: bool
 
 
-   .. method:: ping(self) -> Any
+   .. py:method:: ping(self) -> Any
 
       Pings the backend server and returns the result.
 
@@ -423,7 +421,7 @@ Functions
       :returns: the JSON response from the server (probably ``"pong"``)
 
 
-   .. method:: about(self) -> dict
+   .. py:method:: about(self) -> dict
 
       Returns the 'about' dict from the server.
 
@@ -433,7 +431,7 @@ Functions
       :rtype: dict
 
 
-   .. method:: get_logged_in_user(self) -> dict
+   .. py:method:: get_logged_in_user(self) -> dict
 
       Returns the currently logged in user, or None if not logged in.
 
@@ -443,7 +441,7 @@ Functions
       :rtype: dict
 
 
-   .. method:: get_my_user_id(self) -> str
+   .. py:method:: get_my_user_id(self) -> str
 
       Returns the ID of the logged in user, or None if not logged in.
 
@@ -453,7 +451,7 @@ Functions
       :rtype: str
 
 
-   .. method:: is_logged_in(self) -> bool
+   .. py:method:: is_logged_in(self) -> bool
 
       Returns whether the user is currently logged in or not.
 
@@ -463,7 +461,7 @@ Functions
       :rtype: bool
 
 
-   .. method:: _check_login(self)
+   .. py:method:: _check_login(self)
 
       Checks whether user is logged in and raises an :py:class:`.exceptions.PineClientAuthException` if not.
 
@@ -471,7 +469,7 @@ Functions
       :raises exceptions.PineClientHttpException: if the HTTP request returns an error
 
 
-   .. method:: get_auth_module(self) -> str
+   .. py:method:: get_auth_module(self) -> str
 
       Returns the PINE authentication module, e.g. ``"eve"``.
 
@@ -481,7 +479,7 @@ Functions
       :rtype: str
 
 
-   .. method:: login_eve(self, username: str, password: str) -> bool
+   .. py:method:: login_eve(self, username: str, password: str) -> bool
 
       Logs in using eve credentials, and returns whether it was successful.
 
@@ -497,7 +495,7 @@ Functions
       :rtype: bool
 
 
-   .. method:: authorize_vegas(self, json_token: dict) -> bool
+   .. py:method:: authorize_vegas(self, json_token: dict) -> bool
 
       Logs in using a VEGAS token, and returns whether it was successful.
 
@@ -514,14 +512,14 @@ Functions
       :rtype: bool
 
 
-   .. method:: logout(self)
+   .. py:method:: logout(self)
 
       Logs out the current user.
 
       :raises exceptions.PineClientHttpException: if the HTTP request returns an error
 
 
-   .. method:: get_pipelines(self) -> List[dict]
+   .. py:method:: get_pipelines(self) -> List[dict]
 
       Returns all pipelines accessible to logged in user.
 
@@ -532,7 +530,7 @@ Functions
       :rtype: list(dict)
 
 
-   .. method:: get_pipeline_status(self, pipeline_id: str) -> dict
+   .. py:method:: get_pipeline_status(self, pipeline_id: str) -> dict
 
       Returns status for the given pipeline.
 
@@ -541,7 +539,7 @@ Functions
       :rtype: dict
 
 
-   .. method:: collection_builder(self, **kwargs: dict) -> pine.client.models.CollectionBuilder
+   .. py:method:: collection_builder(self, **kwargs: dict) -> pine.client.models.CollectionBuilder
 
       Makes and returns a new :py:class:`.models.CollectionBuilder` with the logged in user.
 
@@ -552,7 +550,7 @@ Functions
       :rtype: models.CollectionBuilder
 
 
-   .. method:: create_collection(self, builder: pine.client.models.CollectionBuilder) -> str
+   .. py:method:: create_collection(self, builder: pine.client.models.CollectionBuilder) -> str
 
       Creates a collection using the current value of the given builder and returns its ID.
 
@@ -567,7 +565,7 @@ Functions
       :rtype: str
 
 
-   .. method:: archive_collection(self, collection_id: str, archive: bool = True) -> dict
+   .. py:method:: archive_collection(self, collection_id: str, archive: bool = True) -> dict
 
       Archives or unarchives the given collection.
 
@@ -577,7 +575,7 @@ Functions
       :rtype: dict
 
 
-   .. method:: get_collection_permissions(self, collection_id: str) -> pine.client.models.CollectionUserPermissions
+   .. py:method:: get_collection_permissions(self, collection_id: str) -> pine.client.models.CollectionUserPermissions
 
       Returns collection permissions for the logged in user.
 
@@ -588,7 +586,7 @@ Functions
       :rtype: models.CollectionUserPermissions
 
 
-   .. method:: get_collection_documents(self, collection_id: str, truncate: bool, truncate_length: int = 30) -> List[dict]
+   .. py:method:: get_collection_documents(self, collection_id: str, truncate: bool, truncate_length: int = 30) -> List[dict]
 
       Returns all the documents in the given collection.
 
@@ -603,7 +601,7 @@ Functions
       :rtype: list(dict)
 
 
-   .. method:: get_collection_classifier(self, collection_id: str) -> dict
+   .. py:method:: get_collection_classifier(self, collection_id: str) -> dict
 
       Returns the classifier associated with the given collection.
 
@@ -614,7 +612,7 @@ Functions
       :rtype: dict
 
 
-   .. method:: get_next_document(self, classifier_id: str) -> str
+   .. py:method:: get_next_document(self, classifier_id: str) -> str
 
       Returns the 'next' document associated with the given classifier.
 
@@ -626,7 +624,7 @@ Functions
       :rtype: str
 
 
-   .. method:: advance_next_document(self, classifier_id: str, document_id: str) -> dict
+   .. py:method:: advance_next_document(self, classifier_id: str, document_id: str) -> dict
 
       Advances the 'next' document associated with the given classifier by marking the
       given document as annotated.
@@ -640,7 +638,7 @@ Functions
       :rtype: dict
 
 
-   .. method:: add_document(self, document: dict = {}, creator_id: str = None, collection_id: str = None, overlap: int = None, text: str = None, metadata: dict = None) -> str
+   .. py:method:: add_document(self, document: dict = {}, creator_id: str = None, collection_id: str = None, overlap: int = None, text: str = None, metadata: dict = None) -> str
 
       Adds a new document to a collection and returns its ID.
 
@@ -669,7 +667,7 @@ Functions
       :rtype: str
 
 
-   .. method:: add_documents(self, documents: List[dict], creator_id: str = None, collection_id: str = None) -> List[str]
+   .. py:method:: add_documents(self, documents: List[dict], creator_id: str = None, collection_id: str = None) -> List[str]
 
       Adds multiple documents at once and returns their IDs.
 
@@ -690,7 +688,7 @@ Functions
       :rtype: list(str)
 
 
-   .. method:: delete_document(self, document_id: str) -> dict
+   .. py:method:: delete_document(self, document_id: str) -> dict
 
       Deletes the document and associated data with the given ID.
 
@@ -699,7 +697,7 @@ Functions
       :rtype: dict
 
 
-   .. method:: delete_documents(self, document_ids: List[str]) -> dict
+   .. py:method:: delete_documents(self, document_ids: List[str]) -> dict
 
       Deletes the documents and associated data with the given IDs.
 
@@ -708,7 +706,7 @@ Functions
       :rtype: dict
 
 
-   .. method:: annotate_document(self, document_id: str, doc_annotations: List[str], ner_annotations: List[Union[dict, list, tuple]], update_iaa: bool = True) -> str
+   .. py:method:: annotate_document(self, document_id: str, doc_annotations: List[str], ner_annotations: List[Union[dict, list, tuple]], update_iaa: bool = True) -> str
 
       Annotates the given document with the given values.
 
@@ -729,7 +727,7 @@ Functions
       :rtype: str
 
 
-   .. method:: annotate_collection_documents(self, collection_id: str, document_annotations: dict, skip_document_updates=False, update_iaa=True) -> List[str]
+   .. py:method:: annotate_collection_documents(self, collection_id: str, document_annotations: dict, skip_document_updates=False, update_iaa=True) -> List[str]
 
       Annotates documents in a collection.
 
@@ -752,7 +750,7 @@ Functions
       :rtype: list(str)
 
 
-   .. method:: get_my_document_annotations(self, document_id: str) -> List[List[dict]]
+   .. py:method:: get_my_document_annotations(self, document_id: str) -> List[List[dict]]
 
       Returns annotations for the given document for the logged in user.
 
@@ -767,7 +765,7 @@ Functions
       :rtype: list(list(dict))
 
 
-   .. method:: get_others_document_annotations(self, document_id: str) -> List[List]
+   .. py:method:: get_others_document_annotations(self, document_id: str) -> List[List]
 
       Returns annotations for the given document for users other than the logged in user.
 
@@ -782,7 +780,7 @@ Functions
       :rtype: list(list(dict))
 
 
-   .. method:: list_collections(self, include_archived: bool = False) -> List[dict]
+   .. py:method:: list_collections(self, include_archived: bool = False) -> List[dict]
 
       Returns a list of user's collections.
 
@@ -796,7 +794,7 @@ Functions
       :rtype: list(dict)
 
 
-   .. method:: get_collection(self, collection_id: str) -> dict
+   .. py:method:: get_collection(self, collection_id: str) -> dict
 
       Returns the collection with the given ID.
 
@@ -805,7 +803,7 @@ Functions
       :rtype: dict
 
 
-   .. method:: get_collection_iaa_report(self, collection_id: str) -> dict
+   .. py:method:: get_collection_iaa_report(self, collection_id: str) -> dict
 
       Returns IAA (inter-annotation agreement) report for the given collection.
 
@@ -816,7 +814,7 @@ Functions
       :rtype: dict
 
 
-   .. method:: download_collection_data(self, collection_id: str, include_collection_metadata: bool = True, include_document_metadata: bool = True, include_document_text: bool = True, include_annotations: bool = True, include_annotation_latest_version_only: bool = True)
+   .. py:method:: download_collection_data(self, collection_id: str, include_collection_metadata: bool = True, include_document_metadata: bool = True, include_document_text: bool = True, include_annotations: bool = True, include_annotation_latest_version_only: bool = True)
 
       Downloads collection data.
 
@@ -843,7 +841,7 @@ Functions
       :rtype: dict
 
 
-   .. method:: get_classifier_status(self, classifier_id: str) -> dict
+   .. py:method:: get_classifier_status(self, classifier_id: str) -> dict
 
       Returns the status for the given classifier.
 
@@ -852,7 +850,7 @@ Functions
       :rtype: dict
 
 
-   .. method:: classifier_train(self, classifier_id: str, model_name: str = 'auto-trained') -> dict
+   .. py:method:: classifier_train(self, classifier_id: str, model_name: str = 'auto-trained') -> dict
 
       Trains the given classifier (using collection documents).
 
@@ -868,7 +866,7 @@ Functions
       :rtype: dict
 
 
-   .. method:: classifier_has_trained(self, classifier_id: str) -> bool
+   .. py:method:: classifier_has_trained(self, classifier_id: str) -> bool
 
       Returns whether the given classifier has been trained or not.
 
@@ -878,7 +876,7 @@ Functions
       :rtype: bool
 
 
-   .. method:: classifier_predict(self, classifier_id, document_ids: List[str], texts: List[str], timeout_in_s: int = 36000) -> dict
+   .. py:method:: classifier_predict(self, classifier_id, document_ids: List[str], texts: List[str], timeout_in_s: int = 36000) -> dict
 
       Runs classifier prediction on the given documents.  At least one of document_ids and
       texts must be non-empty.
@@ -894,7 +892,7 @@ Functions
       :rtype: dict
 
 
-   .. method:: get_classifier_running_jobs(self, classifier_id: str) -> List[str]
+   .. py:method:: get_classifier_running_jobs(self, classifier_id: str) -> List[str]
 
       Gets the list of running job IDs for the given classifier.
 
@@ -903,10 +901,9 @@ Functions
 
 
 
-.. class:: LocalPineClient(backend_base_uri: str, eve_base_uri: str, mongo_base_uri: str = None, mongo_dbname: str = EveClient.DEFAULT_DBNAME, verify_ssl: bool = True)
+.. py:class:: LocalPineClient(backend_base_uri: str, eve_base_uri: str, mongo_base_uri: str = None, mongo_dbname: str = EveClient.DEFAULT_DBNAME, verify_ssl: bool = True)
 
-
-   Bases: :class:`pine.client.client.PineClient`
+   Bases: :py:obj:`PineClient`
 
    A client for a local PINE instance, including an :py:class:`EveClient`.
        
@@ -925,7 +922,7 @@ Functions
                       are fully aware of the security consequences
    :type verify_ssl: bool, optional
 
-   .. attribute:: eve
+   .. py:attribute:: eve
       :annotation: :EveClient
 
       The local :py:class:`EveClient` instance.
@@ -933,7 +930,7 @@ Functions
       :type: EveClient
 
 
-   .. method:: is_valid(self) -> bool
+   .. py:method:: is_valid(self) -> bool
 
       Returns whether this client and its connection(s) are valid.
 

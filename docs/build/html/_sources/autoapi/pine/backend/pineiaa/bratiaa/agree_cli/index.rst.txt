@@ -1,5 +1,5 @@
-:mod:`pine.backend.pineiaa.bratiaa.agree_cli`
-=============================================
+:py:mod:`pine.backend.pineiaa.bratiaa.agree_cli`
+================================================
 
 .. py:module:: pine.backend.pineiaa.bratiaa.agree_cli
 
@@ -17,9 +17,10 @@ Functions
    pine.backend.pineiaa.bratiaa.agree_cli.main
 
 
-.. function:: parse_args()
+
+.. py:function:: parse_args()
 
 
-.. function:: main()
+.. py:function:: main()
 
 

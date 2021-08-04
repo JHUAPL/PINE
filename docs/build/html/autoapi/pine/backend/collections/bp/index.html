@@ -5,13 +5,14 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>pine.backend.collections.bp &#8212; pine  documentation</title>
-    <link rel="stylesheet" href="../../../../../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../../../../../_static/bizstyle.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../../../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../../_static/bizstyle.css" />
     <link rel="stylesheet" type="text/css" href="../../../../../_static/graphviz.css" />
     
-    <script id="documentation_options" data-url_root="../../../../../" src="../../../../../_static/documentation_options.js"></script>
+    <script data-url_root="../../../../../" id="documentation_options" src="../../../../../_static/documentation_options.js"></script>
     <script src="../../../../../_static/jquery.js"></script>
     <script src="../../../../../_static/underscore.js"></script>
     <script src="../../../../../_static/doctools.js"></script>
@@ -54,11 +55,11 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="module-pine.backend.collections.bp">
+  <section id="module-pine.backend.collections.bp">
 <span id="pine-backend-collections-bp"></span><h1><a class="reference internal" href="#module-pine.backend.collections.bp" title="pine.backend.collections.bp"><code class="xref py py-mod docutils literal notranslate"><span class="pre">pine.backend.collections.bp</span></code></a><a class="headerlink" href="#module-pine.backend.collections.bp" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="module-contents">
+<section id="module-contents">
 <h2>Module Contents<a class="headerlink" href="#module-contents" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="functions">
+<section id="functions">
 <h3>Functions<a class="headerlink" href="#functions" title="Permalink to this headline">¶</a></h3>
 <table class="longtable docutils align-default">
 <colgroup>
@@ -81,7 +82,7 @@
 <tr class="row-odd"><td><p><a class="reference internal" href="#pine.backend.collections.bp.get_user_permissions_by_id" title="pine.backend.collections.bp.get_user_permissions_by_id"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_user_permissions_by_id</span></code></a>(collection_id: str) → pine.backend.models.CollectionUserPermissions</p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#pine.backend.collections.bp.get_user_permissions_by_ids" title="pine.backend.collections.bp.get_user_permissions_by_ids"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_user_permissions_by_ids</span></code></a>(collection_ids: Iterable[str]) → List[models.CollectionUserPermissions]</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#pine.backend.collections.bp.get_user_permissions_by_ids" title="pine.backend.collections.bp.get_user_permissions_by_ids"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_user_permissions_by_ids</span></code></a>(collection_ids: Iterable[str]) → List[pine.backend.models.CollectionUserPermissions]</p></td>
 <td><p></p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#pine.backend.collections.bp.get_user_collections" title="pine.backend.collections.bp.get_user_collections"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_user_collections</span></code></a>(archived, page)</p></td>
@@ -161,59 +162,82 @@
 </tr>
 </tbody>
 </table>
+</section>
+<section id="attributes">
+<h3>Attributes<a class="headerlink" href="#attributes" title="Permalink to this headline">¶</a></h3>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pine.backend.collections.bp.bp" title="pine.backend.collections.bp.bp"><code class="xref py py-obj docutils literal notranslate"><span class="pre">bp</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#pine.backend.collections.bp.LOGGER" title="pine.backend.collections.bp.LOGGER"><code class="xref py py-obj docutils literal notranslate"><span class="pre">LOGGER</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#pine.backend.collections.bp.DOCUMENTS_PER_TRANSACTION" title="pine.backend.collections.bp.DOCUMENTS_PER_TRANSACTION"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DOCUMENTS_PER_TRANSACTION</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#pine.backend.collections.bp.LAST_COLLECTION_FOR_IMAGE" title="pine.backend.collections.bp.LAST_COLLECTION_FOR_IMAGE"><code class="xref py py-obj docutils literal notranslate"><span class="pre">LAST_COLLECTION_FOR_IMAGE</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
 <dl class="py data">
-<dt id="pine.backend.collections.bp.bp">
-<code class="sig-prename descclassname"><span class="pre">pine.backend.collections.bp.</span></code><code class="sig-name descname"><span class="pre">bp</span></code><a class="headerlink" href="#pine.backend.collections.bp.bp" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="pine.backend.collections.bp.bp">
+<span class="sig-prename descclassname"><span class="pre">pine.backend.collections.bp.</span></span><span class="sig-name descname"><span class="pre">bp</span></span><a class="headerlink" href="#pine.backend.collections.bp.bp" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py data">
-<dt id="pine.backend.collections.bp.LOGGER">
-<code class="sig-prename descclassname"><span class="pre">pine.backend.collections.bp.</span></code><code class="sig-name descname"><span class="pre">LOGGER</span></code><a class="headerlink" href="#pine.backend.collections.bp.LOGGER" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="pine.backend.collections.bp.LOGGER">
+<span class="sig-prename descclassname"><span class="pre">pine.backend.collections.bp.</span></span><span class="sig-name descname"><span class="pre">LOGGER</span></span><a class="headerlink" href="#pine.backend.collections.bp.LOGGER" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py data">
-<dt id="pine.backend.collections.bp.DOCUMENTS_PER_TRANSACTION">
-<code class="sig-prename descclassname"><span class="pre">pine.backend.collections.bp.</span></code><code class="sig-name descname"><span class="pre">DOCUMENTS_PER_TRANSACTION</span></code><em class="property"> <span class="pre">=</span> <span class="pre">500</span></em><a class="headerlink" href="#pine.backend.collections.bp.DOCUMENTS_PER_TRANSACTION" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="pine.backend.collections.bp.DOCUMENTS_PER_TRANSACTION">
+<span class="sig-prename descclassname"><span class="pre">pine.backend.collections.bp.</span></span><span class="sig-name descname"><span class="pre">DOCUMENTS_PER_TRANSACTION</span></span><em class="property"> <span class="pre">=</span> <span class="pre">500</span></em><a class="headerlink" href="#pine.backend.collections.bp.DOCUMENTS_PER_TRANSACTION" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py data">
-<dt id="pine.backend.collections.bp.LAST_COLLECTION_FOR_IMAGE">
-<code class="sig-prename descclassname"><span class="pre">pine.backend.collections.bp.</span></code><code class="sig-name descname"><span class="pre">LAST_COLLECTION_FOR_IMAGE</span></code><a class="headerlink" href="#pine.backend.collections.bp.LAST_COLLECTION_FOR_IMAGE" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="pine.backend.collections.bp.LAST_COLLECTION_FOR_IMAGE">
+<span class="sig-prename descclassname"><span class="pre">pine.backend.collections.bp.</span></span><span class="sig-name descname"><span class="pre">LAST_COLLECTION_FOR_IMAGE</span></span><a class="headerlink" href="#pine.backend.collections.bp.LAST_COLLECTION_FOR_IMAGE" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py function">
-<dt id="pine.backend.collections.bp.is_cached_last_collection">
-<code class="sig-prename descclassname"><span class="pre">pine.backend.collections.bp.</span></code><code class="sig-name descname"><span class="pre">is_cached_last_collection</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">collection_id</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.collections.bp.is_cached_last_collection" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="pine.backend.collections.bp.is_cached_last_collection">
+<span class="sig-prename descclassname"><span class="pre">pine.backend.collections.bp.</span></span><span class="sig-name descname"><span class="pre">is_cached_last_collection</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">collection_id</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.collections.bp.is_cached_last_collection" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py function">
-<dt id="pine.backend.collections.bp.update_cached_last_collection">
-<code class="sig-prename descclassname"><span class="pre">pine.backend.collections.bp.</span></code><code class="sig-name descname"><span class="pre">update_cached_last_collection</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">collection_id</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.collections.bp.update_cached_last_collection" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="pine.backend.collections.bp.update_cached_last_collection">
+<span class="sig-prename descclassname"><span class="pre">pine.backend.collections.bp.</span></span><span class="sig-name descname"><span class="pre">update_cached_last_collection</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">collection_id</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.collections.bp.update_cached_last_collection" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py function">
-<dt id="pine.backend.collections.bp.user_permissions_projection">
-<code class="sig-prename descclassname"><span class="pre">pine.backend.collections.bp.</span></code><code class="sig-name descname"><span class="pre">user_permissions_projection</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.collections.bp.user_permissions_projection" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="pine.backend.collections.bp.user_permissions_projection">
+<span class="sig-prename descclassname"><span class="pre">pine.backend.collections.bp.</span></span><span class="sig-name descname"><span class="pre">user_permissions_projection</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.collections.bp.user_permissions_projection" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py function">
-<dt id="pine.backend.collections.bp.get_user_permissions">
-<code class="sig-prename descclassname"><span class="pre">pine.backend.collections.bp.</span></code><code class="sig-name descname"><span class="pre">get_user_permissions</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">collection</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><span class="pre">dict</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference internal" href="../../models/index.html#pine.backend.models.CollectionUserPermissions" title="pine.backend.models.CollectionUserPermissions"><span class="pre">pine.backend.models.CollectionUserPermissions</span></a><a class="headerlink" href="#pine.backend.collections.bp.get_user_permissions" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="pine.backend.collections.bp.get_user_permissions">
+<span class="sig-prename descclassname"><span class="pre">pine.backend.collections.bp.</span></span><span class="sig-name descname"><span class="pre">get_user_permissions</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">collection</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><span class="pre">dict</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../../models/index.html#pine.backend.models.CollectionUserPermissions" title="pine.backend.models.CollectionUserPermissions"><span class="pre">pine.backend.models.CollectionUserPermissions</span></a></span></span><a class="headerlink" href="#pine.backend.collections.bp.get_user_permissions" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py function">
-<dt id="pine.backend.collections.bp.get_user_permissions_by_id">
-<code class="sig-prename descclassname"><span class="pre">pine.backend.collections.bp.</span></code><code class="sig-name descname"><span class="pre">get_user_permissions_by_id</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">collection_id</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference internal" href="../../models/index.html#pine.backend.models.CollectionUserPermissions" title="pine.backend.models.CollectionUserPermissions"><span class="pre">pine.backend.models.CollectionUserPermissions</span></a><a class="headerlink" href="#pine.backend.collections.bp.get_user_permissions_by_id" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="pine.backend.collections.bp.get_user_permissions_by_id">
+<span class="sig-prename descclassname"><span class="pre">pine.backend.collections.bp.</span></span><span class="sig-name descname"><span class="pre">get_user_permissions_by_id</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">collection_id</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../../models/index.html#pine.backend.models.CollectionUserPermissions" title="pine.backend.models.CollectionUserPermissions"><span class="pre">pine.backend.models.CollectionUserPermissions</span></a></span></span><a class="headerlink" href="#pine.backend.collections.bp.get_user_permissions_by_id" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py function">
-<dt id="pine.backend.collections.bp.get_user_permissions_by_ids">
-<code class="sig-prename descclassname"><span class="pre">pine.backend.collections.bp.</span></code><code class="sig-name descname"><span class="pre">get_user_permissions_by_ids</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">collection_ids</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Iterable</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">models.CollectionUserPermissions</span><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#pine.backend.collections.bp.get_user_permissions_by_ids" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="pine.backend.collections.bp.get_user_permissions_by_ids">
+<span class="sig-prename descclassname"><span class="pre">pine.backend.collections.bp.</span></span><span class="sig-name descname"><span class="pre">get_user_permissions_by_ids</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">collection_ids</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Iterable</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../../models/index.html#pine.backend.models.CollectionUserPermissions" title="pine.backend.models.CollectionUserPermissions"><span class="pre">pine.backend.models.CollectionUserPermissions</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#pine.backend.collections.bp.get_user_permissions_by_ids" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py function">
-<dt id="pine.backend.collections.bp.get_user_collections">
-<code class="sig-prename descclassname"><span class="pre">pine.backend.collections.bp.</span></code><code class="sig-name descname"><span class="pre">get_user_collections</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">archived</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">page</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.collections.bp.get_user_collections" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="pine.backend.collections.bp.get_user_collections">
+<span class="sig-prename descclassname"><span class="pre">pine.backend.collections.bp.</span></span><span class="sig-name descname"><span class="pre">get_user_collections</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">archived</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">page</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.collections.bp.get_user_collections" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return collections for the logged in user using pagination. Returns all collections if parameter “page” is “all”,
 or the collections associated with the given page. Can return archived or un-archived collections based upon the
 “archived” flag.
@@ -223,8 +247,8 @@ or the collections associated with the given page. Can return archived or un-arc
 </dd></dl>
 
 <dl class="py function">
-<dt id="pine.backend.collections.bp.get_unarchived_user_collections">
-<code class="sig-prename descclassname"><span class="pre">pine.backend.collections.bp.</span></code><code class="sig-name descname"><span class="pre">get_unarchived_user_collections</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">page</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.collections.bp.get_unarchived_user_collections" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="pine.backend.collections.bp.get_unarchived_user_collections">
+<span class="sig-prename descclassname"><span class="pre">pine.backend.collections.bp.</span></span><span class="sig-name descname"><span class="pre">get_unarchived_user_collections</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">page</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.collections.bp.get_unarchived_user_collections" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return unarchived user collections for the corresponding page value. Default value returns collections for all
 pages.
 :param page: str
@@ -232,8 +256,8 @@ pages.
 </dd></dl>
 
 <dl class="py function">
-<dt id="pine.backend.collections.bp.get_archived_user_collections">
-<code class="sig-prename descclassname"><span class="pre">pine.backend.collections.bp.</span></code><code class="sig-name descname"><span class="pre">get_archived_user_collections</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">page</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.collections.bp.get_archived_user_collections" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="pine.backend.collections.bp.get_archived_user_collections">
+<span class="sig-prename descclassname"><span class="pre">pine.backend.collections.bp.</span></span><span class="sig-name descname"><span class="pre">get_archived_user_collections</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">page</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.collections.bp.get_archived_user_collections" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return archived user collections for the corresponding page value. Default value returns collections for all
 pages.
 :param page: str
@@ -241,8 +265,8 @@ pages.
 </dd></dl>
 
 <dl class="py function">
-<dt id="pine.backend.collections.bp.archive_or_unarchive_collection">
-<code class="sig-prename descclassname"><span class="pre">pine.backend.collections.bp.</span></code><code class="sig-name descname"><span class="pre">archive_or_unarchive_collection</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">collection_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">archive</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.collections.bp.archive_or_unarchive_collection" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="pine.backend.collections.bp.archive_or_unarchive_collection">
+<span class="sig-prename descclassname"><span class="pre">pine.backend.collections.bp.</span></span><span class="sig-name descname"><span class="pre">archive_or_unarchive_collection</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">collection_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">archive</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.collections.bp.archive_or_unarchive_collection" title="Permalink to this definition">¶</a></dt>
 <dd><p>Set the “archived” boolean flag for the collection matching the provided collection_id.
 :param collection_id: str
 :param archive: Bool
@@ -250,24 +274,24 @@ pages.
 </dd></dl>
 
 <dl class="py function">
-<dt id="pine.backend.collections.bp.archive_collection">
-<code class="sig-prename descclassname"><span class="pre">pine.backend.collections.bp.</span></code><code class="sig-name descname"><span class="pre">archive_collection</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">collection_id</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.collections.bp.archive_collection" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="pine.backend.collections.bp.archive_collection">
+<span class="sig-prename descclassname"><span class="pre">pine.backend.collections.bp.</span></span><span class="sig-name descname"><span class="pre">archive_collection</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">collection_id</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.collections.bp.archive_collection" title="Permalink to this definition">¶</a></dt>
 <dd><p>Archive the collection matching the provided collection id
 :param collection_id: str
 :return: Response</p>
 </dd></dl>
 
 <dl class="py function">
-<dt id="pine.backend.collections.bp.unarchive_collection">
-<code class="sig-prename descclassname"><span class="pre">pine.backend.collections.bp.</span></code><code class="sig-name descname"><span class="pre">unarchive_collection</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">collection_id</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.collections.bp.unarchive_collection" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="pine.backend.collections.bp.unarchive_collection">
+<span class="sig-prename descclassname"><span class="pre">pine.backend.collections.bp.</span></span><span class="sig-name descname"><span class="pre">unarchive_collection</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">collection_id</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.collections.bp.unarchive_collection" title="Permalink to this definition">¶</a></dt>
 <dd><p>Unarchive the collection matching the provided collection id
 :param collection_id: str
 :return: Response</p>
 </dd></dl>
 
 <dl class="py function">
-<dt id="pine.backend.collections.bp.get_collection">
-<code class="sig-prename descclassname"><span class="pre">pine.backend.collections.bp.</span></code><code class="sig-name descname"><span class="pre">get_collection</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">collection_id</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.collections.bp.get_collection" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="pine.backend.collections.bp.get_collection">
+<span class="sig-prename descclassname"><span class="pre">pine.backend.collections.bp.</span></span><span class="sig-name descname"><span class="pre">get_collection</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">collection_id</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.collections.bp.get_collection" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return the collection object for the collection matching the provided collection id. This object has the fields:
 ‘creator_id’, ‘annotators’, ‘viewers’, ‘labels’, ‘metadata’, ‘archived’, and ‘configuration’.
 :param collection_id: str
@@ -275,41 +299,41 @@ pages.
 </dd></dl>
 
 <dl class="py function">
-<dt id="pine.backend.collections.bp.download_collection">
-<code class="sig-prename descclassname"><span class="pre">pine.backend.collections.bp.</span></code><code class="sig-name descname"><span class="pre">download_collection</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">collection_id</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.collections.bp.download_collection" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="pine.backend.collections.bp.download_collection">
+<span class="sig-prename descclassname"><span class="pre">pine.backend.collections.bp.</span></span><span class="sig-name descname"><span class="pre">download_collection</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">collection_id</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.collections.bp.download_collection" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py function">
-<dt id="pine.backend.collections.bp.add_annotator_to_collection">
-<code class="sig-prename descclassname"><span class="pre">pine.backend.collections.bp.</span></code><code class="sig-name descname"><span class="pre">add_annotator_to_collection</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">collection_id</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.collections.bp.add_annotator_to_collection" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="pine.backend.collections.bp.add_annotator_to_collection">
+<span class="sig-prename descclassname"><span class="pre">pine.backend.collections.bp.</span></span><span class="sig-name descname"><span class="pre">add_annotator_to_collection</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">collection_id</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.collections.bp.add_annotator_to_collection" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py function">
-<dt id="pine.backend.collections.bp.add_viewer_to_collection">
-<code class="sig-prename descclassname"><span class="pre">pine.backend.collections.bp.</span></code><code class="sig-name descname"><span class="pre">add_viewer_to_collection</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">collection_id</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.collections.bp.add_viewer_to_collection" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="pine.backend.collections.bp.add_viewer_to_collection">
+<span class="sig-prename descclassname"><span class="pre">pine.backend.collections.bp.</span></span><span class="sig-name descname"><span class="pre">add_viewer_to_collection</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">collection_id</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.collections.bp.add_viewer_to_collection" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py function">
-<dt id="pine.backend.collections.bp.add_label_to_collection">
-<code class="sig-prename descclassname"><span class="pre">pine.backend.collections.bp.</span></code><code class="sig-name descname"><span class="pre">add_label_to_collection</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">collection_id</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.collections.bp.add_label_to_collection" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="pine.backend.collections.bp.add_label_to_collection">
+<span class="sig-prename descclassname"><span class="pre">pine.backend.collections.bp.</span></span><span class="sig-name descname"><span class="pre">add_label_to_collection</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">collection_id</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.collections.bp.add_label_to_collection" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py function">
-<dt id="pine.backend.collections.bp.get_overlap_ids">
-<code class="sig-prename descclassname"><span class="pre">pine.backend.collections.bp.</span></code><code class="sig-name descname"><span class="pre">get_overlap_ids</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">collection_id</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.collections.bp.get_overlap_ids" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="pine.backend.collections.bp.get_overlap_ids">
+<span class="sig-prename descclassname"><span class="pre">pine.backend.collections.bp.</span></span><span class="sig-name descname"><span class="pre">get_overlap_ids</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">collection_id</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.collections.bp.get_overlap_ids" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return the list of ids for overlapping documents for the collection matching the provided collection id.
 :param collection_id: str
 :return: tuple</p>
 </dd></dl>
 
 <dl class="py function">
-<dt id="pine.backend.collections.bp._upload_documents">
-<code class="sig-prename descclassname"><span class="pre">pine.backend.collections.bp.</span></code><code class="sig-name descname"><span class="pre">_upload_documents</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">collection</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">docs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.collections.bp._upload_documents" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="pine.backend.collections.bp._upload_documents">
+<span class="sig-prename descclassname"><span class="pre">pine.backend.collections.bp.</span></span><span class="sig-name descname"><span class="pre">_upload_documents</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">collection</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">docs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.collections.bp._upload_documents" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py function">
-<dt id="pine.backend.collections.bp.create_collection">
-<code class="sig-prename descclassname"><span class="pre">pine.backend.collections.bp.</span></code><code class="sig-name descname"><span class="pre">create_collection</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.collections.bp.create_collection" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="pine.backend.collections.bp.create_collection">
+<span class="sig-prename descclassname"><span class="pre">pine.backend.collections.bp.</span></span><span class="sig-name descname"><span class="pre">create_collection</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.collections.bp.create_collection" title="Permalink to this definition">¶</a></dt>
 <dd><p>Create a new collection based upon the entries provided in the POST request’s associated form fields.
 These fields include:
 collection - collection name
@@ -333,63 +357,63 @@ csvHasHeader - boolean for whether or not the csv file has a header row (default
 </dd></dl>
 
 <dl class="py function">
-<dt id="pine.backend.collections.bp._check_collection_and_get_image_dir">
-<code class="sig-prename descclassname"><span class="pre">pine.backend.collections.bp.</span></code><code class="sig-name descname"><span class="pre">_check_collection_and_get_image_dir</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">collection_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">path</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.collections.bp._check_collection_and_get_image_dir" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="pine.backend.collections.bp._check_collection_and_get_image_dir">
+<span class="sig-prename descclassname"><span class="pre">pine.backend.collections.bp.</span></span><span class="sig-name descname"><span class="pre">_check_collection_and_get_image_dir</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">collection_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">path</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.collections.bp._check_collection_and_get_image_dir" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py function">
-<dt id="pine.backend.collections.bp.get_static_collection_images">
-<code class="sig-prename descclassname"><span class="pre">pine.backend.collections.bp.</span></code><code class="sig-name descname"><span class="pre">get_static_collection_images</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">collection_id</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.collections.bp.get_static_collection_images" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="pine.backend.collections.bp.get_static_collection_images">
+<span class="sig-prename descclassname"><span class="pre">pine.backend.collections.bp.</span></span><span class="sig-name descname"><span class="pre">get_static_collection_images</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">collection_id</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.collections.bp.get_static_collection_images" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py function">
-<dt id="pine.backend.collections.bp.get_collection_images">
-<code class="sig-prename descclassname"><span class="pre">pine.backend.collections.bp.</span></code><code class="sig-name descname"><span class="pre">get_collection_images</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">collection_id</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.collections.bp.get_collection_images" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="pine.backend.collections.bp.get_collection_images">
+<span class="sig-prename descclassname"><span class="pre">pine.backend.collections.bp.</span></span><span class="sig-name descname"><span class="pre">get_collection_images</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">collection_id</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.collections.bp.get_collection_images" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py function">
-<dt id="pine.backend.collections.bp.get_collection_image">
-<code class="sig-prename descclassname"><span class="pre">pine.backend.collections.bp.</span></code><code class="sig-name descname"><span class="pre">get_collection_image</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">collection_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">path</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.collections.bp.get_collection_image" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="pine.backend.collections.bp.get_collection_image">
+<span class="sig-prename descclassname"><span class="pre">pine.backend.collections.bp.</span></span><span class="sig-name descname"><span class="pre">get_collection_image</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">collection_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">path</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.collections.bp.get_collection_image" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py function">
-<dt id="pine.backend.collections.bp.get_collection_image_exists">
-<code class="sig-prename descclassname"><span class="pre">pine.backend.collections.bp.</span></code><code class="sig-name descname"><span class="pre">get_collection_image_exists</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">collection_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">path</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.collections.bp.get_collection_image_exists" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="pine.backend.collections.bp.get_collection_image_exists">
+<span class="sig-prename descclassname"><span class="pre">pine.backend.collections.bp.</span></span><span class="sig-name descname"><span class="pre">get_collection_image_exists</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">collection_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">path</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.collections.bp.get_collection_image_exists" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py function">
-<dt id="pine.backend.collections.bp._path_split">
-<code class="sig-prename descclassname"><span class="pre">pine.backend.collections.bp.</span></code><code class="sig-name descname"><span class="pre">_path_split</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.collections.bp._path_split" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="pine.backend.collections.bp._path_split">
+<span class="sig-prename descclassname"><span class="pre">pine.backend.collections.bp.</span></span><span class="sig-name descname"><span class="pre">_path_split</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.collections.bp._path_split" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py function">
-<dt id="pine.backend.collections.bp._safe_path">
-<code class="sig-prename descclassname"><span class="pre">pine.backend.collections.bp.</span></code><code class="sig-name descname"><span class="pre">_safe_path</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.collections.bp._safe_path" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="pine.backend.collections.bp._safe_path">
+<span class="sig-prename descclassname"><span class="pre">pine.backend.collections.bp.</span></span><span class="sig-name descname"><span class="pre">_safe_path</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.collections.bp._safe_path" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py function">
-<dt id="pine.backend.collections.bp.endpoint_get_user_permissions">
-<code class="sig-prename descclassname"><span class="pre">pine.backend.collections.bp.</span></code><code class="sig-name descname"><span class="pre">endpoint_get_user_permissions</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">collection_id</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.collections.bp.endpoint_get_user_permissions" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="pine.backend.collections.bp.endpoint_get_user_permissions">
+<span class="sig-prename descclassname"><span class="pre">pine.backend.collections.bp.</span></span><span class="sig-name descname"><span class="pre">endpoint_get_user_permissions</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">collection_id</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.collections.bp.endpoint_get_user_permissions" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py function">
-<dt id="pine.backend.collections.bp._upload_collection_image_file">
-<code class="sig-prename descclassname"><span class="pre">pine.backend.collections.bp.</span></code><code class="sig-name descname"><span class="pre">_upload_collection_image_file</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">collection_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">image_file</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.collections.bp._upload_collection_image_file" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="pine.backend.collections.bp._upload_collection_image_file">
+<span class="sig-prename descclassname"><span class="pre">pine.backend.collections.bp.</span></span><span class="sig-name descname"><span class="pre">_upload_collection_image_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">collection_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">image_file</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.collections.bp._upload_collection_image_file" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py function">
-<dt id="pine.backend.collections.bp.post_collection_image">
-<code class="sig-prename descclassname"><span class="pre">pine.backend.collections.bp.</span></code><code class="sig-name descname"><span class="pre">post_collection_image</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">collection_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">path</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.collections.bp.post_collection_image" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="pine.backend.collections.bp.post_collection_image">
+<span class="sig-prename descclassname"><span class="pre">pine.backend.collections.bp.</span></span><span class="sig-name descname"><span class="pre">post_collection_image</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">collection_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">path</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.collections.bp.post_collection_image" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py function">
-<dt id="pine.backend.collections.bp.init_app">
-<code class="sig-prename descclassname"><span class="pre">pine.backend.collections.bp.</span></code><code class="sig-name descname"><span class="pre">init_app</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">app</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.collections.bp.init_app" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="pine.backend.collections.bp.init_app">
+<span class="sig-prename descclassname"><span class="pre">pine.backend.collections.bp.</span></span><span class="sig-name descname"><span class="pre">init_app</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">app</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.backend.collections.bp.init_app" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-</div>
-</div>
-</div>
+</section>
+</section>
+</section>
 
 
             <div class="clearer"></div>
@@ -402,7 +426,8 @@ csvHasHeader - boolean for whether or not the csv file has a header row (default
   <ul>
 <li><a class="reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">pine.backend.collections.bp</span></code></a><ul>
 <li><a class="reference internal" href="#module-contents">Module Contents</a><ul>
-<li><a class="reference internal" href="#functions">Functions</a><ul>
+<li><a class="reference internal" href="#functions">Functions</a></li>
+<li><a class="reference internal" href="#attributes">Attributes</a><ul>
 <li><a class="reference internal" href="#pine.backend.collections.bp.bp">bp</a></li>
 <li><a class="reference internal" href="#pine.backend.collections.bp.LOGGER">LOGGER</a></li>
 <li><a class="reference internal" href="#pine.backend.collections.bp.DOCUMENTS_PER_TRANSACTION">DOCUMENTS_PER_TRANSACTION</a></li>
@@ -463,7 +488,7 @@ csvHasHeader - boolean for whether or not the csv file has a header row (default
   <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="../../../../../search.html" method="get">
-      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
       <input type="submit" value="Go" />
     </form>
     </div>
@@ -498,7 +523,7 @@ csvHasHeader - boolean for whether or not the csv file has a header row (default
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright (C) 2019 The Johns Hopkins University Applied Physics Laboratory LLC..
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.5.3.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.1.2.
     </div>
   </body>
 </html>

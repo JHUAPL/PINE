@@ -1,5 +1,5 @@
-:mod:`pine.backend.data.users`
-==============================
+:py:mod:`pine.backend.data.users`
+=================================
 
 .. py:module:: pine.backend.data.users
 
@@ -26,36 +26,37 @@ Functions
    pine.backend.data.users.reset_user_passwords
 
 
-.. function:: get_all_users()
+
+.. py:function:: get_all_users()
 
 
-.. function:: get_user(user_id)
+.. py:function:: get_user(user_id)
 
 
-.. function:: get_user_by_email(email)
+.. py:function:: get_user_by_email(email)
 
 
-.. function:: get_user_by_id_or_email(username)
+.. py:function:: get_user_by_id_or_email(username)
 
 
-.. function:: get_user_details(user_id)
+.. py:function:: get_user_details(user_id)
 
 
-.. function:: update_user(user_id: str, details: pine.backend.models.UserDetails)
+.. py:function:: update_user(user_id: str, details: pine.backend.models.UserDetails)
 
 
-.. function:: print_users_command()
+.. py:function:: print_users_command()
 
 
-.. function:: add_admin_command(user_id, username, password)
+.. py:function:: add_admin_command(user_id, username, password)
 
 
-.. function:: set_user_password_by_id(user_id, password)
+.. py:function:: set_user_password_by_id(user_id, password)
 
 
-.. function:: set_user_password(username, password)
+.. py:function:: set_user_password(username, password)
 
 
-.. function:: reset_user_passwords()
+.. py:function:: reset_user_passwords()
 
 

@@ -8,7 +8,7 @@ ENV DEBIAN_FRONTEND noninteractive
 
 RUN apt-get clean && \
     apt-get -y update && \
-    apt-get -y install software-properties-common
+    apt-get -y install software-properties-common ca-certificates
 
 RUN apt-get -y update && \
     apt-get -y install \

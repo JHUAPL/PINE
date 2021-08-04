@@ -1,6 +1,14 @@
 # (C) 2019 The Johns Hopkins University Applied Physics Laboratory LLC.
 
-FROM ubuntu:18.04
+FROM ubuntu:20.04
+
+ENV LC_ALL C.UTF-8
+ENV LANG C.UTF-8
+ENV DEBIAN_FRONTEND noninteractive
+
+RUN apt-get clean && \
+    apt-get -y update && \
+    apt-get -y install software-properties-common ca-certificates
 
 ARG PORT=6379
 ARG ROOT_DIR=/nlp-web-app/redis
@@ -17,9 +25,6 @@ ENV PORT $PORT
 ENV LOG_DIR $LOG_DIR
 ENV DATA_DIR $DATA_DIR
 ENV CONF_FILE $REDIS_ETC/redis.conf
-
-ENV LC_ALL C.UTF-8
-ENV LANG C.UTF-8
 
 RUN mkdir -p $ROOT_DIR $LOG_DIR $DATA_DIR
 RUN apt-get update -y && \

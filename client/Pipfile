@@ -6,13 +6,13 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-pymongo = "*"
-requests = "*"
-overrides = "*"
-python-json-logger = "*"
-bcrypt = "*"
+pymongo = "~=3.12.0"
+requests = "~=2.26.0"
+overrides = "~=6.1.0"
+python-json-logger = "~=2.0.2"
+bcrypt = "~=3.2.0"
 
 [dev-packages]
 
 [requires]
-python_version = "3.6"
+python_version = "3.8"

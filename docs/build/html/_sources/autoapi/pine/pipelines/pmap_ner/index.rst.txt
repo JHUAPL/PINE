@@ -1,5 +1,5 @@
-:mod:`pine.pipelines.pmap_ner`
-==============================
+:py:mod:`pine.pipelines.pmap_ner`
+=================================
 
 .. py:module:: pine.pipelines.pmap_ner
 
@@ -16,60 +16,68 @@ Classes
 
 
 
-.. data:: logger
+
+Attributes
+~~~~~~~~~~
+
+.. autoapisummary::
+
+   pine.pipelines.pmap_ner.logger
+
+
+.. py:data:: logger
    
 
    
 
-.. class:: NER(lib=None, **kwargs)
+.. py:class:: NER(lib=None, **kwargs)
 
+   Bases: :py:obj:`pine.pipelines.pipeline.Pipeline`
 
-   Bases: :class:`pine.pipelines.pipeline.Pipeline`
-
-   .. attribute:: __lib
+   .. py:attribute:: __lib
       :annotation: = 
 
       
 
-   .. attribute:: pipeline
+   .. py:attribute:: pipeline
       
 
       
 
-   .. attribute:: __SUPPORTED_PIPELINES
+   .. py:attribute:: __SUPPORTED_PIPELINES
       :annotation: = ['spacy', 'corenlp', 'opennlp']
 
       
 
-   .. method:: pipe_init(self, x, **kwargs)
+   .. py:method:: pipe_init(self, x, **kwargs)
 
 
-   .. method:: pipeline_class(self)
+   .. py:method:: pipeline_class(self)
       :property:
 
 
-   .. method:: status(self) -> dict
+   .. py:method:: status(self) -> dict
 
 
-   .. method:: fit(self, X, y, **kwargs)
+   .. py:method:: fit(self, X, y, **kwargs)
 
 
-   .. method:: predict(self, X: Iterable[str]) -> List[DocumentPredictions]
+   .. py:method:: predict(self, X: Iterable[str]) -> List[pine.pipelines.pipeline.DocumentPredictions]
 
 
-   .. method:: predict_proba(self, X: Iterable[str], **kwargs) -> List[DocumentPredictionProbabilities]
+   .. py:method:: predict_proba(self, X: Iterable[str], **kwargs) -> List[pine.pipelines.pipeline.DocumentPredictionProbabilities]
 
 
-   .. method:: evaluate(self, X, y, Xid, **kwargs)
+   .. py:method:: evaluate(self, X, y, Xid, **kwargs)
 
 
-   .. method:: next_example(self, X, Xid)
+   .. py:method:: next_example(self, X, Xid)
 
 
-   .. method:: save_model(self, model_name)
+   .. py:method:: save_model(self, model_name)
 
 
-   .. method:: load_model(self, model_name)
+   .. py:method:: load_model(self, model_name)
 
 
 
