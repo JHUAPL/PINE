@@ -1,7 +1,9 @@
 /*(C) 2019 The Johns Hopkins University Applied Physics Laboratory LLC. */
 
 import { Component, OnInit, ViewChild, Input, Output, EventEmitter } from '@angular/core';
-import { MatTable, MatPaginator, MatTableDataSource, MatSort, MatSortable } from '@angular/material';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort, MatSortable } from '@angular/material/sort';
+import { MatTable, MatTableDataSource } from '@angular/material/table';
 
 import { Observable } from "rxjs";
 
@@ -32,10 +34,10 @@ export class NERAnnotationTableComponent implements OnInit {
     @ViewChild(MatPaginator)
     public paginator: MatPaginator;
 
-    @ViewChild(MatSort)
+    @ViewChild(MatSort, { static: true })
     public sort: MatSort;
 
-    @ViewChild(MatTable)
+    @ViewChild(MatTable, { static: true })
     public table: MatTable<MatTableDataSource<NerAnnotation>>;
 
     public displayedColumns: string[] = ['text', 'label', 'start', 'end', 'actions'];

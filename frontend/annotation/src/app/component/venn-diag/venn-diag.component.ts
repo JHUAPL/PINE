@@ -12,7 +12,7 @@ import * as venn from 'venn.js';
 })
 export class VennDiagComponent implements OnInit, AfterViewInit, AfterContentInit, OnChanges {
 
-  @ViewChild('venn') private vennContainer: ElementRef;
+  @ViewChild('venn', { static: true }) private vennContainer: ElementRef;
 
   @Input()
   data: any

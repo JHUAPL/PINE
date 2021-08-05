@@ -1,6 +1,8 @@
 /*(C) 2019 The Johns Hopkins University Applied Physics Laboratory LLC. */
 import { Component, OnInit, ViewChild } from "@angular/core";
-import { MatSort, MatTableDataSource, MatDialog } from "@angular/material";
+import { MatDialog } from "@angular/material/dialog";
+import { MatSort } from "@angular/material/sort";
+import { MatTableDataSource } from "@angular/material/table";
 import { FormBuilder, FormGroup, FormControl, FormArray, Validators, ValidationErrors, AbstractControl } from "@angular/forms";
 import { HttpErrorResponse } from "@angular/common/http";
 

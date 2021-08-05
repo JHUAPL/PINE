@@ -1,7 +1,8 @@
 @import '~@angular/material/prebuilt-themes/indigo-pink.css';
 @import '~material-icons/iconfont/material-icons.css';
 @import '~roboto-fontface/css/roboto/roboto-fontface.css';
-@import '~tippy.js/dist/themes/light-border.css';
+@import '~tippy.js/dist/tippy.css';
+@import '~tippy.js/themes/light-border.css';
 
 /* make Flex work. */
 html,

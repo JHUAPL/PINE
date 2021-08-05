@@ -1,6 +1,6 @@
 /*(C) 2019 The Johns Hopkins University Applied Physics Laboratory LLC. */
 
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { IaaHeatmapComponent } from './iaa-heatmap.component';
 
@@ -8,7 +8,7 @@ describe('IaaHeatmapComponent', () => {
   let component: IaaHeatmapComponent;
   let fixture: ComponentFixture<IaaHeatmapComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ IaaHeatmapComponent ]
     })

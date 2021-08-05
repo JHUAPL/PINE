@@ -74,7 +74,7 @@ export class ImageCollectionUploaderComponent implements OnInit {
 })
 export class ImageCollectionUploaderDialog implements OnInit {
 
-    @ViewChild(ImageCollectionUploaderComponent)
+    @ViewChild(ImageCollectionUploaderComponent, { static: true })
     public uploader: ImageCollectionUploaderComponent;
 
     constructor(public dialogRef: MatDialogRef<ImageCollectionUploaderComponent>) {

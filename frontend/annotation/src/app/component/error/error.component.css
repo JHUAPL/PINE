@@ -4,7 +4,7 @@
 	margin-top: 15px;
 }
 
-/deep/ .main {
+::ng-deep .main {
 	font-weight: bold;
 	font-size: large;
 }

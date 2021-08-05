@@ -1,7 +1,7 @@
 /*(C) 2019 The Johns Hopkins University Applied Physics Laboratory LLC. */
 
 import { Component, OnInit, Inject } from "@angular/core";
-import { MatDialog, MatDialogConfig, MAT_DIALOG_DATA } from "@angular/material";
+import { MatDialog, MatDialogConfig, MAT_DIALOG_DATA } from "@angular/material/dialog";
 
 import { Observable } from "rxjs";
 

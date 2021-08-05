@@ -1,7 +1,7 @@
 /*(C) 2019 The Johns Hopkins University Applied Physics Laboratory LLC. */
 import { Component, OnInit, ViewChild, ElementRef } from "@angular/core";
 import { HttpErrorResponse, HttpResponse } from "@angular/common/http";
-import { MatButton } from "@angular/material";
+import { MatButton } from "@angular/material/button";
 
 import { PATHS } from "../../app.paths";
 
@@ -24,24 +24,24 @@ export class AdminDataComponent implements OnInit {
 
     public importDropFirst = false;
 
-    @ViewChild("exportDownload")
+    @ViewChild("exportDownload", { static: true })
     public exportDownload: ElementRef;
 
-    @ViewChild("fileDisplay")
+    @ViewChild("fileDisplay", { static: true })
     public fileDisplay: ElementRef;
 
     public file: File;
 
-    @ViewChild("importButton")
+    @ViewChild("importButton", { static: true })
     public importButton: MatButton;
 
     public exporting = false;
     public importing = false;
 
-    @ViewChild("exportError")
+    @ViewChild("exportError", { static: true })
     public exportError: ErrorComponent;
 
-    @ViewChild("importError")
+    @ViewChild("importError", { static: true })
     public importError: ErrorComponent;
 
     constructor(private admin: AdminService,

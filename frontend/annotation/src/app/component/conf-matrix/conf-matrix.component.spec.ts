@@ -1,5 +1,5 @@
 /*(C) 2019 The Johns Hopkins University Applied Physics Laboratory LLC. */
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { ConfMatrixComponent } from './conf-matrix.component';
 
@@ -7,7 +7,7 @@ describe('ConfMatrixComponent', () => {
   let component: ConfMatrixComponent;
   let fixture: ComponentFixture<ConfMatrixComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ ConfMatrixComponent ]
     })

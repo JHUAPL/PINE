@@ -5,6 +5,7 @@ import logging
 import sys
 import traceback
 import urllib
+import typing
 
 from authlib.integrations.flask_client import OAuth
 from flask import current_app, jsonify, redirect, request, Response, session
@@ -50,12 +51,13 @@ class OAuthUser(models.AuthUser):
 
 class OAuthModule(bp.AuthModule):
     
-    def __init__(self, app, bp, secret):
+    def __init__(self, app, bp, secret, algorithms: typing.List[str] = ["HS256"]):
         super(OAuthModule, self).__init__(app, bp)
         self.oauth = OAuth()
         self.oauth.init_app(app)
         self.app = self.register_oauth(self.oauth, app)
         self.secret = secret
+        self.algorithms = algorithms
         bp.route("/login", methods=["POST"])(self.login)
         bp.route("/authorize", methods=["GET"])(self.authorize_get)
         bp.route("/authorize", methods=["POST"])(self.authorize_post)
@@ -99,8 +101,8 @@ class OAuthModule(bp.AuthModule):
             raise exceptions.SecurityError(description = str(e))
         access_token = token["access_token"]
         try:
-            decoded = jwt.decode(access_token, self.secret, verify = False)
-            decoded = jwt.decode(access_token, self.secret, verify = True, audience = decoded["aud"])
+            decoded = jwt.decode(access_token, options={"verify_signature": False})
+            decoded = jwt.decode(access_token, self.secret, audience=decoded["aud"], algorithms=self.algorithms)
         except jwt.exceptions.InvalidTokenError as e:
             traceback.print_exc()
             sys.stderr.flush()

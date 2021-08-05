@@ -1,5 +1,5 @@
 /*(C) 2019 The Johns Hopkins University Applied Physics Laboratory LLC. */
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { AdminUsersComponent } from './admin-users.component';
 
@@ -7,7 +7,7 @@ describe('AdminUsersComponent', () => {
   let component: AdminUsersComponent;
   let fixture: ComponentFixture<AdminUsersComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ AdminUsersComponent ]
     })

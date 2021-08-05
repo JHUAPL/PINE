@@ -1,6 +1,6 @@
 /*(C) 2019 The Johns Hopkins University Applied Physics Laboratory LLC. */
 
-import { async, ComponentFixture, TestBed } from "@angular/core/testing";
+import { ComponentFixture, TestBed, waitForAsync } from "@angular/core/testing";
 
 import { ImageChooserComponent } from "./image-chooser.component";
 
@@ -8,7 +8,7 @@ describe("ImageChooserComponent", () => {
     let component: ImageChooserComponent;
     let fixture: ComponentFixture<ImageChooserComponent>;
 
-    beforeEach(async(() => {
+    beforeEach(waitForAsync(() => {
         TestBed.configureTestingModule({
             declarations: [ ImageChooserComponent ]
         })

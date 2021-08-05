@@ -1,6 +1,6 @@
 /* (C) 2019 The Johns Hopkins University Applied Physics Laboratory LLC. */
 
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { DownloadCollectionDataComponent } from './download-collection-data.component';
 
@@ -8,7 +8,7 @@ describe('DownloadCollectionDataDialogComponent', () => {
   let component: DownloadCollectionDataDialogComponent;
   let fixture: ComponentFixture<DownloadCollectionDataDialogComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ DownloadCollectionDataDialogComponent ]
     })

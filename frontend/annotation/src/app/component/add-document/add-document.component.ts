@@ -16,7 +16,7 @@ import { CreatedObject } from "../../model/created";
 
 import { ImageChooserComponent } from "../image-chooser/image-chooser.component";
 import { uuidv4 } from "../util";
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Collection } from 'src/app/model/collection';
 
 export class AddDocumentDialogData {
@@ -44,7 +44,7 @@ export class AddDocumentComponent implements OnInit, AfterViewInit {
     public createForm: FormGroup;
     public collection_id: string;
 
-    @ViewChild(ImageChooserComponent)
+    @ViewChild(ImageChooserComponent, { static: true })
     public imageChooser: ImageChooserComponent;
 
     constructor(private auth: AuthService,

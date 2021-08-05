@@ -105,7 +105,6 @@ function annotateWord(wordSubject, label) {
           .should("be.visible")
           .click().then($label => {
         cy.wrap($word)
-          .should("be.visible")
           .should("not.have.class", "select")
           .should("not.have.class", "selectLeft")
           .should("not.have.class", "selectRight")
@@ -148,7 +147,6 @@ function unannotateWord(wordSubject) {
         .should("be.visible")
         .click().then(_ => {
           cy.wrap($word)
-            .should("be.visible")
             .should("not.have.class", "annotation")
             .should("not.have.class", "annotationLeft")
             .should("not.have.class", "annotationRight");

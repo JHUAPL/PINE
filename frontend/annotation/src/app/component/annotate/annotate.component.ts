@@ -2,15 +2,16 @@
 import { Component, OnInit, AfterViewInit, ViewChild, ViewChildren, ElementRef, QueryList, HostListener } from "@angular/core";
 import { ActivatedRoute, ParamMap, Router } from "@angular/router";
 import { HttpErrorResponse } from "@angular/common/http";
-import { MatDialog } from "@angular/material";
+import { MatDialog } from "@angular/material/dialog";
 import { Observable } from "rxjs";
 import { map } from "rxjs/operators";
 
-import { PanZoomConfig, PanZoomAPI, PanZoomModel } from 'ng2-panzoom';
+import { PanZoomConfig, PanZoomAPI, PanZoomModel } from 'ngx-panzoom';
 
 import { forkJoin } from "rxjs";
 
-import tippy from "tippy.js/dist/tippy.all";
+import tippy from "tippy.js";
+import { Placement } from "tippy.js";
 
 import { ErrorComponent } from "../error/error.component";
 import { LoadingComponent } from "../loading/loading.component";
@@ -65,12 +66,12 @@ export class AnnotateComponent implements OnInit, AfterViewInit {
 
     public readonly PATHS = PATHS;
 
-    @ViewChild('pageContent') pageContent;
+    @ViewChild('pageContent', { static: true }) pageContent;
     public pageHeight: number;
 
     @ViewChild('imageContainer') imageRef;
 
-    @ViewChild(LoadingComponent)
+    @ViewChild(LoadingComponent, { static: true })
     public loading: LoadingComponent;
     @HostListener("window:resize", [])
     private onResize() {
@@ -489,7 +490,7 @@ export class AnnotateComponent implements OnInit, AfterViewInit {
         return {
             content: clone,
             arrow: true,
-            placement: "bottom",
+            placement: "bottom" as Placement,
             trigger: "manual",
             interactive: true,
             animation: "perspective",

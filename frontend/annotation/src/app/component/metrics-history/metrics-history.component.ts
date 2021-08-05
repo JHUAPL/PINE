@@ -13,7 +13,7 @@ export class MetricsHistoryComponent implements OnInit, AfterContentInit, OnChan
 
   constructor() { }
 
-  @ViewChild('historicChart') private historicChartRef;
+  @ViewChild('historicChart', { static: true }) private historicChartRef;
 
   chart: any;
 

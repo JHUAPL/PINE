@@ -1,7 +1,9 @@
 /* (C) 2019 The Johns Hopkins University Applied Physics Laboratory LLC. */
 import { Component, OnInit, ViewChild, AfterViewInit, Inject, OnDestroy, ElementRef } from "@angular/core";
 import { KeyValue } from "@angular/common";
-import { MatPaginator, MatSort, MatDialog, MatDialogRef, MAT_DIALOG_DATA } from "@angular/material";
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from "@angular/material/dialog";
+import { MatPaginator } from "@angular/material/paginator";
+import { MatSort } from "@angular/material/sort";
 import { ActivatedRoute, Router } from "@angular/router";
 import { HttpErrorResponse } from "@angular/common/http";
 
@@ -73,9 +75,9 @@ export class CollectionDetailsComponent implements OnInit, AfterViewInit, OnDest
     private new_label: string = null;
     public permissions: CollectionUserPermissions = newPermissions();
 
-    @ViewChild(MatPaginator) public paginator: MatPaginator;
-    @ViewChild(MatSort) public sort: MatSort;
-    @ViewChild("filter") public filter: ElementRef;
+    @ViewChild(MatPaginator, { static: true }) public paginator: MatPaginator;
+    @ViewChild(MatSort, { static: true }) public sort: MatSort;
+    @ViewChild("filter", { static: true }) public filter: ElementRef;
     private tableReady = new BehaviorSubject<boolean>(false);
 
     constructor(private router: Router,

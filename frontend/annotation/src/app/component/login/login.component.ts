@@ -21,7 +21,7 @@ export class LoginComponent implements OnInit {
 
     public static readonly SUBTITLE = "Login";
     
-    @ViewChild(LoadingComponent)
+    @ViewChild(LoadingComponent, { static: true })
     public loading: LoadingComponent;
 
     public form: LoginForm;
