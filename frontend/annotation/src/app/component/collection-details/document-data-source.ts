@@ -1,8 +1,9 @@
 /*(C) 2019 The Johns Hopkins University Applied Physics Laboratory LLC. */
 
-import { ElementRef, OnDestroy } from "@angular/core";
+import { ElementRef, Injectable } from "@angular/core";
 import { CollectionViewer, DataSource } from "@angular/cdk/collections";
-import { MatPaginator, MatSort } from "@angular/material";
+import { MatPaginator } from "@angular/material/paginator";
+import { MatSort } from "@angular/material/sort";
 import { HttpErrorResponse } from "@angular/common/http";
 
 import { Observable, BehaviorSubject, Subscription, forkJoin, merge, fromEvent } from "rxjs";
@@ -31,7 +32,8 @@ const fieldMapping: {[column: string]: string} = {
     "text_start": "text"
 }
 
-export class DocumentDataSource implements OnDestroy, DataSource<DocumentRow> {
+@Injectable()
+export class DocumentDataSource implements DataSource<DocumentRow> {
 
     private documentSubject = new BehaviorSubject<DocumentRow[]>([]);
     private loadingSubject = new BehaviorSubject<boolean>(false);

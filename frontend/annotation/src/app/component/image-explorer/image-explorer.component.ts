@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, OnChanges, SimpleChanges, ViewChild, ElementRef, OnDestroy } from '@angular/core';
-import { PanZoomConfig, PanZoomAPI, PanZoomModel } from 'ng2-panzoom';
+import { PanZoomConfig, PanZoomAPI, PanZoomModel } from 'ngx-panzoom';
 import { Subscription } from 'rxjs';
 
 import { BackendService } from "../../service/backend/backend.service";
@@ -15,7 +15,7 @@ export class ImageExplorerComponent implements OnInit, OnChanges, OnDestroy {
     @Input() documentId: string;
     @Input() collectionId: string;
     @Input() imageUrl: string;
-    @ViewChild('imageCanvas') imageCanvas: ElementRef<HTMLCanvasElement>;
+    @ViewChild('imageCanvas', { static: true }) imageCanvas: ElementRef<HTMLCanvasElement>;
 
     private canvasContext;
     private img;

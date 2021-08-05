@@ -6,7 +6,7 @@ import { AppConfig } from "./app.config";
 import { HttpErrorResponse } from "@angular/common/http";
 import { Router, ActivatedRoute, NavigationEnd } from "@angular/router";
 import { Title } from '@angular/platform-browser';
-import { MatSnackBar } from '@angular/material';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 import { Observable } from 'rxjs';
 import { filter, map, switchMap } from 'rxjs/operators';
@@ -35,7 +35,7 @@ export class AppComponent implements OnInit, AfterViewInit {
 
     public title: string = 'PINE';
 
-    @ViewChild(StatusBarComponent)
+    @ViewChild(StatusBarComponent, { static: true })
     public statusBar: StatusBarComponent;
 
     constructor(private titleService: Title, private router: Router, private route: ActivatedRoute,

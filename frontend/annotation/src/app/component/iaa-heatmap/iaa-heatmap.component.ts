@@ -23,7 +23,7 @@ export class IaaHeatmapComponent implements OnInit, AfterViewInit, OnChanges {
 
   flattened_data = []
 
-  @ViewChild('canvas')
+  @ViewChild('canvas', { static: true })
   canvas: ElementRef<HTMLCanvasElement>;
 
   private ctx: CanvasRenderingContext2D

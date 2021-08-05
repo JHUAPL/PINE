@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { show } from "../../about/about.component";
-import { MatDialog } from '@angular/material';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
     selector: 'app-toolbar-nav',

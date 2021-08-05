@@ -30,10 +30,10 @@ npm install
 Then, when the dev stack is running:
 
 ```
-./open_with_dev_stack.sh
+./open_with_dev_stack.sh [--pytest|--cyptress]
 ```
 
-This will both run pytest and open the cypress dashboard.
+This will either run pytest or open the cypress dashboard.
 
 Note that running with the dev stack is noticably slower than running with the docker-compose stack.
 You should also be sure to freshly import the testing data before you run the tests

@@ -259,7 +259,7 @@ interface ImageChooserDialogData {
 })
 export class ImageChooserDialog implements OnInit {
 
-    @ViewChild(ImageChooserComponent)
+    @ViewChild(ImageChooserComponent, { static: true })
     public chooser: ImageChooserComponent;
 
     constructor(public dialogRef: MatDialogRef<ImageChooserDialog>,

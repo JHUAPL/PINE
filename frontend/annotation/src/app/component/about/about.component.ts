@@ -1,14 +1,14 @@
 /*(C) 2019 The Johns Hopkins University Applied Physics Laboratory LLC. */
 
 import { Component, OnInit, Input } from "@angular/core";
-import { MatDialog, MatDialogRef, MatDialogConfig } from "@angular/material";
+import { MatDialog, MatDialogRef, MatDialogConfig } from "@angular/material/dialog";
 
 import { take } from "rxjs/operators";
 
 import { BackendService } from "../../service/backend/backend.service";
 
 import { About } from "../../model/backend";
-import { version } from "../../../../package.json";
+import packageInfo from "../../../../package.json";
 
 export interface VersionRow {
     component: string,
@@ -27,7 +27,7 @@ export class AboutComponent implements OnInit {
 
     @Input()
     public about: About;
-    public version = version;
+    public version = packageInfo.version;
     public error = undefined;
 
     public tableData: VersionRow[];

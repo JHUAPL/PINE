@@ -1,7 +1,9 @@
 /*(C) 2019 The Johns Hopkins University Applied Physics Laboratory LLC. */
 
 import { Component, OnInit, ViewChild } from "@angular/core";
-import { MatPaginator, MatTableDataSource, MatDialog } from "@angular/material";
+import { MatDialog } from "@angular/material/dialog";
+import { MatPaginator } from "@angular/material/paginator";
+import { MatTableDataSource } from "@angular/material/table";
 
 import { PATHS } from "../../app.paths";
 import { AppConfig } from "../../app.config";
@@ -35,7 +37,7 @@ export class ViewCollectionsComponent implements OnInit {
 
     public active = true;
 
-    collections: CollectionRow[];
+    collections: CollectionRow[] = [];
     selected = null;
 
     displayedColumns: string[] = ["title", "creator", "last_updated"];

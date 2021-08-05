@@ -1,5 +1,6 @@
-/*(C) 2019 The Johns Hopkins University Applied Physics Laboratory LLC. */
-import tippy from "tippy.js/dist/tippy.all";
+/* (C) 2019 The Johns Hopkins University Applied Physics Laboratory LLC. */
+
+import tippy from "tippy.js";
 
 import { Word } from "../../model/word";
 

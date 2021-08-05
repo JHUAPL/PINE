@@ -1,6 +1,6 @@
-@import '~@angular/material/theming';
+@use '~@angular/material' as mat;
 
-@include mat-core();
+@include mat.core();
 
 /* Palettes */
 $md-whaleblue: (
@@ -138,23 +138,23 @@ $md-summergreen: (
 
 /* Theme */
 
-$custom-theme-primary: mat-palette($md-deeppine, 500);
-$custom-theme-accent: mat-palette($md-whaleblue, 500);
-$custom-theme-warn: mat-palette($mat-red);
+$custom-theme-primary: mat.define-palette($md-deeppine, 500);
+$custom-theme-accent: mat.define-palette($md-whaleblue, 500);
+$custom-theme-warn: mat.define-palette(mat.$red-palette);
 
-$custom-theme: mat-light-theme($custom-theme-primary, $custom-theme-accent, $custom-theme-warn);
+$custom-theme: mat.define-light-theme($custom-theme-primary, $custom-theme-accent, $custom-theme-warn);
 
 .background-primary-color-lighter {
-  background-color: mat-color($custom-theme-primary, lighter) !important;
+  background-color: mat.get-color-from-palette($custom-theme-primary, lighter) !important;
 }
 
 .background-accent-color-lighter {
-  background-color: mat-color($custom-theme-accent, lighter) !important;
+  background-color: mat.get-color-from-palette($custom-theme-accent, lighter) !important;
 }
 
 .table-selectable tr.trow:hover {
-    background-color: mat-color($custom-theme-primary, lighter);
+    background-color: mat.get-color-from-palette($custom-theme-primary, lighter);
     cursor: pointer;
 }
 
-@include angular-material-theme($custom-theme);
+@include mat.all-component-themes($custom-theme);

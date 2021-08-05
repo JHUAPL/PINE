@@ -42,4 +42,4 @@ const appRoutes: Routes = [
     {path: "**", redirectTo: PATHS.collection.view}
 ];
 
-export const routing = RouterModule.forRoot(appRoutes);
+export const routing = RouterModule.forRoot(appRoutes, { relativeLinkResolution: 'legacy' });

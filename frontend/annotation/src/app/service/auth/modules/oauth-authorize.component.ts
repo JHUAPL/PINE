@@ -20,7 +20,7 @@ export class OAuthAuthorizeComponent implements OnInit {
     
     public static SUBTITLE = "Authorizing...";
     
-    @ViewChild(LoadingComponent)
+    @ViewChild(LoadingComponent, { static: true })
     public loading: LoadingComponent;
     
     constructor(private route: ActivatedRoute,

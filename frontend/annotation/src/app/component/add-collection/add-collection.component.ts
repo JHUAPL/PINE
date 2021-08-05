@@ -23,7 +23,7 @@ import { PATHS } from "../../app.paths";
 import { Collection, CONFIG_ALLOW_OVERLAPPING_NER_ANNOTATIONS } from "../../model/collection";
 import { Pipeline } from "../../model/pipeline";
 import { CreatedObject } from "../../model/created";
-import { MatDialogRef } from '@angular/material';
+import { MatDialogRef } from '@angular/material/dialog';
 
 @Component({
     selector: "app-add-collection",
