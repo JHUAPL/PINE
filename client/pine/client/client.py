@@ -1010,7 +1010,8 @@ class PineClient(BaseClient):
         self._check_login()
         return self.get(["pipelines", "classifiers", "status", classifier_id]).json()
 
-    def classifier_train(self, classifier_id: str, model_name: str = "auto-trained") -> dict:
+    def classifier_train(self, classifier_id: str, model_name: str = None, timeout_in_s: int = None,
+                         do_async: bool = True) -> dict:
         """Trains the given classifier (using collection documents).
         
         Note that training is done asynchronously, so this method should return very quickly.  One
@@ -1019,13 +1020,24 @@ class PineClient(BaseClient):
         for that job ID.
         
         :param classifier_id: str: classifier ID
-        :param model_name: str: name of model corresponding to filename on disk, defaults to
-                                ``"auto-trained"`` which is the same as the annotation-based
-                                model training
+        :param model_name: str: name of model corresponding to filename on disk, or ``None`` to use
+                                the default
+        :param timeout_in_s: int: how long before the results expire, or ``None`` to use the default
+        :param do_async: bool: whether to train asynchronously or block until completion, defaults
+                               to ``True``
+        
+        :returns: job information
         :rtype: dict
         """
         self._check_login()
-        return self.post(["pipelines", "train", classifier_id], json={"model_name": model_name}).json()
+        params = {}
+        if model_name != None:
+            params["model_name"] = model_name
+        if timeout_in_s != None:
+            params["timeout_in_s"] = timeout_in_s
+        if do_async != None:
+            params["async"] = do_async
+        return self.post(["pipelines", "train", classifier_id], json=params).json()
 
     def classifier_has_trained(self, classifier_id: str) -> bool:
         """Returns whether the given classifier has been trained or not.
@@ -1042,7 +1054,8 @@ class PineClient(BaseClient):
             raise exceptions.PineClientException("Unable to get status for classifier {}".format(classifier_id))
 
     def classifier_predict(self, classifier_id, document_ids: typing.List[str],
-                           texts: typing.List[str], timeout_in_s: int = 36000) -> dict:
+                           texts: typing.List[str], do_async: bool = False,
+                           timeout_in_s: int = 36000) -> dict:
         """Runs classifier prediction on the given documents.  At least one of document_ids and
         texts must be non-empty.
         
@@ -1052,8 +1065,11 @@ class PineClient(BaseClient):
         :param classifier_id: str: classifier ID
         :param document_ids: list[str]: a list of document IDs to run prediction on
         :param texts: list[str]: a list of direct document texts to run prediction on
-        :param timeout_in_s: int: max timeout in seconds before erroring out and returning, defaults
-                                  to ``36000``
+        :param do_async: bool: whether to do the job asynchronously (``True``) or block until
+                               completion (``False``)
+        :param timeout_in_s: int: max timeout in seconds before erroring out and returning for
+                                  synchronous requests or max timeout before results expire after
+                                  completion for asynchronous requests, defaults to ``36000``
         :rtype: dict
         """
         if not self.classifier_has_trained(classifier_id):
@@ -1063,6 +1079,8 @@ class PineClient(BaseClient):
             "document_ids": document_ids,
             "texts": texts
         }
+        if do_async is not None:
+            params["async"] = do_async
         if timeout_in_s != None:
             params["timeout_in_s"] = timeout_in_s
         return self.post(["pipelines", "predict", classifier_id], json=params).json()
@@ -1071,10 +1089,29 @@ class PineClient(BaseClient):
         """Gets the list of running job IDs for the given classifier.
         
         :param classifier_id: str: classifier ID
+        
+        :returns: running job IDs for the given classifier
         :rtype: list[str]
         """
         self._check_login()
         return self.get(["pipelines", "running_jobs", classifier_id]).json()
+
+    def get_classifier_job_results(self, classifier_id: str, job_id: str, timeout_in_s=None):
+        """Gets the results for the given classifier job.
+        
+        :param classifier_id: str: classifier ID
+        :param job_id: str: job ID
+        :param timeout_in_s: int: how long to wait, or None to use default
+        
+        :returns: job results, probably a dict
+        :rtype: dict
+        """
+        # 0 will wait indefinitely
+        self._check_login()
+        params = {}
+        if timeout_in_s != None:
+            params["timeout_in_s"] = timeout_in_s
+        return self.get(["pipelines", "job_results", classifier_id, job_id], params=params).json()
 
 
 class LocalPineClient(PineClient):

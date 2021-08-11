@@ -271,16 +271,14 @@ class ServiceManager(object):
         return response
 
     @classmethod
-    def send_service_request_and_get_response(cls, service_name: str, data, timeout_in_s: int,
-                                              job_id=None, encoder=None) -> ServiceJob:
+    def send_service_request_and_return_job(cls, service_name: str, data, job_id=None, encoder=None) -> ServiceJob:
         """
-        Sends a service requests, waits for a response, and returns job data.
+        Sends a service request and returns job data.
         :param service_name: str: service name
         :param data: job data
-        :param timeout_in_s: int: wait timeout in seconds
         :param job_id: str: optional job ID (or None to auto-generate one)
         :param encoder: optional JSON encoder for job data
-        :rtype None | ServiceJob
+        :rtype ServiceJob
         """
         request_body = cls.send_service_request(service_name, data, job_id=job_id, encoder=encoder)
         if request_body == None:
@@ -288,10 +286,26 @@ class ServiceManager(object):
                               request_body=None,
                               request_response=None)
         actual_job_id = request_body["job_id"]
-        request_response = cls.get_job_response(service_name, actual_job_id, timeout_in_s)
         return ServiceJob(job_id=actual_job_id,
                           request_body=request_body,
-                          request_response=request_response)
+                          request_response=None)
+
+    @classmethod
+    def send_service_request_and_get_response(cls, service_name: str, data, timeout_in_s: int,
+                                              job_id=None, encoder=None) -> ServiceJob:
+        """
+        Sends a service request, waits for a response, and returns job data.
+        :param service_name: str: service name
+        :param data: job data
+        :param timeout_in_s: int: wait timeout in seconds
+        :param job_id: str: optional job ID (or None to auto-generate one)
+        :param encoder: optional JSON encoder for job data
+        :rtype ServiceJob
+        """
+        job = cls.send_service_request_and_return_job(service_name, data, job_id=job_id, encoder=encoder)
+        if job.request_body != None: # job was sent
+            job.request_response = cls.get_job_response(service_name, job.job_id, timeout_in_s)
+        return job
 
     @classmethod
     def get_running_jobs(cls, service_name: str) -> typing.List[str]:

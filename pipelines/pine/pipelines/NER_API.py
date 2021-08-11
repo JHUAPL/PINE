@@ -198,18 +198,25 @@ class ner_api(object):
         metrics, folds, averages = self.perform_five_fold(classifier, documents, labels, doc_ids, **pipeline_parameters)
 
         logger.info("Starting to train classifier for {} pipeline".format(pipeline_name))
-        classifier.fit(documents, labels, **pipeline_parameters)
+        fit_results = classifier.fit(documents, labels, **pipeline_parameters)
+        results = {
+            "fit": fit_results,
+            "average_metrics": averages,
+            "updated_objects": {}
+        }
 
         logger.info("Trained classifier for {} pipeline".format(pipeline_name))
 
         # save classifier
         logger.info("Saving classifier model for {} pipeline".format(pipeline_name))
         filename = custom_filename + "_" + str(uuid.uuid4())
+        results["model_filename"] = filename
         model_filename = classifier.save_model(os.path.join(self.model_dir, pipeline_name, filename))
-
         # update classifier on eve
         if not self.eve_client.update('classifiers', classifier_id, classifier_obj['_etag'], {'filename': model_filename}):
-            return False
+            raise Exception("Unable to update classifier for {}".format(filename))
+        logger.info("Saved classifier for {}".format(filename))
+        results["updated_objects"]["classifiers"] = [classifier_id]
 
         # update classifier metrics on eve
         metrics_updated_obj = {
@@ -224,6 +231,7 @@ class ner_api(object):
         if not self.eve_client.update('metrics', metrics_obj["_id"], metrics_obj['_etag'], metrics_updated_obj):
             raise Exception("Unable to update metrics for {}".format(filename))
         logger.info("Saved classifier metrics for {}".format(filename))
+        results["updated_objects"]["metrics"] = [metrics_obj["_id"]]
 
         # re rank documents
         ranks = self.get_document_ranking(classifier, doc_map, doc_ids)
@@ -233,9 +241,13 @@ class ner_api(object):
         query = 'next_instances?where={"classifier_id":"%s"}' % classifier_id
         next_instance_obj = self.eve_client.get_items(query)[0]
         etag = next_instance_obj[0]['_etag']
-        id = next_instance_obj[0]['_id']
-        logger.info("Updating next instances entry for current classifier")
-        return self.eve_client.update('next_instances', id, etag, {'document_ids': ranks})
+        next_instance_id = next_instance_obj[0]['_id']
+        if not self.eve_client.update('next_instances', next_instance_id, etag, {'document_ids': ranks}):
+            raise Exception("Unable to update next_instances for {}".format(filename))
+        logger.info("Updated next instances entry for {}".format(filename))
+        results["updated_objects"]["next_instances"] = [next_instance_id]
+        
+        return results
 
     def predict(self, classifier_id: str, pipeline_name: str, document_ids: typing.List[str], texts: typing.List[str]):
         classifier_obj, pipeline_obj, metrics_obj = self.get_classifier_pipeline_metrics_objs(classifier_id)

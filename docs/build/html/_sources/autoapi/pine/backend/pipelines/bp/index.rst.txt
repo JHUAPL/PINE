@@ -19,6 +19,9 @@ Functions
    pine.backend.pipelines.bp._check_permissions
    pine.backend.pipelines.bp._get_pipeline_status
    pine.backend.pipelines.bp._get_pipeline_running_jobs
+   pine.backend.pipelines.bp._get_pipeline_job_results
+   pine.backend.pipelines.bp._serialize_job
+   pine.backend.pipelines.bp._run_job
    pine.backend.pipelines.bp._train_pipeline
    pine.backend.pipelines.bp._predict_pipeline
    pine.backend.pipelines.bp.get_pipelines
@@ -30,6 +33,7 @@ Functions
    pine.backend.pipelines.bp.get_collection_classifier
    pine.backend.pipelines.bp.get_classifier_status
    pine.backend.pipelines.bp.get_running_jobs
+   pine.backend.pipelines.bp.get_job_results
    pine.backend.pipelines.bp.train
    pine.backend.pipelines.bp.predict
    pine.backend.pipelines.bp._get_next_instance
@@ -50,6 +54,8 @@ Attributes
    pine.backend.pipelines.bp.bp
    pine.backend.pipelines.bp._cached_classifiers
    pine.backend.pipelines.bp._cached_classifier_pipelines
+   pine.backend.pipelines.bp.default_model_name
+   pine.backend.pipelines.bp.default_job_timeout
 
 
 .. py:data:: logger
@@ -77,6 +83,16 @@ Attributes
 
    
 
+.. py:data:: default_model_name
+   :annotation: = auto-trained
+
+   
+
+.. py:data:: default_job_timeout
+   :annotation: = 36000
+
+   
+
 .. py:function:: _get_classifier(classifier_id: str) -> dict
 
 
@@ -95,10 +111,19 @@ Attributes
 .. py:function:: _get_pipeline_running_jobs(pipeline: str, classifier_id: str) -> List[str]
 
 
-.. py:function:: _train_pipeline(pipeline: str, classifier_id: str, model_name: str) -> dict
+.. py:function:: _get_pipeline_job_results(pipeline: str, classifier_id: str, job_id: str, timeout_in_s) -> dict
 
 
-.. py:function:: _predict_pipeline(pipeline: str, classifier_id: str, document_ids: List[str], texts: List[str], timeout_in_s: int) -> dict
+.. py:function:: _serialize_job(job: pine.backend.job_manager.service.ServiceJob) -> dict
+
+
+.. py:function:: _run_job(pipeline: str, job_data, async_flag: bool, timeout_in_s: int)
+
+
+.. py:function:: _train_pipeline(pipeline: str, classifier_id: str, model_name: str, async_flag: bool, timeout_in_s: int = default_job_timeout) -> dict
+
+
+.. py:function:: _predict_pipeline(pipeline: str, classifier_id: str, document_ids: List[str], texts: List[str], async_flag: bool, timeout_in_s: int) -> dict
 
 
 .. py:function:: get_pipelines()
@@ -126,6 +151,9 @@ Attributes
 
 
 .. py:function:: get_running_jobs(classifier_id: str)
+
+
+.. py:function:: get_job_results(classifier_id: str, job_id: str)
 
 
 .. py:function:: train(classifier_id: str)

@@ -102,7 +102,7 @@ Attributes
    .. py:method:: status(self) -> dict
 
 
-   .. py:method:: fit(self, X, y, **params)
+   .. py:method:: fit(self, X, y, **params) -> dict
 
 
    .. py:method:: predict(self, X: Iterable[str]) -> List[pine.pipelines.pipeline.DocumentPredictions]

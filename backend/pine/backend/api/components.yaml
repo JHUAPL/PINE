@@ -596,6 +596,13 @@ responses:
         schema:
           $ref: "#/schemas/ErrorResponse"
 
+  ClassifierOrJobNotFound:
+    description: Classifier or job with given IDs was not found.
+    content:
+      application/json:
+        schema:
+          $ref: "#/schemas/ErrorResponse"
+
   MismatchedEtag:
     description: Given etag did not match the most updated stored one.
     content:

@@ -74,7 +74,7 @@ class spacy_NER(Pipeline):
         }
 
     @overrides
-    def fit(self, X, y, **params):
+    def fit(self, X, y, **params) -> dict:
         #setting up params
         default_params = self.__default_fit_params.copy()
         if params is not None:

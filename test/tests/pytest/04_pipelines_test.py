@@ -125,6 +125,20 @@ def test_get_classifier_status():
         status = client.get_classifier_status(classifier["_id"])
         _check_pipeline_status(status, classifier["_id"])
 
+def _assert_job_response(job_response, should_have_response: bool) -> str:
+    assert job_response is not None and isinstance(job_response, dict)
+    assert "job_id" in job_response
+    job_id = job_response["job_id"]
+    assert job_id is not None and isinstance(job_id, str)
+    assert "job_request" in job_response and job_response["job_request"] is not None
+    assert isinstance(job_response["job_request"], dict)
+    if should_have_response:
+        assert "job_response" in job_response and job_response["job_response"] is not None
+        assert isinstance(job_response["job_response"], dict)
+    else:
+        assert "job_response" not in job_response or prediction_job_data["job_response"] is None
+    return job_id
+
 def _test_train_and_predict(collection_title):
     client = common.login_with_test_user(common.client())
     
@@ -141,33 +155,33 @@ def _test_train_and_predict(collection_title):
     document_text = first_document["text"]
     assert document_text.startswith("Thousands of demonstrators have ")
     
-    # train
-    train_job_data = client.classifier_train(classifier_id)
-    assert train_job_data is not None
-    assert "request" in train_job_data
-    assert isinstance(train_job_data["request"], dict)
-    assert "job_id" in train_job_data["request"]
-    train_job_id = train_job_data["request"]["job_id"]
-    assert train_job_id is not None
+    # train async
+    train_job_data = client.classifier_train(classifier_id, do_async=True)
+    train_job_id = _assert_job_response(train_job_data, False)
     common.wait_for_job_to_finish(client, classifier_id, train_job_id, max_wait_seconds=120)
     status = client.get_classifier_status(classifier_id)
     _check_pipeline_status(status, classifier_id)
     assert status["job_response"]["has_trained"]
+    train_job_results = client.get_classifier_job_results(classifier_id, train_job_id)
+    assert train_job_results != None and isinstance(train_job_results, dict)
     
-    # predict from ID
-    prediction_job_data = client.classifier_predict(classifier_id, [document_id], [])
-    assert "job_response" in prediction_job_data and prediction_job_data["job_response"] is not None
+    # predict from ID sync
+    prediction_job_data = client.classifier_predict(classifier_id, [document_id], [], do_async=False)
+    prediction_job_id = _assert_job_response(prediction_job_data, True)
     docs_by_id = prediction_job_data["job_response"]["documents_by_id"]
     texts = prediction_job_data["job_response"]["texts"]
     assert docs_by_id.keys() == {document_id}
     prediction_from_id = docs_by_id[document_id]
     assert len(texts) == 0
     
-    # predict from text
-    prediction_job_data = client.classifier_predict(classifier_id, [], [document_text])
-    assert "job_response" in prediction_job_data and prediction_job_data["job_response"] is not None
-    docs_by_id = prediction_job_data["job_response"]["documents_by_id"]
-    texts = prediction_job_data["job_response"]["texts"]
+    # predict from text async
+    prediction_job_data = client.classifier_predict(classifier_id, [], [document_text], do_async=True)
+    prediction_job_id = _assert_job_response(prediction_job_data, False)
+    common.wait_for_job_to_finish(client, classifier_id, prediction_job_id, max_wait_seconds=120)
+    prediction_job_data = client.get_classifier_job_results(classifier_id, prediction_job_id)
+    assert prediction_job_data != None and isinstance(prediction_job_data, dict)
+    docs_by_id = prediction_job_data["documents_by_id"]
+    texts = prediction_job_data["texts"]
     assert len(docs_by_id) == 0
     assert len(texts) == 1
     prediction_from_text = texts[0]
@@ -224,3 +238,22 @@ def test_train_and_predict_opennlp():
         [852, 858, 'geo'], [865, 899, 'org'], [934, 940, 'geo'], [941, 950, 'tim'],
         [972, 976, 'gpe'], [1025, 1029, 'gpe'], [1089, 1096, 'geo'], [1113, 1120, 'gpe'],
         [1200, 1209, 'tim'], [1221, 1225, 'org']]
+
+def test_sync_train():
+    client = common.login_with_test_user(common.client())
+    
+    collection = common.get_collection(client, "Small Collection OpenNLP")
+    assert collection is not None
+    collection_id = collection["_id"]
+    assert collection_id is not None
+    classifier_id = client.get_collection_classifier(collection_id)["_id"]
+    assert classifier_id is not None
+    
+    train_job_data = client.classifier_train(classifier_id, do_async=False)
+    _assert_job_response(train_job_data, True)
+    results = train_job_data["job_response"]
+    assert results is not None and isinstance(results, dict)
+    assert "average_metrics" in results and isinstance(results["average_metrics"], dict)
+    assert "updated_objects" in results and isinstance(results["updated_objects"], dict)
+    assert "fit" in results and isinstance(results["fit"], dict)
+    assert "model_filename" in results and isinstance(results["model_filename"], str)

@@ -67,7 +67,7 @@ Classes
       :abstractmethod:
 
 
-   .. py:method:: fit(self, X, y, **params)
+   .. py:method:: fit(self, X, y, **params) -> dict
       :abstractmethod:
 
 

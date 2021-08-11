@@ -148,7 +148,7 @@ class opennlp_NER(Pipeline):
         }
 
     @overrides
-    def fit(self, X, y, **params):
+    def fit(self, X, y, **params) -> dict:
         try:
             data = self.format_data(X, y)
             if len(data)==0 or data is None:
@@ -186,6 +186,8 @@ class opennlp_NER(Pipeline):
         self.__model = self.__java_NameFinderME.train(self.__java_String("en"), None, sampleStream, trainParams, nameFinderFactory)
         self.__nameFinder = self.__java_NameFinderME(self.__model)
         os.remove(self.__train_file)
+        
+        return {}
 
     @overrides
     def predict(self, X: typing.Iterable[str]) -> typing.List[DocumentPredictions]:

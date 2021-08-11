@@ -52,7 +52,7 @@ Attributes
 
 
 
-.. py:class:: OAuthModule(app, bp, secret)
+.. py:class:: OAuthModule(app, bp, secret, algorithms: List[str] = ['HS256'])
 
    Bases: :py:obj:`pine.backend.auth.bp.AuthModule`
 

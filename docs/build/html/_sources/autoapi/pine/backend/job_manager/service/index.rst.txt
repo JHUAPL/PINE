@@ -224,16 +224,27 @@ Attributes
       :rtype None | dict
 
 
+   .. py:method:: send_service_request_and_return_job(cls, service_name: str, data, job_id=None, encoder=None) -> ServiceJob
+      :classmethod:
+
+      Sends a service request and returns job data.
+      :param service_name: str: service name
+      :param data: job data
+      :param job_id: str: optional job ID (or None to auto-generate one)
+      :param encoder: optional JSON encoder for job data
+      :rtype ServiceJob
+
+
    .. py:method:: send_service_request_and_get_response(cls, service_name: str, data, timeout_in_s: int, job_id=None, encoder=None) -> ServiceJob
       :classmethod:
 
-      Sends a service requests, waits for a response, and returns job data.
+      Sends a service request, waits for a response, and returns job data.
       :param service_name: str: service name
       :param data: job data
       :param timeout_in_s: int: wait timeout in seconds
       :param job_id: str: optional job ID (or None to auto-generate one)
       :param encoder: optional JSON encoder for job data
-      :rtype None | ServiceJob
+      :rtype ServiceJob
 
 
    .. py:method:: get_running_jobs(cls, service_name: str) -> List[str]
@@ -281,6 +292,10 @@ Attributes
    .. py:method:: _registration_listener(self)
 
       Registration Listener Implementation.
+
+
+   .. py:method:: _create_pool(self)
+      :async:
 
 
    .. py:method:: _channel_watchdog(self)

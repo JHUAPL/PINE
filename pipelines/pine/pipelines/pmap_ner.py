@@ -56,7 +56,7 @@ class NER(Pipeline):
     #internal state is changed
     #kwargs varies between pipelines, see individual pipeline for extra arguments
     @overrides
-    def fit(self, X, y, **kwargs):
+    def fit(self, X, y, **kwargs) -> dict:
         return self.pipeline.fit(X, y, **kwargs)
 
     @overrides
