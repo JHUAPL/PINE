@@ -61,7 +61,7 @@
 
 
 \title{pine}
-\date{Aug 04, 2021}
+\date{Aug 10, 2021}
 \release{}
 \author{JHU/APL}
 \newcommand{\sphinxlogo}{\vbox{}}
@@ -1233,7 +1233,7 @@ Bases: {\hyperref[\detokenize{autoapi/pine/backend/auth/bp/index:pine.backend.au
 \index{get\_logged\_in\_user\_details() (pine.backend.auth.eve.EveModule method)@\spxentry{get\_logged\_in\_user\_details()}\spxextra{pine.backend.auth.eve.EveModule method}}
 
 \begin{fulllineitems}
-\phantomsection\label{\detokenize{autoapi/pine/backend/auth/eve/index:pine.backend.auth.eve.EveModule.get_logged_in_user_details}}\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{get\_logged\_in\_user\_details}}}{\emph{\DUrole{n}{self}}}{}
+\phantomsection\label{\detokenize{autoapi/pine/backend/auth/eve/index:pine.backend.auth.eve.EveModule.get_logged_in_user_details}}\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{get\_logged\_in\_user\_details}}}{\emph{\DUrole{n}{self}}}{{ $\rightarrow$ {\hyperref[\detokenize{autoapi/pine/backend/models/index:pine.backend.models.UserDetails}]{\sphinxcrossref{pine.backend.models.UserDetails}}}}}
 \end{fulllineitems}
 
 \index{update\_user\_details() (pine.backend.auth.eve.EveModule method)@\spxentry{update\_user\_details()}\spxextra{pine.backend.auth.eve.EveModule method}}
@@ -1384,7 +1384,7 @@ Bases: {\hyperref[\detokenize{autoapi/pine/backend/models/index:pine.backend.mod
 \index{OAuthModule (class in pine.backend.auth.oauth)@\spxentry{OAuthModule}\spxextra{class in pine.backend.auth.oauth}}
 
 \begin{fulllineitems}
-\phantomsection\label{\detokenize{autoapi/pine/backend/auth/oauth/index:pine.backend.auth.oauth.OAuthModule}}\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{class }}\sphinxcode{\sphinxupquote{pine.backend.auth.oauth.}}\sphinxbfcode{\sphinxupquote{OAuthModule}}}{\emph{\DUrole{n}{app}}, \emph{\DUrole{n}{bp}}, \emph{\DUrole{n}{secret}}}{}
+\phantomsection\label{\detokenize{autoapi/pine/backend/auth/oauth/index:pine.backend.auth.oauth.OAuthModule}}\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{class }}\sphinxcode{\sphinxupquote{pine.backend.auth.oauth.}}\sphinxbfcode{\sphinxupquote{OAuthModule}}}{\emph{\DUrole{n}{app}}, \emph{\DUrole{n}{bp}}, \emph{\DUrole{n}{secret}}, \emph{\DUrole{n}{algorithms}\DUrole{p}{:} \DUrole{n}{List\DUrole{p}{{[}}\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#str}{str}\DUrole{p}{{]}}} \DUrole{o}{=} \DUrole{default_value}{{[}\textquotesingle{}HS256\textquotesingle{}{]}}}}{}
 \sphinxAtStartPar
 Bases: {\hyperref[\detokenize{autoapi/pine/backend/auth/bp/index:pine.backend.auth.bp.AuthModule}]{\sphinxcrossref{\sphinxcode{\sphinxupquote{pine.backend.auth.bp.AuthModule}}}}}
 \index{register\_oauth() (pine.backend.auth.oauth.OAuthModule method)@\spxentry{register\_oauth()}\spxextra{pine.backend.auth.oauth.OAuthModule method}}
@@ -4066,18 +4066,32 @@ Waits for a response for the given job and returns it.
 
 \end{fulllineitems}
 
+\index{send\_service\_request\_and\_return\_job() (pine.backend.job\_manager.service.ServiceManager class method)@\spxentry{send\_service\_request\_and\_return\_job()}\spxextra{pine.backend.job\_manager.service.ServiceManager class method}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{autoapi/pine/backend/job_manager/service/index:pine.backend.job_manager.service.ServiceManager.send_service_request_and_return_job}}\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{classmethod }}\sphinxbfcode{\sphinxupquote{send\_service\_request\_and\_return\_job}}}{\emph{\DUrole{n}{cls}}, \emph{\DUrole{n}{service\_name}\DUrole{p}{:} \DUrole{n}{\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#str}{str}}}, \emph{\DUrole{n}{data}}, \emph{\DUrole{n}{job\_id}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{encoder}\DUrole{o}{=}\DUrole{default_value}{None}}}{{ $\rightarrow$ {\hyperref[\detokenize{autoapi/pine/backend/job_manager/service/index:pine.backend.job_manager.service.ServiceJob}]{\sphinxcrossref{ServiceJob}}}}}
+\sphinxAtStartPar
+Sends a service request and returns job data.
+:param service\_name: str: service name
+:param data: job data
+:param job\_id: str: optional job ID (or None to auto\sphinxhyphen{}generate one)
+:param encoder: optional JSON encoder for job data
+:rtype ServiceJob
+
+\end{fulllineitems}
+
 \index{send\_service\_request\_and\_get\_response() (pine.backend.job\_manager.service.ServiceManager class method)@\spxentry{send\_service\_request\_and\_get\_response()}\spxextra{pine.backend.job\_manager.service.ServiceManager class method}}
 
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{autoapi/pine/backend/job_manager/service/index:pine.backend.job_manager.service.ServiceManager.send_service_request_and_get_response}}\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{classmethod }}\sphinxbfcode{\sphinxupquote{send\_service\_request\_and\_get\_response}}}{\emph{\DUrole{n}{cls}}, \emph{\DUrole{n}{service\_name}\DUrole{p}{:} \DUrole{n}{\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#str}{str}}}, \emph{\DUrole{n}{data}}, \emph{\DUrole{n}{timeout\_in\_s}\DUrole{p}{:} \DUrole{n}{\sphinxhref{https://docs.python.org/3/library/functions.html\#int}{int}}}, \emph{\DUrole{n}{job\_id}\DUrole{o}{=}\DUrole{default_value}{None}}, \emph{\DUrole{n}{encoder}\DUrole{o}{=}\DUrole{default_value}{None}}}{{ $\rightarrow$ {\hyperref[\detokenize{autoapi/pine/backend/job_manager/service/index:pine.backend.job_manager.service.ServiceJob}]{\sphinxcrossref{ServiceJob}}}}}
 \sphinxAtStartPar
-Sends a service requests, waits for a response, and returns job data.
+Sends a service request, waits for a response, and returns job data.
 :param service\_name: str: service name
 :param data: job data
 :param timeout\_in\_s: int: wait timeout in seconds
 :param job\_id: str: optional job ID (or None to auto\sphinxhyphen{}generate one)
 :param encoder: optional JSON encoder for job data
-:rtype None | ServiceJob
+:rtype ServiceJob
 
 \end{fulllineitems}
 
@@ -4157,6 +4171,12 @@ Stops the channel watchdog workers in an asyncio\sphinxhyphen{}only thread.
 \sphinxAtStartPar
 Registration Listener Implementation.
 
+\end{fulllineitems}
+
+\index{\_create\_pool() (pine.backend.job\_manager.service.ServiceManager method)@\spxentry{\_create\_pool()}\spxextra{pine.backend.job\_manager.service.ServiceManager method}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{autoapi/pine/backend/job_manager/service/index:pine.backend.job_manager.service.ServiceManager._create_pool}}\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{async }}\sphinxbfcode{\sphinxupquote{\_create\_pool}}}{\emph{\DUrole{n}{self}}}{}
 \end{fulllineitems}
 
 \index{\_channel\_watchdog() (pine.backend.job\_manager.service.ServiceManager method)@\spxentry{\_channel\_watchdog()}\spxextra{pine.backend.job\_manager.service.ServiceManager method}}
@@ -5596,14 +5616,35 @@ annotations. Boundary errors for adjacent annotations with the same label are ig
 \\
 \hline
 \sphinxAtStartPar
-{\hyperref[\detokenize{autoapi/pine/backend/pipelines/bp/index:pine.backend.pipelines.bp._train_pipeline}]{\sphinxcrossref{\sphinxcode{\sphinxupquote{\_train\_pipeline}}}}}(pipeline: str, classifier\_id: str, model\_name: str) \(\rightarrow\) dict
+{\hyperref[\detokenize{autoapi/pine/backend/pipelines/bp/index:pine.backend.pipelines.bp._get_pipeline_job_results}]{\sphinxcrossref{\sphinxcode{\sphinxupquote{\_get\_pipeline\_job\_results}}}}}(pipeline: str, classifier\_id: str, job\_id: str, timeout\_in\_s) \(\rightarrow\) dict
 &
 \sphinxAtStartPar
 
 \\
 \hline
 \sphinxAtStartPar
-{\hyperref[\detokenize{autoapi/pine/backend/pipelines/bp/index:pine.backend.pipelines.bp._predict_pipeline}]{\sphinxcrossref{\sphinxcode{\sphinxupquote{\_predict\_pipeline}}}}}(pipeline: str, classifier\_id: str, document\_ids: List{[}str{]}, texts: List{[}str{]}, timeout\_in\_s: int) \(\rightarrow\) dict
+{\hyperref[\detokenize{autoapi/pine/backend/pipelines/bp/index:pine.backend.pipelines.bp._serialize_job}]{\sphinxcrossref{\sphinxcode{\sphinxupquote{\_serialize\_job}}}}}(job: pine.backend.job\_manager.service.ServiceJob) \(\rightarrow\) dict
+&
+\sphinxAtStartPar
+
+\\
+\hline
+\sphinxAtStartPar
+{\hyperref[\detokenize{autoapi/pine/backend/pipelines/bp/index:pine.backend.pipelines.bp._run_job}]{\sphinxcrossref{\sphinxcode{\sphinxupquote{\_run\_job}}}}}(pipeline: str, job\_data, async\_flag: bool, timeout\_in\_s: int)
+&
+\sphinxAtStartPar
+
+\\
+\hline
+\sphinxAtStartPar
+{\hyperref[\detokenize{autoapi/pine/backend/pipelines/bp/index:pine.backend.pipelines.bp._train_pipeline}]{\sphinxcrossref{\sphinxcode{\sphinxupquote{\_train\_pipeline}}}}}(pipeline: str, classifier\_id: str, model\_name: str, async\_flag: bool, timeout\_in\_s: int = default\_job\_timeout) \(\rightarrow\) dict
+&
+\sphinxAtStartPar
+
+\\
+\hline
+\sphinxAtStartPar
+{\hyperref[\detokenize{autoapi/pine/backend/pipelines/bp/index:pine.backend.pipelines.bp._predict_pipeline}]{\sphinxcrossref{\sphinxcode{\sphinxupquote{\_predict\_pipeline}}}}}(pipeline: str, classifier\_id: str, document\_ids: List{[}str{]}, texts: List{[}str{]}, async\_flag: bool, timeout\_in\_s: int) \(\rightarrow\) dict
 &
 \sphinxAtStartPar
 
@@ -5667,6 +5708,13 @@ annotations. Boundary errors for adjacent annotations with the same label are ig
 \hline
 \sphinxAtStartPar
 {\hyperref[\detokenize{autoapi/pine/backend/pipelines/bp/index:pine.backend.pipelines.bp.get_running_jobs}]{\sphinxcrossref{\sphinxcode{\sphinxupquote{get\_running\_jobs}}}}}(classifier\_id: str)
+&
+\sphinxAtStartPar
+
+\\
+\hline
+\sphinxAtStartPar
+{\hyperref[\detokenize{autoapi/pine/backend/pipelines/bp/index:pine.backend.pipelines.bp.get_job_results}]{\sphinxcrossref{\sphinxcode{\sphinxupquote{get\_job\_results}}}}}(classifier\_id: str, job\_id: str)
 &
 \sphinxAtStartPar
 
@@ -5779,6 +5827,20 @@ annotations. Boundary errors for adjacent annotations with the same label are ig
 
 \\
 \hline
+\sphinxAtStartPar
+{\hyperref[\detokenize{autoapi/pine/backend/pipelines/bp/index:pine.backend.pipelines.bp.default_model_name}]{\sphinxcrossref{\sphinxcode{\sphinxupquote{default\_model\_name}}}}}
+&
+\sphinxAtStartPar
+
+\\
+\hline
+\sphinxAtStartPar
+{\hyperref[\detokenize{autoapi/pine/backend/pipelines/bp/index:pine.backend.pipelines.bp.default_job_timeout}]{\sphinxcrossref{\sphinxcode{\sphinxupquote{default\_job\_timeout}}}}}
+&
+\sphinxAtStartPar
+
+\\
+\hline
 \end{longtable}\sphinxatlongtableend\end{savenotes}
 \index{logger (in module pine.backend.pipelines.bp)@\spxentry{logger}\spxextra{in module pine.backend.pipelines.bp}}
 
@@ -5808,6 +5870,18 @@ annotations. Boundary errors for adjacent annotations with the same label are ig
 
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{autoapi/pine/backend/pipelines/bp/index:pine.backend.pipelines.bp._cached_classifier_pipelines}}\pysigline{\sphinxcode{\sphinxupquote{pine.backend.pipelines.bp.}}\sphinxbfcode{\sphinxupquote{\_cached\_classifier\_pipelines}}}
+\end{fulllineitems}
+
+\index{default\_model\_name (in module pine.backend.pipelines.bp)@\spxentry{default\_model\_name}\spxextra{in module pine.backend.pipelines.bp}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{autoapi/pine/backend/pipelines/bp/index:pine.backend.pipelines.bp.default_model_name}}\pysigline{\sphinxcode{\sphinxupquote{pine.backend.pipelines.bp.}}\sphinxbfcode{\sphinxupquote{default\_model\_name}}\sphinxbfcode{\sphinxupquote{ = auto\sphinxhyphen{}trained}}}
+\end{fulllineitems}
+
+\index{default\_job\_timeout (in module pine.backend.pipelines.bp)@\spxentry{default\_job\_timeout}\spxextra{in module pine.backend.pipelines.bp}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{autoapi/pine/backend/pipelines/bp/index:pine.backend.pipelines.bp.default_job_timeout}}\pysigline{\sphinxcode{\sphinxupquote{pine.backend.pipelines.bp.}}\sphinxbfcode{\sphinxupquote{default\_job\_timeout}}\sphinxbfcode{\sphinxupquote{ = 36000}}}
 \end{fulllineitems}
 
 \index{\_get\_classifier() (in module pine.backend.pipelines.bp)@\spxentry{\_get\_classifier()}\spxextra{in module pine.backend.pipelines.bp}}
@@ -5846,16 +5920,34 @@ annotations. Boundary errors for adjacent annotations with the same label are ig
 \phantomsection\label{\detokenize{autoapi/pine/backend/pipelines/bp/index:pine.backend.pipelines.bp._get_pipeline_running_jobs}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{pine.backend.pipelines.bp.}}\sphinxbfcode{\sphinxupquote{\_get\_pipeline\_running\_jobs}}}{\emph{\DUrole{n}{pipeline}\DUrole{p}{:} \DUrole{n}{\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#str}{str}}}, \emph{\DUrole{n}{classifier\_id}\DUrole{p}{:} \DUrole{n}{\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#str}{str}}}}{{ $\rightarrow$ List\DUrole{p}{{[}}\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#str}{str}\DUrole{p}{{]}}}}
 \end{fulllineitems}
 
+\index{\_get\_pipeline\_job\_results() (in module pine.backend.pipelines.bp)@\spxentry{\_get\_pipeline\_job\_results()}\spxextra{in module pine.backend.pipelines.bp}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{autoapi/pine/backend/pipelines/bp/index:pine.backend.pipelines.bp._get_pipeline_job_results}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{pine.backend.pipelines.bp.}}\sphinxbfcode{\sphinxupquote{\_get\_pipeline\_job\_results}}}{\emph{\DUrole{n}{pipeline}\DUrole{p}{:} \DUrole{n}{\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#str}{str}}}, \emph{\DUrole{n}{classifier\_id}\DUrole{p}{:} \DUrole{n}{\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#str}{str}}}, \emph{\DUrole{n}{job\_id}\DUrole{p}{:} \DUrole{n}{\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#str}{str}}}, \emph{\DUrole{n}{timeout\_in\_s}}}{{ $\rightarrow$ \sphinxhref{https://docs.python.org/3/library/stdtypes.html\#dict}{dict}}}
+\end{fulllineitems}
+
+\index{\_serialize\_job() (in module pine.backend.pipelines.bp)@\spxentry{\_serialize\_job()}\spxextra{in module pine.backend.pipelines.bp}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{autoapi/pine/backend/pipelines/bp/index:pine.backend.pipelines.bp._serialize_job}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{pine.backend.pipelines.bp.}}\sphinxbfcode{\sphinxupquote{\_serialize\_job}}}{\emph{\DUrole{n}{job}\DUrole{p}{:} \DUrole{n}{{\hyperref[\detokenize{autoapi/pine/backend/job_manager/service/index:pine.backend.job_manager.service.ServiceJob}]{\sphinxcrossref{pine.backend.job\_manager.service.ServiceJob}}}}}}{{ $\rightarrow$ \sphinxhref{https://docs.python.org/3/library/stdtypes.html\#dict}{dict}}}
+\end{fulllineitems}
+
+\index{\_run\_job() (in module pine.backend.pipelines.bp)@\spxentry{\_run\_job()}\spxextra{in module pine.backend.pipelines.bp}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{autoapi/pine/backend/pipelines/bp/index:pine.backend.pipelines.bp._run_job}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{pine.backend.pipelines.bp.}}\sphinxbfcode{\sphinxupquote{\_run\_job}}}{\emph{\DUrole{n}{pipeline}\DUrole{p}{:} \DUrole{n}{\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#str}{str}}}, \emph{\DUrole{n}{job\_data}}, \emph{\DUrole{n}{async\_flag}\DUrole{p}{:} \DUrole{n}{\sphinxhref{https://docs.python.org/3/library/functions.html\#bool}{bool}}}, \emph{\DUrole{n}{timeout\_in\_s}\DUrole{p}{:} \DUrole{n}{\sphinxhref{https://docs.python.org/3/library/functions.html\#int}{int}}}}{}
+\end{fulllineitems}
+
 \index{\_train\_pipeline() (in module pine.backend.pipelines.bp)@\spxentry{\_train\_pipeline()}\spxextra{in module pine.backend.pipelines.bp}}
 
 \begin{fulllineitems}
-\phantomsection\label{\detokenize{autoapi/pine/backend/pipelines/bp/index:pine.backend.pipelines.bp._train_pipeline}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{pine.backend.pipelines.bp.}}\sphinxbfcode{\sphinxupquote{\_train\_pipeline}}}{\emph{\DUrole{n}{pipeline}\DUrole{p}{:} \DUrole{n}{\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#str}{str}}}, \emph{\DUrole{n}{classifier\_id}\DUrole{p}{:} \DUrole{n}{\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#str}{str}}}, \emph{\DUrole{n}{model\_name}\DUrole{p}{:} \DUrole{n}{\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#str}{str}}}}{{ $\rightarrow$ \sphinxhref{https://docs.python.org/3/library/stdtypes.html\#dict}{dict}}}
+\phantomsection\label{\detokenize{autoapi/pine/backend/pipelines/bp/index:pine.backend.pipelines.bp._train_pipeline}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{pine.backend.pipelines.bp.}}\sphinxbfcode{\sphinxupquote{\_train\_pipeline}}}{\emph{\DUrole{n}{pipeline}\DUrole{p}{:} \DUrole{n}{\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#str}{str}}}, \emph{\DUrole{n}{classifier\_id}\DUrole{p}{:} \DUrole{n}{\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#str}{str}}}, \emph{\DUrole{n}{model\_name}\DUrole{p}{:} \DUrole{n}{\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#str}{str}}}, \emph{\DUrole{n}{async\_flag}\DUrole{p}{:} \DUrole{n}{\sphinxhref{https://docs.python.org/3/library/functions.html\#bool}{bool}}}, \emph{\DUrole{n}{timeout\_in\_s}\DUrole{p}{:} \DUrole{n}{\sphinxhref{https://docs.python.org/3/library/functions.html\#int}{int}} \DUrole{o}{=} \DUrole{default_value}{default\_job\_timeout}}}{{ $\rightarrow$ \sphinxhref{https://docs.python.org/3/library/stdtypes.html\#dict}{dict}}}
 \end{fulllineitems}
 
 \index{\_predict\_pipeline() (in module pine.backend.pipelines.bp)@\spxentry{\_predict\_pipeline()}\spxextra{in module pine.backend.pipelines.bp}}
 
 \begin{fulllineitems}
-\phantomsection\label{\detokenize{autoapi/pine/backend/pipelines/bp/index:pine.backend.pipelines.bp._predict_pipeline}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{pine.backend.pipelines.bp.}}\sphinxbfcode{\sphinxupquote{\_predict\_pipeline}}}{\emph{\DUrole{n}{pipeline}\DUrole{p}{:} \DUrole{n}{\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#str}{str}}}, \emph{\DUrole{n}{classifier\_id}\DUrole{p}{:} \DUrole{n}{\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#str}{str}}}, \emph{\DUrole{n}{document\_ids}\DUrole{p}{:} \DUrole{n}{List\DUrole{p}{{[}}\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#str}{str}\DUrole{p}{{]}}}}, \emph{\DUrole{n}{texts}\DUrole{p}{:} \DUrole{n}{List\DUrole{p}{{[}}\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#str}{str}\DUrole{p}{{]}}}}, \emph{\DUrole{n}{timeout\_in\_s}\DUrole{p}{:} \DUrole{n}{\sphinxhref{https://docs.python.org/3/library/functions.html\#int}{int}}}}{{ $\rightarrow$ \sphinxhref{https://docs.python.org/3/library/stdtypes.html\#dict}{dict}}}
+\phantomsection\label{\detokenize{autoapi/pine/backend/pipelines/bp/index:pine.backend.pipelines.bp._predict_pipeline}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{pine.backend.pipelines.bp.}}\sphinxbfcode{\sphinxupquote{\_predict\_pipeline}}}{\emph{\DUrole{n}{pipeline}\DUrole{p}{:} \DUrole{n}{\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#str}{str}}}, \emph{\DUrole{n}{classifier\_id}\DUrole{p}{:} \DUrole{n}{\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#str}{str}}}, \emph{\DUrole{n}{document\_ids}\DUrole{p}{:} \DUrole{n}{List\DUrole{p}{{[}}\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#str}{str}\DUrole{p}{{]}}}}, \emph{\DUrole{n}{texts}\DUrole{p}{:} \DUrole{n}{List\DUrole{p}{{[}}\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#str}{str}\DUrole{p}{{]}}}}, \emph{\DUrole{n}{async\_flag}\DUrole{p}{:} \DUrole{n}{\sphinxhref{https://docs.python.org/3/library/functions.html\#bool}{bool}}}, \emph{\DUrole{n}{timeout\_in\_s}\DUrole{p}{:} \DUrole{n}{\sphinxhref{https://docs.python.org/3/library/functions.html\#int}{int}}}}{{ $\rightarrow$ \sphinxhref{https://docs.python.org/3/library/stdtypes.html\#dict}{dict}}}
 \end{fulllineitems}
 
 \index{get\_pipelines() (in module pine.backend.pipelines.bp)@\spxentry{get\_pipelines()}\spxextra{in module pine.backend.pipelines.bp}}
@@ -5910,6 +6002,12 @@ annotations. Boundary errors for adjacent annotations with the same label are ig
 
 \begin{fulllineitems}
 \phantomsection\label{\detokenize{autoapi/pine/backend/pipelines/bp/index:pine.backend.pipelines.bp.get_running_jobs}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{pine.backend.pipelines.bp.}}\sphinxbfcode{\sphinxupquote{get\_running\_jobs}}}{\emph{\DUrole{n}{classifier\_id}\DUrole{p}{:} \DUrole{n}{\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#str}{str}}}}{}
+\end{fulllineitems}
+
+\index{get\_job\_results() (in module pine.backend.pipelines.bp)@\spxentry{get\_job\_results()}\spxextra{in module pine.backend.pipelines.bp}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{autoapi/pine/backend/pipelines/bp/index:pine.backend.pipelines.bp.get_job_results}}\pysiglinewithargsret{\sphinxcode{\sphinxupquote{pine.backend.pipelines.bp.}}\sphinxbfcode{\sphinxupquote{get\_job\_results}}}{\emph{\DUrole{n}{classifier\_id}\DUrole{p}{:} \DUrole{n}{\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#str}{str}}}, \emph{\DUrole{n}{job\_id}\DUrole{p}{:} \DUrole{n}{\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#str}{str}}}}{}
 \end{fulllineitems}
 
 \index{train() (in module pine.backend.pipelines.bp)@\spxentry{train()}\spxextra{in module pine.backend.pipelines.bp}}
@@ -9428,7 +9526,7 @@ status for the given classifier
 \index{classifier\_train() (pine.client.client.PineClient method)@\spxentry{classifier\_train()}\spxextra{pine.client.client.PineClient method}}
 
 \begin{fulllineitems}
-\phantomsection\label{\detokenize{autoapi/pine/client/client/index:pine.client.client.PineClient.classifier_train}}\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{classifier\_train}}}{\emph{\DUrole{n}{self}}, \emph{\DUrole{n}{classifier\_id}\DUrole{p}{:} \DUrole{n}{\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#str}{str}}}, \emph{\DUrole{n}{model\_name}\DUrole{p}{:} \DUrole{n}{\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#str}{str}} \DUrole{o}{=} \DUrole{default_value}{\textquotesingle{}auto\sphinxhyphen{}trained\textquotesingle{}}}}{{ $\rightarrow$ \sphinxhref{https://docs.python.org/3/library/stdtypes.html\#dict}{dict}}}
+\phantomsection\label{\detokenize{autoapi/pine/client/client/index:pine.client.client.PineClient.classifier_train}}\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{classifier\_train}}}{\emph{\DUrole{n}{self}}, \emph{\DUrole{n}{classifier\_id}\DUrole{p}{:} \DUrole{n}{\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#str}{str}}}, \emph{\DUrole{n}{model\_name}\DUrole{p}{:} \DUrole{n}{\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#str}{str}} \DUrole{o}{=} \DUrole{default_value}{None}}, \emph{\DUrole{n}{timeout\_in\_s}\DUrole{p}{:} \DUrole{n}{\sphinxhref{https://docs.python.org/3/library/functions.html\#int}{int}} \DUrole{o}{=} \DUrole{default_value}{None}}, \emph{\DUrole{n}{do\_async}\DUrole{p}{:} \DUrole{n}{\sphinxhref{https://docs.python.org/3/library/functions.html\#bool}{bool}} \DUrole{o}{=} \DUrole{default_value}{True}}}{{ $\rightarrow$ \sphinxhref{https://docs.python.org/3/library/stdtypes.html\#dict}{dict}}}
 \sphinxAtStartPar
 Trains the given classifier (using collection documents).
 
@@ -9445,11 +9543,23 @@ for that job ID.
 
 \item {} 
 \sphinxAtStartPar
-\sphinxstyleliteralstrong{\sphinxupquote{model\_name}} \textendash{} str: name of model corresponding to filename on disk, defaults to
-\sphinxcode{\sphinxupquote{"auto\sphinxhyphen{}trained"}} which is the same as the annotation\sphinxhyphen{}based
-model training
+\sphinxstyleliteralstrong{\sphinxupquote{model\_name}} \textendash{} str: name of model corresponding to filename on disk, or \sphinxcode{\sphinxupquote{None}} to use
+the default
+
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{timeout\_in\_s}} \textendash{} int: how long before the results expire, or \sphinxcode{\sphinxupquote{None}} to use the default
+
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{do\_async}} \textendash{} bool: whether to train asynchronously or block until completion, defaults
+to \sphinxcode{\sphinxupquote{True}}
 
 \end{itemize}
+
+\item[{Returns}] \leavevmode
+\sphinxAtStartPar
+job information
 
 \item[{Return type}] \leavevmode
 \sphinxAtStartPar
@@ -9484,7 +9594,7 @@ classifier\_id: str: classifier ID
 \index{classifier\_predict() (pine.client.client.PineClient method)@\spxentry{classifier\_predict()}\spxextra{pine.client.client.PineClient method}}
 
 \begin{fulllineitems}
-\phantomsection\label{\detokenize{autoapi/pine/client/client/index:pine.client.client.PineClient.classifier_predict}}\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{classifier\_predict}}}{\emph{\DUrole{n}{self}}, \emph{\DUrole{n}{classifier\_id}}, \emph{\DUrole{n}{document\_ids}\DUrole{p}{:} \DUrole{n}{List\DUrole{p}{{[}}\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#str}{str}\DUrole{p}{{]}}}}, \emph{\DUrole{n}{texts}\DUrole{p}{:} \DUrole{n}{List\DUrole{p}{{[}}\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#str}{str}\DUrole{p}{{]}}}}, \emph{\DUrole{n}{timeout\_in\_s}\DUrole{p}{:} \DUrole{n}{\sphinxhref{https://docs.python.org/3/library/functions.html\#int}{int}} \DUrole{o}{=} \DUrole{default_value}{36000}}}{{ $\rightarrow$ \sphinxhref{https://docs.python.org/3/library/stdtypes.html\#dict}{dict}}}
+\phantomsection\label{\detokenize{autoapi/pine/client/client/index:pine.client.client.PineClient.classifier_predict}}\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{classifier\_predict}}}{\emph{\DUrole{n}{self}}, \emph{\DUrole{n}{classifier\_id}}, \emph{\DUrole{n}{document\_ids}\DUrole{p}{:} \DUrole{n}{List\DUrole{p}{{[}}\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#str}{str}\DUrole{p}{{]}}}}, \emph{\DUrole{n}{texts}\DUrole{p}{:} \DUrole{n}{List\DUrole{p}{{[}}\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#str}{str}\DUrole{p}{{]}}}}, \emph{\DUrole{n}{do\_async}\DUrole{p}{:} \DUrole{n}{\sphinxhref{https://docs.python.org/3/library/functions.html\#bool}{bool}} \DUrole{o}{=} \DUrole{default_value}{False}}, \emph{\DUrole{n}{timeout\_in\_s}\DUrole{p}{:} \DUrole{n}{\sphinxhref{https://docs.python.org/3/library/functions.html\#int}{int}} \DUrole{o}{=} \DUrole{default_value}{36000}}}{{ $\rightarrow$ \sphinxhref{https://docs.python.org/3/library/stdtypes.html\#dict}{dict}}}
 \sphinxAtStartPar
 Runs classifier prediction on the given documents.  At least one of document\_ids and
 texts must be non\sphinxhyphen{}empty.
@@ -9508,8 +9618,14 @@ block until the prediction has finished and then return the results.
 
 \item {} 
 \sphinxAtStartPar
-\sphinxstyleliteralstrong{\sphinxupquote{timeout\_in\_s}} \textendash{} int: max timeout in seconds before erroring out and returning, defaults
-to \sphinxcode{\sphinxupquote{36000}}
+\sphinxstyleliteralstrong{\sphinxupquote{do\_async}} \textendash{} bool: whether to do the job asynchronously (\sphinxcode{\sphinxupquote{True}}) or block until
+completion (\sphinxcode{\sphinxupquote{False}})
+
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{timeout\_in\_s}} \textendash{} int: max timeout in seconds before erroring out and returning for
+synchronous requests or max timeout before results expire after
+completion for asynchronous requests, defaults to \sphinxcode{\sphinxupquote{36000}}
 
 \end{itemize}
 
@@ -9532,9 +9648,47 @@ Gets the list of running job IDs for the given classifier.
 \sphinxAtStartPar
 \sphinxstyleliteralstrong{\sphinxupquote{classifier\_id}} \textendash{} str: classifier ID
 
+\item[{Returns}] \leavevmode
+\sphinxAtStartPar
+running job IDs for the given classifier
+
 \item[{Return type}] \leavevmode
 \sphinxAtStartPar
 \sphinxhref{https://docs.python.org/3/library/stdtypes.html\#list}{list}{[}\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#str}{str}{]}
+
+\end{description}\end{quote}
+
+\end{fulllineitems}
+
+\index{get\_classifier\_job\_results() (pine.client.client.PineClient method)@\spxentry{get\_classifier\_job\_results()}\spxextra{pine.client.client.PineClient method}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{autoapi/pine/client/client/index:pine.client.client.PineClient.get_classifier_job_results}}\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{get\_classifier\_job\_results}}}{\emph{\DUrole{n}{self}}, \emph{\DUrole{n}{classifier\_id}\DUrole{p}{:} \DUrole{n}{\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#str}{str}}}, \emph{\DUrole{n}{job\_id}\DUrole{p}{:} \DUrole{n}{\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#str}{str}}}, \emph{\DUrole{n}{timeout\_in\_s}\DUrole{o}{=}\DUrole{default_value}{None}}}{}
+\sphinxAtStartPar
+Gets the results for the given classifier job.
+\begin{quote}\begin{description}
+\item[{Parameters}] \leavevmode\begin{itemize}
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{classifier\_id}} \textendash{} str: classifier ID
+
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{job\_id}} \textendash{} str: job ID
+
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{timeout\_in\_s}} \textendash{} int: how long to wait, or None to use default
+
+\end{itemize}
+
+\item[{Returns}] \leavevmode
+\sphinxAtStartPar
+job results, probably a dict
+
+\item[{Return type}] \leavevmode
+\sphinxAtStartPar
+\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#dict}{dict}
 
 \end{description}\end{quote}
 
@@ -12870,7 +13024,7 @@ status for the given classifier
 \index{classifier\_train() (pine.client.PineClient method)@\spxentry{classifier\_train()}\spxextra{pine.client.PineClient method}}
 
 \begin{fulllineitems}
-\phantomsection\label{\detokenize{autoapi/pine/client/index:pine.client.PineClient.classifier_train}}\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{classifier\_train}}}{\emph{\DUrole{n}{self}}, \emph{\DUrole{n}{classifier\_id}\DUrole{p}{:} \DUrole{n}{\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#str}{str}}}, \emph{\DUrole{n}{model\_name}\DUrole{p}{:} \DUrole{n}{\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#str}{str}} \DUrole{o}{=} \DUrole{default_value}{\textquotesingle{}auto\sphinxhyphen{}trained\textquotesingle{}}}}{{ $\rightarrow$ \sphinxhref{https://docs.python.org/3/library/stdtypes.html\#dict}{dict}}}
+\phantomsection\label{\detokenize{autoapi/pine/client/index:pine.client.PineClient.classifier_train}}\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{classifier\_train}}}{\emph{\DUrole{n}{self}}, \emph{\DUrole{n}{classifier\_id}\DUrole{p}{:} \DUrole{n}{\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#str}{str}}}, \emph{\DUrole{n}{model\_name}\DUrole{p}{:} \DUrole{n}{\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#str}{str}} \DUrole{o}{=} \DUrole{default_value}{None}}, \emph{\DUrole{n}{timeout\_in\_s}\DUrole{p}{:} \DUrole{n}{\sphinxhref{https://docs.python.org/3/library/functions.html\#int}{int}} \DUrole{o}{=} \DUrole{default_value}{None}}, \emph{\DUrole{n}{do\_async}\DUrole{p}{:} \DUrole{n}{\sphinxhref{https://docs.python.org/3/library/functions.html\#bool}{bool}} \DUrole{o}{=} \DUrole{default_value}{True}}}{{ $\rightarrow$ \sphinxhref{https://docs.python.org/3/library/stdtypes.html\#dict}{dict}}}
 \sphinxAtStartPar
 Trains the given classifier (using collection documents).
 
@@ -12887,11 +13041,23 @@ for that job ID.
 
 \item {} 
 \sphinxAtStartPar
-\sphinxstyleliteralstrong{\sphinxupquote{model\_name}} \textendash{} str: name of model corresponding to filename on disk, defaults to
-\sphinxcode{\sphinxupquote{"auto\sphinxhyphen{}trained"}} which is the same as the annotation\sphinxhyphen{}based
-model training
+\sphinxstyleliteralstrong{\sphinxupquote{model\_name}} \textendash{} str: name of model corresponding to filename on disk, or \sphinxcode{\sphinxupquote{None}} to use
+the default
+
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{timeout\_in\_s}} \textendash{} int: how long before the results expire, or \sphinxcode{\sphinxupquote{None}} to use the default
+
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{do\_async}} \textendash{} bool: whether to train asynchronously or block until completion, defaults
+to \sphinxcode{\sphinxupquote{True}}
 
 \end{itemize}
+
+\item[{Returns}] \leavevmode
+\sphinxAtStartPar
+job information
 
 \item[{Return type}] \leavevmode
 \sphinxAtStartPar
@@ -12926,7 +13092,7 @@ classifier\_id: str: classifier ID
 \index{classifier\_predict() (pine.client.PineClient method)@\spxentry{classifier\_predict()}\spxextra{pine.client.PineClient method}}
 
 \begin{fulllineitems}
-\phantomsection\label{\detokenize{autoapi/pine/client/index:pine.client.PineClient.classifier_predict}}\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{classifier\_predict}}}{\emph{\DUrole{n}{self}}, \emph{\DUrole{n}{classifier\_id}}, \emph{\DUrole{n}{document\_ids}\DUrole{p}{:} \DUrole{n}{List\DUrole{p}{{[}}\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#str}{str}\DUrole{p}{{]}}}}, \emph{\DUrole{n}{texts}\DUrole{p}{:} \DUrole{n}{List\DUrole{p}{{[}}\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#str}{str}\DUrole{p}{{]}}}}, \emph{\DUrole{n}{timeout\_in\_s}\DUrole{p}{:} \DUrole{n}{\sphinxhref{https://docs.python.org/3/library/functions.html\#int}{int}} \DUrole{o}{=} \DUrole{default_value}{36000}}}{{ $\rightarrow$ \sphinxhref{https://docs.python.org/3/library/stdtypes.html\#dict}{dict}}}
+\phantomsection\label{\detokenize{autoapi/pine/client/index:pine.client.PineClient.classifier_predict}}\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{classifier\_predict}}}{\emph{\DUrole{n}{self}}, \emph{\DUrole{n}{classifier\_id}}, \emph{\DUrole{n}{document\_ids}\DUrole{p}{:} \DUrole{n}{List\DUrole{p}{{[}}\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#str}{str}\DUrole{p}{{]}}}}, \emph{\DUrole{n}{texts}\DUrole{p}{:} \DUrole{n}{List\DUrole{p}{{[}}\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#str}{str}\DUrole{p}{{]}}}}, \emph{\DUrole{n}{do\_async}\DUrole{p}{:} \DUrole{n}{\sphinxhref{https://docs.python.org/3/library/functions.html\#bool}{bool}} \DUrole{o}{=} \DUrole{default_value}{False}}, \emph{\DUrole{n}{timeout\_in\_s}\DUrole{p}{:} \DUrole{n}{\sphinxhref{https://docs.python.org/3/library/functions.html\#int}{int}} \DUrole{o}{=} \DUrole{default_value}{36000}}}{{ $\rightarrow$ \sphinxhref{https://docs.python.org/3/library/stdtypes.html\#dict}{dict}}}
 \sphinxAtStartPar
 Runs classifier prediction on the given documents.  At least one of document\_ids and
 texts must be non\sphinxhyphen{}empty.
@@ -12950,8 +13116,14 @@ block until the prediction has finished and then return the results.
 
 \item {} 
 \sphinxAtStartPar
-\sphinxstyleliteralstrong{\sphinxupquote{timeout\_in\_s}} \textendash{} int: max timeout in seconds before erroring out and returning, defaults
-to \sphinxcode{\sphinxupquote{36000}}
+\sphinxstyleliteralstrong{\sphinxupquote{do\_async}} \textendash{} bool: whether to do the job asynchronously (\sphinxcode{\sphinxupquote{True}}) or block until
+completion (\sphinxcode{\sphinxupquote{False}})
+
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{timeout\_in\_s}} \textendash{} int: max timeout in seconds before erroring out and returning for
+synchronous requests or max timeout before results expire after
+completion for asynchronous requests, defaults to \sphinxcode{\sphinxupquote{36000}}
 
 \end{itemize}
 
@@ -12974,9 +13146,47 @@ Gets the list of running job IDs for the given classifier.
 \sphinxAtStartPar
 \sphinxstyleliteralstrong{\sphinxupquote{classifier\_id}} \textendash{} str: classifier ID
 
+\item[{Returns}] \leavevmode
+\sphinxAtStartPar
+running job IDs for the given classifier
+
 \item[{Return type}] \leavevmode
 \sphinxAtStartPar
 \sphinxhref{https://docs.python.org/3/library/stdtypes.html\#list}{list}{[}\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#str}{str}{]}
+
+\end{description}\end{quote}
+
+\end{fulllineitems}
+
+\index{get\_classifier\_job\_results() (pine.client.PineClient method)@\spxentry{get\_classifier\_job\_results()}\spxextra{pine.client.PineClient method}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{autoapi/pine/client/index:pine.client.PineClient.get_classifier_job_results}}\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{get\_classifier\_job\_results}}}{\emph{\DUrole{n}{self}}, \emph{\DUrole{n}{classifier\_id}\DUrole{p}{:} \DUrole{n}{\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#str}{str}}}, \emph{\DUrole{n}{job\_id}\DUrole{p}{:} \DUrole{n}{\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#str}{str}}}, \emph{\DUrole{n}{timeout\_in\_s}\DUrole{o}{=}\DUrole{default_value}{None}}}{}
+\sphinxAtStartPar
+Gets the results for the given classifier job.
+\begin{quote}\begin{description}
+\item[{Parameters}] \leavevmode\begin{itemize}
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{classifier\_id}} \textendash{} str: classifier ID
+
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{job\_id}} \textendash{} str: job ID
+
+\item {} 
+\sphinxAtStartPar
+\sphinxstyleliteralstrong{\sphinxupquote{timeout\_in\_s}} \textendash{} int: how long to wait, or None to use default
+
+\end{itemize}
+
+\item[{Returns}] \leavevmode
+\sphinxAtStartPar
+job results, probably a dict
+
+\item[{Return type}] \leavevmode
+\sphinxAtStartPar
+\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#dict}{dict}
 
 \end{description}\end{quote}
 
@@ -13852,10 +14062,10 @@ Bases: \sphinxhref{https://docs.python.org/3/library/functions.html\#object}{\sp
 \phantomsection\label{\detokenize{autoapi/pine/pipelines/app/listener/service_listener/index:pine.pipelines.app.listener.service_listener.ServiceListener.results_queue_key}}\pysigline{\sphinxbfcode{\sphinxupquote{results\_queue\_key}}}
 \end{fulllineitems}
 
-\index{results\_queue\_key\_timeout (pine.pipelines.app.listener.service\_listener.ServiceListener attribute)@\spxentry{results\_queue\_key\_timeout}\spxextra{pine.pipelines.app.listener.service\_listener.ServiceListener attribute}}
+\index{results\_queue\_key\_timeout\_s (pine.pipelines.app.listener.service\_listener.ServiceListener attribute)@\spxentry{results\_queue\_key\_timeout\_s}\spxextra{pine.pipelines.app.listener.service\_listener.ServiceListener attribute}}
 
 \begin{fulllineitems}
-\phantomsection\label{\detokenize{autoapi/pine/pipelines/app/listener/service_listener/index:pine.pipelines.app.listener.service_listener.ServiceListener.results_queue_key_timeout}}\pysigline{\sphinxbfcode{\sphinxupquote{results\_queue\_key\_timeout}}}
+\phantomsection\label{\detokenize{autoapi/pine/pipelines/app/listener/service_listener/index:pine.pipelines.app.listener.service_listener.ServiceListener.results_queue_key_timeout_s}}\pysigline{\sphinxbfcode{\sphinxupquote{results\_queue\_key\_timeout\_s}}}
 \end{fulllineitems}
 
 \index{running\_jobs\_key (pine.pipelines.app.listener.service\_listener.ServiceListener attribute)@\spxentry{running\_jobs\_key}\spxextra{pine.pipelines.app.listener.service\_listener.ServiceListener attribute}}
@@ -13945,7 +14155,7 @@ Bases: \sphinxhref{https://docs.python.org/3/library/functions.html\#object}{\sp
 \index{push\_results() (pine.pipelines.app.listener.service\_listener.ServiceListener static method)@\spxentry{push\_results()}\spxextra{pine.pipelines.app.listener.service\_listener.ServiceListener static method}}
 
 \begin{fulllineitems}
-\phantomsection\label{\detokenize{autoapi/pine/pipelines/app/listener/service_listener/index:pine.pipelines.app.listener.service_listener.ServiceListener.push_results}}\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{static }}\sphinxbfcode{\sphinxupquote{push\_results}}}{\emph{\DUrole{n}{job\_id}\DUrole{p}{:} \DUrole{n}{\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#str}{str}}}, \emph{\DUrole{n}{response}}}{}
+\phantomsection\label{\detokenize{autoapi/pine/pipelines/app/listener/service_listener/index:pine.pipelines.app.listener.service_listener.ServiceListener.push_results}}\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{static }}\sphinxbfcode{\sphinxupquote{push\_results}}}{\emph{\DUrole{n}{job\_id}\DUrole{p}{:} \DUrole{n}{\sphinxhref{https://docs.python.org/3/library/stdtypes.html\#str}{str}}}, \emph{\DUrole{n}{response}}, \emph{\DUrole{n}{expire\_timeout}\DUrole{o}{=}\DUrole{default_value}{results\_queue\_key\_timeout\_s}}}{}
 \end{fulllineitems}
 
 \index{wait\_until\_classifier\_isnt\_training() (pine.pipelines.app.listener.service\_listener.ServiceListener static method)@\spxentry{wait\_until\_classifier\_isnt\_training()}\spxextra{pine.pipelines.app.listener.service\_listener.ServiceListener static method}}
@@ -15364,7 +15574,7 @@ Bases: {\hyperref[\detokenize{autoapi/pine/pipelines/pipeline/index:pine.pipelin
 \index{fit() (pine.pipelines.corenlp\_NER\_pipeline.corenlp\_NER method)@\spxentry{fit()}\spxextra{pine.pipelines.corenlp\_NER\_pipeline.corenlp\_NER method}}
 
 \begin{fulllineitems}
-\phantomsection\label{\detokenize{autoapi/pine/pipelines/corenlp_NER_pipeline/index:pine.pipelines.corenlp_NER_pipeline.corenlp_NER.fit}}\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{fit}}}{\emph{\DUrole{n}{self}}, \emph{\DUrole{n}{X}}, \emph{\DUrole{n}{y}}, \emph{\DUrole{o}{**}\DUrole{n}{params}}}{}
+\phantomsection\label{\detokenize{autoapi/pine/pipelines/corenlp_NER_pipeline/index:pine.pipelines.corenlp_NER_pipeline.corenlp_NER.fit}}\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{fit}}}{\emph{\DUrole{n}{self}}, \emph{\DUrole{n}{X}}, \emph{\DUrole{n}{y}}, \emph{\DUrole{o}{**}\DUrole{n}{params}}}{{ $\rightarrow$ \sphinxhref{https://docs.python.org/3/library/stdtypes.html\#dict}{dict}}}
 \end{fulllineitems}
 
 \index{predict() (pine.pipelines.corenlp\_NER\_pipeline.corenlp\_NER method)@\spxentry{predict()}\spxextra{pine.pipelines.corenlp\_NER\_pipeline.corenlp\_NER method}}
@@ -15590,7 +15800,7 @@ Bases: {\hyperref[\detokenize{autoapi/pine/pipelines/pipeline/index:pine.pipelin
 \index{fit() (pine.pipelines.opennlp\_NER\_pipeline.opennlp\_NER method)@\spxentry{fit()}\spxextra{pine.pipelines.opennlp\_NER\_pipeline.opennlp\_NER method}}
 
 \begin{fulllineitems}
-\phantomsection\label{\detokenize{autoapi/pine/pipelines/opennlp_NER_pipeline/index:pine.pipelines.opennlp_NER_pipeline.opennlp_NER.fit}}\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{fit}}}{\emph{\DUrole{n}{self}}, \emph{\DUrole{n}{X}}, \emph{\DUrole{n}{y}}, \emph{\DUrole{o}{**}\DUrole{n}{params}}}{}
+\phantomsection\label{\detokenize{autoapi/pine/pipelines/opennlp_NER_pipeline/index:pine.pipelines.opennlp_NER_pipeline.opennlp_NER.fit}}\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{fit}}}{\emph{\DUrole{n}{self}}, \emph{\DUrole{n}{X}}, \emph{\DUrole{n}{y}}, \emph{\DUrole{o}{**}\DUrole{n}{params}}}{{ $\rightarrow$ \sphinxhref{https://docs.python.org/3/library/stdtypes.html\#dict}{dict}}}
 \end{fulllineitems}
 
 \index{predict() (pine.pipelines.opennlp\_NER\_pipeline.opennlp\_NER method)@\spxentry{predict()}\spxextra{pine.pipelines.opennlp\_NER\_pipeline.opennlp\_NER method}}
@@ -15819,7 +16029,7 @@ Bases: \sphinxhref{https://docs.python.org/3/library/functions.html\#object}{\sp
 \index{fit() (pine.pipelines.pipeline.Pipeline method)@\spxentry{fit()}\spxextra{pine.pipelines.pipeline.Pipeline method}}
 
 \begin{fulllineitems}
-\phantomsection\label{\detokenize{autoapi/pine/pipelines/pipeline/index:pine.pipelines.pipeline.Pipeline.fit}}\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{abstract }}\sphinxbfcode{\sphinxupquote{fit}}}{\emph{\DUrole{n}{self}}, \emph{\DUrole{n}{X}}, \emph{\DUrole{n}{y}}, \emph{\DUrole{o}{**}\DUrole{n}{params}}}{}
+\phantomsection\label{\detokenize{autoapi/pine/pipelines/pipeline/index:pine.pipelines.pipeline.Pipeline.fit}}\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{abstract }}\sphinxbfcode{\sphinxupquote{fit}}}{\emph{\DUrole{n}{self}}, \emph{\DUrole{n}{X}}, \emph{\DUrole{n}{y}}, \emph{\DUrole{o}{**}\DUrole{n}{params}}}{{ $\rightarrow$ \sphinxhref{https://docs.python.org/3/library/stdtypes.html\#dict}{dict}}}
 \end{fulllineitems}
 
 \index{predict() (pine.pipelines.pipeline.Pipeline method)@\spxentry{predict()}\spxextra{pine.pipelines.pipeline.Pipeline method}}
@@ -15972,7 +16182,7 @@ Bases: {\hyperref[\detokenize{autoapi/pine/pipelines/pipeline/index:pine.pipelin
 \index{fit() (pine.pipelines.pmap\_ner.NER method)@\spxentry{fit()}\spxextra{pine.pipelines.pmap\_ner.NER method}}
 
 \begin{fulllineitems}
-\phantomsection\label{\detokenize{autoapi/pine/pipelines/pmap_ner/index:pine.pipelines.pmap_ner.NER.fit}}\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{fit}}}{\emph{\DUrole{n}{self}}, \emph{\DUrole{n}{X}}, \emph{\DUrole{n}{y}}, \emph{\DUrole{o}{**}\DUrole{n}{kwargs}}}{}
+\phantomsection\label{\detokenize{autoapi/pine/pipelines/pmap_ner/index:pine.pipelines.pmap_ner.NER.fit}}\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{fit}}}{\emph{\DUrole{n}{self}}, \emph{\DUrole{n}{X}}, \emph{\DUrole{n}{y}}, \emph{\DUrole{o}{**}\DUrole{n}{kwargs}}}{{ $\rightarrow$ \sphinxhref{https://docs.python.org/3/library/stdtypes.html\#dict}{dict}}}
 \end{fulllineitems}
 
 \index{predict() (pine.pipelines.pmap\_ner.NER method)@\spxentry{predict()}\spxextra{pine.pipelines.pmap\_ner.NER method}}
@@ -16148,7 +16358,7 @@ Bases: {\hyperref[\detokenize{autoapi/pine/pipelines/pipeline/index:pine.pipelin
 \index{fit() (pine.pipelines.spacy\_NER\_pipeline.spacy\_NER method)@\spxentry{fit()}\spxextra{pine.pipelines.spacy\_NER\_pipeline.spacy\_NER method}}
 
 \begin{fulllineitems}
-\phantomsection\label{\detokenize{autoapi/pine/pipelines/spacy_NER_pipeline/index:pine.pipelines.spacy_NER_pipeline.spacy_NER.fit}}\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{fit}}}{\emph{\DUrole{n}{self}}, \emph{\DUrole{n}{X}}, \emph{\DUrole{n}{y}}, \emph{\DUrole{o}{**}\DUrole{n}{params}}}{}
+\phantomsection\label{\detokenize{autoapi/pine/pipelines/spacy_NER_pipeline/index:pine.pipelines.spacy_NER_pipeline.spacy_NER.fit}}\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{fit}}}{\emph{\DUrole{n}{self}}, \emph{\DUrole{n}{X}}, \emph{\DUrole{n}{y}}, \emph{\DUrole{o}{**}\DUrole{n}{params}}}{{ $\rightarrow$ \sphinxhref{https://docs.python.org/3/library/stdtypes.html\#dict}{dict}}}
 \end{fulllineitems}
 
 \index{evaluate() (pine.pipelines.spacy\_NER\_pipeline.spacy\_NER method)@\spxentry{evaluate()}\spxextra{pine.pipelines.spacy\_NER\_pipeline.spacy\_NER method}}

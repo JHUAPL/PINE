@@ -161,7 +161,7 @@ class corenlp_NER(Pipeline):
         }
 
     @overrides
-    def fit(self, X, y, **params):
+    def fit(self, X, y, **params) -> dict:
         default_params = self.__default_fit_params.copy()
         #format input data into tsv file for ner to train on
         try:
@@ -242,6 +242,7 @@ wordShape=""" + default_params["word_shape"] + """
         self.__crf.serializeClassifier(self.__java_String(modelPath))
         os.remove(self.__train_file)
 
+        return {}
 
     @overrides
     def predict(self, X: typing.Iterable[str]) -> typing.List[DocumentPredictions]:

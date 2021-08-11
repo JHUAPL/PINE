@@ -101,7 +101,7 @@ Attributes
 
       
 
-   .. py:attribute:: results_queue_key_timeout
+   .. py:attribute:: results_queue_key_timeout_s
       
 
       
@@ -168,7 +168,7 @@ Attributes
       :staticmethod:
 
 
-   .. py:method:: push_results(job_id: str, response)
+   .. py:method:: push_results(job_id: str, response, expire_timeout=results_queue_key_timeout_s)
       :staticmethod:
 
 

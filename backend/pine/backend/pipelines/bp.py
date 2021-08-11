@@ -21,6 +21,9 @@ bp = Blueprint("pipelines", __name__, url_prefix = "/pipelines")
 _cached_classifiers = {}
 _cached_classifier_pipelines = {}
 
+default_model_name = "auto-trained"
+default_job_timeout = 36000 # 10 hours
+
 def _get_classifier(classifier_id: str) -> dict:
     if classifier_id not in _cached_classifiers:
         classifier = service.get_item_by_id("/classifiers", classifier_id)
@@ -73,7 +76,28 @@ def _get_pipeline_status(pipeline: str, classifier_id: str) -> dict:
 def _get_pipeline_running_jobs(pipeline: str, classifier_id: str) -> typing.List[str]:
     return service_manager.get_running_jobs(pipeline)
 
-def _train_pipeline(pipeline: str, classifier_id: str, model_name: str) -> dict:
+def _get_pipeline_job_results(pipeline: str, classifier_id: str, job_id: str, timeout_in_s) -> dict:
+    return service_manager.get_job_response(pipeline, job_id, timeout_in_s)
+
+def _serialize_job(job: ServiceJob) -> dict:
+    ret = {
+        "job_id": job.job_id,
+        "job_request": job.request_body
+    }
+    if job.request_response:
+        ret["job_response"] = job.request_response
+    return ret
+
+def _run_job(pipeline: str, job_data, async_flag: bool, timeout_in_s: int):
+    if async_flag:
+        if timeout_in_s != None:
+            job_data["results_expire_timeout"] = timeout_in_s
+        return _serialize_job(service_manager.send_service_request_and_return_job(pipeline, job_data))
+    else:
+        return _serialize_job(service_manager.send_service_request_and_get_response(pipeline, job_data, timeout_in_s))
+
+def _train_pipeline(pipeline: str, classifier_id: str, model_name: str,
+                    async_flag: bool, timeout_in_s: int = default_job_timeout) -> dict:
     logger.info("Training pipeline='%s' classifier_id='%s' model_name='%s'", pipeline, classifier_id, model_name)
     job_data = {
         "type": "fit",
@@ -82,11 +106,11 @@ def _train_pipeline(pipeline: str, classifier_id: str, model_name: str) -> dict:
         "framework": pipeline,
         "model_name": model_name
     }
-    request_body = service_manager.send_service_request(pipeline, job_data)
-    return request_body
+    return _run_job(pipeline, job_data, async_flag, timeout_in_s)
 
 def _predict_pipeline(pipeline: str, classifier_id: str, document_ids: typing.List[str],
-                      texts: typing.List[str], timeout_in_s: int) -> dict:
+                      texts: typing.List[str], async_flag: bool, timeout_in_s: int) -> dict:
+    logger.info("Predicting pipeline='%s' classifier_id='%s' ", pipeline, classifier_id)
     job_data = {
         "type": "predict",
         "classifier_id": classifier_id,
@@ -95,13 +119,7 @@ def _predict_pipeline(pipeline: str, classifier_id: str, document_ids: typing.Li
         "document_ids": document_ids,
         "texts": texts
     }
-    job: ServiceJob = service_manager.send_service_request_and_get_response(
-        pipeline, job_data, timeout_in_s)
-    return {
-        "job_id": job.job_id,
-        "job_request": job.request_body,
-        "job_response": job.request_response
-    }
+    return _run_job(pipeline, job_data, async_flag, timeout_in_s)
 
 ################################
 
@@ -197,18 +215,36 @@ def get_running_jobs(classifier_id: str):
     pipeline = _get_classifier_pipeline(classifier_id)
     return jsonify(_get_pipeline_running_jobs(pipeline, classifier_id))
 
+@bp.route("/job_results/<classifier_id>/<job_id>", methods=["GET"])
+@auth.login_required
+def get_job_results(classifier_id: str, job_id: str):
+    classifier = _get_classifier(classifier_id)
+    _check_permissions(classifier)
+    pipeline = _get_classifier_pipeline(classifier_id)
+    try:
+        timeout_in_s = int(request.args.get("timeout_in_s", "1"))
+    except ValueError:
+        abort(400, "timeout_in_s must be an int")
+    
+    return jsonify(_get_pipeline_job_results(pipeline, classifier_id, job_id, timeout_in_s))
+
 @bp.route("/train/<classifier_id>", methods=["POST"])
 def train(classifier_id: str):
-    input_json = request.get_json()
-    model_name = input_json["model_name"] if "model_name" in input_json else None
+    if request.is_json and request.data:
+        input_json = request.get_json()
+        model_name = input_json.get("model_name", default_model_name)
+        timeout_in_s = input_json.get("timeout_in_s", default_job_timeout)
+        async_flag = input_json.get("async", True)
+    else:
+        model_name = default_model_name
+        timeout_in_s = default_job_timeout
+        async_flag = True
 
     classifier = _get_classifier(classifier_id)
     _check_permissions(classifier)
     pipeline = _get_classifier_pipeline(classifier_id)
 
-    return jsonify({
-        "request": _train_pipeline(pipeline, classifier_id, model_name)
-    })
+    return jsonify(_train_pipeline(pipeline, classifier_id, model_name, async_flag, timeout_in_s))
 
 @bp.route("/predict/<classifier_id>", methods=["POST"])
 @auth.login_required
@@ -216,20 +252,21 @@ def predict(classifier_id: str):
     input_json = request.get_json()
     document_ids = input_json.get("document_ids", [])
     texts = input_json.get("texts", [])
-    timeout_in_s = input_json.get("timeout_in_s", 36000) # 10 hours
+    async_flag = input_json.get("async", False)
+    timeout_in_s = input_json.get("timeout_in_s", default_job_timeout)
     
     if not isinstance(document_ids, list) or not isinstance(texts, list):
-        abort(400, "Error parsing input", custom="document_ids and texts must be lists")
+        abort(400, "Error parsing input: document_ids and texts must be lists")
     if len(document_ids) == 0 and len(texts) == 0:
-        abort(400, "Error parsing input", custom="At least one of document_ids and texts must be non-empty")
+        abort(400, "Error parsing input: At least one of document_ids and texts must be non-empty")
     for document_id in document_ids:
         if not isinstance(document_id, str):
-            abort(400, "Error parsing input", custom="Document IDs must be strings")
+            abort(400, "Error parsing input: document IDs must be strings")
     for text in texts:
         if not isinstance(text, str):
-            abort(400, "Error parsing input", custom="Texts must be strings")
+            abort(400, "Error parsing input: texts must be strings")
     if not isinstance(timeout_in_s, int):
-        abort(400, "Error parsing input", custom="timeout_in_s must be an int")
+        abort(400, "Error parsing input: timeout_in_s must be an int")
  
     classifier = _get_classifier(classifier_id)
     _check_permissions(classifier)
@@ -237,7 +274,7 @@ def predict(classifier_id: str):
     
     # TODO check that user has permissions for each of the given document IDs
 
-    return _predict_pipeline(pipeline, classifier_id, document_ids, texts, timeout_in_s)
+    return jsonify(_predict_pipeline(pipeline, classifier_id, document_ids, texts, async_flag, timeout_in_s))
 
 ################################
 
@@ -331,7 +368,7 @@ def advance_to_next_document_by_classifier(classifier_id: str, document_id: str)
             ## Check to see if we should update classifier
             ## Add to work queue to update classifier - queue is pipeline_id
             ## ADD TO PUBSUB {classifier_id} to reload
-            request_body = _train_pipeline(pipeline, classifier_id, "auto-trained")
+            request_body = _train_pipeline(pipeline, classifier_id, default_model_name, async_flag=True)
             trained = True
 
     return jsonify({

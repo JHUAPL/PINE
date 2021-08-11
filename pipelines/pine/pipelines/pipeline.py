@@ -64,7 +64,7 @@ class Pipeline(object, metaclass=abc.ABCMeta):
     # fit(X, y)
     # internal state is changed
     @abc.abstractmethod
-    def fit(self, X, y, **params):
+    def fit(self, X, y, **params) -> dict:
         raise NotImplementedError('Must define fit to use Pipeline Base Class')
 
     # predict(X)

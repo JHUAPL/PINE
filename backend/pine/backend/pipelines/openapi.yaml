@@ -52,7 +52,6 @@ components:
         job_id:
           description: The ID of this pipeline job.
           type: string
-          format: uuid
         job_queue:
           type: string
         job_type:
@@ -71,56 +70,84 @@ components:
           additionalProperties:
             description: Any additional job parameters.
 
-    PipelineOrClassifierStatus:
+    PipelineJob:
       type: object
       properties:
-        service_details:
-          description: Information about the pipeline service.
-          type: object
-          properties:
-            channel:
-              type: string
-            framework:
-              type: string
-            framework_types:
-              type: array
-              items:
-                type: string
-            name:
-              type: string
-            version:
-              type: string
-              format: version
         job_id:
-          description: The ID of this pipeline job.
           type: string
-          format: uuid
         job_request:
           $ref: "#/components/schemas/PipelineJobRequest"
-        job_response:
-          description: The job request data received from pipelines.
-          type: object
+
+    PipelineOrClassifierStatus:
+      allOf:
+        - $ref: "#/components/schemas/PipelineJob"
+        - type: object
           properties:
-            pipeline_name:
-              type: string
-            eve_entry_point:
-              type: string
-            model_dir:
-              type: string
-              format: path
-            classifier:
-              description: Status of the classifier.
+            service_details:
+              description: Information about the pipeline service.
               type: object
-            has_trained:
-              description: Whether the classifier has trained.
-              type: boolean
-            classifier_id:
-              description: Will not be present for pipeline status.
-              type: string
-              nullable: true
-            classifier_class:
-              description: Python class for this classifier.
-              type: string
+              properties:
+                channel:
+                  type: string
+                framework:
+                  type: string
+                framework_types:
+                  type: array
+                  items:
+                    type: string
+                name:
+                  type: string
+                version:
+                  type: string
+                  format: version
+            job_response:
+              description: The job request data received from pipelines.
+              type: object
+              properties:
+                pipeline_name:
+                  type: string
+                eve_entry_point:
+                  type: string
+                model_dir:
+                  type: string
+                  format: path
+                classifier:
+                  description: Status of the classifier.
+                  type: object
+                has_trained:
+                  description: Whether the classifier has trained.
+                  type: boolean
+                classifier_id:
+                  description: Will not be present for pipeline status.
+                  type: string
+                  nullable: true
+                classifier_class:
+                  description: Python class for this classifier.
+                  type: string
+
+    PipelineTrainParameters:
+      type: object
+      properties:
+        model_name:
+          description: Optional name to save the model for future reference.
+          type: string
+          default: auto-trained
+        async:
+          description: >
+            Whether this job should be asynchronous or not.  If asynchronous, the job response will
+            not be returned and the caller will have to query for running jobs and then get the
+            job results when it is finished.
+          type: boolean
+          default: false
+        timeout_in_s:
+          description: >
+            For _synchronous_ requests: this is the amount of time, in seconds,  that this call will
+            wait before giving up.  For _asynchronous_ requests: this is the amount of time, in
+            seconds,  that the job results will be available for querying after completion of the
+            job before being removed.  If a value is not provided, a default value of 36000 seconds
+            will be used.  0 will wait indefinitely/not expire.
+          type: integer
+          default: 36000
 
     PipelinePredictParameters:
       description: Either document_ids or texts must be given and non-empty.
@@ -138,8 +165,20 @@ components:
           items:
             type: string
           default: []
+        async:
+          description: >
+            Whether this job should be asynchronous or not.  If asynchronous, the job response will
+            not be returned and the caller will have to query for running jobs and then get the
+            job results when it is finished.
+          type: boolean
+          default: false
         timeout_in_s:
-          description: If provided, will wait this long before timing out on the job.
+          description: >
+            For _synchronous_ requests: this is the amount of time, in seconds,  that this call will
+            wait before giving up.  For _asynchronous_ requests: this is the amount of time, in
+            seconds,  that the job results will be available for querying after completion of the
+            job before being removed.  If a value is not provided, a default value of 36000 seconds
+            will be used.  0 will wait indefinitely/not expire.
           type: integer
           default: 36000
 
@@ -165,27 +204,28 @@ components:
           example: [5, 10, label1]
 
     PipelinePredictions:
-      description: Pipeline predictions and other job information.
-      type: object
-      properties:
-        job_id:
-          type: string
-          format: uuid
-        job_request:
-          $ref: "#/components/schemas/PipelineJobRequest"
-        job_response:
+      allOf:
+        - $ref: "#/components/schemas/PipelineJob"
+        - description: Pipeline predictions and other job information.
           type: object
           properties:
-            documents_by_id:
-              description: Predictions in a mapping from document ID to annotations.
+            job_response:
+              description: >
+                For _synchronous_ requests: this will hold the prediction job results.  For
+                _asynchronous_ requests: this will be null and can later be retrieved by getting
+                the job results..
               type: object
-              additionalProperties:
-                $ref: "#/components/schemas/PipelineDocumentPredictions"
-            texts:
-              description: Predictions for manual texts in the same order as they were in the input.
-              type: array
-              items:
-                $ref: "#/components/schemas/PipelineDocumentPredictions"
+              properties:
+                documents_by_id:
+                  description: Predictions in a mapping from document ID to annotations.
+                  type: object
+                  additionalProperties:
+                    $ref: "#/components/schemas/PipelineDocumentPredictions"
+                texts:
+                  description: Predictions for manual texts in the same order as they were in the input.
+                  type: array
+                  items:
+                    $ref: "#/components/schemas/PipelineDocumentPredictions"
 
 paths:
 
@@ -195,7 +235,8 @@ paths:
       description: |
         Get all pipelines.
         
-        Example: `curl -X GET http://localhost:5000/pipelines/ --cookie ~/session.cookie`
+        Example: `curl -X GET http://localhost:5000/pipelines/
+                  --cookie session.cookie`
       operationId: pipelines_get_all
       tags: [pipelines]
       responses:
@@ -223,7 +264,8 @@ paths:
       description: |
         Get the pipeline with the given ID.
         
-        Example: `curl -X GET http://localhost:5000/pipelines/by_id/5babb6ee4eb7dd2c39b9671f --cookie ~/session.cookie -v`
+        Example: `curl -X GET http://localhost:5000/pipelines/by_id/5babb6ee4eb7dd2c39b9671f
+                  --cookie session.cookie -v`
       operationId: pipelines_get
       tags: [pipelines]
       parameters:
@@ -248,7 +290,8 @@ paths:
       description: |
         Get the classifier information for a collection.
         
-        Example: `curl -X GET http://localhost:5000/pipelines/classifiers/by_collection_id/60db2cacdbfddb3ca87c845d --cookie ~/session.cookie`
+        Example: `curl -X GET http://localhost:5000/pipelines/classifiers/by_collection_id/60db2cacdbfddb3ca87c845d
+                  --cookie session.cookie`
       operationId: pipelines_get_collection_classifier
       tags: [pipelines]
       parameters:
@@ -273,7 +316,8 @@ paths:
       description: |
         Get metrics for all available collections.
         
-        Example: `curl -X GET http://localhost:5000/pipelines/metrics --cookie ~/session.cookie`
+        Example: `curl -X GET http://localhost:5000/pipelines/metrics
+                  --cookie session.cookie`
       operationId: pipelines_get_metrics
       tags: [pipelines]
       responses:
@@ -301,7 +345,8 @@ paths:
       description: |
         Get metric by classifier id.
         
-        Example: `curl -X GET http://localhost:5000/pipelines/metrics/by_classifier_id/60df138b3f8fa7b2e1445bd8 --cookie ~/session.cookie`
+        Example: `curl -X GET http://localhost:5000/pipelines/metrics/by_classifier_id/60df138b3f8fa7b2e1445bd8
+                  --cookie session.cookie`
       operationId: pipelines_get_classifier_metrics
       tags: [pipelines]
       parameters:
@@ -334,7 +379,8 @@ paths:
         Get the next document id to annotate based on classifier id (or null if no un-annotated
         documents).
         
-        Example: `curl -X GET http://localhost:5000/pipelines/next_document/by_classifier_id/60df138b3f8fa7b2e1445bd8 --cookie ~/session.cookie`
+        Example: `curl -X GET http://localhost:5000/pipelines/next_document/by_classifier_id/60df138b3f8fa7b2e1445bd8
+                  --cookie session.cookie`
       operationId: pipelines_get_next_document
       tags: [pipelines]
       parameters:
@@ -360,7 +406,8 @@ paths:
       description: |
         Advance to next document by marking the given one as annotated.
         
-        Example: `curl -X POST http://localhost:5000/pipelines/next_document/by_classifier_id/60df138b3f8fa7b2e1445bd8/60df13d73f8fa7b2e1445bdd --cookie ~/session.cookie`
+        Example: `curl -X POST http://localhost:5000/pipelines/next_document/by_classifier_id/60df138b3f8fa7b2e1445bd8/60df13d73f8fa7b2e1445bdd
+                  --cookie session.cookie`
       
         This will still give you a valid response with an invalid document ID.
       operationId: pipelines_advance_next_document
@@ -396,7 +443,8 @@ paths:
       description: |
         Get the status of the pipeline with the given ID.
         
-        Example: `curl -X GET http://localhost:5000/pipelines/status/60df138b3f8fa7b2e1445bd8 --cookie ~/session.cookie`
+        Example: `curl -X GET http://localhost:5000/pipelines/status/60df138b3f8fa7b2e1445bd8
+                  --cookie session.cookie`
       operationId: pipelines_get_status
       tags: [pipelines]
       parameters:
@@ -421,7 +469,8 @@ paths:
       description: |
         Get the status of the classifier with the given ID.
         
-        Example: `curl -X GET http://localhost:5000/pipelines/classifiers/status/60df138b3f8fa7b2e1445bd8 --cookie ~/session.cookie`
+        Example: `curl -X GET http://localhost:5000/pipelines/classifiers/status/60df138b3f8fa7b2e1445bd8
+                  --cookie session.cookie`
       operationId: pipelines_get_classifier_status
       tags: [pipelines]
       parameters:
@@ -446,7 +495,8 @@ paths:
       description: |
         Get any currently running jobs of the classifier with the given ID.
         
-        Example: `curl -X GET http://localhost:5000/pipelines/running_jobs/60df138b3f8fa7b2e1445bd8 --cookie ~/session.cookie`
+        Example: `curl -X GET http://localhost:5000/pipelines/running_jobs/60df138b3f8fa7b2e1445bd8
+                  --cookie session.cookie`
       operationId: pipelines_get_running_jobs
       tags: [pipelines]
       parameters:
@@ -460,11 +510,53 @@ paths:
                 type: array
                 items:
                   type: string
-                  format: uuid
         "401":
           $ref: "../api/components.yaml#/responses/NotAuthorized"
         "404":
           $ref: "../api/components.yaml#/responses/ClassifierNotFound"
+        default:
+          $ref: "../api/components.yaml#/responses/UnexpectedServerError"
+
+  /pipelines/job_results/{classifier_id}/{job_id}:
+    get:
+      summary: Get Classifier Job Results
+      description: |
+        Gets the results of a job that ran and completed.
+        
+        Results can only be returned once and then are removed from the internal list of results.
+        Also, the results expire after an amount of time, configured when the job was submitted, and
+        will expire and be removed after that time.
+        
+        Example: `curl -X GET http://localhost:5000/pipelines/job_results/60df138b3f8fa7b2e1445bd8
+                  --cookie session.cookie`
+      operationId: pipelines_get_job_results
+      tags: [pipelines]
+      parameters:
+        - $ref: "../api/components.yaml#/parameters/classifierIdParam"
+        - name: job_id
+          in: path
+          description: The ID of the job to get the results for.
+          required: true
+          schema:
+            type: string
+        - name: timeout_in_s
+          in: query
+          description: How long to wait to get results before giving up.  0 will wait indefinitely.
+          required: false
+          schema:
+            type: integer
+            default: 1
+      responses:
+        "200":
+          description: Returns the results for the indicated job.
+          content:
+            application/json:
+              schema:
+                type: object
+        "401":
+          $ref: "../api/components.yaml#/responses/NotAuthorized"
+        "404":
+          $ref: "../api/components.yaml#/responses/ClassifierOrJobNotFound"
         default:
           $ref: "../api/components.yaml#/responses/UnexpectedServerError"
 
@@ -474,10 +566,18 @@ paths:
       description: |
         Trains the classifier based on currently annotated documents in the collection.
         
-        This endpoint is _ASYNCHRONOUS_ in that it will return information about the submitted job
-        rather than any results from the job.
+        This endpoint can either be _SYNCHRONOUS_ (blocking until job completion) or
+        _ASYNCHRONOUS_ (returns immediately).  For asynchronous requests, the caller is responsible
+        for querying for running jobs using the returned job ID to check for completion.  Once
+        completed, the caller is responsible for getting the job results before the indicated
+        timeout.
         
-        Example: `curl -X POST http://localhost:5000/pipelines/train/60df138b3f8fa7b2e1445bd8 --cookie session.cookie`
+        The default mode is _ASYNCHRONOUS_ but can be controlled via input parameter.
+        
+        Example: `curl -X POST http://localhost:5000/pipelines/train/60df138b3f8fa7b2e1445bd8
+                  --cookie session.cookie
+                  --header 'Content-Type: application/json'
+                  --data '{"model_name":"mymodel"}'`
       operationId: pipelines_train
       tags: [pipelines]
       parameters:
@@ -486,21 +586,14 @@ paths:
         content:
           application/json:
             schema:
-              type: object
-              properties:
-                model_name:
-                  description: Optional name to save the model for future reference.
-                  type: string
+              $ref: "#/components/schemas/PipelineTrainParameters"
       responses:
         "200":
-          description: Returns the all currently running jobs for the classifier.
+          description: Returns the job information.
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  request:
-                    $ref: "#/components/schemas/PipelineJobRequest"
+                $ref: "#/components/schemas/PipelineJob"
         "401":
           $ref: "../api/components.yaml#/responses/NotAuthorized"
         "404":
@@ -514,7 +607,20 @@ paths:
       description: |
         Uses the given classifier to predict annotations for the given document(s).
         
-        Example: `curl -X POST http://localhost:5000/pipelines/predict/60df138b3f8fa7b2e1445bd8 --cookie session.cookie`
+        Note that this will use the _last-trained_ model for this classifier.
+        
+        This endpoint can either be _SYNCHRONOUS_ (blocking until job completion) or
+        _ASYNCHRONOUS_ (returns immediately).  For asynchronous requests, the caller is responsible
+        for querying for running jobs using the returned job ID to check for completion.  Once
+        completed, the caller is responsible for getting the job results before the indicated
+        timeout.
+        
+        The default mode is _SYNCHRONOUS_ but can be controlled via input parameter.
+        
+        Example: `curl -X POST http://localhost:5000/pipelines/predict/60df138b3f8fa7b2e1445bd8
+                  --cookie session.cookie
+                  --header 'Content-Type: application/json'
+                  --data '{"document_ids":[], "texts":[], "async": false}'`
       operationId: pipelines_predict
       tags: [pipelines]
       parameters:

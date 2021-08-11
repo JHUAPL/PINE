@@ -52,7 +52,7 @@ Classes
    .. py:method:: can_manage_users(self) -> bool
 
 
-   .. py:method:: get_logged_in_user_details(self)
+   .. py:method:: get_logged_in_user_details(self) -> pine.backend.models.UserDetails
 
 
    .. py:method:: update_user_details(self)

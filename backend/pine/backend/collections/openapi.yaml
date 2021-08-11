@@ -121,7 +121,26 @@ components:
         classifierParameters:
           type: string
           format: object
-          default: null
+        file:
+          description: Optional CSV file to upload for collection documents.
+          type: string
+          format: binary
+        csvTextCol:
+          description: >
+            If a CSV file is uploaded, this is the column number that contains the text.
+          type: integer
+        csvHasHeader:
+          description: >
+            If a CSV file is uploaded, this is a flag for whether the file has a header row or not.
+          type: boolean
+        imageFile:
+          description: >
+            One or more image files to add to the collection.  The form should include the filename
+            which will be used to store the image within the collection.
+          type: array
+          items:
+            type: string
+            format: binary
       required:
         - collection
         - train_every

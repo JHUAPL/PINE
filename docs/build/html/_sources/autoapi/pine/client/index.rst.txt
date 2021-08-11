@@ -506,7 +506,7 @@ Functions
       :rtype: dict
 
 
-   .. py:method:: classifier_train(self, classifier_id: str, model_name: str = 'auto-trained') -> dict
+   .. py:method:: classifier_train(self, classifier_id: str, model_name: str = None, timeout_in_s: int = None, do_async: bool = True) -> dict
 
       Trains the given classifier (using collection documents).
 
@@ -516,9 +516,13 @@ Functions
       for that job ID.
 
       :param classifier_id: str: classifier ID
-      :param model_name: str: name of model corresponding to filename on disk, defaults to
-                              ``"auto-trained"`` which is the same as the annotation-based
-                              model training
+      :param model_name: str: name of model corresponding to filename on disk, or ``None`` to use
+                              the default
+      :param timeout_in_s: int: how long before the results expire, or ``None`` to use the default
+      :param do_async: bool: whether to train asynchronously or block until completion, defaults
+                             to ``True``
+
+      :returns: job information
       :rtype: dict
 
 
@@ -532,7 +536,7 @@ Functions
       :rtype: bool
 
 
-   .. py:method:: classifier_predict(self, classifier_id, document_ids: List[str], texts: List[str], timeout_in_s: int = 36000) -> dict
+   .. py:method:: classifier_predict(self, classifier_id, document_ids: List[str], texts: List[str], do_async: bool = False, timeout_in_s: int = 36000) -> dict
 
       Runs classifier prediction on the given documents.  At least one of document_ids and
       texts must be non-empty.
@@ -543,8 +547,11 @@ Functions
       :param classifier_id: str: classifier ID
       :param document_ids: list[str]: a list of document IDs to run prediction on
       :param texts: list[str]: a list of direct document texts to run prediction on
-      :param timeout_in_s: int: max timeout in seconds before erroring out and returning, defaults
-                                to ``36000``
+      :param do_async: bool: whether to do the job asynchronously (``True``) or block until
+                             completion (``False``)
+      :param timeout_in_s: int: max timeout in seconds before erroring out and returning for
+                                synchronous requests or max timeout before results expire after
+                                completion for asynchronous requests, defaults to ``36000``
       :rtype: dict
 
 
@@ -553,7 +560,21 @@ Functions
       Gets the list of running job IDs for the given classifier.
 
       :param classifier_id: str: classifier ID
+
+      :returns: running job IDs for the given classifier
       :rtype: list[str]
+
+
+   .. py:method:: get_classifier_job_results(self, classifier_id: str, job_id: str, timeout_in_s=None)
+
+      Gets the results for the given classifier job.
+
+      :param classifier_id: str: classifier ID
+      :param job_id: str: job ID
+      :param timeout_in_s: int: how long to wait, or None to use default
+
+      :returns: job results, probably a dict
+      :rtype: dict
 
 
 

@@ -822,7 +822,7 @@ collection doesn’t exist</p></li>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="pine.client.PineClient.classifier_train">
-<span class="sig-name descname"><span class="pre">classifier_train</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">classifier_id</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">model_name</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">'auto-trained'</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><span class="pre">dict</span></a></span></span><a class="headerlink" href="#pine.client.PineClient.classifier_train" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">classifier_train</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">classifier_id</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">model_name</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeout_in_s</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><span class="pre">int</span></a></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">do_async</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><span class="pre">bool</span></a></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><span class="pre">dict</span></a></span></span><a class="headerlink" href="#pine.client.PineClient.classifier_train" title="Permalink to this definition">¶</a></dt>
 <dd><p>Trains the given classifier (using collection documents).</p>
 <p>Note that training is done asynchronously, so this method should return very quickly.  One
 of the things returned in the dict will be a job ID.  If you want to know when the training
@@ -832,13 +832,18 @@ for that job ID.</p>
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>classifier_id</strong> – str: classifier ID</p></li>
-<li><p><strong>model_name</strong> – str: name of model corresponding to filename on disk, defaults to
-<code class="docutils literal notranslate"><span class="pre">&quot;auto-trained&quot;</span></code> which is the same as the annotation-based
-model training</p></li>
+<li><p><strong>model_name</strong> – str: name of model corresponding to filename on disk, or <code class="docutils literal notranslate"><span class="pre">None</span></code> to use
+the default</p></li>
+<li><p><strong>timeout_in_s</strong> – int: how long before the results expire, or <code class="docutils literal notranslate"><span class="pre">None</span></code> to use the default</p></li>
+<li><p><strong>do_async</strong> – bool: whether to train asynchronously or block until completion, defaults
+to <code class="docutils literal notranslate"><span class="pre">True</span></code></p></li>
 </ul>
 </dd>
-<dt class="field-even">Return type</dt>
-<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)">dict</a></p>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>job information</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)">dict</a></p>
 </dd>
 </dl>
 </dd></dl>
@@ -860,7 +865,7 @@ model training</p></li>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="pine.client.PineClient.classifier_predict">
-<span class="sig-name descname"><span class="pre">classifier_predict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">classifier_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">document_ids</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">texts</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeout_in_s</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><span class="pre">int</span></a></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">36000</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><span class="pre">dict</span></a></span></span><a class="headerlink" href="#pine.client.PineClient.classifier_predict" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">classifier_predict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">classifier_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">document_ids</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">texts</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">do_async</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><span class="pre">bool</span></a></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeout_in_s</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><span class="pre">int</span></a></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">36000</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><span class="pre">dict</span></a></span></span><a class="headerlink" href="#pine.client.PineClient.classifier_predict" title="Permalink to this definition">¶</a></dt>
 <dd><p>Runs classifier prediction on the given documents.  At least one of document_ids and
 texts must be non-empty.</p>
 <p>This prediction uses the last-trained model name for that classifier.  This method will
@@ -871,8 +876,11 @@ block until the prediction has finished and then return the results.</p>
 <li><p><strong>classifier_id</strong> – str: classifier ID</p></li>
 <li><p><strong>document_ids</strong> – list[str]: a list of document IDs to run prediction on</p></li>
 <li><p><strong>texts</strong> – list[str]: a list of direct document texts to run prediction on</p></li>
-<li><p><strong>timeout_in_s</strong> – int: max timeout in seconds before erroring out and returning, defaults
-to <code class="docutils literal notranslate"><span class="pre">36000</span></code></p></li>
+<li><p><strong>do_async</strong> – bool: whether to do the job asynchronously (<code class="docutils literal notranslate"><span class="pre">True</span></code>) or block until
+completion (<code class="docutils literal notranslate"><span class="pre">False</span></code>)</p></li>
+<li><p><strong>timeout_in_s</strong> – int: max timeout in seconds before erroring out and returning for
+synchronous requests or max timeout before results expire after
+completion for asynchronous requests, defaults to <code class="docutils literal notranslate"><span class="pre">36000</span></code></p></li>
 </ul>
 </dd>
 <dt class="field-even">Return type</dt>
@@ -889,8 +897,32 @@ to <code class="docutils literal notranslate"><span class="pre">36000</span></co
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>classifier_id</strong> – str: classifier ID</p>
 </dd>
-<dt class="field-even">Return type</dt>
-<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)">list</a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a>]</p>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>running job IDs for the given classifier</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.9)">list</a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pine.client.PineClient.get_classifier_job_results">
+<span class="sig-name descname"><span class="pre">get_classifier_job_results</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">classifier_id</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">job_id</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeout_in_s</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pine.client.PineClient.get_classifier_job_results" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the results for the given classifier job.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>classifier_id</strong> – str: classifier ID</p></li>
+<li><p><strong>job_id</strong> – str: job ID</p></li>
+<li><p><strong>timeout_in_s</strong> – int: how long to wait, or None to use default</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>job results, probably a dict</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)">dict</a></p>
 </dd>
 </dl>
 </dd></dl>
@@ -1338,6 +1370,7 @@ defaults to <code class="docutils literal notranslate"><span class="pre">None</s
 <li><a class="reference internal" href="#pine.client.PineClient.classifier_has_trained">classifier_has_trained</a></li>
 <li><a class="reference internal" href="#pine.client.PineClient.classifier_predict">classifier_predict</a></li>
 <li><a class="reference internal" href="#pine.client.PineClient.get_classifier_running_jobs">get_classifier_running_jobs</a></li>
+<li><a class="reference internal" href="#pine.client.PineClient.get_classifier_job_results">get_classifier_job_results</a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#pine.client.LocalPineClient">LocalPineClient</a><ul>

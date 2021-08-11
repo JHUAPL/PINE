@@ -79,7 +79,7 @@ class ServiceListener(object):
     processing_queue_key = config.REDIS_PREFIX + config.PIPELINE + "work-queue"
     processing_queue_key_timeout = timedelta(seconds=config.SERVICE_HANDLER_TIMEOUT * 2)  # Timeout for queueing processing a job...
     results_queue_key = config.REDIS_PREFIX + config.PIPELINE + ":work-results"
-    results_queue_key_timeout = timedelta(seconds=config.SERVICE_HANDLER_TIMEOUT * 2)
+    results_queue_key_timeout_s = config.SERVICE_HANDLER_TIMEOUT * 2
     running_jobs_key = config.REDIS_PREFIX + config.PIPELINE + ":running-jobs"
     classifiers_training_key = config.REDIS_PREFIX + config.PIPELINE + ":classifiers-training"
 
@@ -251,12 +251,13 @@ class ServiceListener(object):
         raise last_exception
 
     @staticmethod
-    def push_results(job_id: str, response):
+    def push_results(job_id: str, response, expire_timeout=results_queue_key_timeout_s):
         def callback(local_redis: redis.StrictRedis) -> None:
             response_key = ServiceListener.results_queue_key + ":" + job_id
             logger.info("Writing status to %s", response_key)
             local_redis.rpush(response_key, json.dumps(response, separators=(",", ":")))
-            local_redis.expire(response_key, ServiceListener.results_queue_key_timeout)
+            if expire_timeout != None and expire_timeout > 0:
+                local_redis.expire(response_key, timedelta(seconds=expire_timeout))
         ServiceListener.do_with_redis(callback)
 
     @staticmethod
@@ -290,11 +291,20 @@ class ServiceListener(object):
                 if not classifier_id:
                     raise ValueError("Need classifier_id to train")
                 ServiceListener.wait_until_classifier_isnt_training(classifier_id, job_id)
+                results_expire_timeout = pydash.get(job_details, "results_expire_timeout",
+                                                    ServiceListener.results_queue_key_timeout_s)
                 try:
                     logger.info("fit %s running", job_id)
                     pipeline = ner_api()
-                    pipeline.train_model(model_name, classifier_id, job_framework)
+                    results = pipeline.train_model(model_name, classifier_id, job_framework)
                     logger.info("fit %s finished", job_id)
+                    ServiceListener.push_results(job_id, results, results_expire_timeout)
+                except Exception as e:
+                    results = {
+                        "error": str(e)
+                    }
+                    ServiceListener.push_results(job_id, results, results_expire_timeout)
+                    raise e
                 finally:
                     ServiceListener.classifier_is_done_training(classifier_id)
             
@@ -302,15 +312,17 @@ class ServiceListener(object):
                 logger.info("predict %s running", job_id)
                 document_ids = pydash.get(job_details, "document_ids", [])
                 texts = pydash.get(job_details, "texts", [])
+                results_expire_timeout = pydash.get(job_details, "results_expire_timeout",
+                                                    ServiceListener.results_queue_key_timeout_s)
                 pipeline = ner_api()
                 try:
                     results = pipeline.predict(classifier_id, job_framework, document_ids, texts)
-                    ServiceListener.push_results(job_id, results)
+                    ServiceListener.push_results(job_id, results, results_expire_timeout)
                 except Exception as e:
                     results = {
                         "error": str(e)
                     }
-                    ServiceListener.push_results(job_id, results)
+                    ServiceListener.push_results(job_id, results, results_expire_timeout)
                     raise e
                 finally:
                     logger.info("predict %s finished", job_id)
