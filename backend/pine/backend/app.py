@@ -7,7 +7,7 @@ import sys
 from . import log
 log.setup_logging()
 
-from flask import Flask, abort, jsonify
+from flask import Flask, abort, jsonify, redirect, render_template, request, send_file
 from flask import __version__ as flask_version
 from werkzeug import exceptions
 
@@ -38,7 +38,7 @@ def handle_uncaught_exception(e):
 
 def create_app(test_config = None):
     # create and configure the app
-    app = Flask(__name__, instance_relative_config=True)
+    app = Flask(__name__, instance_relative_config=True, template_folder="api/swagger-ui")
     app.config.from_object(config)
 
     app.register_error_handler(exceptions.HTTPException, handle_error)
@@ -78,6 +78,28 @@ def create_app(test_config = None):
         LOGGER.info(about)
         return jsonify(about)
 
+    @app.route("/openapi.yaml", methods=["GET"])
+    def openapi_spec():
+        # Specify statically where the openapi file is, relative path
+        return send_file("api/openapi.yaml", mimetype='text/yaml', as_attachment=False)
+
+    @app.route("/swagger", methods=["GET"], strict_slashes=False)
+    def swagger_ui_index():
+        # forward to /api/ui/index.html, taking proxy prefix into account if set
+        url = request.headers.get("X-Forwarded-Prefix", "") + "/swagger/index.html"
+        LOGGER.info("Redirecting to {}".format(url))
+        return redirect(url)
+
+    @app.route("/swagger/<file>", methods=["GET"])
+    def swagger_ui(file: str):
+        if file == "index.html":
+            # get url for /api/openapi.yaml, taking proxy prefix into account if set
+            url = request.headers.get("X-Forwarded-Prefix", "") + "/openapi.yaml"
+            LOGGER.info("Grabbing spec from {}".format(url))
+            return render_template("index.html", spec_url=url)
+        else:
+            return send_file("api/swagger-ui/{}".format(file))
+
     from . import cors
     cors.init_app(app)
 
@@ -105,7 +127,13 @@ def create_app(test_config = None):
     from .pineiaa import bp as iaabp
     iaabp.init_app(app)
 
-    from .api import bp as apibp
-    apibp.init_app(app)
+    if app.env == "development":
+        # if running dev stack, map /api/<rule> to <rule>
+        for rule in app.url_map.iter_rules():
+            if rule.rule.startswith("/api"):
+                continue
+            rule_copy = rule.empty()
+            rule_copy.rule = "/api" + rule_copy.rule
+            app.url_map.add(rule_copy)
 
     return app

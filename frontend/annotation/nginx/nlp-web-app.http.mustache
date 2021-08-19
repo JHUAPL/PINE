@@ -16,10 +16,13 @@ server {
         try_files $uri$args $uri$args/ $uri $uri/ /index.html =404;
     }
 
+    include snippets/api-rules.conf;
+
     location /api {
         include proxy_params;
         proxy_set_header X-Forwarded-Prefix /api;
         rewrite ^/api(.*) $1 break;
         proxy_pass ${BACKEND_SERVER};
     }
+
 }

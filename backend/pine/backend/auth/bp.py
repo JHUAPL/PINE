@@ -61,7 +61,9 @@ def flask_get_logged_in_user() -> Response:
 @bp.route("/logged_in_user_details", methods = ["GET"])
 @login_required
 def flask_get_logged_in_user_details() -> Response:
-    return jsonify(module.get_logged_in_user_details().to_dict())
+    details = module.get_logged_in_user_details()
+    if details != None: details = details.to_dict()
+    return jsonify(details)
 
 @bp.route("/login_form", methods = ["GET"])
 def flask_get_login_form() -> Response:

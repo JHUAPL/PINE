@@ -4,6 +4,7 @@ openapi: "3.0.2"
 
 security:
   - cookieAuth: []
+  - eveBasicAuth: []
 
 tags:
   - name: admin

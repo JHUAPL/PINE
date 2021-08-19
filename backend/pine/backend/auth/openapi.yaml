@@ -67,10 +67,11 @@ components:
       description: An auth token obtained by Vegas out-of-band from PINE.
       type: object
       properties:
-        auth_token:
+        access_token:
           type: string
         token_type:
           type: string
+          example: bearer
       additionalProperties: {}
 
 paths:
@@ -143,7 +144,14 @@ paths:
         If there is no user logged, in `null` is returned.
         
         Example: `curl -X GET http://localhost:5000/auth/logged_in_user --cookie session.cookie`
+        
+        Note that this operation does not REQUIRE the user to be logged in, but it is marked as
+        requiring security so that the Swagger UI will send in whatever you have configured.
       operationId: auth_logged_in_user
+      security:
+        - cookieAuth: []
+        - eveBasicAuth: []
+        - vegasBearerAuth: []
       tags: [auth]
       responses:
         "200":
@@ -167,6 +175,8 @@ paths:
       operationId: auth_user_details
       security:
         - cookieAuth: []
+        - eveBasicAuth: []
+        - vegasBearerAuth: []
       tags: [auth]
       responses:
         "200":
@@ -188,6 +198,7 @@ paths:
       operationId: auth_eve_update_user_details
       security:
         - cookieAuth: []
+        - eveBasicAuth: []
       tags: [auth_eve]
       requestBody:
         content:
@@ -236,6 +247,8 @@ paths:
       tags: [auth]
       security:
         - cookieAuth: []
+        - eveBasicAuth: []
+        - vegasBearerAuth: []
       responses:
         "200":
           description: Successfully logged out.
@@ -302,6 +315,7 @@ paths:
       tags: [auth_eve]
       security:
         - cookieAuth: []
+        - eveBasicAuth: []
       responses:
         "200":
           description: Returns all users.
@@ -325,6 +339,7 @@ paths:
       tags: [auth_eve]
       security:
         - cookieAuth: []
+        - eveBasicAuth: []
       requestBody:
         content:
           application/json:

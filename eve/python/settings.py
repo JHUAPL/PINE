@@ -185,7 +185,7 @@ DOMAIN={
 
 if os.environ.get("MONGO_URI"):
     MONGO_URI = os.environ.get("MONGO_URI")
-    #LOGGER.info("Eve using MONGO_URI={}".format(MONGO_URI))
+    LOGGER.info("Eve using externally configured MONGO_URI")
 else:
     MONGO_HOST = "localhost"
     MONGO_PORT = int(os.environ.get("MONGO_PORT", 27017))
