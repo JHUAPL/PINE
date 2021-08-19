@@ -121,6 +121,7 @@ stages:
               VEGAS_SERVER: https://slife.jh.edu
               VEGAS_CLIENT_ID: 1976d9d4-be86-44ce-aa0f-c5a4b295c701
               VEGAS_CLIENT_SECRET: $(vegas-client-secret-dev)
+              BACKEND_SECRET_KEY: $(backend-secret-key-dev)
             eve:
               MONGO_URI: $(mongo-uri-dev)
             azure-secret:
@@ -149,6 +150,7 @@ stages:
               VEGAS_SERVER: https://my.jh.edu
               VEGAS_CLIENT_ID: b7590f07-cbd9-48b1-82f4-8aab02470831
               VEGAS_CLIENT_SECRET: $(vegas-client-secret-prod)
+              BACKEND_SECRET_KEY: $(backend-secret-key-prod)
             eve:
               MONGO_URI: $(mongo-uri-prod)
             azure-secret:

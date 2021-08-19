@@ -4,7 +4,8 @@ import os
 
 # default configuration values
 
-SECRET_KEY = "Cq13XII=%"
+SECRET_KEY = os.environ.get("BACKEND_SECRET_KEY", "Cq13XII=%")
+if not SECRET_KEY: SECRET_KEY = "Cq13XII=%"
 DEBUG = True
 
 if os.environ.get("EVE_SERVER"):

@@ -9,6 +9,7 @@ import typing
 
 from authlib.integrations.flask_client import OAuth
 from flask import current_app, jsonify, redirect, request, Response, session
+from flask_httpauth import HTTPTokenAuth
 import jwt
 from overrides import overrides
 from werkzeug import exceptions
@@ -17,6 +18,7 @@ from . import bp
 from .. import log, models
 
 LOGGER = logging.getLogger(__name__)
+auth = HTTPTokenAuth(scheme="Bearer")
 
 class OAuthUser(models.AuthUser):
     
@@ -61,6 +63,7 @@ class OAuthModule(bp.AuthModule):
         bp.route("/login", methods=["POST"])(self.login)
         bp.route("/authorize", methods=["GET"])(self.authorize_get)
         bp.route("/authorize", methods=["POST"])(self.authorize_post)
+        auth.verify_token_callback = lambda t: self.verify_token(t)
 
     @abc.abstractmethod
     def register_oauth(self, oauth, app):
@@ -82,8 +85,23 @@ class OAuthModule(bp.AuthModule):
     def get_login_form(self) -> models.LoginForm:
         return models.LoginForm([], self.get_login_form_button_text())
 
-    def make_user(self, decoded: dict) -> OAuthUser:
-        return OAuthUser(decoded, id_field="sub")
+    @auth.login_required(optional=True)
+    @overrides
+    def get_logged_in_user(self):
+        # if user set in cookie, use that
+        user = super(OAuthModule, self).get_logged_in_user()
+        if user != None:
+            return user
+        
+        # otherwise check bearer auth
+        ret = auth.current_user()
+        if ret != None:
+            (token, user) = ret
+            if user != None:
+                LOGGER.info("User has logged in via bearer auth; setting session.")
+                self._update_session(user, token)
+        
+        return super(OAuthModule, self).get_logged_in_user()
 
     def login(self) -> Response:
         if "return_to" in request.args:
@@ -92,14 +110,13 @@ class OAuthModule(bp.AuthModule):
             redirect = self.app.authorize_redirect(response_type = "token")
         return jsonify(redirect.headers["Location"])
 
-    def _authorize(self, authorization_response):
-        try:
-            token = self.app.fetch_access_token(authorization_response = authorization_response)
-        except Exception as e:
-            traceback.print_exc()
-            sys.stderr.flush()
-            raise exceptions.SecurityError(description = str(e))
-        access_token = token["access_token"]
+    def make_user(self, decoded: dict) -> OAuthUser:
+        return OAuthUser(decoded, id_field="sub")
+
+    def verify_token(self, access_token: str) -> OAuthUser:
+        if not access_token:
+            return None
+        LOGGER.info("Verifying token: \"%s\"", access_token)
         try:
             decoded = jwt.decode(access_token, options={"verify_signature": False})
             decoded = jwt.decode(access_token, self.secret, audience=decoded["aud"], algorithms=self.algorithms)
@@ -108,12 +125,25 @@ class OAuthModule(bp.AuthModule):
             sys.stderr.flush()
             raise exceptions.SecurityError(description = str(e))
         LOGGER.info("Decoded and validated token: {}".format(decoded))
+        return ({"access_token": access_token}, self.make_user(decoded))
+
+    def _update_session(self, user: OAuthUser, token: dict):
         session["auth"] = {
-            "user": self.make_user(decoded).to_dict(),
-            "user_data": decoded,
+            "user": user.to_dict(),
+            "user_data": user.data,
             "token": token
         }
         log.access_flask_login()
+
+    def _authorize(self, authorization_response):
+        try:
+            token = self.app.fetch_access_token(authorization_response = authorization_response)
+        except Exception as e:
+            traceback.print_exc()
+            sys.stderr.flush()
+            raise exceptions.SecurityError(description = str(e))
+        (_, user) = self.verify_token(token["access_token"])
+        self._update_session(user, token)
         return jsonify(self.get_logged_in_user())
 
     def authorize_post(self):

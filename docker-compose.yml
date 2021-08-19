@@ -56,6 +56,7 @@ services:
       PINE_LOGGING_CONFIG_FILE: /nlp-web-app/shared/logging.python.json
       DOCUMENT_IMAGE_DIR: /mnt/azure
       PINE_VERSION: ${PINE_VERSION:?Please set PINE_VERSION environment variable.}
+      BACKEND_SECRET_KEY: ${BACKEND_SECRET_KEY}
     # Expose the following to test:
 #    ports:
 #      - ${BACKEND_PORT}:${BACKEND_PORT}

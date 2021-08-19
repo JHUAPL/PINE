@@ -21,9 +21,8 @@ info:
     url: https://github.com/JHUAPL/PINE/blob/master/LICENSE
 
 servers:
-  - url: http://localhost:5000
-  - url: https://localhost:8888/api
-  - url: https://dev-nlpannotator.pm.jh.edu/api
+  - url: /api
+    description: This server.
 
 paths: {}
 
@@ -31,4 +30,8 @@ components:
   securitySchemes:
     cookieAuth:
       $ref: "./components.yaml#/securitySchemes/cookieAuth"
+    eveBasicAuth:
+      $ref: "./components.yaml#/securitySchemes/eveBasicAuth"
+    vegasBearerAuth:
+      $ref: "./components.yaml#/securitySchemes/vegasBearerAuth"
   schemas: {}

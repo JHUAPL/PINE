@@ -24,6 +24,7 @@ matplotlib = "~=3.4.2"
 scipy = "~=1.7.1"
 tabulate = "~=0.8.9"
 multiprocessing-logging = "~=0.3.1"
+flask-httpauth = "~=4.4.0"
 
 [dev-packages]
 

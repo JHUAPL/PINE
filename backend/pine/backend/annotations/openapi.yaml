@@ -4,6 +4,8 @@ openapi: "3.0.2"
 
 security:
   - cookieAuth: []
+  - eveBasicAuth: []
+  - vegasBearerAuth: []
 
 tags:
   - name: annotations

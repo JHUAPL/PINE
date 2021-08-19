@@ -25,9 +25,8 @@ info:
     name: AGPL-3.0
     url: 'https://github.com/JHUAPL/PINE/blob/master/LICENSE'
 servers:
-  - url: 'http://localhost:5000'
-  - url: 'https://localhost:8888/api'
-  - url: 'https://dev-nlpannotator.pm.jh.edu/api'
+  - url: /api
+    description: This server.
 paths:
   /admin/users:
     get:
@@ -93,6 +92,7 @@ paths:
                 example: Error message from the server.
       security:
         - cookieAuth: []
+        - eveBasicAuth: []
     post:
       summary: Create New User
       description: >
@@ -215,6 +215,7 @@ paths:
           content: *ref_1
       security:
         - cookieAuth: []
+        - eveBasicAuth: []
   '/admin/users/{user_id}':
     get:
       summary: Get User Details
@@ -258,6 +259,7 @@ paths:
           content: *ref_1
       security:
         - cookieAuth: []
+        - eveBasicAuth: []
     put:
       summary: Update user details.
       description: >
@@ -350,6 +352,7 @@ paths:
           content: *ref_1
       security:
         - cookieAuth: []
+        - eveBasicAuth: []
     delete:
       summary: Delete User
       description: >
@@ -382,6 +385,7 @@ paths:
           content: *ref_1
       security:
         - cookieAuth: []
+        - eveBasicAuth: []
   '/admin/users/{user_id}/password':
     put:
       summary: Update User Password
@@ -438,6 +442,7 @@ paths:
           content: *ref_1
       security:
         - cookieAuth: []
+        - eveBasicAuth: []
   /admin/system/export:
     get:
       summary: Export Database
@@ -469,6 +474,7 @@ paths:
           content: *ref_1
       security:
         - cookieAuth: []
+        - eveBasicAuth: []
   /admin/system/import:
     put:
       summary: Import Database (Update)
@@ -537,6 +543,7 @@ paths:
           content: *ref_1
       security:
         - cookieAuth: []
+        - eveBasicAuth: []
     post:
       summary: Import Database (Replace)
       description: >
@@ -598,6 +605,7 @@ paths:
           content: *ref_1
       security:
         - cookieAuth: []
+        - eveBasicAuth: []
   '/annotations/mine/by_document_id/{doc_id}':
     get:
       summary: Get My Document Annotations
@@ -698,6 +706,8 @@ paths:
           content: *ref_1
       security:
         - cookieAuth: []
+        - eveBasicAuth: []
+        - vegasBearerAuth: []
     post:
       summary: Save My Annotations
       description: >
@@ -794,6 +804,8 @@ paths:
           content: *ref_1
       security:
         - cookieAuth: []
+        - eveBasicAuth: []
+        - vegasBearerAuth: []
   '/annotations/mine/by_collection_id/{collection_id}':
     post:
       summary: Set Collection Annotations
@@ -909,6 +921,8 @@ paths:
           content: *ref_1
       security:
         - cookieAuth: []
+        - eveBasicAuth: []
+        - vegasBearerAuth: []
   '/annotations/others/by_document_id/{doc_id}':
     get:
       summary: Get Others' Document Annotations
@@ -949,6 +963,8 @@ paths:
           content: *ref_1
       security:
         - cookieAuth: []
+        - eveBasicAuth: []
+        - vegasBearerAuth: []
   '/annotations/by_document_id/{doc_id}':
     get:
       summary: Get All Document Annotations
@@ -989,6 +1005,8 @@ paths:
           content: *ref_1
       security:
         - cookieAuth: []
+        - eveBasicAuth: []
+        - vegasBearerAuth: []
   /auth/module:
     get:
       summary: Get Auth Module
@@ -1072,7 +1090,18 @@ paths:
 
         Example: `curl -X GET http://localhost:5000/auth/logged_in_user --cookie
         session.cookie`
+
+
+        Note that this operation does not REQUIRE the user to be logged in, but
+        it is marked as
+
+        requiring security so that the Swagger UI will send in whatever you have
+        configured.
       operationId: auth_logged_in_user
+      security:
+        - cookieAuth: []
+        - eveBasicAuth: []
+        - vegasBearerAuth: []
       tags:
         - auth
       responses:
@@ -1114,6 +1143,8 @@ paths:
       operationId: auth_user_details
       security:
         - cookieAuth: []
+        - eveBasicAuth: []
+        - vegasBearerAuth: []
       tags:
         - auth
       responses:
@@ -1148,6 +1179,7 @@ paths:
       operationId: auth_eve_update_user_details
       security:
         - cookieAuth: []
+        - eveBasicAuth: []
       tags:
         - auth_eve
       requestBody:
@@ -1239,6 +1271,8 @@ paths:
         - auth
       security:
         - cookieAuth: []
+        - eveBasicAuth: []
+        - vegasBearerAuth: []
       responses:
         '200':
           description: Successfully logged out.
@@ -1325,6 +1359,7 @@ paths:
         - auth_eve
       security:
         - cookieAuth: []
+        - eveBasicAuth: []
       responses:
         '200':
           description: Returns all users.
@@ -1353,6 +1388,7 @@ paths:
         - auth_eve
       security:
         - cookieAuth: []
+        - eveBasicAuth: []
       requestBody:
         content:
           application/json:
@@ -1442,10 +1478,11 @@ paths:
               description: An auth token obtained by Vegas out-of-band from PINE.
               type: object
               properties: &ref_48
-                auth_token:
+                access_token:
                   type: string
                 token_type:
                   type: string
+                  example: bearer
               additionalProperties: &ref_49 {}
       responses:
         '200':
@@ -1523,6 +1560,8 @@ paths:
           content: *ref_1
       security:
         - cookieAuth: []
+        - eveBasicAuth: []
+        - vegasBearerAuth: []
   '/collections/unarchived/{page}':
     get:
       summary: Get Paginated Unarchived Collections
@@ -1565,6 +1604,8 @@ paths:
           content: *ref_1
       security:
         - cookieAuth: []
+        - eveBasicAuth: []
+        - vegasBearerAuth: []
   /collections/archived:
     get:
       summary: Get Archived Collections
@@ -1595,6 +1636,8 @@ paths:
           content: *ref_1
       security:
         - cookieAuth: []
+        - eveBasicAuth: []
+        - vegasBearerAuth: []
   '/collections/archived/{page}':
     get:
       summary: Get Paginated Archived Collections
@@ -1637,6 +1680,8 @@ paths:
           content: *ref_1
       security:
         - cookieAuth: []
+        - eveBasicAuth: []
+        - vegasBearerAuth: []
   '/collections/archive/{collection_id}':
     put:
       summary: Archive Collection
@@ -1677,6 +1722,8 @@ paths:
           content: *ref_1
       security:
         - cookieAuth: []
+        - eveBasicAuth: []
+        - vegasBearerAuth: []
   '/collections/unarchive/{collection_id}':
     put:
       summary: Unarchive Collection
@@ -1717,6 +1764,8 @@ paths:
           content: *ref_1
       security:
         - cookieAuth: []
+        - eveBasicAuth: []
+        - vegasBearerAuth: []
   '/collections/by_id/{collection_id}':
     get:
       summary: Get Collection
@@ -1757,6 +1806,8 @@ paths:
           content: *ref_1
       security:
         - cookieAuth: []
+        - eveBasicAuth: []
+        - vegasBearerAuth: []
   '/collections/by_id/{collection_id}/download':
     get:
       summary: Download Collection Data
@@ -1797,6 +1848,8 @@ paths:
           content: *ref_1
       security:
         - cookieAuth: []
+        - eveBasicAuth: []
+        - vegasBearerAuth: []
   '/collections/add_annotator/{collection_id}':
     post:
       summary: Add Collection Annotator
@@ -1883,6 +1936,8 @@ paths:
                 example: Error message from the server.
       security:
         - cookieAuth: []
+        - eveBasicAuth: []
+        - vegasBearerAuth: []
   '/collections/add_viewer/{collection_id}':
     post:
       summary: Add Collection Viewer
@@ -1970,6 +2025,8 @@ paths:
                 example: Error message from the server.
       security:
         - cookieAuth: []
+        - eveBasicAuth: []
+        - vegasBearerAuth: []
   '/collections/add_label/{collection_id}':
     post:
       summary: Add Collection Label
@@ -2055,6 +2112,8 @@ paths:
                 example: Error message from the server.
       security:
         - cookieAuth: []
+        - eveBasicAuth: []
+        - vegasBearerAuth: []
   /collections:
     post:
       summary: Create Collection
@@ -2276,6 +2335,8 @@ paths:
                 example: Error message from the server.
       security:
         - cookieAuth: []
+        - eveBasicAuth: []
+        - vegasBearerAuth: []
   '/collections/static_images/{collection_id}':
     get:
       summary: Get Collection Static Images
@@ -2319,6 +2380,8 @@ paths:
           content: *ref_1
       security:
         - cookieAuth: []
+        - eveBasicAuth: []
+        - vegasBearerAuth: []
   '/collections/images/{collection_id}':
     get:
       summary: Get Collection Images
@@ -2360,6 +2423,8 @@ paths:
           content: *ref_1
       security:
         - cookieAuth: []
+        - eveBasicAuth: []
+        - vegasBearerAuth: []
   '/collections/image_exists/{collection_id}/{path}':
     get:
       summary: Check Collection Image
@@ -2408,6 +2473,8 @@ paths:
           content: *ref_1
       security:
         - cookieAuth: []
+        - eveBasicAuth: []
+        - vegasBearerAuth: []
   '/collections/image/{collection_id}/{path}':
     get:
       summary: Get Collection Image
@@ -2457,6 +2524,8 @@ paths:
           content: *ref_1
       security:
         - cookieAuth: []
+        - eveBasicAuth: []
+        - vegasBearerAuth: []
     post:
       summary: Upload Collection Image
       description: >
@@ -2533,6 +2602,8 @@ paths:
           content: *ref_1
       security:
         - cookieAuth: []
+        - eveBasicAuth: []
+        - vegasBearerAuth: []
   '/collections/user_permissions/{collection_id}':
     get:
       summary: Get Collection User Permissions
@@ -2591,6 +2662,8 @@ paths:
           content: *ref_1
       security:
         - cookieAuth: []
+        - eveBasicAuth: []
+        - vegasBearerAuth: []
   '/documents/by_id/{doc_id}':
     get:
       summary: Get Document
@@ -2649,6 +2722,8 @@ paths:
           content: *ref_1
       security:
         - cookieAuth: []
+        - eveBasicAuth: []
+        - vegasBearerAuth: []
     delete:
       summary: Delete Document
       description: >
@@ -2732,6 +2807,8 @@ paths:
           content: *ref_1
       security:
         - cookieAuth: []
+        - eveBasicAuth: []
+        - vegasBearerAuth: []
   /documents/by_ids:
     delete:
       summary: Delete Documents
@@ -2787,6 +2864,8 @@ paths:
           content: *ref_1
       security:
         - cookieAuth: []
+        - eveBasicAuth: []
+        - vegasBearerAuth: []
   '/documents/count_by_collection_id/{collection_id}':
     get:
       summary: Get Collection Document Count
@@ -2828,6 +2907,8 @@ paths:
           content: *ref_1
       security:
         - cookieAuth: []
+        - eveBasicAuth: []
+        - vegasBearerAuth: []
   '/documents/by_collection_id_all/{collection_id}':
     get:
       summary: Get All Collection Documents
@@ -2873,6 +2954,8 @@ paths:
           content: *ref_1
       security:
         - cookieAuth: []
+        - eveBasicAuth: []
+        - vegasBearerAuth: []
   '/documents/by_collection_id_paginated/{collection_id}':
     get:
       summary: Get Paginated Collection Documents
@@ -2933,6 +3016,8 @@ paths:
           content: *ref_1
       security:
         - cookieAuth: []
+        - eveBasicAuth: []
+        - vegasBearerAuth: []
   '/documents/user_permissions/{doc_id}':
     get:
       summary: Get User Document Permissions
@@ -2973,6 +3058,8 @@ paths:
           content: *ref_1
       security:
         - cookieAuth: []
+        - eveBasicAuth: []
+        - vegasBearerAuth: []
   '/documents/metadata/{doc_id}':
     put:
       summary: Update Document Metadata
@@ -3031,6 +3118,8 @@ paths:
           content: *ref_1
       security:
         - cookieAuth: []
+        - eveBasicAuth: []
+        - vegasBearerAuth: []
   /documents:
     post:
       summary: Create Document
@@ -3110,6 +3199,8 @@ paths:
           content: *ref_1
       security:
         - cookieAuth: []
+        - eveBasicAuth: []
+        - vegasBearerAuth: []
   '/iaa_reports/by_collection_id/{collection_id}':
     get:
       summary: Get IAA Report for Collection
@@ -3242,6 +3333,8 @@ paths:
           content: *ref_1
       security:
         - cookieAuth: []
+        - eveBasicAuth: []
+        - vegasBearerAuth: []
     post:
       summary: Create IAA Report for Collection
       description: >
@@ -3286,6 +3379,8 @@ paths:
           content: *ref_1
       security:
         - cookieAuth: []
+        - eveBasicAuth: []
+        - vegasBearerAuth: []
   /pipelines:
     get:
       summary: Get Pipelines
@@ -3386,6 +3481,8 @@ paths:
           content: *ref_1
       security:
         - cookieAuth: []
+        - eveBasicAuth: []
+        - vegasBearerAuth: []
   '/pipelines/by_id/{pipeline_id}':
     get:
       summary: Get Pipeline
@@ -3431,6 +3528,8 @@ paths:
           content: *ref_1
       security:
         - cookieAuth: []
+        - eveBasicAuth: []
+        - vegasBearerAuth: []
   '/pipelines/classifiers/by_collection_id/{collection_id}':
     get:
       summary: Get Collection Classifier
@@ -3499,6 +3598,8 @@ paths:
           content: *ref_1
       security:
         - cookieAuth: []
+        - eveBasicAuth: []
+        - vegasBearerAuth: []
   /pipelines/metrics:
     get:
       summary: Get Collection Metrics
@@ -3572,6 +3673,8 @@ paths:
           content: *ref_1
       security:
         - cookieAuth: []
+        - eveBasicAuth: []
+        - vegasBearerAuth: []
   '/pipelines/metrics/by_classifier_id/{classifier_id}':
     get:
       summary: Get Classifier Metrics
@@ -3626,6 +3729,8 @@ paths:
           content: *ref_1
       security:
         - cookieAuth: []
+        - eveBasicAuth: []
+        - vegasBearerAuth: []
   '/pipelines/next_document/by_classifier_id/{classifier_id}':
     get:
       summary: Get Next Document to Annotate
@@ -3669,6 +3774,8 @@ paths:
           content: *ref_1
       security:
         - cookieAuth: []
+        - eveBasicAuth: []
+        - vegasBearerAuth: []
   '/pipelines/next_document/by_classifier_id/{classifier_id}/{doc_id}':
     post:
       summary: Advance Next Document
@@ -3723,6 +3830,8 @@ paths:
           content: *ref_1
       security:
         - cookieAuth: []
+        - eveBasicAuth: []
+        - vegasBearerAuth: []
   '/pipelines/status/{pipeline_id}':
     get:
       summary: Get Pipeline Status
@@ -3833,6 +3942,8 @@ paths:
           content: *ref_1
       security:
         - cookieAuth: []
+        - eveBasicAuth: []
+        - vegasBearerAuth: []
   '/pipelines/classifiers/status/{classifier_id}':
     get:
       summary: Get Classifier Status
@@ -3872,6 +3983,8 @@ paths:
           content: *ref_1
       security:
         - cookieAuth: []
+        - eveBasicAuth: []
+        - vegasBearerAuth: []
   '/pipelines/running_jobs/{classifier_id}':
     get:
       summary: Get Classifier Running Jobs
@@ -3913,6 +4026,8 @@ paths:
           content: *ref_1
       security:
         - cookieAuth: []
+        - eveBasicAuth: []
+        - vegasBearerAuth: []
   '/pipelines/job_results/{classifier_id}/{job_id}':
     get:
       summary: Get Classifier Job Results
@@ -3981,6 +4096,8 @@ paths:
           content: *ref_1
       security:
         - cookieAuth: []
+        - eveBasicAuth: []
+        - vegasBearerAuth: []
   '/pipelines/train/{classifier_id}':
     post:
       summary: Train Classifier
@@ -4072,6 +4189,8 @@ paths:
           content: *ref_1
       security:
         - cookieAuth: []
+        - eveBasicAuth: []
+        - vegasBearerAuth: []
   '/pipelines/predict/{classifier_id}':
     post:
       summary: Predict Using Classifier
@@ -4230,10 +4349,16 @@ paths:
           content: *ref_1
       security:
         - cookieAuth: []
+        - eveBasicAuth: []
+        - vegasBearerAuth: []
 components:
   securitySchemes:
     cookieAuth:
       description: >
+        This is the basic authentication mechanism for the PINE backend, used by
+        all auth modules.
+
+
         This an example command to provision and print the session key using
         eve:
 
@@ -4242,9 +4367,68 @@ components:
         '{"username":"ada@pine.jhuapl.edu","password":"ada@pine.jhuapl.edu"}'
         http://localhost:5000/auth/login --cookie-jar - --output /dev/null
         --silent | grep -o -P "session\s.+" | sed -e 's/session\s/session=/' -`
+
+
+        The easiest way to use this auth using the Swagger UI is to log in using
+        the normal PINE web
+
+        UI, which will set the cookie in the browser.  Then the Swagger UI will
+        use the same cookie
+
+        for all its calls.
       type: apiKey
       in: cookie
       name: session
+    eveBasicAuth:
+      description: >
+        If the eve auth module is used, you can use basic authentication via a
+        header and the
+
+        cookie/session will be created using that login information.  This is
+        basically the same as
+
+        logging in before each call.  It is less efficient than using the cookie
+        auth but also does
+
+        not rely on cookies or session state which can be difficult to use
+        outside a browser.
+      type: http
+      scheme: basic
+    vegasBearerAuth:
+      description: >
+        If the vegas auth module is used, you can get a VEGAS access token
+        outside of PINE and set it
+
+        as an auth bearer header and the cookie/session will be created using
+        that login information.
+
+        This is basically the same as authenticating your token before each
+        call.  It is less
+
+        efficient than using the cookie auth but also does not rely on cookies
+        or session state which
+
+        can be difficult to use outside a browser.
+
+
+        An example call to get a VEGAS token might look like:
+
+        `curl -H "Authentication: hmac <encoded HMAC creds>" -H "Date:
+        1629328547884"
+
+        -d "grant_type=client_credentials" -X POST
+        https://slife.jh.edu/VEGAS/api/oauth2/accesstoken`.
+
+        This will return a JSON object of the form `{"access_token": "...",
+        "refresh_token": "...",
+
+        "token_type":"bearer","issued_at":1629328554626,"expires_in":1800}`. 
+        Grab the `access_token`
+
+        string and use it as an auth bearer header.
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
   schemas:
     UserRoles:
       description: The role (for permissions) of the user.

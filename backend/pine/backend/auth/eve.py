@@ -1,12 +1,19 @@
 # (C) 2019 The Johns Hopkins University Applied Physics Laboratory LLC.
 
+import logging
+
 from flask import jsonify, request, Response, session
+from flask_httpauth import HTTPBasicAuth
 from overrides import overrides
 from werkzeug import exceptions
 
 from . import bp, login_required, password
 from .. import log, models
 from ..data import users
+
+logger = logging.getLogger(__name__)
+
+auth = HTTPBasicAuth()
 
 class EveUser(models.AuthUser):
     
@@ -36,6 +43,26 @@ class EveUser(models.AuthUser):
 
     def get_details(self) -> models.UserDetails:
         return models.UserDetails(self.data["firstname"], self.data["lastname"], self.data["description"])
+
+@auth.verify_password
+def eve_login(username: str, passwd: str):
+    if not username or not passwd:
+        return None
+    try:
+        user = users.get_user(username)
+    except exceptions.HTTPException:
+        try:
+            user = users.get_user_by_email(username)
+            if not user:
+                raise exceptions.Unauthorized(description = "User \"{}\" doesn't exist.".format(username))
+        except exceptions.HTTPException:
+            raise exceptions.Unauthorized(description = "User \"{}\" doesn't exist.".format(username))
+    if not "passwdhash" in user or not user["passwdhash"]:
+        raise exceptions.Unauthorized(description = "Your first-time password needs to be set by an administrator.")
+    if password.check_password(passwd, user["passwdhash"]):
+        return user
+    else:
+        return None
 
 class EveModule(bp.AuthModule):
     
@@ -85,30 +112,37 @@ class EveModule(bp.AuthModule):
             models.LoginFormField("password", "Password", models.LoginFormFieldType.PASSWORD)
         ], "Login")
 
-    def login(self) -> Response:
-        if not request.json or "username" not in request.json or "password" not in request.json:
-            raise exceptions.BadRequest(description = "Missing username and/or password.")
-        username = request.json["username"]
-        passwd = request.json["password"]
-        try:
-            user = users.get_user(username)
-        except exceptions.HTTPException:
-            try:
-                user = users.get_user_by_email(username)
-                if not user:
-                    raise exceptions.Unauthorized(description = "User \"{}\" doesn't exist.".format(username))
-            except exceptions.HTTPException:
-                raise exceptions.Unauthorized(description = "User \"{}\" doesn't exist.".format(username))
-        if not "passwdhash" in user or not user["passwdhash"]:
-            raise exceptions.Unauthorized(description = "Your first-time password needs to be set by an administrator.")
-        valid = password.check_password(passwd, user["passwdhash"])
-        if not valid:
-            raise exceptions.Unauthorized(description = "Incorrect password for user \"{}\".".format(username))
+    def _set_user(self, user):
         session["auth"] = {
             "user": EveUser(user).to_dict(),
             "user_data": user
         }
         log.access_flask_login()
+
+    @auth.login_required(optional=True)
+    @overrides
+    def get_logged_in_user(self):
+        # if user set in cookie, use that
+        user = super(EveModule, self).get_logged_in_user()
+        if user != None:
+            return user
+        
+        # otherwise check basic auth
+        user = auth.current_user()
+        if user != None:
+            logger.info("User has logged in via basic auth; setting session.")
+            self._set_user(user)
+        return super(EveModule, self).get_logged_in_user()
+
+    def login(self) -> Response:
+        if not request.json or "username" not in request.json or "password" not in request.json:
+            raise exceptions.BadRequest(description = "Missing username and/or password.")
+        username = request.json["username"]
+        passwd = request.json["password"]
+        user = eve_login(username, passwd)
+        if user == None:
+            raise exceptions.Unauthorized(description = "Incorrect password for user \"{}\".".format(username))
+        self._set_user(user)
         return jsonify(self.get_logged_in_user())
 
     def get_all_users(self):
