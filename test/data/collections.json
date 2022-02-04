@@ -39,7 +39,7 @@
             "labels": ["geo", "gpe", "per", "org", "tim", "art"],
             "metadata": {
                 "title": "Small Collection",
-                "description": "This is a small collection"
+                "description": "This is a small collection using spaCy pipeline"
             },
             "archived": false,
             "configuration": {
@@ -155,6 +155,36 @@
                  "has_header": true,
                  "text_column": 0
             }
+        }
+    },
+    {
+        "collection": {
+            "creator_id": "ada",
+            "annotators": ["ada"],
+            "viewers": ["ada"],
+            "labels": ["geo", "gpe", "per", "org", "tim", "art"],
+            "metadata": {
+                "title": "Small Collection Simpletransformers",
+                "description": "This is a small collection using Simpletransformers pipeline"
+            },
+            "archived": false,
+            "configuration": {
+                "allow_overlapping_ner_annotations": false
+            }
+        }, "classifier": {
+            "pipelineId": "5babb6ee4eb7dd2c39b96720",
+            "overlap": 0,
+            "train_every": 5,
+            "classifierParameters": {
+                "cutoff": 1,
+                "iterations": 5
+            }
+        }, "documents": {
+            "ner_annotations": {
+                "csv_file": "./ner_dataset.csv",
+                "sentences_per_doc": 5
+            },
+            "num_docs": 5
         }
     }
 ]

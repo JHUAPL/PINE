@@ -6,12 +6,26 @@ import re
 import typing
 
 from flask import abort, Blueprint, jsonify, request
+import lxml.html.clean
 from werkzeug import exceptions
 
 from .. import auth, collections, log, models
 from ..data import service
 
 bp = Blueprint("documents", __name__, url_prefix = "/documents")
+
+HTML_CLEANER = lxml.html.clean.Cleaner(
+    page_structure=True, # keep body only
+    links=True, # remove <link> (not <a>)
+    safe_attrs_only=True, # strip out non-standard attributes
+    style=False, # leave <style>
+    javascript=True, # no javascript!
+    scripts=True, # no javascript!!
+    meta=True, # strip out <meta>
+    forms=True, # strip out forms
+    embedded=True, # strip out embedded flash, etc.,
+    kill_tags=["title"] # otherwise the title gets embedded at the top
+)
 
 def _document_user_can_projection():
     return service.params({"projection": {
@@ -40,6 +54,9 @@ def get_user_permissions_by_id(document_id: str) -> models.CollectionUserPermiss
 def get_user_permissions_by_ids(document_ids: typing.Iterable[str]) -> typing.List[models.CollectionUserPermissions]:
     return collections.get_user_permissions_by_ids(get_collection_ids_for(document_ids))
 
+def sanitize_document(document: dict):
+    if document and "metadata" in document and "html_view" in document["metadata"]:
+        document["metadata"]["html_view"] = HTML_CLEANER.clean_html(document["metadata"]["html_view"])
 
 @bp.route("/by_id/<doc_id>", methods = ["GET"])
 @auth.login_required
@@ -249,6 +266,9 @@ def add_document():
         # initialize has_annotated dict
         if "has_annotated" not in doc:
             doc["has_annotated"] = {user_id: False for user_id in collections_by_id[doc["collection_id"]]["annotators"]}
+
+        # sanitize
+        sanitize_document(doc)
 
     # Add document(s) to database
     doc_resp = service.post("documents", json=docs)

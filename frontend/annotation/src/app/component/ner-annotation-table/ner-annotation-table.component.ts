@@ -1,6 +1,6 @@
 /*(C) 2019 The Johns Hopkins University Applied Physics Laboratory LLC. */
 
-import { Component, OnInit, ViewChild, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, ViewChild, Input, Output, EventEmitter, ChangeDetectorRef } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort, MatSortable } from '@angular/material/sort';
 import { MatTable, MatTableDataSource } from '@angular/material/table';
@@ -44,7 +44,9 @@ export class NERAnnotationTableComponent implements OnInit {
 
     public dataSource: MatTableDataSource<NerAnnotation>;
 
-    constructor() {
+    constructor(
+		private cdr: ChangeDetectorRef
+	) {
         this.dataSource = new MatTableDataSource<NerAnnotation>();
         this.dataSource.filterPredicate = (annotation, value): boolean => {
             if(annotation.label.toLowerCase().includes(value)) {
@@ -60,6 +62,7 @@ export class NERAnnotationTableComponent implements OnInit {
     ngOnInit() {
         this.data.changed.subscribe((res: NerAnnotation[]) => {
             this.dataSource.data = res;
+			this.cdr.detectChanges();
         });
         this.dataSource.sortingDataAccessor = (annotation: NerAnnotation, property: string) => {
             switch(property) {

@@ -58,3 +58,39 @@ td.space-left {
 .spacer {
   flex: 1 1 auto;
 }
+
+.annotate-area {
+	.annotation, .select {
+		-moz-box-shadow: 2px 2px 2px grey;
+		-webkit-box-shadow: 2px 2px 2px grey;
+		box-shadow: 2px 2px 2px grey;
+		
+		border-top: 1px solid black;
+		border-bottom: 1px solid black;
+	}
+	
+	.select {
+		background: rgba(255,255,255,0.4) !important;
+	}
+	
+	.annotationLeft, .selectLeft {
+		padding-left: 10px;
+	
+		border-left: 1px solid black;
+		
+		-moz-border-top-left-radius: 20px;
+		border-top-left-radius: 20px;
+		-moz-border-bottom-left-radius: 20px;
+		border-bottom-left-radius: 20px;
+	}
+	
+	.annotationRight, .selectRight {
+		padding-right: 10px;
+		margin-right: 2px;
+		
+		border-right: 1px solid black;
+		
+		border-top-right-radius: 20px;
+		border-bottom-right-radius: 20px;
+	}
+}

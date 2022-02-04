@@ -25,6 +25,7 @@ scipy = "~=1.7.1"
 tabulate = "~=0.8.9"
 multiprocessing-logging = "~=0.3.1"
 flask-httpauth = "~=4.4.0"
+lxml = "~=4.6.3"
 
 [dev-packages]
 

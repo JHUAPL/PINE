@@ -11,6 +11,7 @@ export class NerData {
     public words: Word[];
     public annotations: NerAnnotation[];
     private wordIndices: object;
+	private wordMap: { [id: string]: Word } = {};
 
     constructor() {
         this.changed = new EventEmitter<NerAnnotation[]>();
@@ -22,7 +23,18 @@ export class NerData {
     public setWordsAndAnnotations(words: Word[], annotations: NerAnnotation[]) {
         this.words = words;
         this.setAnnotations(annotations);
+
+		console.log(this.words);
+
+		this.wordMap = {};
+		for(const word of words) {
+			this.wordMap[word.id] = word;
+		}
     }
+
+	public getWordById(id: string) {
+		return this.wordMap[id];
+	}
     
     public setAnnotations(annotations: NerAnnotation[]) {
         this.annotations = annotations.slice();

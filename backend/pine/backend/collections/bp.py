@@ -16,6 +16,7 @@ from werkzeug import exceptions
 
 from .. import auth, log, models
 from ..data import service
+from ..documents import sanitize_document
 
 bp = Blueprint("collections", __name__, url_prefix = "/collections")
 LOGGER = logging.getLogger(__name__)
@@ -411,7 +412,9 @@ def get_overlap_ids(collection_id: str):
 
 
 def _upload_documents(collection, docs):
-    doc_resp = service.post("/documents", json=docs)
+    for doc in docs:
+        sanitize_document(doc)
+    doc_resp = service.post("documents", json=docs)
     # TODO if it failed, roll back the created collection and classifier
     if not doc_resp.ok:
         abort(doc_resp.status_code, doc_resp.content)

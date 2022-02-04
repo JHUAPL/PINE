@@ -19,7 +19,7 @@ from spacy.scorer import Scorer
 from spacy.gold import GoldParse
 from overrides import overrides
 
-from .pipeline import Pipeline, NerPrediction, DocumentPredictions, NerPredictionProbabilities, DocumentPredictionProbabilities
+from .pipeline import Pipeline, NerPrediction, DocumentPredictions, NerPredictionProbabilities, DocumentPredictionProbabilities, EvaluationMetrics, StatMetrics
 
 logger = logging.getLogger(__name__)
 
@@ -74,7 +74,7 @@ class spacy_NER(Pipeline):
         }
 
     @overrides
-    def fit(self, X, y, **params) -> dict:
+    def fit(self, X: typing.Iterable[str], y, all_labels: typing.Iterable[str], **params) -> dict:
         #setting up params
         default_params = self.__default_fit_params.copy()
         if params is not None:
@@ -118,25 +118,24 @@ class spacy_NER(Pipeline):
             "losses": all_losses
         }
 
-    def evaluate(self, X, y, Xid):
+    @overrides
+    def evaluate(self, X: typing.Iterable[str], y, all_labels: typing.Iterable[str], **kwargs) -> EvaluationMetrics:
         train_data = self.format_data(X, y)
         all_labels = set()
-        metrics = dict()
+        metrics = EvaluationMetrics()
         # get all labels
         for text, annot in train_data:
             for ent in annot['entities']:
                 all_labels.add(ent[2])
         all_labels = list(all_labels)
-        stats = {}
 
         for text, annots in train_data:
             pred_doc = self.__nlp(text)
             gold_doc = self.__nlp.make_doc(text)
             gold_labels = []
 
-            stats['Totals'] = [0,0,0,0]
             for label in all_labels:
-                stats[label] = [0,0,0,0]
+                metrics.labels[label] = StatMetrics()
 
             for token in pred_doc:
                 gold_labels.append(set())
@@ -149,10 +148,8 @@ class spacy_NER(Pipeline):
 
                 goldParse = GoldParse(gold_doc, entities=annotations_for_label)
                 for index, annotation in enumerate(goldParse.ner):
-
                     if annotation != 'O':
                         gold_labels[index].add(annotation[2:])
-
 
             for index, pred_token in enumerate(pred_doc):
                 pred_label = pred_token.ent_type_
@@ -161,56 +158,33 @@ class spacy_NER(Pipeline):
                         if label == pred_label:
                             if label in gold_labels[index]:
                                 #TP
-                                stats[label][0] += 1
-                                stats['Totals'][0] += 1
+                                metrics.labels[label].tp += 1
+                                metrics.totals.tp += 1
                             else:
                                 #FP
-                                stats[label][1] += 1
-                                stats['Totals'][1] += 1
+                                metrics.labels[label].fp += 1
+                                metrics.totals.fp += 1
 
                         else:
                             #All other labels are true negative because the model can only predict one label per token
                             #TN
-
-                            stats[label][3] += 1
-                            stats['Totals'][3] += 1
-
+                            metrics.labels[label].tn += 1
+                            metrics.totals.tn += 1
 
                 else:
                     for label in all_labels:
                         if label in gold_labels[index]:
                             #FN
-                            stats[label][2] += 1
-                            stats['Totals'][2] += 1
+                            metrics.labels[label].fn += 1
+                            metrics.totals.fn += 1
 
                         else:
                             #TN
-                            stats[label][3] += 1
-                            stats['Totals'][3] += 1
+                            metrics.labels[label].tn += 1
+                            metrics.totals.tn += 1
 
-        for key in stats:
-            TP = stats[key][0]
-            FP = stats[key][1]
-            FN = stats[key][2]
-            TN = stats[key][3]
-            if (TP + FN) != 0:
-                recall = TP / (TP + FN)
-            else:
-                recall = 1.0
-            if (TP + FP) != 0:
-                precision = TP / (TP + FP)
-            else:
-                precision = 0.0
-            if (precision + recall) != 0:
-                f1 = 2 * (precision * recall) / (precision + recall)
-            else:
-                f1 = 0
-            if (TP + FN + FP + TN) != 0:
-                acc = (TP + TN) / (TP + FN + FP + TN)
-            else:
-                acc = 0
-            metrics[key] = {'precision': precision, 'recall': recall, 'f1': f1, 'TP': TP, 'FP': FP, 'FN': FN, "TN": TN,
-                          "acc": acc}
+        metrics.calc_precision_recall_f1_acc()
+        
         return metrics
 
 
@@ -356,14 +330,14 @@ class spacy_NER(Pipeline):
 
     @overrides
     # TODO
-    def next_example(self, X, Xid):
+    def next_example(self, X: typing.Iterable[str], Xid):
         return
 
     ## EXTRA METHODS TO HELP WITH THE SPACY PIPELINE ##
 
     # Takes input data and formats it to be easier to use in the spacy pipeline
     # ASSUMES DATA FOLLOWS FORMAT X = [string], y = [[(start offset, stop offset, label), ()], ... []]
-    def format_data(self, X, y):
+    def format_data(self, X: typing.Iterable[str], y):
         out = []
         for i, text in enumerate(X):
             out.append((text, {'entities': [(labels) for labels in y[i]]}))
@@ -374,11 +348,11 @@ class spacy_NER(Pipeline):
         self.__ner.add_label(entity)
 
     @overrides
-    def save_model(self, model_name):
+    def save_model(self, model_name: str):
         self.__nlp.to_disk(model_name)
         logger.info('Saved model to ' + model_name)
         return model_name
 
     @overrides
-    def load_model(self, model_name):
+    def load_model(self, model_name: str):
         self._load_model(model_path=model_name)
