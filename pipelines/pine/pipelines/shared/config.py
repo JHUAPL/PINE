@@ -95,6 +95,15 @@ class BaseConfig(object):
                 framework="spacy",
                 types=["fit", "predict", "status"]
             )
+        ),
+        dict(
+            name="simpletransformers",
+            version="1.0",
+            channel="service_simpletransformers",
+            service=dict(
+                framework="simpletransformers",
+                types=["fit", "predict", "status"]
+            )
         )
     ]
 

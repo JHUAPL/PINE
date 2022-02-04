@@ -9,8 +9,10 @@ fi
 
 set -x
 
+pipenv run python3 -m nltk.downloader punkt
+
 PIDS=""
-for SERVICE in opennlp corenlp spacy; do
+for SERVICE in simpletransformers opennlp corenlp spacy; do
     AL_PIPELINE=${SERVICE} pipenv run python3 -m pine.pipelines.run_service &
     PIDS="${PIDS} $!"
 done

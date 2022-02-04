@@ -11,7 +11,7 @@ import uuid
 
 from overrides import overrides
 
-from .pipeline import Pipeline, NerPrediction, DocumentPredictions, NerPredictionProbabilities, DocumentPredictionProbabilities
+from .pipeline import Pipeline, NerPrediction, DocumentPredictions, NerPredictionProbabilities, DocumentPredictionProbabilities, EvaluationMetrics, StatMetrics
 from .shared.config import ConfigBuilder
 
 config = ConfigBuilder.get_config()
@@ -161,7 +161,7 @@ class corenlp_NER(Pipeline):
         }
 
     @overrides
-    def fit(self, X, y, **params) -> dict:
+    def fit(self, X: typing.Iterable[str], y, all_labels: typing.Iterable[str], **params) -> dict:
         default_params = self.__default_fit_params.copy()
         #format input data into tsv file for ner to train on
         try:
@@ -303,7 +303,7 @@ wordShape=""" + default_params["word_shape"] + """
 
     @overrides
     #TODO
-    def next_example(self, X, Xid):
+    def next_example(self, X: typing.Iterable[str], Xid):
         return
 
 ## EXTRA METHODS TO HELP WITH THE corenlp PIPELINE ##
@@ -313,7 +313,7 @@ wordShape=""" + default_params["word_shape"] + """
     #Takes input data and formats it to be easier to use in the corenlp pipeline
     #ASSUMES DATA FOLLOWS FORMAT X = [string], y = [[(start offset, stop offset, label), ()], ... []]
     #Currently cannot assign more than one label to the same word
-    def format_data(self, X, y):
+    def format_data(self, X: typing.Iterable[str], y):
         out = []
         for doc,ann in zip(X,y):
             #Extract labeled entities from doc
@@ -352,7 +352,7 @@ wordShape=""" + default_params["word_shape"] + """
 
     @overrides
     #models must be saved with extension ".ser.gz"
-    def save_model(self, model_name):
+    def save_model(self, model_name: str):
         if not model_name.endswith(".ser.gz"):
             logger.warn('WARNING: model_name must end in .ser.gz, adding...')
             model_name = model_name + ".ser.gz"
@@ -363,7 +363,7 @@ wordShape=""" + default_params["word_shape"] + """
 
     @overrides
     #properties can be exported/imported during train
-    def load_model(self, model_name):
+    def load_model(self, model_name: str):
         #TODO: what to do if model doesn't exist?
         if not model_name.endswith(".ser.gz"):
             logger.warn('WARNING: model_name must end in .ser.gz, adding...')
@@ -390,30 +390,30 @@ wordShape=""" + default_params["word_shape"] + """
 
     #Calculates Precision, Recall, and F1 Score for model based on input test data
     #WARNING: currently works for BioNLP data, no guarantees with other datasets
-    def evaluate(self, X, y, Xid, verbose=False):
-
-        known_labels = set()
-        for anns in y:
-            for ann in anns:
-                known_labels.add(ann[2])
-
-        stats = {}
-
+    # WARNING: this is currently broken, but this whole pipeline is broken
+    @overrides
+    def evaluate(self, X: typing.Iterable[str], y, all_labels: typing.Iterable[str], verbose=False, **kwargs) -> EvaluationMetrics:
         try:
             train_data = self.format_data(X, y)
             if len(train_data) == 0 or train_data is None:
                 raise Exception("ERROR: could not format input correctly")
         except:
             raise Exception("ERROR: could not format input correctly")
+        
+        known_labels = set()
+        for anns in y:
+            for ann in anns:
+                known_labels.add(ann[2])
+        
+        metrics = EvaluationMetrics()
         test_text = ''
-
         for doc in X:
             test_text = test_text + doc + '\n\n'
+        
         #rest of code tries to recreate calculations as this line, which can't be called more than once for some reason
         #results = self.__crf.classifyAndWriteAnswers(self.__java_String(self.__test_file), True)
         #print(test_text)
         results = self.__crf.classify(self.__java_String(test_text))
-
 
         #Calculate evaluation by iterating through answer key and matching tokens to classifier output
         s = 0
@@ -474,7 +474,7 @@ wordShape=""" + default_params["word_shape"] + """
                     #(likely the current answer token doesn't exactly match the guess token, see `` vs '')
                     if i+1 < len(doc):
                         next_gold = doc[i+1]
-                    elif i >= len(doc) and d+1 < len(test_data):
+                    elif i >= len(doc) and d+1 < len(test_data): # this is broken
                         next_gold = test_data[d+1][0]
                     else:
                         next_gold = (None, None)
@@ -488,32 +488,30 @@ wordShape=""" + default_params["word_shape"] + """
 
                 known_labels.add(pred)
 
-                # Per token metriccs
+                # Per token metrics
                 for label in known_labels:
-                    if label not in stats:
-                        stats[label] = [0, 0, 0, 0]
-
-
+                    if label not in metrics.labels:
+                        metrics.labels[label] = StatMetrics()
 
 
                 if gold == pred and gold != 'O':
-                    stats[gold][0] = stats[gold][0] + 1
+                    metrics.labels[gold].tp += 1
                     for label in known_labels:
                         if label != gold:
-                            stats[label][3] = stats[label][3] + 1
+                            metrics.labels[label].tn += 1
                 elif gold == 'O' and pred != 'O':
-                    stats[pred][1] = stats[pred][1] + 1
+                    metrics.labels[pred].fp += 1
                     for label in known_labels:
                         if label != pred:
-                            stats[label][3] = stats[label][3] + 1
+                            metrics.labels[label].tn += 1
                 elif pred == 'O' and gold != 'O':
-                    stats[gold][2] = stats[gold][2] + 1
+                    metrics.labels[gold].fn += 1
                     for label in known_labels:
                         if label != gold:
-                            stats[label][3] = stats[label][3] + 1
+                            metrics.labels[label].tn += 1
                 else:
                     for label in known_labels:
-                        stats[label][3] = stats[label][3] + 1
+                        metrics.labels[label].tn += 1
 
 
                 # Per annotation metrics
@@ -555,54 +553,22 @@ wordShape=""" + default_params["word_shape"] + """
         #ONLY USED FOR PER ANNOTATION METRICS
         # del stats['O']
 
-        TP = 0
-        TN = 0
-        FP = 0
-        FN = 0
-        for key in stats:
-            TP = TP + stats[key][0]
-            FP = FP + stats[key][1]
-            FN = FN + stats[key][2]
-            TN = TN + stats[key][3]
-
-        stats['Totals'] = [TP, FP, FN, TN]
+        for key in metrics.labels:
+            metrics.totals.tp += metrics.labels[key].tp
+            metrics.totals.fp += metrics.labels[key].fp
+            metrics.total.fn += metrics.labels[key].fn
+            metrics.total.tn += metrics.labels[key].tn
 
 
 
         #print(test_data[-1])
-        for key in stats:
-            TP = stats[key][0]
-            FP = stats[key][1]
-            FN = stats[key][2]
-            # Only generated when using per token metrics
-            TN = stats[key][3]
-            if (TP+FN) != 0:
-                recall = TP/(TP+FN)
-            else:
-                recall = 1.0
-            if (TP+FP) != 0:
-                precision = TP/(TP+FP)
-            else:
-                precision = 0.0
-            if (precision + recall) != 0:
-                f1 = 2 * (precision * recall) / (precision + recall)
-            else:
-                f1 = 0
-            # Acc Only works when using per token metrics which generates TN
-            if (TP + FN + FP + TN) != 0:
-                acc = (TP + TN) / (TP + FN + FP + TN)
-            else:
-                acc = 0
-            #Used for annotation metrics
-            # stats[key] = {'precision': precision, 'recall': recall, 'f1': f1, 'TP': TP, 'FP': FP, 'FN': FN}
-            # Used for token metrics
-            stats[key] = {'precision': precision, 'recall': recall, 'f1': f1, 'TP': TP, 'FP': FP, 'FN': FN, 'TN': TN, 'acc': acc}
+        metrics.calc_precision_recall_f1_acc()
 
-        return stats
+        return metrics
 
             #Calculates Precision, Recall, and F1 Score for model based on input test data
     #TODO: prints a whole lot to the command line, find a way to suppress?
-    def evaluate_orig(self, X, y, Xid):
+    def evaluate_orig(self, X: typing.Iterable[str], y, Xid):
         try:
             test_data = self.format_data(X, y)
             if len(test_data) == 0 or test_data is None:

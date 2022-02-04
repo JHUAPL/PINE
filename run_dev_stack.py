@@ -161,6 +161,9 @@ def main():
         if not os.path.isfile(redis_start):
             lock_print("Couldn't find redis start script: {}.".format(redis_start))
             return 1
+
+        pipeline_dir = os.path.join(DIR, "pipelines")
+        pipeline_start = os.path.join(pipeline_dir, "dev_run.sh")
     
         backend_dir = os.path.join(DIR, "backend")
         backend_start = os.path.join(backend_dir, "dev_run.sh")
@@ -179,24 +182,21 @@ def main():
         if docker:
             frontend_annotation_start = [frontend_annotation_start, "--", "--host", "0.0.0.0"]
 
-        pipeline_dir = os.path.join(DIR, "pipelines")
-        pipeline_start = os.path.join(pipeline_dir, "dev_run.sh")
-
     eve_process = start_eve_process(eve_dir, eve_start)
     if not eve_only:
         redis_process = start_redis_process(redis_dir, redis_start)
+        pipeline_process = start_pipeline(pipeline_dir, pipeline_start)
         backend_process = start_backend_process(backend_dir, backend_start)
     if not eve_only and not backend_only:
         frontend_annotation_process = start_frontend_annotation_process(frontend_annotation_dir, frontend_annotation_start)
-        pipeline_process = start_pipeline(pipeline_dir, pipeline_start)
 
     def signal_handler(sig, frame):
         lock_print("")
         if not eve_only and not backend_only:
-            stop_pipeline(pipeline_process)
             stop_frontend_annotation_process(frontend_annotation_process)
         if not eve_only:
             stop_backend_process(backend_process)
+            stop_pipeline(pipeline_process)
             stop_redis_process(redis_process)
         stop_eve_process(eve_process)
         lock_print("")

@@ -12,14 +12,31 @@ from skmultilearn.model_selection import IterativeStratification
 from sklearn.preprocessing import MultiLabelBinarizer
 from itertools import chain
 
-from .EveClient import EveClient
+from .EveClient import EveClient, EveDocsAndAnnotations
 from . import RankingFunctions as rank
+from .pipeline import EvaluationMetrics, StatMetrics
 from .pmap_ner import NER
 from .shared.config import ConfigBuilder
 
 logger = logging.getLogger(__name__)
 config = ConfigBuilder.get_config()
 
+class FiveFoldResult(object):
+    
+    def __init__(self):
+        self.metrics: typing.List[EvaluationMetrics] = []
+        # store list of documents ids per fold
+        self.folds: typing.List[typing.List] = []
+        self.average_metrics: typing[dict, StatMetrics] = {}
+    
+    def serialize_metrics(self):
+        return [x.serialize() for x in self.metrics]
+
+    def serialize_folds(self):
+        return list(self.folds) # make a copy
+
+    def serialize_average_metrics(self):
+        return {label: self.average_metrics[label].serialize() for label in self.average_metrics.keys()}
 
 class ner_api(object):
 
@@ -43,16 +60,14 @@ class ner_api(object):
             status["has_trained"] = "filename" in classifier_obj
         return status
 
-    def perform_fold(self, model: NER, train_data, test_data, **pipeline_parameters):
-        model.fit(train_data[0], train_data[1], **pipeline_parameters)
-        results = model.evaluate(test_data[0], test_data[1], range(0, len(test_data[0])))
+    def perform_fold(self, model: NER, all_labels: typing.List[str], train_data, test_data, **pipeline_parameters) -> EvaluationMetrics:
+        model.fit(train_data[0], train_data[1], all_labels, **pipeline_parameters)
+        results = model.evaluate(test_data[0], test_data[1], all_labels)
 
         return results
 
-    def perform_five_fold(self, model: NER, documents, annotations, doc_ids, **pipeline_parameters):
-        metrics = list()
-        # store list of documents ids per fold
-        folds = list()
+    def perform_five_fold(self, model: NER, all_labels: typing.List[str], documents, annotations, doc_ids: typing.List[str], **pipeline_parameters) -> FiveFoldResult:
+        results = FiveFoldResult()
         # turning into numpy arrays to be able to access values with index array
         documents_np_array = np.array(documents)
         annotations_np_array = np.array(annotations, dtype=object)
@@ -84,51 +99,39 @@ class ner_api(object):
             train_documents = documents_np_array[train_index]
             test_documents = documents_np_array[test_index]
 
-            fold_metrics = self.perform_fold(model, [train_documents.tolist(), train_annotations.tolist()],
-                                             [test_documents.tolist(), test_annotations.tolist()], **pipeline_parameters)
+            fold_metrics = self.perform_fold(model, all_labels,
+                                             [train_documents.tolist(), train_annotations.tolist()],
+                                             [test_documents.tolist(), test_annotations.tolist()],
+                                             **pipeline_parameters)
 
             # saving docs used to train fold
             fold_doc_ids = doc_ids_np_array[train_index]
-            folds.append(fold_doc_ids.tolist())
+            results.folds.append(fold_doc_ids.tolist())
 
             # saving fold metrics
-            metrics.append(fold_metrics)
+            results.metrics.append(fold_metrics)
 
 
-            for key in fold_metrics.keys():
+            for key in fold_metrics.labels.keys():
                 if key not in total_metrics:
-                    total_metrics[key] = {"FN": 0, "FP": 0, "TP": 0, "TN": 0, "f1": 0, "precision": 0, "recall": 0, "acc": 0}
-                total_metrics[key]["FN"] = total_metrics[key]["FN"] + fold_metrics[key]["FN"]
-                total_metrics[key]["FP"] = total_metrics[key]["FP"] + fold_metrics[key]["FP"]
-                total_metrics[key]["TP"] = total_metrics[key]["TP"] + fold_metrics[key]["TP"]
-                total_metrics[key]["TN"] = total_metrics[key]["TN"] + fold_metrics[key]["TN"]
+                    total_metrics[key] = StatMetrics()
+                total_metrics[key].fn += fold_metrics.labels[key].fn
+                total_metrics[key].fp += fold_metrics.labels[key].fp
+                total_metrics[key].tp += fold_metrics.labels[key].tp
+                total_metrics[key].tn += fold_metrics.labels[key].tn
 
 
-        average_metrics = {}
         for label in total_metrics.keys():
-            avg_metric = {}
-            avg_metric["FN"]  = total_metrics[label]["FN"] / 5
-            avg_metric["FP"]  = total_metrics[label]["FP"] / 5
-            avg_metric["TP"]  = total_metrics[label]["TP"] / 5
-            avg_metric["TN"]  = total_metrics[label]["TN"] / 5
-            if (avg_metric["TP"] + avg_metric["FN"]) != 0:
-                avg_metric["recall"] = avg_metric["TP"] / (avg_metric["TP"] + avg_metric["FN"])
-            else:
-                avg_metric["recall"] = 1.0
-            if (avg_metric["TP"] + avg_metric["FP"]) != 0:
-                avg_metric["precision"]  = avg_metric["TP"] / (avg_metric["TP"] + avg_metric["FP"])
-            else:
-                avg_metric["precision"]  = 0.0
-            if (avg_metric["precision"]  + avg_metric["recall"]) != 0:
-                avg_metric["f1"] = 2 * (avg_metric["precision"] * avg_metric["recall"]) / (avg_metric["precision"] + avg_metric["recall"])
-            else:
-                avg_metric["f1"] = 0
-            avg_metric["acc"] = (avg_metric["TP"] + avg_metric["TN"]) / (avg_metric["TP"] + avg_metric["TN"] + avg_metric["FP"] + avg_metric["FN"])
+            avg_metric = StatMetrics()
+            avg_metric.fn = total_metrics[label].fn / 5
+            avg_metric.fp = total_metrics[label].fp / 5
+            avg_metric.tp = total_metrics[label].tp / 5
+            avg_metric.tn = total_metrics[label].tn / 5
+            avg_metric.calc_precision_recall_f1_acc()
 
-            average_metrics[label] = avg_metric
+            results.average_metrics[label] = avg_metric
 
-
-        return metrics, folds, average_metrics
+        return results
 
     def get_document_ranking(self, model: NER, doc_map: typing.Dict[str, str], doc_ids: typing.List[str]) -> typing.List[str]:
         """Calculates document rankings and returns document IDs sorted by ranking.
@@ -189,19 +192,21 @@ class ner_api(object):
         # get documents where overlap is 0
         doc_map = self.eve_client.get_documents(collection_id)
         # get documents with its annotations where overlap is 0
-        documents, labels, doc_ids, ann_ids = self.eve_client.get_docs_with_annotations(collection_id, doc_map)
+        eve_data = self.eve_client.get_docs_with_annotations(collection_id, doc_map)
 
         # instantiate model
         classifier = NER(pipeline_name)
 
         # get folds information
-        metrics, folds, averages = self.perform_five_fold(classifier, documents, labels, doc_ids, **pipeline_parameters)
+        fold_results = self.perform_five_fold(classifier, eve_data.all_labels,
+                                              eve_data.documents, eve_data.annotations,
+                                              eve_data.doc_ids, **pipeline_parameters)
 
         logger.info("Starting to train classifier for {} pipeline".format(pipeline_name))
-        fit_results = classifier.fit(documents, labels, **pipeline_parameters)
+        fit_results = classifier.fit(eve_data.documents, eve_data.annotations, eve_data.all_labels, **pipeline_parameters)
         results = {
             "fit": fit_results,
-            "average_metrics": averages,
+            "average_metrics": fold_results.serialize_average_metrics(),
             "updated_objects": {}
         }
 
@@ -221,11 +226,11 @@ class ner_api(object):
         # update classifier metrics on eve
         metrics_updated_obj = {
             'trained_classifier_db_version': classifier_obj['_version']+1,
-            'documents': list(set(chain.from_iterable(folds))),
-            'annotations': list(ann_ids),
-            'folds': list(folds),
-            'metrics': list(metrics),
-            'metric_averages': dict(averages),
+            'documents': list(set(chain.from_iterable(fold_results.folds))),
+            'annotations': list(eve_data.ann_ids),
+            'folds': fold_results.serialize_folds(),
+            'metrics': fold_results.serialize_metrics(),
+            'metric_averages': fold_results.serialize_average_metrics(),
             'filename': filename
         }
         if not self.eve_client.update('metrics', metrics_obj["_id"], metrics_obj['_etag'], metrics_updated_obj):
@@ -234,7 +239,7 @@ class ner_api(object):
         results["updated_objects"]["metrics"] = [metrics_obj["_id"]]
 
         # re rank documents
-        ranks = self.get_document_ranking(classifier, doc_map, doc_ids)
+        ranks = self.get_document_ranking(classifier, doc_map, eve_data.doc_ids)
         logger.info("Performing document rankings")
 
         # Save updates to eve

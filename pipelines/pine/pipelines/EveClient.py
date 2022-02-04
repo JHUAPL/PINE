@@ -10,6 +10,15 @@ from .shared.config import ConfigBuilder
 logger = logging.getLogger(__name__)
 config = ConfigBuilder.get_config()
 
+class EveDocsAndAnnotations:
+    
+    def __init__(self):
+        self.all_labels: typing.List[str] = []
+        self.documents: typing.List[str] = []
+        self.annotations: typing.List = []
+        self.doc_ids: typing.List[str] = []
+        self.ann_ids: typing.List[str] = []
+
 class EveClient(object):
     eve_headers = {'Content-Type': 'application/json'}
 
@@ -105,7 +114,7 @@ class EveClient(object):
         }
         return self._get_documents_map(params)
 
-    def get_docs_with_annotations(self, collection_id: str, doc_map: typing.Dict[str, str]) -> typing.Tuple[typing.List[str], typing.List[str], typing.List[str], typing.List[str]]:
+    def get_docs_with_annotations(self, collection_id: str, doc_map: typing.Dict[str, str]) -> EveDocsAndAnnotations:
         """Gets document and annotation data.  Only non-overlapping documents are returned.
         
         :param collection_id: str: the ID of the collection
@@ -116,10 +125,11 @@ class EveClient(object):
                   ann_ids is a list of the annotation IDs
         :rtype: tuple
         """
-        doc_ids = list()
-        documents = []
-        ann_ids = list()
-        labels = []
+        data = EveDocsAndAnnotations()
+        
+        # get all labels from collection object
+        collection = self.get_obj("collections", collection_id)
+        data.all_labels = collection["labels"]
 
         #get annotations and make data
         query = 'annotations?where={"collection_id":"%s"}' % (collection_id)
@@ -132,15 +142,15 @@ class EveClient(object):
                 # remove overlaps
                 if docid not in doc_map:
                     continue
-                doc_ids.append(docid)
-                documents.append(doc_map[docid])
-                ann_ids.append(a["_id"])
-                labels.append(a["annotation"])
+                data.doc_ids.append(docid)
+                data.documents.append(doc_map[docid])
+                data.ann_ids.append(a["_id"])
+                data.annotations.append(a["annotation"])
 
             if query is None:
                 break
 
-        return documents, labels, doc_ids, ann_ids
+        return data
 
     def update(self, resource, id, etag, update_obj):
         headers = {'Content-Type': 'application/json', 'If-Match': etag}

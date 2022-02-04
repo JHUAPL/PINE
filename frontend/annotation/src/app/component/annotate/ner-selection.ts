@@ -89,6 +89,9 @@ export class NerSelection {
             this.words[0].elem.classList.remove("selectLeft");
             for(let i = this.words[0].index - 1; i >= word.index; i--) {
                 const docWord = nerData.words[i];
+				if(!docWord?.elem) {
+					continue;
+				}
                 docWord.elem.classList.add("select");
                 if(i === word.index) {
                     docWord.elem.classList.add("selectLeft");
@@ -101,6 +104,9 @@ export class NerSelection {
             this.words[this.words.length - 1].elem.classList.remove("selectRight");
             for(let i = this.words[this.words.length - 1].index + 1; i <= word.index; i++) {
                 const docWord = nerData.words[i];
+				if(!docWord?.elem) {
+					continue;
+				}
                 docWord.elem.classList.add("select");
                 if(i === word.index) {
                     docWord.elem.classList.add("selectRight");

@@ -1,5 +1,6 @@
 // (C) 2019 The Johns Hopkins University Applied Physics Laboratory LLC.
 
+import * as _ from "lodash";
 import { Observable } from "rxjs";
 
 export class Word {
@@ -58,6 +59,20 @@ export class Word {
         });
         return words;
     }
+
+	public static parseWordObjectsFromHtml(elems: HTMLElement[]): Word[] {
+        const words = [];
+		_.forEach(elems, (elem: HTMLElement) => {
+			console.log(elem);
+			let id = elem.getAttribute('ID');
+			let parts = id.split('_');
+			let start = parts[1];
+			//let end = parts[2];
+			let wordObj = new Word(+start, elem.innerHTML, words.length);
+			words.push(wordObj);
+		});
+		return words;
+	}
 
 }
 

@@ -239,7 +239,18 @@ def test_train_and_predict_opennlp():
         [972, 976, 'gpe'], [1025, 1029, 'gpe'], [1089, 1096, 'geo'], [1113, 1120, 'gpe'],
         [1200, 1209, 'tim'], [1221, 1225, 'org']]
 
-def test_sync_train():
+def test_train_and_predict_simpletransformers():
+    prediction = _test_train_and_predict("Small Collection Simpletransformers")
+    assert len(prediction["doc"]) == 0
+    preds = prediction["ner"]
+    # unfortunately the simpletransformers predictions are not the same across runs
+    # and there don't seem to be guaranteed common tokens
+    # so just make sure any predictions have proper labels...
+    common_labels = {'gpe', 'org', 'geo', 'tim', 'per'}
+    for pred in preds:
+        assert pred[2] in common_labels
+
+def test_sync_train():  
     client = common.login_with_test_user(common.client())
     
     collection = common.get_collection(client, "Small Collection OpenNLP")

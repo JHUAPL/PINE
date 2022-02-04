@@ -13,7 +13,7 @@ import typing
 import pydash
 from overrides import overrides
 
-from .pipeline import Pipeline, NerPrediction, DocumentPredictions, NerPredictionProbabilities, DocumentPredictionProbabilities
+from .pipeline import Pipeline, NerPrediction, DocumentPredictions, NerPredictionProbabilities, DocumentPredictionProbabilities, EvaluationMetrics, StatMetrics
 from .shared.config import ConfigBuilder
 
 config = ConfigBuilder.get_config()
@@ -148,14 +148,14 @@ class opennlp_NER(Pipeline):
         }
 
     @overrides
-    def fit(self, X, y, **params) -> dict:
+    def fit(self, X: typing.Iterable[str], y, all_labels: typing.Iterable[str], **params) -> dict:
         try:
             data = self.format_data(X, y)
             if len(data)==0 or data is None:
                 raise Exception("ERROR: could not format input correctly")
         except:
             raise Exception("ERROR: could not format input correctly")
-        #print(data)
+        logger.debug("Formated train data: %s", data)
         with open(self.__train_file, 'w') as f:
             f.write(data)
         inputStreamFactory = self.__java_MarkableFileInputStreamFactory(self.__java_File(self.__java_String(self.__train_file)))
@@ -249,14 +249,14 @@ class opennlp_NER(Pipeline):
 
     @overrides
     # TODO
-    def next_example(self, X, Xid):
+    def next_example(self, X: typing.Iterable[str], Xid):
         return
 
 # EXTRA METHODS TO HELP WITH THE opennlp PIPELINE ##
 
     @overrides
     # models must be saved and loaded with extension ".bin"
-    def save_model(self, model_name):
+    def save_model(self, model_name: str):
         if not model_name.endswith(".bin"):
             logger.warning('WARNING: model_name must end with .bin, adding...')
             model_name = model_name + ".bin"
@@ -266,7 +266,7 @@ class opennlp_NER(Pipeline):
 
 
     @overrides
-    def load_model(self, model_name):
+    def load_model(self, model_name: str):
         if not model_name.endswith(".bin"):
             logger.warning('WARNING: model_name must end with .bin, adding...')
             model_name = model_name + ".bin"
@@ -313,7 +313,7 @@ class opennlp_NER(Pipeline):
     #Takes input data and formats it to be easier to use in the opennlp pipeline
     #ASSUMES DATA FOLLOWS FORMAT X = [string], y = [[(start offset, stop offset, label), ()], ... []]
     #Currently cannot assign more than one label to the same word
-    def format_data(self, X, y):
+    def format_data(self, X: typing.Iterable[str], y):
         out = ''
         try:
             for doc, ann in zip(X, y):
@@ -373,13 +373,14 @@ class opennlp_NER(Pipeline):
             labels_per_token.append(labels)
         return labels_per_token
 
-    def evaluate(self, X, y, Xid):
+    @overrides
+    def evaluate(self, X: typing.Iterable[str], y, all_labels: typing.Iterable[str], **kwargs) -> EvaluationMetrics:
         predictions = self.predict(X)
-        stats = {'Totals': [0, 0, 0, 0]}
+        metrics = EvaluationMetrics()
 
-        for (doc_id, prediction) in zip(Xid, predictions):
+        for (index, prediction) in enumerate(predictions):
             guesses: typing.List[NerPrediction] = prediction.ner
-            gold = y[Xid.index(doc_id)]
+            gold = y[index]
 
             all_tokens = prediction.extra_data
 
@@ -414,47 +415,26 @@ class opennlp_NER(Pipeline):
                     else:
                         TN.append(label)
             for label in all_known_labels:
-                if label not in stats:
-                    stats[label] = [0,0,0,0]
+                if label not in metrics.labels:
+                    metrics.labels[label] = StatMetrics()
             for label in TP:
-                stats[label][0] += 1
-                stats['Totals'][0] += 1
+                metrics.labels[label].tp += 1
+                metrics.totals.tp += 1
             for label in FP:
-                stats[label][1] += 1
-                stats['Totals'][1] += 1
+                metrics.labels[label].fp += 1
+                metrics.totals.fp += 1
             for label in FN:
-                stats[label][2] += 1
-                stats['Totals'][2] += 1
+                metrics.labels[label].fn += 1
+                metrics.totals.fn += 1
             for label in TN:
-                stats[label][3] += 1
-                stats['Totals'][3] += 1
+                metrics.labels[label].tn += 1
+                metrics.totals.tn += 1
 
-        for key in stats:
-            TP = stats[key][0]
-            FP = stats[key][1]
-            FN = stats[key][2]
-            TN = stats[key][3]
-            if (TP + FN) != 0:
-                recall = TP / (TP + FN)
-            else:
-                recall = 1.0
-            if (TP + FP) != 0:
-                precision = TP / (TP + FP)
-            else:
-                precision = 0.0
-            if (precision + recall) != 0:
-                f1 = 2 * (precision * recall) / (precision + recall)
-            else:
-                f1 = 0
-            if (TP + FN + FP + TN) != 0:
-                acc = (TP + TN) / (TP + FN + FP + TN)
-            else:
-                acc = 0
-            stats[key] = {'precision': precision, 'recall': recall, 'f1': f1, 'TP': TP, 'FP': FP, 'FN': FN, "TN" : TN, "acc": acc}
+        metrics.calc_precision_recall_f1_acc()
 
-        return stats
+        return metrics
 
-    def evaluate_orig(self, X, y, Xid):
+    def evaluate_orig(self, X: typing.Iterable[str], y, Xid):
         try:
             data = self.format_data(X, y)
             if len(data) == 0 or data is None:

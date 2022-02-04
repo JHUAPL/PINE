@@ -76,8 +76,9 @@ WORKDIR ${ROOT_DIR}
 # pipenv causing container to fail to rebuild if spacy installed previously
 #Install python requirements
 COPY Pipfile Pipfile.lock ./
-RUN REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt pipenv install --dev --system --deploy
-
+RUN REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt PIPENV_INSTALL_TIMEOUT=30 \
+    pipenv install --dev --system --deploy
+RUN python3 -m nltk.downloader punkt
 
 #Copy contents of pipeline folder to docker
 COPY pine ./pine

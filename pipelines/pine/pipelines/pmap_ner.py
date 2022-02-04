@@ -5,7 +5,7 @@ import logging
 import os
 import typing
 
-from .pipeline import Pipeline, DocumentPredictions, DocumentPredictionProbabilities
+from .pipeline import Pipeline, DocumentPredictions, DocumentPredictionProbabilities, EvaluationMetrics
 
 from overrides import overrides
 
@@ -20,7 +20,7 @@ class NER(Pipeline):
     __lib = ''
     pipeline = -1
 
-    __SUPPORTED_PIPELINES = ['spacy', 'corenlp', 'opennlp']    
+    __SUPPORTED_PIPELINES = ['spacy', 'corenlp', 'opennlp', 'simpletransformers']    
 
     #initializes proper nlp library pipeline based on user selection
     #there are additional args to accomodate initializing different pipelines, check individual pipeline for specifics
@@ -56,8 +56,8 @@ class NER(Pipeline):
     #internal state is changed
     #kwargs varies between pipelines, see individual pipeline for extra arguments
     @overrides
-    def fit(self, X, y, **kwargs) -> dict:
-        return self.pipeline.fit(X, y, **kwargs)
+    def fit(self, X: typing.Iterable[str], y, all_labels: typing.Iterable[str], **params) -> dict:
+        return self.pipeline.fit(X, y, all_labels, **params)
 
     @overrides
     def predict(self, X: typing.Iterable[str]) -> typing.List[DocumentPredictions]:
@@ -68,20 +68,19 @@ class NER(Pipeline):
     def predict_proba(self, X: typing.Iterable[str], **kwargs) -> typing.List[DocumentPredictionProbabilities]:
         return self.pipeline.predict_proba(X, **kwargs)
 
-    # evaluate(X, y, Xid)
-    # returns stats
-    def evaluate(self, X, y, Xid, **kwargs):
-        return self.pipeline.evaluate(X, y, Xid, **kwargs)
+    @overrides
+    def evaluate(self, X: typing.Iterable[str], y, all_labels: typing.Iterable[str], **kwargs) -> EvaluationMetrics:
+        return self.pipeline.evaluate(X, y, all_labels, **kwargs)
 
     #next_example(Xid)
     #Given model's current state evaluate the input (id, String) pairs and return a rank ordering of lowest->highest scores for instances (will need to discuss specifics of ranking)
     @overrides
-    def next_example(self, X, Xid):
+    def next_example(self, X: typing.Iterable[str], Xid):
         #may want to program it here instead of one level down, as the ranking function might not change with the pipeline used
         return self.pipeline.next_example(X, Xid)
 
     @overrides
-    def save_model(self, model_name):
+    def save_model(self, model_name: str):
         directory = os.path.dirname(model_name)
         # if directories in path dont exists create them
         if not os.path.exists(directory):
@@ -90,5 +89,5 @@ class NER(Pipeline):
         return self.pipeline.save_model(model_name)
 
     @overrides
-    def load_model(self, model_name):
+    def load_model(self, model_name: str):
         self.pipeline.load_model(model_name)
