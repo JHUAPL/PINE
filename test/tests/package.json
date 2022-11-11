@@ -14,7 +14,7 @@
   "private": true,
   "devDependencies": {
     "cypress": "^8.2.0",
-    "mocha": "^9.0.3",
+    "mocha": "^9.2.2",
     "mochawesome": "^6.2.2",
     "mochawesome-merge": "^4.2.0",
     "mochawesome-report-generator": "^5.2.0"
